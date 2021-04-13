@@ -1,0 +1,24 @@
+{
+  "description": "Let's start with the basics: what do you need to build a three.js application? And what do your users need to be able to run it? The answers are simple: a text editor to write code, a browser to run it, and that's all.",
+  "title": "What Do You Need to Run a three.js App?",
+    "wordCount": "958",
+    "readingTime": "5",
+  "IDE": {
+    "show": "false",
+    "container": "#ide-wrapper",
+    "serverDirectory": "static/examples",
+    "stripDirectory": "views/",
+    "closedFolders": null,
+    "comparisonMode": null,
+    "files": null,
+    "startFiles": null,
+    "finalFiles": null,
+    "entry": "index.html",
+    "activeDocument":"",
+    "switchImportsAllow": "true"
+  },
+  "membershipLevelToView": "none",
+  "includeInSitemap" : true,
+  "showUpdateBanner" : true,
+  "showPagination" : true
+}

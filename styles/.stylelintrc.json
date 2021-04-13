@@ -1,0 +1,13 @@
+{
+  "plugins": ["stylelint-prettier"],
+  "rules": {
+    "block-closing-brace-newline-after": "always-multi-line",
+    "block-closing-brace-empty-line-before": "never",
+    "block-closing-brace-space-before": "always",
+    "block-opening-brace-space-after": "always",
+    "block-opening-brace-space-before": "always",
+    "block-closing-brace-newline-before": "always-multi-line",
+    "block-opening-brace-newline-after": "always-multi-line",
+    "indentation": 4
+  }
+}

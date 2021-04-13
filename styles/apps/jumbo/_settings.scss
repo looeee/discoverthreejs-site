@@ -1,0 +1,44 @@
+$xlarge: "max-width: 1680px";
+$large: "max-width: 1280px";
+$medium: "max-width: 980px";
+$small: "max-width: 736px";
+$portrait: "orientation: portrait";
+$small-portrait: "(max-width: 736px) and (orientation: portrait)";
+$small-landscape: "(max-height: 736px) and (orientation: landscape)";
+$xsmall: "max-width: 480px";
+$xxsmall: "max-width: 360px";
+
+$transition-duration: 0.3s;
+$transition-duration-long: 0.5s;
+
+$base-width: calc(100% - 4rem);
+
+$element-margin: 2rem;
+$padding:	2rem;
+$wrapper-width:	72rem;
+$border-radius: 6px;
+$nav-width: 300px; // width of the navbar
+
+$font-family: ("Open Sans", Georgia, sans-serif);
+$font-family-heading: ( "Varela Round", sans-serif );
+$font-family-fixed: ("Roboto Mono", monospace);
+$font-weight:	400;
+$font-weight-bold: 600;
+$font-weight-heading:	900;
+
+$color-bg: white;
+$color-code-bg: ghostwhite;
+$color-fg: #212931;
+$color-fg-light: #535759;
+// $color-border: darkgrey;
+$color-border: silver;
+$color-border-bg: rgba(#dcdcdc, 0.25);
+$color-accent: #18bfef;
+$color-link: #ce0026;
+
+$color-bg-invert:	#2e3336;
+$color-fg-invert:	transparentize($color-bg, 0.75);
+
+$aside-notice-bg: #8fbcd4;
+$aside-warning-bg: #fb5d66; //#fd7a81;
+$aside-success-bg: #6ac174;

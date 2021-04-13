@@ -1,0 +1,24 @@
+{
+  "description": "This book is a complete guide for creating professional-quality 3D apps using three.js. Each chapter comes with a live code editor so you can edit the code we describe and see the changes immediately.",
+  "title": "How to Use This Book",
+    "wordCount": "925",
+    "readingTime": "5",
+  "IDE": {
+    "show": "true",
+    "container": "#ide-wrapper",
+    "serverDirectory": "static/examples",
+    "stripDirectory": "worlds/introduction/about-the-book/",
+    "closedFolders": ["systems","components","styles","vendor","textures"],
+    "comparisonMode": true,
+    "files": ["assets/models/Horse.glb","assets/models/Parrot.glb","assets/textures/sprites/spark1.png","styles/main.css","vendor/three/build/three.module.js","vendor/three/examples/jsm/controls/OrbitControls.js","vendor/three/examples/jsm/loaders/GLTFLoader.js","worlds/introduction/about-the-book/index.html","worlds/introduction/about-the-book/src/main.final.js","worlds/introduction/about-the-book/src/main.start.js","worlds/introduction/about-the-book/src/World/components/camera.js","worlds/introduction/about-the-book/src/World/components/lights.js","worlds/introduction/about-the-book/src/World/components/scene.final.js","worlds/introduction/about-the-book/src/World/components/scene.start.js","worlds/introduction/about-the-book/src/World/components/SparkleHorse/sparkleHorse.final.js","worlds/introduction/about-the-book/src/World/components/SparkleHorse/sparkleHorse.start.js","worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/convertMeshToPoints.final.js","worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/convertMeshToPoints.start.js","worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/createSizesAttribute.final.js","worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/createSizesAttribute.start.js","worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/createSparkleMaterial.final.js","worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/createSparkleMaterial.start.js","worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/setupAnimation.final.js","worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/setupAnimation.start.js","worlds/introduction/about-the-book/src/World/systems/controls.js","worlds/introduction/about-the-book/src/World/systems/renderer.js","worlds/introduction/about-the-book/src/World/systems/Resizer.js","worlds/introduction/about-the-book/src/World/systems/Loop.js","worlds/introduction/about-the-book/src/World/World.final.js","worlds/introduction/about-the-book/src/World/World.start.js"],
+    "startFiles": null,
+    "finalFiles": null,
+    "entry": "index.html",
+    "activeDocument":"src/World/components/SparkleHorse/sparkleHorse.js",
+    "switchImportsAllow": "true"
+  },
+  "membershipLevelToView": "none",
+  "includeInSitemap" : true,
+  "showUpdateBanner" : true,
+  "showPagination" : true
+}

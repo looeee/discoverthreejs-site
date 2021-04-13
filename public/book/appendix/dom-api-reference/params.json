@@ -1,0 +1,24 @@
+{
+  "description": "JavaScript is connected to a web page using using the Document Object Model (DOM) and we can access it using the DOM API. Here, we provide a reference for the parts of the DOM we use in this book.",
+  "title": "The Document Object Model and DOM API",
+    "wordCount": "3248",
+    "readingTime": "16",
+  "IDE": {
+    "show": "true",
+    "container": "#ide-wrapper",
+    "serverDirectory": "static/examples",
+    "stripDirectory": "worlds/appendix/dom-api-reference/",
+    "closedFolders": ["styles"],
+    "comparisonMode": null,
+    "files": ["worlds/appendix/dom-api-reference/src/main.js","worlds/appendix/dom-api-reference/index.html"],
+    "startFiles": null,
+    "finalFiles": null,
+    "entry": "index.html",
+    "activeDocument":"src/main.js",
+    "switchImportsAllow": "false"
+  },
+  "membershipLevelToView": "none",
+  "includeInSitemap" : true,
+  "showUpdateBanner" : true,
+  "showPagination" : true
+}

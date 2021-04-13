@@ -1,0 +1,38 @@
+{
+  "description": "{{ .Description | safeHTML }}",
+  "title": "{{ .Title | safeHTML }}",
+  {{- if .Params.hideWordCount }}
+  "wordCount": null,
+  "readingTime": null,
+  {{- else }}
+    {{- if .Params.available }}
+    "wordCount": "{{ .WordCount | safeHTML }}",
+    "readingTime": "{{ .ReadingTime | safeHTML }}",
+    {{- else }}
+    "wordCount": null,
+    "readingTime": null,
+    {{- end }}
+  {{- end }}
+  "IDE": {
+    "show": "{{ .Params.showIDE | default "false" }}",
+    "container": "#ide-wrapper",
+    "serverDirectory": "{{ .Params.IDEserverDirectory | default "static/examples" }}",
+    "stripDirectory": "{{ .Params.IDEStripDirectory | default "views/" }}",
+    "closedFolders": {{ .Params.IDEClosedFolders | jsonify }},
+    "comparisonMode": {{ .Params.IDEComparisonMode | jsonify | default "false" }},
+    "files": {{ .Params.IDEFiles | jsonify }},
+    "startFiles": {{ .Params.IDEStartFiles | jsonify }},
+    "finalFiles": {{ .Params.IDEFinalFiles | jsonify }},
+    "entry": "{{ .Params.IDEEntry | default "index.html" }}",
+    "activeDocument":"{{ .Params.IDEActiveDocument | default "" }}",
+    "switchImportsAllow": "{{ .Params.IDESwitchImportsAllow | default "true" }}"
+  },
+  "membershipLevelToView": "{{ .Params.membershipLevel | default "none" }}",
+  {{- if .Params.available }}
+  "includeInSitemap" : {{ .Params.includeInSitemap | default true }},
+  {{- else }}
+  "includeInSitemap" : {{ .Params.includeInSitemap | default false }},
+  {{- end }}
+  "showUpdateBanner" : {{ .Params.showUpdateBanner | default true }},
+  "showPagination" : {{ .Params.pagination | default true }}
+}

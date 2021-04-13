@@ -1,0 +1,39 @@
+.wrapper {
+  &.orientation-auto {
+    @media screen and (orientation: portrait) {
+      flex-direction: column;
+
+      #image-preview {
+        width: auto;
+        height: calc(100% - 2rem);
+      }
+    }
+
+    @media screen and (orientation: landscape) {
+      flex-direction: row;
+
+      #image-preview {
+        width: calc(100% - 2rem);
+        height: auto;
+      }
+    }
+  }
+
+  &.orientation-portrait {
+    flex-direction: column;
+
+    #image-preview {
+      width: auto;
+      height: calc(100% - 2rem);
+    }
+  }
+
+  &.orientation-landscape {
+    flex-direction: row;
+
+    #image-preview {
+      width: calc(100% - 2rem);
+      height: auto;
+    }
+  }
+}

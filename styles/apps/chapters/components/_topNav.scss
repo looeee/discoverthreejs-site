@@ -1,0 +1,53 @@
+.top-nav {
+  display: flex;
+  position: fixed;
+  top: 0;
+  justify-content: space-between;
+  z-index: 99;
+  width: 100%;
+
+  .close-icon {
+    display: none;
+  }
+
+  .off-icon {
+    color: silver;
+  }
+
+  .icon-group {
+    display: flex;
+    margin: 0 1rem;
+
+    &.center {
+      flex: 0 0 30%;
+      max-width: 15rem;
+      position: relative;
+
+      .previous {
+        position: absolute;
+        left: 0;
+      }
+      .next {
+        position: absolute;
+        right: 0;
+      }
+    }
+  }
+
+  .nav-background {
+    position: absolute;
+    top: 0;
+    z-index: 98;
+    border-bottom: 1px solid silver;
+    background: white;
+    width: 100%;
+    height: 2rem;
+  }
+
+  label,
+  a {
+    z-index: 99;
+    padding: 0.5rem;
+    color: #444 !important;
+  }
+}

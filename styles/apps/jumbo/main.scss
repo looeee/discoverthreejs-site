@@ -1,0 +1,69 @@
+@import 'settings';
+
+@import 'components/base';
+@import 'components/main';
+@import 'components/button';
+@import 'components/figure';
+@import 'components/footer';
+@import 'components/form';
+@import 'components/header';
+@import 'components/icon';
+@import 'components/label';
+@import 'components/lists';
+@import 'components/section';
+@import 'components/text';
+@import 'components/preorderBanner';
+
+@import 'modules/common/columns';
+@import 'modules/common/loaders';
+@import 'modules/common/nav';
+@import 'modules/common/offscreenPanel';
+@import 'modules/common/navTriggers';
+@import 'modules/common/navWrapper';
+@import 'modules/common/portrait';
+
+@import 'modules/jumbo/background';
+@import 'modules/jumbo/intro';
+@import 'modules/jumbo/wrapper';
+// @import 'modules/jumbo/payments';
+// @import 'modules/jumbo/stripe';
+
+// front page, privacy, terms, TOC pages
+
+.table-of-contents-large {
+  border: 1px solid silver;
+  border-radius: 6px;
+  box-shadow: 1px 1px 10px 1px silver;
+
+  margin-top: 2rem;
+  padding-top: 2rem;
+
+  .section-head {
+    font-size: 130%;
+    font-weight: bolder;
+  }
+
+  li {
+    border-bottom: 1px dashed #18bfef;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    font-size: 110%;
+    margin-bottom: 1rem;
+    padding-bottom: 0;
+
+    &.unavailable {
+      color: grey;
+    }
+
+    span,
+    a {
+      margin-right: 2rem;
+    }
+
+    a {
+      color: black;
+    }
+  }
+}

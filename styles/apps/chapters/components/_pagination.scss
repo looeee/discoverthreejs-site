@@ -1,0 +1,25 @@
+.bottom-pagination {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 4rem;
+  border-top: 1px solid $color-border-light;
+  padding-top: 3rem;
+  height: 3rem;
+
+  font-size: 250%;
+
+  span {
+    &:empty {
+      display: none;
+    }
+  }
+
+  a {
+    color: $color-fade;
+
+    &:hover,
+    &:focus {
+      color: $color-accent;
+    }
+  }
+}

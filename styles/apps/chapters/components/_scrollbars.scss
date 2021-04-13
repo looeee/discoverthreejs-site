@@ -1,0 +1,32 @@
+.scroller,
+#main-toc > ul,
+#filetree,
+.CodeMirror-hscrollbar,
+.CodeMirror-vscrollbar,
+.lntd:last-child > pre,
+pre[class*='language-'] {
+  scrollbar-width: thin;
+  scrollbar-color: #90a4ae #666666;
+
+  &::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #666666;
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #90a4ae;
+    border-radius: 6px;
+    border: 2px solid #666666;
+  }
+}
+
+.CodeMirror-scrollbar-filler {
+  background-color: #666666;
+  border-radius: 6px;
+}
+
+// TODO-STYLE: get rid of all Chroma styles .lntd:last-child > pre

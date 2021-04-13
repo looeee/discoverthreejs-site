@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  position: absolute;
+  transition: opacity 0.3s ease-in-out;
+  margin: 2rem 0 0 0;
+  background-color: $color-bg;
+  padding: 0;
+  width: 100%;
+  height: calc(100% - 2rem);
+  overflow: hidden;
+
+  &.fade {
+    opacity: 0.6;
+  }
+}

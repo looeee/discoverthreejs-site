@@ -1,0 +1,24 @@
+{
+  "description": "In this chapter, we build an Animation Loop which will generate a stream of frames allowing us to add animation and other effects to our scenes.",
+  "title": "The Animation Loop",
+    "wordCount": "5348",
+    "readingTime": "26",
+  "IDE": {
+    "show": "true",
+    "container": "#ide-wrapper",
+    "serverDirectory": "static/examples",
+    "stripDirectory": "worlds/first-steps/animation-loop/",
+    "closedFolders": ["styles","vendor"],
+    "comparisonMode": true,
+    "files": ["worlds/first-steps/animation-loop/src/World/components/camera.js","worlds/first-steps/animation-loop/src/World/components/cube.start.js","worlds/first-steps/animation-loop/src/World/components/cube.final.js","worlds/first-steps/animation-loop/src/World/components/lights.js","worlds/first-steps/animation-loop/src/World/components/scene.js","worlds/first-steps/animation-loop/src/World/systems/renderer.js","worlds/first-steps/animation-loop/src/World/systems/Resizer.js","worlds/first-steps/animation-loop/src/World/systems/Loop.start.js","worlds/first-steps/animation-loop/src/World/systems/Loop.final.js","worlds/first-steps/animation-loop/src/World/World.start.js","worlds/first-steps/animation-loop/src/World/World.final.js","worlds/first-steps/animation-loop/src/main.start.js","worlds/first-steps/animation-loop/src/main.final.js","styles/main.css","vendor/three/build/three.module.js","worlds/first-steps/animation-loop/index.html"],
+    "startFiles": null,
+    "finalFiles": null,
+    "entry": "index.html",
+    "activeDocument":"src/World/systems/Loop.js",
+    "switchImportsAllow": "true"
+  },
+  "membershipLevelToView": "none",
+  "includeInSitemap" : true,
+  "showUpdateBanner" : true,
+  "showPagination" : true
+}

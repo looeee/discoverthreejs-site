@@ -1,0 +1,24 @@
+{
+  "description": "To showcase our three.js scenes, we need a web page. Here, we create a basic page using HTML and CSS. However, we'll structure our three.js app so you can just as easily integrate it with a framework such as React or Vue instead of this simple page.",
+  "title": "The Structure of a three.js App",
+    "wordCount": "1192",
+    "readingTime": "6",
+  "IDE": {
+    "show": "true",
+    "container": "#ide-wrapper",
+    "serverDirectory": "static/examples",
+    "stripDirectory": "worlds/first-steps/app-structure/",
+    "closedFolders": ["assets","vendor"],
+    "comparisonMode": null,
+    "files": ["assets/models/Flamingo.glb","assets/textures/uv-test-bw.png","worlds/first-steps/app-structure/src/main.js","styles/main.css","vendor/three/build/three.module.js","vendor/three/examples/jsm/loaders/GLTFLoader.js","vendor/three/examples/jsm/controls/OrbitControls.js","worlds/first-steps/app-structure/index.html"],
+    "startFiles": null,
+    "finalFiles": null,
+    "entry": "index.html",
+    "activeDocument":"index.html",
+    "switchImportsAllow": "false"
+  },
+  "membershipLevelToView": "none",
+  "includeInSitemap" : true,
+  "showUpdateBanner" : true,
+  "showPagination" : true
+}

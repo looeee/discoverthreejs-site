@@ -1,0 +1,93 @@
+.fullwidth-section {
+  padding: 3rem 0;
+  margin: 0;
+  width: 100%;
+  background-color: white;
+  position: relative;
+  z-index: 2;
+
+  >aside,
+  >figure,
+  >h1,
+  >h2,
+  >h3,
+  >h4,
+  >h5,
+  >h6,
+  >p,
+  >table,
+  >video,
+  >ul,
+  >ol,
+  .codesandbox-wrapper,
+  .inline-code {
+    margin-right: auto !important;
+    max-width: $text-max-width + 10rem;
+
+    @media ($medium) {
+
+      margin-left: auto;
+      max-width: 50rem;
+      margin-right: auto;
+      padding-right: 2rem;
+      padding-left: 1rem;
+
+    }
+
+    @media ($small) {
+      padding-right: 1rem;
+    }
+  }
+
+  >ul,
+  >ol {
+    @media ($medium) {
+      margin-left: 3rem;
+    }
+  }
+
+  >.inline-threejs-scene {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: $text-max-width + 10rem;
+  }
+
+  @media ($medium) {
+    padding-top: 0;
+  }
+
+  >.highlight {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: $text-max-width + 10rem;
+    padding-right: 3rem;
+    padding-left: 2rem;
+
+    pre {
+      border-radius: 4px;
+      float: unset !important;
+      clear: unset !important;
+      width: unset !important;
+      border-radius: 6px;
+      border: 1px solid silver;
+      box-shadow: 1px 1px 10px 1px silver;
+    }
+
+    @media ($medium) {
+      padding-right: 2rem;
+      padding-left: 1rem;
+
+      max-width: $text-max-width;
+    }
+
+    @media ($small) {
+      padding-right: 1rem;
+    }
+
+  }
+
+  pre {
+    width: unset !important;
+    float: unset !important;
+  }
+}

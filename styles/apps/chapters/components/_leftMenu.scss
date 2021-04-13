@@ -1,0 +1,42 @@
+.left-menu {
+  left: -22rem;
+  transition: left 300ms ease-in-out;
+
+  &.show {
+    left: 0;
+  }
+
+  nav {
+    height: calc(100% - 4rem);
+  }
+
+  a {
+    color: silver !important; // important to prevent inverted theme overwriting
+
+    &:hover,
+    &:focus {
+      color: $color-accent !important;
+    }
+  }
+
+  .icons {
+    display: flex;
+    flex-basis: 100%;
+    justify-content: center;
+    border-bottom: 1px solid silver;
+    padding: 0 1rem 0.5rem;
+    max-height: 2rem;
+
+    .landscape-icon {
+      svg {
+        transform: rotateZ(90deg);
+      }
+    }
+
+    label {
+      padding: 0 2rem;
+
+      color: #dbdbdb;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+<script>
+{{ if not .Params.showIDE }}
+chapters_app( {
+
+  showIDE: false,
+
+} );
+{{ else }}
+chapters_app( {
+
+  showIDE: true,
+
+  IDE: {
+    container: '#ide-wrapper',
+    serverDirectory: {{ .Params.IDEserverDirectory | default "static/examples" }},
+    stripDirectory: {{ .Params.IDEStripDirectory | default "views/" }},
+    closedFolders: {{ .Params.IDEClosedFolders }},
+    files: {{ .Params.IDEFiles }},
+    entry: {{ .Params.IDEEntry | default "index.html" }},
+    activeDocument: {{ .Params.IDEActiveDocument | default "" }},
+  },
+
+} );
+
+{{ end }}
+</script>

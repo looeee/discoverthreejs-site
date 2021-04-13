@@ -1,0 +1,8 @@
+{{- if .Params.available }}{{ .Content  }}{{- end -}}
+  {{- if .Params.mainContentsPage }}
+    <nav class="table-of-contents-large">
+      {{- partialCached "toc.html" . -}}
+    </nav>
+  {{- else -}}
+    {{- partial "collectionMenuMinimal.html" . -}}
+{{- end -}}

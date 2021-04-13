@@ -1,0 +1,60 @@
+.codesandbox-wrapper {
+
+  position: relative;
+  height: 500px;
+  border-radius: 6px;
+  border: 1px solid silver;
+  box-shadow: 1px 1px 10px 1px silver;
+  padding: 0.5rem !important;
+  margin-bottom: 2rem;
+  background: url("/static/images/loading-dots.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+
+  margin-left: auto;
+  max-width: 55%;
+
+  // @media ($xlarge) {
+  //   margin-right: 40%;
+  // }
+
+  @media ($medium) {
+    margin-right: auto;
+    max-width: unset;
+  }
+
+  @media ($small) {
+    padding: 0.15rem 0;
+  }
+}
+
+.fullwidth-section {
+  & > .codesandbox-wrapper {
+    padding: 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media ($small) {
+      padding: 0;
+      border: 0;
+      margin: 0 auto 2rem;
+      width: 100%;
+    }
+  }
+}
+
+section {
+  & > .codesandbox-wrapper {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 50rem;
+  }
+}
+
+.codesandbox {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 0;
+}

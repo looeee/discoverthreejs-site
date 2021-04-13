@@ -1,0 +1,24 @@
+{
+  "description": "Welcome to the Appendices! Here, we cover all the technical details of building and running a high-performance, modern JavaScript app.",
+  "title": "Appendices",
+  "wordCount": null,
+  "readingTime": null,
+  "IDE": {
+    "show": "false",
+    "container": "#ide-wrapper",
+    "serverDirectory": "static/examples",
+    "stripDirectory": "views/",
+    "closedFolders": null,
+    "comparisonMode": null,
+    "files": null,
+    "startFiles": null,
+    "finalFiles": null,
+    "entry": "index.html",
+    "activeDocument":"",
+    "switchImportsAllow": "true"
+  },
+  "membershipLevelToView": "none",
+  "includeInSitemap" : false,
+  "showUpdateBanner" : true,
+  "showPagination" : true
+}

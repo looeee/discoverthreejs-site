@@ -1,0 +1,768 @@
+<h1 id="the-threejs-animation-system">The three.js Animation System</h1>
+<p>In the previous chapter, we introduced the glTF model format and showed you how to load three simple yet beautiful models of a parrot, a flamingo, and a stork.</p>
+
+
+
+
+
+
+
+<figure id="scene-471569283" class="inline-scene loading-dots round right medium"></figure>
+
+<script type="module">
+  import init from "/static/examples/worlds/inline-scenes/first-steps/birds-animated-small.js";
+  init("#scene-471569283");
+</script>
+
+<p>These models were loaded from the <a href="/book/first-steps/load-models/#types-of-gltf-files">binary glTF files</a> <a href="https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Parrot.glb" target="_blank" rel="noopener noreferrer"><strong><em>parrot.glb</em></strong></a>, <a href="https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Flamingo.glb" target="_blank" rel="noopener noreferrer"><strong><em>flamingo.glb</em></strong></a>, and <a href="https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Stork.glb" target="_blank" rel="noopener noreferrer"><strong><em>stork.glb</em></strong></a>. Alongside the bird models, each of these files also contains an animation clip of the bird flying.</p>
+<p>In this final chapter of the introductory section, we will introduce the three.js animation system and show you how to attach these animation clips to the bird models so that they can take flight.</p>
+<p><strong>The three.js animation system is a complete animation mixing desk.</strong> Using this system you can animate virtually any aspect of an object, such as position, scale, rotation, a material&rsquo;s color or opacity, the bones of a <a href="https://threejs.org/examples/#webgl_animation_skinning_blending" target="_blank" rel="noopener noreferrer">skinned mesh</a>, <a href="https://threejs.org/examples/#webgl_buffergeometry_morphtargets" target="_blank" rel="noopener noreferrer">morph targets</a>, and many other things besides. You can also blend and mix animations, so, for example, if you have a &ldquo;walk&rdquo; animation and a &ldquo;run&rdquo; animation attached to a human character you can make the character speed up from a walk to a run by blending these animations.</p>
+<p><strong>The animation system uses keyframes to define animations</strong>. To create an animation, we set keyframes at particular points in time, and then the animation system fills in the gaps for us using a process known as <strong>tweening</strong>. To animate a bouncing ball, for example, you can specify the points at the top and bottom of the bounce, and the ball will smoothly animate across all the points in between. The amount of keyframes you need depends on the complexity of the animation. A very simple animation may only need one keyframe per second, or less, while a complex animation will need more, up to a maximum of sixty keyframes per second (any more than this will be ignored on a standard 60Hz display).</p>
+<p>The animation system is built from a number of components that work together to create animations, attach them to objects in the scene, and control them. We&rsquo;ll split these into two categories, <strong>animation creation</strong>, and <strong>animation playback and control</strong>. We&rsquo;ll briefly introduce both categories here, and then we&rsquo;ll use our new knowledge to set up the flying animations that we have loaded from the three glTF files.</p>
+<h2 id="the-animation-system-creating-animations">The Animation System: Creating Animations</h2>
+<p>We&rsquo;ll start by examining how to create some simple animations that change the visibility, scale, or position of an object. However, it should be noted that most people don&rsquo;t use the three.js animation system to create animations by hand. It&rsquo;s best suited for use with animations that were created in external software like Blender. Instead, to create animations in code, most people prefer to use <a href="https://threejs.org/examples/#webgl_loader_collada_kinematics" target="_blank" rel="noopener noreferrer">Tween.js</a> for simple animations and <a href="https://greensock.com/gsap/" target="_blank" rel="noopener noreferrer">GSAP</a> for more complex animations (although any JavaScript animation library will work with three.js). Even <a href="https://threejs.org/examples/#webgl_loader_collada_kinematics" target="_blank" rel="noopener noreferrer">official examples</a> on the three.js website use Tween.js! Nonetheless, it&rsquo;s important for us to understand how animation clips are created and structured, so let&rsquo;s get started, and soon we&rsquo;ll have those lazy birds up in the sky!</p>
+<p>There are three elements involved in creating animations: keyframes, <code>KeyframeTrack</code>, and <code>AnimationClip</code>.</p>
+<h3 id="keyframes">1. Keyframes</h3>
+<p>The lowest conceptual level in the animation system is a <a href="https://en.wikipedia.org/wiki/Key_frame" target="_blank" rel="noopener noreferrer">keyframe</a>. Each keyframe consists of three pieces of information: a <strong><em>time</em></strong>, a <em><strong>property</strong></em>, and a <strong><em>value</em></strong>, for example:</p>
+<ul>
+<li><strong>At 0 seconds <code>.position</code> is $(0,0,0)$.</strong></li>
+<li><strong>At 3 seconds <code>.scale</code> is $(1,1,1)$.</strong></li>
+<li><strong>At 12 seconds <code>.material.color</code> is red.</strong></li>
+</ul>
+<p>These three keyframes each describe the value of some property at a specific time. <strong>Keyframes don&rsquo;t specify any particular object</strong>, though. A position keyframe can be used to animate any object with a <code>.position</code> property, a scale keyframe can animate any object with a <code>.scale</code> property, and so on. However, keyframes <em>do</em> specify a data type. The <code>.position</code> and <code>.scale</code> keyframes above specify vector data, while <code>.material.color</code> keyframe specifies color data. Currently, the animation system supports five data types.</p>
+<table>
+<thead>
+<tr>
+<th>Data type</th>
+<th>Description</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Number</strong></td>
+<td>Animate any property that is a single number</td>
+<td><a href="https://threejs.org/docs/#api/en/materials/MeshStandardMaterial.opacity" target="_blank" rel="noopener noreferrer">MeshStandardMaterial.opacity</a><br> <a href="https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.zoom" target="_blank" rel="noopener noreferrer">PerspectiveCamera.zoom</a></td>
+</tr>
+<tr>
+<td><strong>Vector</strong></td>
+<td>Animate any property that is a <a href="/book/first-steps/transformations/#positions-are-stored-in-the-vector3-class">vector</a></td>
+<td><a href="/book/first-steps/transformations/#our-first-transformation-translation">Object3D.position</a><br> <a href="/book/first-steps/transformations/#our-second-transformation-scaling">Object3D.scale</a><br> <a href="/book/first-steps/camera-controls/#manually-set-the-target">OrbitControls.target</a></td>
+</tr>
+<tr>
+<td><strong>Quaternion</strong></td>
+<td>Animate rotations stored as <a href="/book/first-steps/transformations/#the-other-rotation-class-quaternions">quaternions</a></td>
+<td><a href="https://threejs.org/docs/#api/en/core/Object3D.quaternion" target="_blank" rel="noopener noreferrer">Object3D.quaternion</a></td>
+</tr>
+<tr>
+<td><strong>Boolean</strong></td>
+<td>Animate any Boolean property. This is less commonly used because there are no values between true and false so the animation will jump</td>
+<td><a href="https://threejs.org/docs/#api/en/materials/MeshStandardMaterial.wireframe" target="_blank" rel="noopener noreferrer">MeshStandardMaterial.wireframe</a><br> <a href="https://threejs.org/docs/#api/en/lights/DirectionalLight.castShadow" target="_blank" rel="noopener noreferrer">DirectionalLight.castShadow</a></td>
+</tr>
+<tr>
+<td><strong>String</strong></td>
+<td>Animate any property that is a string</td>
+<td>Not commonly used</td>
+</tr>
+</tbody>
+</table>
+<p>Notably missing from this list are <a href="/book/first-steps/transformations/#representing-rotations-the-euler-class">Euler angles</a>, which, if you recall from our chapter on transformations, are similar to vectors and are used to store rotations in <a href="https://threejs.org/docs/#api/en/core/Object3D.rotation" target="_blank" rel="noopener noreferrer"><code>Object3D.rotation</code></a>. To animate rotations, you must use <a href="https://threejs.org/docs/#api/en/core/Object3D.quaternion" target="_blank" rel="noopener noreferrer"><code>Object3D.quaternion</code></a>. As we mentioned back in the chapter on transformations, quaternions are a bit harder to work with than Euler angles, so, to avoid becoming bamboozled, we&rsquo;ll ignore rotations and focus on position and scale for now.</p>
+<p>To create an animation, we need at least two keyframes. The simplest possible example is two number keyframes, say, animating a material&rsquo;s opacity (how transparent/see-through it is):</p>
+<ol>
+<li><strong>At 0 seconds <code>.material.opacity</code> is 0.</strong></li>
+<li><strong>At 3 seconds <code>.material.opacity</code> is 1.</strong></li>
+</ol>
+<p>An opacity of zero means fully invisible, and opacity of one means fully visible. When we animate an object using these two keyframes, it will fade into view over three seconds. It doesn&rsquo;t matter what the actual opacity of the object is, the keyframes will override that. In other words, if we manually set:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Values set on an object are overridden by the animation system</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+mesh.material.opacity = 0.5;
+
+</code>
+  </pre>
+</section>
+
+<p>&hellip; and then animate the object&rsquo;s opacity, this value of 0.5 will be ignored, and the value in the keyframes will be used. Let&rsquo;s take another example. Here are three vector keyframes representing positions:</p>
+<ol>
+<li><strong>At 0 seconds <code>.position</code> is $(0,0,0)$.</strong></li>
+<li><strong>At 3 seconds <code>.position</code> is $(5,5,0)$.</strong></li>
+<li><strong>At 6 seconds <code>.position</code> is $(0,0,0)$.</strong></li>
+</ol>
+<p>When we animate a mesh with these keyframes, it will start at the center of the scene, then it will <a href="/book/first-steps/transformations/#directions-in-world-space">move to the top right</a> over three seconds before reversing direction and moving back to the center, again taking three seconds to do so. The total animation will take six seconds (and you can choose whether to loop it or end there).</p>
+<h3 id="keyframetrack">2. <code>KeyframeTrack</code></h3>
+<p>There&rsquo;s no class representing a single keyframe. Rather, keyframes are raw data stored in two arrays, <em>times</em> and <em>values</em>, within a <a href="https://threejs.org/docs/#api/en/animation/KeyframeTrack" target="_blank" rel="noopener noreferrer"><code>KeyframeTrack</code></a>. From here on, we&rsquo;ll refer to a <code>KeyframeTrack</code> as simply a <em>track</em>. A track also stores the property being animated, such as <code>.position</code>, or <code>.scale</code>.</p>
+<p>As with keyframes, keyframe tracks do not specify any particular object. A <code>.material.opacity</code> track can animate any object with a material that supports opacity, a <code>.quaternion</code> track can animate any object with a quaternion property, and so on.</p>
+<p><code>KeyframeTrack</code> is the base class, and there&rsquo;s one sub-class for each data type:</p>
+<ul>
+<li><a href="https://threejs.org/docs/#api/en/animation/tracks/NumberKeyframeTrack" target="_blank" rel="noopener noreferrer"><code>NumberKeyframeTrack</code></a></li>
+<li><a href="https://threejs.org/docs/#api/en/animation/tracks/VectorKeyframeTrack" target="_blank" rel="noopener noreferrer"><code>VectorKeyframeTrack</code></a></li>
+<li><a href="https://threejs.org/docs/#api/en/animation/tracks/QuaternionKeyframeTrack" target="_blank" rel="noopener noreferrer"><code>QuaternionKeyframeTrack</code></a></li>
+<li><a href="https://threejs.org/docs/#api/en/animation/tracks/BooleanKeyframeTrack" target="_blank" rel="noopener noreferrer"><code>BooleanKeyframeTrack</code></a></li>
+<li><a href="https://threejs.org/docs/#api/en/animation/tracks/StringKeyframeTrack" target="_blank" rel="noopener noreferrer"><code>StringKeyframeTrack</code></a></li>
+</ul>
+<p>We never use <code>KeyframeTrack</code> directly, instead, we will choose whichever subclass matches the data type being animated. Let&rsquo;s look at a couple of examples. First, we&rsquo;ll use a <code>NumberKeyframeTrack</code> to store these five <code>.opacity</code> keyframes:</p>
+<ol>
+<li><strong>At 0 seconds <code>.material.opacity</code> is 0.</strong></li>
+<li><strong>At 1 second <code>.material.opacity</code> is 1.</strong></li>
+<li><strong>At 2 seconds <code>.material.opacity</code> is 0.</strong></li>
+<li><strong>At 3 seconds <code>.material.opacity</code> is 1.</strong></li>
+<li><strong>At 4 seconds <code>.material.opacity</code> is 0.</strong></li>
+</ol>
+<p>These keyframes will make an object blink in and out for four seconds. To create a keyframe track, we will create one array containing the times, and one array containing the values, and then pass those into the <code>NumberKeyframeTrack</code> constructor along with the property we want to animate.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Creating a number keyframe track representing opacity, with five keyframes</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+import { NumberKeyframeTrack } from &#39;three&#39;;
+
+const times = [0, 1, 2, 3, 4];
+const values = [0, 1, 0, 1, 0];
+
+const opacityKF = new NumberKeyframeTrack(&#39;.material.opacity&#39;, times, values);
+
+</code>
+  </pre>
+</section>
+
+<p>Note how each entry in the <code>times</code> array maps to one entry in the <code>values</code> array. Next, let&rsquo;s try some position keyframes and a <code>VectorKeyframeTrack</code>:</p>
+<ol>
+<li><strong>At 0 seconds <code>.position</code> is $(0,0,0)$.</strong></li>
+<li><strong>At 3 seconds <code>.position</code> is $(2,2,2)$.</strong></li>
+<li><strong>At 6 seconds <code>.position</code> is $(0,0,0)$.</strong></li>
+</ol>
+<p>These three keyframes will make an object start at the center of the scene, move right, up, and forwards over three seconds, then reverse direction and move back to the center. Next, we&rsquo;ll create a vector track with these keyframes.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Creating a vector keyframe track representing positions, with three keyframes</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+import { VectorKeyframeTrack } from &#39;three&#39;;
+
+const times = [0, 3, 6];
+const values = [0, 0, 0, 2, 2, 2, 0, 0, 0 ];
+
+const positionKF = new VectorKeyframeTrack(&#39;.material.opacity&#39;, times, values);
+
+</code>
+  </pre>
+</section>
+
+<p>This time, note how each entry in the times array matches with <em>three</em> entries from the values array, representing a position in 3D space. This means the <code>values</code> array is three times larger than the <code>times</code> array.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Each time maps to an $(x, y, z)$ position</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+const times = [0, 3, 6];
+const values = [
+  0, 0, 0, // (x, y, z) at t = 0
+  2, 2, 2, // (x, y, z) at t = 3
+  0, 0, 0  // (x, y, z) at t = 6
+];
+
+</code>
+  </pre>
+</section>
+
+<h3 id="animationclip">3. <code>AnimationClip</code></h3>
+<figure class="medium right">
+  <iframe title="A dancing character from Mixamo.com" width="100%" height="500px" src="https://threejs.org/examples/webgl_loader_fbx.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe><figcaption>A dancing character from Mixamo.com</figcaption></figure>
+<p>An animation of a character dancing like the one in this scene consists of many separate movements: feet pivot, knees bend, arms swing wildly, the head nods to the beat (soundtrack not provided). Each individual movement is stored in a separate keyframe track, so for, example, there is one track controlling the rotation of the dancer&rsquo;s left foot, another controlling the rotation of his right foot, a third control the rotation of his neck, and so on. In fact, this dancing animation is made from fifty-three keyframe tracks, of which fifty-two are <code>.quaternion</code> tracks controlling individual joints like the dancer&rsquo;s knees, elbow, and ankles. Then there is a single <code>.position</code> track that moves the figure back and forth across the floor.</p>
+<p>These fifty-three tracks come together to create the animation, which we call an <strong>animation clip</strong>. An animation clip, then, is a collection of any number of keyframes attached to a single object, and the class representing clips is <a href="https://threejs.org/docs/#api/en/animation/AnimationClip" target="_blank" rel="noopener noreferrer"><code>AnimationClip</code></a>. From here on, we&rsquo;ll refer to an animation clip as simply a <em>clip</em>. Animation clips can be looped, so, while this dancer&rsquo;s animation is eighteen seconds long, when it reaches the end it loops and the dancer appears to dancer forever.</p>
+<p>Animation clips store three pieces of information: the name of the clip, the length of the clip, and finally, an array of tracks that make up the clip. If we set the length to -1, the array of tracks will be used to calculate the length (which is what you want in most cases). Let&rsquo;s create a clip containing the single position track from earlier:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Create an <code>AnimationClip</code> using a single track of position keyframes</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+import { AnimationClip, VectorKeyframeTrack } from &#39;three&#39;;
+
+const times = [0, 3, 6];
+const values = [0, 0, 0, 2, 2, 2, 0, 0, 0];
+
+const positionKF = new VectorKeyframeTrack(&#39;.position&#39;, times, values);
+
+// just one track for now
+const tracks = [track];
+
+// use -1 to automatically calculate
+// the length from the array of tracks
+const length = -1;
+
+const clip = new AnimationClip(&#39;slowmove&#39;, length, tracks);
+
+</code>
+  </pre>
+</section>
+
+<p>Since we&rsquo;ve set the length to -1, the tracks will be used to calculate the length, in this case, six seconds. We&rsquo;ve given the clip a descriptive name, to make using it later easier.</p>
+<p>The <code>AnimationClip</code> is <em>still</em> not attached to any particular object. We&rsquo;ll have to wait for the <code>AnimationAction</code> below for that. We can use this simple clip we have created with any object that has a <code>.position</code> property. However, as clips become more complex and contain more tracks, they start to become more deeply tied to a particular object. For example, you can&rsquo;t use the dancing clip with one of the birds we loaded, since those don&rsquo;t have the same internal structure as the human figure. However, you can use the clip with any other humanoid figure that has <strong>the same internal structure</strong>. Since this model was downloaded from mixamo.com, the dancing clip should work with other characters from mixamo.com, but it&rsquo;s unlikely to work with just any humanoid model you download.</p>
+<p>Now, let&rsquo;s try making a clip that contains the opacity keyframes from earlier, as well as the position keyframes. This time, to save some space, we&rsquo;ll write the times and values arrays inline rather than saving them to variables first, and we have also added a couple of extra opacity keyframes to make both tracks six seconds long.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A clip that animates both position and opacity</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+import {
+  AnimationClip,
+  NumberKeyframeTrack,
+  VectorKeyframeTrack,
+} from &#39;three&#39;;
+
+const positionKF = new VectorKeyframeTrack(
+  &#39;.position&#39;,
+  [0, 3, 6],
+  [0, 0, 0, 2, 2, 2, 0, 0, 0],
+);
+
+const opacityKF = new NumberKeyframeTrack(
+  &#39;.material.opacity&#39;,
+  [0, 1, 2, 3, 4, 5, 6],
+  [0, 1, 0, 1, 0, 1, 0],
+);
+
+const moveBlinkClip = new AnimationClip(&#39;move-n-blink&#39;, -1, [
+  positionKF,
+  opacityKF,
+]);
+
+</code>
+  </pre>
+</section>
+
+<p>This animation clip will work with any object that has a <code>.position</code> property and also a material with an <code>.opacity</code> property. In other words, it should work with a mesh. It will make a mesh move while blinking in an out. Once again, we have given the clip a memorable name. Later, we might have lots of separate clips, and we can blend and mix them together. Giving each a unique name will make this easier for us. This time, note that the position track has three keyframes, while the opacity track has seven keyframes. Also, the length of each track is the same. This is not required, but the animation will look better if the lengths of the tracks match.</p>
+<h2 id="the-animation-system-playback-and-control">The Animation System: Playback and Control</h2>
+<p>Now, we have a simple animation clip that makes an object move while fading in and out. The next step is to attach this clip to an object and then play it. This brings us to the final two components of the animation system. First, the <code>AnimationMixer</code> allows us to turn a static object into an animated object, and finally, the <code>AnimationAction</code> connects a clip to the object and allows us to control it using actions such as play, pause, loop, reset, and so on.</p>
+<h3 id="animationmixer">4. <code>AnimationMixer</code></h3>
+<p>To animate an object such as a mesh using the animation system, we must connect it to an <a href="https://threejs.org/docs/#api/en/animation/AnimationMixer" target="_blank" rel="noopener noreferrer"><strong><code>AnimationMixer</code></strong></a>. From here on, we&rsquo;ll refer to an <code>AnimationMixer</code> as simply a <em>mixer</em>. <strong>We need one mixer for each animated object in the scene.</strong> The mixer does the technical work of making the model move in time to the animation clip, whether that means moving the feet, arms, and hips of a dancer, or the wings of a flying bird.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Each <code>AnimationMixer</code> controls the animation of one object</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import { Mesh, AnimationMixer } from &#39;three&#39;;
+
+// create a normal, static mesh
+const mesh = new Mesh();
+
+// turn it into an animated mesh by connecting it to a mixer
+const mixer = new AnimationMixer(mesh);
+</code>
+  </pre>
+</section>
+
+<p>We also need to update the mixer each frame, but we&rsquo;ll come back to that in a moment.</p>
+<h3 id="animationaction">5. <code>AnimationAction</code></h3>
+<p>The final piece of the puzzle, the <a href="https://threejs.org/docs/#api/en/animation/AnimationAction" target="_blank" rel="noopener noreferrer"><code>AnimationAction</code></a> connects an animated object to an animation clip. The <code>AnimationAction</code> class is also where the controls such as pause, play, loop, and reset are located. We&rsquo;ll shorten <code>AnimationAction</code> to <em>action</em> from here on (it helps if you shout out &ldquo;action&rdquo; like a director whenever you create one). Unlike the other animation system classes, we never create an action directly. Instead, we&rsquo;ll use <a href="https://threejs.org/docs/#api/en/animation/AnimationMixer.clipAction" target="_blank" rel="noopener noreferrer"><code>AnimationMixer.clipAction</code></a>, which ensures the action is cached by the mixer.</p>
+<p>Let&rsquo;s see this in action. Here, we take the <code>moveBlinkClip</code> we created a few moments ago, then connect a mesh to a mixer, and finally. we use <code>.clipAction</code> along with the clip to create an action.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Create an <code>AnimationAction</code> using <code>.clipAction</code></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+import {
+  AnimationClip,
+  AnimationMixer,
+} from &#39;three&#39;;
+
+const moveBlinkClip = new AnimationClip(&#39;move-n-blink&#39;, -1, [
+  positionKF,
+  opacityKF,
+]);
+
+const mixer = new AnimationMixer(mesh);
+const action = mixer.clipAction(moveBlinkClip);
+
+</code>
+  </pre>
+</section>
+
+<p>Let&rsquo;s look at another example. Suppose we have a model of a human and a clip of the character walking. Once again, we connect the model to a mixer and then create an action using <code>.clipAction</code>. We then immediately set the action&rsquo;s state to playing:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Create an and then set its state to playing</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const mixer = new AnimationMixer(humanModel);
+
+const action = mixer.clipAction(walkClip);
+
+// immediately set the animation to play
+action.play();
+
+// later, you can stop the action
+action.stop();
+</code>
+  </pre>
+</section>
+
+<p>Note that, although we called <code>.play</code>, the animation will not start yet. We still need to update the mixer in the animation loop, which we&rsquo;ll do in a moment.</p>
+<p>Suppose this character can run and jump as well. Each animation will come in a separate clip, and each clip must be connected to one action. So, just as there is a <strong>one to one relationship between a mixer and a model</strong>, there is a <strong>one to one relationship between an action and an animation clip</strong>.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Each animation clip needs a separate animation action</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const mixer = new AnimationMixer(humanModel);
+
+const walkAction = mixer.clipAction(walkClip);
+const runnAction = mixer.clipAction(runClip);
+const jumpAction = mixer.clipAction(jumpClip);
+</code>
+  </pre>
+</section>
+
+<p>The next step is to choose which one of these actions to play. How you go about this will depend on what kind of scene you&rsquo;re building. For example, if it&rsquo;s a game, you&rsquo;ll connect these actions up to the user controls, so the character will walk, run, or jump when the appropriate button is pressed. On the other hand, if it&rsquo;s a non-playable character, you might connect these up to an AI system and let that control the character&rsquo;s movements.</p>
+<p>Another thing you need to consider is what happens when the character stops walking and starts running. If you move instantly from one animation to another, it won&rsquo;t look very good. Fortunately, the <code>AnimationAction</code> contains controls that allow you to blend two clips, gradually slow a clip to a stop, loop a clip, play in reverse, or at a different speed, and lots more. At the start of the chapter, we claimed that the three.js animation system is a complete animation mixing desk. More accurately, we should have said that <code>AnimationAction</code> is a complete animation mixing desk since this is where most of the controls are.</p>
+<figure class="">
+  <iframe title="Animation blending example" width="100%" height="500px" src="https://threejs.org/examples/webgl_animation_skinning_blending.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe></figure>
+<h3 id="update-the-animation-in-the-loop">Update the Animation in the Loop</h3>
+<p>There is just one thing left to do before any animations can play. We need to update the animated object in the animation loop. The mixer has an update method, which takes a time <code>delta</code> parameter. Whatever amount of time we pass in to <code>mixer.update</code>, all actions connected to the mixer will move forward by that amount.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Move all animations connected to the mesh forward by one second</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+const mixer = new AnimationMixer(mesh);
+
+const updateAmount = 1; // in seconds
+
+mixer.update(updateAmount)
+
+</code>
+  </pre>
+</section>
+
+<p>However, normally we don&rsquo;t want to jump forward an entire second. Each frame, we want to move the animation forward by a tiny amount, so that when we render sixty frames a second, we see a smooth animation. We&rsquo;ll use the technique that we derived a few chapters ago, when we first created the animation loop and used it to drive a simple rotating cube, so refer back to <a href="/book/first-steps/animation-loop/#timing-in-the-animation-system">1.7: The Animation Loop</a> for a refresher. In short, we measure how long each frame takes to render, store that in a variable called <code>delta</code>, and then pass that into the mixer&rsquo;s update method.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">We need to update the mixer by <code>delta</code> every frame</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+const mixer = new AnimationMixer(mesh);
+const clock = new Clock();
+
+// you must do this every frame
+const delta = clock.getDelta();
+mixer.update(delta);
+
+</code>
+  </pre>
+</section>
+
+<p>As usual, we&rsquo;ll do this by giving each animated object a <a href="/book/first-steps/animation-loop/#the-tick-method"><code>.tick</code> method</a>. Here, <code>.tick</code> will call the mixer&rsquo;s update method.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Use the animated object&rsquo;s <code>.tick</code> method to update the mixer</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const mixer = new AnimationMixer(mesh);
+
+mesh.tick = (delta) =&gt; mixer.update(delta);
+
+updatables.push(mesh);
+</code>
+  </pre>
+</section>
+
+<p>This is similar to <a href="/book/first-steps/camera-controls/#update-the-controls-in-the-animation-loop">the orbit control&rsquo;s <code>.tick</code> method</a> from a few chapters ago.</p>
+<h2 id="play-the-animation-clips-from-_parrotglb_-_flamingoglb_-and-_storkglb_">Play the Animation Clips from <em><strong>Parrot.glb</strong></em>, <em><strong>Flamingo.glb</strong></em>, and <em><strong>Stork.glb</strong></em></h2>
+<p>Now that we have seen how to create a very simple if somewhat boring animation clip that moves an object across the scene while fading it in and out, let&rsquo;s turn our attention to the more interesting clips that we have loaded alongside our three bird models. Each of the three files, <em><strong>Parrot.glb</strong></em>, <em><strong>Flamingo.glb</strong></em>, and <em><strong>Stork.glb</strong></em>, contain both a model and an animation clip of that model flying. These models are not that different from the <a href="/book/first-steps/first-scene/#our-first-visible-object-mesh">simple cube mesh</a> we&rsquo;ve used in several previous chapters. Each bird is a single <code>Mesh</code>, with a <code>geometry</code> and a <code>material</code>, although the geometry has a feature called <a href="https://en.wikipedia.org/wiki/Morph_target_animation" target="_blank" rel="noopener noreferrer"><strong>morph targets</strong></a> (AKA <strong>blend shapes</strong>). Morph targets allow us to define two (or more) different shapes for a single geometry. Here, there is one shape with the wings up and one with the wings down. The flying clip animates between these two shapes to make it look like the bird&rsquo;s wings are flapping.</p>
+<p>Let&rsquo;s put everything we have learned so far into action. Here&rsquo;s what we need to do to play the animation clips that come with each bird:</p>
+<ol>
+<li>Locate the flying clip from the <a href="/book/first-steps/load-models/#returned-gltf-data">data loaded from each glTF file</a>.</li>
+<li>Create an <code>AnimationMixer</code> to control each bird model.</li>
+<li>Create an <code>AnimationAction</code> to connect the clip to the mixer.</li>
+<li>Add a <a href="/book/first-steps/animation-loop/#the-tick-method"><code>.tick</code> method to each bird</a> and update the bird&rsquo;s mixer every frame.</li>
+</ol>
+<p>Nearly everything can be done in a couple of lines within <em><strong>birds/setupModel.js</strong></em>. Over in World, we need to add the birds to <a href="/book/first-steps/animation-loop/#the-updatables-array">the <code>updatables</code> array</a> so that the animations will be updated in the loop.</p>
+<h3 id="where-to-find-the-loaded-animation-clips">Where to Find the Loaded Animation Clips</h3>
+<p>Inside the <em><strong>components/birds/birds.js</strong></em> module, we currently log the raw data loaded from <em><strong>Parrot.glb</strong></em> to the console:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>birds.js</strong></em>: log loaded data</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="14"
+    data-line=""
+    data-line-offset="14"
+    >
+    <code class="highlight language-js match-braces">
+console.log(&#39;Squaaawk!&#39;, parrotData);
+</code>
+  </pre>
+</section>
+
+<p>Open the browser console and take a look now. <a href="/book/first-steps/load-models/#returned-gltf-data">We described this data in detail</a> in the previous chapter, so check back there if you need a refresher. The data contains two elements of interest: a bird-shaped mesh that we extracted in the last chapter, and an animation clip of the bird flying. In the last chapter, <a href="/book/first-steps/load-models/#extract-the-mesh-from-the-loaded-data">we located the mesh in <code>gltf.scene</code></a>. Here, we&rsquo;ll extract the animation clip and attach it to the mesh to make the bird take flight. You&rsquo;ll find the animation clip in the <code>gltfData.animations</code> array:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Locate the animation clip in the loaded data</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line="2"
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+{
+  animations: [AnimationClip]
+  asset: {…}
+  cameras: []
+  parser: GLTFParser {…}
+  scene: Scene {…}
+  scenes: […]
+  userData: {}
+  __proto__: Object
+}
+</code>
+  </pre>
+</section>
+
+<p>Here, each file contains just a single clip, but a glTF file can contain any number of animation clips. For example, a file containing a model of a human might also have clips of the character walking, running, jumping, sitting down, and so on.</p>
+<p>Next, update <code>setupModels</code> to extract the clip:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>setupModel.js</strong></em>: extract the clip from the loaded data</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line="3"
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+function setupModel(data) {
+  const model = data.scene.children[0];
+  const clip = data.animations[0];
+
+  return model;
+}
+
+</code>
+  </pre>
+</section>
+
+<h3 id="create-the-mixer-and-action">Create the Mixer and Action</h3>
+<p>Now, we&rsquo;ll create the mixer and the action. First, import the <code>AnimationMixer</code>. We&rsquo;ll use <a href="#animationaction"><code>AnimationMixer.clipAction</code> to create the action</a>, so there&rsquo;s no need to import <code>AnimationAction</code>. Then, create the mixer, passing the bird model into the constructor.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>setupModel.js</strong></em>: import and create the mixer</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line="1,7"
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+import { AnimationMixer } from &#39;three&#39;;
+
+function setupModel(data) {
+  const model = data.scene.children[0];
+  const clip = data.animations[0];
+
+  const mixer = new AnimationMixer(model);
+
+  return model;
+}
+
+</code>
+  </pre>
+</section>
+
+<p>Next, use <code>.clipAction</code> to create the action, passing in the clip, then immediately set the action to playing:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>setupModel.js</strong></em>: create the AnimationAction using <code>.clipAction</code></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="3"
+    data-line="8,9"
+    data-line-offset="3"
+    >
+    <code class="highlight language-js match-braces">
+function setupModel(data) {
+  const model = data.scene.children[0];
+  const clip = data.animations[0];
+
+  const mixer = new AnimationMixer(model);
+  const action = mixer.clipAction(clip);
+  action.play();
+
+  return model;
+}
+</code>
+  </pre>
+</section>
+
+<p>That&rsquo;s all there is to it. All that remains is to update the now animated bird in the loop.</p>
+<h3 id="create-the-tick-method">Create the <code>.tick</code> Method</h3>
+<p>Still in <code>setupModel</code>, add a <code>.tick</code> method to the model:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>setupModel.js</strong></em>: create the .tick method</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="3"
+    data-line="11"
+    data-line-offset="3"
+    >
+    <code class="highlight language-js match-braces">function setupModel(data) {
+  const model = data.scene.children[0];
+  const clip = data.animations[0];
+
+  const mixer = new AnimationMixer(model);
+  const action = mixer.clipAction(clip);
+  action.play();
+
+  model.tick = (delta) =&gt; mixer.update(delta);
+
+  return model;
+}
+</code>
+  </pre>
+</section>
+
+<p>Inside this method, we&rsquo;re calling <a href="https://threejs.org/docs/#api/en/animation/AnimationMixer.update" target="_blank" rel="noopener noreferrer"><code>mixer.update</code></a> each frame, passing in <code>delta</code>, which is <a href="/book/first-steps/animation-loop/#timing-in-the-update-loop">the amount of time the previous frame took to render</a>. The mixer uses <code>delta</code> to keep the animation in sync even when the frame rate fluctuates. Again, refer back to <a href="/book/first-steps/animation-loop/">Ch 1.7</a> for a more detailed discussion.</p>
+<h3 id="add-the-birds-to-updatables">Add the Birds to <code>updatables</code></h3>
+<p>Finally, over in World, add all three birds to the <code>updatables</code> array:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: add the birds to the updatables array</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="34"
+    data-line="40"
+    data-line-offset="34"
+    >
+    <code class="highlight language-js match-braces">  async init() {
+    const { parrot, flamingo, stork } = await loadBirds();
+
+    // move the target to the center of the front bird
+    controls.target.copy(parrot.position);
+
+    loop.updatables.push(parrot, flamingo, stork);
+    scene.add(parrot, flamingo, stork);
+  }
+</code>
+  </pre>
+</section>
+
+<p>At this point, if everything has been set up correctly, your birds will take flight!</p>
+
+
+
+
+
+
+
+<figure id="scene-715493862" class="inline-scene loading-dots round"></figure>
+
+<script type="module">
+  import init from "/static/examples/worlds/inline-scenes/first-steps/birds-animated.js";
+  init("#scene-715493862");
+</script>
+
+<h2 id="youve-reached-the-end-of-the-book---for-now-">You&rsquo;ve Reached the End of the Book - for now :)</h2>
+<p>With our birds on the wing, you have reached the end of the book. Congratulations!</p>
+<p>We&rsquo;ve covered a lot here in a short time, including cameras, geometry, meshes, textures, physically based materials, direct and ambient lighting, rendering our scenes with WebGL, transformations, coordinate systems, and the scene graph, vectors, loading external models, the glTF asset format, and even the three.js animation system, which is a complex beast. While learning about all that, we also found the time to create a simple but well-structured application that you can build on for three.js applications of any size.</p>
+<p>But, don&rsquo;t stop now! We&rsquo;ve laid the groundwork, but we still have a long way to go on our journey to becoming three.js experts. It&rsquo;s time for you to take things to the next level on your own. Good luck!</p>
+<p>P.S. we&rsquo;re not quite done yet, you still have to complete all the challenges!</p>
+<h2 id="challenges">Challenges</h2>
+<aside class="success">
+  
+    <h3 id="easy">Easy</h3>
+<p>The <code>AnimationAction</code> has lots more animation controls <code>.play</code> and <code>.stop</code>. Try out some of these now.</p>
+<ol>
+<li>
+<p>You can delay the start of the animation using <a href="https://threejs.org/docs/#api/en/animation/AnimationAction.startAt" target="_blank" rel="noopener noreferrer"><code>.startAt</code></a>. Test this out.</p>
+</li>
+<li>
+<p>You can control the speed of the animation using <a href="https://threejs.org/docs/#api/en/animation/AnimationAction.timeScale" target="_blank" rel="noopener noreferrer">the <code>.timeScale</code> property</a>. You can either set the value directly, or using the <a href="https://threejs.org/docs/#api/en/animation/AnimationAction.setEffectiveTimeScale" target="_blank" rel="noopener noreferrer"><code>.setEffectiveTimeScale</code></a> method.</p>
+</li>
+<li>
+<p>Use <a href="https://threejs.org/docs/#api/en/animation/AnimationAction.halt" target="_blank" rel="noopener noreferrer"><code>.halt</code></a> to gradually slow the animation to a stop.</p>
+</li>
+</ol>
+<p><em>Note: all the methods listed here can be chained, so you can write them like this:</em></p>
+<section class="highlight-wrapper"><span class="caption"><code>AnimationAction</code> methods can be chained</span>
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+action
+  .startAt(2)
+  .setEffectiveTimeScale(0.5)
+  .play();
+</code>
+  </pre>
+</section>
+<p><em>There are many other controls besides the one we listed here. Experiment!</em></p>
+
+  
+</aside>
+<aside class="notice">
+  
+    <h3 id="medium">Medium</h3>
+<ol>
+<li>
+<p>Add a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range" target="_blank" rel="noopener noreferrer">range slider input element</a> to the page. Use the value of the slider to set <a href="https://threejs.org/docs/#api/en/animation/AnimationAction.setEffectiveWeight" target="_blank" rel="noopener noreferrer"><code>.setEffectiveWeight</code></a> and control how strongly the flying animation affects the birds. Zero is no effect and one is full effect.</p>
+</li>
+<li>
+<p>Create a simple animation clip of your own using <a href="#keyframetrack">the position track</a> and <a href="#animationclip">clip</a> we described earlier. Attach the clip to the bird instead of the flying animation.</p>
+</li>
+<li>
+<p>Create a new track of your own. This time, animate the scale of the model. Create a single clip from both tracks so that the bird&rsquo;s position and scale are both animated. Make both tracks the same length. Now, make both tracks a different length.</p>
+</li>
+<li>
+<p>Make the first and final keyframes of each track equal, so the animation can loop without jumping. Now try giving the first and last keyframes different values, and make each track a different length. Observe how the animation jumps between loops.</p>
+</li>
+</ol>
+<p><em>Note: the position track will overwrite the <code>bird.position</code>, so the birds will be all jumbled on top of each other again. That&rsquo;s OK for this exercise. If you like, remove all but one bird from the scene.</em></p>
+
+  
+</aside>
+<aside class="warning">
+  
+    <h3 id="hard">Hard</h3>
+<ol>
+<li>
+<p>Combine the position, scale, <em>and</em> the loaded flying animation in a single clip. There are a couple of ways to do this. For example, you could look inside the loaded clip&rsquo;s <code>.tracks</code> array, and extract any tracks you find there to create a new clip. Or, you could try adding your tracks to the existing clip&rsquo;s <code>.tracks</code>. Note that if you use the latter method, you&rsquo;ll have to call <a href="https://threejs.org/docs/#api/en/animation/AnimationClip.resetDuration" target="_blank" rel="noopener noreferrer"><code>clip.resetDuration</code></a> after adding the new tracks.</p>
+</li>
+<li>
+<p>The position and scale tracks you created are probably longer than the flying animation. When you combine the tracks, the bird&rsquo;s wings will flap once and then freeze until the other tracks have completed. Can you overcome this so that the wings flap continuously, no matter how long the other tracks are? No tips for this one!</p>
+</li>
+</ol>
+
+  
+</aside>
+<aside class="notice">
+  
+    <h3 id="bonus">Bonus</h3>
+<ol>
+<li>If you have been following along so far using the inline code editor, take the code from this chapter and make it run on locally on your computer. You&rsquo;ll need to set up <a href="/book/introduction/prerequisites/#a-web-server">a development server</a>.</li>
+</ol>
+
+  
+</aside>

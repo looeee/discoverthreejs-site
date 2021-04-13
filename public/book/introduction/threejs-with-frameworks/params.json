@@ -1,0 +1,24 @@
+{
+  "description": "Do you use React, Vue.js, Angular, Svelte, or any other framework? And do you prefer to write TypeScript instead of plain JavaScript? No matter! Using three.js with any framework or JS flavor is a breeze! Here, we'll explain why.",
+  "title": "Using three.js with React, Vue.js, Angular, Svelte, TypeScript...",
+    "wordCount": "542",
+    "readingTime": "3",
+  "IDE": {
+    "show": "false",
+    "container": "#ide-wrapper",
+    "serverDirectory": "static/examples",
+    "stripDirectory": "views/",
+    "closedFolders": null,
+    "comparisonMode": null,
+    "files": null,
+    "startFiles": null,
+    "finalFiles": null,
+    "entry": "index.html",
+    "activeDocument":"",
+    "switchImportsAllow": "true"
+  },
+  "membershipLevelToView": "none",
+  "includeInSitemap" : true,
+  "showUpdateBanner" : true,
+  "showPagination" : true
+}

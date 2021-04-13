@@ -1,0 +1,67 @@
+<!-- START: Get Options -->
+{{- $inner := .Inner | default "" -}}
+
+<!-- subtract one from $from to get correct array index -->
+{{- $from := sub ( int ( .Get "from" | default 1 ) ) 1 -}}
+{{- $to := int ( .Get "to" | default 9999 ) -}}
+{{- $file := .Get "file" | default "" -}}
+
+{{- $header := .Get "header" | default "" -}}
+{{- $footer := .Get "footer" | default "" -}}
+{{- $caption := .Get "caption" | default "" -}}
+
+{{- $lang := .Get "lang" | default "js" -}}
+
+{{- $hl_lines := replace (.Get "hl_lines" | default "") " " "," -}}
+
+{{- $skip_lines := split (replace (.Get "skip_lines" | default "") "," " " ) " " -}}
+
+{{- $linenos := .Get "linenos" | default "true" -}}
+
+<!-- TODO-LOW replace linenostart with single "from" option -->
+{{- $linenostart := .Get "linenostart" | default 1 -}}
+
+<!-- END: Get Options -->
+
+<section class="highlight-wrapper">
+  {{- if ne $caption "" -}}
+  <span class="caption">
+    {{- $caption | markdownify -}}
+  </span>
+  {{- end -}}
+  <!-- Note: hack to hide linenos since line highlighting breaks without them -->
+  <!-- Note2: inline style on pre to prevent flash of color change when CSS loads -->
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers{{ if ne $linenos "true" }} hide-line-numbers{{- end }}"
+    data-start="{{- if ne $file "" -}}{{- add $from 1 -}}{{- else -}}{{- $linenostart -}}{{- end -}}"
+    data-line="{{- $hl_lines -}}"
+    data-line-offset="{{- if ne $file "" -}}{{- add $from 1 -}}{{- else -}}{{- $linenostart -}}{{- end -}}"
+    >
+    <code class="highlight language-{{- $lang }} match-braces">
+      {{- $skippedLines := slice "" -}}
+      {{- if ne $inner "" -}}
+        {{- replaceRE "```" "" (replaceRE "```js" "" (replaceRE "``` js" "" $inner)) -}}
+      {{- else -}}
+        {{- $lines := ( split (readFile ( printf "%s%s" "../../../static/examples/" $file )) "\n" ) -}}
+        {{- $selectedLines := slice "" -}}
+
+
+        {{- range $index, $line := first $to $lines -}}
+          {{- if ge $index (sub $from 0) -}}
+            {{- $selectedLines = $selectedLines | append ($line | safeHTML) ("\n" | safeHTML) -}}
+          {{- end -}}
+          {{- if in $skip_lines (string (add $index 1)) -}}
+            {{- $skippedLines = $skippedLines | append ($line | safeHTML) ("\n" | safeHTML) -}}
+          {{- end -}}
+        {{- end -}}
+        {{- $skippedLines = delimit $skippedLines "" -}}
+        {{- $final := delimit $selectedLines "" -}}
+        {{- $final := replace $final $skippedLines "" -}}
+        {{- $final := print $final ($footer | safeHTML ) -}}
+
+        {{- $final -}}
+      {{- end -}}
+    </code>
+  </pre>
+</section>

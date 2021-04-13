@@ -1,0 +1,46 @@
+.nav-wrapper {
+  position: relative;
+  padding: 0 1rem;
+  width: calc(100% - 2rem);
+  z-index: 9999;
+  display: flex;
+  justify-content: space-between;
+
+  // .top-nav-pagination {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   height: 100%;
+  //   width: 100%;
+  //   position: absolute;
+
+  //   a {
+  //     color: lightgrey;
+
+  //     &.disabled {
+  //       display: none;
+  //     }
+  //   }
+
+  //   .spacer {
+  //     width: 8rem;
+  //   }
+  // }
+
+  // label {
+  //   border: 1px solid grey;
+  //   box-shadow: 1px 1px 0px 0px silver;
+  // }
+
+  // &.fixed {
+  //   position: fixed;
+  // }
+
+  // &.offscreen {
+  //   .nav-panel-trigger-label,
+  //   .nav-panel-triggers-bg {
+  //     transition: top $transition-duration-long ease-in-out;
+  //     top: -5rem;
+  //   }
+  // }
+}

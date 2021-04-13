@@ -1,0 +1,19 @@
+{{- $paginator := (.Pages).ByWeight -}}
+
+<section class="ss">
+  <nav>
+    <h2>Coming Up in this Section</h2>
+    <ul class="contents">
+      {{ range .Site.Sections }} {{ range .Sections }}
+      <li>
+        Section: {{ .Title }}
+        <ul>
+          {{ range (.Pages).ByWeight }}
+          <li>{{ .Title }}</li>
+          {{ end }}
+        </ul>
+      </li>
+      {{ end }} {{ end }}
+    </ul>
+  </nav>
+</section>

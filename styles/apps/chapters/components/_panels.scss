@@ -1,0 +1,70 @@
+.panel {
+  display: flex;
+
+  &.disabled {
+    flex-basis: 0;
+    display: none;
+
+    // firefox bugs
+    #ide-controls-top,
+    .gutter {
+      display: none !important;
+    }
+    iframe {
+      flex-basis: 0 !important;
+    }
+  }
+
+  &.maximise {
+    flex-basis: 100% !important;
+  }
+
+  &.animate {
+    transition: flex-basis 0.2s ease-in-out;
+  }
+}
+
+.gutter {
+  border: 1px solid #c0c0c0;
+  background-color: #fff;
+  background-position: 50%;
+  background-repeat: no-repeat;
+
+  &.disabled {
+    display: none;
+  }
+}
+
+.gutter-horizontal {
+  background-image: url('/static/images/ui/vertical-slider.png');
+  cursor: col-resize;
+}
+
+.gutter-vertical {
+  background-image: url('/static/images/ui/horizontal-slider.png');
+  cursor: row-resize;
+}
+
+.ide-toggle {
+  + label {
+    .on-icon {
+      display: none;
+    }
+
+    .off-icon {
+      display: inline-block;
+    }
+  }
+
+  &:checked {
+    + label {
+      .on-icon {
+        display: inline-block;
+      }
+
+      .off-icon {
+        display: none;
+      }
+    }
+  }
+}

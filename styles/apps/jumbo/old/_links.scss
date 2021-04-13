@@ -1,0 +1,10 @@
+a {
+  color: $color-link;
+  text-decoration: none;
+  border-bottom-color: transparentize($color-fg, 0.5);
+
+  &:hover {
+    border-bottom-color: transparent;
+    color: $color-accent !important;
+  }
+}

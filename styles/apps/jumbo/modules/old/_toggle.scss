@@ -1,0 +1,59 @@
+.toggle {
+
+  margin: 0.25rem 0;
+
+  > label {
+    position: relative;
+    display: inline-block;
+    width: 2em;
+    height: 1em;
+    margin: 0 0.5em 0.15em 0.5em;
+
+    > input {
+      display: none;
+
+      &:checked + span {
+        background-color: $color-accent;
+
+        &::before {
+          transform: translateX(0.75em);
+        }
+
+      }
+
+      &:focus + span {
+        box-shadow: 2px 2px 0 black;
+      }
+
+    }
+
+    > span {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: silver;
+      border: 1px solid rgba( 216, 216, 216, 0.5);
+      transition: 0.4s;
+      border-radius: 0.5em;
+
+      &::before {
+        position: absolute;
+        content: "";
+        height: 0.6em;
+        width: 0.6em;
+        border-radius: 50%;
+        left: 4px;
+        top: 2px;
+        background-color: white;
+        border: 1px solid rgba(216, 216, 216, 0.5);
+        transition: 0.4s;
+      }
+
+    }
+
+  }
+
+}

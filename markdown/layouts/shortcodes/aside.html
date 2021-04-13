@@ -1,0 +1,12 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+{{- $class := .Get 0 | default "notice" -}}
+
+{{- $markdown := .Inner | markdownify -}}
+
+<aside class="{{ $class }}">
+  {{ if not ( findRE "<[h|p][^>]*>" $markdown ) }}
+    <p>{{ $markdown }}</p>
+  {{ else }}
+    {{ $markdown }}
+  {{ end }}
+</aside>

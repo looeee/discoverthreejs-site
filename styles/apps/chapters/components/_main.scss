@@ -1,0 +1,27 @@
+main {
+  display: flex;
+  flex-basis: 100%;
+  justify-content: flex-end;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+
+  .scroller {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+
+    .chapter-info {
+      text-align: right;
+      font-style: italic;
+      font-size: 0.8rem;
+      padding-top: 1rem;
+      padding-right: 1rem;
+      color: #666;
+    }
+  }
+}

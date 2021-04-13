@@ -1,0 +1,14 @@
+.side-menu {
+  display: flex;
+  position: fixed;
+  top: 0;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  z-index: 97;
+  border: 1px solid black;
+  background-color: $color-menu-bg-dark;
+  padding: 3rem 0.8rem 0.8rem;
+  width: 20rem;
+  height: 100%;
+  text-align: left;
+}

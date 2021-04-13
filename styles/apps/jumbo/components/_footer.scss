@@ -1,0 +1,40 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  font-family: $font-family-heading;
+  font-weight: $font-weight-heading;
+  position: relative;
+  margin: 0;
+  padding: 2rem 0;
+  width: 100vw;
+  z-index: 2;
+  color: $color-fg-invert;
+  background-color: $color-bg-invert;
+  cursor: default;
+  letter-spacing: 0.075em;
+  line-height: 1.5;
+  text-align: center;
+
+  a {
+    color: #bbb;
+    border-bottom-color: inherit;
+  }
+
+  ul {
+    margin: auto;
+    padding-left: 0;
+    max-width: 90%;
+    list-style: none;
+    li {
+      display: inline-block;
+      margin: 0.25rem;
+      padding: 0 0.5rem 0 0.75rem;
+      border-left: solid 2px;
+      &:first-child {
+        border-left: 0;
+        margin-left: 0;
+        padding-left: 0;
+      }
+    }
+  }
+}

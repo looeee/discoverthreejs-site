@@ -1,0 +1,30 @@
+.pagination-container {
+  width: 100%;
+  position: relative;
+  padding-top: 10rem;
+  background: white;
+}
+
+.pagination {
+  display: flex;
+  margin: 0 auto -1rem auto;
+  padding: 2rem 0 2.5rem 0;
+  justify-content: center;
+  max-width: 50rem;
+  align-items: center;
+  height: 10rem;
+  border-top: 1px solid rgba(200, 200, 200, 0.35);
+
+  a {
+    color: lightgrey;
+    display: inherit;
+    align-items: inherit;
+    justify-content: inherit;
+    height: 2.5rem;
+    border-radius: 3px;
+    margin-left: 0.5rem;
+    padding: 0 1rem;
+    width: 30%;
+  }
+
+}

@@ -1,0 +1,24 @@
+{
+  "description": "Amazingly, the tiny three.js core contains the same physically based rendering (PBR) algorithms used by giants like Unreal, Unity, Disney, and Pixar. Here, we show you how to use physically-accurate materials and lighting in your scenes.",
+  "title": "Physically Based Rendering and Lighting",
+    "wordCount": "3023",
+    "readingTime": "15",
+  "IDE": {
+    "show": "true",
+    "container": "#ide-wrapper",
+    "serverDirectory": "static/examples",
+    "stripDirectory": "worlds/first-steps/physically-based-rendering/",
+    "closedFolders": ["systems","styles","vendor"],
+    "comparisonMode": true,
+    "files": ["worlds/first-steps/physically-based-rendering/src/World/components/camera.js","worlds/first-steps/physically-based-rendering/src/World/components/cube.start.js","worlds/first-steps/physically-based-rendering/src/World/components/cube.final.js","worlds/first-steps/physically-based-rendering/src/World/components/lights.start.js","worlds/first-steps/physically-based-rendering/src/World/components/lights.final.js","worlds/first-steps/physically-based-rendering/src/World/components/scene.js","worlds/first-steps/physically-based-rendering/src/World/systems/renderer.start.js","worlds/first-steps/physically-based-rendering/src/World/systems/renderer.final.js","worlds/first-steps/physically-based-rendering/src/World/systems/Resizer.js","worlds/first-steps/physically-based-rendering/src/World/World.start.js","worlds/first-steps/physically-based-rendering/src/World/World.final.js","worlds/first-steps/physically-based-rendering/src/main.js","styles/main.css","vendor/three/build/three.module.js","worlds/first-steps/physically-based-rendering/index.html"],
+    "startFiles": null,
+    "finalFiles": null,
+    "entry": "index.html",
+    "activeDocument":"src/World/components/cube.js",
+    "switchImportsAllow": "true"
+  },
+  "membershipLevelToView": "none",
+  "includeInSitemap" : true,
+  "showUpdateBanner" : true,
+  "showPagination" : true
+}

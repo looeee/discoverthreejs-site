@@ -1,0 +1,153 @@
+// two column layout:  chapter, blog post
+$code-width: 40%; // portion of the screen taken up by code examples
+$text-max-width: 50rem;
+
+@import 'vendor/katex';
+@import 'vendor/monokai';
+
+@import 'common';
+
+@import 'modules/docs/darkBox';
+@import 'modules/docs/filler';
+@import 'modules/docs/highlight';
+@import 'modules/docs/inlineIDE';
+@import 'modules/docs/pagination';
+@import 'modules/docs/restrictedArea';
+@import 'modules/docs/fullwidthSection';
+@import 'modules/docs/toc';
+
+main {
+  h1 {
+    padding-top: 4rem;
+
+    &.center {
+      margin: auto;
+    }
+  }
+
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 1rem;
+    padding-top: 0rem;
+    border: 0;
+  }
+
+  // LEFT
+  aside,
+  figure,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  table,
+  ul,
+  ol,
+  figure,
+  .inline-code {
+    margin-left: auto;
+    max-width: $text-max-width;
+  }
+
+  > aside,
+  > figure,
+  > h1,
+  > h2,
+  > h3,
+  > h4,
+  > h5,
+  > h6,
+  > p,
+  > table,
+  > ul,
+  > ol,
+  > figure,
+  .codesandbox-wrapper,
+  .inline-code {
+    margin-right: $code-width + 1%;
+
+    padding-right: 3rem;
+    padding-left: 2rem;
+
+    @media ($medium) {
+      margin-right: auto;
+      padding-right: 2rem;
+      padding-left: 1rem;
+    }
+
+    @media ($small) {
+      padding-right: 1rem;
+    }
+
+    li {
+      margin-left: 2rem;
+    }
+  }
+
+  > ul,
+  > div > ul {
+    padding-left: 4rem !important;
+
+    @media ($medium) {
+      padding-left: 2rem !important;
+    }
+  }
+
+  > figure {
+    @media ($small) {
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+    }
+  }
+
+  // RIGHT
+  > .highlight > pre,
+  > blockquote {
+    float: right;
+    clear: right;
+    position: relative;
+    padding: 1rem;
+    z-index: 2;
+    width: $code-width;
+
+    @media ($medium) {
+      width: 100%;
+      max-width: $text-max-width;
+      margin: auto;
+      float: none;
+      padding-left: 1rem;
+    }
+
+    @media ($small) {
+      width: auto;
+    }
+  }
+
+  > blockquote {
+    @media ($medium) {
+      border-radius: 6px 6px 0 0;
+      margin-top: 0;
+    }
+  }
+
+  > .highlight {
+    pre {
+      @media ($medium) {
+        border-radius: 0 0 3px 3px;
+      }
+    }
+
+    @media ($medium) {
+      margin-bottom: 2rem;
+
+      pre {
+        border-radius: 0 0 6px 6px;
+        border-bottom: 1px solid silver;
+      }
+    }
+  }
+}

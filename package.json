@@ -1,0 +1,33 @@
+{
+  "name": "discover-threejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently --names \"HUGO,HTTP\" -c \"bgBlue.bold,bgGreen.bold\" \"npm run watch-static\" \"npm run serve\"",
+    "watch-static": "cd .\\markdown & .\\hugo.exe -w",
+    "serve": "servez -p 8080 public"
+  },
+  "author": "Lewy Blue",
+  "license": "MIT",
+  "dependencies": {
+    "clipboard": "^2.0.6",
+    "codemirror": "^5.55.0",
+    "file-saver": "^2.0.2",
+    "katex": "^0.11.1",
+    "optiscroll": "^3.2.1",
+    "select": "^1.1.2",
+    "three": "^0.127.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.5",
+    "clean-css": "^5.1.1",
+    "concurrently": "^6.0.0",
+    "esbuild": "^0.11.5",
+    "esbuild-glslify": "github:ayamflow/esbuild-glslify",
+    "postcss": "^8.2.8",
+    "sass": "^1.32.8",
+    "servez": "^1.11.0"
+  }
+}

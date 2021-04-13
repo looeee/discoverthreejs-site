@@ -1,0 +1,80 @@
+// $xlarge: "max-width: 1680px";
+// $large: "max-width: 1280px";
+$medium: 'max-width: 980px';
+$small: 'max-width: 736px';
+$xsmall: 'max-width: 480px';
+
+$medium-screens-up: 'min-width: 736px';
+
+// $xxsmall: "max-width: 360px";
+// $portrait: "orientation: portrait";
+// $landscape: "orientation: landscape";
+// $small-portrait: "($small) and ($portrait)";
+// $small-landscape: "(max-height: 736px) and ($landscape)";
+// $medium-portrait: "($medium) and ($portrait)";
+// $medium-landscape: "(max-height: 980px) and ($landscape)";
+
+@font-face {
+  font-family: 'bodyFallbackFont';
+  src: local('Tahoma');
+  // closest match to open sans tested with https://meowni.ca/font-style-matcher/
+  letter-spacing: 0.4px;
+}
+
+@font-face {
+  font-family: 'headingFallbackFont';
+  src: local('Georgia');
+  // closest match to varelaround tested with https://meowni.ca/font-style-matcher/
+  letter-spacing: 0.65px;
+}
+
+@font-face {
+  font-family: 'codeFallbackFont';
+  src: local('Courier New');
+  // closest match to roboto mono tested with https://meowni.ca/font-style-matcher/
+  line-height: 1.075;
+}
+
+$font-family: ('Open Sans', 'bodyFallbackFont', sans-serif);
+$font-family-serif: ('Merriweather', Georgia, serif);
+$font-family-heading: (
+  'Varela Round',
+  'headingFallbackFont',
+  sans-serif
+);
+$font-family-fixed: ('Fira Code', 'codeFallbackFont', monospace);
+
+$font-weight: 400;
+$font-weight-bold: 600;
+$font-weight-heading: 900;
+
+$color-bg: #fcfcfc;
+$color-text: #212931;
+$color-fade: silver;
+$color-accent: #18bfef;
+
+$color-border: $color-fade;
+$color-border-light: #ebebeb;
+
+$color-shadow: $color-fade;
+$color-link: #ce0026;
+$color-link-visited: adjust-color($color-link, $red: -50);
+$color-link-hover: $color-accent;
+$color-link-focus: $color-accent;
+
+$color-notice-bg: rgba(143, 188, 212, 0.5); //  #8fbcd4;
+$color-notice-bg-inverted: #3a6d88; //  #8fbcd4;
+$color-notice-fg-inverted: #17ffc9; //  #8fbcd4;
+$color-notice-link-inverted: #8c041d; //  #8fbcd4;
+
+$color-warning-bg: rgba(253, 117, 126, 0.7); // #fd757e; //#fd7a81;
+$color-warning-bg-inverted: #7a3a38; // #fd757e; //#fd7a81;
+$color-warning-link-inverted: #00c6da; // #fd757e; //#fd7a81;
+
+$color-success-bg: rgba(106, 193, 116, 0.5); //  #6ac174;
+$color-success-bg-inverted: #498851; //  #6ac174;
+
+$color-bg-inverted: #212931;
+$color-text-inverted: #f4f4f4;
+
+$color-menu-bg-dark: #212121;

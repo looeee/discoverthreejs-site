@@ -1,0 +1,10 @@
+section {
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  > span {
+    width: 100%;
+    // margin: auto;
+  }
+}

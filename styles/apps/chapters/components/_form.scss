@@ -1,0 +1,32 @@
+form {
+  &.email-signup-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+
+    p {
+      display: none;
+    }
+
+    input {
+      background-color: #efefef;
+      border-radius: 3px;
+      border: 1px solid silver;
+      color: #000;
+      display: block;
+      // font-family: inherit;
+      // font-size: inherit;
+      margin-bottom: 6px;
+      margin-right: 0.5rem;
+      // margin-right: 6px;
+      outline: 0;
+      padding: 10px;
+      transition: background-color 0.1s linear,
+        border-color 0.1s linear, color 0.1s linear,
+        box-shadow 0.1s linear, transform 0.1s;
+    }
+  }
+}

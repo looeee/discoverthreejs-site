@@ -1,0 +1,18 @@
+{
+    "name": "Discover three.js",
+    "short_name": "Discover three.js",
+    "icons": [
+        {
+            "src": "/static/images/logo/favicon/android-chrome-192x192.png?v=7koGQY8QmA",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/static/images/logo/favicon/android-chrome-512x512.png?v=7koGQY8QmA",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff"
+}

@@ -1,0 +1,24 @@
+{
+  "description": "When creating complex 3D apps, good code architecture is vital. In this chapter, we refactor our monolithic main.js file into several small modules to create a template we can use for three.js apps of any size.",
+  "title": "Introducing the World App",
+    "wordCount": "4196",
+    "readingTime": "20",
+  "IDE": {
+    "show": "true",
+    "container": "#ide-wrapper",
+    "serverDirectory": "static/examples",
+    "stripDirectory": "worlds/first-steps/world-app/",
+    "closedFolders": ["styles","vendor"],
+    "comparisonMode": true,
+    "files": ["styles/main.css","vendor/three/build/three.module.js","worlds/first-steps/world-app/index.html","worlds/first-steps/world-app/src/World/components/camera.start.js","worlds/first-steps/world-app/src/World/components/cube.start.js","worlds/first-steps/world-app/src/World/components/scene.start.js","worlds/first-steps/world-app/src/World/systems/renderer.start.js","worlds/first-steps/world-app/src/World/systems/Resizer.start.js","worlds/first-steps/world-app/src/World/World.start.js","worlds/first-steps/world-app/src/main.start.js","worlds/first-steps/world-app/src/World/components/camera.final.js","worlds/first-steps/world-app/src/World/components/cube.final.js","worlds/first-steps/world-app/src/World/components/scene.final.js","worlds/first-steps/world-app/src/World/systems/renderer.final.js","worlds/first-steps/world-app/src/World/systems/Resizer.final.js","worlds/first-steps/world-app/src/World/World.final.js","worlds/first-steps/world-app/src/main.final.js"],
+    "startFiles": null,
+    "finalFiles": null,
+    "entry": "index.html",
+    "activeDocument":"src/World/World.js",
+    "switchImportsAllow": "true"
+  },
+  "membershipLevelToView": "none",
+  "includeInSitemap" : true,
+  "showUpdateBanner" : true,
+  "showPagination" : true
+}

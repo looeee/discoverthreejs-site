@@ -1,0 +1,24 @@
+{
+  "description": "Textures are used to store surface details of the objects in our scenes, such as color, bumps, small shadows, and more. Here, we load a texture with the TextureLoader and apply it to our cube mesh.",
+  "title": "A Brief Introduction to Texture Mapping",
+    "wordCount": "4469",
+    "readingTime": "21",
+  "IDE": {
+    "show": "true",
+    "container": "#ide-wrapper",
+    "serverDirectory": "static/examples",
+    "stripDirectory": "worlds/first-steps/textures-intro/",
+    "closedFolders": ["systems","styles","vendor"],
+    "comparisonMode": true,
+    "files": ["assets/textures/uv-test-col.png","assets/textures/uv-test-bw.png","worlds/first-steps/textures-intro/src/World/components/camera.js","worlds/first-steps/textures-intro/src/World/components/cube.start.js","worlds/first-steps/textures-intro/src/World/components/cube.final.js","worlds/first-steps/textures-intro/src/World/components/lights.js","worlds/first-steps/textures-intro/src/World/components/scene.js","worlds/first-steps/textures-intro/src/World/systems/renderer.js","worlds/first-steps/textures-intro/src/World/systems/Resizer.js","worlds/first-steps/textures-intro/src/World/systems/Loop.js","worlds/first-steps/textures-intro/src/World/World.js","worlds/first-steps/textures-intro/src/main.js","styles/main.css","vendor/three/build/three.module.js","worlds/first-steps/textures-intro/index.html"],
+    "startFiles": null,
+    "finalFiles": null,
+    "entry": "index.html",
+    "activeDocument":"src/World/components/cube.js",
+    "switchImportsAllow": "true"
+  },
+  "membershipLevelToView": "none",
+  "includeInSitemap" : true,
+  "showUpdateBanner" : true,
+  "showPagination" : true
+}

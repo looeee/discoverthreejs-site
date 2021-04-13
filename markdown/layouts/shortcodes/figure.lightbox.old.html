@@ -1,0 +1,19 @@
+{{- $src := .Get "src" -}}
+{{- $caption := .Get "caption" | default "" -}}
+{{- $alt := .Get "alt" | default $caption -}}
+{{- $title := .Get "title" | default $alt -}}
+{{- $class := .Get "class" | default "" -}}
+{{- $height := .Get "height" | default "" -}}
+
+{{- $lightbox := .Get "lightbox" | default "false" -}}
+
+<figure {{ if ne $class "" }}class="{{ $class }}"{{ end }}>
+  {{- if eq $lightbox "true" }}<a href="#" class="lightbox_link">{{- end -}}
+    <img src="/static/images/{{$src}}" loading="lazy" alt="{{$alt}}" title="{{ $title }}" {{ if ne $height "" }}style="height: {{ $height }};"{{ end }} />
+  {{- if eq $lightbox "true" }}</a>{{- end -}}
+  {{- if ne $caption "" }}
+    <figcaption>
+      {{- $caption -}}
+    </figcaption>
+  {{- end -}}
+</figure>

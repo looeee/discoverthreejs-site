@@ -1,0 +1,30 @@
+.right-menu {
+  right: -22rem;
+  transition: right 300ms ease-in-out;
+
+  &.show {
+    right: 0;
+  }
+
+  h2 {
+    margin: 0;
+    padding: 2rem 0;
+    width: calc(100% - 1rem);
+  }
+
+  a {
+    color: silver;
+  }
+
+  ul {
+    margin: 0;
+    padding: 2rem 0;
+    list-style: none;
+
+    li {
+      padding: 1.5rem 0;
+      font-size: 120%;
+      font-weight: $font-weight-bold;
+    }
+  }
+}

@@ -1,0 +1,54 @@
+ul {
+  &.contents {
+    width: calc(100% - 2rem);
+    margin: auto;
+    text-align: left;
+    margin: auto;
+    max-width: 60rem;
+    padding: 1rem;
+    border: 1px solid silver;
+    box-shadow: 1px 1px 10px 1px silver;
+    border-radius: 6px;
+
+    @media($small) {
+      width: auto;
+    }
+
+    li {
+      border-bottom: 1px dashed #18bfef;
+      display: flex;
+      justify-content: space-between;
+
+      &.featured {
+        border: none;
+        font-size: 1.25em;
+        font-weight: bold;
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+      }
+
+      &.unavailable {
+
+        color: grey;
+
+        a {
+          color: grey;
+
+          &:hover {
+            color: lightblue !important;
+          }
+        }
+
+      }
+
+      a {
+        color: black;
+      }
+
+      .chapter-number {
+        text-align: right;
+        float: right;
+      }
+    }
+  }
+}

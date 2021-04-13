@@ -1,0 +1,46 @@
+#update-banner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #989a9c;
+  color: white;
+
+  margin: 0;
+  padding: 0;
+
+  &.hide {
+    display: none;
+  }
+
+  button {
+    position: absolute;
+    align-self: flex-end;
+    justify-self: flex-end;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    padding-right: 1rem;
+    margin-right: 1rem;
+    font-family: $font-family-fixed;
+    &:hover,
+    &:focus {
+      color: #9c0026;
+    }
+  }
+
+  h2 {
+    border: none;
+    margin-top: 1rem;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  a {
+    color: white;
+    &:hover,
+    &:focus {
+      color: #9c0026;
+    }
+  }
+}

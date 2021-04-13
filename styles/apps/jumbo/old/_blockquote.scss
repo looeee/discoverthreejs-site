@@ -1,0 +1,17 @@
+blockquote {
+
+  margin: 0;
+  box-sizing: border-box;
+  padding: 1rem;
+  font-size: 0.9em;
+  background-color: $color-bg-invert;
+  border-bottom: 2px solid rgba(192, 192, 192, 0.4);
+  border-top: 2px solid rgba(192, 192, 192, 0.4);
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: -1.9rem;
+
+  &>p {
+    margin: 0;
+    padding-right: 0.5rem;
+  }
+}

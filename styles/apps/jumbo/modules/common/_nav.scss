@@ -1,0 +1,122 @@
+.nav {
+  font-size: 0.7em;
+
+  position: relative;
+  width: calc(100% - 7rem);
+  max-width: $wrapper-width;
+  height: auto;
+  margin: 0 auto;
+  padding: 0 2rem;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.175);
+  overflow: hidden;
+  z-index: 999;
+
+  @media ($large) {
+    width: calc(100% - 6rem);
+  }
+
+  @media ($medium) {
+    display: none;
+  }
+
+  // .menu-logo {
+  //   width: 100px;
+  //   padding: 0 0 0 0.25rem;
+  //   margin: 0;
+  //   vertical-align: bottom;
+  // }
+
+  // &.fullwidth {
+  //   width: 100vw;
+  //   max-width: 100vw;
+  //   top: 0;
+  //   left: 0;
+  //   margin: 0;
+  //   padding: 0;
+  //   border-bottom: 1px solid silver;
+  //   box-shadow: 0 0 1px 0 silver;
+  //   background-color: white;
+
+  //   & > ul {
+  //     a {
+  //       color: black;
+  //     }
+  //   }
+  // }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: inherit;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-family-heading;
+    font-weight: 900;
+    padding-bottom: 0;
+
+    @media ($large) {
+      justify-content: unset;
+    }
+
+    li {
+      display: block;
+      padding-left: 0;
+
+      transition: border-color 1s ease-in-out;
+      transition: color 1s ease-in-out;
+
+      &:hover {
+        border-color: $color-accent !important;
+
+        a {
+          color: $color-accent;
+        }
+      }
+
+      &:first-child {
+        border: 5px solid white;
+        padding: 0.5rem;
+        text-align: center;
+        margin-right: 3rem;
+
+        a {
+          padding: 0;
+        }
+      }
+
+      &:last-child {
+        @media ($large) {
+          padding-top: 0.5rem;
+          // align to center because flexgrid
+          margin: auto;
+        }
+      }
+
+      a {
+        // outline: none;
+        padding: 0.5rem 2rem 0 0;
+        color: white;
+      }
+    }
+  }
+
+  // form {
+  //   margin-left: auto;
+  //   margin-right: 2rem;
+  //   align-items: center;
+  //   color: white;
+  //   flex-wrap: nowrap;
+
+  //   p {
+  //     white-space: normal;
+  //     text-align: left;
+  //     margin: 0 0 0 1rem;
+  //   }
+
+  //   input {
+  //     background: darkgray;
+  //   }
+  // }
+}

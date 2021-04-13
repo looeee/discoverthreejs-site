@@ -1,0 +1,40 @@
+main {
+  background-color: $color-bg;
+  position: relative;
+  margin: 0 auto 2rem auto;
+  padding: 2rem 2rem 8rem 2rem;
+  width: calc(100% - #{$padding * 4});
+  max-width: 72rem;
+
+  min-height: 50rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+
+  h1 {
+    text-align: center;
+    margin: 3rem 1rem;
+    padding: 0;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5 {
+    padding: 1rem 0;
+    margin: 0 1rem;
+  }
+
+  ul {
+    margin: 0 auto;
+  }
+
+  @media ($xsmall) {
+    width: 90%;
+    padding-left: 4%;
+    padding-right: 4%;
+    max-width: 100vw;
+    margin-bottom: 0;
+  }
+}

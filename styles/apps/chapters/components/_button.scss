@@ -1,0 +1,33 @@
+// remove default button styling
+button {
+  user-select: none;
+  appearance: none;
+  writing-mode: unset;
+  text-rendering: unset;
+  color: unset;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: default;
+  background-color: transparent;
+  box-sizing: border-box;
+  margin: 0;
+  font: inherit;
+  border: 0;
+  padding-bottom: 1rem;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:active {
+    outline-color: silver;
+    outline-style: outset;
+    outline-width: 1px;
+  }
+}

@@ -1,0 +1,53 @@
+
+.lightbox {
+  display: none;
+  // sets the default display to hide the lightbox until it's the :target
+
+  position: fixed;
+  // the rest of this styling makes the lightbox full screen when selected
+
+  z-index: 9999;
+  width: 100vw;
+  height: 100%;
+  text-align: center;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 0;
+  overflow: hidden;
+
+  img {
+    max-width: calc(100% - 3rem);
+    max-height: 95%;
+    width: auto;
+    height: auto;
+    margin: auto;
+    padding: 1rem;
+    border: 4px solid #8fbcd4;
+    border-radius: 6px;
+    background: white;
+
+
+    @media ($medium) {
+      max-width: calc(100% - 1rem);
+      padding: 0;
+    }
+  }
+
+  figcaption {
+    max-width: 50rem;
+    margin: auto;
+    color: white;
+    border: 1px solid white;
+    background: #2e3336;
+  }
+
+  &:target {
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 98vw;
+    height: 100%;
+  }
+}

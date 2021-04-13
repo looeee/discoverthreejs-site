@@ -1,0 +1,24 @@
+{
+  "description": "The first step in building a three.js app is importing the three.js files. There are three main ways to do this: download the files, use the NPM package, or import from a CDN.",
+  "title": "How to Include three.js in Your Projects",
+    "wordCount": "1368",
+    "readingTime": "7",
+  "IDE": {
+    "show": "true",
+    "container": "#ide-wrapper",
+    "serverDirectory": "static/examples",
+    "stripDirectory": "worlds/introduction/get-threejs/",
+    "closedFolders": ["styles"],
+    "comparisonMode": true,
+    "files": ["worlds/introduction/get-threejs/src/main.start.js","worlds/introduction/get-threejs/src/main.final.js","styles/main.css","vendor/three/build/three.module.js","vendor/three/examples/jsm/controls/OrbitControls.js","worlds/introduction/get-threejs/index.html"],
+    "startFiles": null,
+    "finalFiles": null,
+    "entry": "index.html",
+    "activeDocument":"src/main.js",
+    "switchImportsAllow": "false"
+  },
+  "membershipLevelToView": "none",
+  "includeInSitemap" : true,
+  "showUpdateBanner" : true,
+  "showPagination" : true
+}

@@ -1,0 +1,35 @@
+.ribbon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: auto;
+
+  padding: 2rem 4em 2rem;
+  transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transform: translateY(-100%) rotate(0) translateX(-29.2893218813%)
+    rotate(-45deg);
+  transform-origin: bottom right;
+  text-decoration: none;
+  pointer-events: all;
+  color: #f4f4f4;
+  border: 3px solid silver;
+  background: linear-gradient(to bottom, #5aabd6, #478598);
+  box-shadow: 6px 4px 14px 5px black;
+  text-shadow: 1px 2px 1px #030808;
+  /* color: black; */
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+
+  @media ($small) {
+    padding: 1rem 2.75em 1rem;
+    font-size: 1.25rem;
+  }
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    background: linear-gradient(to bottom, #a0d2ec, #4f92a7);
+    box-shadow: 1px 9px 14px 5px black;
+    text-shadow: 2px 2px 1px #030808;
+  }
+}

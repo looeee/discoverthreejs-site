@@ -1,0 +1,19 @@
+.portrait {
+  border-radius: 50%;
+
+  &.big {
+    width: 16rem;
+    height: 16rem;
+  }
+
+  // &.medium {
+  //   // width: 8rem;
+  //   width: auto;
+  //   height: 8rem;
+  // }
+
+  // &.small {
+  //   width: 4rem;
+  //   height: 4rem;
+  // }
+}

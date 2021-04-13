@@ -1,0 +1,8 @@
+Sitemap: https://discoverthreejs.com/sitemap.xml
+User-agent: *
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /login/
+Disallow: /logout/
+Disallow: /create_account/
+Disallow: /update_details/

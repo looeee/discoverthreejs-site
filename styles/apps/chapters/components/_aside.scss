@@ -1,0 +1,69 @@
+aside {
+  border: 1px solid $color-border;
+  border-radius: 6px;
+  box-shadow: 0 0 4px 0 $color-shadow;
+
+  h2,
+  h3,
+  h4 {
+    margin: 1rem 1rem 2rem;
+    border: 0;
+    padding-top: 1rem;
+  }
+
+  p {
+    margin: 0 1rem 2rem;
+  }
+
+  > p {
+    &:first-child {
+      padding-top: 3rem;
+    }
+  }
+
+  a {
+    color: #1624cc;
+
+    &:hover,
+    &:focus {
+      color: azure;
+    }
+  }
+
+  figure,
+  inline-scene {
+    border: 0;
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  section {
+    width: auto !important;
+  }
+
+  &.notice {
+    background-color: $color-notice-bg;
+  }
+
+  &.warning {
+    background-color: $color-warning-bg;
+
+    a {
+      &:visited {
+        color: #0300b5;
+      }
+      &:hover,
+      &:focus {
+        color: azure;
+      }
+    }
+  }
+
+  &.success {
+    background-color: $color-success-bg;
+  }
+
+  .highlight-wrapper {
+    margin: 0.5rem;
+  }
+}

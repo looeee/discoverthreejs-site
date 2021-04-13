@@ -1,0 +1,16 @@
+{{ $currentPageUrl := .Permalink }}
+{{- $paginator := (.Site.Pages).ByWeight -}}
+<ul>
+  {{- range $paginator -}}
+    {{- if not .Params.excludeFromTOC }}
+    <li class="{{ if not .Params.available }}unavailable {{ end }}{{ if .Params.sectionHead }}section-head{{end}}">
+      <span class="chapter">{{ if .Params.chapter }}{{ .Params.chapter }}{{ end }}:</span>
+      {{- if and (not .Params.available) (not .Params.summaryAvailable) -}}
+        <span>{{ .Title }}</span>
+      {{- else -}}
+      <a href="{{ .Permalink | replaceRE "[^/]*$" "" }}" title="{{ .Title }}">{{ .Title }}</a>
+      {{- end -}}
+    </li>
+    {{- end -}}
+  {{- end }}
+</ul>

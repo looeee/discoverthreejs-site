@@ -1,0 +1,916 @@
+<h1 id="organizing-your-scenes">Organizing Your Scenes</h1>
+<p>In every chapter so far, we&rsquo;ve created examples using nothing but our trusty cube. Don&rsquo;t you think it&rsquo;s about time we moved on to some other shapes? Or even (gasp!) more than one object at the same time? Switching to a new geometry is easy since we can use any of the twenty of so geometries that come with the three.js core, as we&rsquo;ll see in the next chapter. However, once we start to add lots of objects to our scenes, we also need to think about how to organize and keep track of them, both within the 3D space of the scene and in our code.</p>
+<p>In this chapter, we&rsquo;ll introduce a new geometry called <code>SphereBufferGeometry</code>, and we&rsquo;ll use this to showcase some features we can use to keep our scenes and code organized: the <code>Group</code> class, which is used to organize objects within the <a href="/book/first-steps/transformations/#the-scene-graph">scene graph</a>, and the <code>.clone</code> method, which you can use to create identical copies of an existing object in a single line of code.</p>
+<h2 id="introducing-spherebuffergeometry">Introducing <code>SphereBufferGeometry</code></h2>
+<figure class="">
+  <iframe title="The SphereBufferGeometry in action" width="100%" height="500px" src="https://threejs.org/docs/scenes/geometry-browser.html#SphereBufferGeometry" importance="low" loading="lazy" sandbox="allow-scripts"></iframe><figcaption>The <code>SphereBufferGeometry</code> in action</figcaption></figure>
+<p>The <a href="https://threejs.org/docs/#api/en/geometries/SphereBufferGeometry" target="_blank" rel="noopener noreferrer"><code>SphereBufferGeometry</code></a>  geometry constructor takes up to seven parameters, all optional. We&rsquo;ll focus on the first three here:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Creating a <code>SphereBufferGeometry</code></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+import { SphereBufferGeometry } from &#39;three&#39;;
+
+const radius = 0.25;
+const widthSegments = 16;
+const heightSegments = 16;
+
+const geometry = new SphereBufferGeometry(radius, widthSegments, heightSegments);
+
+</code>
+  </pre>
+</section>
+
+<p>The radius defines how big the sphere will be. More interesting are the next two parameters, which specify how much detail the geometry has around its width (equator) and height, respectively. The <a href="/book/first-steps/first-scene/#the-geometry"><code>BoxBufferGeometry</code> has similar parameters</a>, however, they are less important as they don&rsquo;t change the shape of the box. The reason for this that all geometries are made out of triangles - you can see these outlined on the sphere in the scene above. To create a curved surface like a sphere we need to use lots of very tiny triangles.</p>
+<p>Try experimenting with different values for <code>widthSegments</code> and <code>heightSegments</code> to see how these settings affect the quality of the geometry. It&rsquo;s important to use the smallest value that looks good for both settings. The number of triangles the sphere is built from increases very quickly when you use larger values for these parameters. What you&rsquo;re looking for is a tradeoff between quality and performance. If the sphere is far away from the camera or very small, you might be able to get away with a low-quality geometry made out of very few triangles, while if the sphere is the main focal point of your scene (such as a globe or planet), you will probably want to use a higher quality geometry.</p>
+<h2 id="adding-many-objects-to-the-scene">Adding Many Objects to the Scene</h2>
+<p>In a few moments, we&rsquo;ll create twenty-one sphere-shaped meshes and add them to our scene, arranged in a circle around the center. We could, of course, add each sphere to the scene one by one (in the following examples we&rsquo;ve skipped setting the spheres&rsquo; positions for brevity).</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Adding lots of sphere to the scene, one by one</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+const sphere1 = new Mesh(geometry, material);
+const sphere2 = new Mesh(geometry, material);
+const sphere3 = new Mesh(geometry, material);
+// ...
+const sphere20 = new Mesh(geometry, material);
+const sphere21 = new Mesh(geometry, material);
+
+scene.add(sphere1);
+scene.add(sphere2);
+scene.add(sphere3);
+// ...
+scene.add(sphere20);
+scene.add(sphere21);
+
+</code>
+  </pre>
+</section>
+
+<p>Kind of tedious, don&rsquo;t you think? This is the perfect time to use a loop:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Creating many spheres in a loop</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+for (let i = 0; i &lt; 21; i&#43;&#43;) {
+  const sphere = new Mesh(geometry, material);
+  scene.add(sphere);
+}
+
+</code>
+  </pre>
+</section>
+
+<p>That&rsquo;s better. We&rsquo;ve gone from over forty lines of code to just four. However, we have to think about
+this issue from two perspectives: clean code, and a clean scene graph. There&rsquo;s nothing wrong, technically, with adding lots of objects directly to the scene like this. There are no issues with performance or anything else. The problems will come when we want to do something with the spheres. Perhaps we want to show/hide them all at once, or perhaps we want to animate them (as we&rsquo;ll do below). In that case, we&rsquo;ll have to keep track of all of them in our code and change them one by one, and to animate them we would have to add a <code>.tick</code> method to all twenty-one spheres.</p>
+<p>It would be much better if we had some way of treating them as a group, don&rsquo;t you think?</p>
+<h2 id="hello-group">The <code>Group</code> Object</h2>
+<p><a href="https://threejs.org/docs/#api/objects/Group" target="_blank" rel="noopener noreferrer">Groups</a> occupy <a href="/book/first-steps/transformations/#the-object3d-base-class-and-the-scene-graph">a position in the scene graph</a> and can have children, but are themselves invisible. If the <code>Scene</code> represents the entire universe, then you can think of a <code>Group</code> as a single <em>compound</em> object within that universe.</p>
+<figure >
+  <img src="/static/images/first-steps/scene_tree.svg" loading="lazy" alt="A `Group` in the Scene Graph" title="A `Group` in the Scene Graph"  />
+    <figcaption>A <code>Group</code> in the Scene Graph</figcaption></figure>
+<p>When we move a group around, all of its children move too. Likewise, if we rotate or scale a group, all of its children will be rotated or scaled too. However, the children can also be translated, rotated, or scaled independently. This is exactly how objects behave in the real world. For example, a car is made up of separate pieces like the body, windows, wheels, engine, and so on, and when you move the car they all move with it. But the wheels can rotate independently, and you can open the doors and roll down the windows, spin the steering wheel, and so on.</p>
+<p>Of course, all of that applies to <em>every</em> scene object. Every scene object has <code>.add</code> and <code>.remove</code> methods inherited from <code>Object3D</code>, just like the <code>Group</code> and the <code>Scene</code> itself, and <a href="/book/first-steps/transformations/#working-with-the-scene-graph">every object can hold a position in the scene graph and have children</a>. The difference is that groups are <em>purely organizational</em>. Other scene objects, like meshes, lights, cameras, and so on, have some other purpose in addition to occupying a place in the scene graph. However, groups exist purely to help you manipulate other scene objects.</p>
+<h3 id="working-with-groups">Working with Groups</h3>
+<p>Like the <code>Scene</code> constructor, the <code>Group</code> constructor doesn&rsquo;t take any parameters:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Importing and creating a <code>Group</code></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import {
+  Group,
+} from &#39;three.module.js&#39;;
+
+const group = new Group();
+</code>
+  </pre>
+</section>
+
+<p>You can <a href="https://threejs.org/docs/#api/en/core/Object3D.add" target="_blank" rel="noopener noreferrer"><code>.add</code></a> and <a href="https://threejs.org/docs/#api/en/core/Object3D.remove" target="_blank" rel="noopener noreferrer"><code>.remove</code></a> children from a group:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Adding and removing objects from a <code>Group</code></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+group.add(mesh);
+group.add(light);
+
+// later
+group.remove(light);
+</code>
+  </pre>
+</section>
+
+<p>Once you add the group to your scene, any children of the group become part of the scene too:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Adding a group to your scene</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// the mesh (and light if we didn&#39;t remove it)
+// will become visible
+scene.add(group);
+</code>
+  </pre>
+</section>
+
+<p>Getting back to our spheres, we&rsquo;ll create the spheres in a loop like before, but now we&rsquo;ll add them to a group, and then we&rsquo;ll add the group to the scene.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Adding the spheres to a group instead of the scene allows us to manipulate them as a unit</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+const scene = new Scene();
+const group = new Group();
+scene.add(group);
+
+for (let i = 0; i &lt; 21; i&#43;&#43;) {
+  const sphere = new Mesh(geometry, material);
+  group.add(sphere);
+}
+
+</code>
+  </pre>
+</section>
+
+<figure class="medium right">
+  <iframe title="A `group` in action" width="100%" height="500px" src="https://threejs.org/examples/webgl_loader_collada_kinematics.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe><figcaption>A <code>Group</code> in action</figcaption></figure>
+<p>In case our simple group of spheres has not convinced you, a classic example of the reason for grouping objects is a robotic arm. The arm in this scene consists of at least four individually moving pieces, and they are connected by joints in a hierarchy, with the base of the arm at the top and the &ldquo;hand&rdquo; at the bottom. Imagine if these were all added directly to the scene, with no connection to each other, and our task was to animate them. Each joint in the arm requires the joints preceding it to remain connected while it moves. If we had to account for this without any kind of connection between the pieces, there would be a lot of painful math involved. However, when we connect the pieces in a parent-child relationship within the scene graph, the hierarchical movements logically follow. When we move the entire group, the whole arm will move. If we rotate the base, the upper joints will move but the group and base will not move. When we rotate the middle joint, the top joint will rotate too, and finally, when we rotate the top joint, nothing else will be forced to move with it.</p>
+<p>This kind of logical connection between objects is one of the things that grouping objects within the scene graph makes easy.</p>
+<h2 id="introduce-clone">The <code>.clone</code> Method</h2>
+<p>In the above examples where we created lots of spheres, we skipped over the part where we have to move each sphere into a new position. If we don&rsquo;t do that, all of the spheres will remain at the exact center of the scene, all jumbled on top of each other. This is where cloning an object can be useful. We can set up one object just how we like it, then we can create an exact clone. This clone will have the same transform, the same shape, the same material, if it&rsquo;s a light, it will have the same color and intensity, if it&rsquo;s a camera it will have the same field of view and aspect ratio, and so on. Then, we can make whatever adjustments we want to the clone.</p>
+<p>Nearly all objects in three.js have a <code>.clone</code> method, which allows you to create an identical copy of that object. All scene objects inherit from <a href="https://threejs.org/docs/#api/en/core/Object3D.clone" target="_blank" rel="noopener noreferrer"><code>Object3D.clone</code></a>, while geometries inherit from <a href="https://threejs.org/docs/#api/en/core/BufferGeometry.clone" target="_blank" rel="noopener noreferrer"><code>BufferGeometry.clone</code></a>, and materials inherit from <a href="https://threejs.org/docs/#api/en/materials/Material.clone" target="_blank" rel="noopener noreferrer"><code>Material.clone</code></a>.</p>
+<p>In this chapter, we&rsquo;ll focus on cloning meshes, which works like this:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Cloning a mesh</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const mesh = new Mesh(geometry, material);
+const clonedMesh = mesh.clone();
+</code>
+  </pre>
+</section>
+
+<p>If we set the position, rotation, and scale of <code>mesh</code>, and then clone it, <code>clonedMesh</code> will start with the same position, rotation, and scale as the original.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Cloned objects have the same transform as the original object</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const mesh = new Mesh(geometry, material);
+mesh.position.set(1, 1, 1);
+mesh.rotation.set(0.5, 0.5, 0.5);
+mesh.scale.set(2, 2, 2);
+
+const clonedMesh = mesh.clone();
+// clonedMesh.position === (1, 1, 1)
+// clonedMesh.rotation === (0.5, 0.5, 0.5)
+// clonedMesh.scale === (2, 2, 2)
+</code>
+  </pre>
+</section>
+
+<p>After cloning, you can adjust the transforms on the original mesh and the cloned mesh separately.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Adjusting the transforms of the original and cloned meshes</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// only mesh will move
+mesh.position.x = 20;
+
+// only clonedMesh will increase in size
+clonedMesh.scale.set(5, 5, 5);
+</code>
+  </pre>
+</section>
+
+<p><code>clonedMesh</code> also has the same geometry and material as <code>mesh</code>. <strong>However, the geometry and material are not cloned, they are shared</strong>. If we make any changes to the shared material, for example, to change its color, <strong>all the cloned meshes will change, along with the original</strong>. The same applies if you make any changes to the geometry.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Changes to the material or geometry will affect all clones</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// mesh AND clonedMesh will turn red
+mesh.material.color.set(&#39;red&#39;);
+
+// mesh AND clonedMesh will turn blue
+clonedMesh.material.color.set(&#39;blue&#39;);
+</code>
+  </pre>
+</section>
+
+<p>However, you can give a clone an entirely new material, and the original will not be affected.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">You can break the connection by giving clones a new material or geometry</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+clonedMesh.material = new MeshStandardMaterial({ color: &#39;indigo&#39; });
+
+// mesh.material -&gt; still red
+
+</code>
+  </pre>
+</section>
+
+<h3 id="custom-properties-like-tick-are-not-cloned">Custom Properties like <code>.tick</code> are Not Cloned</h3>
+<p>One important final note. Only the default properties of an object will be cloned. If you create custom properties like <a href="/book/first-steps/animation-loop/#the-tick-method">the <code>.tick</code> method</a> we&rsquo;re using to create animations, these will not be cloned. You&rsquo;ll have to set up any custom properties again on the cloned mesh.</p>
+<h2 id="create-the-_meshgroupjs_-module">Create the <em><strong>meshGroup.js</strong></em> Module</h2>
+<p>Now, we will finally add these twenty-one spheres to our scene. Rename the <em><strong>cube.js</strong></em> module from the previous chapter to <em><strong>meshGroup.js</strong></em>, and delete everything inside it (in the editor we&rsquo;ve done this for you). Inside this new module, we&rsquo;ll use <code>SphereBufferGeometry</code>, <code>Group</code>, and <code>.clone</code> to create a bunch of spheres and then spend some time experimenting with them.</p>
+<p>First, set up the imports. These are mostly the same as the previous chapter, except that we have replaced <code>BoxBufferGeometry</code> and <code>TextureLoader</code>, with <code>SphereBufferGeometry</code> and <code>Group</code>. Next, create the <code>createMeshGroup</code> function, and finally, export this function at the bottom of the module:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>meshGroup.js</strong></em>: initial structure</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import {
+  SphereBufferGeometry,
+  Group,
+  MathUtils,
+  Mesh,
+  MeshStandardMaterial,
+} from &#39;three&#39;;
+
+function createMeshGroup() {}
+
+export { createMeshGroup };
+</code>
+  </pre>
+</section>
+
+<h3 id="create-the-group">Create the <code>Group</code></h3>
+<p>Inside the  function, create a new group, and then give it a <code>.tick</code> method:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>meshGroup.js</strong></em>: create a group</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="9"
+    data-line="12-16"
+    data-line-offset="9"
+    >
+    <code class="highlight language-js match-braces">
+function createMeshGroup() {
+  // a group holds other objects
+  // but cannot be seen itself
+  const group = new Group();
+
+  group.tick = (delta) =&gt; {};
+
+  return group;
+}
+
+export { createMeshGroup };
+</code>
+  </pre>
+</section>
+
+<p>This completes the skeleton structure for the new module. Over in World, switch the <code>createCube</code> import to <code>createMeshGroup</code> (again, already done for you in the editor):</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: import the new <code>meshGroup</code> module</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line="3"
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">import { createCamera } from &#39;./components/camera.js&#39;;
+import { createLights } from &#39;./components/lights.js&#39;;
+import { createMeshGroup } from &#39;./components/meshGroup.js&#39;;
+import { createScene } from &#39;./components/scene.js&#39;;
+
+import { createControls } from &#39;./systems/controls.js&#39;;
+import { createRenderer } from &#39;./systems/renderer.js&#39;;
+import { Resizer } from &#39;./systems/Resizer.js&#39;;
+</code>
+  </pre>
+</section>
+
+<p>Make a similar change in the constructor:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: create the group and add it to the scene and animation loop</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="17"
+    data-line="26-29"
+    data-line-offset="17"
+    >
+    <code class="highlight language-js match-braces">  constructor(container) {
+    camera = createCamera();
+    renderer = createRenderer();
+    scene = createScene();
+    loop = new Loop(camera, scene, renderer);
+    container.append(renderer.domElement);
+
+    const controls = createControls(camera, renderer.domElement);
+    const { ambientLight, mainLight } = createLights();
+    const meshGroup = createMeshGroup();
+
+    loop.updatables.push(controls, meshGroup);
+    scene.add(ambientLight, mainLight, meshGroup);
+
+    const resizer = new Resizer(container, camera, renderer);
+  }
+</code>
+  </pre>
+</section>
+
+<p>At this point, your scene will contain a single empty group and nothing else. However, groups are invisible so all you&rsquo;ll see is the blue background.</p>
+<h3 id="create-the-prototype-sphere">Create the Prototype Sphere</h3>
+<p>Next, we&rsquo;ll create the spheres and add them to the group. We&rsquo;ll do this by creating one <em>prototype</em> sphere and then we&rsquo;ll clone that twenty times for a total of twenty-one spheres.</p>
+<p>First, create a <code>SphereBufferGeometry</code> to give the prototype mesh its shape. This geometry will be shared by all the spheres. We&rsquo;ll give it a <code>radius</code> of 0.25, and set both <code>widthSegments</code> and <code>heightSegments</code> to sixteen:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>meshGroup.js</strong></em>: create a <code>SphereBufferGeometry</code></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="14"
+    data-line=""
+    data-line-offset="14"
+    >
+    <code class="highlight language-js match-braces">
+const geometry = new SphereBufferGeometry(0.25, 16, 16);
+</code>
+  </pre>
+</section>
+
+<p>Setting both <code>widthSegments</code> and <code>heightSegments</code> to sixteen gives us a decent tradeoff between quality and performance, as long as we don&rsquo;t zoom in too close. With these settings, each sphere will be made out of 480 tiny triangles.</p>
+<p>Next, create a <code>MeshStandardMaterial</code>. Nothing new here, except this time we&rsquo;ll <a href="/book/first-steps/physically-based-rendering/#change-the-materials-color">set the color</a> to indigo. Once again, this material will be shared by all of the spheres.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>meshGroup.js</strong></em>: create a MeshStandardMaterial</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="16"
+    data-line=""
+    data-line-offset="16"
+    >
+    <code class="highlight language-js match-braces">
+const material = new MeshStandardMaterial({
+  color: &#39;indigo&#39;,
+});
+</code>
+  </pre>
+</section>
+
+<p>Finally, create the mesh and then add it to the group:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>meshGroup.js</strong></em>: create the prototype mesh</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="20"
+    data-line=""
+    data-line-offset="20"
+    >
+    <code class="highlight language-js match-braces">
+const protoSphere = new Mesh(geometry, material);
+
+// add the sphere to the group
+group.add(protoSphere);
+</code>
+  </pre>
+</section>
+
+<p>We&rsquo;ll <code>.clone</code> this mesh to create the rest of the meshes, hence the name <code>.protoSphere</code>. Putting all that together, here&rsquo;s the <code>createMeshGroup</code> function so far:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>meshGroup.js</strong></em>: current progress</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="9"
+    data-line=""
+    data-line-offset="9"
+    >
+    <code class="highlight language-js match-braces">
+function createMeshGroup() {
+  // a group holds other objects
+  // but cannot be seen itself
+  const group = new Group();
+
+  const geometry = new SphereBufferGeometry(0.25, 16, 16);
+
+  const material = new MeshStandardMaterial({
+    color: &#39;indigo&#39;,
+  });;
+
+  // create one prototype sphere
+  const protoSphere = new Mesh(geometry, material);
+
+  // add the sphere to the group
+  group.add(protoSphere);
+
+  group.tick = (delta) =&gt; {};
+
+  return group;
+}
+</code>
+  </pre>
+</section>
+
+<figure class="medium right">
+  <img src="/static/images/first-steps/proto-sphere.png" loading="lazy" alt="The protosphere" title="The protosphere"  /></figure>
+<p>At this point, the <code>protoSphere</code> should show up in the center of your scene.</p>
+<p>Note how the <code>HemisphereLight</code> we added in the last chapter combines with the color of the sphere to create different shades across the surface. Also, look closely at the silhouette of the sphere. Can you see that it&rsquo;s made from lots of short straight lines? If you zoom way in using the orbit controls and then rotate the camera, this should become more obvious. Clearly, <code>widthSegments</code> and <code>heightSegments</code> at sixteen doesn&rsquo;t give us enough detail for a full-screen sphere. Now, zoom back out to the original size. The sphere should look better now, showing us that this quality level is fine for small or far-away spheres.</p>
+<h3 id="clone-the-protosphere">Clone the <code>protoSphere</code></h3>
+<p>This sub-heading wins the prize for most likely to be a line of dialogue in a cheesy sci-fi movie.</p>
+<p>With our prototype mesh set up, we&rsquo;ll clone it to create the other meshes.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Clone the <code>protoSphere</code></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+const clonedSphere = protoSphere.clone();
+
+</code>
+  </pre>
+</section>
+
+<p>We&rsquo;ll use a <a href="/book/appendix/javascript-reference/#for-loop"><strong>for loop</strong></a> to create twenty new spheres, adding each to the group as we create them. Normally, to loop twenty times, we would do this:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A basic for loop that runs twenty times</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+for (let i = 0; i &lt; 20; i&#43;&#43;) {
+  console.log(&#39;Hello twenty times!&#39;);
+}
+</code>
+  </pre>
+</section>
+
+<p>However, in a moment, we&rsquo;ll arrange the cloned spheres in a circle using some trigonometry and we&rsquo;ll need values of <code>i</code> between zero and one. Since $\frac{1}{20}=0.05$, we can write the loop this way instead:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A for loop that runs twenty times with <code>i</code> values between zero and one</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+for (let i = 0; i &lt; 1; i &#43;= 0.05) {
+  console.log(&#39;Hello twenty times!&#39;);
+}
+</code>
+  </pre>
+</section>
+
+<p>Add this loop to <code>createMeshGroup</code> to create the twenty new spheres:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>meshGroup.js</strong></em>: create twenty cloned spheres</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="18"
+    data-line="25-31"
+    data-line-offset="18"
+    >
+    <code class="highlight language-js match-braces">
+...
+
+const protoSphere = new Mesh(geometry, material);
+
+// add the sphere to the group
+group.add(protoSphere);
+
+// create twenty clones of the protoSphere
+// and add each to the group
+for (let i = 0; i &lt; 1; i &#43;= 0.05) {
+  const sphere = protoSphere.clone();
+
+  group.add(sphere);
+}
+
+...
+</code>
+  </pre>
+</section>
+
+<p>Now we have a total of twenty-one spheres (the original sphere plus twenty clones). However, we haven&rsquo;t moved any of the spheres yet, so they are all positioned exactly on top of each other at the center of the scene and it looks like there is still only one sphere.</p>
+<h3 id="position-the-cloned-spheres-in-a-circle">Position the Cloned Spheres in a Circle</h3>
+<p>We&rsquo;ll use a bit of trigonometry to place the cloned spheres in a circle surrounding the <code>protoSphere</code>. Here&rsquo;s one way to write the equations of a circle with radius one, where $0 \le i \le 1$:</p>
+<p>$$
+\begin{aligned}
+x &amp;= \cos(2 \pi i) \cr
+y &amp;= \sin(2 \pi i) \cr
+\end{aligned}
+$$</p>
+<p>If we input values of $i$ between zero and one, we&rsquo;ll get points spread around the circumference of the circle. We can easily rewrite these function in JavaScript <a href="/book/appendix/javascript-reference/#the-math-object">using the built-in <code>Math</code> class</a>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Equations for points on a circle</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const x = Math.cos(2 * Math.PI * i);
+const y = Math.sin(2 * Math.PI * i);
+</code>
+  </pre>
+</section>
+
+<p>Next, move the equations into your for loop (now can you see why we wanted values of <code>i</code> between zero and one?):</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>meshGroup.js</strong></em>: position the cloned meshes around a circle</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="27"
+    data-line="31,32"
+    data-line-offset="27"
+    >
+    <code class="highlight language-js match-braces">
+for (let i = 0; i &lt; 1; i &#43;= 0.05) {
+  const sphere = protoSphere.clone();
+
+  // position the spheres on around a circle
+  sphere.position.x = Math.cos(2 * Math.PI * i);
+  sphere.position.y = Math.sin(2 * Math.PI * i);
+
+  this.group.add(sphere);
+}
+</code>
+  </pre>
+</section>
+
+<p>Once you do this, the cloned spheres will move into a circle surrounding the original <code>protoSphere</code>.</p>
+<h3 id="scale-the-group">Scale the Group</h3>
+<p>The circle we created has radius one, which is quite small. We&rsquo;ll double the scale of the group to make it bigger:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>meshGroup.js</strong></em>: scale the group</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="39"
+    data-line=""
+    data-line-offset="39"
+    >
+    <code class="highlight language-js match-braces">  // every sphere inside the group will be scaled
+  group.scale.multiplyScalar(2);
+</code>
+  </pre>
+</section>
+
+<p>The <a href="https://threejs.org/docs/#api/en/math/Vector3.multiplyScalar" target="_blank" rel="noopener noreferrer"><code>.multiplyScalar</code></a> method <a href="/book/first-steps/transformations/#the-multiplyscalar-method">multiplies the $x$, $y$, and $z$ components of a vector by a number</a>. When we double the scale of the group, every object inside the group doubles in size too.</p>
+<h3 id="scale-the-spheres">Scale the Spheres</h3>
+<p>For some extra visual flair, let&rsquo;s scale the cloned spheres from tiny to large. Add the following line to the loop:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>meshGroup.js</strong></em>: scale the cloned spheres</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="27"
+    data-line="34"
+    data-line-offset="27"
+    >
+    <code class="highlight language-js match-braces">  for (let i = 0; i &lt; 1; i &#43;= 0.05) {
+    const sphere = protoSphere.clone();
+
+    // position the spheres on around a circle
+    sphere.position.x = Math.cos(2 * Math.PI * i);
+    sphere.position.y = Math.sin(2 * Math.PI * i);
+
+    sphere.scale.multiplyScalar(0.01 &#43; i);
+
+    group.add(sphere);
+  }
+</code>
+  </pre>
+</section>
+
+<p>The variable <code>i</code> lies in the range $0 \le i \le 1$, so here, we are scaling the meshes from nearly zero to full size.</p>
+<h3 id="spin-the-wheel">Spin the Wheel</h3>
+<p>Finally, update the <code>group.tick</code> method to set the spheres in motion. We&rsquo;ll use the same approach we used to <a href="/book/first-steps/animation-loop/#rotate-the-cube">create the cube animation</a>, except this time we are rotating on a single axis so it&rsquo;s a simple spinning motion, like a wheel rotating around its center.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>meshGroup.js</strong></em>: animate the group</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="42"
+    data-line=""
+    data-line-offset="42"
+    >
+    <code class="highlight language-js match-braces">  const radiansPerSecond = MathUtils.degToRad(30);
+
+  // each frame, rotate the entire group of spheres
+  group.tick = (delta) =&gt; {
+    group.rotation.z -= delta * radiansPerSecond;
+  };
+</code>
+  </pre>
+</section>
+
+<h3 id="complete-createmeshgroup-function">Complete <code>createMeshGroup</code> Function</h3>
+<p>With all that in place, here&rsquo;s the complete <code>createMeshGroup</code> function:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>meshGroup.js</strong></em>: complete createMeshGroup function</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="9"
+    data-line=""
+    data-line-offset="9"
+    >
+    <code class="highlight language-js match-braces">function createMeshGroup() {
+  // a group holds other objects
+  // but cannot be seen itself
+  const group = new Group();
+
+  const geometry = new SphereBufferGeometry(0.25, 16, 16);
+
+  const material = new MeshStandardMaterial({
+    color: &#39;indigo&#39;,
+  });
+
+  const protoSphere = new Mesh(geometry, material);
+
+  // add the protoSphere to the group
+  group.add(protoSphere);
+
+  // create twenty clones of the protoSphere
+  // and add each to the group
+  for (let i = 0; i &lt; 1; i &#43;= 0.05) {
+    const sphere = protoSphere.clone();
+
+    // position the spheres on around a circle
+    sphere.position.x = Math.cos(2 * Math.PI * i);
+    sphere.position.y = Math.sin(2 * Math.PI * i);
+
+    sphere.scale.multiplyScalar(0.01 &#43; i);
+
+    group.add(sphere);
+  }
+
+  // every sphere inside the group will be scaled
+  group.scale.multiplyScalar(2);
+
+  const radiansPerSecond = MathUtils.degToRad(30);
+
+  // each frame, rotate the entire group of spheres
+  group.tick = (delta) =&gt; {
+    group.rotation.z -= delta * radiansPerSecond;
+  };
+
+  return group;
+}
+</code>
+  </pre>
+</section>
+
+<h2 id="experiment">Experiment!</h2>
+<p>Finally, we have a scene that we can play with. You can get interesting results by making tiny changes within the loop. For example, try experimenting with a different step size in the loop to create more or fewer spheres:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>meshGroup.js</strong></em>: try different values instead of 0.05</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="27"
+    data-line=""
+    data-line-offset="27"
+    >
+    <code class="highlight language-js match-braces">  for (let i = 0; i &lt; 1; i &#43;= 0.05) {
+</code>
+  </pre>
+</section>
+
+<p>What happens if you change 0.05 to 0.001? How small can that value be before you start to notice a drop in the frame rate?</p>
+<p>Or, how about changing the $z$ positions in the loop as well as $x$ and $y$?</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>meshGroup.js</strong></em>: change sphere&rsquo;s z position</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="31"
+    data-line=""
+    data-line-offset="31"
+    >
+    <code class="highlight language-js match-braces">
+sphere.position.x = Math.cos(2 * Math.PI * i);
+sphere.position.y = Math.sin(2 * Math.PI * i);
+sphere.position.z = -i * 5;
+</code>
+  </pre>
+</section>
+
+
+
+
+
+
+
+
+<figure id="scene-872569134" class="inline-scene loading-dots round"></figure>
+
+<script type="module">
+  import init from "/static/examples/worlds/inline-scenes/first-steps/snake.js";
+  init("#scene-872569134");
+</script>
+
+<p>You&rsquo;ll have to adjust the camera as well to get this exact view. That sounds like a &ldquo;hard&rdquo; challenge!</p>
+<h2 id="challenges">Challenges</h2>
+<aside class="success">
+  
+    <h3 id="easy">Easy</h3>
+<ol>
+<li>
+<p>Increase and decrease the number of spheres by changing the value 0.05 in the loop. Try to calculate how many spheres you want before you make the change, rather than entering random numbers.</p>
+</li>
+<li>
+<p>Try out some other shapes besides spheres and boxes. How about <a href="https://threejs.org/docs/#api/en/geometries/ConeBufferGeometry" target="_blank" rel="noopener noreferrer">cones</a>, <a href="https://threejs.org/docs/#api/en/geometries/CylinderBufferGeometry" target="_blank" rel="noopener noreferrer">cylinders</a>, <a href="https://threejs.org/docs/#api/en/geometries/RingBufferGeometry" target="_blank" rel="noopener noreferrer">rings</a>, or <a href="https://threejs.org/docs/#api/en/geometries/DodecahedronBufferGeometry" target="_blank" rel="noopener noreferrer">dodecahedrons</a>? For this exercise, simply replace the <code>SphereBufferGeometry</code> with one of the other buffer geometry classes. The constructor for each type of geometry takes different parameters so read the docs carefully, and remember to import the class before you use it.</p>
+</li>
+<li>
+<p>Try adjusting the <code>widthSegments</code> and <code>heightSegments</code>. How high can you go before you notice a drop in the frame rate? What does the sphere look like with really low values? What happens if you don&rsquo;t use the same number for both parameters?</p>
+</li>
+</ol>
+
+  
+</aside>
+<aside class="notice">
+  
+    <h3 id="medium">Medium</h3>
+<ol>
+<li>
+<p>Inside the <code>group.tick</code> method, we are subtracting the rotation each frame: <code>.rotation.z -= ...</code>. This results in <em>clockwise</em> rotation. Switch to <code>+=</code>, and notice how the rotation changes to <em>anti-clockwise</em>. If you add rotation, the movement will be anti-clockwise. If you subtract rotation, the movement will be clockwise. <strong>Positive rotation in three.js is anti-clockwise</strong>.</p>
+</li>
+<li>
+<p>Can you create some other animations here? Remember, you can animate <em>any property that can be changed</em>.</p>
+</li>
+</ol>
+
+  
+</aside>
+<aside class="warning">
+  
+    <h3 id="hard">Hard</h3>
+<ol>
+<li>
+<p>You guessed it! Can you make the scene in the editor exactly match the scene above?</p>
+</li>
+<li>
+<p>Back to the original scene, can you alternate between two different shapes around the circle? Say, ten spheres, and ten boxes? How about alternating between three different shapes? Or ten different shapes?</p>
+</li>
+<li>
+<p>While it&rsquo;s true that you can animate any property, the hard part is making smooth, repeating motion. Rotation is a special case since you can keep increasing forever and the object will go round and round in circles. To create similar behavior for the other properties, you can use the trigonometric functions sin, cos, and tan. We used cos and sin to place the spheres in a circle, and you can do something similar to move the group&rsquo;s position in a circle. Can you figure it out? No tips though, after all, this is supposed to be a hard challenge!</p>
+</li>
+</ol>
+
+  
+</aside>

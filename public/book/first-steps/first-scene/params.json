@@ -1,0 +1,24 @@
+{
+  "description": "In this chapter, we build our first three.js scene and create the Hello World of three.js apps: a simple white cube. While doing so, we introduce many important concepts such as the scene, renderer, and camera.",
+  "title": "Your First three.js Scene: Hello, Cube!",
+    "wordCount": "4172",
+    "readingTime": "20",
+  "IDE": {
+    "show": "true",
+    "container": "#ide-wrapper",
+    "serverDirectory": "static/examples",
+    "stripDirectory": "worlds/first-steps/first-scene/",
+    "closedFolders": ["styles","vendor"],
+    "comparisonMode": true,
+    "files": ["styles/main.css","vendor/three/build/three.module.js","worlds/first-steps/first-scene/index.html","worlds/first-steps/first-scene/src/main.start.js","worlds/first-steps/first-scene/src/main.final.js"],
+    "startFiles": null,
+    "finalFiles": null,
+    "entry": "index.html",
+    "activeDocument":"src/main.js",
+    "switchImportsAllow": "true"
+  },
+  "membershipLevelToView": "none",
+  "includeInSitemap" : true,
+  "showUpdateBanner" : true,
+  "showPagination" : true
+}

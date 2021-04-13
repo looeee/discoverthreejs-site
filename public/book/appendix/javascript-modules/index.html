@@ -1,0 +1,711 @@
+<h1 id="javascript-modules">JavaScript Modules</h1>
+<figure class="tiny left noborder">
+  <img src="/static/images/app-logos/javascript.png" loading="lazy" alt="JavaScript logo" title="JavaScript logo"  /></figure>
+<p>Since the release of JavaScript version ES6 in 2015 and the switch to a yearly release schedule, the JavaScript language has been reborn as a powerful, full-featured language that is both fun and easy to use. The need for backward compatibility means that there are still a few clunky areas, but overall the language is in a good place now. We have been referring to these new features <a href="/book/appendix/javascript-reference/#old-school-and-modern-javascript">modern JavaScript</a>, and we&rsquo;ll continue to do that here.</p>
+<p><strong>Perhaps <em>the</em> most important new feature added to JavaScript recently is the ability to split our code up into many small modules.</strong> Using old-school JavaScript, we either had to write everything in one huge file, sometimes thousands of lines long, use a non-standard solution such as <a href="http://browserify.org/" target="_blank" rel="noopener noreferrer">browserify</a> or <a href="https://requirejs.org/" target="_blank" rel="noopener noreferrer">require.js</a>, or include lots of separate <code>&lt;script&gt;</code> elements in our HTML files.</p>
+<p>The new &ldquo;official JavaScript modules&rdquo; are called <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules" target="_blank" rel="noopener noreferrer">ES6 Modules</a>, and using them, we can break our app down into discrete components, and put each of these components into a separate file. Doing so leads to a huge improvement in code style and re-usability.</p>
+<p>As with our <a href="/book/appendix/javascript-reference/">previous chapter on JavaScript</a>, we&rsquo;re won&rsquo;t attempt a complete description of ES6 modules here. We&rsquo;re only cover the bits you need to know to get through this book.</p>
+<p><strong>When writing modular JavaScript, each file is a module</strong>. So, we may refer to a module by its file name, for example, <em><strong>main.js</strong></em>, or simple as the <em>main</em> module.</p>
+<h2 id="modules-in-other-environments">Modules in Other Environments</h2>
+<p>Modules are an official feature of JavaScript so they will be supported everywhere&hellip; eventually. All modern browsers now support ES6 modules, however, Node.js has been slow to catch up. Fortunately, as of Node v14, ES6 modules are fully supported. However, when using older node versions, or very old browsers, you may need to do additional work to get modules working.</p>
+<h2 id="modular-software-design">Modular Software Design</h2>
+<p>Modular software design opens up a new world of possibilities for structuring an application. Each module we create should have a single, well-defined responsibility. Additionally, each module should be self-contained, so far as possible, and rely on little or no knowledge of other modules.</p>
+<p>These are tried and tested design patterns, known as <a href="https://en.wikipedia.org/wiki/Single_responsibility_principle" target="_blank" rel="noopener noreferrer"><em>the single responsibility principle</em></a>, <a href="https://en.wikipedia.org/wiki/Loose_coupling" target="_blank" rel="noopener noreferrer"><em>loose coupling</em></a>, and <a href="https://en.wikipedia.org/wiki/Cohesion_%28computer_science%29" target="_blank" rel="noopener noreferrer"><em>high cohesion</em></a>. A well-designed module has a single responsibility and is both loosely coupled and highly cohesive.</p>
+<p>In other words, each module should do one thing only, and do that well, without relying on outside help. High cohesion means that the functions inside a module logically belong together. When writing code in this way, each module deals with a tiny fraction of the overall complexity, and even though our applications may grow and become complex over time, at any moment we should be dealing with just a few simple modules.</p>
+<h2 id="es6-module-syntax-import-and-export">ES6 Module Syntax: <code>import</code> and <code>export</code></h2>
+<p>ES6 modules introduced two new keywords to JavaScript: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import" target="_blank" rel="noopener noreferrer"><code>import</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export" target="_blank" rel="noopener noreferrer"><code>export</code></a>. These allow us to write code in one file, <code>export</code> it, and then <code>import</code> it for use in a different file.</p>
+<p>We&rsquo;ll illustrate this here by are exporting a variable called <code>x</code> from a file named <em><strong>export.js</strong></em>.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">export.js</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const x = &#39;hello!&#39;;
+
+export { x };
+</code>
+  </pre>
+</section>
+
+<p>Later, we can import this variable into <em><strong>main.js</strong></em>, and then log the value to the console or use it in a calculation.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import { x } from &#39;./export.js&#39;;
+
+console.log(x); // -&gt; hello!
+</code>
+  </pre>
+</section>
+
+<p>If you open up the inline IDE, you&rsquo;ll see that we have set up these two files for you. You can use the IDE to test out the rest of the examples on this page.</p>
+<h3 id="import-and-export-statements-can-be-placed-anywhere-in-module-scope">Import and export Statements can be Placed Anywhere in Module Scope</h3>
+<p>We don&rsquo;t have to wait until the end of the file to perform an export. Instead, we can do it immediately when we declare the variable:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">export.js: you can export from anywhere in module scope</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+export const x = &#39;hello!&#39;;
+</code>
+  </pre>
+</section>
+
+<p>We can place <code>import</code> and <code>export</code> statements anywhere <a href="/book/appendix/javascript-reference/#scope-and-closures">in module scope</a>.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Import and export statements can be placed anywhere in module scope</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+export const x = &#39;hello!&#39;;
+
+import { someVariable } from &#39;./export2.js&#39;;
+
+console.log(&#39;Hey there!&#39;);
+
+export class Cat {
+  ...
+}
+
+import { anotherVariable } from &#39;./export2.js&#39;;
+
+export const y = &#39;goodbye&#39;;
+</code>
+  </pre>
+</section>
+
+<p>However, we can&rsquo;t import or export while in function or block scope.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Export statements must be in module scope, never function or block scope</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const x = &#39;hello!&#39;;
+
+function thisWontWork() {
+  export { x };
+  //=&gt; Uncaught SyntaxError: Unexpected token &#39;export&#39;
+}
+</code>
+  </pre>
+</section>
+
+
+
+<section class="highlight-wrapper"><span class="caption">Likewise, import statements</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+function thisWontWork() {
+  import { x } from &#39;./export.js&#39;;
+  //=&gt; Uncaught SyntaxError: Unexpected token &#39;{&#39;
+}
+</code>
+  </pre>
+</section>
+
+<p>In this book, for clarity, we&rsquo;ll always place <code>import</code> statements at the top of a module and <code>export</code> statements at the bottom.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">We will always place import statements at the top and export statements at the bottom.</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import { someVariable } from &#39;./export2.js&#39;;
+
+const x = &#39;hello!&#39;;
+
+class Cat {
+  ...
+}
+
+export { x, Cat }
+</code>
+  </pre>
+</section>
+
+<h3 id="relative-import-urls">Relative Import URLs</h3>
+<p>So far, we&rsquo;ve been using relative URLs to import and export between the <em><strong>main.js</strong></em> and <em><strong>export.js</strong></em> files, which both reside in the <em><strong>src/</strong></em> folder. We also use a relative URL in the <code>&lt;script&gt;</code> tag in <em><strong>index.html</strong></em>. You can tell when an import is relative because it will start with <code>./</code> or <code>../</code>.</p>
+<p>We&rsquo;ve placed <em><strong>export.js</strong></em> in the same directory as <em><strong>main.js</strong></em>, so we&rsquo;re using <code>./</code>. If we had placed it in a subfolder called <code>exported</code>, for example, the import statement would look like this:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: importing from the exported folder</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+import { x } from &#39;./exported/export.js&#39;;
+
+console.log(x); // -&gt; hello!
+
+</code>
+  </pre>
+</section>
+
+<h3 id="importing-from-other-websites">Importing from Other Websites</h3>
+<p>You can also import from other websites by specifying the full web address of the module. We use this style in <a href="/book/introduction/get-threejs/#approach-2-link-to-the-files-from-a-cdn">0.5: How to Include three.js in Your Projects</a> when we show you how to import three.js from a CDN (content delivery network).</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Importing modules from another website</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+import { Camera } from &#39;https://unpkg.com/three@0.116.0/build/three.module.js&#39;
+
+</code>
+  </pre>
+</section>
+
+<p>For the rest of this chapter, to keep things simple, we&rsquo;ll stick with relative paths. For more info on how URLs work on the web, refer to <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Creating_hyperlinks#A_quick_primer_on_URLs_and_paths" target="_blank" rel="noopener noreferrer">a quick primer on URLs and paths</a> on MDN.</p>
+<h3 id="importing-from-node-modules-npm-or-yarn">Importing from Node Modules (NPM or YARN)</h3>
+<p>If you&rsquo;re using a package manager like NPM or Yarn, you can install packages into the <em><strong>node_modules</strong></em> folder:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Installing the three package with NPM (run this on a command line after installing Node)</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="0"
+    data-line=""
+    data-line-offset="0"
+    >
+    <code class="highlight language-bash match-braces">
+
+npm install three
+
+</code>
+  </pre>
+</section>
+
+<p>Once you do this, you&rsquo;ll find <em><strong>three.module.js</strong></em> in the <em><strong>node_modules/three/build</strong></em> folder. If you like, you can import it directly from there:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Importing directly from node_modules (possible, but not common)</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import { Camera } from &#39;./node_modules/three/build/three.module.js&#39;
+</code>
+  </pre>
+</section>
+
+<p>However, it&rsquo;s more common to use a bundling tool such as Rollup.js, Parcel, or Webpack in conjunction with a package manager. These bundlers follow a convention of allowing you use the package name as a shortcut when importing (in this case, the package name is <code>three</code>). If you are using a bundler, these are equivalent:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">When using a bundler, these are equivalent</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+import { Camera } from &#39;./node_modules/three/build/three.module.js&#39;;
+
+import { Camera } from &#39;three&#39;;
+
+</code>
+  </pre>
+</section>
+
+<p>For now, remember that if you see an import that&rsquo;s not a relative import or a website import, but instead start with a package name like <code>three</code>, it means the code is designed to be used with a bundler and you will not be able to run it directly.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">These import statements can be run directly in the browser</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="0"
+    data-line=""
+    data-line-offset="0"
+    >
+    <code class="highlight language-js match-braces">
+
+import { Camera } from &#39;./node_modules/three/build/three.module.js&#39;;
+
+import { Camera } from &#39;https://unpkg.com/three@0.116.0/build/three.module.js&#39;
+
+import { x } from &#39;./exported/export.js&#39;;
+
+import { x } from &#39;../../../scripts/test.js&#39;;
+
+</code>
+  </pre>
+</section>
+
+
+
+<section class="highlight-wrapper"><span class="caption">These import statements require a bundler</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="0"
+    data-line=""
+    data-line-offset="0"
+    >
+    <code class="highlight language-js match-braces">
+
+import { Camera } from &#39;three&#39;;
+import { OrbitControls } from &#39;three/examples/jsm/controls/OrbitControls.js&#39;;
+import { GLTFLoader } from &#39;three/examples/jsm/loaders/GLTFLoader.js&#39;;
+
+import { throttle, debounce } from &#39;lodash-es&#39;;
+
+</code>
+  </pre>
+</section>
+
+<p>There&rsquo;s a lot more to using a bundler than this, which we won&rsquo;t get into here. However, to keep our code clean, in most of the code examples in this book, including in the editor, we will use <code>import { ... } from 'three'</code>.</p>
+<h3 id="named-exports">Named Exports</h3>
+<p>The presence of <code>{}</code> around <code>x</code> means that this is a <strong>named export</strong>. To import <code>x</code> we must refer to it by name, although once imported we can rename it if we need to.</p>
+<p>You can have any number of named exports in a file. For example, here&rsquo;s a file that exports twenty-six names, one for every letter of the alphabet (although we&rsquo;ve skipped f-y for brevity):</p>
+
+
+<section class="highlight-wrapper"><span class="caption">export.js: exporting a name for every letter of the alphabet</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const a = &#39;Abella&#39;;
+const b = &#39;Bertrand&#39;;
+const c = &#39;Courtney&#39;;
+const d = &#39;Dewi&#39;;
+const e = &#39;Eilinora&#39;;
+...
+const z = &#39;Zarathustra&#39;;
+
+export {
+  a,
+  b,
+  c,
+  d,
+  e,
+  ...
+  z,
+};
+</code>
+  </pre>
+</section>
+
+<p>We can import all of these named exports at the same time. Here, we import all twenty-six names (again, skipping the lines f-y):</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: import all twenty-six names</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import {
+  a,
+  b,
+  c,
+  d,
+  e,
+  ...
+  z,
+} from &#39;./export.js&#39;;
+
+console.log(a); // Abella
+console.log(b); // Bertrand
+console.log(c); // Courtney
+console.log(d); // Dewi
+...
+</code>
+  </pre>
+</section>
+
+<h4 id="renaming-named-exports-with-the-as-keyword">Renaming Named Exports with the <code>as</code> Keyword</h4>
+<p>We can rename named exports using the <code>as</code> keyword, either when they are exported:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">export.js: renaming variables on export</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const a = &#39;Abella&#39;;
+const b = &#39;Bertrand&#39;;
+const c = &#39;Courtney&#39;;
+const d = &#39;Dewi&#39;;
+const e = &#39;Eilinora&#39;;
+...
+const z = &#39;Zarathustra&#39;;
+
+export {
+  a as abella,
+  b as bertrand,
+  c as courtney,
+  d as dewi,
+  e as eilinora,
+  ...
+  z as zarathustra,
+};
+</code>
+  </pre>
+</section>
+
+<p>Or, when they are imported:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: renaming exports on import</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import {
+  a as abella,
+  b as bertrand,
+  c as courtney,
+  d as dewi,
+  e as eilinora,
+  ...
+  z as zarathustra,
+}; from &#39;./export.js&#39;;
+
+console.log(abella); //=&gt; Abella
+console.log(bertrand); //=&gt; Bertrand
+console.log(courtney); //=&gt; Courtney
+console.log(dewi); //=&gt; Dewi
+...
+</code>
+  </pre>
+</section>
+
+<h4 id="using-namespaces-with-named-imports">Using Namespaces with Named Imports</h4>
+<p>Importing a lot of things from a single module like this can get a bit messy. In these cases, it can be useful to import everything at once from a given module and save it to a <strong>namespace</strong>. We can do this using <code>import * as &lt;namespace&gt;</code>:</p>
+<p>With a single line, we can import all twenty-six names from the previous file. We can then access them with dot notation:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: importing to a namespace</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import * as NAMES from &#39;./export.js&#39;;
+
+console.log(NAMES.a); //=&gt; Abella
+console.log(NAMES.b); //=&gt; Bertrand
+console.log(NAMES.z); //=&gt; Zarathustra
+</code>
+  </pre>
+</section>
+
+<p>Note that we can&rsquo;t rename the individual exports when doing this. It&rsquo;s a common convention to use all capitals for namespaces, but it&rsquo;s not required.</p>
+<h5 id="the-three-namespace">The <code>THREE</code> Namespace</h5>
+<p>You will often see the <code>THREE</code> namespace used when working with three.js. The <a href="https://github.com/mrdoob/three.js/blob/master/src/Three.js" target="_blank" rel="noopener noreferrer">three.js core contains hundreds of exports</a>. It&rsquo;s highly unlikely you&rsquo;ll need to use all of them in a single file, but for quick tests, you can import them all at once and store them in a namespace.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: importing the entire three.js core to the THREE namespace</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import * as THREE from &#39;three&#39;;
+</code>
+  </pre>
+</section>
+
+<p>Until the switch to modules, to use three.js you would include the core <em><strong>build/three.js</strong></em> file in your HTML using a <code>&lt;script&gt;</code> tag, and the <code>THREE</code> namespace would become globally available.</p>
+<p>Now that we&rsquo;ve switched to modules, we try to avoid using global namespaces. But the <code>THREE</code> namespace has been associated with three.js for years, and as the examples around the web are gradually converted to modules, it&rsquo;s faster to continue using the namespace.</p>
+<p>In this book, we&rsquo;ll avoid using namespaces like <code>THREE</code>, preferring to import components as we need them. This will train us to keep modules focused. Rather than having a huge number of unused components available, we&rsquo;ll only have the ones we need in any given module.</p>
+<h3 id="default-exports">Default Exports</h3>
+<p>Unlike <strong>named exports</strong>, <strong>default exports</strong> allow us to export a value without naming the export. To create a default export, omit the <code>{}</code> braces and add the <code>default</code> keyword:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">export.js: a default export</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const x = &#39;hello!&#39;;
+
+export default x;
+</code>
+  </pre>
+</section>
+
+<p>Default exports don&rsquo;t have names. Instead, we can name them whatever we like on import. Here, we import the variable <code>x</code> into the file <em><strong>main.js</strong></em> and call it <code>hello</code>.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: importing a default export</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import hello from &#39;./export.js&#39;;
+</code>
+  </pre>
+</section>
+
+<p>The variable was originally called <code>x</code>, but that doesn&rsquo;t matter on import for a default export.</p>
+<p>You can only have one default export per file, otherwise, there&rsquo;s no way for JavaScript to know what export we&rsquo;re referring to. You <em>can</em> mix default and named exports in a single file, but we&rsquo;ll avoid doing so. In fact, throughout this book, we&rsquo;ll avoid using default exports completely.</p>
+<h2 id="referencing-javascript-modules-from-html">Referencing JavaScript Modules from HTML</h2>
+<p>As we mentioned above, when using JavaScript modules, every file is a module. However, modern JavaScript, including ES6 modules, is built on top of old-school JavaScript, and all the old syntax and ways of doing things still work. In old-school JavaScript, files were not modules.</p>
+<p>This means, when we pass the <em><strong>main.js</strong></em> module over to the browser, it can be interpreted in one of two ways:</p>
+<ol>
+<li>It&rsquo;s an old-school &ldquo;normal&rdquo; JavaScript file.</li>
+<li>It&rsquo;s a fancy new JavaScript module.</li>
+</ol>
+<p>There&rsquo;s no way to tell from a glance at the file name which interpretation is correct so we need to tell the browser.</p>
+<p>To reference an old-school JavaScript file from HTML we use <a href="/book/appendix/html-and-css-reference/#the-src-attribute">the <code>&lt;script&gt;</code> element</a>. For example, here we include an old-school, non-modular JavaScript file called <em><strong>app.js</strong></em> in <em><strong>index.html</strong></em>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>index.html</strong></em>: using a script tag to include an old-school JavaScript file</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;script src=&#34;./src/app.js&#34;&gt;&lt;/script&gt;
+</code>
+  </pre>
+</section>
+
+<p>To tell the browser that the file is a module, we need to add the <code>type=&quot;module&quot;</code> attribute. Here, we include our fancy new <em><strong>main.js</strong></em> module.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>index.html</strong></em>: importing the main.js module</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;script type=&#34;module&#34; src=&#34;./src/main.js&#34;&gt;&lt;/script&gt;
+</code>
+  </pre>
+</section>
+
+<p>We can also write JavaScript directly in an HTML <code>&lt;script&gt;</code> element:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>index.html</strong></em>: an inline script element</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;script&gt;
+  const x = &#39;welcome to JavaScript!&#39;;
+&lt;/script&gt;
+</code>
+  </pre>
+</section>
+
+<p>However, that&rsquo;s strictly old-school JavaScript. No <code>import</code> or <code>export</code> allowed. But, if we add the <code>type=&quot;module&quot;</code> attribute, we can then write <code>import</code> statements directly in HTML. For example, we can bypass <em><strong>main.js</strong></em> and import the variable <code>x</code> directly from <em><strong>export.js</strong></em> into <em><strong>index.html</strong></em>.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>index.html</strong></em>: an inline module script element</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+
+&lt;script type=&#34;module&#34;&gt;
+  import { x } from &#39;./src/export.js&#39;;
+
+  console.log(x);
+&lt;/script&gt;
+
+</code>
+  </pre>
+</section>
+
+<h2 id="dynamic-imports">Dynamic Imports</h2>
+<p>We&rsquo;ll finish up this chapter with a brief look at <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#Dynamic_Imports" target="_blank" rel="noopener noreferrer"><strong>dynamic imports</strong></a>. So far in this chapter, we&rsquo;ve used <strong>static imports</strong>, which means are evaluated at <strong>load time</strong>. By contrast, <strong>dynamic imports</strong> are evaluated at <strong>run time</strong>.</p>
+<p><strong>Static imports use the <code>import</code> statement, while dynamic imports use the <code>import()</code> function.</strong></p>
+<p>With dynamic imports you can optionally load a module during the execution of your code. This might be useful, for example, if you want to create an app that can load any of the <a href="https://github.com/mrdoob/three.js/tree/master/examples/jsm/loaders" target="_blank" rel="noopener noreferrer">thirty or so 3D asset formats that three.js supports</a> (there are more than thirty loaders there, but some are for textures and other things). Altogether, these loaders comprise around one megabyte of JavaScript, which is a lot to force upon a poor user if they only need a fraction of it. Instead, you can wait until the user sends you a model file, examine the file and say, &ldquo;<em>ayup, that there&rsquo;s an FBX file, better be fetchin&rsquo; tha <code>FBXLoader</code></em>&quot;:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Dynamically importing the FBXLoader at run time</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+import(&#39;./vendor/three/examples/jsm/loaders/FBXLoader.js&#39;)
+  .then((module) =&gt; {
+    // use the loader module to load the model
+  });
+
+</code>
+  </pre>
+</section>
+
+<p>Again, take to note that we&rsquo;re using the <strong>dynamic <code>import()</code> function</strong>, <em>not</em> a <strong>static <code>import</code> statement</strong> which would look like this:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Statically importing the FBXLoader at load time</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+import { FBXLoader } from &#39;./vendor/three/examples/jsm/loaders/FBXLoader.js&#39;
+
+</code>
+  </pre>
+</section>
+
+<p>As we&rsquo;ll see in the next chapter, <code>.then</code> means that <code>import()</code> returns a <a href="/book/appendix/asynchronous-javascript/#promises">Promise</a>. Even better, we can use <a href="/book/appendix/asynchronous-javascript/#async-await">the <code>await</code> keyword</a>, which we&rsquo;ll also cover in the next chapter:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Dynamically importing the FBXLoader at run time using async/await</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+const module = await import(&#39;/vendor/three/examples/jsm/loaders/FBXLoader.js&#39;);
+// use the loader module to load the model
+
+</code>
+  </pre>
+</section>
+
+<p>That&rsquo;s it for JavaScript modules. Next up, we&rsquo;ll examine another important aspect of JavaScript: asynchronous programming, otherwise known as <em>how to prevent your app grinding to a halt while you wait for something to load.</em></p>

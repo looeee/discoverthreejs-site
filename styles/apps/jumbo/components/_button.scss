@@ -1,0 +1,72 @@
+button,
+.button {
+  font-family: $font-family-heading;
+  font-weight: $font-weight-heading;
+
+  &.disabled,
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.25;
+  }
+}
+
+.intro-scroll-down,
+#back-to-top {
+  border-radius: 50%;
+
+  svg {
+    position: absolute;
+    width: 100% !important; // fa assigns a set width, this needs to be overrriden
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+}
+
+.intro-scroll-down {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+
+  padding: 0;
+}
+
+.button-menu {
+  top: 0.5rem;
+  font-size: 0.7em;
+
+  transition: color $transition-duration ease-in-out,
+    border $transition-duration ease-in-out,
+    top $transition-duration-long ease-out;
+  position: relative;
+
+  border-radius: $border-radius;
+  color: $color-fg-light;
+  background: #e5e5e5;
+  font-family: $font-family-heading;
+  padding: 0.25rem 1rem;
+  font-weight: $font-weight-heading;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+  z-index: 99;
+  line-height: 1.5;
+
+  &:hover {
+    transition: color $transition-duration ease-in-out,
+      border $transition-duration ease-in-out;
+    color: $color-accent;
+    border: 1px solid $color-accent;
+  }
+
+  // &.show-always {
+  //   display: block;
+  // }
+}
+
+.small-screen-only {
+  display: none;
+
+  @media ($medium) {
+    display: block;
+  }
+}

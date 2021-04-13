@@ -1,0 +1,58 @@
+$width: 45px;
+$height: 1.1rem;
+
+.simple-toggle {
+  &:focus {
+    outline: 0;
+  }
+
+  &:disabled {
+    background-color: grey;
+    border-color: darkgrey;
+    &:after {
+      background-color: grey;
+    }
+    cursor: default;
+  }
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+
+  width: $width;
+  height: $height;
+  border-radius: 0.6rem;
+  display: inline-flex;
+  flex-shrink: 0;
+  flex-grow: 0;
+  position: relative;
+  margin: 0;
+  border: 1px solid #474755;
+  background: linear-gradient(180deg, #2d2f39 0%, #1f2027 100%);
+  transition: border 0.3s ease-in-out;
+}
+.simple-toggle:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $height * 0.8;
+  height: $height * 0.8;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #474755;
+  box-shadow: 0 1px 2px rgba(44, 44, 44, 0.2);
+  transition: transform 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+.simple-toggle:checked {
+  border-color: darken($color-accent, 10);
+  background: darken($color-accent, 38);
+  &:after {
+    border: 1px solid darken($color-accent, 10);
+  }
+}
+.simple-toggle:checked:after {
+  transform: translatex(27px);
+}

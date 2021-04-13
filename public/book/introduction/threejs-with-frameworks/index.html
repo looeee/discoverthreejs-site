@@ -1,0 +1,29 @@
+<h1 id="using-threejs-with-react-vuejs-angular-svelte-typescript-and-more">Using three.js with React, Vue.js, Angular, Svelte, TypeScript and More</h1>
+<p>In the last chapter, we showed you how to include three.js in a simple web page consisting of just three files: <em><strong>index.html</strong></em>, <em><strong>src/main.js</strong></em>, and <em><strong>styles/main.css</strong></em>. Throughout the book, we&rsquo;ll continue to use this minimal setup to showcase the applications we build.</p>
+<p>However, out there in the real world, away from these safe and comforting pages, it&rsquo;s increasingly rare to see web pages built this way. In recent years, the web development ecosystem has exploded, with what seems like hundreds of different libraries and frameworks for building web applications, such as <a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer">React</a>, <a href="https://angular.io/" target="_blank" rel="noopener noreferrer">Angular</a>, <a href="https://vuejs.org/" target="_blank" rel="noopener noreferrer">Vue.js</a>, and with new ones arriving all the time (<a href="https://svelte.dev/" target="_blank" rel="noopener noreferrer">Svelte</a>, anyone?). Each of these is highly opinioned, following different design philosophies and paradigms, and even adding extensions of JavaScript such as <a href="https://en.wikipedia.org/wiki/React_%28web_framework%29#JSX" target="_blank" rel="noopener noreferrer">JSX</a>. And that&rsquo;s not even mentioning completely new languages built on top of JavaScript such as <a href="https://en.wikipedia.org/wiki/TypeScript" target="_blank" rel="noopener noreferrer">TypeScript</a>.</p>
+<p>We said earlier in the book that our goal is to show you how to build a real-world, professional-quality three.js application. In a world where frameworks are king, it seems like using such a simple web page to showcase our work is at odds with this claim. Fortunately, that&rsquo;s not the case, since three.js scenes are always displayed within a single HTML <code>&lt;canvas&gt;</code> element.</p>
+<p>If you wish, you can create this canvas directly in HTML:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">three.js scenes are always displayed inside a single canvas element</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+
+&lt;canvas id=&#34;scene&#34;&gt;&lt;/canvas&gt;
+
+</code>
+  </pre>
+</section>
+
+<p>However, you can also create the canvas using your favorite framework, whether that&rsquo;s React, Vue.js, Svelte, or even your own hand-crafted custom framework, and then hand it over to three.js.</p>
+<p>In this book, we&rsquo;ll write code that is <em>framework agnostic</em>, which means you can connect it up to any framework you like. Most web frameworks work by building your app out of discrete, modular components. For example, a React component may be a contact form, or a drop-down menu, or an image gallery. We&rsquo;ll structure our three.js applications in the same way, so that in the end we have a single top-level component called a <code>World</code> that creates a three.js scene inside a <code>&lt;canvas&gt;</code> element. To use this <code>World</code> component with React, you can wrap it inside a <a href="https://reactjs.org/docs/components-and-props.html" target="_blank" rel="noopener noreferrer">React Component</a>, to use it with Vue.js, you can wrap it inside a <a href="https://vuejs.org/v2/guide/components.html" target="_blank" rel="noopener noreferrer">Vue Component</a>, to use it with Angular, you can wrap it inside an <a href="https://angular.io/api/core/Component" target="_blank" rel="noopener noreferrer">Angular Component</a>, to use it with Svelte&hellip; well, you get the picture. In other words, you can create your main app the <em>React way,</em> or the <em>Angular way</em>, or the <em>Svelte way</em>, and create your three.js app the <em>three.js way</em>, and then connect them up with very little effort.</p>
+<p>Of course, you may prefer to write the three.js part of your app the Svelte/Angular/React/Vue.js way as well, which is absolutely possible. In that case, you&rsquo;ll need to do some work to refactor the code in the book before you can use it, but the theory we cover will remain useful to you.</p>
+<h2 id="what-about-typescript">What About TypeScript?</h2>
+<p>While the three.js library itself is not written in TypeScript, there are &ldquo;types&rdquo; included in <a href="/book/introduction/github-repo/">the repo</a> and <a href="/book/introduction/get-threejs/#package-manager">NPM package</a> (these are files ending in <em><strong>.d.ts</strong></em> that live alongside <a href="https://github.com/mrdoob/three.js/tree/master/src" target="_blank" rel="noopener noreferrer">the JavaScript files in the repo</a>). This means that three.js will work seamlessly with a TypeScript project.</p>

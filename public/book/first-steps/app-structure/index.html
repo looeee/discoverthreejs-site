@@ -1,0 +1,308 @@
+<h1 id="the-structure-of-a-threejs-app">The Structure of a three.js App</h1>
+<p>Before we can build a three.js app, we need to create a web page. We briefly discussed how we&rsquo;re going to do that in the introduction (<a href="/book/introduction/get-threejs/">Ch 0.5</a> and <a href="/book/introduction/threejs-with-frameworks/">Ch 0.6</a>), but let&rsquo;s take a deeper look now. As we mentioned in the last chapter, our goal here is to create the most basic, simple, unexciting webpage possible, without making any assumptions about what a real-world web application that uses three.js might look like. By doing this, we ensure the code we write can be adapted to work anywhere without too much effort.</p>
+<p>We&rsquo;ll create this basic web page out of just two files: <em><strong>index.html</strong></em>, and <em><strong>styles/main.css</strong></em>. That&rsquo;s it. Open up the editor by pressing the {% include 'partials/icons/solid/columns.svg' %} button now and take a look at both of these files now.</p>
+<blockquote>
+<p>If anything from this chapter is unfamiliar to you, refer to <a href="/book/appendix/html-and-css-reference/">A.1: HTML and CSS Used in This Book</a> where we take a deeper look at the construction of a simple web page.</p>
+</blockquote>
+<h2 id="_indexhtml_"><em><strong>index.html</strong></em></h2>
+<p><em><strong>index.html</strong></em> is the root file of our app. It&rsquo;s the only file we open directly in the browser, and all CSS and JavaScript files are loaded via references from this file.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>index.html</strong></em>: the root of our web page</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;title&gt;Discoverthreejs.com - The Structure of a three.js App&lt;/title&gt;
+
+  &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1&#34;&gt;
+  &lt;meta charset=&#34;UTF-8&#34; /&gt;
+
+  &lt;link rel=&#34;icon&#34; href=&#34;https://discoverthreejs.com/favicon.ico&#34; type=&#34;image/x-icon&#34;&gt;
+
+  &lt;link href=&#34;./styles/main.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34;&gt;
+
+  &lt;script type=&#34;module&#34; src=&#34;./src/main.js&#34;&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;h1&gt;Discoverthreejs.com - Nothing to see here yet :)&lt;/h1&gt;
+
+  &lt;div id=&#34;scene-container&#34;&gt;
+    &lt;!-- Our &lt;canvas&gt; will be inserted here --&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code>
+  </pre>
+</section>
+
+<h2 id="_stylesmaincss_"><em><strong>styles/main.css</strong></em></h2>
+<p>Within the <code>&lt;head&gt;</code> section of <em><strong>index.html</strong></em>, one of the <code>&lt;link&gt;</code> elements references the <em><strong>styles/main.css</strong></em> file:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>index.html</strong></em>: Referencing <em><strong>main.css</strong></em></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="12"
+    data-line=""
+    data-line-offset="12"
+    >
+    <code class="highlight language-html match-braces">  &lt;link href=&#34;./styles/main.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34;&gt;
+</code>
+  </pre>
+</section>
+
+<p>&hellip; which contains some simple styles for controlling the appearance of our page:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>styles/main.css</strong></em></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-css match-braces">body {
+  /* remove margins and scroll bars */
+  margin: 0;
+  overflow: hidden;
+
+  /* style text */
+  text-align: center;
+  font-size: 12px;
+  font-family: Sans-Serif;
+
+  /* color text */
+  color: #444;
+}
+
+h1 {
+  /* position the heading */
+  position: absolute;
+  width: 100%;
+
+  /* make sure that the heading is drawn on top */
+  z-index: 1;
+}
+
+#scene-container {
+  /* tell our scene container to take up the full page */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  /*
+    Set the container&#39;s background color to the same as the scene&#39;s
+    background to prevent flashing on load
+  */
+  background-color: skyblue;
+}
+
+</code>
+  </pre>
+</section>
+
+<p>We&rsquo;ll take a closer look at the styles for the <code>#scene-container</code> in a moment, while the rest of this file is explained in more detail <a href="/book/appendix/html-and-css-reference/#main-css">in the appendices</a>.</p>
+<h2 id="_srcmainjs_-the-javascript-entry-point"><em><strong>src/main.js</strong></em>: the JavaScript Entry Point</h2>
+<p>Back in <em><strong>index.html</strong></em>, just below the styles <code>&lt;link&gt;</code> is a <code>&lt;script&gt;</code> tag referencing the <code>src/main.js</code> file:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>index.html</strong></em>: Referencing <em><strong>main.js</strong></em></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="14"
+    data-line=""
+    data-line-offset="14"
+    >
+    <code class="highlight language-html match-braces">  &lt;script type=&#34;module&#34; src=&#34;./src/main.js&#34;&gt;&lt;/script&gt;
+</code>
+  </pre>
+</section>
+
+<p>&hellip; which is currently empty:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>src/main.js</strong></em>: coming soon!</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">// just waiting for your beautiful creations!
+
+</code>
+  </pre>
+</section>
+
+<p><em><strong>main.js</strong></em> is the entry point for our JavaScript application, and we&rsquo;ll fill it up in the next chapter. The <code>type=&quot;module&quot;</code> attribute tells the browser we&rsquo;re writing JavaScript modules. If this is new to you, head over to <a href="/book/appendix/javascript-modules/">A.4: JavaScript Modules</a>, which has everything you need to know about JavaScript modules to follow the code in this book.</p>
+<p>There&rsquo;s another advantage to the <code>module</code> attribute: the browser will automatically <em>defer</em> running this file until the HTML has been parsed. This will prevent errors caused by trying to access an HTML element before the browser has read that far (browsers read HTML from top to bottom).</p>
+<h2 id="adding-a-threejs-scene-to-the-page">Adding a three.js Scene to the Page</h2>
+<p>The next point of interest in <em><strong>index.html</strong></em> is the scene container element:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>index.html</strong></em>: The scene container</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="17"
+    data-line="20,21,22"
+    data-line-offset="17"
+    >
+    <code class="highlight language-html match-braces">&lt;body&gt;
+  &lt;h1&gt;Discoverthreejs.com - Nothing to see here yet :)&lt;/h1&gt;
+
+  &lt;div id=&#34;scene-container&#34;&gt;
+    &lt;!-- Our &lt;canvas&gt; will be inserted here --&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+</code>
+  </pre>
+</section>
+
+<p>All three.js scenes are rendered inside a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas" target="_blank" rel="noopener noreferrer"><code>&lt;canvas&gt;</code></a> element. Once we have set up our app, three.js will create a canvas for us, and then we&rsquo;ll insert it inside the scene container:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>index.html</strong></em>: once our app is running we&rsquo;ll insert the three.js canvas into the scene container</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;div id=&#34;scene-container&#34;&gt;
+  &lt;canvas&gt;&lt;/canvas&gt;
+&lt;/div&gt;
+</code>
+  </pre>
+</section>
+
+<p>We can then control the position and size of our scene by styling the scene container element. If you turn your attention back to <em><strong>main.css</strong></em>, you&rsquo;ll see that we have already created some styles for this element. By setting the position, width, and height, we&rsquo;re telling the browser this element should take up the full window:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>main.css</strong></em>: styling the scene container</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="24"
+    data-line=""
+    data-line-offset="24"
+    >
+    <code class="highlight language-css match-braces">#scene-container {
+  /* tell our scene container to take up the full page */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  /*
+    Set the container&#39;s background color to the same as the scene&#39;s
+    background to prevent flashing on load
+  */
+  background-color: skyblue;
+}
+</code>
+  </pre>
+</section>
+
+<p>Finally, we have set the background color to sky blue since that&rsquo;s the background color we&rsquo;ll give most of our three.js scenes in this section. Our scene will take a few milliseconds to get ready, while the browser parses JavaScript, loads 3D models, and builds the scene, and while all that is going on the scene container will be visible. By making the container the same color as the scene we ensure that the transition is as smooth as possible.</p>
+<h2 id="other-folders">Other Folders</h2>
+<p>Turn your attention to the file tree in the editor. There are two folders we haven&rsquo;t looked at so far: <em><strong>assets/</strong></em>, and <em><strong>vendor/</strong></em>.</p>
+<h3 id="hahahugoshortcode-s15-hbhb-the-_vendor_-folder">{% include 'partials/icons/solid/folder-open.svg' %} The <em><strong>vendor/</strong></em> Folder</h3>
+<p>The <em><strong>vendor/</strong></em> folder is where we put JavaScript files that <em>other people</em> have written. For most of the examples in this book, that means files from the three.js library, downloaded from the <a href="/book/introduction/github-repo/">three.js GitHub repo</a>. In this book, we&rsquo;ll use just three files from the library:</p>
+<ul>
+<li><em><strong>vendor/three/build/three.module.js</strong></em>: the main three.js file.</li>
+<li><em><strong>vendor/three/examples/jsm/controls/OrbitControls.js</strong></em>: a camera control plugin that we&rsquo;ll introduce in <a href="/book/first-steps/camera-controls/">Ch 1.9</a>.</li>
+<li><em><strong>vendor/three/examples/jsm/loaders/GLTFLoader.js</strong></em>: a loader for 3D models that we&rsquo;ll introduce in <a href="/book/first-steps/load-models/">Ch 1.13</a>.</li>
+</ul>
+<p>The <em><strong>vendor/three</strong></em> folder mirrors the structure of the GitHub repo, but for clarity, we&rsquo;ll include only the files needed in each chapter. To import these files within <em><strong>main.js</strong></em>, we&rsquo;ll use <em>NPM style imports</em>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>src/main.js</strong></em>: importing three.js files, NPM style</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import {
+  Camera,
+  Group,
+  Scene,
+} from &#39;three&#39;;
+
+import { OrbitControls } from &#39;three/examples/jsm/controls/OrbitControls.js&#39;;
+import { GLTFLoader } from &#39;three/examples/jsm/loaders/GLTFLoader.js&#39;;
+</code>
+  </pre>
+</section>
+
+<p>If you prefer to <a href="/book/introduction/about-the-book/#working-on-your-own-machine">work locally</a>, you can download the files from the editor as a zip archive using the {% include 'partials/icons/solid/download.svg' %} button. Within the zip file, any three.js imports will be converted to CDN imports from unpkg.com:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>src/main.js</strong></em>: importing three.js files, CDN style</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import {
+  Camera,
+  Group,
+  Scene,
+} from &#39;https://unpkg.com/three@0.117.0/build/three.module.js&#39;;
+
+import { OrbitControls } from &#39;https://unpkg.com/three@0.117.0/examples/jsm/controls/OrbitControls.js&#39;;
+import { GLTFLoader } from &#39;https://unpkg.com/three@0.117.0/examples/jsm/loaders/GLTFLoader.js&#39;;
+</code>
+  </pre>
+</section>
+
+<p>Refer back to <a href="/book/introduction/get-threejs/">0.5: How to Include three.js in Your Projects</a> for more details.</p>
+<h2 id="hahahugoshortcode-s24-hbhb-the-_assets_-folder">{% include 'partials/icons/solid/folder-open.svg' %} The <em><strong>assets</strong></em> Folder</h2>
+
+
+
+
+
+
+
+<figure id="scene-792658134" class="inline-scene loading-dots medium right round"></figure>
+
+<script type="module">
+  import init from "/static/examples/worlds/inline-scenes/first-steps/flamingo-animated.js";
+  init("#scene-792658134");
+</script>
+
+<p>Finally, there&rsquo;s the <em><strong>assets/</strong></em> folder. <strong>Anything used in our app that is not HTML, CSS, or JavaScript goes in here</strong>: textures, 3D models, fonts, sounds, and so on. Currently, there&rsquo;s one test texture that we&rsquo;ll use in <a href="/book/first-steps/textures-intro/">1.8: A Brief Introduction to Texture Mapping</a>, and one model of a flamingo that we&rsquo;ll use in <a href="/book/first-steps/load-models/">1.13: Load 3D Models in glTF Format</a>.</p>
+<p style="clear:both; margin: 0; padding: 0; line-height: 0;">&nbsp</p>
+<p>With that out of the way, it&rsquo;s time to get down to business! In the next chapter, we&rsquo;ll create our first simple three.js application.</p>

@@ -1,0 +1,24 @@
+{
+  "description": "The development pace of three.js is FAST, and it uses a slightly unusual versioning system. Here are some tips for dealing with the different versions and making sure that you don't get stuck using an outdated version, or mismatched plugins.",
+  "title": "Dealing with Different three.js Versions",
+    "wordCount": "697",
+    "readingTime": "4",
+  "IDE": {
+    "show": "false",
+    "container": "#ide-wrapper",
+    "serverDirectory": "static/examples",
+    "stripDirectory": "views/",
+    "closedFolders": null,
+    "comparisonMode": null,
+    "files": null,
+    "startFiles": null,
+    "finalFiles": null,
+    "entry": "index.html",
+    "activeDocument":"",
+    "switchImportsAllow": "true"
+  },
+  "membershipLevelToView": "none",
+  "includeInSitemap" : true,
+  "showUpdateBanner" : true,
+  "showPagination" : true
+}

@@ -1,0 +1,24 @@
+// all visual control elements, link/label/button
+.control-elem {
+  transition: color 300ms ease-in-out;
+
+  &:hover,
+  &:focus {
+    color: $color-accent;
+
+    svg {
+      color: $color-accent;
+    }
+  }
+
+  &:disabled {
+    color: grey;
+    &:hover,
+    &:focus {
+      color: grey;
+      svg {
+        color: grey;
+      }
+    }
+  }
+}

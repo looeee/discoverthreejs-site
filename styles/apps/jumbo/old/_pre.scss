@@ -1,0 +1,20 @@
+pre {
+  -webkit-overflow-scrolling: touch;
+  font-family: $font-family-fixed;
+  margin: 0 0 $element-margin 0;
+  padding-bottom: 2rem;
+  box-sizing: border-box;
+  padding: 1rem;
+  font-size: 0.9em;
+  background-color: $color-bg-invert;
+  code {
+    line-height: 1.75;
+    display: block;
+    padding: 0 0 0.5rem 0;
+    overflow-x: auto;
+    margin-right: 0.5rem;
+    background-color: transparent;
+    border: 0;
+  }
+
+}

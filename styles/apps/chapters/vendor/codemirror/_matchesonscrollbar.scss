@@ -1,0 +1,10 @@
+.CodeMirror-search-match {
+  // for some reason this is set on code somewhere so use important to force the width
+  width: 0.6rem !important;
+
+  background: rgba(243, 60, 65, 0.7);
+  border-top: 1px solid rgba(253, 117, 126, 0.9);
+  border-bottom: 1px solid rgba(253, 117, 126, 0.9);
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}

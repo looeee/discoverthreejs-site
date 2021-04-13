@@ -1,0 +1,19 @@
+.email-signup-form {
+
+  span {
+    text-align: right;
+    padding-right: 1rem;
+  }
+
+  .messages {
+    text-align: left;
+  }
+
+  &.large {
+    input,
+    button {
+      padding: 1rem;
+      margin: 1rem;
+    }
+  }
+}

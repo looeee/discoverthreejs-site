@@ -1,0 +1,41 @@
+.content {
+  // NOTE: cannot do use flex if wrapping text around image
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+
+  padding: 1rem 0;
+  max-width: 50rem;
+  width: calc(100% - 2rem);
+
+  margin: 0 auto 20rem;
+
+  section,
+  aside {
+    margin: 3rem auto;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  .bottom-pagination,
+  .highlight-wrapper,
+  aside {
+    // don't wrap these elements around images
+    clear: both;
+  }
+
+  ol,
+  ul {
+    // yet another dumb CSS hack required to make
+    // lists work beside floated images
+    display: table;
+
+    // alternate solution
+    // overflow: hidden;
+  }
+}

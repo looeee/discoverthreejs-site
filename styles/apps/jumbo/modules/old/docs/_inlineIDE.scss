@@ -1,0 +1,190 @@
+.inline-ide {
+
+  // position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  max-width: 100%;
+  padding: 0.5rem;
+
+  margin: 5rem auto;
+
+  height: 500px;
+  border-radius: 6px;
+  border: 1px solid silver;
+  box-shadow: 1px 1px 10px 1px silver;
+
+  .panel {
+    flex-shrink: 1;
+    flex-grow: 1;
+    height: inherit;
+    // align-self: flex-start;
+  }
+
+  .bar {
+    flex-shrink: 0;
+    width: 100%;
+  }
+
+  .filetree-panel {
+    order: 1;
+    flex-basis: 10%;
+    flex-grow: 0;
+    min-width: 10rem;
+    max-width: 15rem;
+  }
+
+  .editor-panel {
+    order: 2;
+    flex-basis: 40%;
+    flex-grow: 1;
+  }
+
+  .preview-panel {
+    order: 3;
+    flex-basis: 40%;
+    flex-grow: 1;
+  }
+
+  .control-bar {
+    order: 4;
+    background: #444;
+    height: auto;
+    align-self: flex-end;
+
+    button {
+      height: 1rem;
+      font-size: 0.7rem;
+    }
+  }
+
+  label {
+
+    flex-basis: 5%;
+
+  }
+
+  textArea,
+  iframe,
+  .CodeMirror {
+
+    flex-basis: 90%;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+
+    border-radius: 6px;
+    border: 1px solid silver;
+    box-shadow: 1px 1px 10px 1px silver;
+
+  }
+
+  iframe {
+    border: 0;
+  }
+
+  pre {
+    background-color: #999;
+  }
+
+}
+
+/* Component Needs */
+
+.editor-tabs > input,
+.editor-tabs .tab {
+  display: none;
+}
+
+#html-tab:checked ~ .tabs .html-tab,
+#css-tab:checked ~ .tabs .css-tab,
+#js-tab:checked ~ .tabs .js-tab {
+  display: block;
+}
+
+#html-tab:checked ~ nav .html-tab,
+#css-tab:checked ~ nav .css-tab,
+#js-tab:checked ~ nav .js-tab {
+  color: red;
+}
+
+/* Visual Styles */
+
+$activeColor: #ffffff;
+$unactiveColor: #eeeeee;
+$unactiveHoverColor: #dddddd;
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.editor-tabs {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  ul {
+    display: flex;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      label {
+
+        float: left;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-bottom: 0;
+        background: $unactiveColor;
+        color: #444;
+        &:hover {
+          background: $unactiveHoverColor;
+        }
+        &:active {
+          background: $activeColor;
+        }
+      }
+      &:not(:last-child) label {
+         border-right-width: 0;
+      }
+    }
+  }
+  .tabs {
+    width: 100%;
+    height: 100%;
+    // clear: both;
+    .tab {
+      width: 95%;
+      height: 95%;
+      padding: 2.5%;
+      border: 1px solid #ddd;
+      // background: #fff;
+      // line-height: 1.5em;
+      // letter-spacing: 0.3px;
+      // color: #444;
+    }
+  }
+}
+
+#html-tab:checked ~ nav .html-tab,
+#css-tab:checked ~ nav .css-tab,
+#js-tab:checked ~ nav .js-tab {
+  label {
+    background: white;
+    color: #111;
+    position: relative;
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      background: $activeColor;
+      left: 0;
+      bottom: -1px;
+    }
+  }
+}

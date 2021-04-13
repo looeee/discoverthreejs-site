@@ -1,0 +1,28 @@
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  input {
+    margin-right: 0.5rem;
+    border: 1px solid silver;
+    border-radius: 3px;
+  }
+
+  p {
+    display: none;
+  }
+
+  &.contact {
+    align-items: left;
+    flex-direction: column;
+
+    * {
+      align-self: flex-start;
+    }
+
+    input {
+      min-width: 20rem;
+    }
+  }
+}

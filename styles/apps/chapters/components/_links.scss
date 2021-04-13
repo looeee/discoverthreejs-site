@@ -1,0 +1,36 @@
+a {
+  text-decoration: none;
+  color: $color-link;
+
+  &:visited {
+    color: $color-link-visited;
+  }
+
+  &:hover,
+  &:focus {
+    color: $color-link-hover;
+  }
+
+  &.anchor-link {
+    margin-left: 1rem;
+    color: silver;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    &:focus {
+      opacity: 0.8;
+    }
+  }
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  &:hover,
+  &:focus {
+    > .anchor-link {
+      opacity: 0.8;
+    }
+  }
+}

@@ -1,0 +1,747 @@
+<h1 id="html-and-css-used-in-this-book">HTML and CSS Used in This Book</h1>
+<p>In recent years, the number of ways in which you can build a website has exploded. It seems like there are a million different libraries and frameworks, with names like React, Vue, Angular, Svelte, and related tools like Webpack, Parcel, Rollup, Browserify, Babel, SCSS. New ones are being created almost daily. These are amazing tools, and each solves the problem of building complex web applications in their own unique way. Nonetheless, the sheer amount and variety of tools and frameworks can seem overwhelming, and this is especially apparent when it comes to writing a book about web development. Webpack and Babel allow us to create beautifully structured projects and use cutting edge JavaScript syntax even before it&rsquo;s available in any browser. React, Svelte, and other frameworks are perfect for building large and complex applications. However, any tool, especially one complicated enough to build a website, comes at the price of added complexity. When learning something new, such as three.js, it&rsquo;s important to keep your mental overhead low and leave room for new information to filter into place.</p>
+<p>In this book, we&rsquo;ll strip the concept of a web page down to the bare minimum that will allow us to run a three.js application, and work from there. When we do this, we are left with three components: a single HTML file, a single CSS file, and some JavaScript. In this chapter, we&rsquo;ll explore the <em><strong>index.html</strong></em> and <em><strong>styles/main.css</strong></em> files. Over the following couple of chapters, we&rsquo;ll take a looks at how to build a modern JavaScript application and the browser API that allows us to connect it to to a webpage.</p>
+<p>These chapters are intended to serve as a quick and basic introduction to web development. You can either read them straight through or use them as a reference as you work through the main book. There, whenever we encounter something new, a link will be provided to the relevant section of these appendices.</p>
+<p>Later in your career as a three.js developer, you will encounter many of these tools and frameworks, and find that they provide a very different style of creating websites than our two simple files - both more complicated and more powerful. At this point, you&rsquo;ll find it matters very little which framework, if any, was used to create a page. As long as you have taken care with the structure of your application, <strong>you can take the <em>very same</em> three.js application and with almost no effort make it work in a React app, or an Angular app, or a Svelte app, or with a minimalistic web page such as the one we have created here</strong>.</p>
+<p>Of course, you might prefer to re-create the application to better suit the philosophy of your favorite framework, and there is nothing wrong with doing that. However, it&rsquo;s important to be aware that doing so is a choice, not a requirement.</p>
+<p>This suits us well since our goal in this book is not to teach you about HTML and CSS or to talk about web development tooling. Our focus is on three.js and computer graphics, and, aside from this chapter, we&rsquo;ll leave the talk of HTML, CSS, and frameworks to the millions of other books and articles on these topics.</p>
+<p>Our simple HTML page can be created using nothing more than a text editor and styled with just a few lines of CSS. Let&rsquo;s take a look at what goes into <em><strong>index.html</strong></em> and <em><strong>styles/main.css</strong></em> now.</p>
+<h2 id="hypertext-markup-language-html">Hypertext Markup Language (HTML)</h2>
+<figure class="tiny left noborder">
+  <img src="/static/images/app-logos/html5.png" loading="lazy" alt="html5 logo" title="html5 logo"  /></figure>
+<p><a href="https://en.wikipedia.org/wiki/HTML" target="_blank" rel="noopener noreferrer">Hypertext Markup Language</a>, or HTML, is the main language used to create web pages.</p>
+<p>The building blocks of HTML are <strong>elements</strong>, <strong>tags</strong>, and <strong>attributes</strong>.</p>
+<h3 id="element">Element</h3>
+<p>The terms <a href="https://developer.mozilla.org/en-US/docs/Glossary/Element" target="_blank" rel="noopener noreferrer"><strong>element</strong></a> and <strong>node</strong> are used interchangeably and refer to a complete section of an HTML document. Here are some common examples:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Some common HTML elements</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;h1&gt;A heading element&lt;/h1&gt;
+
+&lt;p&gt;A paragraph element.&lt;/p&gt;
+
+&lt;a&gt;An anchor element&lt;/a&gt;
+
+&lt;button&gt;A button element&lt;/button&gt;
+</code>
+  </pre>
+</section>
+
+<p>The above elements create visual objects on the page, such as text, links, and buttons. These elements have default appearance set by the browser, which we can override using CSS styles (as we&rsquo;ll see below).</p>
+<p>Some elements cannot be seen directly. For example, the <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, and <code>&lt;body&gt;</code> elements create the basic structure of the page, while <code>&lt;link&gt;</code> and <code>&lt;script&gt;</code> elements are used for things like loading CSS and JavaScript files.</p>
+<p>Another very common element is <code>&lt;div&gt;</code>, which is used to mark an area of the page. <code>&lt;div&gt;</code> is the basic container element of HTML, and the average website is likely to have hundreds of these.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">div elements define a section of the page</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;div&gt;&lt;/div&gt;
+</code>
+  </pre>
+</section>
+
+<p>HTML documents are created by nesting elements inside each other.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Elements can be nested</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;div&gt;
+  &lt;h1&gt;A heading element&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+  &lt;p&gt;A paragraph of test with a &lt;a&gt;link&lt;/a&gt; inside it.&lt;/p&gt;
+&lt;/div&gt;
+</code>
+  </pre>
+</section>
+
+<p>Here, we&rsquo;ve divided our page into two parts. The top <code>&lt;div&gt;</code> contains the heading, and the bottom <code>&lt;div&gt;</code> contains the main text.</p>
+<p>The <code>&lt;p&gt;</code> element has a further <code>&lt;a&gt;</code> (anchor) element nested inside it. Anchor elements are used as links which can lead to other pages (on this site or another site), or a different place on the same page. This <code>&lt;a&gt;</code> anchor doesn&rsquo;t link <em>to</em> anywhere yet. We&rsquo;ll see how to set up links using attributes in a few moments.</p>
+<h3 id="a-minimal-html-document">A Minimal HTML Document</h3>
+<p>With just the above elements, we can create a basic HTML document.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A minimal HTML document</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;
+      Rock and Roll Baby!
+    &lt;/title&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;h1&gt;
+      Rock, Shake, Rattle and Roll!
+    &lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+  </pre>
+</section>
+
+<p>You can save this in a file called <em><strong>rock.html</strong></em>, then open it up in any web browser, and <em>Hey presto!</em> you have a website!</p>
+<p>In the above example, <code>&lt;!DOCTYPE html&gt;</code> marks the start of a new HTML file. Unlike most elements, the <code>!DOCTYPE</code> element does not have a closing tag.</p>
+<p>Next, we have an <code>&lt;html&gt;</code> element. The opening tag is <code>&lt;html&gt;</code>, marking the start of an element, and the closing tag is <code>&lt;/html&gt;</code>, placed at the very end of the file.</p>
+<p>Inside the <code>&lt;html&gt;</code> element, we have two sub-elements, <code>&lt;head&gt;</code>, and <code>&lt;body&gt;</code>. Each of these has further sub-elements.</p>
+<p>The only element we haven&rsquo;t seen so far is the <code>&lt;title&gt;</code>, which tells the browser what to display in the URL bar or tab at the top of the browser window.</p>
+<p>These elements and sub-elements define a tree-structure:</p>
+<figure >
+  <img src="/static/images//appendix/html-tree.svg" loading="lazy" alt="The HTML Tree Structure" title="The HTML Tree Structure"  />
+    <figcaption>The HTML Tree Structure</figcaption></figure>
+<h3 id="tag">Tag</h3>
+<p>Elements are defined by <a href="https://developer.mozilla.org/en-US/docs/Glossary/tag" target="_blank" rel="noopener noreferrer">tags</a>, which are used to mark the start or end of an element.</p>
+<p>For example, to start an HTML document, you create the opening <code>&lt;html&gt;</code> tag, and to end the document, you place a closing <code>&lt;/html&gt;</code> tag. To start a paragraph, you create an opening <code>&lt;p&gt;</code> tag, and to end the paragraph you create a closing <code>&lt;/p&gt;</code> tag. In every case, the closing tag will look the same as the opening tag with an extra <code>/</code> character.</p>
+<p>Most elements require both an opening and a closing tag, although some do not, such as the <code>&lt;!DOCTYPE html&gt;</code> tag at the start of the file.</p>
+<h3 id="attribute">Attribute</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Glossary/Attribute" target="_blank" rel="noopener noreferrer">Attributes</a> are additional data that can be added to an element. They are placed within the opening tag.</p>
+<h4 id="the-id-and-class-attributes">The <code>id</code> and <code>class</code> Attributes</h4>
+<p>The two most common attributes are <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id" target="_blank" rel="noopener noreferrer"><code>id</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class" target="_blank" rel="noopener noreferrer"><code>class</code></a>. We can use these attributes to reference an element within a CSS or JavaScript file. In the CSS file, we can apply style rules, and within the JavaScript file, we have almost unlimited ability to control the element, allowing us to delete, replace, edit, or animate the element in any way we like.</p>
+<p>Here is a button with an ID:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A button with an ID attribute</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;button id=&#34;close-button&#34;&gt;Click here to close!&lt;/button&gt;
+</code>
+  </pre>
+</section>
+
+<p>Here, we can use the <code>close-button</code> ID within our CSS file to change the appearance of the button, and within JavaScript, we might add a function to control what happens when the button is clicked.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Two elements with the same class attribute</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;h1 class=&#34;notice&#34;&gt;A heading you want to stand out.&lt;/h1&gt;
+
+&lt;p class=&#34;notice&#34;&gt;Some text you want to stand out.&lt;/p&gt;
+</code>
+  </pre>
+</section>
+
+<p>Classes are not unique. You can have any number of elements with a <code>.notice</code> class. If you use this class in your CSS file to set the text color to red, for example, text in both the <code>&lt;h1&gt;</code> and <code>&lt;p&gt;</code> elements will turn red (unless already controlled by a stronger CSS rule elsewhere in your application). Within JavaScript, you can use the class to reference either or both of these elements.</p>
+<h4 id="the-style-attribute">The <code>style</code> Attribute</h4>
+<p>As well as connecting CSS styling to an element using IDs and classes, you can use the <code>style</code> attribute to attach inline styles directly to an element. For example, here we have set the text color for a single paragraph element to <code>skyblue</code>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">An inline style declaration</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;p style=&#34;color: skyblue;&#34;&gt;This text will be red.&lt;/p&gt;
+</code>
+  </pre>
+</section>
+
+<h4 id="the-href-attribute">The <code>href</code> Attribute</h4>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/href" target="_blank" rel="noopener noreferrer"><code>href</code> attribute</a> links to a resource using an URL. Usually, this attribute is used with an <code>&lt;a&gt;</code> anchor element:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">An anchor element linking to the three.js forum</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;a href=&#34;https://discourse.threejs.org/&#34;&gt;the three.js forum&lt;/a&gt;
+</code>
+  </pre>
+</section>
+
+<p>When a user clicks on the above link, they will be redirected to <a href="https://discourse.threejs.org/" target="_blank" rel="noopener noreferrer">the three.js forum</a>.</p>
+<p>Anchor elements can lead to external sites, other pages on the same site, or even a different section of the same page.</p>
+<p>Another common use case for the <code>href</code> attribute is to connect a CSS files using the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link" target="_blank" rel="noopener noreferrer"><code>&lt;link&gt;</code></a> element.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A link element referencing the main stylesheet</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;link href=&#34;/styles/main.css&#34; rel=&#34;stylesheet&#34;&gt;
+</code>
+  </pre>
+</section>
+
+<p>We have also added the <code>rel=stylesheet</code> attribute here. <code>&lt;link&gt;</code> elements can be used for many purposes, so we need to inform the browser that this one is linking to a CSS style sheet.</p>
+<h4 id="the-src-attribute">The <code>src</code> Attribute</h4>
+<p>Similar to the <code>href</code> attribute, the <code>src</code> attribute points to a resource in another location. These resources can be <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img" target="_blank" rel="noopener noreferrer">images</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video" target="_blank" rel="noopener noreferrer">videos</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio" target="_blank" rel="noopener noreferrer">sound</a> files, and more:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Image and audio elements</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;img src=&#34;chuck.jpg&#34;&gt;
+
+&lt;audio src=&#34;johny-be-good.mp3&#34;&gt;&lt;/audio&gt;
+</code>
+  </pre>
+</section>
+
+<p>More importantly for us in this book, we can also use the <code>src</code> attribute to link to JavaScript files using the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script" target="_blank" rel="noopener noreferrer"><code>&lt;script&gt;</code> element</a>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A script element referencing a JavaScript file</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;script src=&#34;main.js&#34;&gt;&lt;/script&gt;
+</code>
+  </pre>
+</section>
+
+<h4 id="the-module-attribute">The <code>module</code> Attribute</h4>
+<p>We&rsquo;ll be writing our JavaScript using ES6 modules in this book (more on those in the following chapter), so we need to add one more attribute to our script tag:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A script element referencing a JavaScript module</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;script type=&#34;module&#34; src=&#34;main.js&#34;&gt;&lt;/script&gt;
+</code>
+  </pre>
+</section>
+
+<p>Now the browser knows we are using JavaScript modules and it can interpret the <code>main.js</code> file correctly.</p>
+<h3 id="the-html-and-doctype-elements">The <code>&lt;html&gt;</code> and DOCTYPE Elements</h3>
+<p>Every webpage starts with these two elements. These simply inform any interested parties (such as a web browser) that this is an HTML document.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Defining an HTML document</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;!-- You page goes here --&gt;
+&lt;/html&gt;
+</code>
+  </pre>
+</section>
+
+<p>Incidentally, here&rsquo;s how you write a comment in HTML: <code>&lt;!-- You page goes here --&gt;</code>. Anything between <code>&lt;!--</code> and <code>--&gt;</code> is for human eyes only and will be ignored by the browser.</p>
+<h3 id="the-head-element">The <code>&lt;head&gt;</code> Element</h3>
+<p>Inside the <code>&lt;html&gt;</code> element, there are two sub-elements called <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code>.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The head element contains metadata and the body contains the content</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;!-- Metadata --&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!-- The main content --&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+  </pre>
+</section>
+
+<p>The <code>&lt;head&gt;</code> element is the place where we put metadata. This can include instructions for the browser on how to render the page, as well as information for search engines and social media sites, links to CSS and JavaScript files, and more.</p>
+<p>Every example in this book will use the same <code>&lt;head&gt;</code> section:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The head section of our minimal web page</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;head&gt;
+  &lt;title&gt;Discoverthreejs.com&lt;/title&gt;
+
+  &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1&#34; /&gt;
+
+  &lt;meta charset=&#34;UTF-8&#34; /&gt;
+
+  &lt;link
+    rel=&#34;icon&#34;
+    href=&#34;https://discoverthreejs.com/favicon.ico&#34;
+    type=&#34;image/x-icon&#34;
+  /&gt;
+
+  &lt;link rel=&#34;stylesheet&#34; href=&#34;./styles/main.css&#34; type=&#34;text/css&#34; /&gt;
+
+  &lt;script type=&#34;module&#34; src=&#34;js/main.js&#34;&gt;&lt;/script&gt;
+&lt;/head&gt;
+</code>
+  </pre>
+</section>
+
+<p>First, there&rsquo;s the <code>&lt;title&gt;</code>. This contains some text that will appear in the tab on your browser. Next, the two <code>&lt;meta&gt;</code> elements ensure that our page looks the same no matter what browser or device we display it on:</p>
+<ul>
+<li>The <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag" target="_blank" rel="noopener noreferrer">Viewport meta tag</a> only applies to mobile devices, which render the page in a virtual viewport:
+<ul>
+<li><code>width=device-width</code>: render the page at the same width as the device.</li>
+<li><code>initial-scale=1</code>: set the initial scale to 1.</li>
+</ul>
+</li>
+<li>The <code>&lt;meta charset&gt;</code> tag tells the browser how to decode the HTML document itself.</li>
+</ul>
+<p>Next, there are two <code>&lt;link&gt;</code> elements:</p>
+<ul>
+<li><code>&lt;link rel=&quot;icon&quot; ...</code>: links to a <a href="https://discoverthreejs.com/favicon.ico" target="_blank" rel="noopener noreferrer"><em>favicon</em></a> that shows up in the browser&rsquo;s URL bar, next to the title.</li>
+<li><code>&lt;link rel=&quot;stylesheet&quot; ...</code>: links to a style sheet called <em>main.css</em> which we can use to control the color, font, width, height, position, and so on, of elements on the page. This file is located in a folder called <em>/styles</em>, relative to our HTML file.</li>
+</ul>
+<p>Finally, there&rsquo;s a <code>&lt;script&gt;</code> tag linking to our main JavaScript file, <em><strong>main.js</strong></em>. This file is also known as the <em>entry point</em> of our JavaScript application, and it may contain links to other JavaScript files inside it. We will always put script elements into the head section of our HTML, but in the real world, you may find scripts elements anywhere in an HTML document.</p>
+<p>That&rsquo;s it for the <code>&lt;head&gt;</code> section.</p>
+<h3 id="the-body-element">The <code>&lt;body&gt;</code> Element</h3>
+<p>The <code>&lt;body&gt;</code> element (mostly) contains things that we want to see in the browser.</p>
+<p>Here, we have created a heading and a paragraph.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The body element containing a title and some text</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;body&gt;
+  &lt;h1&gt;
+    Rock, Shake, Rattle and Roll!
+  &lt;/h1&gt;
+  &lt;p&gt;Charles Edward Anderson Berry was an American singer and songwriter, and one of the pioneers of rock and roll music.&lt;/p&gt;
+&lt;/body&gt;
+</code>
+  </pre>
+</section>
+
+<p>The <code>&lt;h1&gt;</code> element is the main title which will show in large bold font at the top of the page. Text with then <code>&lt;p&gt;</code> element will be rendered at the standard size (either the browser default or styles we have created in CSS).</p>
+<h3 id="the-canvas-element">The <code>&lt;canvas&gt;</code> Element</h3>
+<p>A very important element for us is the <code>&lt;canvas&gt;</code> element. All WebGL scenes are drawn inside a canvas element like this one.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A canvas element</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;canvas&gt;&lt;/canvas&gt;
+</code>
+  </pre>
+</section>
+
+<p>Usually, we won&rsquo;t create the canvas ourselves. Instead, we&rsquo;ll let three.js create and set up the <code>&lt;canvas&gt;</code> for us, then use JavaScript to add it to the page.</p>
+<p>In addition to WebGL, canvas elements can be used with the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D" target="_blank" rel="noopener noreferrer">2D Canvas API</a> to create simple 2D drawings.</p>
+<h2 id="cascading-style-sheets-css">Cascading Style Sheets (CSS)</h2>
+<figure class="tiny left noborder">
+  <img src="/static/images/app-logos/css3.png" loading="lazy" alt="css3 logo" title="css3 logo"  /></figure>
+<p>As we mentioned above, when you create a visible HTML element such as a <code>&lt;button&gt;</code> or <code>&lt;h1&gt;</code> heading, the browser will apply a default style to it. The web would be a very boring place if all buttons and headings on every website looked exactly the same. Fortunately, we can override the defaults with styles with our own.</p>
+<p><a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets" target="_blank" rel="noopener noreferrer">Cascading Style Sheets</a>, or CSS, is the language we use to add create these custom styles.</p>
+<p>Using CSS, we can change things like width/height/margins/rounded corners/colors/fonts and so on or HTML elements.</p>
+<p>It&rsquo;s possible to write CSS styles directly in the HTML file, either inline in the <code>style</code> attribute or inside a <code>&lt;style&gt;</code> element. However, it&rsquo;s best practice to define your styles in a separate file and then use a <code>&lt;link&gt;</code> element to reference it from your HTML document, as we described above.</p>
+<p>One thing to be aware of when writing CSS styles is that every HTML element already has default CSS rules applied, and these <em>may</em> vary from browser to browser. <strong>When we specify a rule in our CSS, we are overwriting the browser defaults</strong>.</p>
+<h3 id="specificity">Specificity</h3>
+<p>CSS styles have a specificity level, which is a weight applied to each style rule. Browser default styles have the lowest specificity, while custom styles that you create may have various levels of specificity depending on how you create them.</p>
+<p>We won&rsquo;t get into this further here since it&rsquo;s a fairly complex topic, but it&rsquo;s important to remember that if you have created a style and it doesn&rsquo;t seem to be working, it may be because it&rsquo;s overridden by a style with higher specificity elsewhere. The browser dev tools (F12) are very useful in determining what styles are applied to an element.</p>
+<p>There are three different ways to create CSS styles, ranked from <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity" target="_blank" rel="noopener noreferrer">least to most specific</a>.</p>
+<h3 id="styling-elements">Styling Elements</h3>
+<p>First, we can set styles for an element such as <code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code> or <code>&lt;div&gt;</code>, in which case, all elements of the same type will be styled. Here, we will make all <code>&lt;p&gt;</code> elements red and all <code>&lt;h1&gt;</code> elements blue:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Style for paragraphs and the largest heading size</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-css match-braces">
+p {
+  color: red;
+}
+
+h1 {
+  color: blue;
+}
+</code>
+  </pre>
+</section>
+
+<h3 id="styling-classes">Styling Classes</h3>
+<p>Next, we can define CSS classes that correspond to the HTML <code>class</code> attribute we described above. Suppose we have some paragraphs of text in our HTML file, some of which have a <code>notice</code> class applied:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Styling all paragraphs with the &lsquo;notice&rsquo; class</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;p class=&#34;notice&#34;&gt;Some text that you want to stand out.&lt;/p&gt;
+
+&lt;p&gt;Some normal text.&lt;/p&gt;
+
+&lt;p class=&#34;notice&#34;&gt;More text that you want to stand out.&lt;/p&gt;
+</code>
+  </pre>
+</section>
+
+<p>If we define the <code>notice</code> class in our CSS file, we can style the text in only those paragraphs with the class. Classes in CSS are denoted using a <code>.</code> followed by the class name.</p>
+<p>Here, we&rsquo;ll make the text red once again:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Set text color of all elements with the &lsquo;notice&rsquo; class</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-css match-braces">
+.notice {
+  color: red
+}
+</code>
+  </pre>
+</section>
+
+<p>But this time, only the first and third paragraphs will become red, while the middle one will remain black. We can add the notice class to any element, not just <code>&lt;p&gt;</code>. Here, the first <code>&lt;h2&gt;</code> element will also have red text:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">You can use a class with any type of element</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;h2 class=&#34;notice&#34;&gt;A very important heading&lt;/h2&gt;
+
+&lt;h2&gt;A heading of normal import&lt;/h2&gt;
+</code>
+  </pre>
+</section>
+
+<h3 id="styling-ids">Styling IDs</h3>
+<p>The most specific way of styling things in a CSS file is using IDs, which again correspond to the <code>id</code> attribute in HTML. Styles defined using an ID are applied to a single element. Here is a button with a unique <code>id</code> attribute.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Give a single button a unique ID</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;button id=&#34;close-button&#34;&gt;Click here to close!&lt;/button&gt;
+</code>
+  </pre>
+</section>
+
+<p>Within CSS files, IDs are written using a <code>#</code> character followed by the ID name.</p>
+<p>This time, just to be different, let&rsquo;s give our close button a red border:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Define styles for the &lsquo;close-button&rsquo; ID</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-css match-braces">
+#close-button {
+  border: 1px solid red;
+}
+</code>
+  </pre>
+</section>
+
+<h2 id="our-simple-web-page">Our Simple Web Page</h2>
+<p>Now, we are ready to fill in the details of our <em><strong>index.html</strong></em> and <em><strong>styles/main.css</strong></em> files to create our simple web page.</p>
+<h3 id="_indexhtml_"><em><strong>index.html</strong></em></h3>
+
+
+<section class="highlight-wrapper"><span class="caption">Our index.html file</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Discoverthreejs.com - HTML and CSS Used in This Book&lt;/title&gt;
+
+    &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1&#34;&gt;
+    &lt;meta charset=&#34;UTF-8&#34; /&gt;
+
+    &lt;link rel=&#34;icon&#34; href=&#34;https://discoverthreejs.com/favicon.ico&#34; type=&#34;image/x-icon&#34;&gt;
+    &lt;link href=&#34;./styles/main.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34;&gt;
+
+    &lt;script type=&#34;module&#34; src=&#34;./src/main.js&#34;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Discoverthreejs.com - HTML and CSS Used in This Book&lt;/h1&gt;
+
+    &lt;div id=&#34;scene-container&#34;&gt;
+      &lt;!-- Our &lt;canvas&gt; will be inserted here --&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+  </pre>
+</section>
+
+<p>Take a look at the <code>&lt;div id=&quot;scene-container&quot;&gt;</code>. We will use three.js to automatically create a <code>&lt;canvas&gt;</code> element, and then we&rsquo;ll use JavaScript to insert it with this <code>&lt;div&gt;</code>. Most of the examples in this book will take up the whole page, so we will use some CSS to make this element the correct size.</p>
+<h3 id="_maincss_"><em><strong>main.css</strong></em></h3>
+<p>Within our CSS file, we want to make sure that the <code>&lt;body&gt;</code> element takes up the whole screen, that the <code>&lt;div id=&quot;scene-container&quot;&gt;</code> element fills the whole body, and that the <code>&lt;h1&gt;</code> heading gets drawn on top of the <code>&lt;canvas&gt;</code> and not underneath it. Aside from that, we&rsquo;ll to set the <code>color</code> of our heading text, and center it near the top of the screen&hellip; and that&rsquo;s about it. Here&rsquo;s what we need to put inside the <em><strong>main.css</strong></em> style sheet to achieve all that:</p>
+
+
+<section class="highlight-wrapper">
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-css match-braces">body {
+  /* remove margins and scroll bars */
+  margin: 0;
+  overflow: hidden;
+
+  /* style text */
+  text-align: center;
+  font-size: 12px;
+  font-family: Sans-Serif;
+
+  /* color text */
+  color: #444;
+}
+
+h1 {
+  /* position the heading */
+  position: absolute;
+  width: 100%;
+
+  /* make sure that the heading is drawn on top */
+  z-index: 1;
+}
+
+#scene-container {
+  /* tell our scene container to take up the full page */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  /*
+    Set the container&#39;s background color to the same as the scene&#39;s
+    background to prevent flashing on load
+  */
+  background-color: skyblue;
+}
+
+</code>
+  </pre>
+</section>
+
+<h3 id="the-body-styles">The Body Styles</h3>
+<p>In most browsers, the body element has a default <code>margin</code> of 8 pixels. This means there will be an empty gap of 8 pixels on all sides of the screen, and these will show up as white lines around the edges of our full-screen three.js scene. We don&rsquo;t want this, so we&rsquo;ll override the default and set the margin to zero:</p>
+
+
+<section class="highlight-wrapper">
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-css match-braces">
+margin: 0;
+</code>
+  </pre>
+</section>
+
+<p>Next, we want to hide the scroll bars since our scene has no off-screen content:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Set the body margin to zero</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-css match-braces">
+overflow: hidden;
+</code>
+  </pre>
+</section>
+
+<p>Finally, we&rsquo;ll set some styles for any text on the page. Here, we are aligning text to the center of the screen, setting a base size of twelve pixels for one character, using a sans-serif font, and setting the text color to a light grey:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Set text styles for all elements on the page</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-css match-braces">
+text-align: center;
+font-size: 12px;
+font-family: Sans-Serif;
+
+color: #444;
+</code>
+  </pre>
+</section>
+
+<p>Look at the tree structure of our HTML page again:</p>
+<figure >
+  <img src="/static/images//appendix/html-inheritance.svg" loading="lazy" alt="Inheritance of CSS classes" title="Inheritance of CSS classes"  /></figure>
+<p>When we set the font properties on the <code>body</code> like this, all children of the body will <em>inherit</em> these properties unless we or the browser have already defined styles for them. Here, this means that the <code>&lt;h1&gt;</code> element will also have center-aligned, grey, sans-serif font.</p>
+<p>However, the browser has already set a margin value on <code>&lt;h1&gt;</code> elements that will override the margin of zero we set on the body. If we want to remove the <code>&lt;h1&gt;</code> margin, we would have to add another style to do so.</p>
+<p>When it comes to font sizing, things are a little more complicated. The browser considers the font size we set on the <code>&lt;body&gt;</code> to be the <em>base size</em>, then calculates the font size of various elements as percentages of that. <code>h1</code> is the largest heading size, and the browser will set the font size to 200% of the base size, or 24px. <code>h2</code> elements will be 150% of the base size, or 18px, and <code>&lt;p&gt;</code> elements will be 100% of the base size, 12px.</p>
+<h3 id="style-the-heading">Style the Heading</h3>
+<p>Next up, in the heading selector, we&rsquo;re using <a href="https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/" target="_blank" rel="noopener noreferrer">absolute positioning</a>, which means <em>relative to the containing element</em> (in this case, the <code>&lt;body&gt;</code> element). We&rsquo;ve given the element a width of 100% of the containing element, which is the body, so the heading will take up the full-screen width.</p>
+<p>Next, we&rsquo;ve set the <code>z-index</code> which controls the order in which elements are drawn. If we didn&rsquo;t add this, the browser would draw the heading first and then draw the <code>&lt;canvas&gt;</code> on top of it, hiding the heading. All elements have a default <code>z-index</code> of zero, so by setting the heading to one, we ensure that it is drawn on top.</p>
+<h3 id="style-the-scene-container-element">Style the Scene Container Element</h3>
+<p>The <code>#</code> symbol is used to represent an ID, so <code>#scene-container</code> controls the appearance of <code>&lt;div id=&quot;scene-container&quot;&gt;</code>.</p>
+<p>Once again, we are using <code>absolute</code> positioning for our scene container and setting its <code>width</code> and <code>height</code> both to <code>100%</code>, meaning that it will take up 100% of the parent element, in this case, the <code>body</code>. As we already made sure that the <code>body</code> will take up the whole screen, that means our <code>#scene-container</code> will also take up the whole screen.</p>
+<p>Finally, we&rsquo;ll set the background color of the container the same color as the color of the background of our scene, or at least, as close as possible. This will reduce flashing and flickering on load as your three.js scene will usually be rendered a couple of frames later than the container.</p>
+<p>With that out of the way, our page is ready to go! In the next chapter, we&rsquo;ll turn our attention to basic JavaScript syntax that we&rsquo;ll be using throughout the book.</p>

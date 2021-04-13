@@ -1,0 +1,5 @@
+We mentioned back in [Ch 0.10: Functions Built-In to Your Browser: the Web API](/book/introduction/browser-api/#pixel-ratio-intro) that mobile devices draw your web page onto a virtual viewport, _which may not have the same resolution as the device's physical screen_. Then, once the page has been drawn, it gets scaled down to fit onto the device's physical screen. The pixels on this virtual viewport are referred to as **CSS pixels**, while the real pixels on the actual screen are referred to as **physical pixels**.
+
+It's common for the virtual viewport to be much larger than the real viewport - common ratios are 2x, 3x, 4x or even 5x! This allows for much sharper images to be rendered, which is important for viewing text on small screens.
+
+That's great, but when it comes to rendering WebGL, if we forget to take this into account then our scenes may look great on our development laptops but will look blurry and low-resolution on mobile devices. So, we need to tell the renderer what the pixel ratio is, which is as simple as adding the above line.

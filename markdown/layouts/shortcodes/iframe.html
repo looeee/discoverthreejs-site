@@ -1,0 +1,13 @@
+{{- $src := .Get "src" -}}
+{{- $height := .Get "height" | default "500" -}}
+{{- $title := .Get "title" | default "three.js scene" -}}
+{{- $caption := .Get "caption" | default "" -}}
+
+{{- $class := .Get "class" | default "" -}}
+
+<figure class="{{ $class }}">
+  <iframe title="{{ $title }}" width="100%" height="{{ $height }}px" src="{{ $src }}" importance="low" loading="lazy" sandbox="allow-scripts"></iframe>
+  {{- if $caption -}}
+  <figcaption>{{ $caption | markdownify }}</figcaption>
+  {{- end -}}
+</figure>

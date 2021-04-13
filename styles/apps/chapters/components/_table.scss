@@ -1,0 +1,40 @@
+table {
+  &:not(.lntable) {
+    border-collapse: collapse;
+    border: 1px solid silver;
+    margin: 0 auto 2rem auto;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 4px;
+
+    // padding: 0 1rem 1rem;
+    text-align: center;
+
+    th {
+      // padding: 0 2rem 0.5rem;
+      border-bottom: 1px solid silver;
+
+      &:not(:last-child) {
+        border-right: 1px solid silver;
+      }
+    }
+
+    tr {
+      &:not(:last-child) {
+        td {
+          border-bottom: 1px solid silver;
+        }
+      }
+    }
+
+    td {
+      padding-left: 1rem;
+      &:not(:last-child) {
+        border-right: 1px solid silver;
+      }
+      &:first-child {
+        padding-top: 0.5rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+.wrapper {
+  position: absolute;
+  height: 100%;
+  overflow-x: hidden;
+  max-width: 100vw;
+  z-index: -1;
+  background-color: $color-bg;
+}

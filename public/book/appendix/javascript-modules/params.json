@@ -1,0 +1,24 @@
+{
+  "description": "Discover three.js is written in the latest version of JavaScript, ES6. Here, we introduce an important new ES6 feature: JavaScript modules. These allow us to split our code into multiple small pieces.",
+  "title": "JavaScript Modules",
+    "wordCount": "2626",
+    "readingTime": "13",
+  "IDE": {
+    "show": "true",
+    "container": "#ide-wrapper",
+    "serverDirectory": "static/examples",
+    "stripDirectory": "worlds/appendix/javascript-modules/",
+    "closedFolders": [],
+    "comparisonMode": null,
+    "files": ["worlds/appendix/javascript-modules/src/main.js","worlds/appendix/javascript-modules/src/export.js","worlds/appendix/javascript-modules/index.html"],
+    "startFiles": null,
+    "finalFiles": null,
+    "entry": "index.html",
+    "activeDocument":"src/export.js",
+    "switchImportsAllow": "false"
+  },
+  "membershipLevelToView": "none",
+  "includeInSitemap" : true,
+  "showUpdateBanner" : true,
+  "showPagination" : true
+}
