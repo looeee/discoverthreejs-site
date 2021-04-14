@@ -7,6 +7,10 @@ available: true
 mainContentsPage: true
 includeInSitemap: false
 generateTOC: true
+layout: 'mainContentsPage'
+aliases: [
+    "/book/contents/",
+]
 ---
 
 {{% note %}}

@@ -6,6 +6,7 @@ weight: 2
 chapter: "0.1"
 available: true
 showIDE: true
+abcd: "TESTTESTTEST"
 IDEFiles: [
   "assets/models/Horse.glb",
   "assets/models/Parrot.glb",
@@ -42,6 +43,7 @@ IDEComparisonMode: true
 IDEStripDirectory: 'worlds/introduction/about-the-book/'
 IDEClosedFolders: ['systems', 'components', 'styles', 'vendor', 'textures']
 IDEActiveDocument: 'src/World/components/SparkleHorse/sparkleHorse.js'
+IDEEntry: "index.html"
 prevURL: "/book/introduction/"
 prevTitle: "Welcome to Discover three.js!"
 ---

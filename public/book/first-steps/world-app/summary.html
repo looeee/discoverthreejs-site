@@ -1,2 +1,1577 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <title>Introducing the World App | Discover three.js</title><meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <h1>Introducing the World App</h1>
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="ROBOTS" content="INDEX, FOLLOW" />
+
+<meta name="application-name" content="Discover three.js" />
+
+<meta itemprop="name" content="Discover three.js" />
+
+<meta property="og:title" content="How to Use This Book | Discover three.js" />
+<meta name="twitter:title" content="How to Use This Book | Discover three.js" />
+
+<meta name="description" content="No book is complete without references! Lots of resources to continue your learning in the amazing world of 3D graphics here" />
+<meta property="og:description" content="No book is complete without references! Lots of resources to continue your learning in the amazing world of 3D graphics here" />
+<meta name="twitter:description" content="No book is complete without references! Lots of resources to continue your learning in the amazing world of 3D graphics here" />
+
+<meta
+  itemprop="keywords"
+  content="threejs webgl opengl fbx gltf khronos webvr vr webdev design cg graphics animation javascript esnext es6 education tutorials blog ebook node npm"
+/>
+
+<meta property="og:site_name" content="Discover three.js" />
+<meta property="og:type" content="book" />
+<meta property="og:url" content="https://discoverthreejs.com/" />
+<meta
+  property="og:image"
+  content="https://discoverthreejs.com/static/images/logo.png"
+/>
+<meta
+  property="twitter:image"
+  content="https://discoverthreejs.com/static/images/logo.png"
+/>
+<meta name="twitter:creator" content="@lewy_blue" />
+<meta name="twitter:site" content="@lewy_blue" />
+<meta name="twitter:card" content="TODO" />
+<meta name="twitter:image:width" content="1024" />
+<meta name="twitter:image:height" content="1024" />
+
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="msapplication-TileColor" content="#00aba9" />
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=43" /><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "image": "https://discoverthreejs.com/static/images/logo.png",
+    "mainEntity": {
+      "@type": "Book",
+      "author": {
+        "@type": "Person",
+        "name": "Lewy Blue",
+        "jobTitle": "Author",
+        "url": "https://twitter.com/lewy_blue"
+      },
+      "about": "",
+      "copyrightHolder": "https://discoverthreejs.com",
+      "copyrightYear": "2021",
+      "bookFormat": "http://schema.org/EBook",
+      "datePublished": "2018-10-01",
+      "image": "https://discoverthreejs.com/static/images/logo.png",
+      "inLanguage": "English",
+      "name": "Discover three.js",
+      "genre": "Education",
+      "keywords": "threejs webgl animation javascript es6 education tutorials blog ebook",
+      "publisher": {
+        "@type": "Organization",
+        "name": "https://discoverthreejs.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://discoverthreejs.com/static/images/logo.png"
+        }
+      }
+    }
+  }
+</script><link
+      rel="canonical"
+      href="https://discoverthreejs.com/book/introduction/about-the-book/"
+    />
+
+    <link rel="shortcut icon" type="image/png" href="/favicon.ico?v=43" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-touch-icon.png?v=43"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon-16x16.png?v=43"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon-32x32.png?v=43"
+    />
+
+    <link rel="manifest" href="/site.json?v=43" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=43" color="#5bbad5" />
+<style>
+  .loading-page {
+    display: none;
+  }
+</style>
+
+<link href="/static/css/chapters.min.css?v=43" rel="stylesheet" />
+
+<noscript>
+  <style>
+    .loading-page {
+      display: block;
+    }
+  </style>
+  <link href="/static/css/noscript.min.css?v=43" rel="stylesheet" />
+</noscript>    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <script type="module">
+      console.log("TEST")
+      const x =  false ;
+      console.log('x: ', x);
+
+      import { setupChapterEarly } from "/static/js/chapter.early.js";
+      setupChapterEarly();
+
+      window.addEventListener('load', async () => {
+        const { setupChapterLate } = await import(
+          "/static/js/chapter.late.js"
+        );
+        setupChapterLate();
+
+        const { setupIDE } = await import(
+          "/static/js/ide.js"
+        );
+
+        const ideConfig = {
+
+          showIDE:  true ,
+          IDE: {
+            fullScreen: false,
+            container: '#ide-wrapper',
+            serverDirectory: 'static\/examples',
+            stripDirectory: 'worlds\/first-steps\/world-app\/',
+            closedFolders: '[\u0022styles\u0022,\u0022vendor\u0022]'
+              .replace(/[\s\'\[\]']+/g, '')
+              .split(','),
+            comparisonMode: 'true',
+            files: '[\u0022styles\/main.css\u0022,\u0022vendor\/three\/build\/three.module.js\u0022,\u0022worlds\/first-steps\/world-app\/index.html\u0022,\u0022worlds\/first-steps\/world-app\/src\/World\/components\/camera.start.js\u0022,\u0022worlds\/first-steps\/world-app\/src\/World\/components\/cube.start.js\u0022,\u0022worlds\/first-steps\/world-app\/src\/World\/components\/scene.start.js\u0022,\u0022worlds\/first-steps\/world-app\/src\/World\/systems\/renderer.start.js\u0022,\u0022worlds\/first-steps\/world-app\/src\/World\/systems\/Resizer.start.js\u0022,\u0022worlds\/first-steps\/world-app\/src\/World\/World.start.js\u0022,\u0022worlds\/first-steps\/world-app\/src\/main.start.js\u0022,\u0022worlds\/first-steps\/world-app\/src\/World\/components\/camera.final.js\u0022,\u0022worlds\/first-steps\/world-app\/src\/World\/components\/cube.final.js\u0022,\u0022worlds\/first-steps\/world-app\/src\/World\/components\/scene.final.js\u0022,\u0022worlds\/first-steps\/world-app\/src\/World\/systems\/renderer.final.js\u0022,\u0022worlds\/first-steps\/world-app\/src\/World\/systems\/Resizer.final.js\u0022,\u0022worlds\/first-steps\/world-app\/src\/World\/World.final.js\u0022,\u0022worlds\/first-steps\/world-app\/src\/main.final.js\u0022]'
+              .replace(/[\s\'\[\]']+/g, '')
+              .split(','),
+            startFiles: 'null'
+              .replace(/[\s\'\[\]']+/g, '')
+              .split(','),
+            finalFiles: 'null'
+              .replace(/[\s\'\[\]']+/g, '')
+              .split(','),
+            entry: 'index.html',
+            activeDocument: 'src\/World\/World.js',
+            switchImportsAllowed:
+              'true',
+          },
+        }
+
+        console.log('ideConfig: ', ideConfig);
+        setupIDE(ideConfig);
+      });
+    </script>
+
+  </head>
+  <body class="loading-page"><nav class="top-nav">
+  <div class="nav-background"></div>
+
+  <div class="icon-group left">
+    <input type="checkbox" id="left-menu-toggle" class="hidden-input" />
+    <label
+      for="left-menu-toggle"
+      class="control-elem"
+      title="Table Of Contents"
+    >
+      <span class="open-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"
+          />
+        </svg>
+      </span>
+      <span class="close-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 352 512"
+        >
+          <path
+            fill="currentColor"
+            d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+          />
+        </svg>
+      </span>
+    </label>
+
+    <input
+      type="checkbox"
+      id="toggle-ide"
+      class="hidden-input ide-toggle"
+    />
+    <label
+      for="toggle-ide"
+      class="control-elem ide-control hide"
+      title="Show/Hide IDE"
+    >
+      <span class="on-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64V160h160v256zm224 0H288V160h160v256z"
+          />
+        </svg>
+      </span>
+      <span class="off-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64V160h160v256zm224 0H288V160h160v256z"
+          />
+        </svg>
+      </span>
+    </label>
+  </div>
+
+  <div class="icon-group center">
+    <a
+      href="/book/introduction/"
+      title="Welcome to Discover three.js!"
+      class="control-elem previous"
+    >
+      <svg
+        class="icon"
+        role="img"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512"
+      >
+        <path
+          fill="currentColor"
+          d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+        />
+      </svg>
+    </a>
+    <a
+      href="/book/introduction/prerequisites/"
+      class="control-elem next"
+      title="What Do You Need to Run a three.js App?"
+    >
+      <svg
+        class="icon"
+        role="img"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512"
+      >
+        <path
+          fill="currentColor"
+          d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+        />
+      </svg>
+    </a>
+  </div>
+
+  <div class="icon-group right">
+    <input type="checkbox" id="right-menu-toggle" class="hidden-input" />
+    <label for="right-menu-toggle" class="control-elem" title="Main Menu">
+      <span class="open-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+          />
+        </svg>
+      </span>
+      <span class="close-close hide">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 352 512"
+        >
+          <path
+            fill="currentColor"
+            d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+          />
+        </svg>
+      </span>
+    </label>
+  </div>
+</nav><div class="wrapper orientation-auto">
+      <main class="panel animate">
+        <div class="scroller">
+          <div class="content">
+            
+              <div class="chapter-info">Word Count:4196, reading time: ~20minutes</div>
+            
+
+            <h1 id="introducing-the-world-app">Introducing the World App</h1>
+<p>In this book our aim is to create simple yet fully functional three.js applications similar to those you might create in a professional setting. Once you&rsquo;ve completed these chapters, you&rsquo;ll be able to use what you&rsquo;ve learned here to create beautiful customer-facing web apps of any size, whether that&rsquo;s <a href="https://www.threekit.com/" target="_blank" rel="noopener noreferrer">3D product displays</a>, <a href="https://cineshader.com/" target="_blank" rel="noopener noreferrer">stunning landing pages</a>, <a href="https://felixmariotto.itch.io/edelweiss" target="_blank" rel="noopener noreferrer">video</a> <a href="https://lazykitty.itch.io/ex-nihilo" target="_blank" rel="noopener noreferrer">games</a> or <a href="https://github.com/Usnul/meep" target="_blank" rel="noopener noreferrer">game engines</a>, <a href="http://www.ro.me/film" target="_blank" rel="noopener noreferrer">music videos</a>, <a href="https://clara.io/" target="_blank" rel="noopener noreferrer">3D or CAD software</a>, <a href="https://www.nytimes.com/interactive/2019/04/17/world/europe/notre-dame-cathedral-fire-spread.html" target="_blank" rel="noopener noreferrer">journalistic visualizations</a>, or just about <a href="https://dddance.party/?ref=three" target="_blank" rel="noopener noreferrer">anything else you can dream of</a>. Not only that, you&rsquo;ll be able to use the code from these chapters <em>immediately</em> as a template for building your own apps.</p>
+<p>In the last chapter, we created our first three.js application, and we introduced lots of new three.js and computer graphics info along the way. However, we didn&rsquo;t pay any attention to the quality or structure of the code we wrote. Here, we&rsquo;ll refactor this simple, monolithic app to create a template we can use as a starting point for the rest of the examples in this book. To ensure our code remains accessible and easy to understand, we&rsquo;ll split the app into small modules, each of which handles a small part of the overall complexity.</p>
+<p>The HTML and CSS files will remain unchanged, it&rsquo;s only the JavaScript we need to refactor here.</p>
+<h3 id="modular-software-design">Modular Software Design</h3>
+<p>When writing modular JavaScript, each file is a module. So, we may refer to a module by its file name, for example, <em><strong>main.js</strong></em>, or simple as the <em>main</em> module. An important part of modular software design is choosing the structure and names of your modules. Open up the inline code editor and you&rsquo;ll see that all the files required for this chapter have already been created, although they&rsquo;re all empty to begin with. If you like, hit the comparison toggle to view the completed code, otherwise, try completing the modules yourself while you read.</p>
+<p><em>There&rsquo;s an entire chapter of the appendices dedicated to <a href="/book/appendix/javascript-modules/">JavaScript modules</a>. If this subject is new to you, now would be a good time to check it out.</em></p>
+<h2 id="the-web-page-and-the-world-app">The Web Page and the World App</h2>
+<p>Over the last two chapters, we created a basic webpage consisting of <em><strong>index.html</strong></em> and <em><strong>main.css</strong></em>, and then we wrote our three.js app in <em><strong>main.js</strong></em>. However, if you recall, back in <a href="/book/introduction/threejs-with-frameworks/">0.7: Using three.js with React, Vue.js, Angular, Svelte, TypeScript...</a>, we said our goal is to create a component that can be dropped into any web app just as easily as it can be used with a simple web page like this one. For this to work, we need to add another small layer of abstraction. We&rsquo;ll start by deleting everything from <em><strong>main.js</strong></em>. Now, we have a simple web app consisting of three files: <em><strong>index.html</strong></em>, <em><strong>main.css</strong></em>, and <em><strong>main.js</strong></em> (currently empty). We&rsquo;ll make a rule: <strong>this web app cannot know about the existence of three.js</strong>. Once we build our three.js app, all the web app should know is that we have a component capable of generating 3D scenes, but not <em>how</em> that component does it. Out in the real world, this web app might be much more complicated and built using a framework such as React or Svelte. However, using our three.js component will not be any more complicated than it is here.</p>
+<p>To accomplish this, we&rsquo;ll move everything related to three.js into a separate app (or component), which we&rsquo;ll place in the <em><strong>src/World</strong></em> folder. Within this folder, we are free to use three.js however we like, but outside this folder we are forbidden from using three.js. Also, the files in this folder should form a self-contained component that knows nothing about the web app on which it is being displayed. This means we can take the <em><strong>World/</strong></em> folder, and drop it into any web app, whether it&rsquo;s a simple HTML page like this one or an app made with a framework like React, Angular, or Vue. Think about it this way: you should be able to give your three.js component to another developer who knows nothing about three.js and explain how they can integrate it into their web app, in five minutes or less, without explaining how three.js works.</p>
+<p>From here on, we&rsquo;ll refer to this folder and its contents as <strong><em>the World app</em></strong>.</p>
+<h2 id="the-world-app">The World App</h2>
+<p>Currently, our three.js scene is relatively simple. To set it up, once again we need to follow the six-step program <a href="/book/first-steps/first-scene/#simple-steps">outlined in the last chapter</a>:</p>
+<ol>
+<li>Initial Setup</li>
+<li><a href="/book/first-steps/first-scene/#create-scene">Create the scene</a></li>
+<li><a href="/book/first-steps/first-scene/#create-camera">Create a camera</a></li>
+<li><a href="/book/first-steps/first-scene/#create-visible">Create the cube and add it to the scene</a></li>
+<li><a href="/book/first-steps/first-scene/#create-the-renderer">Create the renderer</a></li>
+<li><a href="/book/first-steps/first-scene/#render-scene">Render the scene</a></li>
+</ol>
+<p>However, <em>using</em> the World app should look like this:</p>
+<ol>
+<li>Create an instance of the World app</li>
+<li>Render the scene</li>
+</ol>
+<p>The first set of six tasks are the <em>implementation details</em>. The second set of two tasks are the <em>interface</em> we&rsquo;ll provide to the containing web app.</p>
+<h3 id="the-world-interface">The <code>World</code> Interface</h3>
+<p>The interface is very simple for now. Using it within <em><strong>main.js</strong></em> will look something like this:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: creating a world</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+// 1. Create an instance of the World app
+const world = new World(container);
+
+// 2. Render the scene
+world.render();
+
+</code>
+  </pre>
+</section>
+
+<p>Everything else about the <em>implementation</em> of the World app should be hidden. From within <em><strong>main.js</strong></em>, we should not be able to access the scene, camera, renderer, or cube. If we later need to add additional functionality, we&rsquo;ll do so by expanding the interface, <em>not</em> by exposing three.js functions to the outside world.</p>
+<p>Note that we&rsquo;re passing in a container to the World constructor, which will be our scene container once again. Within World, we&rsquo;ll append the canvas to this container, <a href="/book/first-steps/first-scene/#add-canvas">just as we did in the last chapter</a>.</p>
+<p><em>Before reading through the next section, check out the appendices for <a href="/book/appendix/javascript-reference/#classes">a refresher on JavaScript classes</a>, if you need one.</em></p>
+<h2 id="the-world-class">The <code>World</code> Class</h2>
+<p>Now, we can go ahead and start to build the <code>World</code> class. We&rsquo;ll need a <code>constructor</code> method to handle setup (create the scene, renderer, cube, and camera, set the scene&rsquo;s size, and add the canvas element to the container), and a <code>render</code> method to render the scene. Open or create the <em><strong>src/World/World.js</strong></em> module, and inside, create the World class with both of these methods. At the bottom of the file, export the class so we can use it from <em><strong>main.js</strong></em>.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: initial setup</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+class World {
+  // 1. Create an instance of the World app
+  constructor(container) {}
+
+  // 2. Render the scene
+  render() {}
+}
+
+export { World };
+</code>
+  </pre>
+</section>
+
+<p>With this, our interface is complete. Everything else is implementation. Although this interface doesn&rsquo;t yet <em>do</em> anything, it&rsquo;s already <em>usable</em>. In other words, we can go ahead and fully set up <em><strong>main.js</strong></em>, calling these functions in the appropriate places. Later, once we fill in the details, the app will magically start to work. This is a common approach to creating interfaces. First, decide how it should look and create stubs for each part of the interface, <em>then</em> worry about the details.</p>
+<h2 id="set-up-_mainjs_">Set Up <em><strong>main.js</strong></em></h2>
+<p>Inside <em><strong>main.js</strong></em>, which should currently be empty, we&rsquo;ll start by importing the new World class, then we&rsquo;ll create a main function and immediately call it to start the app:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: initial setup</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import { World } from &#39;./World/World.js&#39;;
+
+// create the main function
+function main() {
+  // code to set up the World App will go here
+}
+
+// call main to start the app
+main();
+</code>
+  </pre>
+</section>
+
+<h3 id="set-up-the-world-app">Set up the World App</h3>
+<p>Next, we&rsquo;ll perform our two-step World app setup. First, just like in the last chapter, we need a reference to the container. Then we&rsquo;ll create a <code>new World</code>, and finally, with everything set up, we can call <code>world.render</code> to draw the scene.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: create a whole new World</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="3"
+    data-line=""
+    data-line-offset="3"
+    >
+    <code class="highlight language-js match-braces">function main() {
+  // Get a reference to the container element
+  const container = document.querySelector(&#39;#scene-container&#39;);
+
+  // 1. Create an instance of the World app
+  const world = new World(container);
+
+  // 2. Render the scene
+  world.render();
+}
+</code>
+  </pre>
+</section>
+
+<p>With this, the <em><strong>main.js</strong></em> module is complete. Later, when we fill in the details of the World app, our scene will spring to life.</p>
+<h2 id="world-app-implementation">World App Implementation</h2>
+<p>Of course, building the interface was the easy part. Now we have to make it work. Fortunately, from here on it&rsquo;s mostly a matter of copying code over from the previous chapter. Take a look at the setup tasks again.</p>
+<ol>
+<li><del>Initial Setup</del></li>
+<li><a href="/book/first-steps/first-scene/#create-scene">Create the scene</a></li>
+<li><a href="/book/first-steps/first-scene/#create-camera">Create a camera</a></li>
+<li><a href="/book/first-steps/first-scene/#create-visible">Create the cube and add it to the scene</a></li>
+<li><a href="/book/first-steps/first-scene/#create-the-renderer">Create the renderer</a></li>
+<li><a href="/book/first-steps/first-scene/#render-scene">Render the scene</a></li>
+</ol>
+<p>Number one is done and dusted. That leaves the final five. However, we&rsquo;ll create an additional task that will go in between steps five and six:</p>
+<ul>
+<li>Set the size of the scene.</li>
+</ul>
+<p>We&rsquo;ll create a new module for each of the remaining tasks. For now, these modules will be very simple, but as the app grows in size they can become more complex. Splitting them up like this means the complexity will never become overwhelming, and the World class will remain manageable rather than spiraling into a thousand line class of doom.</p>
+<p>We&rsquo;ll divide these modules into two categories: <strong>components</strong>, and <strong>systems</strong>. Components are anything that can be placed into the scene, like the cube, the camera, and the scene itself, while systems are things that operate on components or other systems. Here, that&rsquo;s the renderer and the sizing function, which we&rsquo;ll call a <code>Resizer</code>. Later you might want to add additional categories like <strong>utilities</strong>, <strong>stores</strong>, and so on.</p>
+<p>This gives us the following new modules:</p>
+<ul>
+<li><em><strong>components/camera.js</strong></em></li>
+<li><em><strong>components/cube.js</strong></em></li>
+<li><em><strong>components/scene.js</strong></em></li>
+<li><em><strong>systems/renderer.js</strong></em></li>
+<li><em><strong>systems/Resizer.js</strong></em></li>
+</ul>
+<p>If you&rsquo;re working locally, create these files now, otherwise, locate them in the editor. The <code>Resizer</code> gets a capital <code>R</code> because it will be a class. The other four modules will each contain a function following this basic pattern:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The basic pattern for most of our new modules</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import { Item } from &#39;three&#39;;
+
+function createItem() {
+  const instance = new Item();
+
+  return instance;
+}
+
+export { createItem }
+</code>
+  </pre>
+</section>
+
+<p>&hellip;where <code>createItem</code> is replaced by <code>createCamera</code>, <code>createCube</code>, <code>createRenderer</code>, or <code>createScene</code>. If the code in any of these modules is unclear to you, refer back to the previous chapter where we explain it in detail.</p>
+<h3 id="systems-the-renderer-module">Systems: the Renderer Module</h3>
+<p>First up is <a href="/book/first-steps/first-scene/#create-the-renderer">the renderer system</a>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>systems/renderer.js</strong></em></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line="4"
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">import { WebGLRenderer } from &#39;three&#39;;
+
+function createRenderer() {
+  const renderer = new WebGLRenderer();
+
+  return renderer;
+}
+
+export { createRenderer };
+
+</code>
+  </pre>
+</section>
+
+<p>Later, we&rsquo;ll tune some settings on the renderer to improve the quality of our renderings, but for now, a basic renderer with default settings is just fine.</p>
+<h3 id="components-the-scene-module">Components: The Scene Module</h3>
+<p>Next up, the scene component:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>components/scene.js</strong></em></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line="4,6"
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">import { Color, Scene } from &#39;three&#39;;
+
+function createScene() {
+  const scene = new Scene();
+
+  scene.background = new Color(&#39;skyblue&#39;);
+
+  return scene;
+}
+
+export { createScene };
+
+</code>
+  </pre>
+</section>
+
+<p>Here, we&rsquo;ve created an instance of the <code>Scene</code> class, and then used a <code>Color</code> to set the background to <code>skyblue</code>, exactly as we did <a href="/book/first-steps/first-scene/#create-scene">in the last chapter</a>.</p>
+<h3 id="components-the-camera-module">Components: The Camera Module</h3>
+<p>Third is <a href="/book/first-steps/first-scene/#create-camera">the camera component</a>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>components/camera.js</strong></em></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line="4-9,11,12"
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">import { PerspectiveCamera } from &#39;three&#39;;
+
+function createCamera() {
+  const camera = new PerspectiveCamera(
+    35, // fov = Field Of View
+    1, // aspect ratio (dummy value)
+    0.1, // near clipping plane
+    100, // far clipping plane
+  );
+
+  // move the camera back so we can view the scene
+  camera.position.set(0, 0, 10);
+
+  return camera;
+}
+
+export { createCamera };
+
+</code>
+  </pre>
+</section>
+
+<p>This is <em>almost</em> the same code we used to set up the camera in the last chapter, except this time we&rsquo;re using a dummy value of <code>1</code> for the aspect ratio since that relies on the dimensions of the <code>container</code>. We want to avoid passing things around unnecessarily, so we&rsquo;ll defer setting the aspect until we create the <code>Resizer</code> system below.</p>
+<p>One other difference: in the last chapter, we declared each of the camera&rsquo;s four parameters as variables, then passed them into the constructor. Here, we&rsquo;ve switched to declaring them inline to save some space. Compare this code to the previous chapter to see the difference.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Ch 1.2: Your First three.js Scene: creating the camera</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="20"
+    data-line=""
+    data-line-offset="20"
+    >
+    <code class="highlight language-js match-braces">// Create a camera
+const fov = 35; // AKA Field of View
+const aspect = container.clientWidth / container.clientHeight;
+const near = 0.1; // the near clipping plane
+const far = 100; // the far clipping plane
+
+const camera = new PerspectiveCamera(fov, aspect, near, far);
+</code>
+  </pre>
+</section>
+
+<h3 id="components-the-cube-module">Components: The Cube Module</h3>
+<p>Fourth is the cube component, which comprises creating <a href="/book/first-steps/first-scene/#create-geometry">a geometry</a>, <a href="/book/first-steps/first-scene/#create-material">a material</a>, and then <a href="/book/first-steps/first-scene/#create-mesh">a mesh</a>. Once again, the highlighted lines here are identical to the code from the last chapter.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>components/cube.js</strong></em></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line="4,5,7,8,10,11"
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">import { BoxBufferGeometry, Mesh, MeshBasicMaterial } from &#39;three&#39;;
+
+function createCube() {
+  // create a geometry
+  const geometry = new BoxBufferGeometry(2, 2, 2);
+
+  // create a default (white) Basic material
+  const material = new MeshBasicMaterial();
+
+  // create a Mesh containing the geometry and material
+  const cube = new Mesh(geometry, material);
+
+  return cube;
+}
+
+export { createCube };
+
+</code>
+  </pre>
+</section>
+
+<p>Later, we might add visible objects that are much more complicated than this simple cube, in which case we&rsquo;ll split them up into sub-modules. For example, the playable character in a game is likely to be a complex component with many separate pieces, so we&rsquo;ll put that into <em><strong>components/mainCharacter/</strong></em>, and inside there we&rsquo;ll have sub-modules such as <em><strong>mainCharacter/geometry.js</strong></em>,  <em><strong>mainCharacter/materials.js</strong></em>, <em><strong>mainCharacter/animations.js</strong></em>, and so on.</p>
+<h3 id="systems-the-resizer-module">Systems: the Resizer Module</h3>
+<p>Finally, we&rsquo;ll create a stub for the <code>Resizer</code> module. This one is a little different than the others since it&rsquo;s a class rather than a function (note that the file name starts with a capital <em><strong>R</strong></em> to denote that it&rsquo;s a class):</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>systems/Resizer.js</strong></em>: initial setup</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="0"
+    data-line=""
+    data-line-offset="0"
+    >
+    <code class="highlight language-js match-braces">
+
+class Resizer {
+  constructor() {}
+}
+
+export { Resizer };
+
+</code>
+  </pre>
+</section>
+
+<p>We&rsquo;ll complete this class below.</p>
+<h2 id="set-up-the-world-class">Set Up the <code>World</code> Class</h2>
+<p>With that, most of our components and systems are ready and we can fill in the details of the World class. First, import the five modules we just created at the top of <em><strong>World.js</strong></em>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: imports</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">import { createCamera } from &#39;./components/camera.js&#39;;
+import { createCube } from &#39;./components/cube.js&#39;;
+import { createScene } from &#39;./components/scene.js&#39;;
+
+import { createRenderer } from &#39;./systems/renderer.js&#39;;
+import { Resizer } from &#39;./systems/Resizer.js&#39;;
+</code>
+  </pre>
+</section>
+
+<h3 id="set-up-the-camera-renderer-and-scene">Set Up the Camera, Renderer, and Scene</h3>
+<p>Next, we&rsquo;ll set up the camera, scene, and renderer, which all need to be created in the constructor, then accessed in the <code>World.render</code> method. Usually, this means we would save them as class member variables: <code>this.camera</code>, <code>this.scene</code>, and <code>this.renderer</code>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Class member variables are accessible from outside the class</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+class World {
+  constructor() {
+    this.camera = createCamera();
+    this.scene = createScene();
+    this.renderer = createRenderer();
+  }
+
+</code>
+  </pre>
+</section>
+
+<p>However, member variables are accessible within <em><strong>main.js</strong></em>, which we <em>don&rsquo;t</em> want.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: not what we want</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+const world = new World();
+
+// We can access member variables from the instance
+console.log(world.camera);
+console.log(world.renderer);
+console.log(world.scene);
+
+</code>
+  </pre>
+</section>
+
+<h3 id="guard-your-secrets-well">Guard your Secrets Well</h3>
+<p>We want to interact with the World app using <em>only</em> the interface we&rsquo;ve designed, and we want everything else to be hidden. Why? Imagine you have worked long and hard to create a beautiful, well structured three.js application, and you pass it on to your client for them to integrate into a larger application. They don&rsquo;t know anything about three.js, but they are competent developers, so when they need to change something they start to hack around and figure out that they can access the camera and renderer. They open up the three.js docs and after five minutes of reading, change some settings. These are likely to break some other parts of the app, so they make more changes, and more changes, and eventually&hellip; chaos. Which <em>you</em> will be called in to fix.</p>
+<p><strong>By hiding the implementation behind a simple interface, you make your app foolproof and simple to use. It does what&rsquo;s it&rsquo;s supposed to do, and <em>nothing else</em>.</strong> By hiding the implementation, we are enforcing good coding style on the people using our code. The more of the implementation you make accessible, the more likely it will be used for complicated half-baked &ldquo;fixes&rdquo; that you have to deal with later.</p>
+<p>Replace the word <em>client</em> with <em>you in six months</em> and everything still holds. If you later need to make some quick to the app, you won&rsquo;t be tempted to do them in a hacky way if you can&rsquo;t access anything except for the simple interface. Instead, you&rsquo;ll have to open up the World app and fix things <em>properly</em> (in theory at least).</p>
+<p>Of course, there will be times when you do legitimately want to expose the camera and other components to the outside world. However, hiding them should be the default. Guard your secrets well, and only expose them when you have a good reason for doing so.</p>
+<h3 id="but-how">But How?</h3>
+<p>Most languages have private class fields for this purpose, and they are coming soon to JavaScript too. Unfortunately, at the time of writing this chapter, <a href="https://caniuse.com/#search=private%20class%20fields" target="_blank" rel="noopener noreferrer">support is not good</a>, so for now we must look for an alternative.</p>
+<h4 id="module-scoped-variables">Module Scoped Variables</h4>
+<p>We can create something similar to private variables by declaring the variables in <a href="/book/appendix/javascript-reference/#scope-and-closures">module scope</a>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: create the camera, renderer, and scene as module scoped variables</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="0"
+    data-line="10-12,15-17"
+    data-line-offset="0"
+    >
+    <code class="highlight language-js match-braces">import { createCamera } from &#39;./components/camera.js&#39;;
+import { createCube } from &#39;./components/cube.js&#39;;
+import { createScene } from &#39;./components/scene.js&#39;;
+
+import { createRenderer } from &#39;./systems/renderer.js&#39;;
+import { Resizer } from &#39;./systems/Resizer.js&#39;;
+
+// These variables are module-scoped: we cannot access them
+// from outside the module
+let camera;
+let renderer;
+let scene;
+
+class World {
+  constructor(container) {
+    camera = createCamera();
+    scene = createScene();
+    renderer = createRenderer();
+  }</code>
+  </pre>
+</section>
+
+<p>This way, we can access <code>camera</code>, <code>renderer</code>, and <code>scene</code> from anywhere in the World module, but <em>not</em> from <em><strong>main.js</strong></em>. Just what we want.</p>
+<p><strong>Important note</strong>: this solution will not work if we create <em>two</em> instances of the <code>World</code> class, since the module scoped variables will be shared between both instances, so the second instance will overwrite the variables of the first. However, we only ever intend to create one world at a time, so we&rsquo;ll accept this limitation.</p>
+<h3 id="add-the-canvas-to-the-container">Add the Canvas to the Container</h3>
+<p>With that, most our of setup is complete. We now have a camera, scene, and renderer. <a href="/book/first-steps/first-scene/#add-canvas">If you recall from the last chapter</a>, when we create the renderer a <code>&lt;canvas&gt;</code> element is also created and stored in <code>renderer.domElement</code>. The next step is to add this to the container.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: append the canvas to the container</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="14"
+    data-line="19"
+    data-line-offset="14"
+    >
+    <code class="highlight language-js match-braces">
+
+class World {
+  constructor(container) {
+    camera = createCamera();
+    scene = createScene();
+    renderer = createRenderer();
+    container.append(renderer.domElement);
+  }
+
+</code>
+  </pre>
+</section>
+
+<h3 id="render-the-scene">Render the Scene</h3>
+<p>Next, we&rsquo;ll set up <code>World.render</code> so that we can see the results. Once again the code is the same as <a href="/book/first-steps/first-scene/#render-scene">the last chapter</a>.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: complete the render method</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="28"
+    data-line="30"
+    data-line-offset="28"
+    >
+    <code class="highlight language-js match-braces">  render() {
+    // draw a single frame
+    renderer.render(scene, camera);
+  }
+</code>
+  </pre>
+</section>
+
+<figure class="medium right">
+  <img src="/static/images/first-steps/world_app_unsized_background.png" loading="lazy" alt="The canvas is the red rectangle" title="The canvas is the red rectangle"  />
+    <figcaption>The canvas is the red rectangle</figcaption></figure>
+<p>Once you do this, if everything is set up correctly, your scene will be drawn into the canvas. However, the cavnas doesn&rsquo;t take up the full size of the container since we haven&rsquo;t completed the <code>Resizer</code> yet. Instead, it has been created at the default size for a <code>&lt;canvas&gt;</code> element, which is $300 \times 150$ pixels (in Chrome, at least).</p>
+<p>This won&rsquo;t be obvious since we&rsquo;ve set the container background to the same color as the scene&rsquo;s background - they are both &ldquo;skyblue&rdquo;. However, try temporarily making the canvas &ldquo;red&rdquo; and this will become obvious.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>scene.js</strong></em>: temporarily make the canvas red to show that it doesn&rsquo;t take up the full container yet</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="6"
+    data-line=""
+    data-line-offset="6"
+    >
+    <code class="highlight language-js match-braces">
+
+scene.background = new Color(&#39;red&#39;);
+
+</code>
+  </pre>
+</section>
+
+<p>We&rsquo;ll fix this in a few moments, but first, let&rsquo;s add the cube to the scene.</p>
+<h3 id="create-the-cube">Create the Cube</h3>
+<p>The cube doesn&rsquo;t need to be a module scope variable since it&rsquo;s only used in the constructor, so call <code>createCube</code>, save the result in a normal variable called <code>cube</code>, then add it to the scene.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: Create the cube and add it to the scene</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="15"
+    data-line="21,23"
+    data-line-offset="15"
+    >
+    <code class="highlight language-js match-braces">  constructor(container) {
+    camera = createCamera();
+    scene = createScene();
+    renderer = createRenderer();
+    container.append(renderer.domElement);
+
+    const cube = createCube();
+
+    scene.add(cube);
+  }</code>
+  </pre>
+</section>
+
+<p>Now, the white square will appear against the blue background. Still sized at $300 \times 150$ pixels though.</p>
+<h2 id="systems-the-resizer-module-1">Systems: the Resizer Module</h2>
+<p>All that remains is to set up the <code>Resizer</code> class. Gathering up all the code we used to set the scene&rsquo;s size from the last chapter, here&rsquo;s what we get:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Everything we need to do in the <code>Resizer</code> class</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+// Set the camera&#39;s aspect ratio to match the container&#39;s proportions
+camera.aspect = container.clientWidth / container.clientHeight;
+
+// next, set the renderer to the same size as our container element
+renderer.setSize(container.clientWidth, container.clientHeight);
+
+// finally, set the pixel ratio to ensure our scene will look good on mobile devices
+renderer.setPixelRatio(window.devicePixelRatio);
+
+</code>
+  </pre>
+</section>
+
+<p>Here, we&rsquo;ll move these lines into the <code>Resizer</code> class. Why a class (and why <em>Re</em>-sizer)? Later, this class will have more work to do, for example, in <a href="/book/first-steps/responsive-design/">1.6: Making Our Scenes Responsive (and also Dealing with Jaggies)</a>, we&rsquo;ll set up automatic resizing whenever the browser window changes size. Creating it as a class gives us more scope to add functionality later without refactoring.</p>
+<p>Looking through the above lines, we can see that <code>Resizer</code> needs the container, the camera, and the renderer (<code>devicePixelRatio</code> is on <a href="/book/appendix/javascript-reference/#global-scope">the global scope</a>, which means it&rsquo;s available everywhere). Over in World, make sure <code>Resizer</code> is in the list of imports:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: imports</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="0"
+    data-line="6"
+    data-line-offset="0"
+    >
+    <code class="highlight language-js match-braces">import { createCamera } from &#39;./components/camera.js&#39;;
+import { createCube } from &#39;./components/cube.js&#39;;
+import { createScene } from &#39;./components/scene.js&#39;;
+
+import { createRenderer } from &#39;./systems/renderer.js&#39;;
+import { Resizer } from &#39;./systems/Resizer.js&#39;;
+</code>
+  </pre>
+</section>
+
+<p>&hellip; and then create a <code>resizer</code> instance in the constructor:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: create the resizer</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="15"
+    data-line="25"
+    data-line-offset="15"
+    >
+    <code class="highlight language-js match-braces">  constructor(container) {
+    camera = createCamera();
+    scene = createScene();
+    renderer = createRenderer();
+    container.append(renderer.domElement);
+
+    const cube = createCube();
+
+    scene.add(cube);
+
+    const resizer = new Resizer(container, camera, renderer);
+  }
+</code>
+  </pre>
+</section>
+
+<p>Next, copy the lines of code we gathered up the last chapter into the constructor, and also update the method&rsquo;s signature to include the container, camera, and renderer.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>Resizer.js</strong></em>: nearly complete!</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="0"
+    data-line="2,4,7,10"
+    data-line-offset="0"
+    >
+    <code class="highlight language-js match-braces">
+
+class Resizer {
+  constructor(container, camera, renderer) {
+    // Set the camera&#39;s aspect ratio
+    camera.aspect = container.clientWidth / container.clientHeight;
+
+    // update the size of the renderer AND the canvas
+    renderer.setSize(container.clientWidth, container.clientHeight);
+
+    // set the pixel ratio (for mobile devices)
+    renderer.setPixelRatio(window.devicePixelRatio);
+  }
+}
+
+</code>
+  </pre>
+</section>
+
+<figure class="medium right">
+  <img src="/static/images/first-steps/perspective_frustum.svg" loading="lazy" alt="Perspective camera frustum" title="Perspective camera frustum"  /></figure>
+<p>This is nearly complete, although there&rsquo;s still one thing we need to do. If you recall from the last chapter, the camera uses the aspect ratio along with the field of view and the near and far clipping planes to calculate its <a href="/book/first-steps/first-scene/#viewing-frustum">viewing frustum</a>. <strong>The frustum is not automatically recalculated, so when we change any of these settings, stored in <code>camera.aspect</code>, <code>camera.fov</code>, <code>camera.near</code>, and <code>camera.far</code>, we also need to update the frustum.</strong></p>
+<p>The camera stores its frustum in a mathematical object called a <a href="https://threejs.org/docs/#api/en/cameras/Camera.projectionMatrix" target="_blank" rel="noopener noreferrer"><strong>projection matrix</strong></a>, and, to update this, we need to call the camera&rsquo;s <a href="https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.updateProjectionMatrix" target="_blank" rel="noopener noreferrer"><code>.updateProjectionMatrix</code></a> method. Adding this line gives us the final <code>Resizer</code> class:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>Resizer.js</strong></em>: complete!</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line="7"
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">class Resizer {
+  constructor(container, camera, renderer) {
+    // Set the camera&#39;s aspect ratio
+    camera.aspect = container.clientWidth / container.clientHeight;
+
+    // update the camera&#39;s frustum
+    camera.updateProjectionMatrix();
+
+    // update the size of the renderer AND the canvas
+    renderer.setSize(container.clientWidth, container.clientHeight);
+
+    // set the pixel ratio (for mobile devices)
+    renderer.setPixelRatio(window.devicePixelRatio);
+  }
+}
+</code>
+  </pre>
+</section>
+
+<figure class="medium right">
+  <img src="/static/images/first-steps/world_app_fullsized.png" loading="lazy" alt="Fullsize at last!" title="Fullsize at last!"  />
+    <figcaption>Fullsize at last!</figcaption></figure>
+<p>With that, our refactor is complete, and the scene will expand to take up the full size of the window.</p>
+<h3 id="the-final-world-class">The Final <code>World</code> Class</h3>
+<p>With everything in place, here&rsquo;s our complete code for the <em><strong>World.js</strong></em> module. As you can see, this class coordinates the setup of our 3D scene while offloading the complexity onto separate modules.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: complete code</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">import { createCamera } from &#39;./components/camera.js&#39;;
+import { createCube } from &#39;./components/cube.js&#39;;
+import { createScene } from &#39;./components/scene.js&#39;;
+
+import { createRenderer } from &#39;./systems/renderer.js&#39;;
+import { Resizer } from &#39;./systems/Resizer.js&#39;;
+
+// These variables are module-scoped: we cannot access them
+// from outside the module
+let camera;
+let renderer;
+let scene;
+
+class World {
+  constructor(container) {
+    camera = createCamera();
+    scene = createScene();
+    renderer = createRenderer();
+    container.append(renderer.domElement);
+
+    const cube = createCube();
+
+    scene.add(cube);
+
+    const resizer = new Resizer(container, camera, renderer);
+  }
+
+  render() {
+    // draw a single frame
+    renderer.render(scene, camera);
+  }
+}
+
+export { World };
+
+</code>
+  </pre>
+</section>
+
+<p>Whew! That was some refactor! If you&rsquo;re used to structuring your code using modules, this chapter was probably a breeze. On the other hand, if this was all new to you, it can take some time to get used to the idea of splitting up an application like this. Hopefully, by going through this step by step, you now have a clearer understanding of why we would choose to do this.</p>
+<p>Our application is now ready for liftoff. Over the next few chapters, we&rsquo;ll add lighting, movement, user controls, animation, and even some shapes that are a little more interesting that our humble square. Are you ready?</p>
+<h2 id="challenges">Challenges</h2>
+<aside class="success">
+  
+    <h4 id="easy">Easy</h4>
+<ol>
+<li>Change the color of the scene background. You can enter any standard color name such as red, green, purple, and so on, as well as some unusual names like aquamarine or coral. How many of the 140 CSS color names can you guess?</li>
+</ol>
+
+  
+</aside>
+<aside class="notice">
+  
+    <h4 id="medium">Medium</h4>
+<ol>
+<li>
+<p>Change the cube to some other shapes like a rectangle, sphere, triangle, or torus. (Hint: <a href="https://threejs.org/docs" target="_blank" rel="noopener noreferrer">search the docs</a> for &ldquo;BufferGeometry&rdquo;.)</p>
+</li>
+<li>
+<p>Add a second cube and move it around using <code>mesh.position.set(x, y, z)</code> (you&rsquo;ll either need to figure out some way of returning two cubes from the <code>createCube</code> function, or add a second module like <em><strong>cube2.js</strong></em>).</p>
+</li>
+</ol>
+
+  
+</aside>
+<aside class="warning">
+  
+    <h4 id="hard">Hard</h4>
+<p><em>This is a challenge for people who are already familiar with building websites. If you are new to web development, it&rsquo;s OK to skip this one.</em></p>
+<ol>
+<li>Add a button to the HTML page, and delay rendering the scene until the button has been clicked. Do this <em>without</em> making any changes to the World app. Instead, create the button in <em><strong>index.html</strong></em> and set it up in <em><strong>main.js</strong></em>.</li>
+</ol>
+
+  
+</aside>
+
+          </div>
+        </div>
+      </main>
+    </div><div class="side-menu left-menu">
+  <div class="icons">
+    <input type="checkbox" id="invert-colors-toggle" class="hidden-input" />
+    <label
+      for="invert-colors-toggle"
+      class="control-elem"
+      title="Day/Night Theme"
+    >
+      <span class="day-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"
+          />
+        </svg>
+      </span>
+      <span class="night-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"
+          />
+        </svg>
+      </span>
+    </label>
+
+    <input type="checkbox" id="orientation-toggle" class="hidden-input" />
+    <label
+      for="orientation-toggle"
+      class="control-elem hide"
+      title="Orientation lock: auto/portrait/landscape"
+    >
+      <span class="auto-icon hide">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M440.65 12.57l4 82.77A247.16 247.16 0 0 0 255.83 8C134.73 8 33.91 94.92 12.29 209.82A12 12 0 0 0 24.09 224h49.05a12 12 0 0 0 11.67-9.26 175.91 175.91 0 0 1 317-56.94l-101.46-4.86a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12H500a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12h-47.37a12 12 0 0 0-11.98 12.57zM255.83 432a175.61 175.61 0 0 1-146-77.8l101.8 4.87a12 12 0 0 0 12.57-12v-47.4a12 12 0 0 0-12-12H12a12 12 0 0 0-12 12V500a12 12 0 0 0 12 12h47.35a12 12 0 0 0 12-12.6l-4.15-82.57A247.17 247.17 0 0 0 255.83 504c121.11 0 221.93-86.92 243.55-201.82a12 12 0 0 0-11.8-14.18h-49.05a12 12 0 0 0-11.67 9.26A175.86 175.86 0 0 1 255.83 432z"
+          />
+        </svg>
+      </span>
+      <span class="portrait-icon hide">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+        >
+          <path
+            fill="currentColor"
+            d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"
+          />
+        </svg>
+      </span>
+      <span class="landscape-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+        >
+          <path
+            fill="currentColor"
+            d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"
+          />
+        </svg>
+      </span>
+    </label>
+  </div>
+
+  <nav class="table-of-contents">
+    <h2><a href="/book/contents/">Table of Contents</a></h2>
+    <div id="main-toc">
+      <ul>
+        <li class="section-head">
+          <span class="chapter">0:</span
+          ><a
+            href="/book/introduction/"
+            title="Welcome to Discover three.js!"
+            >Welcome to Discover three.js!</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">0.1:</span
+          ><a
+            href="/book/introduction/about-the-book/"
+            title="How to Use This Book"
+            >How to Use This Book</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">0.2:</span
+          ><a
+            href="/book/introduction/prerequisites/"
+            title="What Do You Need to Run a three.js App?"
+            >What Do You Need to Run a three.js App?</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">0.3:</span
+          ><a
+            href="/book/introduction/get-help/"
+            title="Welcome to the Community: three.js Around the Web"
+            >Welcome to the Community: three.js Around the Web</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">0.4:</span
+          ><a
+            href="/book/introduction/github-repo/"
+            title="three.js on GitHub - Where the Magic Happens"
+            >three.js on GitHub - Where the Magic Happens</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">0.5:</span
+          ><a
+            href="/book/introduction/get-threejs/"
+            title="How to Include three.js in Your Projects"
+            >How to Include three.js in Your Projects</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">0.7:</span
+          ><a
+            href="/book/introduction/threejs-with-frameworks/"
+            title="Using three.js with React, Vue.js, Angular, Svelte, TypeScript..."
+            >Using three.js with React, Vue.js, Angular, Svelte,
+            TypeScript...</a
+          >
+        </li>
+        <li class="section-head">
+          <span class="chapter">1:</span
+          ><a
+            href="/book/first-steps/"
+            title="Getting Started: Here&#39;s Where the Real Fun Begins!"
+            >Getting Started: Here&#39;s Where the Real Fun Begins!</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.1:</span
+          ><a
+            href="/book/first-steps/app-structure/"
+            title="The Structure of a three.js App"
+            >The Structure of a three.js App</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.2:</span
+          ><a
+            href="/book/first-steps/first-scene/"
+            title="Your First three.js Scene: Hello, Cube!"
+            >Your First three.js Scene: Hello, Cube!</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.3:</span
+          ><a
+            href="/book/first-steps/world-app/"
+            title="Introducing the World App"
+            >Introducing the World App</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.4:</span
+          ><a
+            href="/book/first-steps/physically-based-rendering/"
+            title="Physically Based Rendering and Lighting"
+            >Physically Based Rendering and Lighting</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.5:</span
+          ><a
+            href="/book/first-steps/transformations/"
+            title="Transformations and Coordinate Systems"
+            >Transformations and Coordinate Systems</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.6:</span
+          ><a
+            href="/book/first-steps/responsive-design/"
+            title="Making Our Scenes Responsive (and also Dealing with Jaggies)"
+            >Making Our Scenes Responsive (and also Dealing with Jaggies)</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.7:</span
+          ><a
+            href="/book/first-steps/animation-loop/"
+            title="The Animation Loop"
+            >The Animation Loop</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.8:</span
+          ><a
+            href="/book/first-steps/textures-intro/"
+            title="A Brief Introduction to Texture Mapping"
+            >A Brief Introduction to Texture Mapping</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.9:</span
+          ><a
+            href="/book/first-steps/camera-controls/"
+            title="Extend three.js With a Camera Controls Plugin"
+            >Extend three.js With a Camera Controls Plugin</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.10:</span
+          ><a
+            href="/book/first-steps/ambient-lighting/"
+            title="Ambient Lighting: Illumination from Every Direction"
+            >Ambient Lighting: Illumination from Every Direction</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.11:</span
+          ><a
+            href="/book/first-steps/organizing-with-group/"
+            title="Organizing Your Scenes"
+            >Organizing Your Scenes</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.12:</span
+          ><a
+            href="/book/first-steps/built-in-geometries/"
+            title="The Built-In Geometries"
+            >The Built-In Geometries</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.13:</span
+          ><a
+            href="/book/first-steps/load-models/"
+            title="Load 3D Models in glTF Format"
+            >Load 3D Models in glTF Format</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.14:</span
+          ><a
+            href="/book/first-steps/animation-system/"
+            title="The three.js Animation System"
+            >The three.js Animation System</a
+          >
+        </li>
+        <li class="section-head">
+          <span class="chapter">A:</span
+          ><a href="/book/appendix/" title="Appendices">Appendices</a>
+        </li>
+        <li class="">
+          <span class="chapter">A.1:</span
+          ><a
+            href="/book/appendix/html-and-css-reference/"
+            title="HTML and CSS Used in This Book"
+            >HTML and CSS Used in This Book</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">A.2:</span
+          ><a
+            href="/book/appendix/javascript-reference/"
+            title="JavaScript Reference"
+            >JavaScript Reference</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">A.3:</span
+          ><a
+            href="/book/appendix/dom-api-reference/"
+            title="The Document Object Model and DOM API"
+            >The Document Object Model and DOM API</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">A.4:</span
+          ><a
+            href="/book/appendix/javascript-modules/"
+            title="JavaScript Modules"
+            >JavaScript Modules</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">A.5:</span
+          ><a
+            href="/book/appendix/asynchronous-javascript/"
+            title="Asynchronous JavaScript"
+            >Asynchronous JavaScript</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">B.1:</span
+          ><a
+            href="/book/appendix/threejs-versions/"
+            title="Dealing with Different three.js Versions"
+            >Dealing with Different three.js Versions</a
+          >
+        </li>
+        <li class="unavailable section-head">
+          <span class="chapter">R:</span
+          ><span>References and Resources</span>
+        </li>
+        <li class="">
+          <span class="chapter">R:</span
+          ><a
+            href="/tips-and-tricks/"
+            title="The Big List of three.js Tips and Tricks!"
+            >The Big List of three.js Tips and Tricks!</a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<nav class="side-menu right-menu">
+  <h2>
+    <a href="/">
+      <img
+        alt="Discover three.js logo"
+        width="100%"
+        src="/static/images/logo/banner_trans_512.png"
+      />
+    </a>
+  </h2>
+  <ul class="links" style="text-align: center">
+    <li><a href="/book/contents/">Table Of Contents</a></li>
+    <li><a href="/tips-and-tricks/">Tips and Tricks</a></li>
+
+    <li style="margin: auto">
+      <a href="/#mailing-list-signup" class="internal-link"
+        >Stay up to date - sign up to the mailing list!</a
+      >
+    </li>
+  </ul>
+</nav><style>
+  @font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Open Sans Regular"), local("OpenSans-Regular"),
+      url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0b.woff2)
+        format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "Varela Round";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Varela Round Regular"), local("VarelaRound-Regular"),
+      url(https://fonts.gstatic.com/s/varelaround/v12/w8gdH283Tvk__Lua32TysjIfp8uP.woff2)
+        format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "Fira Code";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2)
+      format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style></body>
+</html>

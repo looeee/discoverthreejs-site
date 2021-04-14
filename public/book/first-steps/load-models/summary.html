@@ -1,2 +1,1581 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <title>Load 3D Models in glTF Format | Discover three.js</title><meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <h1>Load 3D Models in glTF Format</h1>
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="ROBOTS" content="INDEX, FOLLOW" />
+
+<meta name="application-name" content="Discover three.js" />
+
+<meta itemprop="name" content="Discover three.js" />
+
+<meta property="og:title" content="How to Use This Book | Discover three.js" />
+<meta name="twitter:title" content="How to Use This Book | Discover three.js" />
+
+<meta name="description" content="No book is complete without references! Lots of resources to continue your learning in the amazing world of 3D graphics here" />
+<meta property="og:description" content="No book is complete without references! Lots of resources to continue your learning in the amazing world of 3D graphics here" />
+<meta name="twitter:description" content="No book is complete without references! Lots of resources to continue your learning in the amazing world of 3D graphics here" />
+
+<meta
+  itemprop="keywords"
+  content="threejs webgl opengl fbx gltf khronos webvr vr webdev design cg graphics animation javascript esnext es6 education tutorials blog ebook node npm"
+/>
+
+<meta property="og:site_name" content="Discover three.js" />
+<meta property="og:type" content="book" />
+<meta property="og:url" content="https://discoverthreejs.com/" />
+<meta
+  property="og:image"
+  content="https://discoverthreejs.com/static/images/logo.png"
+/>
+<meta
+  property="twitter:image"
+  content="https://discoverthreejs.com/static/images/logo.png"
+/>
+<meta name="twitter:creator" content="@lewy_blue" />
+<meta name="twitter:site" content="@lewy_blue" />
+<meta name="twitter:card" content="TODO" />
+<meta name="twitter:image:width" content="1024" />
+<meta name="twitter:image:height" content="1024" />
+
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="msapplication-TileColor" content="#00aba9" />
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=43" /><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "image": "https://discoverthreejs.com/static/images/logo.png",
+    "mainEntity": {
+      "@type": "Book",
+      "author": {
+        "@type": "Person",
+        "name": "Lewy Blue",
+        "jobTitle": "Author",
+        "url": "https://twitter.com/lewy_blue"
+      },
+      "about": "",
+      "copyrightHolder": "https://discoverthreejs.com",
+      "copyrightYear": "2021",
+      "bookFormat": "http://schema.org/EBook",
+      "datePublished": "2018-10-01",
+      "image": "https://discoverthreejs.com/static/images/logo.png",
+      "inLanguage": "English",
+      "name": "Discover three.js",
+      "genre": "Education",
+      "keywords": "threejs webgl animation javascript es6 education tutorials blog ebook",
+      "publisher": {
+        "@type": "Organization",
+        "name": "https://discoverthreejs.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://discoverthreejs.com/static/images/logo.png"
+        }
+      }
+    }
+  }
+</script><link
+      rel="canonical"
+      href="https://discoverthreejs.com/book/introduction/about-the-book/"
+    />
+
+    <link rel="shortcut icon" type="image/png" href="/favicon.ico?v=43" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-touch-icon.png?v=43"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon-16x16.png?v=43"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon-32x32.png?v=43"
+    />
+
+    <link rel="manifest" href="/site.json?v=43" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=43" color="#5bbad5" />
+<style>
+  .loading-page {
+    display: none;
+  }
+</style>
+
+<link href="/static/css/chapters.min.css?v=43" rel="stylesheet" />
+
+<noscript>
+  <style>
+    .loading-page {
+      display: block;
+    }
+  </style>
+  <link href="/static/css/noscript.min.css?v=43" rel="stylesheet" />
+</noscript>    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <script type="module">
+      console.log("TEST")
+      const x =  false ;
+      console.log('x: ', x);
+
+      import { setupChapterEarly } from "/static/js/chapter.early.js";
+      setupChapterEarly();
+
+      window.addEventListener('load', async () => {
+        const { setupChapterLate } = await import(
+          "/static/js/chapter.late.js"
+        );
+        setupChapterLate();
+
+        const { setupIDE } = await import(
+          "/static/js/ide.js"
+        );
+
+        const ideConfig = {
+
+          showIDE:  true ,
+          IDE: {
+            fullScreen: false,
+            container: '#ide-wrapper',
+            serverDirectory: 'static\/examples',
+            stripDirectory: 'worlds\/first-steps\/load-models\/',
+            closedFolders: '[\u0022systems\u0022,\u0022styles\u0022,\u0022vendor\u0022]'
+              .replace(/[\s\'\[\]']+/g, '')
+              .split(','),
+            comparisonMode: 'true',
+            files: '[\u0022assets\/models\/Flamingo.glb\u0022,\u0022assets\/models\/Parrot.glb\u0022,\u0022assets\/models\/Stork.glb\u0022,\u0022worlds\/first-steps\/load-models\/src\/World\/components\/birds\/birds.start.js\u0022,\u0022worlds\/first-steps\/load-models\/src\/World\/components\/birds\/birds.final.js\u0022,\u0022worlds\/first-steps\/load-models\/src\/World\/components\/birds\/setupModel.start.js\u0022,\u0022worlds\/first-steps\/load-models\/src\/World\/components\/birds\/setupModel.final.js\u0022,\u0022worlds\/first-steps\/load-models\/src\/World\/components\/camera.js\u0022,\u0022worlds\/first-steps\/load-models\/src\/World\/components\/lights.js\u0022,\u0022worlds\/first-steps\/load-models\/src\/World\/components\/scene.js\u0022,\u0022worlds\/first-steps\/load-models\/src\/World\/systems\/controls.js\u0022,\u0022worlds\/first-steps\/load-models\/src\/World\/systems\/renderer.js\u0022,\u0022worlds\/first-steps\/load-models\/src\/World\/systems\/Resizer.js\u0022,\u0022worlds\/first-steps\/load-models\/src\/World\/systems\/Loop.js\u0022,\u0022worlds\/first-steps\/load-models\/src\/World\/World.start.js\u0022,\u0022worlds\/first-steps\/load-models\/src\/World\/World.final.js\u0022,\u0022worlds\/first-steps\/load-models\/src\/main.start.js\u0022,\u0022worlds\/first-steps\/load-models\/src\/main.final.js\u0022,\u0022styles\/main.css\u0022,\u0022vendor\/three\/build\/three.module.js\u0022,\u0022vendor\/three\/examples\/jsm\/controls\/OrbitControls.js\u0022,\u0022vendor\/three\/examples\/jsm\/loaders\/GLTFLoader.js\u0022,\u0022worlds\/first-steps\/load-models\/index.html\u0022]'
+              .replace(/[\s\'\[\]']+/g, '')
+              .split(','),
+            startFiles: 'null'
+              .replace(/[\s\'\[\]']+/g, '')
+              .split(','),
+            finalFiles: 'null'
+              .replace(/[\s\'\[\]']+/g, '')
+              .split(','),
+            entry: 'index.html',
+            activeDocument: 'src\/World\/components\/birds\/birds.js',
+            switchImportsAllowed:
+              'true',
+          },
+        }
+
+        console.log('ideConfig: ', ideConfig);
+        setupIDE(ideConfig);
+      });
+    </script>
+
+  </head>
+  <body class="loading-page"><nav class="top-nav">
+  <div class="nav-background"></div>
+
+  <div class="icon-group left">
+    <input type="checkbox" id="left-menu-toggle" class="hidden-input" />
+    <label
+      for="left-menu-toggle"
+      class="control-elem"
+      title="Table Of Contents"
+    >
+      <span class="open-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"
+          />
+        </svg>
+      </span>
+      <span class="close-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 352 512"
+        >
+          <path
+            fill="currentColor"
+            d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+          />
+        </svg>
+      </span>
+    </label>
+
+    <input
+      type="checkbox"
+      id="toggle-ide"
+      class="hidden-input ide-toggle"
+    />
+    <label
+      for="toggle-ide"
+      class="control-elem ide-control hide"
+      title="Show/Hide IDE"
+    >
+      <span class="on-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64V160h160v256zm224 0H288V160h160v256z"
+          />
+        </svg>
+      </span>
+      <span class="off-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64V160h160v256zm224 0H288V160h160v256z"
+          />
+        </svg>
+      </span>
+    </label>
+  </div>
+
+  <div class="icon-group center">
+    <a
+      href="/book/introduction/"
+      title="Welcome to Discover three.js!"
+      class="control-elem previous"
+    >
+      <svg
+        class="icon"
+        role="img"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512"
+      >
+        <path
+          fill="currentColor"
+          d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+        />
+      </svg>
+    </a>
+    <a
+      href="/book/introduction/prerequisites/"
+      class="control-elem next"
+      title="What Do You Need to Run a three.js App?"
+    >
+      <svg
+        class="icon"
+        role="img"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512"
+      >
+        <path
+          fill="currentColor"
+          d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+        />
+      </svg>
+    </a>
+  </div>
+
+  <div class="icon-group right">
+    <input type="checkbox" id="right-menu-toggle" class="hidden-input" />
+    <label for="right-menu-toggle" class="control-elem" title="Main Menu">
+      <span class="open-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+          />
+        </svg>
+      </span>
+      <span class="close-close hide">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 352 512"
+        >
+          <path
+            fill="currentColor"
+            d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+          />
+        </svg>
+      </span>
+    </label>
+  </div>
+</nav><div class="wrapper orientation-auto">
+      <main class="panel animate">
+        <div class="scroller">
+          <div class="content">
+            
+              <div class="chapter-info">Word Count:3537, reading time: ~17minutes</div>
+            
+
+            <h1 id="load-3d-models-in-gltf-format">Load 3D Models in glTF Format</h1>
+
+
+
+
+
+
+
+<figure id="scene-921647853" class="inline-scene loading-dots round"></figure>
+
+<script type="module">
+  import init from "/static/examples/worlds/inline-scenes/first-steps/birds-animated.js";
+  init("#scene-921647853");
+</script>
+
+<p>In the last chapter, we created a simple toy train model using some of the built-in three.js geometries, and it quickly became clear that it would be hard to build anything complex or organic using just these. To create beautiful 3D models, a sophisticated <a href="https://en.wikipedia.org/wiki/3D_modeling" target="_blank" rel="noopener noreferrer">modeling program</a> is required. You can use three.js to build any kind of 3D application, however, building a modeling app from scratch would be a huge amount of work. A much simpler solution is to use an existing program and export your work for use in three.js&hellip;  or, cheat, and download any of the millions of amazing models and other scene assets that are available for free in many places around the web.</p>
+<p>In this chapter, we&rsquo;ll show you how to load some models that were created in <a href="https://www.blender.org/" target="_blank" rel="noopener noreferrer">Blender</a>, an open-source 3D graphics application that can be used for modeling, scene building, material creation, animation authoring, and more. Once you have created a model in Blender, you can export your work using a 3D format such as glTF, then use the <a href="https://threejs.org/docs/#examples/en/loaders/GLTFLoader" target="_blank" rel="noopener noreferrer"><code>GLTFLoader</code> plugin</a> to bring the model into three.js.</p>
+<h2 id="the-best-way-to-send-3d-assets-over-the-web-gltf">The Best Way to Send 3D Assets Over the Web: glTF</h2>
+<p>There have been many attempts at creating a standard 3D <strong>asset exchange format</strong> over the last thirty years or so. <a href="https://threejs.org/examples/webgl_loader_fbx.html" target="_blank" rel="noopener noreferrer">FBX</a>, <a href="https://threejs.org/examples/#webgl_loader_obj_mtl" target="_blank" rel="noopener noreferrer">OBJ (Wavefront)</a> and <a href="https://threejs.org/examples/?q=collada#webgl_loader_collada_skinning" target="_blank" rel="noopener noreferrer">DAE (Collada)</a> formats were the most popular of these until recently, although they all have problems that prevented their widespread adoption. For example, OBJ doesn&rsquo;t support animation, FBX is a closed format that belongs to Autodesk, and the Collada spec is overly complex, resulting in large files that are difficult to load.</p>
+<p>However, recently, a newcomer called <strong>glTF</strong> has become the de facto standard format for exchanging 3D assets on the web. <a href="https://www.khronos.org/gltf/" target="_blank" rel="noopener noreferrer">glTF</a> (<strong>GL Transmission Format</strong>), sometimes referred to as the <em>JPEG of 3D</em>, was created by the <a href="https://www.khronos.org/" target="_blank" rel="noopener noreferrer">Kronos Group</a>, the same people who are in charge of WebGL, OpenGL, and a whole host of other graphics APIs. Originally released in 2017, glTF is now the best format for exchanging 3D assets on the web, and in many other fields. <strong>In this book, we&rsquo;ll always use glTF, and if possible, you should do the same</strong>. It&rsquo;s designed for sharing models on the web, so the file size is as small as possible and your models will load quickly.</p>
+<p>However, since glTF is relatively new, your favorite application might not have an exporter yet. In that case, you can convert your models to glTF before using them, or use another loader such as the <code>FBXLoader</code> or <code>OBJLoader</code>. All three.js loaders work the same way, so if you do need to use another loader, everything from this chapter will still apply, with only minor differences.</p>
+<blockquote>
+<p>Whenever we mention glTF, we mean <em>glTF Version 2</em>. The original <em>glTF Version 1</em> never found widespread use and is no longer supported by three.js</p>
+</blockquote>
+<p>glTF files can contain models, animations, geometries, materials, lights, cameras, or even entire scenes. This means you can create an entire scene in an external program then load it into three.js.</p>
+<figure class="">
+  <iframe title="This entire scene fits in a single `.glb` file." width="100%" height="500px" src="https://threejs.org/examples/webgl_animation_keyframes.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe><figcaption>This entire scene fits in a single <em><strong>.glb</strong></em> file.</figcaption></figure>
+<h3 id="types-of-gltf-files">Types of glTF Files</h3>
+<p>glTF files come in standard and binary form. These have different extensions:</p>
+<ul>
+<li><strong>Standard <em>.gltf</em> files are uncompressed and may come with an extra <em>.bin</em> data file.</strong></li>
+<li><strong>Binary <em>.glb</em> files include all data in one single file.</strong></li>
+</ul>
+<p>Both standard and binary glTF files may contain textures embedded in the file or may reference external textures. Since binary <em><strong>.glb</strong></em> files are considerably smaller, it&rsquo;s best to use this type. On the other hand, uncompressed <em><strong>.gltf</strong></em> are easily readable in a text editor, so they may be useful for debugging purposes.</p>
+<h3 id="free-gltf-files-on-the-threejs-repo">Free glTF Files on the three.js Repo</h3>
+<p>There are lots of <a href="https://github.com/mrdoob/three.js/tree/master/examples/models/gltf" target="_blank" rel="noopener noreferrer">free glTF models available on the three.js repo</a>, and amongst these are three simple and beautiful models of a <a href="https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Parrot.glb" target="_blank" rel="noopener noreferrer">parrot</a>, a <a href="https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Flamingo.glb" target="_blank" rel="noopener noreferrer">flamingo</a>, and a <a href="https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Stork.glb" target="_blank" rel="noopener noreferrer">stork</a>, created by the talented people at <a href="http://mirada.com/" target="_blank" rel="noopener noreferrer">mirada.com</a>. These three models are <a href="https://en.wikipedia.org/wiki/Low_poly" target="_blank" rel="noopener noreferrer"><strong>low poly</strong></a>, meaning they&rsquo;ll run on even the most low-power of mobile devices, and they are even animated.</p>
+<p>You can find these three files in the editor, in the <em><strong>assets/models/</strong></em> folder. In this chapter, we&rsquo;ll load <strong><em>Parrot.glb</em></strong>, <strong><em>Flamingo.glb</em></strong>, and <strong><em>Stork.glb</em></strong> and then add the bird-shaped meshes each file contains to our scene. In the next chapter, we&rsquo;ll show you how to play the flying animation that is included with each bird.</p>
+<p>If you&rsquo;re working locally rather than using the inline code editor, <a href="/book/introduction/prerequisites/#a-web-server">you&rsquo;ll need to set up a webserver</a>. Otherwise, due to browser security restrictions, you won&rsquo;t be able to load these files from your hard drive.</p>
+<aside class="notice">
+  
+    <h2 id="asynchronous-javascript">Asynchronous JavaScript</h2>
+<p>Whenever we load a model over the internet, we need to do so in a manner that ensures our app continues to run smoothly while the model is loading, and which can also gracefully handle failure if there is a network error. There are several ways to solve this problem using JavaScript, and there&rsquo;s an entire chapter of the appendices dedicated to this subject.</p>
+<p>In this chapter, we&rsquo;ll use <strong>async functions</strong> to load the models, and we&rsquo;re going to assume that you have at least some familiarity with these. If these are new to you, or you need a refresher, head over to <a href="/book/appendix/asynchronous-javascript/">A.5: Asynchronous JavaScript</a>.</p>
+
+  
+</aside>
+<h2 id="gltf-loader">The <code>GLTFLoader</code> Plugin</h2>
+<p>To load glTF files, first, you need to add <a href="https://threejs.org/docs/#examples/en/loaders/GLTFLoader" target="_blank" rel="noopener noreferrer">the <code>GLTFLoader</code> plugin</a> to your app. This works the same way as adding the <a href="/book/first-steps/camera-controls/#importing-plugins"><code>OrbitControls</code> plugin</a>. You can find the loader in <a href="https://github.com/mrdoob/three.js/blob/dev/examples/jsm/loaders/GLTFLoader.js" target="_blank" rel="noopener noreferrer"><em><strong>examples/jsm/loaders/GLTFLoader.js</strong></em></a> on the repo, and we have also included this file in the editor. Go ahead and locate the file now.</p>
+<p>Importing and creating an instance of the loader works like this:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Import and create an instance of the <code>GLTFLoader</code></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import { GLTFLoader } from &#39;three/examples/jsm/loaders/GLTFLoader.js&#39;
+
+const loader = new GLTFLoader();
+</code>
+  </pre>
+</section>
+
+<p>You can use one instance of the loader to load any number of glTF files.</p>
+<h3 id="the-load-and-loadasync-methods">The <code>.load</code> and <code>.loadAsync</code> Methods</h3>
+<p>All three.js loaders have two methods for loading files: the old callback-based <a href="https://threejs.org/docs/#examples/en/loaders/GLTFLoader.load" target="_blank" rel="noopener noreferrer"><code>.load</code></a> method, and the newer Promise based <code>.loadAsync</code> method. Again, refer to chapter <a href="/book/appendix/asynchronous-javascript/">A.5</a> where we cover the difference between these two approaches in detail. Promises allow us to use async functions, which in turn results in much cleaner code, so throughout this book, we will always use <code>.loadAsync</code>.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><code>GLTFLoader.loadAsync</code></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const loader = new GLTFLoader();
+
+const loadedData = await loader.loadAsync(&#39;path/to/yourModel.glb&#39;);
+</code>
+  </pre>
+</section>
+
+<h2 id="set-up-_mainjs_-and-_worldjs_-to-handle-asyncawait">Set Up <em><strong>Main.js</strong></em> and <em><strong>World.js</strong></em> to Handle Async/Await</h2>
+<p>The <code>await</code> keyword means &ldquo;wait here until the model has loaded&rdquo;. If you have previously dealt with loading models using callbacks or Promises, then <code>await</code> will seem almost magical in its simplicity. However, we need to make a few adjustments to our code before we can use it since we can only use <code>await</code> inside a function that has been marked as <code>async</code>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">You can only use <code>await</code> inside an <code>async</code> function</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+async function loadingSuccess() {
+  // inside an async function: OK!
+  await loader.loadAsync(&#39;yourModel.glb&#39;);
+}
+
+function loadingFail() {
+  // not inside an async function: ERROR!
+  await loader.loadAsync(&#39;yourModel.glb&#39;);
+}
+</code>
+  </pre>
+</section>
+
+<p>Another issue is that we cannot mark a constructor as async. A common solution to this is to create a separate <code>.init</code> method.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The constructor of a class cannot be <code>async</code></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+class Foobazzer {
+  constructor() {
+    // constructor cannot be async: ERROR!
+    await loader.loadAsync(&#39;yourModel.glb&#39;);
+  }
+
+  async init() {
+    // inside an async function: OK!
+    await loader.loadAsync(&#39;yourModel.glb&#39;)
+  }
+}
+</code>
+  </pre>
+</section>
+
+<p>This way, the constructor can handle the synchronous setup of the class, as usual, and then the init method will take over for asynchronous setup. We will use this approach, so we need to create a new <code>World.init</code> method.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">We will create a new <code>World.init</code> method to handle asynchronous setup</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+class World {
+  constructor() {
+    // synchronous setup here
+    // create camera, renderer, scene, etc.
+  }
+
+  async init() {
+    // asynchronous setup here
+    // load bird models
+  }
+}
+
+</code>
+  </pre>
+</section>
+
+<p>Go ahead and add an empty <code>.init</code> method to World now, and make sure you mark it <code>async</code>. Splitting the setup into synchronous and asynchronous stages like this gives us full control over the setup of our app. In the synchronous stage, we will create everything that doesn&rsquo;t rely on loaded assets, and in the asynchronous stage, we&rsquo;ll create everything that does.</p>
+<h3 id="mark-the-main-function-as-async">Mark the <code>main</code> Function as Async</h3>
+<p>Over in <em><strong>main.js</strong></em>, first, we must also mark the main function as async. This is required so that we can call the async <code>World.init</code> method.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: mark main as <code>async</code></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="3"
+    data-line="3"
+    data-line-offset="3"
+    >
+    <code class="highlight language-js match-braces">async function main() {
+</code>
+  </pre>
+</section>
+
+<p>Now we can call both stages of setting up the World app. First, the synchronous constructor, as usual, then the new <code>.init</code> method to handle asynchronous tasks.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: call both synchronous and asynchronous stages of World setup</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="3"
+    data-line="8,11"
+    data-line-offset="3"
+    >
+    <code class="highlight language-js match-braces">async function main() {
+  // Get a reference to the container element
+  const container = document.querySelector(&#39;#scene-container&#39;);
+
+  // create a new world
+  const world = new World(container);
+
+  // complete async tasks
+  await world.init();
+
+  // start the animation loop
+  world.start();
+}
+</code>
+  </pre>
+</section>
+
+<h3 id="catch-errors">Catch Errors</h3>
+<p>No method of loading files is complete unless we can also handle any errors that occur. Errors can be as simple as a typo in the file name, or something more complex like a network error. Fortunately, with async functions, error handling is also simple. At the bottom of <em><strong>main.js</strong></em>, replace this line:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: calling the main() function</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="17"
+    data-line=""
+    data-line-offset="17"
+    >
+    <code class="highlight language-js match-braces">
+main();
+</code>
+  </pre>
+</section>
+
+<p>&hellip; with:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: add a catch method to handle errors</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="17"
+    data-line=""
+    data-line-offset="17"
+    >
+    <code class="highlight language-js match-braces">main().catch((err) =&gt; {
+  console.error(err);
+});
+</code>
+  </pre>
+</section>
+
+<p>Now any errors will be logged to the console. In a real app, you might want to do more sophisticated error handling, such as displaying a message to the user to let them know that something went wrong. However, while we are in development mode, the most important thing is that all errors are logged to the console where we can see them.</p>
+<h2 id="create-the-_birdsjs_-module">Create the <em><strong>birds.js</strong></em> Module</h2>
+<p>Now everything is set up and we can go ahead and load our first model. Open (or create) the <em><strong>components/birds/birds.js</strong></em> module. Start by importing the <code>GLTFLoader</code>, then create an async <code>loadBirds</code> function. Inside the function, create an instance of the loader, and finally, export the function at the bottom of the file:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>birds/birds.js</strong></em>: initial structure</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import { GLTFLoader } from &#39;three/examples/jsm/loaders/GLTFLoader.js&#39;;
+
+async function loadBirds() {
+  const loader = new GLTFLoader();
+}
+
+export { loadBirds };
+</code>
+  </pre>
+</section>
+
+<p>The structure of this new module should be familiar to you since it&rsquo;s the same as nearly <a href="/book/first-steps/world-app/#systems-and-components">every other component we have created so far</a>. The only difference is the <code>async</code> keyword.</p>
+<p>Over in World, update the list of imports:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: import components</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line="1"
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">import { loadBirds } from &#39;./components/birds/birds.js&#39;;
+import { createCamera } from &#39;./components/camera.js&#39;;
+import { createLights } from &#39;./components/lights.js&#39;;
+import { createScene } from &#39;./components/scene.js&#39;;
+</code>
+  </pre>
+</section>
+
+<h3 id="load-the-parrot">Load the Parrot</h3>
+<p>Now, we&rsquo;re ready to load the <em><strong>Parrot.glb</strong></em> file using <code>.loadAsync</code>. Once you have done so, log the loaded data to the console:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>birds.js</strong></em>: load the Parrot</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="3"
+    data-line=""
+    data-line-offset="3"
+    >
+    <code class="highlight language-js match-braces">
+async function loadBirds() {
+  const loader = new GLTFLoader();
+
+  const parrotData = await loader.loadAsync(&#39;/assets/models/Parrot.glb&#39;);
+
+  console.log(&#39;Squaaawk!&#39;, parrotData);
+}
+</code>
+  </pre>
+</section>
+
+<p>Next, call the <code>loadBirds</code> in <code>World.init</code>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: load the birds!</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="36"
+    data-line=""
+    data-line-offset="36"
+    >
+    <code class="highlight language-js match-braces">
+async init() {
+  await loadBirds();
+}
+</code>
+  </pre>
+</section>
+
+<h2 id="returned-gltf-data">Data Returned by the <code>GLTFLoader</code></h2>
+<p>We need to take a deeper look at the data we have just loaded before we can add the model to our scene, so for now we&rsquo;ve simply logged the data to the console. Open up the browser console (press F12). You should see the word <em>Squaaawk!</em> followed by an Object containing the loaded data. This Object contains meshes, animations, cameras, and other data from the file:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Data return by the <code>GLTFLoader</code></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+{
+  animations: [AnimationClip]
+  asset: {generator: &#34;Khronos Blender glTF 2.0 I/O&#34;, version: &#34;2.0&#34;}
+  cameras: []
+  parser: GLTFParser {json: {…}, extensions: {…}, options: {…}, cache: {…}, primitiveCache: {…}, …}
+  scene: Scene {uuid: &#34;1CF93318-696B-4411-B672-4C12C46DF7E1&#34;, name: &#34;Scene&#34;, type: &#34;Scene&#34;, parent: null, children: Array(0), …}
+  scenes: [Scene]
+  userData: {}
+  __proto__: Object
+}
+</code>
+  </pre>
+</section>
+
+<ul>
+<li><strong><code>gltfData.animations</code></strong> is an array of animation clips. Here, there&rsquo;s a flying animation. We&rsquo;ll make use of this <a href="/book/first-steps/animation-system/">in the next chapter</a>.</li>
+<li><strong><code>gltfData.assets</code></strong> contains metadata showing this glTF file was created using the <a href="https://www.blender.org/" target="_blank" rel="noopener noreferrer">Blender</a> exporter.</li>
+<li><strong><code>gltfData.cameras</code></strong> is an array of cameras. This file doesn&rsquo;t contain any cameras, so the array is empty.</li>
+<li><strong><code>gltfData.parser</code></strong> contains technical details about the <code>GLTFLoader</code>.</li>
+<li><strong><code>gltfData.scene</code></strong> is a <a href="/book/first-steps/organizing-with-group/#hello-group"><code>Group</code></a> containing any meshes from the file. <strong>This is where we&rsquo;ll find the parrot model.</strong></li>
+<li><strong><code>gltfData.scenes</code></strong>: The glTF format supports storing multiple scenes in a single file. In practice, this feature is rarely used.</li>
+<li><strong><code>gltfData.userData</code></strong> may contain additional non-standard data.</li>
+</ul>
+<p><em><code>__proto__</code> is a standard property that every JavaScript object has, you can ignore that.</em></p>
+<p>Usually, all you need is <strong><code>.animations</code></strong>, <strong><code>.cameras</code></strong>, and <strong><code>.scene</code></strong> (not <code>.scenes</code>!) and you can safely ignore everything else.</p>
+<h2 id="process-the-loaded-data">Process the Loaded Data</h2>
+<p>Extracting data from a glTF file usually follows a predictable pattern, especially if the file contains a single animated model, as these three files do. This means we can create a <code>setupModel</code> function and then run it on each of the three files. We&rsquo;ll do this in a separate module. Open or create the <em><strong>birds/setupModel.js</strong></em> module, and create the function, following the now-familiar pattern:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>birds/setupModel.js</strong></em>: initial structure</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+function setupModel(data) {}
+
+export { setupModel };
+</code>
+  </pre>
+</section>
+
+<p>The idea of this function is that we can pass in the loaded data and get back the bird model, ready to be added to the scene. Next, import this new module into <em><strong>birds.js</strong></em>, then pass in the loaded data. Finally, return the results for use within World.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>birds.js</strong></em>: process loaded data</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line="3,12,14"
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import { GLTFLoader } from &#39;three/examples/jsm/loaders/GLTFLoader.js&#39;;
+
+import { setupModel } from &#39;./setupModel.js&#39;;
+
+async function loadBirds() {
+  const loader = new GLTFLoader();
+
+  const parrotData = await loader.loadAsync(&#39;/assets/models/Parrot.glb&#39;);
+
+  console.log(&#39;Squaaawk!&#39;, parrotData);
+
+  const parrot = setupModel(parrotData);
+
+  return { parrot }
+}
+</code>
+  </pre>
+</section>
+
+<h3 id="extract-the-mesh-from-the-loaded-data">Extract the Mesh from the Loaded Data</h3>
+<p>At this point, we have the unprocessed loaded data within the <code>setupModel</code> function. The next step is to extract the model, and then do any processing to prepare it for use. The amount of work we need to do here depends on the model, and what we want to do with it. Here, all we need to do is extract the mesh, but in the next chapter, we&rsquo;ll have a bit more work to do as we connect the animation clip to the mesh.</p>
+<p>Look at the loaded data in the console again, and expand the <code>gltfData.scene</code>. This a <a href="/book/first-steps/organizing-with-group/#hello-group"><code>Group</code></a>, and any meshes that are in the file will be <a href="/book/first-steps/transformations/#the-scene-graph">children of the group</a>. These can be accessed using the <a href="/book/first-steps/transformations/#accessing-a-scene-objects-children"><code>group.children</code></a> array. If you look inside there, you&rsquo;ll see that <code>glTF.scene.children</code> has only one object inside it, so that must be our parrot model.</p>
+<p>Using this knowledge, we can finish the <code>setupModel</code> function:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>setupModel.js</strong></em>: extract the model from the loaded data</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line="2,4"
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">function setupModel(data) {
+  const model = data.scene.children[0];
+
+  return model;
+}
+</code>
+  </pre>
+</section>
+
+<p><em>Note A: if you click the toggle to complete the scene in the editor, then view the <code>gltfData.scene.children</code> array in the console, it will be empty. This is because, by the time you look at it, the mesh has already been removed and added to the scene.</em></p>
+<p><em>Note B: you could also just add the <code>gltf.scene</code> to your scene since it&rsquo;s a group. That would add an additional node to your scene graph but everything will still work. However, it&rsquo;s best practice to keep your scene graph as simple as possible, since every node means additional calculations are required to render the scene.</em></p>
+<h3 id="add-the-mesh-to-the-scene">Add the Mesh to the Scene</h3>
+<p>Over in World, <code>loadBirds</code> now returns the parrot mesh and you can add it to the scene:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: add the mesh to the scene</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="34"
+    data-line="35,37"
+    data-line-offset="34"
+    >
+    <code class="highlight language-js match-braces">
+  async init() {
+    const { parrot } = await loadBirds();
+
+    scene.add(parrot);
+  }
+</code>
+  </pre>
+</section>
+
+<h2 id="load-the-other-two-birds">Load the Other Two Birds</h2>
+<p>You can use a single instance of the <code>GLTFLoader</code> to load any number of files. When performing multiple asynchronous operations with async functions, you should (in most cases) use <code>Promise.all</code>. We go into the reason for this in more detail <a href="/book/appendix/asynchronous-javascript/#loading-multiple-files-with-async-functions-first-attempt">in the appendix</a>, but here&rsquo;s the short version.</p>
+<p>First, here&rsquo;s the obvious way of loading the other two files:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Load multiple glTF files, the WRONG way</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// Don&#39;t do this!
+const parrotData = await loader.loadAsync(&#39;/assets/models/Parrot.glb&#39;);
+const flamingoData = await loader.loadAsync(&#39;/assets/models/Flamingo.glb&#39;);
+const storkData = await loader.loadAsync(&#39;/assets/models/Stork.glb&#39;);
+
+const parrot = setupModel(parrotData);
+const flamingo = setupModel(flamingoData);
+const stork = setupModel(storkData);
+</code>
+  </pre>
+</section>
+
+<p>There&rsquo;s a problem with this approach. <a href="#set-up-main-js-and-world-js-to-handle-async-await">As we stated above</a>, <code>await</code> means <em>wait here until the file has loaded</em>. This means the app will wait until the parrot has fully loaded, <em>then</em> start to load the flamingo, wait until <em>that</em> has fully loaded, and <em>finally</em> start to load the stork. Using this approach, loading will take nearly three times longer than it should.</p>
+<p>Instead, we want all three files to load at the same time, and the simplest way of doing this is to use <code>Promise.all</code>.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>birds.js</strong></em>: load the other two file using <code>Promise.all</code></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="8"
+    data-line=""
+    data-line-offset="8"
+    >
+    <code class="highlight language-js match-braces">
+
+const [parrotData, flamingoData, storkData] = await Promise.all([
+  loader.loadAsync(&#39;/assets/models/Parrot.glb&#39;),
+  loader.loadAsync(&#39;/assets/models/Flamingo.glb&#39;),
+  loader.loadAsync(&#39;/assets/models/Stork.glb&#39;),
+]);
+
+</code>
+  </pre>
+</section>
+
+<p>Then we can process each file&rsquo;s loaded data using the <code>setupModel</code> function. Once we do that, here&rsquo;s our (nearly complete) <code>loadModels</code> function:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>birds.js</strong></em>: load and then process multiple glTF files</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="5"
+    data-line="8-12,17-18,22,23"
+    data-line-offset="5"
+    >
+    <code class="highlight language-js match-braces">
+async function loadBirds() {
+  const loader = new GLTFLoader();
+
+  const [parrotData, flamingoData, storkData] = await Promise.all([
+    loader.loadAsync(&#39;/assets/models/Parrot.glb&#39;),
+    loader.loadAsync(&#39;/assets/models/Flamingo.glb&#39;),
+    loader.loadAsync(&#39;/assets/models/Stork.glb&#39;),
+  ]);
+
+  console.log(&#39;Squaaawk!&#39;, parrotData);
+
+  const parrot = setupModel(parrotData);
+  const flamingo = setupModel(flamingoData);
+  const stork = setupModel(storkData);
+
+  return {
+    parrot,
+    flamingo,
+    stork,
+  };
+}
+</code>
+  </pre>
+</section>
+
+<p>Over in World, you now have all three models. Add them to your scene:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: add the second two birds to the scene</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="36"
+    data-line=""
+    data-line-offset="36"
+    >
+    <code class="highlight language-js match-braces">
+async init() {
+  const { parrot, flamingo, stork } = await loadBirds();
+
+  scene.add(parrot, flamingo, stork);
+}
+</code>
+  </pre>
+</section>
+
+<p>Great! Well&hellip;</p>
+
+
+
+
+
+
+
+<figure id="scene-196423875" class="inline-scene loading-dots "></figure>
+
+<script type="module">
+  import init from "/static/examples/worlds/inline-scenes/first-steps/birds-jumbled.js";
+  init("#scene-196423875");
+</script>
+
+<p>Just like visiting the zoo!</p>
+<h3 id="move-the-birds-into-position">Move the Birds into Position</h3>
+<p>It is possible for models loaded from a glTF file to have a position already specified, but that&rsquo;s not the case here, so all three models start at the point $(0,0,0)$, all jumbled together on top of each other. We&rsquo;ll adjust the position of each bird to make it look like they are flying in formation:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>birds.js</strong></em>: move the birds into position</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="16"
+    data-line="17,20,23"
+    data-line-offset="16"
+    >
+    <code class="highlight language-js match-braces">  const parrot = setupModel(parrotData);
+  parrot.position.set(0, 0, 2.5);
+
+  const flamingo = setupModel(flamingoData);
+  flamingo.position.set(7.5, 0, -10);
+
+  const stork = setupModel(storkData);
+  stork.position.set(0, -2.5, -10);
+</code>
+  </pre>
+</section>
+
+<h3 id="final-_birdsjs_-module">Final <em><strong>birds.js</strong></em> Module</h3>
+<p>The <em><strong>birds.js</strong></em> module is now complete. Here&rsquo;s the final code:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>birds.js</strong></em>: final code</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">import { GLTFLoader } from &#39;three/examples/jsm/loaders/GLTFLoader.js&#39;;
+
+import { setupModel } from &#39;./setupModel.js&#39;;
+
+async function loadBirds() {
+  const loader = new GLTFLoader();
+
+  const [parrotData, flamingoData, storkData] = await Promise.all([
+    loader.loadAsync(&#39;/assets/models/Parrot.glb&#39;),
+    loader.loadAsync(&#39;/assets/models/Flamingo.glb&#39;),
+    loader.loadAsync(&#39;/assets/models/Stork.glb&#39;),
+  ]);
+
+  console.log(&#39;Squaaawk!&#39;, parrotData);
+
+  const parrot = setupModel(parrotData);
+  parrot.position.set(0, 0, 2.5);
+
+  const flamingo = setupModel(flamingoData);
+  flamingo.position.set(7.5, 0, -10);
+
+  const stork = setupModel(storkData);
+  stork.position.set(0, -2.5, -10);
+
+  return {
+    parrot,
+    flamingo,
+    stork,
+  };
+}
+
+export { loadBirds };
+</code>
+  </pre>
+</section>
+
+<h3 id="center-the-camera-on-the-parrot">Center the Camera on the Parrot</h3>
+<p>The very last thing we&rsquo;ll do is <a href="/book/first-steps/camera-controls/#manually-set-the-target">adjust the <code>OrbitControls</code> target</a>. Currently, this is in its default position, the center of the scene. Now that we have moved the birds into formation, this ends up being somewhere around the tail of the parrot. It would look better if the camera focused on the center of the bird rather than its tail. We can easily set this up by copying the <code>parrot.position</code> into <code>controls.target</code>. However, to do so, we need to access <code>controls</code> within <code>.init</code>, so first, let&rsquo;s convert it to a module-scoped variable.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: make <code>controls</code> a module scoped variable</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="11"
+    data-line="12"
+    data-line-offset="11"
+    >
+    <code class="highlight language-js match-braces">let camera;
+let controls;
+let renderer;
+let scene;
+let loop;
+</code>
+  </pre>
+</section>
+
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: make <code>controls</code> a module scoped variable</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="18"
+    data-line="24"
+    data-line-offset="18"
+    >
+    <code class="highlight language-js match-braces">  constructor(container) {
+    camera = createCamera();
+    renderer = createRenderer();
+    scene = createScene();
+    loop = new Loop(camera, scene, renderer);
+    container.append(renderer.domElement);
+    controls = createControls(camera, renderer.domElement);
+
+    const { ambientLight, mainLight } = createLights();
+
+    loop.updatables.push(controls);
+    scene.add(ambientLight, mainLight);
+
+    const resizer = new Resizer(container, camera, renderer);
+  }
+</code>
+  </pre>
+</section>
+
+<p>Now, the controls are accessible from <code>.init</code> and we can move the target to the center of the parrot.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: target the parrot with the camera</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="34"
+    data-line="38"
+    data-line-offset="34"
+    >
+    <code class="highlight language-js match-braces">  async init() {
+    const { parrot, flamingo, stork } = await loadBirds();
+
+    // move the target to the center of the front bird
+    controls.target.copy(parrot.position);
+
+    scene.add(parrot, flamingo, stork);
+  }
+</code>
+  </pre>
+</section>
+
+
+
+
+
+
+
+
+<figure id="scene-632978415" class="inline-scene loading-dots "></figure>
+
+<script type="module">
+  import init from "/static/examples/worlds/inline-scenes/first-steps/birds-still.js";
+  init("#scene-632978415");
+</script>
+
+<p>Next up, we&rsquo;ll introduce the three.js animation system and show you how to play the animation clips that were loaded alongside the bird models.</p>
+<h2 id="challenges">Challenges</h2>
+<aside class="success">
+  
+    <h3 id="easy">Easy</h3>
+<ol>
+<li>
+<p>Look at that parrot hogging the limelight! Switch around the bird&rsquo;s positions to give the stork and the flamingo each a turn in leading the flock.</p>
+</li>
+<li>
+<p>Alternatively, leave the birds in place and try making the <code>controls.target</code> focus on one of the other two birds instead of the parrot.</p>
+</li>
+</ol>
+
+  
+</aside>
+<aside class="notice">
+  
+    <h3 id="medium">Medium</h3>
+<ol>
+<li>Add a <code>&lt;button&gt;</code> element with the text <em>Switch Focus</em>. Whenever you click this button, the camera should focus on the next bird. You can implement this however you like, but, if you want to do it in keeping with our work so far, you should set up the buttons inside <em><strong>main.js</strong></em> and then <a href="/book/first-steps/world-app/#the-world-interface">expand the World class interface</a> with a method to move focus onto the next bird. You can call this method <code>World.focusNext</code> or something similar.</li>
+</ol>
+
+  
+</aside>
+<aside class="warning">
+  
+    <h3 id="hard">Hard</h3>
+<ol>
+<li>
+<p>Once you have implemented the button above, you&rsquo;ll have three camera views, one for each bird. Add a fourth view which is a zoomed-out overview of the scene that allows you to see all three birds. For this fourth view, you may need to adjust the <code>camera.position</code> as well as the <code>controls.target</code>.</p>
+</li>
+<li>
+<p>Now, make the camera smoothly animate from one viewpoint to the next. You will have to animate the camera.position and the controls.target at the same time. The best place to do this is within the <code>controls.tick</code> method.</p>
+</li>
+</ol>
+
+  
+</aside>
+
+          </div>
+        </div>
+      </main>
+    </div><div class="side-menu left-menu">
+  <div class="icons">
+    <input type="checkbox" id="invert-colors-toggle" class="hidden-input" />
+    <label
+      for="invert-colors-toggle"
+      class="control-elem"
+      title="Day/Night Theme"
+    >
+      <span class="day-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"
+          />
+        </svg>
+      </span>
+      <span class="night-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"
+          />
+        </svg>
+      </span>
+    </label>
+
+    <input type="checkbox" id="orientation-toggle" class="hidden-input" />
+    <label
+      for="orientation-toggle"
+      class="control-elem hide"
+      title="Orientation lock: auto/portrait/landscape"
+    >
+      <span class="auto-icon hide">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M440.65 12.57l4 82.77A247.16 247.16 0 0 0 255.83 8C134.73 8 33.91 94.92 12.29 209.82A12 12 0 0 0 24.09 224h49.05a12 12 0 0 0 11.67-9.26 175.91 175.91 0 0 1 317-56.94l-101.46-4.86a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12H500a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12h-47.37a12 12 0 0 0-11.98 12.57zM255.83 432a175.61 175.61 0 0 1-146-77.8l101.8 4.87a12 12 0 0 0 12.57-12v-47.4a12 12 0 0 0-12-12H12a12 12 0 0 0-12 12V500a12 12 0 0 0 12 12h47.35a12 12 0 0 0 12-12.6l-4.15-82.57A247.17 247.17 0 0 0 255.83 504c121.11 0 221.93-86.92 243.55-201.82a12 12 0 0 0-11.8-14.18h-49.05a12 12 0 0 0-11.67 9.26A175.86 175.86 0 0 1 255.83 432z"
+          />
+        </svg>
+      </span>
+      <span class="portrait-icon hide">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+        >
+          <path
+            fill="currentColor"
+            d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"
+          />
+        </svg>
+      </span>
+      <span class="landscape-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+        >
+          <path
+            fill="currentColor"
+            d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"
+          />
+        </svg>
+      </span>
+    </label>
+  </div>
+
+  <nav class="table-of-contents">
+    <h2><a href="/book/contents/">Table of Contents</a></h2>
+    <div id="main-toc">
+      <ul>
+        <li class="section-head">
+          <span class="chapter">0:</span
+          ><a
+            href="/book/introduction/"
+            title="Welcome to Discover three.js!"
+            >Welcome to Discover three.js!</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">0.1:</span
+          ><a
+            href="/book/introduction/about-the-book/"
+            title="How to Use This Book"
+            >How to Use This Book</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">0.2:</span
+          ><a
+            href="/book/introduction/prerequisites/"
+            title="What Do You Need to Run a three.js App?"
+            >What Do You Need to Run a three.js App?</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">0.3:</span
+          ><a
+            href="/book/introduction/get-help/"
+            title="Welcome to the Community: three.js Around the Web"
+            >Welcome to the Community: three.js Around the Web</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">0.4:</span
+          ><a
+            href="/book/introduction/github-repo/"
+            title="three.js on GitHub - Where the Magic Happens"
+            >three.js on GitHub - Where the Magic Happens</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">0.5:</span
+          ><a
+            href="/book/introduction/get-threejs/"
+            title="How to Include three.js in Your Projects"
+            >How to Include three.js in Your Projects</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">0.7:</span
+          ><a
+            href="/book/introduction/threejs-with-frameworks/"
+            title="Using three.js with React, Vue.js, Angular, Svelte, TypeScript..."
+            >Using three.js with React, Vue.js, Angular, Svelte,
+            TypeScript...</a
+          >
+        </li>
+        <li class="section-head">
+          <span class="chapter">1:</span
+          ><a
+            href="/book/first-steps/"
+            title="Getting Started: Here&#39;s Where the Real Fun Begins!"
+            >Getting Started: Here&#39;s Where the Real Fun Begins!</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.1:</span
+          ><a
+            href="/book/first-steps/app-structure/"
+            title="The Structure of a three.js App"
+            >The Structure of a three.js App</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.2:</span
+          ><a
+            href="/book/first-steps/first-scene/"
+            title="Your First three.js Scene: Hello, Cube!"
+            >Your First three.js Scene: Hello, Cube!</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.3:</span
+          ><a
+            href="/book/first-steps/world-app/"
+            title="Introducing the World App"
+            >Introducing the World App</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.4:</span
+          ><a
+            href="/book/first-steps/physically-based-rendering/"
+            title="Physically Based Rendering and Lighting"
+            >Physically Based Rendering and Lighting</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.5:</span
+          ><a
+            href="/book/first-steps/transformations/"
+            title="Transformations and Coordinate Systems"
+            >Transformations and Coordinate Systems</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.6:</span
+          ><a
+            href="/book/first-steps/responsive-design/"
+            title="Making Our Scenes Responsive (and also Dealing with Jaggies)"
+            >Making Our Scenes Responsive (and also Dealing with Jaggies)</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.7:</span
+          ><a
+            href="/book/first-steps/animation-loop/"
+            title="The Animation Loop"
+            >The Animation Loop</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.8:</span
+          ><a
+            href="/book/first-steps/textures-intro/"
+            title="A Brief Introduction to Texture Mapping"
+            >A Brief Introduction to Texture Mapping</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.9:</span
+          ><a
+            href="/book/first-steps/camera-controls/"
+            title="Extend three.js With a Camera Controls Plugin"
+            >Extend three.js With a Camera Controls Plugin</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.10:</span
+          ><a
+            href="/book/first-steps/ambient-lighting/"
+            title="Ambient Lighting: Illumination from Every Direction"
+            >Ambient Lighting: Illumination from Every Direction</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.11:</span
+          ><a
+            href="/book/first-steps/organizing-with-group/"
+            title="Organizing Your Scenes"
+            >Organizing Your Scenes</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.12:</span
+          ><a
+            href="/book/first-steps/built-in-geometries/"
+            title="The Built-In Geometries"
+            >The Built-In Geometries</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.13:</span
+          ><a
+            href="/book/first-steps/load-models/"
+            title="Load 3D Models in glTF Format"
+            >Load 3D Models in glTF Format</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.14:</span
+          ><a
+            href="/book/first-steps/animation-system/"
+            title="The three.js Animation System"
+            >The three.js Animation System</a
+          >
+        </li>
+        <li class="section-head">
+          <span class="chapter">A:</span
+          ><a href="/book/appendix/" title="Appendices">Appendices</a>
+        </li>
+        <li class="">
+          <span class="chapter">A.1:</span
+          ><a
+            href="/book/appendix/html-and-css-reference/"
+            title="HTML and CSS Used in This Book"
+            >HTML and CSS Used in This Book</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">A.2:</span
+          ><a
+            href="/book/appendix/javascript-reference/"
+            title="JavaScript Reference"
+            >JavaScript Reference</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">A.3:</span
+          ><a
+            href="/book/appendix/dom-api-reference/"
+            title="The Document Object Model and DOM API"
+            >The Document Object Model and DOM API</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">A.4:</span
+          ><a
+            href="/book/appendix/javascript-modules/"
+            title="JavaScript Modules"
+            >JavaScript Modules</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">A.5:</span
+          ><a
+            href="/book/appendix/asynchronous-javascript/"
+            title="Asynchronous JavaScript"
+            >Asynchronous JavaScript</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">B.1:</span
+          ><a
+            href="/book/appendix/threejs-versions/"
+            title="Dealing with Different three.js Versions"
+            >Dealing with Different three.js Versions</a
+          >
+        </li>
+        <li class="unavailable section-head">
+          <span class="chapter">R:</span
+          ><span>References and Resources</span>
+        </li>
+        <li class="">
+          <span class="chapter">R:</span
+          ><a
+            href="/tips-and-tricks/"
+            title="The Big List of three.js Tips and Tricks!"
+            >The Big List of three.js Tips and Tricks!</a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<nav class="side-menu right-menu">
+  <h2>
+    <a href="/">
+      <img
+        alt="Discover three.js logo"
+        width="100%"
+        src="/static/images/logo/banner_trans_512.png"
+      />
+    </a>
+  </h2>
+  <ul class="links" style="text-align: center">
+    <li><a href="/book/contents/">Table Of Contents</a></li>
+    <li><a href="/tips-and-tricks/">Tips and Tricks</a></li>
+
+    <li style="margin: auto">
+      <a href="/#mailing-list-signup" class="internal-link"
+        >Stay up to date - sign up to the mailing list!</a
+      >
+    </li>
+  </ul>
+</nav><style>
+  @font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Open Sans Regular"), local("OpenSans-Regular"),
+      url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0b.woff2)
+        format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "Varela Round";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Varela Round Regular"), local("VarelaRound-Regular"),
+      url(https://fonts.gstatic.com/s/varelaround/v12/w8gdH283Tvk__Lua32TysjIfp8uP.woff2)
+        format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "Fira Code";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2)
+      format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style></body>
+</html>

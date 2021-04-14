@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently --names \"HUGO,HTTP\" -c \"bgBlue.bold,bgGreen.bold\" \"npm run watch-static\" \"npm run serve\"",
     "watch-static": "cd .\\markdown & .\\hugo.exe -w",
+    "watch-js": "node watch.mjs",
     "serve": "servez -p 8080 public"
   },
   "author": "Lewy Blue",

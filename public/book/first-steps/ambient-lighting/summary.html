@@ -1,2 +1,1027 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <title>Ambient Lighting: Illumination from Every Direction | Discover three.js</title><meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <h1>Ambient Lighting: Illumination from Every Direction</h1>
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="ROBOTS" content="INDEX, FOLLOW" />
+
+<meta name="application-name" content="Discover three.js" />
+
+<meta itemprop="name" content="Discover three.js" />
+
+<meta property="og:title" content="How to Use This Book | Discover three.js" />
+<meta name="twitter:title" content="How to Use This Book | Discover three.js" />
+
+<meta name="description" content="No book is complete without references! Lots of resources to continue your learning in the amazing world of 3D graphics here" />
+<meta property="og:description" content="No book is complete without references! Lots of resources to continue your learning in the amazing world of 3D graphics here" />
+<meta name="twitter:description" content="No book is complete without references! Lots of resources to continue your learning in the amazing world of 3D graphics here" />
+
+<meta
+  itemprop="keywords"
+  content="threejs webgl opengl fbx gltf khronos webvr vr webdev design cg graphics animation javascript esnext es6 education tutorials blog ebook node npm"
+/>
+
+<meta property="og:site_name" content="Discover three.js" />
+<meta property="og:type" content="book" />
+<meta property="og:url" content="https://discoverthreejs.com/" />
+<meta
+  property="og:image"
+  content="https://discoverthreejs.com/static/images/logo.png"
+/>
+<meta
+  property="twitter:image"
+  content="https://discoverthreejs.com/static/images/logo.png"
+/>
+<meta name="twitter:creator" content="@lewy_blue" />
+<meta name="twitter:site" content="@lewy_blue" />
+<meta name="twitter:card" content="TODO" />
+<meta name="twitter:image:width" content="1024" />
+<meta name="twitter:image:height" content="1024" />
+
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="msapplication-TileColor" content="#00aba9" />
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=43" /><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "image": "https://discoverthreejs.com/static/images/logo.png",
+    "mainEntity": {
+      "@type": "Book",
+      "author": {
+        "@type": "Person",
+        "name": "Lewy Blue",
+        "jobTitle": "Author",
+        "url": "https://twitter.com/lewy_blue"
+      },
+      "about": "",
+      "copyrightHolder": "https://discoverthreejs.com",
+      "copyrightYear": "2021",
+      "bookFormat": "http://schema.org/EBook",
+      "datePublished": "2018-10-01",
+      "image": "https://discoverthreejs.com/static/images/logo.png",
+      "inLanguage": "English",
+      "name": "Discover three.js",
+      "genre": "Education",
+      "keywords": "threejs webgl animation javascript es6 education tutorials blog ebook",
+      "publisher": {
+        "@type": "Organization",
+        "name": "https://discoverthreejs.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://discoverthreejs.com/static/images/logo.png"
+        }
+      }
+    }
+  }
+</script><link
+      rel="canonical"
+      href="https://discoverthreejs.com/book/introduction/about-the-book/"
+    />
+
+    <link rel="shortcut icon" type="image/png" href="/favicon.ico?v=43" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-touch-icon.png?v=43"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon-16x16.png?v=43"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon-32x32.png?v=43"
+    />
+
+    <link rel="manifest" href="/site.json?v=43" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=43" color="#5bbad5" />
+<style>
+  .loading-page {
+    display: none;
+  }
+</style>
+
+<link href="/static/css/chapters.min.css?v=43" rel="stylesheet" />
+
+<noscript>
+  <style>
+    .loading-page {
+      display: block;
+    }
+  </style>
+  <link href="/static/css/noscript.min.css?v=43" rel="stylesheet" />
+</noscript>    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <script type="module">
+      console.log("TEST")
+      const x =  false ;
+      console.log('x: ', x);
+
+      import { setupChapterEarly } from "/static/js/chapter.early.js";
+      setupChapterEarly();
+
+      window.addEventListener('load', async () => {
+        const { setupChapterLate } = await import(
+          "/static/js/chapter.late.js"
+        );
+        setupChapterLate();
+
+        const { setupIDE } = await import(
+          "/static/js/ide.js"
+        );
+
+        const ideConfig = {
+
+          showIDE:  true ,
+          IDE: {
+            fullScreen: false,
+            container: '#ide-wrapper',
+            serverDirectory: 'static\/examples',
+            stripDirectory: 'worlds\/first-steps\/ambient-lighting\/',
+            closedFolders: '[\u0022assets\u0022,\u0022systems\u0022,\u0022styles\u0022,\u0022vendor\u0022]'
+              .replace(/[\s\'\[\]']+/g, '')
+              .split(','),
+            comparisonMode: 'true',
+            files: '[\u0022assets\/textures\/uv-test-bw.png\u0022,\u0022assets\/textures\/uv-test-col.png\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/components\/camera.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/components\/cube.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/components\/lights.start.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/components\/lights.final.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/components\/scene.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/systems\/controls.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/systems\/renderer.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/systems\/Resizer.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/systems\/Loop.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/World.start.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/World.final.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/main.js\u0022,\u0022styles\/main.css\u0022,\u0022vendor\/three\/build\/three.module.js\u0022,\u0022vendor\/three\/examples\/jsm\/controls\/OrbitControls.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/index.html\u0022]'
+              .replace(/[\s\'\[\]']+/g, '')
+              .split(','),
+            startFiles: 'null'
+              .replace(/[\s\'\[\]']+/g, '')
+              .split(','),
+            finalFiles: 'null'
+              .replace(/[\s\'\[\]']+/g, '')
+              .split(','),
+            entry: 'index.html',
+            activeDocument: 'src\/World\/components\/lights.js',
+            switchImportsAllowed:
+              'true',
+          },
+        }
+
+        console.log('ideConfig: ', ideConfig);
+        setupIDE(ideConfig);
+      });
+    </script>
+
+  </head>
+  <body class="loading-page"><nav class="top-nav">
+  <div class="nav-background"></div>
+
+  <div class="icon-group left">
+    <input type="checkbox" id="left-menu-toggle" class="hidden-input" />
+    <label
+      for="left-menu-toggle"
+      class="control-elem"
+      title="Table Of Contents"
+    >
+      <span class="open-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"
+          />
+        </svg>
+      </span>
+      <span class="close-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 352 512"
+        >
+          <path
+            fill="currentColor"
+            d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+          />
+        </svg>
+      </span>
+    </label>
+
+    <input
+      type="checkbox"
+      id="toggle-ide"
+      class="hidden-input ide-toggle"
+    />
+    <label
+      for="toggle-ide"
+      class="control-elem ide-control hide"
+      title="Show/Hide IDE"
+    >
+      <span class="on-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64V160h160v256zm224 0H288V160h160v256z"
+          />
+        </svg>
+      </span>
+      <span class="off-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64V160h160v256zm224 0H288V160h160v256z"
+          />
+        </svg>
+      </span>
+    </label>
+  </div>
+
+  <div class="icon-group center">
+    <a
+      href="/book/introduction/"
+      title="Welcome to Discover three.js!"
+      class="control-elem previous"
+    >
+      <svg
+        class="icon"
+        role="img"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512"
+      >
+        <path
+          fill="currentColor"
+          d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+        />
+      </svg>
+    </a>
+    <a
+      href="/book/introduction/prerequisites/"
+      class="control-elem next"
+      title="What Do You Need to Run a three.js App?"
+    >
+      <svg
+        class="icon"
+        role="img"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512"
+      >
+        <path
+          fill="currentColor"
+          d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+        />
+      </svg>
+    </a>
+  </div>
+
+  <div class="icon-group right">
+    <input type="checkbox" id="right-menu-toggle" class="hidden-input" />
+    <label for="right-menu-toggle" class="control-elem" title="Main Menu">
+      <span class="open-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+          />
+        </svg>
+      </span>
+      <span class="close-close hide">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 352 512"
+        >
+          <path
+            fill="currentColor"
+            d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+          />
+        </svg>
+      </span>
+    </label>
+  </div>
+</nav><div class="wrapper orientation-auto">
+      <main class="panel animate">
+        <div class="scroller">
+          <div class="content">
+            
+              <div class="chapter-info">Word Count:2555, reading time: ~12minutes</div>
+            
+
+            <h1 id="ambient-lighting-illumination-from-every-direction">Ambient Lighting: Illumination from Every Direction</h1>
+
+
+
+
+
+
+
+<figure id="scene-573628149" class="inline-scene loading-dots round small right"></figure>
+
+<script type="module">
+  import init from "/static/examples/worlds/inline-scenes/first-steps/illumination-problem.js";
+  init("#scene-573628149");
+</script>
+
+<p>At the end of the last chapter, we discovered a rather glaring problem with our lighting setup. Our scene is illuminated using a single <code>DirectionalLight</code>, and although this type of light fills the entire scene with light rays, all the rays shine in a single direction. Faces of the cube in the direct path of the light are brightly illuminated. However, as soon as we rotate the camera to see another direction, we find that <strong>any faces of the cube that point away from the direction of the light rays don&rsquo;t receive any light at all!</strong></p>
+<p style="clear:both; margin: 0; padding: 0; line-height: 0;">&nbsp</p>
+<figure class="medium left">
+  <img src="/static/images/first-steps/directional_light.svg" loading="lazy" alt="Light rays of a directional light" title="Light rays of a directional light"  />
+    <figcaption>Any faces of the cube not in the path of the light rays <br> don&rsquo;t receive any light at all</figcaption></figure>
+<p>In this chapter, we&rsquo;ll investigate what&rsquo;s going on here, and explore some methods for improving our lighting setup. Along the way, we&rsquo;ll find the time for a brief review of some of lighting techniques commonly used when working with three.js.</p>
+<h3 id="lighting-in-the-real-world">Lighting in the Real World</h3>
+<p>In the real world, an infinite number of light rays reflect and bounce an infinite number of times from all the objects in a scene, gradually fading and changing color with each bounce until finally, they reach our eyes or cameras. This creates the beautiful and subtle patterns of light and shadows we see every day in the world around us.</p>
+<figure >
+  <img src="/static/images/first-steps/light_study.jpg" loading="lazy" alt="A scene demonstrating direct and indirect lighting." title="Photo credit: T Cud on Unsplash"  /></figure>
+<h3 id="simulating-lighting-in-real-time">Simulating Lighting in Real-Time</h3>
+<p>Unfortunately for us, computers have trouble simulating the infinite. A technique called <a href="https://en.wikipedia.org/wiki/Ray_tracing_%28graphics%29" target="_blank" rel="noopener noreferrer">ray tracing</a> can be used to simulate a few thousand lights rays each bouncing a few times around the scene. However, it takes too much processing power to render frames in real-time using this technique, so ray-tracing and related techniques like <a href="https://en.wikipedia.org/wiki/Path_tracing" target="_blank" rel="noopener noreferrer">path tracing</a> are better suited for creating pre-rendered images or animations.</p>
+<p>Instead, as we discussed in <a href="/book/first-steps/physically-based-rendering/">1.4: Physically Based Rendering and Lighting</a>, real-time graphics engines split lighting into two parts:</p>
+<ol>
+<li><strong>Direct lighting</strong>: light rays that come directly from a light source and hit an object.</li>
+<li><strong>Indirect lighting</strong>: light rays that have bounced off the walls and other objects in the room before hitting an object, changing color and losing intensity with each bounce.</li>
+</ol>
+<p>There is a third category that aims to perform direct and indirect lighting at the same time, called <a href="https://en.wikipedia.org/wiki/Global_illumination" target="_blank" rel="noopener noreferrer">global illumination</a>, of which ray tracing and path tracing are two examples. Indeed, there are a huge number of techniques for simulating or approximating lighting in the field of 3D computer graphics. Some of these techniques simulate direct lighting, some simulate indirect lighting, while others simulate both. Most of these techniques are too slow to use on the web where we have to consider people accessing our app from low powered mobile devices. However, even when we limit ourselves to only the techniques suitable for real-time use <em>and</em> available in three.js, the number of lighting methods we can use is still quite high.</p>
+<p>Creating high-quality lighting using three.js is a matter of choosing a combination of these techniques to create a complete lighting setup. In three.js, the light classes are divided into two categories to match the two categories of lighting:</p>
+<ol>
+<li><strong>Direct lights</strong>, which simulate direct lighting.</li>
+<li><strong>Ambient lights</strong>, which are a cheap and somewhat believable way of faking indirect lighting.</li>
+</ol>
+<p>The <code>DirectionalLight</code> currently illuminating our scene is a form of direct lighting. In this chapter, we&rsquo;ll pair this light with an ambient light. Ambient lighting is one of the simplest techniques for adding indirect lighting to your scenes, and a <code>DirectionalLight</code> paired with an ambient light is one of the most common lighting setups.</p>
+<p>But first, let&rsquo;s take a brief tour of some of the lighting techniques available to us when using three.js.</p>
+<h2 id="a-brief-overview-of-lighting-techniques">A Brief Overview of Lighting Techniques</h2>
+<h3 id="multiple-direct-lights">Multiple Direct Lights</h3>
+<p>One solution to the problem of our poorly illuminated cube is to add more direct lights, like the <code>DirectionalLight</code> or <code>SpotLight</code>, until the objects in your scene are illuminated from all angles. However, this approach creates a new set of problems:</p>
+<ol>
+<li>We have to keep track of the lights to make sure all directions are illuminated.</li>
+<li>Lights are expensive, and we want to add as few lights as possible to our scenes.</li>
+</ol>
+<p>Adding more and more direct lights to your scene will quickly kill you framerate, so direct lights alone are rarely the best choice.</p>
+<h3 id="no-lights-at-all">No Lights at All!</h3>
+<p>Another lighting technique is to avoid using lights completely. Some materials, such as the <code>MeshBasicMaterial</code>, don&rsquo;t need lights to be seen. You can get nice results using a <code>MeshBasicMaterial</code> and appropriate <a href="/book/first-steps/textures-intro/">textures</a>.</p>
+<figure class="">
+  <iframe title="The MeshBasicMaterial in action" width="100%" height="500px" src="https://threejs.org/docs/scenes/material-browser.html#MeshBasicMaterial" importance="low" loading="lazy" sandbox="allow-scripts"></iframe><figcaption>The MeshBasicMaterial in action</figcaption></figure>
+<p>In the above scene, first, set the color to white (<code>0xffffff</code>), and then change <code>.map</code> to the <em>bricks</em> texture. Next, remove the brick texture and set the environment map (<code>.envMap</code>) to <em>reflection</em>. As you can see, the <code>MeshBasicMaterial</code> is not quite so basic as the name suggests. Nonetheless, this solution is more appropriate for intentionally low-fidelity scenes, or when performance is of utmost importance.</p>
+<h3 id="image-based-lighting-ibl">Image-Based Lighting (IBL)</h3>
+<p>Image-based lighting is the name for a family of techniques that involve pre-calculating lighting information and storing it in textures. The most important IBL technique is <a href="https://en.wikipedia.org/wiki/Reflection_mapping" target="_blank" rel="noopener noreferrer">environment mapping</a> (also known as reflection mapping), which you saw a moment ago when you set the <code>MeshBasicMaterial.envMap</code>.</p>
+<figure class="">
+  <iframe title="Image Based Lighting (IBL) in action" width="100%" height="500px" src="https://threejs.org/examples/webgl_materials_envmaps.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe><figcaption>Image Based Lighting (IBL): the scene background is reflected on the sphere</figcaption></figure>
+<p>Environment maps are usually generated using specialized photography techniques or external 3D rendering programs. There are several formats used to store the resulting images, of which two are demonstrated in the above scene: cube maps and equirectangular maps. Click the options in the menu to see an example of each. Environment mapping is one of the most powerful lighting techniques available in three.js, and we&rsquo;ll explore this in detail later.</p>
+<h3 id="the-fast-and-easy-solution-ambient-lighting">The Fast and Easy Solution: Ambient Lighting</h3>
+<p><strong>Ambient lighting</strong> is a method of faking indirect lighting which is both fast and easy to set up while still giving reasonable results. There are two ambient light classes available in the three.js core:</p>
+<ul>
+<li><strong>The <a href="https://threejs.org/docs/#api/en/lights/AmbientLight" target="_blank" rel="noopener noreferrer"><code>AmbientLight</code></a> adds a constant amount of light to every object from all directions.</strong></li>
+<li><strong>The <a href="https://threejs.org/docs/#api/en/lights/HemisphereLight" target="_blank" rel="noopener noreferrer"><code>HemisphereLight</code></a> fades between a sky color and a ground color and can be used to simulate many common lighting scenarios.</strong></li>
+</ul>
+<p>We mentioned these briefly back in <a href="/book/first-steps/physically-based-rendering/#the-three-js-light-classes">1.4: Physically Based Rendering and Lighting</a>. Using either of these lights follows the same process as using the <code>DirectionalLight</code>. Simply create an instance of the light, then add it to your scene. The following scene demonstrates using a <code>HemisphereLight</code> in combination with a <code>DirectionalLight</code> to give the effect of a bright outdoor scene.</p>
+<figure class="">
+  <iframe title="The HemisphereLight in action" width="100%" height="500px" src="https://threejs.org/examples/webgl_lights_hemisphere.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe><figcaption>A simple scene lit by a directional light and a hemisphere light</figcaption></figure>
+<p>As you can see, the result is not realistic. Ambient lighting paired with direct lighting is more geared towards performance than quality. However, you could hugely increase the quality of this scene without changing the lighting setup, by using a different model and background or improving the model&rsquo;s material.</p>
+<h4 id="working-with-ambient-lights">Working with Ambient Lights</h4>
+<p>Like the direct lights, ambient lights inherit from <a href="https://threejs.org/docs/#api/en/lights/Light" target="_blank" rel="noopener noreferrer">the base <code>Light</code> class</a>, so they have <code>.color</code> and <code>.intensity</code> properties. <code>Light</code>, in turn, inherits from <code>Object3D</code>, so <strong>all lights also have <code>.position</code>, <code>.rotation</code> and <code>.scale</code> properties.</strong> However, rotating or scaling lights has no effect. Changing the position of the <code>AmbientLight</code> has no effect either.</p>
+<p>Ambient lights affect all objects in the scene. <strong>As a result, there&rsquo;s no need to add more than one ambient light to your scene.</strong> Unlike the direct lights (except for <code>RectAreaLight</code>), ambient lights cannot cast shadows.</p>
+<p>As usual, to use either of these light classes, you must first import them. Import both classes within the lights module now. We&rsquo;ll spend the rest of this chapter experiment with them.</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>lights.js</strong></em>: import both ambient light classes</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line="2,4"
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">import {
+  AmbientLight,
+  DirectionalLight,
+  HemisphereLight,
+} from &#39;three&#39;;
+</code>
+  </pre>
+</section>
+
+<h2 id="the-ambientlight">The <code>AmbientLight</code></h2>
+<p>The <a href="https://threejs.org/docs/#api/en/lights/AmbientLight" target="_blank" rel="noopener noreferrer"><code>AmbientLight</code></a> is the cheapest way of faking indirect lighting in three.js. This type of light adds a constant amount of light from every direction to every object in the scene. It doesn&rsquo;t matter where you place this light, and it doesn&rsquo;t matter where other objects are placed relative to the light. This is not at all similar to how light in the real world works. Nonetheless, in combination with one or more direct lights, the <code>AmbientLight</code> gives OK results.</p>
+<h3 id="add-an-ambientlight-to-the-scene">Add an <code>AmbientLight</code> to the Scene</h3>
+<p>As with the <code>DirectionalLight</code>, pass the <a href="https://threejs.org/docs/#api/en/lights/Light.color" target="_blank" rel="noopener noreferrer"><code>.color</code></a> and <a href="https://threejs.org/docs/#api/en/lights/Light.intensity" target="_blank" rel="noopener noreferrer"><code>.intensity</code></a> parameters to the constructor:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>lights.js</strong></em>: create an AmbientLight</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="7"
+    data-line="8,13"
+    data-line-offset="7"
+    >
+    <code class="highlight language-js match-braces">
+function createLights() {
+  const ambientLight = new AmbientLight(&#39;white&#39;, 2);
+
+  const mainLight = new DirectionalLight(&#39;white&#39;, 5);
+  mainLight.position.set(10, 10, 10);
+
+  return { ambientLight, mainLight };
+}
+</code>
+  </pre>
+</section>
+
+<p>Over in World, the <code>createLights</code> function now returns two lights. Add both of them to the scene:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: add the ambient light to the scene</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="17"
+    data-line="27,,30"
+    data-line-offset="17"
+    >
+    <code class="highlight language-js match-braces">  constructor(container) {
+    camera = createCamera();
+    renderer = createRenderer();
+    scene = createScene();
+    loop = new Loop(camera, scene, renderer);
+    container.append(renderer.domElement);
+
+    const controls = createControls(camera, renderer.domElement);
+
+    const cube = createCube();
+    const { ambientLight, mainLight } = createLights();
+
+    loop.updatables.push(controls);
+    scene.add(ambientLight, mainLight, cube);
+
+    const resizer = new Resizer(container, camera, renderer);
+  }
+</code>
+  </pre>
+</section>
+
+<p>We&rsquo;ll usually set the intensity of the <code>AmbientLight</code> to a lower value than the direct light it has been paired with. Here, white light with a low intensity results in a dim gray ambient illumination. Combined with the single bright <code>DirectionalLight</code>, this dim ambient light solves our lighting issues and the rear faces of the cube become illuminated:</p>
+
+
+
+
+
+
+
+<figure id="scene-857639412" class="inline-scene loading-dots "></figure>
+
+<script type="module">
+  import init from "/static/examples/worlds/inline-scenes/first-steps/ambient-with-directional.js";
+  init("#scene-857639412");
+</script>
+
+<p>However, the lighting on the rear faces of the cube looks rather dull. To make a setup based around <code>AmbientLight</code> and <code>DirectionalLight</code> look good, we would need to add multiple directional lights with varying direction and intensity. That runs into many of the same problems we described above for <a href="#multiple-direct-lights">a setup using multiple direct lights</a>. As we&rsquo;ll see in a moment, the <code>HemisphereLight</code> gives better results here, for almost no additional performance cost.</p>
+<p>That doesn&rsquo;t mean the <code>AmbientLight</code> is useless. The <code>HemisphereLight</code> doesn&rsquo;t suit every scene, for example, in which case you can fall back to an <code>AmbientLight</code>. Also, this light is the cheapest way to increase the overall brightness or add a slight color tint to a scene. You&rsquo;ll sometimes find it useful for modulating other kinds of lighting such as environment maps or for adjusting shadow darkness.</p>
+<h3 id="no-depth">The <code>AmbientLight</code> Doesn&rsquo;t Show Depth</h3>
+<p>As we mentioned in <a href="/book/first-steps/physically-based-rendering/#lighting-and-depth">1.4: Physically Based Rendering and Lighting</a>, our eyes use differences in shading across the surface of an object to determine depth. However, the light from an ambient light shines equally in all directions, so the shading is uniform and gives us no information about depth. Consequently, any object illuminated using only an <code>AmbientLight</code> will not appear to be 3D.</p>
+<p>This is similar to how the <code>MeshBasicMaterial</code> works, to the point of being indistinguishable. One of these cubes has a <code>MeshBasicMaterial</code> and one has a <code>MeshStandardMaterial</code> illuminated only by an <code>AmbientLight</code>. See if you can tell them apart:</p>
+
+
+
+
+
+
+
+<figure id="scene-295346718" class="inline-scene loading-dots "></figure>
+
+<script type="module">
+  import init from "/static/examples/worlds/inline-scenes/first-steps/ambient-basic-comparison.js";
+  init("#scene-295346718");
+</script>
+
+<h2 id="the-hemispherelight">The <code>HemisphereLight</code></h2>
+<p>Light from a <a href="https://threejs.org/docs/#api/en/lights/HemisphereLight" target="_blank" rel="noopener noreferrer"><code>HemisphereLight</code></a> fades between a sky color at the top of the scene and a ground color at the bottom of the scene. Like the <code>AmbientLight</code>, this light makes no attempt at physical accuracy. Rather, the <code>HemisphereLight</code> was created after observing that in many of the situations where you find humans, the brightest light comes from the top of the scene, while light coming from the ground is usually less bright.</p>
+<p>For example, in a typical outdoor scene, objects are brightly lit from above by the sun and sky and then receive secondary light from sunlight reflecting off the ground. Likewise, in an indoor environment, the brightest lights are usually on the ceiling and these reflect off the floor for dim secondary illumination.</p>
+<p>We can adjust the fading between the sky and ground by changing the light&rsquo;s <code>.position</code>. As with all light types, <code>.rotation</code> and <code>.scale</code> have no effect. The <code>HemisphereLight</code> constructor takes the same <code>.color</code> and <code>.intensity</code> parameters as all the other lights, but has an additional <a href="https://threejs.org/docs/#api/en/lights/HemisphereLight.groundColor" target="_blank" rel="noopener noreferrer"><code>.groundColor</code></a> parameter. Generally, we will use a bright sky <code>.color</code>, and a much darker <code>.groundColor</code>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption"><em><strong>lights.js</strong></em>: create a <code>HemisphereLight</code></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="10"
+    data-line=""
+    data-line-offset="10"
+    >
+    <code class="highlight language-js match-braces">  const ambientLight = new HemisphereLight(
+    &#39;white&#39;, // bright sky color
+    &#39;darkslategrey&#39;, // dim ground color
+    5, // intensity
+  );
+</code>
+  </pre>
+</section>
+
+<p>We can get decent results using a single <code>HemisphereLight</code> with <strong>no direct lights at all</strong>:</p>
+
+
+
+
+
+
+
+<figure id="scene-425391786" class="inline-scene loading-dots "></figure>
+
+<script type="module">
+  import init from "/static/examples/worlds/inline-scenes/first-steps/hemisphere-only.js";
+  init("#scene-425391786");
+</script>
+
+<p>However, since the <code>HemisphereLight</code> light does not shine from any particular direction, <strong>there are no shiny highlights (AKA <em>specular highlights</em>) in this scene</strong>. This is why we usually pair this type of light with at least one direct light. For outdoor scenes, try pairing the <code>HemisphereLight</code> with a single bright <code>DirectionalLight</code> representing the sun. For indoor scenes, you might use a <code>PointLight</code> to represent a lightbulb, or a <code>RectAreaLight</code> to simulate light coming through a bright window or from a strip light.</p>
+<p>Ambient lights, especially the <code>HemisphereLight</code>, give great results for low performance cost, making them suitable for use on low-power devices. However, scenes in the real world have shadows, reflections, and shiny highlights, none of which can be added using ambient lighting alone. This means ambient lighting is best used in a supporting role alongside other techniques such as direct lighting or IBL.</p>
+<p>Throughout the book, we&rsquo;ll explore many lighting solutions. Many of these give better results than ambient lights, but virtually none have a better performance/quality tradeoff.</p>
+<h2 id="challenges">Challenges</h2>
+<aside class="success">
+  
+    <h3 id="easy">Easy</h3>
+<ol>
+<li>
+<p>Temporarily disable the <code>mainLight</code> in the editor and then test each of the two ambient light classes alone. There are several ways to disable a light. Set <code>.intensity</code> to zero, don&rsquo;t add the light to the scene, or set <code>mainLight.visible</code> to <code>false</code>.</p>
+</li>
+<li>
+<p>The effect of the <code>HemisphereLight</code> comes from the interplay of four properties: the sky <code>.color</code>, the <code>.groundColor</code>, the <code>.intensity</code> and the <code>.position</code>. Try adjusting each of these and observe the results. You may find this easier to see if you disable the main light first.</p>
+</li>
+</ol>
+
+  
+</aside>
+<aside class="notice">
+  
+    <h3 id="medium">Medium</h3>
+<ol>
+<li>
+<p>In the editor, we&rsquo;ve given the <code>HemisphereLight</code> and the <code>DirectionalLight</code> both an intensity of five. We did this to highlight the effect of the ambient light, however, usually, we would make the direct light stronger than the ambient light. Can you improve the quality of the lighting by adjusting the intensity and color of the two lights?</p>
+</li>
+<li>
+<p>What about adding more direct lights, either the <code>DirectionalLight</code>, or one of the other types? Does the scene improve when you add more of these, pointing from different directions?</p>
+</li>
+<li>
+<p>What about more ambient lights? Or an <code>AmbientLight</code> and a <code>HemisphereLight</code> at the same time? What effect does this have on the scene?</p>
+</li>
+</ol>
+<p><em>Remember: light from the <code>DirectionalLight</code> shines <a href="/book/first-steps/physically-based-rendering/#introducing-the-directionallight">from <code>light.position</code> to <code>light.target.position</code></a> by default. If you adjust the light&rsquo;s position, it will continue to point at the same spot, but now the rays will come in at a different angle.</em></p>
+
+  
+</aside>
+<aside class="warning">
+  
+    <h3 id="hard">Hard</h3>
+<ol>
+<li>Another solution to our problem from the start of the chapter is to add a light as a child of the camera. That way, when the camera moves, the light moves too. You can think of this as being like a camera with a torch strapped to the side. Using this approach, we can light the scene using a single <code>DirectionalLight</code> or <code>SpotLight</code>. Try this out. First, remove the <code>ambientLight</code>, then add the camera to the scene, and finally, add the <code>mainLight</code> to the camera.</li>
+</ol>
+<p><em>Note: when you add the light to the camera instead of the scene, you are <a href="/book/first-steps/transformations/#moving-an-object-between-coordinate-systems">attaching it to the camera’s local space</a>. You may have to adjust the light&rsquo;s position for best results.</em>
+  
+</aside>
+
+          </div>
+        </div>
+      </main>
+    </div><div class="side-menu left-menu">
+  <div class="icons">
+    <input type="checkbox" id="invert-colors-toggle" class="hidden-input" />
+    <label
+      for="invert-colors-toggle"
+      class="control-elem"
+      title="Day/Night Theme"
+    >
+      <span class="day-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"
+          />
+        </svg>
+      </span>
+      <span class="night-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"
+          />
+        </svg>
+      </span>
+    </label>
+
+    <input type="checkbox" id="orientation-toggle" class="hidden-input" />
+    <label
+      for="orientation-toggle"
+      class="control-elem hide"
+      title="Orientation lock: auto/portrait/landscape"
+    >
+      <span class="auto-icon hide">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M440.65 12.57l4 82.77A247.16 247.16 0 0 0 255.83 8C134.73 8 33.91 94.92 12.29 209.82A12 12 0 0 0 24.09 224h49.05a12 12 0 0 0 11.67-9.26 175.91 175.91 0 0 1 317-56.94l-101.46-4.86a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12H500a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12h-47.37a12 12 0 0 0-11.98 12.57zM255.83 432a175.61 175.61 0 0 1-146-77.8l101.8 4.87a12 12 0 0 0 12.57-12v-47.4a12 12 0 0 0-12-12H12a12 12 0 0 0-12 12V500a12 12 0 0 0 12 12h47.35a12 12 0 0 0 12-12.6l-4.15-82.57A247.17 247.17 0 0 0 255.83 504c121.11 0 221.93-86.92 243.55-201.82a12 12 0 0 0-11.8-14.18h-49.05a12 12 0 0 0-11.67 9.26A175.86 175.86 0 0 1 255.83 432z"
+          />
+        </svg>
+      </span>
+      <span class="portrait-icon hide">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+        >
+          <path
+            fill="currentColor"
+            d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"
+          />
+        </svg>
+      </span>
+      <span class="landscape-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+        >
+          <path
+            fill="currentColor"
+            d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"
+          />
+        </svg>
+      </span>
+    </label>
+  </div>
+
+  <nav class="table-of-contents">
+    <h2><a href="/book/contents/">Table of Contents</a></h2>
+    <div id="main-toc">
+      <ul>
+        <li class="section-head">
+          <span class="chapter">0:</span
+          ><a
+            href="/book/introduction/"
+            title="Welcome to Discover three.js!"
+            >Welcome to Discover three.js!</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">0.1:</span
+          ><a
+            href="/book/introduction/about-the-book/"
+            title="How to Use This Book"
+            >How to Use This Book</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">0.2:</span
+          ><a
+            href="/book/introduction/prerequisites/"
+            title="What Do You Need to Run a three.js App?"
+            >What Do You Need to Run a three.js App?</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">0.3:</span
+          ><a
+            href="/book/introduction/get-help/"
+            title="Welcome to the Community: three.js Around the Web"
+            >Welcome to the Community: three.js Around the Web</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">0.4:</span
+          ><a
+            href="/book/introduction/github-repo/"
+            title="three.js on GitHub - Where the Magic Happens"
+            >three.js on GitHub - Where the Magic Happens</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">0.5:</span
+          ><a
+            href="/book/introduction/get-threejs/"
+            title="How to Include three.js in Your Projects"
+            >How to Include three.js in Your Projects</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">0.7:</span
+          ><a
+            href="/book/introduction/threejs-with-frameworks/"
+            title="Using three.js with React, Vue.js, Angular, Svelte, TypeScript..."
+            >Using three.js with React, Vue.js, Angular, Svelte,
+            TypeScript...</a
+          >
+        </li>
+        <li class="section-head">
+          <span class="chapter">1:</span
+          ><a
+            href="/book/first-steps/"
+            title="Getting Started: Here&#39;s Where the Real Fun Begins!"
+            >Getting Started: Here&#39;s Where the Real Fun Begins!</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.1:</span
+          ><a
+            href="/book/first-steps/app-structure/"
+            title="The Structure of a three.js App"
+            >The Structure of a three.js App</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.2:</span
+          ><a
+            href="/book/first-steps/first-scene/"
+            title="Your First three.js Scene: Hello, Cube!"
+            >Your First three.js Scene: Hello, Cube!</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.3:</span
+          ><a
+            href="/book/first-steps/world-app/"
+            title="Introducing the World App"
+            >Introducing the World App</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.4:</span
+          ><a
+            href="/book/first-steps/physically-based-rendering/"
+            title="Physically Based Rendering and Lighting"
+            >Physically Based Rendering and Lighting</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.5:</span
+          ><a
+            href="/book/first-steps/transformations/"
+            title="Transformations and Coordinate Systems"
+            >Transformations and Coordinate Systems</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.6:</span
+          ><a
+            href="/book/first-steps/responsive-design/"
+            title="Making Our Scenes Responsive (and also Dealing with Jaggies)"
+            >Making Our Scenes Responsive (and also Dealing with Jaggies)</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.7:</span
+          ><a
+            href="/book/first-steps/animation-loop/"
+            title="The Animation Loop"
+            >The Animation Loop</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.8:</span
+          ><a
+            href="/book/first-steps/textures-intro/"
+            title="A Brief Introduction to Texture Mapping"
+            >A Brief Introduction to Texture Mapping</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.9:</span
+          ><a
+            href="/book/first-steps/camera-controls/"
+            title="Extend three.js With a Camera Controls Plugin"
+            >Extend three.js With a Camera Controls Plugin</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.10:</span
+          ><a
+            href="/book/first-steps/ambient-lighting/"
+            title="Ambient Lighting: Illumination from Every Direction"
+            >Ambient Lighting: Illumination from Every Direction</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.11:</span
+          ><a
+            href="/book/first-steps/organizing-with-group/"
+            title="Organizing Your Scenes"
+            >Organizing Your Scenes</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.12:</span
+          ><a
+            href="/book/first-steps/built-in-geometries/"
+            title="The Built-In Geometries"
+            >The Built-In Geometries</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.13:</span
+          ><a
+            href="/book/first-steps/load-models/"
+            title="Load 3D Models in glTF Format"
+            >Load 3D Models in glTF Format</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">1.14:</span
+          ><a
+            href="/book/first-steps/animation-system/"
+            title="The three.js Animation System"
+            >The three.js Animation System</a
+          >
+        </li>
+        <li class="section-head">
+          <span class="chapter">A:</span
+          ><a href="/book/appendix/" title="Appendices">Appendices</a>
+        </li>
+        <li class="">
+          <span class="chapter">A.1:</span
+          ><a
+            href="/book/appendix/html-and-css-reference/"
+            title="HTML and CSS Used in This Book"
+            >HTML and CSS Used in This Book</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">A.2:</span
+          ><a
+            href="/book/appendix/javascript-reference/"
+            title="JavaScript Reference"
+            >JavaScript Reference</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">A.3:</span
+          ><a
+            href="/book/appendix/dom-api-reference/"
+            title="The Document Object Model and DOM API"
+            >The Document Object Model and DOM API</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">A.4:</span
+          ><a
+            href="/book/appendix/javascript-modules/"
+            title="JavaScript Modules"
+            >JavaScript Modules</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">A.5:</span
+          ><a
+            href="/book/appendix/asynchronous-javascript/"
+            title="Asynchronous JavaScript"
+            >Asynchronous JavaScript</a
+          >
+        </li>
+        <li class="">
+          <span class="chapter">B.1:</span
+          ><a
+            href="/book/appendix/threejs-versions/"
+            title="Dealing with Different three.js Versions"
+            >Dealing with Different three.js Versions</a
+          >
+        </li>
+        <li class="unavailable section-head">
+          <span class="chapter">R:</span
+          ><span>References and Resources</span>
+        </li>
+        <li class="">
+          <span class="chapter">R:</span
+          ><a
+            href="/tips-and-tricks/"
+            title="The Big List of three.js Tips and Tricks!"
+            >The Big List of three.js Tips and Tricks!</a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<nav class="side-menu right-menu">
+  <h2>
+    <a href="/">
+      <img
+        alt="Discover three.js logo"
+        width="100%"
+        src="/static/images/logo/banner_trans_512.png"
+      />
+    </a>
+  </h2>
+  <ul class="links" style="text-align: center">
+    <li><a href="/book/contents/">Table Of Contents</a></li>
+    <li><a href="/tips-and-tricks/">Tips and Tricks</a></li>
+
+    <li style="margin: auto">
+      <a href="/#mailing-list-signup" class="internal-link"
+        >Stay up to date - sign up to the mailing list!</a
+      >
+    </li>
+  </ul>
+</nav><style>
+  @font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Open Sans Regular"), local("OpenSans-Regular"),
+      url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0b.woff2)
+        format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "Varela Round";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Varela Round Regular"), local("VarelaRound-Regular"),
+      url(https://fonts.gstatic.com/s/varelaround/v12/w8gdH283Tvk__Lua32TysjIfp8uP.woff2)
+        format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "Fira Code";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2)
+      format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style></body>
+</html>

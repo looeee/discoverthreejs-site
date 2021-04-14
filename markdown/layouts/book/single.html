@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <title>{{ .Title }} | Discover three.js</title>
+
+    {{- partialCached "head/meta.html" . -}}
+    {{- partialCached "head/schema.html" . -}}
+    {{- partialCached "head/links.html" . -}}
+    {{- partialCached "head/styles.html" . -}}
+    {{- partialCached "preload.html" . -}}
+
+    <script type="module">
+      console.log("TEST")
+      const x = {{ .Params.abcd | default false }};
+      console.log('x: ', x);
+
+      import { setupChapterEarly } from "/static/js/chapter.early.js";
+      setupChapterEarly();
+
+      window.addEventListener('load', async () => {
+        const { setupChapterLate } = await import(
+          "/static/js/chapter.late.js"
+        );
+        setupChapterLate();
+
+        const { setupIDE } = await import(
+          "/static/js/ide.js"
+        );
+
+        const ideConfig = {
+
+          showIDE: {{ .Params.showIDE | default false }},
+          IDE: {
+            fullScreen: false,
+            container: '#ide-wrapper',
+            serverDirectory: '{{ .Params.IDEserverDirectory | default "static/examples" }}',
+            stripDirectory: '{{ .Params.IDEStripDirectory | default "views/" }}',
+            closedFolders: '{{ .Params.IDEClosedFolders | jsonify }}'
+              .replace(/[\s\'\[\]']+/g, '')
+              .split(','),
+            comparisonMode: '{{ .Params.IDEComparisonMode | jsonify | default "false" }}',
+            files: '{{ .Params.IDEFiles | jsonify }}'
+              .replace(/[\s\'\[\]']+/g, '')
+              .split(','),
+            startFiles: '{{ .Params.IDEStartFiles | jsonify }}'
+              .replace(/[\s\'\[\]']+/g, '')
+              .split(','),
+            finalFiles: '{{ .Params.IDEFinalFiles | jsonify }}'
+              .replace(/[\s\'\[\]']+/g, '')
+              .split(','),
+            entry: '{{ .Params.IDEEntry | default "index.html" }}',
+            activeDocument: '{{ .Params.IDEActiveDocument | default "" }}',
+            switchImportsAllowed:
+              '{{ .Params.IDESwitchImportsAllow | default "true" }}',
+          },
+        }
+
+        console.log('ideConfig: ', ideConfig);
+        setupIDE(ideConfig);
+      });
+    </script>
+
+  </head>
+  <body class="loading-page">
+
+    {{- partialCached "topNav.html" . -}}
+
+    <div class="wrapper orientation-auto">
+      <main class="panel animate">
+        <div class="scroller">
+          <div class="content">
+            {{ if ne .Params.hideWordCount true }}
+              <div class="chapter-info">Word Count: {{- .WordCount -}}, reading time: ~{{- .ReadingTime -}}minutes</div>
+            {{ end }}
+
+            {{ .Content }}
+          </div>
+        </div>
+      </main>
+    </div>
+
+    {{- partialCached "leftMenu.html" . -}}
+    {{- partialCached "rightMenu.html" . -}}
+
+    {{- partialCached "fonts.html" . -}}
+  </body>
+</html>

@@ -19,4 +19,20 @@ Prerequisites: Node.js
 1. Clone or download the repo
 2. Run `npm install`
 3. Create symlink for the static/examples folder into markdown/assets (This is required since Hugo.readFile cannot access files outside the /markdown folder)
+4. Create symlink for
 4. Run `npm start` and open your browser to `http://localhost:8080/`
+
+### Symlink details
+
+# Symlinks
+
+Open a command prompt from the root folder of this repo and run the following command
+
+## Powershell
+> & cmd /c "mklink /J .\markdown\assets\examples .\public\static\examples"
+> & cmd /c "mklink /J .\public\static\examples\vendor\three .\node_modules\three"
+
+
+## Windows Console
+> mklink /J .\markdown\assets\examples .\public\static\examples
+> mklink /J .\public\static\examples\vendor\three .\node_modules\three

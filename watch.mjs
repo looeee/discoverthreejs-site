@@ -5,12 +5,12 @@ import glslify from "esbuild-glslify";
 esbuild
   .build({
     plugins: [glslify()],
-    entryPoints: ["src/main.js"],
+    entryPoints: ["src/apps/ide/ide.js"],
     bundle: true,
-    outdir: "dist",
+    outdir: "public/static/js_new",
     // minify: true,
     format: "esm",
-    sourcemap: "inline",
+    sourcemap: true,
     watch: {
       onRebuild(error, result) {
         if (error) console.error("watch build failed:", error);
