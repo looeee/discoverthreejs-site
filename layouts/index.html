@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <title>{{ .Title }} | Discover three.js</title>
+    {{- partialCached "head/meta.html" . -}}
+    {{- partialCached "head/schema.html" . -}}
+    {{- partialCached "head/links.html" . -}}
+    <link href="/static/css/jumbo.min.css?v=43" rel="stylesheet" />
+
+    <noscript>
+      <style>
+        .loading-page {
+          display: block;
+        }
+      </style>
+      <link href="/static/css/noscript.min.css?v=43" rel="stylesheet" />
+    </noscript>
+
+    <script type="module" src="/static/js/home.js?v=43"></script>
+  </head>
+
+  <body>
+    {{- partialCached "jumbo/nav.html" . -}}
+    <div class="wrapper">
+      <div
+        class="background"
+        style="
+          background-image: url(/static/images/overlay.png),
+            linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+            url(/static/images/bg.jpg);
+        "
+      ></div>
+
+      <div id="hero-container"></div>
+
+      <div id="intro">
+        <div class="loading">
+          <div class="satellite loader"></div>
+        </div>
+        <a
+          href="#main"
+          id="introScrollIcon"
+          class="button intro-scroll-down"
+          title="Scroll Down"
+          aria-label="Click here to scroll down"
+        >
+          <svg
+            class="icon"
+            role="img"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+          >
+            <path
+              fill="currentColor"
+              d="M413.1 222.5l22.2 22.2c9.4 9.4 9.4 24.6 0 33.9L241 473c-9.4 9.4-24.6 9.4-33.9 0L12.7 278.6c-9.4-9.4-9.4-24.6 0-33.9l22.2-22.2c9.5-9.5 25-9.3 34.3.4L184 343.4V56c0-13.3 10.7-24 24-24h32c13.3 0 24 10.7 24 24v287.4l114.8-120.5c9.3-9.8 24.8-10 34.3-.4z"
+            />
+          </svg>
+        </a>
+      </div>
+
+      <header id="header">
+        <a href="/"
+          ><img
+            src="/static/images/logo/banner_trans.png"
+            alt="Discover three.js banner"
+        /></a>
+      </header>
+      <div class="nav-wrapper">
+        <nav class="nav">
+          <ul class="links" style="justify-content: left">
+            <li><a href="/book/contents/">Table Of Contents</a></li>
+            <!-- <li><a href="/blog/">Blog</a></li>-->
+            <li style="margin: auto">
+              <a href="/#mailing-list-signup" class="internal-link"
+                >Stay up to date - sign up to the mailing list!</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <main>
+        <section class="about-the-book">
+          <h1>Welcome to the Missing Manual for three.js!</h1>
+          <h2>
+            Discover three.js is a complete introduction to the web as a
+            platform for 3D graphics using the three.js WebGL library, from one
+            of the core three.js developers.
+          </h2>
+          <p>
+            This book is a complete tutorial series designed to get you started
+            on your journey of creating modern, professional-quality 3D web
+            applications in the shortest time possible.
+          </p>
+        </section>
+
+        <section>
+          <h2 id="mailing-list-signup">
+            Stay up to Date - Enter Your Email Here
+          </h2>
+
+          <form
+            method="post"
+            action="https://lm.discoverthreejs.com/subscription/form"
+            class="email-signup-form"
+          >
+            <input type="text" name="email" placeholder="E-mail" />
+
+            <p>
+              <input
+                id="list-name"
+                type="checkbox"
+                name="l"
+                value="68fa7710-a7ba-4cd7-97a8-d540ad7e127b"
+                checked
+              />
+              <label for="list-name">dtjs-mailing-list</label>
+            </p>
+            <input type="submit" value="Subscribe" />
+          </form>
+        </section>
+        <section>
+          <h2 class="logo-title">
+            <img
+              class="logo"
+              src="/static/images/app-logos/forum.png"
+              alt="three.js logo"
+              title="three.js logo"
+              loading="lazy"
+            />What is three.js?
+          </h2>
+
+          <h3>
+            three.js is the world's most popular JavaScript framework for
+            displaying 3D content on the web.
+          </h3>
+          <p>
+            With three.js, you no longer need a fancy gaming PC or console to
+            display photorealistic 3D graphics. You don't even need to download
+            a special application. Now everyone can experience stunning 3D
+            applications in the palm of their hand using nothing more than a
+            smartphone and a web browser.
+          </p>
+          <p style="margin-bottom: 3rem">
+            This amazing library and the vibrant community that surrounds are
+            all you need to create games, music videos, scientific and data
+            visualizations, or pretty much anything else you can imagine, right
+            in your browser, on your laptop, tablet, or smartphone!
+          </p>
+
+          <figure>
+            <a
+              href="https://threejs.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="/static/images/threejs_site_screenshot.jpg"
+                alt="threejs.org - the homepage of three.js"
+                title="threejs.org - the homepage of three.js"
+                loading="lazy"
+              />
+            </a>
+          </figure>
+        </section>
+
+        <section>
+          <h2>What's in the Book</h2>
+          <p>
+            This book covers everything you need to start creating amazing,
+            professional-quality, high-performance 3D web applications that run
+            on any operating system and device, from smartphones to laptops to
+            smart-watches, even if you are completely new to web development and
+            computer graphics. three.js is the most accessible computer graphics
+            framework that has ever existed, and we will take full advantage of
+            that to guide you to a high level of expertise, in no time at all.
+          </p>
+          <p>
+            Here, we introduce all the foundational concepts you need to create
+            a basic three.js application, and with this knowledge you'll be
+            creating amazing projects of your own in no time. With the power of
+            the third dimension, the only limit is your imagination!
+          </p>
+          <p>
+            If you've never created a JavaScript application before, head over
+            to the <a href="/book/appendix/">appendices</a>. We've got you
+            covered with everything from
+            <a href="/book/appendix/html-and-css-reference/">HTML, CSS</a>, and
+            <a href="/book/appendix/javascript-reference/">JavaScript</a>
+            reference chapters to more advanced chapters on
+            <a href="/book/appendix/javascript-modules/">modules</a> and
+            <a href="/book/appendix/asynchronous-javascript/"
+              >asynchronous coding patterns</a
+            >, and more, all completely free.
+          </p>
+        </section>
+
+        <section>
+          <h2 id="code-examples">Live Code Examples</h2>
+          <p>
+            Every chapter comes with a live code editor that automatically
+            updates as you type, featuring before and after views so you can
+            work along with the text or skip ahead to see the completed code in
+            action. You can also download the code as a zip file, ready for use
+            on your own computer.
+          </p>
+
+          <div class="editor-video">
+            <video
+              width="100%"
+              autoplay
+              loop
+              muted="true"
+              playsinline
+              loading="lazy"
+              preload="none"
+              title="The live code editor in action"
+            >
+              <source src="/static/images/home/editor.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </section>
+
+        <section>
+          <h2>Clear 2D Diagrams</h2>
+
+          <p>
+            Concepts are demonstrated throughout the book using hundreds of
+            original diagrams that clearly illustrate the ideas being
+            introduced.
+          </p>
+
+          <div class="diagrams columns">
+            <figure class="column">
+              <img
+                src="/static/images/first-steps/perspective_frustum.svg"
+                alt="Perspective camera frustum"
+                title="Perspective camera frustum"
+                loading="lazy"
+              />
+            </figure>
+            <figure class="column">
+              <img
+                src="/static/images/first-steps/animation_dancer.jpg"
+                alt="Dancing animation, selected frames"
+                title="Dancing animation selected frames"
+                loading="lazy"
+              />
+            </figure>
+            <figure class="column">
+              <img
+                src="/static/images/first-steps/directional_light.svg"
+                alt="Directional Lighting"
+                title="Directional Lighting"
+                loading="lazy"
+              />
+            </figure>
+            <figure class="column">
+              <img
+                src="/static/images/first-steps/cylinder_final_rotation.svg"
+                alt="Cylinder rotation around Z-axis"
+                title="Cylinder rotation around Z-axis"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+        </section>
+
+        <section>
+          <h2 style="margin-bottom: 2rem">Table of Contents</h2>
+          <p>
+            The main chapters in this book take the form of a
+            <strong>free tutorial series</strong>, which, along with the
+            <a href="/book/introduction/">Introduction</a> and
+            <a href="/book/appendix">Appendices</a>, introduces all the
+            important concepts and terminology that you need to get started in
+            your exploration of 3D web graphics. Everything you need to know is
+            covered here, including animation, lighting, camera controls,
+            photorealistic materials and textures, and lots more.
+          </p>
+          <h3 style="text-align: center; border: 0; margin: 0 auto 2rem">
+            What are you waiting for? Dive right in and see what Discover
+            three.js has to offer, completely free!
+          </h3>
+
+          <nav class="table-of-contents-large">
+            <ul>
+              <li class="section-head">
+                <span class="chapter">0:</span
+                ><a
+                  href="/book/introduction/"
+                  title="Welcome to Discover three.js!"
+                  >Welcome to Discover three.js!</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">0.1:</span
+                ><a
+                  href="/book/introduction/about-the-book/"
+                  title="How to Use This Book"
+                  >How to Use This Book</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">0.2:</span
+                ><a
+                  href="/book/introduction/prerequisites/"
+                  title="What Do You Need to Run a three.js App?"
+                  >What Do You Need to Run a three.js App?</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">0.3:</span
+                ><a
+                  href="/book/introduction/get-help/"
+                  title="Welcome to the Community: three.js Around the Web"
+                  >Welcome to the Community: three.js Around the Web</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">0.4:</span
+                ><a
+                  href="/book/introduction/github-repo/"
+                  title="three.js on GitHub - Where the Magic Happens"
+                  >three.js on GitHub - Where the Magic Happens</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">0.5:</span
+                ><a
+                  href="/book/introduction/get-threejs/"
+                  title="How to Include three.js in Your Projects"
+                  >How to Include three.js in Your Projects</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">0.7:</span
+                ><a
+                  href="/book/introduction/threejs-with-frameworks/"
+                  title="Using three.js with React, Vue.js, Angular, Svelte, TypeScript..."
+                  >Using three.js with React, Vue.js, Angular, Svelte,
+                  TypeScript...</a
+                >
+              </li>
+              <li class="section-head">
+                <span class="chapter">1:</span
+                ><a
+                  href="/book/first-steps/"
+                  title="Getting Started: Here&#39;s Where the Real Fun Begins!"
+                  >Getting Started: Here&#39;s Where the Real Fun Begins!</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">1.1:</span
+                ><a
+                  href="/book/first-steps/app-structure/"
+                  title="The Structure of a three.js App"
+                  >The Structure of a three.js App</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">1.2:</span
+                ><a
+                  href="/book/first-steps/first-scene/"
+                  title="Your First three.js Scene: Hello, Cube!"
+                  >Your First three.js Scene: Hello, Cube!</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">1.3:</span
+                ><a
+                  href="/book/first-steps/world-app/"
+                  title="Introducing the World App"
+                  >Introducing the World App</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">1.4:</span
+                ><a
+                  href="/book/first-steps/physically-based-rendering/"
+                  title="Physically Based Rendering and Lighting"
+                  >Physically Based Rendering and Lighting</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">1.5:</span
+                ><a
+                  href="/book/first-steps/transformations/"
+                  title="Transformations and Coordinate Systems"
+                  >Transformations and Coordinate Systems</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">1.6:</span
+                ><a
+                  href="/book/first-steps/responsive-design/"
+                  title="Making Our Scenes Responsive (and also Dealing with Jaggies)"
+                  >Making Our Scenes Responsive (and also Dealing with
+                  Jaggies)</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">1.7:</span
+                ><a
+                  href="/book/first-steps/animation-loop/"
+                  title="The Animation Loop"
+                  >The Animation Loop</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">1.8:</span
+                ><a
+                  href="/book/first-steps/textures-intro/"
+                  title="A Brief Introduction to Texture Mapping"
+                  >A Brief Introduction to Texture Mapping</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">1.9:</span
+                ><a
+                  href="/book/first-steps/camera-controls/"
+                  title="Extend three.js With a Camera Controls Plugin"
+                  >Extend three.js With a Camera Controls Plugin</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">1.10:</span
+                ><a
+                  href="/book/first-steps/ambient-lighting/"
+                  title="Ambient Lighting: Illumination from Every Direction"
+                  >Ambient Lighting: Illumination from Every Direction</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">1.11:</span
+                ><a
+                  href="/book/first-steps/organizing-with-group/"
+                  title="Organizing Your Scenes"
+                  >Organizing Your Scenes</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">1.12:</span
+                ><a
+                  href="/book/first-steps/built-in-geometries/"
+                  title="The Built-In Geometries"
+                  >The Built-In Geometries</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">1.13:</span
+                ><a
+                  href="/book/first-steps/load-models/"
+                  title="Load 3D Models in glTF Format"
+                  >Load 3D Models in glTF Format</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">1.14:</span
+                ><a
+                  href="/book/first-steps/animation-system/"
+                  title="The three.js Animation System"
+                  >The three.js Animation System</a
+                >
+              </li>
+              <li class="section-head">
+                <span class="chapter">A:</span
+                ><a href="/book/appendix/" title="Appendices">Appendices</a>
+              </li>
+              <li class="">
+                <span class="chapter">A.1:</span
+                ><a
+                  href="/book/appendix/html-and-css-reference/"
+                  title="HTML and CSS Used in This Book"
+                  >HTML and CSS Used in This Book</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">A.2:</span
+                ><a
+                  href="/book/appendix/javascript-reference/"
+                  title="JavaScript Reference"
+                  >JavaScript Reference</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">A.3:</span
+                ><a
+                  href="/book/appendix/dom-api-reference/"
+                  title="The Document Object Model and DOM API"
+                  >The Document Object Model and DOM API</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">A.4:</span
+                ><a
+                  href="/book/appendix/javascript-modules/"
+                  title="JavaScript Modules"
+                  >JavaScript Modules</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">A.5:</span
+                ><a
+                  href="/book/appendix/asynchronous-javascript/"
+                  title="Asynchronous JavaScript"
+                  >Asynchronous JavaScript</a
+                >
+              </li>
+              <li class="">
+                <span class="chapter">B.1:</span
+                ><a
+                  href="/book/appendix/threejs-versions/"
+                  title="Dealing with Different three.js Versions"
+                  >Dealing with Different three.js Versions</a
+                >
+              </li>
+              <li class="unavailable section-head">
+                <span class="chapter">R:</span
+                ><span>References and Resources</span>
+              </li>
+              <li class="">
+                <span class="chapter">R:</span
+                ><a
+                  href="/tips-and-tricks/"
+                  title="The Big List of three.js Tips and Tricks!"
+                  >The Big List of three.js Tips and Tricks!</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </section>
+
+        <section>
+          <h2>The Big List of three.js Tips and Tricks</h2>
+          <p>
+            <a href="/tips-and-tricks/"
+              >Click here for a big list of tips, tricks, caveats, gotchas and
+              performance suggestions</a
+            >
+            for using three.js, for beginners and experts alike. Keep this page
+            open while working on three.js applications of any size.
+          </p>
+        </section>
+
+        <section>
+          <h2>About the Author</h2>
+          <div class="columns">
+            <div class="column">
+              <img
+                src="/static/images/about/portrait-color.jpg"
+                class="portrait big"
+                alt="Portrait of the author"
+                title="Portrait of the author"
+                loading="lazy"
+              />
+            </div>
+            <div class="column">
+              <p style="text-align: justify">
+                <a
+                  href="https://twitter.com/lewy_blue"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Lewy Blue</a
+                >
+                is a one time stilt-walker and fire-dancer who decided there was
+                an even brighter future in mathematics.
+              </p>
+              <p style="text-align: justify">
+                His idea of a perfect life is to travel the world with a
+                backpack and laptop. Currently, he is living out that dream
+                somewhere in Vietnam.
+              </p>
+              <p style="text-align: justify">
+                He is one of the main contributors to the
+                <a
+                  href="https://github.com/mrdoob/three.js/graphs/contributors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >three.js open source project</a
+                >, focusing on documentation writing and interoperability with
+                third-party applications, especially Autodesk, Blender, and
+                Lightwave 3D. He is an admin on the official
+                <a
+                  href="https://discourse.threejs.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >three.js forum</a
+                >.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+      {{- partialCached "jumbo/footer.html" . -}}
+    </div>
+    {{- partialCached "fonts.html" . -}}
+  </body>
+</html>

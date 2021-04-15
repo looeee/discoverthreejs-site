@@ -3,12 +3,16 @@ title: "The Big List of three.js Tips and Tricks!"
 date: 2018-01-01
 description: "Here lie hundreds of tips, tricks, and suggestions for best practices while building a high performance three.js application."
 weight: 9999
-chapter: 'R'
-contents: false
+chapter: ''
+contents: true
 available: true
 pagination: false
 excludeFromTOC: false
 hideWordCount: true
+alias: [
+ '/tips'
+]
+type: "book"
 ---
 
 # The Big List of three.js Tips and Tricks!

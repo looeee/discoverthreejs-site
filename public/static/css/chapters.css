@@ -566,7 +566,7 @@ main .scroller .chapter-info {
   text-align: right;
   font-style: italic;
   font-size: 0.8rem;
-  padding-top: 1rem;
+  padding-bottom: 1rem;
   padding-right: 1rem;
   color: #666;
 }

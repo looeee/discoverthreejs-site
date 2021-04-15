@@ -1,0 +1,75 @@
+baseURL = "/"
+languageCode = "en-us"
+title = "Chapters"
+
+publishDir = '../public/'
+
+disableKinds = ["taxonomy", "taxonomyTerm", "category", "RSS", "robotsTXT"]
+
+enableInlineShortcodes = true
+
+pygmentsCodeFences = true
+pygmentsOptions = ""
+pygmentsStyle = "monokai"
+pygmentsUseClasses = true
+
+linenos = "true"
+
+# use pygments instead of Chroma
+# pygmentsUseClassic=true
+
+enableRobotsTXT = false
+summaryLength = 240
+
+logFile = "logs.txt"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      hardWraps = false
+      unsafe = true
+      xhtml = false
+
+paginate = 10
+paginatePath = "test"
+
+[outputFormats]
+  [outputFormats.HTML]
+    baseName = "index"
+    mediaType = "text/html"
+    isHTML = true
+  [outputFormats.pagination]
+    baseName = "pagination"
+    isHTML = true
+    mediaType = "text/html"
+  [outputFormats.siteurls]
+    baseName = "siteurls"
+    isHTML = true
+    mediaType = "text/plain"
+  [outputFormats.summary]
+    baseName = "summary"
+    isHTML = true
+    mediaType = "text/html"
+  [outputFormats.toc]
+    baseName = "toc"
+    isHTML = true
+    mediaType = "text/html"
+
+[outputs]
+
+  # single.<xyz>.html layout files
+  page = [
+    "HTML",
+    "pagination",
+    "summary",
+    # "toc",
+  ]
+
+  # list.<xyz>.html layout files
+  section = [
+    "HTML",
+    "pagination",
+    "siteurls",
+    "summary",
+    "toc",
+  ]

@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently --names \"HUGO,HTTP\" -c \"bgBlue.bold,bgGreen.bold\" \"npm run watch-static\" \"npm run serve\"",
-    "watch-static": "cd .\\markdown & .\\hugo.exe -w",
-    "watch-js": "node watch.mjs",
-    "serve": "servez -p 8080 public"
+    "start": "concurrently --names \"WATCH,HTTP\" -c \"bgBlue.bold,bgGreen.bold\" \"npm run watch\" \"npm run serve\" ",
+    "watch": "node .\\buildTools/watch.js",
+    "serve": "servez -p 3000 public"
   },
   "author": "Lewy Blue",
   "license": "MIT",
@@ -23,11 +23,13 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
-    "clean-css": "^5.1.1",
+    "browser-sync": "^2.26.14",
+    "chokidar": "^3.5.1",
+    "clean-css": "^5.1.2",
     "concurrently": "^6.0.0",
     "esbuild": "^0.11.5",
     "esbuild-glslify": "github:ayamflow/esbuild-glslify",
-    "postcss": "^8.2.8",
+    "postcss": "^8.2.10",
     "sass": "^1.32.8",
     "servez": "^1.11.0"
   }

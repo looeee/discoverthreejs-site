@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <title>{{ .Title }} | Discover three.js</title>
+    {{- partialCached "head/meta.html" . -}}
+    {{- partialCached "head/schema.html" . -}}
+    {{- partialCached "head/links.html" . -}}
+    <style>
+      .loading-page {
+        display: none;
+      }
+    </style>
+
+    <link href="/static/css/chapters.min.css?v=43" rel="stylesheet" />
+
+    <noscript>
+      <style>
+        .loading-page {
+          display: block;
+        }
+      </style>
+      <link href="/static/css/noscript.min.css?v=43" rel="stylesheet" />
+    </noscript>
+    {{- partialCached "head/preload.html" . -}}
+    {{- partial "ideScript.html" . -}}
+  </head>
+  <body class="loading-page">
+    {{- partialCached "topNav.html" . -}}
+    <div class="wrapper orientation-auto">
+      <main class="panel animate">
+        <div class="scroller">
+          <div class="content">
+            {{ if ne .Params.hideWordCount true }}
+              <div class="chapter-info">Word Count: {{- .WordCount -}}, reading time: ~{{- .ReadingTime -}}minutes</div>
+            {{ end }}
+            {{ .Content }}
+          </div>
+        </div>
+      </main>
+      {{- partialCached "ideHTML.html" . -}}
+    </div>
+    {{- partialCached "leftMenu.html" . -}}
+    {{- partialCached "rightMenu.html" . -}}
+    {{- partialCached "fonts.html" . -}}
+  </body>
+</html>
