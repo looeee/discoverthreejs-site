@@ -28,7 +28,7 @@ Prerequisites: Node.js
 * `styles/apps/chapters` - SCSS styles for the book are here.
 * `public/static/examples` - the code for the IDE examples are here. Each example is a `World` - for examples: `static/examples/worlds/first-steps/first-scene` contains the example for the chapter **First Scene**. See `public/static/examples/README.md` for more details.
 
-All JS, SCSS, and markdown is watched for changes and rebuilt using the `npm start` command.
+All JS, SCSS, and markdown files are watched for changes and rebuilt when you run the `npm start` command.
 
 ## Updating Three.js Version
 
