@@ -1,6 +1,0 @@
-{{ if .Params.summaryAvailable }}
-  {{ .Content | truncate 300 }}
-  <div class="fade-summary"></div>
-{{ else }}
-  <h1>{{ .Title }}</h1>
-{{ end }}

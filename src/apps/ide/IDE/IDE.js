@@ -1,12 +1,12 @@
-import { BlobURLGenerator } from './BlobURLGenerator/BlobURLGenerator.js';
-import { Editor } from './Editor/Editor.js';
-import { Fetcher } from './Fetcher/Fetcher.js';
-import { FileTree } from './FileTree/FileTree.js';
-import { Preview } from './Preview/Preview.js';
-import { Controls } from './Controls/Controls.js';
-import { setupPanels } from './Panels/setupPanels.js';
-import { Downloader } from './Downloader/Downloader.js';
-import { getSiteURL } from './utils/getSiteURL.js';
+import { BlobURLGenerator } from "./BlobURLGenerator/BlobURLGenerator.js";
+import { Editor } from "./Editor/Editor.js";
+import { Fetcher } from "./Fetcher/Fetcher.js";
+import { FileTree } from "./FileTree/FileTree.js";
+import { Preview } from "./Preview/Preview.js";
+import { Controls } from "./Controls/Controls.js";
+import { setupPanels } from "./Panels/setupPanels.js";
+import { Downloader } from "./Downloader/Downloader.js";
+import { getSiteURL } from "./utils/getSiteURL.js";
 
 // NOTES:
 // load from directory structure like
@@ -31,13 +31,13 @@ class IDE {
     this.config.siteURL = getSiteURL();
     this.config.assetsLocation = `${this.config.siteURL}/${this.config.serverDirectory}/assets/`;
 
-    this.fileTypes = ['.js', '.html', '.css', '.glb', '.png', '.jpg'];
-    this.textTypes = ['js', 'html', 'css'];
-    this.imageTypes = ['png', 'jpg'];
-    this.otherTypes = ['glb'];
+    this.fileTypes = [".js", ".html", ".css", ".glb", ".png", ".jpg"];
+    this.textTypes = ["js", "html", "css"];
+    this.imageTypes = ["png", "jpg"];
+    this.otherTypes = ["glb"];
 
     this.comparisonsEnabled =
-      this.config.comparisonMode.toLowerCase() === 'true';
+      this.config.comparisonMode.toLowerCase() === "true";
 
     this.container = document.querySelector(config.container);
   }
@@ -45,16 +45,14 @@ class IDE {
   async init() {
     this.files = await Fetcher.fetchFiles(
       this.config.files,
-      this.config.startFiles,
-      this.config.finalFiles,
       this.config.serverDirectory,
       this.config.stripDirectory,
-      this.comparisonsEnabled,
+      this.comparisonsEnabled
     );
 
     this.editor = new Editor(this.files);
     this.preview = new Preview();
-    this.imagePreview = document.querySelector('#image-preview');
+    this.imagePreview = document.querySelector("#image-preview");
 
     this.fileTree = new FileTree(
       this.files,
@@ -62,13 +60,13 @@ class IDE {
       this.config.closedFolders,
       this.editor,
       this.imagePreview,
-      this.comparisonsEnabled,
+      this.comparisonsEnabled
     );
 
     this.urlGenerator = new BlobURLGenerator(
       this.files,
       this.config.assetsLocation,
-      this.config.entry,
+      this.config.entry
     );
 
     if (this.config.activeDocument) {
@@ -76,10 +74,7 @@ class IDE {
     }
 
     this.preview.update(this.urlGenerator.generateSrcURL());
-    this.downloader = new Downloader(
-      this.files,
-      this.config.assetsLocation,
-    );
+    this.downloader = new Downloader(this.files, this.config.assetsLocation);
 
     this.setupControls();
     this.setupEvents();
@@ -96,7 +91,7 @@ class IDE {
     // wait until typing stops for a certain time, then refresh
     let refreshCountDown;
 
-    this.editor.setEventCallback('changes', () => {
+    this.editor.setEventCallback("changes", () => {
       clearTimeout(refreshCountDown);
 
       refreshCountDown = setTimeout(() => this.updatePreview(), 700);
@@ -104,7 +99,7 @@ class IDE {
       this.resetControls.setButtonStates();
     });
 
-    this.editor.setEventCallback('refresh', () => {
+    this.editor.setEventCallback("refresh", () => {
       this.resetControls.setButtonStates();
     });
   }
@@ -113,7 +108,7 @@ class IDE {
     Controls.setupDownloadPackageButton(this.downloader);
     Controls.setupImportStyleSelect(
       this.files,
-      this.config.switchImportsAllowed,
+      this.config.switchImportsAllowed
     );
     Controls.openPreviewInNewWindow(this.preview);
 

@@ -2,17 +2,18 @@
 title: "Apps and Utilities"
 description: "This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D"
 date: 2018-04-02
-weight: 100
-contents: false
 available: true
-pagination: false
-excludeFromTOC: true
-includeInSitemap: false
-hideWordCount: true
+type: 'jumbo'
 ---
 
-# THIS PAGE HAS BEEN REMOVED
+# The Apps Have Been Moved
 
-This page has been temporarily removed while I  work hard on updates. Please check back soon!
+I have open sourced the apps and to keep things they are now hosted separately to the site. You can find them here:
 
-In the meantime, check out [Don's glTF viewer](https://gltf-viewer.donmccurdy.com/).
+## Multi-Format Model Loader and Viewers
+
+[**Live Site**](https://loader.lewy.blue/) | [**GitHub**](https://github.com/looeee/multiformat-model-viewer)
+
+## glTF Converter
+
+[**Live Site**](https://gltf-converter.lewy.blue/) | [**GitHub**](https://github.com/looeee/gltf-converter)

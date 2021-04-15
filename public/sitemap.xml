@@ -38,32 +38,12 @@
   </url>
   
   <url>
-    <loc>/apps/</loc>
-    <lastmod>2018-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/book/first-steps/</loc>
-    <lastmod>2018-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/examples/</loc>
-    <lastmod>2018-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/modules/</loc>
-    <lastmod>2018-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/preorder/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
   </url>
   
@@ -183,8 +163,33 @@
   </url>
   
   <url>
+    <loc>/apps/</loc>
+    <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/examples/</loc>
+    <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/modules/</loc>
+    <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/book/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/privacy/</loc>
+    <lastmod>2018-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/terms/</loc>
+    <lastmod>2018-01-01T00:00:00+00:00</lastmod>
   </url>
   
 </urlset>

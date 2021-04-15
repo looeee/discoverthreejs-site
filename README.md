@@ -18,21 +18,24 @@ Prerequisites: Node.js
 
 1. Clone or download the repo
 2. Run `npm install`
-3. Create symlink for the static/examples folder into markdown/assets (This is required since Hugo.readFile cannot access files outside the /markdown folder)
-4. Create symlink for
-4. Run `npm start` and open your browser to `http://localhost:8080/`
+3. Run `npm start`
+4. Go to `http://localhost:8080/` (with livereload) or `http://localhost:3000/` (without livereload)
 
-### Symlink details
+### Important folders
 
-# Symlinks
+* `markdown/content` - all the words in the book are contained here
+* `src/apps` - JS source code
+* `styles/apps/chapters` - SCSS styles for the book are here.
+* `public/static/examples` - the code for the IDE examples are here. Each example is a `World` - for examples: `static/examples/worlds/first-steps/first-scene` contains the example for the chapter **First Scene**. See `public/static/examples/README.md` for more details.
 
-Open a command prompt from the root folder of this repo and run the following command
+All JS, SCSS, and markdown is watched for changes and rebuilt using the `npm start` command.
 
-## Powershell
-> & cmd /c "mklink /J .\markdown\assets\examples .\public\static\examples"
-> & cmd /c "mklink /J .\public\static\examples\vendor\three .\node_modules\three"
+## Updating Three.js Version
 
+The three.js folder in node_modules is copied to the `/public/static/examples/vendor/three` folder.
 
-## Windows Console
-> mklink /J .\markdown\assets\examples .\public\static\examples
-> mklink /J .\public\static\examples\vendor\three .\node_modules\three
+`./node_modules/three` (original) -> `/public/static/examples/vendor/three` (copied)
+
+This is required since the IDE needs to load Three.js at runtime. To prevent three.js versions getting out of sync across the project, it's best to have one source of the file in node_modules/ and reference this everywhere. However, the IDE can only access files in public/static/.
+
+Whenever you update the three.js version, remember to copy the file across to the examples folder!

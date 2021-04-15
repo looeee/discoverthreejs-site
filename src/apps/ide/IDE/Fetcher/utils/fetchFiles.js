@@ -1,4 +1,5 @@
-async function fetchFiles(urls, as = 'text', serverDirectory) {
+async function fetchFiles(urls, as = "text", serverDirectory) {
+  // console.log("urls: ", urls);
   const filePromises = [];
 
   for (const url of urls) {
@@ -11,12 +12,12 @@ async function fetchFiles(urls, as = 'text', serverDirectory) {
   return await Promise.all(
     responses.map((response) => {
       switch (as) {
-        case 'text':
+        case "text":
           return response.text();
-        case 'blob':
+        case "blob":
           return response.blob();
       }
-    }),
+    })
   );
 }
 

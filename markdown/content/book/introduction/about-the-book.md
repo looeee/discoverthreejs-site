@@ -6,7 +6,6 @@ weight: 2
 chapter: "0.1"
 available: true
 showIDE: true
-abcd: "TESTTESTTEST"
 IDEFiles: [
   "assets/models/Horse.glb",
   "assets/models/Parrot.glb",
@@ -50,7 +49,6 @@ prevTitle: "Welcome to Discover three.js!"
 
 {{% note %}}
 THIS CHAPTER IS COMPLETE!
-
 
 TODO-LOW: go over sparkleHorse code: before comparison should be non-sparkle horse
 {{% /note %}}

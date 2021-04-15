@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <title>{{ .Title }} | Discover three.js</title>
+    {{- partialCached "head/meta.html" . -}}
+    {{- partialCached "head/schema.html" . -}}
+    {{- partialCached "head/links.html" . -}}
+    <link href="/static/css/jumbo.min.css?v=43" rel="stylesheet" />
+
+    <noscript>
+      <style>
+        .loading-page {
+          display: block;
+        }
+      </style>
+      <link href="/static/css/noscript.min.css?v=43" rel="stylesheet" />
+    </noscript>
+  </head>
+
+  <body>
+    {{- partialCached "jumbo/nav.html" . -}}
+    <div class="wrapper">
+      {{- partialCached "jumbo/header.html" . -}}
+      <main>
+        <main>
+          <section>
+            {{ .Content }}
+          </section>
+        </main>
+      </main>
+      {{- partialCached "jumbo/footer.html" . -}}
+    </div>
+    {{- partialCached "fonts.html" . -}}
+  </body>
+</html>

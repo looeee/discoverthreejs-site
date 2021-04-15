@@ -18,9 +18,9 @@
 <meta property="og:title" content="How to Use This Book | Discover three.js" />
 <meta name="twitter:title" content="How to Use This Book | Discover three.js" />
 
-<meta name="description" content="No book is complete without references! Lots of resources to continue your learning in the amazing world of 3D graphics here" />
-<meta property="og:description" content="No book is complete without references! Lots of resources to continue your learning in the amazing world of 3D graphics here" />
-<meta name="twitter:description" content="No book is complete without references! Lots of resources to continue your learning in the amazing world of 3D graphics here" />
+<meta name="description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
+<meta property="og:description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
+<meta name="twitter:description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
 
 <meta
   itemprop="keywords"
@@ -108,21 +108,21 @@
     <link rel="manifest" href="/site.json?v=43" />
     <link rel="mask-icon" href="/safari-pinned-tab.svg?v=43" color="#5bbad5" />
 <style>
-  .loading-page {
-    display: none;
-  }
-</style>
+      .loading-page {
+        display: none;
+      }
+    </style>
 
-<link href="/static/css/chapters.min.css?v=43" rel="stylesheet" />
+    <link href="/static/css/chapters.min.css?v=43" rel="stylesheet" />
 
-<noscript>
-  <style>
-    .loading-page {
-      display: block;
-    }
-  </style>
-  <link href="/static/css/noscript.min.css?v=43" rel="stylesheet" />
-</noscript>    
+    <noscript>
+      <style>
+        .loading-page {
+          display: block;
+        }
+      </style>
+      <link href="/static/css/noscript.min.css?v=43" rel="stylesheet" />
+    </noscript>    
     
     
     
@@ -142,57 +142,44 @@
     
 
     <script type="module">
-      console.log("TEST")
-      const x =  false ;
-      console.log('x: ', x);
+  import { setupChapterEarly } from "/static/js/chapterEarly.js";
+  setupChapterEarly();
 
-      import { setupChapterEarly } from "/static/js/chapter.early.js";
-      setupChapterEarly();
+  window.addEventListener('load', async () => {
+    const { setupChapterLate } = await import(
+      "/static/js/chapterLate.js"
+    );
+    setupChapterLate();
 
-      window.addEventListener('load', async () => {
-        const { setupChapterLate } = await import(
-          "/static/js/chapter.late.js"
-        );
-        setupChapterLate();
+    const { setupIDE } = await import(
+      "/static/js/ide.js"
+      );
 
-        const { setupIDE } = await import(
-          "/static/js/ide.js"
-        );
+    const ideConfig = {
 
-        const ideConfig = {
+      showIDE:  true ,
+      IDE: {
+        fullScreen: false,
+        container: '#ide-wrapper',
+        serverDirectory: 'static\/examples',
+        stripDirectory: 'worlds\/first-steps\/ambient-lighting\/',
+        closedFolders: 'assets,systems,styles,vendor'
+          .replace(/[\s\'\[\]']+/g, '')
+          .split(','),
+        comparisonMode: 'true',
+        files: 'assets\/textures\/uv-test-bw.png, assets\/textures\/uv-test-col.png, worlds\/first-steps\/ambient-lighting\/src\/World\/components\/camera.js, worlds\/first-steps\/ambient-lighting\/src\/World\/components\/cube.js, worlds\/first-steps\/ambient-lighting\/src\/World\/components\/lights.start.js, worlds\/first-steps\/ambient-lighting\/src\/World\/components\/lights.final.js, worlds\/first-steps\/ambient-lighting\/src\/World\/components\/scene.js, worlds\/first-steps\/ambient-lighting\/src\/World\/systems\/controls.js, worlds\/first-steps\/ambient-lighting\/src\/World\/systems\/renderer.js, worlds\/first-steps\/ambient-lighting\/src\/World\/systems\/Resizer.js, worlds\/first-steps\/ambient-lighting\/src\/World\/systems\/Loop.js, worlds\/first-steps\/ambient-lighting\/src\/World\/World.start.js, worlds\/first-steps\/ambient-lighting\/src\/World\/World.final.js, worlds\/first-steps\/ambient-lighting\/src\/main.js, styles\/main.css, vendor\/three\/build\/three.module.js, vendor\/three\/examples\/jsm\/controls\/OrbitControls.js, worlds\/first-steps\/ambient-lighting\/index.html'
+          .replace(/[\s\'\[\]']+/g, '')
+          .split(','),
+        entry: 'index.html',
+        activeDocument: 'src\/World\/components\/lights.js',
+        switchImportsAllowed:
+          'true',
+      },
+    }
 
-          showIDE:  true ,
-          IDE: {
-            fullScreen: false,
-            container: '#ide-wrapper',
-            serverDirectory: 'static\/examples',
-            stripDirectory: 'worlds\/first-steps\/ambient-lighting\/',
-            closedFolders: '[\u0022assets\u0022,\u0022systems\u0022,\u0022styles\u0022,\u0022vendor\u0022]'
-              .replace(/[\s\'\[\]']+/g, '')
-              .split(','),
-            comparisonMode: 'true',
-            files: '[\u0022assets\/textures\/uv-test-bw.png\u0022,\u0022assets\/textures\/uv-test-col.png\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/components\/camera.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/components\/cube.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/components\/lights.start.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/components\/lights.final.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/components\/scene.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/systems\/controls.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/systems\/renderer.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/systems\/Resizer.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/systems\/Loop.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/World.start.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/World\/World.final.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/src\/main.js\u0022,\u0022styles\/main.css\u0022,\u0022vendor\/three\/build\/three.module.js\u0022,\u0022vendor\/three\/examples\/jsm\/controls\/OrbitControls.js\u0022,\u0022worlds\/first-steps\/ambient-lighting\/index.html\u0022]'
-              .replace(/[\s\'\[\]']+/g, '')
-              .split(','),
-            startFiles: 'null'
-              .replace(/[\s\'\[\]']+/g, '')
-              .split(','),
-            finalFiles: 'null'
-              .replace(/[\s\'\[\]']+/g, '')
-              .split(','),
-            entry: 'index.html',
-            activeDocument: 'src\/World\/components\/lights.js',
-            switchImportsAllowed:
-              'true',
-          },
-        }
-
-        console.log('ideConfig: ', ideConfig);
-        setupIDE(ideConfig);
-      });
-    </script>
-
-  </head>
+    await setupIDE(ideConfig);
+  });
+</script></head>
   <body class="loading-page"><nav class="top-nav">
   <div class="nav-background"></div>
 
@@ -353,7 +340,6 @@
             
               <div class="chapter-info">Word Count:2555, reading time: ~12minutes</div>
             
-
             <h1 id="ambient-lighting-illumination-from-every-direction">Ambient Lighting: Illumination from Every Direction</h1>
 
 
@@ -362,11 +348,11 @@
 
 
 
-<figure id="scene-145798236" class="inline-scene loading-dots round small right"></figure>
+<figure id="scene-764312958" class="inline-scene loading-dots round small right"></figure>
 
 <script type="module">
   import init from "/static/examples/worlds/inline-scenes/first-steps/illumination-problem.js";
-  init("#scene-145798236");
+  init("#scene-764312958");
 </script>
 
 <p>At the end of the last chapter, we discovered a rather glaring problem with our lighting setup. Our scene is illuminated using a single <code>DirectionalLight</code>, and although this type of light fills the entire scene with light rays, all the rays shine in a single direction. Faces of the cube in the direct path of the light are brightly illuminated. However, as soon as we rotate the camera to see another direction, we find that <strong>any faces of the cube that point away from the direction of the light rays don&rsquo;t receive any light at all!</strong></p>
@@ -515,11 +501,11 @@ function createLights() {
 
 
 
-<figure id="scene-327145869" class="inline-scene loading-dots "></figure>
+<figure id="scene-823657914" class="inline-scene loading-dots "></figure>
 
 <script type="module">
   import init from "/static/examples/worlds/inline-scenes/first-steps/ambient-with-directional.js";
-  init("#scene-327145869");
+  init("#scene-823657914");
 </script>
 
 <p>However, the lighting on the rear faces of the cube looks rather dull. To make a setup based around <code>AmbientLight</code> and <code>DirectionalLight</code> look good, we would need to add multiple directional lights with varying direction and intensity. That runs into many of the same problems we described above for <a href="#multiple-direct-lights">a setup using multiple direct lights</a>. As we&rsquo;ll see in a moment, the <code>HemisphereLight</code> gives better results here, for almost no additional performance cost.</p>
@@ -534,11 +520,11 @@ function createLights() {
 
 
 
-<figure id="scene-136482597" class="inline-scene loading-dots "></figure>
+<figure id="scene-519487623" class="inline-scene loading-dots "></figure>
 
 <script type="module">
   import init from "/static/examples/worlds/inline-scenes/first-steps/ambient-basic-comparison.js";
-  init("#scene-136482597");
+  init("#scene-519487623");
 </script>
 
 <h2 id="the-hemispherelight">The <code>HemisphereLight</code></h2>
@@ -573,11 +559,11 @@ function createLights() {
 
 
 
-<figure id="scene-759124638" class="inline-scene loading-dots "></figure>
+<figure id="scene-913627854" class="inline-scene loading-dots "></figure>
 
 <script type="module">
   import init from "/static/examples/worlds/inline-scenes/first-steps/hemisphere-only.js";
-  init("#scene-759124638");
+  init("#scene-913627854");
 </script>
 
 <p>However, since the <code>HemisphereLight</code> light does not shine from any particular direction, <strong>there are no shiny highlights (AKA <em>specular highlights</em>) in this scene</strong>. This is why we usually pair this type of light with at least one direct light. For outdoor scenes, try pairing the <code>HemisphereLight</code> with a single bright <code>DirectionalLight</code> representing the sun. For indoor scenes, you might use a <code>PointLight</code> to represent a lightbulb, or a <code>RectAreaLight</code> to simulate light coming through a bright window or from a strip light.</p>
@@ -628,8 +614,252 @@ function createLights() {
 
           </div>
         </div>
-      </main>
-    </div><div class="side-menu left-menu">
+      </main><div id="ide-wrapper" class="panel animate disabled hide">
+  <nav id="ide-controls-top" class="control-bar fuzzy-background">
+    <input
+      type="checkbox"
+      id="toggle-complete"
+      class="ide-toggle simple-toggle"
+      title="Show completed code (your changes will be saved)"
+      disabled="true"
+    />
+
+    <input
+      type="checkbox"
+      id="toggle-filetree"
+      class="hidden-input ide-toggle"
+    />
+    <label
+      for="toggle-filetree"
+      class="control-elem"
+      title="Toggle Filetree"
+    >
+      <span class="off-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"
+          />
+        </svg>
+      </span>
+      <span class="on-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"
+          />
+        </svg>
+      </span>
+    </label>
+
+    <button
+      type="button"
+      id="reset-active-file"
+      class="control-elem"
+      title="Reset Current File"
+      disabled
+    >
+      <svg
+        class="icon"
+        role="img"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 448 512"
+      >
+        <path
+          fill="currentColor"
+          d="M64 468V44c0-6.6 5.4-12 12-12h48c6.6 0 12 5.4 12 12v176.4l195.5-181C352.1 22.3 384 36.6 384 64v384c0 27.4-31.9 41.7-52.5 24.6L136 292.7V468c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12z"
+        />
+      </svg>
+    </button>
+    <button
+      type="button"
+      id="reset-all-files"
+      class="control-elem"
+      title="Reset All Changes"
+      disabled
+    >
+      <svg
+        class="icon"
+        role="img"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 512 512"
+      >
+        <path
+          fill="currentColor"
+          d="M0 436V76c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v151.9L235.5 71.4C256.1 54.3 288 68.6 288 96v131.9L459.5 71.4C480.1 54.3 512 68.6 512 96v320c0 27.4-31.9 41.7-52.5 24.6L288 285.3V416c0 27.4-31.9 41.7-52.5 24.6L64 285.3V436c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12z"
+        />
+      </svg>
+    </button>
+    <input
+      type="checkbox"
+      id="toggle-preview"
+      class="hidden-input ide-toggle"
+    />
+    <label
+      for="toggle-preview"
+      class="control-elem"
+      title="Toggle Preview"
+    >
+      <span class="on-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 576 512"
+        >
+          <path
+            fill="currentColor"
+            d="M528 0H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h192l-16 48h-72c-13.3 0-24 10.7-24 24s10.7 24 24 24h272c13.3 0 24-10.7 24-24s-10.7-24-24-24h-72l-16-48h192c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-16 352H64V64h448v288z"
+          />
+        </svg>
+      </span>
+      <span class="off-icon">
+        <svg
+          class="icon"
+          role="img"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 576 512"
+        >
+          <path
+            fill="currentColor"
+            d="M528 0H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h192l-16 48h-72c-13.3 0-24 10.7-24 24s10.7 24 24 24h272c13.3 0 24-10.7 24-24s-10.7-24-24-24h-72l-16-48h192c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-16 352H64V64h448v288z"
+          />
+        </svg>
+      </span>
+    </label>
+    <button
+      type="button"
+      id="new-window-preview"
+      class="control-elem hide"
+      title="Open Preview in New Window"
+    >
+      <svg
+        class="icon"
+        role="img"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 512 512"
+      >
+        <path
+          fill="currentColor"
+          d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"
+        />
+      </svg>
+    </button>
+  </nav>
+  <div id="editor-panel" class="panel animate">
+    <section
+      id="filetree-panel"
+      class="filetree panel animate fuzzy-background"
+    >
+      <div class="file-control-bar-top control-bar">
+        <button
+          type="button"
+          id="create-file-button"
+          class="control-elem"
+          title="New File or Folder"
+        >
+          <svg
+            class="icon"
+            role="img"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 384 512"
+          >
+            <path
+              fill="currentColor"
+              d="M377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 160v48c0 4.4-3.6 8-8 8h-56v56c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8v-56h-56c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h56v-56c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v56h56c4.4 0 8 3.6 8 8z"
+            />
+          </svg>
+        </button>
+        <button
+          type="button"
+          id="delete-file-button"
+          class="control-elem"
+          title="Delete File"
+          disabled
+        >
+          <svg
+            class="icon"
+            role="img"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+          >
+            <path
+              fill="currentColor"
+              d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
+            />
+          </svg>
+        </button>
+      </div>
+      <div id="filetree"></div>
+      <div class="file-control-bar-bottom control-bar">
+        <button
+          type="button"
+          id="download-button"
+          class="control-elem"
+          title="Download as Zip"
+        >
+          <svg
+            class="icon"
+            role="img"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <path
+              fill="currentColor"
+              d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"
+            />
+          </svg>
+        </button>
+        <div class="import-style-select">
+          <span>Import Style</span>
+          <select
+            id="select-import-style"
+            class=""
+            title="Select Import Style"
+            disabled
+          >
+            <option value="npm" selected="selected">NPM (default)</option>
+            
+            <option value="cdn">CDN</option>
+          </select>
+        </div>
+      </div>
+    </section>
+    <section id="editor" class="panel animate">
+      <div class="image-wrapper fuzzy-background">
+        <img
+          src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
+          alt="Selected Texture"
+          id="image-preview"
+        />
+      </div>
+    </section>
+  </div>
+  <div id="preview" class="panel animate">
+    <div id="preview-overlay"></div>
+    
+  </div>
+</div></div><div class="side-menu left-menu">
   <div class="icons">
     <input type="checkbox" id="invert-colors-toggle" class="hidden-input" />
     <label
@@ -720,251 +950,83 @@ function createLights() {
 
   <nav class="table-of-contents">
     <h2><a href="/book/contents/">Table of Contents</a></h2>
-    <div id="main-toc">
-      <ul>
-        <li class="section-head">
-          <span class="chapter">0:</span
-          ><a
-            href="/book/introduction/"
-            title="Welcome to Discover three.js!"
-            >Welcome to Discover three.js!</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">0.1:</span
-          ><a
-            href="/book/introduction/about-the-book/"
-            title="How to Use This Book"
-            >How to Use This Book</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">0.2:</span
-          ><a
-            href="/book/introduction/prerequisites/"
-            title="What Do You Need to Run a three.js App?"
-            >What Do You Need to Run a three.js App?</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">0.3:</span
-          ><a
-            href="/book/introduction/get-help/"
-            title="Welcome to the Community: three.js Around the Web"
-            >Welcome to the Community: three.js Around the Web</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">0.4:</span
-          ><a
-            href="/book/introduction/github-repo/"
-            title="three.js on GitHub - Where the Magic Happens"
-            >three.js on GitHub - Where the Magic Happens</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">0.5:</span
-          ><a
-            href="/book/introduction/get-threejs/"
-            title="How to Include three.js in Your Projects"
-            >How to Include three.js in Your Projects</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">0.7:</span
-          ><a
-            href="/book/introduction/threejs-with-frameworks/"
-            title="Using three.js with React, Vue.js, Angular, Svelte, TypeScript..."
-            >Using three.js with React, Vue.js, Angular, Svelte,
-            TypeScript...</a
-          >
-        </li>
-        <li class="section-head">
-          <span class="chapter">1:</span
-          ><a
-            href="/book/first-steps/"
-            title="Getting Started: Here&#39;s Where the Real Fun Begins!"
-            >Getting Started: Here&#39;s Where the Real Fun Begins!</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">1.1:</span
-          ><a
-            href="/book/first-steps/app-structure/"
-            title="The Structure of a three.js App"
-            >The Structure of a three.js App</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">1.2:</span
-          ><a
-            href="/book/first-steps/first-scene/"
-            title="Your First three.js Scene: Hello, Cube!"
-            >Your First three.js Scene: Hello, Cube!</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">1.3:</span
-          ><a
-            href="/book/first-steps/world-app/"
-            title="Introducing the World App"
-            >Introducing the World App</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">1.4:</span
-          ><a
-            href="/book/first-steps/physically-based-rendering/"
-            title="Physically Based Rendering and Lighting"
-            >Physically Based Rendering and Lighting</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">1.5:</span
-          ><a
-            href="/book/first-steps/transformations/"
-            title="Transformations and Coordinate Systems"
-            >Transformations and Coordinate Systems</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">1.6:</span
-          ><a
-            href="/book/first-steps/responsive-design/"
-            title="Making Our Scenes Responsive (and also Dealing with Jaggies)"
-            >Making Our Scenes Responsive (and also Dealing with Jaggies)</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">1.7:</span
-          ><a
-            href="/book/first-steps/animation-loop/"
-            title="The Animation Loop"
-            >The Animation Loop</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">1.8:</span
-          ><a
-            href="/book/first-steps/textures-intro/"
-            title="A Brief Introduction to Texture Mapping"
-            >A Brief Introduction to Texture Mapping</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">1.9:</span
-          ><a
-            href="/book/first-steps/camera-controls/"
-            title="Extend three.js With a Camera Controls Plugin"
-            >Extend three.js With a Camera Controls Plugin</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">1.10:</span
-          ><a
-            href="/book/first-steps/ambient-lighting/"
-            title="Ambient Lighting: Illumination from Every Direction"
-            >Ambient Lighting: Illumination from Every Direction</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">1.11:</span
-          ><a
-            href="/book/first-steps/organizing-with-group/"
-            title="Organizing Your Scenes"
-            >Organizing Your Scenes</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">1.12:</span
-          ><a
-            href="/book/first-steps/built-in-geometries/"
-            title="The Built-In Geometries"
-            >The Built-In Geometries</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">1.13:</span
-          ><a
-            href="/book/first-steps/load-models/"
-            title="Load 3D Models in glTF Format"
-            >Load 3D Models in glTF Format</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">1.14:</span
-          ><a
-            href="/book/first-steps/animation-system/"
-            title="The three.js Animation System"
-            >The three.js Animation System</a
-          >
-        </li>
-        <li class="section-head">
-          <span class="chapter">A:</span
-          ><a href="/book/appendix/" title="Appendices">Appendices</a>
-        </li>
-        <li class="">
-          <span class="chapter">A.1:</span
-          ><a
-            href="/book/appendix/html-and-css-reference/"
-            title="HTML and CSS Used in This Book"
-            >HTML and CSS Used in This Book</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">A.2:</span
-          ><a
-            href="/book/appendix/javascript-reference/"
-            title="JavaScript Reference"
-            >JavaScript Reference</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">A.3:</span
-          ><a
-            href="/book/appendix/dom-api-reference/"
-            title="The Document Object Model and DOM API"
-            >The Document Object Model and DOM API</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">A.4:</span
-          ><a
-            href="/book/appendix/javascript-modules/"
-            title="JavaScript Modules"
-            >JavaScript Modules</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">A.5:</span
-          ><a
-            href="/book/appendix/asynchronous-javascript/"
-            title="Asynchronous JavaScript"
-            >Asynchronous JavaScript</a
-          >
-        </li>
-        <li class="">
-          <span class="chapter">B.1:</span
-          ><a
-            href="/book/appendix/threejs-versions/"
-            title="Dealing with Different three.js Versions"
-            >Dealing with Different three.js Versions</a
-          >
-        </li>
-        <li class="unavailable section-head">
-          <span class="chapter">R:</span
-          ><span>References and Resources</span>
-        </li>
-        <li class="">
-          <span class="chapter">R:</span
-          ><a
-            href="/tips-and-tricks/"
-            title="The Big List of three.js Tips and Tricks!"
-            >The Big List of three.js Tips and Tricks!</a
-          >
-        </li>
-      </ul>
-    </div>
+    <div id="main-toc"><ul>
+    <li class="section-head">
+      <span class="chapter">0:</span><a href="/book/introduction/" title="Welcome to Discover three.js!">Welcome to Discover three.js!</a></li>
+    <li class="">
+      <span class="chapter">0.1:</span><a href="/book/introduction/about-the-book/" title="How to Use This Book">How to Use This Book</a></li>
+    <li class="">
+      <span class="chapter">0.2:</span><a href="/book/introduction/prerequisites/" title="What Do You Need to Run a three.js App?">What Do You Need to Run a three.js App?</a></li>
+    <li class="">
+      <span class="chapter">0.3:</span><a href="/book/introduction/get-help/" title="Welcome to the Community: three.js Around the Web">Welcome to the Community: three.js Around the Web</a></li>
+    <li class="">
+      <span class="chapter">0.4:</span><a href="/book/introduction/github-repo/" title="three.js on GitHub - Where the Magic Happens">three.js on GitHub - Where the Magic Happens</a></li>
+    <li class="">
+      <span class="chapter">0.5:</span><a href="/book/introduction/get-threejs/" title="How to Include three.js in Your Projects">How to Include three.js in Your Projects</a></li>
+    <li class="">
+      <span class="chapter">0.7:</span><a href="/book/introduction/threejs-with-frameworks/" title="Using three.js with React, Vue.js, Angular, Svelte, TypeScript...">Using three.js with React, Vue.js, Angular, Svelte, TypeScript...</a></li>
+    <li class="">
+      <span class="chapter">:</span><a href="/" title="Discover three.js!">Discover three.js!</a></li>
+    <li class="section-head">
+      <span class="chapter">1:</span><a href="/book/first-steps/" title="Getting Started: Here&#39;s Where the Real Fun Begins!">Getting Started: Here&#39;s Where the Real Fun Begins!</a></li>
+    <li class="">
+      <span class="chapter">1.1:</span><a href="/book/first-steps/app-structure/" title="The Structure of a three.js App">The Structure of a three.js App</a></li>
+    <li class="">
+      <span class="chapter">1.2:</span><a href="/book/first-steps/first-scene/" title="Your First three.js Scene: Hello, Cube!">Your First three.js Scene: Hello, Cube!</a></li>
+    <li class="">
+      <span class="chapter">1.3:</span><a href="/book/first-steps/world-app/" title="Introducing the World App">Introducing the World App</a></li>
+    <li class="">
+      <span class="chapter">1.4:</span><a href="/book/first-steps/physically-based-rendering/" title="Physically Based Rendering and Lighting">Physically Based Rendering and Lighting</a></li>
+    <li class="">
+      <span class="chapter">1.5:</span><a href="/book/first-steps/transformations/" title="Transformations and Coordinate Systems">Transformations and Coordinate Systems</a></li>
+    <li class="">
+      <span class="chapter">1.6:</span><a href="/book/first-steps/responsive-design/" title="Making Our Scenes Responsive (and also Dealing with Jaggies)">Making Our Scenes Responsive (and also Dealing with Jaggies)</a></li>
+    <li class="">
+      <span class="chapter">1.7:</span><a href="/book/first-steps/animation-loop/" title="The Animation Loop">The Animation Loop</a></li>
+    <li class="">
+      <span class="chapter">1.8:</span><a href="/book/first-steps/textures-intro/" title="A Brief Introduction to Texture Mapping">A Brief Introduction to Texture Mapping</a></li>
+    <li class="">
+      <span class="chapter">1.9:</span><a href="/book/first-steps/camera-controls/" title="Extend three.js With a Camera Controls Plugin">Extend three.js With a Camera Controls Plugin</a></li>
+    <li class="">
+      <span class="chapter">1.10:</span><a href="/book/first-steps/ambient-lighting/" title="Ambient Lighting: Illumination from Every Direction">Ambient Lighting: Illumination from Every Direction</a></li>
+    <li class="">
+      <span class="chapter">1.11:</span><a href="/book/first-steps/organizing-with-group/" title="Organizing Your Scenes">Organizing Your Scenes</a></li>
+    <li class="">
+      <span class="chapter">1.12:</span><a href="/book/first-steps/built-in-geometries/" title="The Built-In Geometries">The Built-In Geometries</a></li>
+    <li class="">
+      <span class="chapter">1.13:</span><a href="/book/first-steps/load-models/" title="Load 3D Models in glTF Format">Load 3D Models in glTF Format</a></li>
+    <li class="">
+      <span class="chapter">1.14:</span><a href="/book/first-steps/animation-system/" title="The three.js Animation System">The three.js Animation System</a></li>
+    <li class="section-head">
+      <span class="chapter">A:</span><a href="/book/appendix/" title="Appendices">Appendices</a></li>
+    <li class="">
+      <span class="chapter">A.1:</span><a href="/book/appendix/html-and-css-reference/" title="HTML and CSS Used in This Book">HTML and CSS Used in This Book</a></li>
+    <li class="">
+      <span class="chapter">A.2:</span><a href="/book/appendix/javascript-reference/" title="JavaScript Reference">JavaScript Reference</a></li>
+    <li class="">
+      <span class="chapter">A.3:</span><a href="/book/appendix/dom-api-reference/" title="The Document Object Model and DOM API">The Document Object Model and DOM API</a></li>
+    <li class="">
+      <span class="chapter">A.4:</span><a href="/book/appendix/javascript-modules/" title="JavaScript Modules">JavaScript Modules</a></li>
+    <li class="">
+      <span class="chapter">A.5:</span><a href="/book/appendix/asynchronous-javascript/" title="Asynchronous JavaScript">Asynchronous JavaScript</a></li>
+    <li class="">
+      <span class="chapter">B.1:</span><a href="/book/appendix/threejs-versions/" title="Dealing with Different three.js Versions">Dealing with Different three.js Versions</a></li>
+    <li class="unavailable section-head">
+      <span class="chapter">R:</span><span>References and Resources</span></li>
+    <li class="">
+      <span class="chapter">:</span><a href="/tips-and-tricks/" title="The Big List of three.js Tips and Tricks!">The Big List of three.js Tips and Tricks!</a></li>
+    <li class="">
+      <span class="chapter">:</span><a href="/apps/" title="Apps and Utilities">Apps and Utilities</a></li>
+    <li class="">
+      <span class="chapter">:</span><a href="/examples/" title="Live Code Examples">Live Code Examples</a></li>
+    <li class="">
+      <span class="chapter">:</span><a href="/modules/" title="NPM Modules">NPM Modules</a></li>
+    <li class="">
+      <span class="chapter">:</span><a href="/privacy/" title="Privacy">Privacy</a></li>
+    <li class="">
+      <span class="chapter">:</span><a href="/terms/" title="Terms and Conditions">Terms and Conditions</a></li>
+</ul>
+</div>
   </nav>
 </div>
 <nav class="side-menu right-menu">
