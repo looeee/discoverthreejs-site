@@ -12,7 +12,7 @@ For larger contributions, please get in touch with on lewy@discoverthreejs.com b
 
 ## Developer Guide
 
-To build and view the book.
+To build and view the book, use the following command four step process.
 
 Prerequisites: Node.js
 
@@ -20,6 +20,12 @@ Prerequisites: Node.js
 2. Run `npm install`
 3. Run `npm start`
 4. Go to `http://localhost:8080/` (with livereload) or `http://localhost:3000/` (without livereload)
+
+## Technical Details
+
+The book is built with Hugo, and this repo follows a fairly typical folder structure for a Hugo project, although the `content/` folder has been renamed to `markdown/`.
+
+However, the build process is quite different than a normal Hugo build. All the gory details can be found in the `buildTools/` folder. But, you probably don't need to worry about that. Just run `npm start`.
 
 ### Important folders
 
