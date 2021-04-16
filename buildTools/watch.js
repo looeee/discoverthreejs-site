@@ -17,9 +17,9 @@ chokidar
       "public/static/examples/styles",
       "public/static/examples/worlds/**/*.js",
       // "public/**/*.html",
-      "styles/**/*.scss",
+      "scss/**/*.scss",
       "src/**/*.js",
-      "markdown/content/**/*.md",
+      "markdown/**/*.md",
       "layouts/**/*.html",
       "config.toml",
     ],
@@ -62,7 +62,7 @@ chokidar
       setTimeout(() => {
         busy = false;
       }, 2000);
-    } else if (path.includes("styles\\")) {
+    } else if (path.includes("scss\\")) {
       busy = true;
       const cssName = await buildCSS(path);
       if (cssName) {
@@ -81,7 +81,11 @@ chokidar
       setTimeout(() => {
         busy = false;
       }, 2000);
-    } else if (path.includes("markdown\\")) {
+    } else if (
+      path.includes("markdown\\") ||
+      path.includes("config.toml") ||
+      path.includes("layouts\\")
+    ) {
       if (!busy) {
         console.log("Rebuilding markdown files");
         busy = true;

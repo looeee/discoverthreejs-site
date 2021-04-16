@@ -2,16 +2,16 @@
 <html dir="ltr" lang="en">
   <head>
     <title>{{ .Title }} | Discover three.js</title>
-    {{- partialCached "head/meta.html" . -}}
-    {{- partialCached "head/schema.html" . -}}
-    {{- partialCached "head/links.html" . -}}
+    {{- partial "head/meta.html" . -}}
+    {{- partial "head/schema.html" . -}}
+    {{- partial "head/links.html" . -}}
     <style>
       .loading-page {
         display: none;
       }
     </style>
 
-    <link href="/static/css/chapters.min.css?v=43" rel="stylesheet" />
+    <link href="/static/css/chapters.min.css?v=44" rel="stylesheet" />
 
     <noscript>
       <style>
@@ -19,13 +19,13 @@
           display: block;
         }
       </style>
-      <link href="/static/css/noscript.min.css?v=43" rel="stylesheet" />
+      <link href="/static/css/noscript.min.css?v=44" rel="stylesheet" />
     </noscript>
-    {{- partialCached "head/preload.html" . -}}
-    {{- partial "ideScript.html" . -}}
+    {{- partial "head/preload.html" . -}}
+    {{- partial "chapterScript.html" . -}}
   </head>
   <body class="loading-page">
-    {{- partialCached "topNav.html" . -}}
+    {{- partial "topNav.html" . -}}
     <div class="wrapper orientation-auto">
       <main class="panel animate">
         <div class="scroller">
@@ -34,13 +34,16 @@
               <div class="chapter-info">Word Count: {{- .WordCount -}}, reading time: ~{{- .ReadingTime -}}minutes</div>
             {{ end }}
             {{ .Content }}
+            <div class="bottom-pagination">
+              {{- partial "pagination.html" . -}}
+            </div>
           </div>
         </div>
       </main>
-      {{- partialCached "ideHTML.html" . -}}
+      {{- partial "ideHTML.html" . -}}
     </div>
-    {{- partialCached "leftMenu.html" . -}}
-    {{- partialCached "rightMenu.html" . -}}
-    {{- partialCached "fonts.html" . -}}
+    {{- partial "leftMenu.html" . -}}
+    {{- partial "rightMenu.html" . -}}
+    {{- partial "fonts.html" . -}}
   </body>
 </html>

@@ -1,0 +1,41 @@
+<script type="module">
+  import { setupChapterEarly } from "/static/js/chapterEarly.js";
+  setupChapterEarly();
+
+  window.addEventListener('load', async () => {
+    const { setupChapterLate } = await import(
+      "/static/js/chapterLate.js"
+    );
+    setupChapterLate();
+
+    {{ if eq .Params.showIDE true }}
+    const { setupIDE } = await import(
+      "/static/js/ide.js"
+      );
+
+    const ideConfig = {
+
+      showIDE: {{ .Params.showIDE | default false }},
+      IDE: {
+        fullScreen: false,
+        container: '#ide-wrapper',
+        serverDirectory: '{{ .Params.IDEserverDirectory | default "static/examples" }}',
+        stripDirectory: '{{ .Params.IDEStripDirectory | default "views/" }}',
+        closedFolders: '{{ delimit ( .Params.IDEClosedFolders | default "") ","}}'
+          .replace(/[\s\'\[\]']+/g, '')
+          .split(','),
+        comparisonMode: '{{ .Params.IDEComparisonMode }}',
+        files: '{{ delimit ( .Params.IDEFiles | default "") ", "}}'
+          .replace(/[\s\'\[\]']+/g, '')
+          .split(','),
+        entry: '{{ .Params.IDEEntry | default "index.html" }}',
+        activeDocument: '{{ .Params.IDEActiveDocument | default "" }}',
+        switchImportsAllowed:
+          '{{ .Params.IDESwitchImportsAllow | default true }}',
+      },
+    }
+
+    await setupIDE(ideConfig);
+    {{ end }}
+  });
+</script>

@@ -9,18 +9,20 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+
 <meta name="ROBOTS" content="INDEX, FOLLOW" />
+
 
 <meta name="application-name" content="Discover three.js" />
 
 <meta itemprop="name" content="Discover three.js" />
 
-<meta property="og:title" content="How to Use This Book | Discover three.js" />
-<meta name="twitter:title" content="How to Use This Book | Discover three.js" />
+<meta property="og:title" content="The Animation Loop | Discover three.js" />
+<meta name="twitter:title" content="The Animation Loop | Discover three.js" />
 
-<meta name="description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
-<meta property="og:description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
-<meta name="twitter:description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
+<meta name="description" content="In this chapter, we build an Animation Loop which will generate a stream of frames allowing us to add animation and other effects to our scenes." />
+<meta property="og:description" content="In this chapter, we build an Animation Loop which will generate a stream of frames allowing us to add animation and other effects to our scenes." />
+<meta name="twitter:description" content="In this chapter, we build an Animation Loop which will generate a stream of frames allowing us to add animation and other effects to our scenes." />
 
 <meta
   itemprop="keywords"
@@ -40,13 +42,13 @@
 />
 <meta name="twitter:creator" content="@lewy_blue" />
 <meta name="twitter:site" content="@lewy_blue" />
-<meta name="twitter:card" content="TODO" />
+<meta name="twitter:card" content="In this chapter, we build an Animation Loop which will generate a stream of frames allowing us to add animation and other effects to our scenes." />
 <meta name="twitter:image:width" content="1024" />
 <meta name="twitter:image:height" content="1024" />
 
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="msapplication-TileColor" content="#00aba9" />
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=43" /><script type="application/ld+json">
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=44" /><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "WebPage",
@@ -80,40 +82,40 @@
     }
   }
 </script><link
-      rel="canonical"
-      href="https://discoverthreejs.com/book/introduction/about-the-book/"
-    />
+  rel="canonical"
+  href="https://discoverthreejs.com/book/first-steps/animation-loop/"
+/>
 
-    <link rel="shortcut icon" type="image/png" href="/favicon.ico?v=43" />
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=44" />
 
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/apple-touch-icon.png?v=43"
-    />
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/apple-touch-icon.png?v=44"
+/>
 
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/favicon-16x16.png?v=43"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/favicon-32x32.png?v=43"
-    />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/favicon-16x16.png?v=44"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/favicon-32x32.png?v=44"
+/>
 
-    <link rel="manifest" href="/site.json?v=43" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=43" color="#5bbad5" />
+<link rel="manifest" href="/site.json?v=44" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=44" color="#5bbad5" />
 <style>
       .loading-page {
         display: none;
       }
     </style>
 
-    <link href="/static/css/chapters.min.css?v=43" rel="stylesheet" />
+    <link href="/static/css/chapters.min.css?v=44" rel="stylesheet" />
 
     <noscript>
       <style>
@@ -121,7 +123,7 @@
           display: block;
         }
       </style>
-      <link href="/static/css/noscript.min.css?v=43" rel="stylesheet" />
+      <link href="/static/css/noscript.min.css?v=44" rel="stylesheet" />
     </noscript>    
     
     
@@ -151,6 +153,7 @@
     );
     setupChapterLate();
 
+    
     const { setupIDE } = await import(
       "/static/js/ide.js"
       );
@@ -178,6 +181,7 @@
     }
 
     await setupIDE(ideConfig);
+    
   });
 </script></head>
   <body class="loading-page"><nav class="top-nav">
@@ -262,42 +266,12 @@
   </div>
 
   <div class="icon-group center">
-    <a
-      href="/book/introduction/"
-      title="Welcome to Discover three.js!"
-      class="control-elem previous"
-    >
-      <svg
-        class="icon"
-        role="img"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 320 512"
-      >
-        <path
-          fill="currentColor"
-          d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
-        />
-      </svg>
-    </a>
-    <a
-      href="/book/introduction/prerequisites/"
-      class="control-elem next"
-      title="What Do You Need to Run a three.js App?"
-    >
-      <svg
-        class="icon"
-        role="img"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 320 512"
-      >
-        <path
-          fill="currentColor"
-          d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-        />
-      </svg>
-    </a>
+
+
+
+
+
+<a href="/book/first-steps/responsive-design/" title="Making Our Scenes Responsive (and also Dealing with Jaggies)" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/textures-intro/" class="control-elem next" title="A Brief Introduction to Texture Mapping"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
   </div>
 
   <div class="icon-group right">
@@ -348,13 +322,12 @@
 
 
 
-<figure id="scene-643758192" class="inline-scene loading-dots small right"><figcaption>The output from a single call of<br>renderer.render</figcaption></figure>
+<figure id="scene-852713694" class="inline-scene loading-dots small right"><figcaption>The output from a single call of<br>renderer.render</figcaption></figure>
 
 <script type="module">
   import init from "/static/examples/worlds/inline-scenes/first-steps/static-cube.js";
-  init("#scene-643758192");
+  init("#scene-852713694");
 </script>
-
 <p>Over the last couple of chapters, we&rsquo;ve made amazing progress with our app. We have lights, colors, physically correct rendering, anti-aliasing, automatic-resizing, we know how to move objects around in 3D space, and our code is clean, modular, and well-structured. But our scene is missing one vital ingredient: <strong>movement!</strong></p>
 <p>We&rsquo;re using the <code>renderer.render</code> method to draw the scene. This method takes a scene and a camera as input and outputs a single still image to the HTML <code>&lt;canvas&gt;</code> element. The output is the non-moving purple box you can see above.</p>
 
@@ -384,13 +357,12 @@
 
 
 
-<figure id="scene-728549631" class="inline-scene loading-dots small right"></figure>
+<figure id="scene-517289463" class="inline-scene loading-dots small right"></figure>
 
 <script type="module">
   import init from "/static/examples/worlds/inline-scenes/first-steps/animation-loop.js";
-  init("#scene-728549631");
+  init("#scene-517289463");
 </script>
-
 <p>In this chapter, we&rsquo;ll add a simple rotation animation to the cube. Here&rsquo;s how we&rsquo;ll do it:</p>
 <ul>
 <li><strong>call <code>renderer.render(...)</code></strong></li>
@@ -1283,13 +1255,12 @@ function createCube() {
 
 
 
-<figure id="scene-586497312" class="inline-scene loading-dots small right"></figure>
+<figure id="scene-253146897" class="inline-scene loading-dots small right"></figure>
 
 <script type="module">
   import init from "/static/examples/worlds/inline-scenes/first-steps/animation-loop-duplicate.js";
-  init("#scene-586497312");
+  init("#scene-253146897");
 </script>
-
 <p>Now, once again the cube will be rotating thirty degrees per second around each axis, but with an important difference: the animation will now play at the same speed no matter where we run it, whether on a VR rig running at 90FPS, or a ten-year-old smartphone that can barely crank out 10FPS, or some future system from the year 3000 that runs at a billion FPS. <strong>The frame rate may change, but the animation speed will not</strong>.</p>
 <p>With this change, <strong>we have successfully decoupled animation speed from frame rate.</strong></p>
 <h2 id="to-loop-or-not-to-loop">To Loop or Not to Loop</h2>
@@ -1381,6 +1352,13 @@ world.start();
   
 </aside>
 
+            <div class="bottom-pagination">
+
+
+
+
+
+<a href="/book/first-steps/responsive-design/" title="Making Our Scenes Responsive (and also Dealing with Jaggies)" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/textures-intro/" class="control-elem next" title="A Brief Introduction to Texture Mapping"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
           </div>
         </div>
       </main><div id="ide-wrapper" class="panel animate disabled hide">
@@ -1780,8 +1758,6 @@ world.start();
       <span class="chapter">A.5:</span><a href="/book/appendix/asynchronous-javascript/" title="Asynchronous JavaScript">Asynchronous JavaScript</a></li>
     <li class="">
       <span class="chapter">B.1:</span><a href="/book/appendix/threejs-versions/" title="Dealing with Different three.js Versions">Dealing with Different three.js Versions</a></li>
-    <li class="unavailable section-head">
-      <span class="chapter">R:</span><span>References and Resources</span></li>
     <li class="">
       <span class="chapter">:</span><a href="/tips-and-tricks/" title="The Big List of three.js Tips and Tricks!">The Big List of three.js Tips and Tricks!</a></li>
     <li class="">

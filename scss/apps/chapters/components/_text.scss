@@ -1,0 +1,63 @@
+h1 {
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+h1,
+div + h1 {
+  &:first-child {
+    padding: 3rem 2rem 5rem;
+  }
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding-bottom: 0.5rem;
+}
+
+h2 {
+  margin-top: 3rem;
+  border-radius: 1rem;
+
+  padding: 1.1rem 0 0.4rem;
+  min-height: 3rem;
+}
+
+h3 {
+  margin-top: 2rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: 0.075em;
+  font-family: $font-family-heading;
+  font-weight: $font-weight-heading;
+  text-align: center;
+}
+
+p {
+  margin: 0 0 1rem 0;
+  line-height: 1.6;
+  font-family: $font-family;
+  font-weight: $font-weight;
+
+  &:empty {
+    display: none;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+details summary::marker {
+  display: none;
+}

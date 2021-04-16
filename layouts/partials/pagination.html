@@ -4,29 +4,27 @@
 <!-- nextXXX is required on last chapter in section -->
 <!-- prevXXX is required on first chapter in section -->
 
-<!-- NOTE: hugo next/prev are switched -->
+<!-- Also, hugo next/prev are switched for some reason -->
 
-{{- if not (eq .Params.pagination false) -}}
-  {{- if (.Params.available) -}}
-    {{- if .NextInSection -}}
-      <a href="{{ .NextInSection.Permalink | replaceRE "[^/]*$" "" }}" title="{{ .NextInSection.Title }}" class="control-elem previous">
-        {% include 'partials/icons/solid/chevron-left.svg' %}
-      </a>
-    {{- else if .Params.prevURL -}}
-      <a href="{{ .Params.prevURL }}" title="{{ .Params.prevTitle }}" class="control-elem previous">
-        {% include 'partials/icons/solid/chevron-left.svg' %}
-      </a>
-    {{- end -}}
-    {{ if .PrevInSection }}
-      <a href="{{ .PrevInSection.Permalink | replaceRE "[^/]*$" "" }}" class="control-elem next" title="{{ .PrevInSection.Title }}">
-        {% include 'partials/icons/solid/chevron-right.svg' %}
-      </a>
-    {{- else if .Params.nextURL -}}
+{{- if not (eq .Params.pagination false ) -}}
+  {{- if .Params.prevURL -}}
+    <a href="{{ .Params.prevURL }}" title="{{ .Params.prevTitle }}" class="control-elem previous">
+      {{- partial "icons/solid/chevron-left.svg" . -}}
+    </a>
+  {{- else if .NextInSection -}}
+    <a href="{{ .NextInSection.RelPermalink | replaceRE "[^/]*$" "" }}" title="{{ .NextInSection.Title }}" class="control-elem previous">
+      {{- partial "icons/solid/chevron-left.svg" . -}}
+    </a>
+  {{- end -}}
+  {{- if .Params.nextURL -}}
     <a href="{{ .Params.nextURL }}" class="control-elem next" title="{{ .Params.nextTitle }}">
-        {% include 'partials/icons/solid/chevron-right.svg' %}
-      </a>
-    {{- end -}}
+      {{- partial "icons/solid/chevron-right.svg" . -}}
+    </a>
+  {{- else if .PrevInSection -}}
+    <a href="{{ .PrevInSection.RelPermalink | replaceRE "[^/]*$" "" }}" class="control-elem next" title="{{ .PrevInSection.Title }}">
+      {{- partial "icons/solid/chevron-right.svg" . -}}
+    </a>
   {{- end -}}
 {{- else -}}
-<span></span>
+  <span></span>
 {{- end -}}

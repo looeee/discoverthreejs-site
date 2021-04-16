@@ -9,18 +9,20 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+
 <meta name="ROBOTS" content="INDEX, FOLLOW" />
+
 
 <meta name="application-name" content="Discover three.js" />
 
 <meta itemprop="name" content="Discover three.js" />
 
-<meta property="og:title" content="How to Use This Book | Discover three.js" />
-<meta name="twitter:title" content="How to Use This Book | Discover three.js" />
+<meta property="og:title" content="Making Our Scenes Responsive (and also Dealing with Jaggies) | Discover three.js" />
+<meta name="twitter:title" content="Making Our Scenes Responsive (and also Dealing with Jaggies) | Discover three.js" />
 
-<meta name="description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
-<meta property="og:description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
-<meta name="twitter:description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
+<meta name="description" content="In this chapter, we bring responsive design to our three.js app, ensuring our scene will smoothly resize to fit any browser window. We also turn on antialiasing, improving the quality of our final render a lot." />
+<meta property="og:description" content="In this chapter, we bring responsive design to our three.js app, ensuring our scene will smoothly resize to fit any browser window. We also turn on antialiasing, improving the quality of our final render a lot." />
+<meta name="twitter:description" content="In this chapter, we bring responsive design to our three.js app, ensuring our scene will smoothly resize to fit any browser window. We also turn on antialiasing, improving the quality of our final render a lot." />
 
 <meta
   itemprop="keywords"
@@ -40,13 +42,13 @@
 />
 <meta name="twitter:creator" content="@lewy_blue" />
 <meta name="twitter:site" content="@lewy_blue" />
-<meta name="twitter:card" content="TODO" />
+<meta name="twitter:card" content="In this chapter, we bring responsive design to our three.js app, ensuring our scene will smoothly resize to fit any browser window. We also turn on antialiasing, improving the quality of our final render a lot." />
 <meta name="twitter:image:width" content="1024" />
 <meta name="twitter:image:height" content="1024" />
 
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="msapplication-TileColor" content="#00aba9" />
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=43" /><script type="application/ld+json">
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=44" /><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "WebPage",
@@ -80,40 +82,40 @@
     }
   }
 </script><link
-      rel="canonical"
-      href="https://discoverthreejs.com/book/introduction/about-the-book/"
-    />
+  rel="canonical"
+  href="https://discoverthreejs.com/book/first-steps/responsive-design/"
+/>
 
-    <link rel="shortcut icon" type="image/png" href="/favicon.ico?v=43" />
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=44" />
 
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/apple-touch-icon.png?v=43"
-    />
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/apple-touch-icon.png?v=44"
+/>
 
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/favicon-16x16.png?v=43"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/favicon-32x32.png?v=43"
-    />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/favicon-16x16.png?v=44"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/favicon-32x32.png?v=44"
+/>
 
-    <link rel="manifest" href="/site.json?v=43" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=43" color="#5bbad5" />
+<link rel="manifest" href="/site.json?v=44" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=44" color="#5bbad5" />
 <style>
       .loading-page {
         display: none;
       }
     </style>
 
-    <link href="/static/css/chapters.min.css?v=43" rel="stylesheet" />
+    <link href="/static/css/chapters.min.css?v=44" rel="stylesheet" />
 
     <noscript>
       <style>
@@ -121,7 +123,7 @@
           display: block;
         }
       </style>
-      <link href="/static/css/noscript.min.css?v=43" rel="stylesheet" />
+      <link href="/static/css/noscript.min.css?v=44" rel="stylesheet" />
     </noscript>    
     
     
@@ -151,6 +153,7 @@
     );
     setupChapterLate();
 
+    
     const { setupIDE } = await import(
       "/static/js/ide.js"
       );
@@ -178,6 +181,7 @@
     }
 
     await setupIDE(ideConfig);
+    
   });
 </script></head>
   <body class="loading-page"><nav class="top-nav">
@@ -262,42 +266,12 @@
   </div>
 
   <div class="icon-group center">
-    <a
-      href="/book/introduction/"
-      title="Welcome to Discover three.js!"
-      class="control-elem previous"
-    >
-      <svg
-        class="icon"
-        role="img"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 320 512"
-      >
-        <path
-          fill="currentColor"
-          d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
-        />
-      </svg>
-    </a>
-    <a
-      href="/book/introduction/prerequisites/"
-      class="control-elem next"
-      title="What Do You Need to Run a three.js App?"
-    >
-      <svg
-        class="icon"
-        role="img"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 320 512"
-      >
-        <path
-          fill="currentColor"
-          d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-        />
-      </svg>
-    </a>
+
+
+
+
+
+<a href="/book/first-steps/transformations/" title="Transformations and Coordinate Systems" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/animation-loop/" class="control-elem next" title="The Animation Loop"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
   </div>
 
   <div class="icon-group right">
@@ -338,7 +312,7 @@
         <div class="scroller">
           <div class="content">
             
-              <div class="chapter-info">Word Count:2104, reading time: ~10minutes</div>
+              <div class="chapter-info">Word Count:2100, reading time: ~10minutes</div>
             
             <h1 id="making-our-scenes-responsive-and-also-dealing-with-jaggies">Making Our Scenes Responsive (and also Dealing with Jaggies)</h1>
 <p>Welcome back! The last chapter was a long one, stuffed full of mathematical and computer graphics theory. Here, we&rsquo;ll slow things down a little and look at the current state of our app.</p>
@@ -354,7 +328,7 @@
 <figure class="noborder">
   <img src="/static/images/first-steps/cube-closeup-text.png" loading="lazy" alt="Not until you see the white of it&#39;s eyes!" title="Not until you see the white of it&#39;s eyes!"  /></figure>
 <p>Look closely at the cube&rsquo;s edges. Can you see that they are not straight, but rather look jagged and unclean? Technically, this is called <strong>aliasing</strong>, but informally we refer to these as jaggies. Ugh&hellip;</p>
-<p>There&rsquo;s another problem. Try resizing the preview window in the editor and you&rsquo;ll see that the scene does not adapt to fit the new size (the preview might refresh too fast to see this easily, in which case, try popping it out into a new window using the {% include 'partials/icons/solid/external-link-alt.svg' %} button). <strong>In the language of web design, our scene is not <em>responsive</em></strong>. In this chapter, we&rsquo;ll fix both of these issues.</p>
+<p>There&rsquo;s another problem. Try resizing the preview window in the editor and you&rsquo;ll see that the scene does not adapt to fit the new size (the preview might refresh too fast to see this easily, in which case, try popping it out into a new window using the <svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg> button). <strong>In the language of web design, our scene is not <em>responsive</em></strong>. In this chapter, we&rsquo;ll fix both of these issues.</p>
 <h2 id="antialiasing">Anti-Aliasing</h2>
 <figure >
   <img src="/static/images/first-steps/antialias.svg" loading="lazy" alt="Anti-alias on and off" title="Anti-alias on and off"  /></figure>
@@ -629,6 +603,13 @@ class Resizer {
   
 </aside>
 
+            <div class="bottom-pagination">
+
+
+
+
+
+<a href="/book/first-steps/transformations/" title="Transformations and Coordinate Systems" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/animation-loop/" class="control-elem next" title="The Animation Loop"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
           </div>
         </div>
       </main><div id="ide-wrapper" class="panel animate disabled hide">
@@ -1028,8 +1009,6 @@ class Resizer {
       <span class="chapter">A.5:</span><a href="/book/appendix/asynchronous-javascript/" title="Asynchronous JavaScript">Asynchronous JavaScript</a></li>
     <li class="">
       <span class="chapter">B.1:</span><a href="/book/appendix/threejs-versions/" title="Dealing with Different three.js Versions">Dealing with Different three.js Versions</a></li>
-    <li class="unavailable section-head">
-      <span class="chapter">R:</span><span>References and Resources</span></li>
     <li class="">
       <span class="chapter">:</span><a href="/tips-and-tricks/" title="The Big List of three.js Tips and Tricks!">The Big List of three.js Tips and Tricks!</a></li>
     <li class="">

@@ -2,10 +2,10 @@
 <html dir="ltr" lang="en">
   <head>
     <title>{{ .Title }} | Discover three.js</title>
-    {{- partialCached "head/meta.html" . -}}
-    {{- partialCached "head/schema.html" . -}}
-    {{- partialCached "head/links.html" . -}}
-    <link href="/static/css/jumbo.min.css?v=43" rel="stylesheet" />
+    {{- partial "head/meta.html" . -}}
+    {{- partial "head/schema.html" . -}}
+    {{- partial "head/links.html" . -}}
+    <link href="/static/css/jumbo.min.css?v=44" rel="stylesheet" />
 
     <noscript>
       <style>
@@ -13,14 +13,14 @@
           display: block;
         }
       </style>
-      <link href="/static/css/noscript.min.css?v=43" rel="stylesheet" />
+      <link href="/static/css/noscript.min.css?v=44" rel="stylesheet" />
     </noscript>
 
-    <script type="module" src="/static/js/home.js?v=43"></script>
+    <script type="module" src="/static/js/home.js?v=44"></script>
   </head>
 
   <body>
-    {{- partialCached "jumbo/nav.html" . -}}
+    {{- partial "jumbo/nav.html" . -}}
     <div class="wrapper">
       <div
         class="background"
@@ -593,8 +593,8 @@
           </div>
         </section>
       </main>
-      {{- partialCached "jumbo/footer.html" . -}}
+      {{- partial "jumbo/footer.html" . -}}
     </div>
-    {{- partialCached "fonts.html" . -}}
+    {{- partial "fonts.html" . -}}
   </body>
 </html>

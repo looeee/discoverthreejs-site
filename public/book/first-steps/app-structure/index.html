@@ -9,18 +9,20 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+
 <meta name="ROBOTS" content="INDEX, FOLLOW" />
+
 
 <meta name="application-name" content="Discover three.js" />
 
 <meta itemprop="name" content="Discover three.js" />
 
-<meta property="og:title" content="How to Use This Book | Discover three.js" />
-<meta name="twitter:title" content="How to Use This Book | Discover three.js" />
+<meta property="og:title" content="The Structure of a three.js App | Discover three.js" />
+<meta name="twitter:title" content="The Structure of a three.js App | Discover three.js" />
 
-<meta name="description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
-<meta property="og:description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
-<meta name="twitter:description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
+<meta name="description" content="To showcase our three.js scenes, we need a web page. Here, we create a basic page using HTML and CSS. However, we&#39;ll structure our three.js app so you can just as easily integrate it with a framework such as React or Vue instead of this simple page." />
+<meta property="og:description" content="To showcase our three.js scenes, we need a web page. Here, we create a basic page using HTML and CSS. However, we&#39;ll structure our three.js app so you can just as easily integrate it with a framework such as React or Vue instead of this simple page." />
+<meta name="twitter:description" content="To showcase our three.js scenes, we need a web page. Here, we create a basic page using HTML and CSS. However, we&#39;ll structure our three.js app so you can just as easily integrate it with a framework such as React or Vue instead of this simple page." />
 
 <meta
   itemprop="keywords"
@@ -40,13 +42,13 @@
 />
 <meta name="twitter:creator" content="@lewy_blue" />
 <meta name="twitter:site" content="@lewy_blue" />
-<meta name="twitter:card" content="TODO" />
+<meta name="twitter:card" content="To showcase our three.js scenes, we need a web page. Here, we create a basic page using HTML and CSS. However, we&#39;ll structure our three.js app so you can just as easily integrate it with a framework such as React or Vue instead of this simple page." />
 <meta name="twitter:image:width" content="1024" />
 <meta name="twitter:image:height" content="1024" />
 
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="msapplication-TileColor" content="#00aba9" />
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=43" /><script type="application/ld+json">
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=44" /><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "WebPage",
@@ -80,40 +82,40 @@
     }
   }
 </script><link
-      rel="canonical"
-      href="https://discoverthreejs.com/book/introduction/about-the-book/"
-    />
+  rel="canonical"
+  href="https://discoverthreejs.com/book/first-steps/app-structure/"
+/>
 
-    <link rel="shortcut icon" type="image/png" href="/favicon.ico?v=43" />
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=44" />
 
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/apple-touch-icon.png?v=43"
-    />
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/apple-touch-icon.png?v=44"
+/>
 
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/favicon-16x16.png?v=43"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/favicon-32x32.png?v=43"
-    />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/favicon-16x16.png?v=44"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/favicon-32x32.png?v=44"
+/>
 
-    <link rel="manifest" href="/site.json?v=43" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=43" color="#5bbad5" />
+<link rel="manifest" href="/site.json?v=44" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=44" color="#5bbad5" />
 <style>
       .loading-page {
         display: none;
       }
     </style>
 
-    <link href="/static/css/chapters.min.css?v=43" rel="stylesheet" />
+    <link href="/static/css/chapters.min.css?v=44" rel="stylesheet" />
 
     <noscript>
       <style>
@@ -121,7 +123,7 @@
           display: block;
         }
       </style>
-      <link href="/static/css/noscript.min.css?v=43" rel="stylesheet" />
+      <link href="/static/css/noscript.min.css?v=44" rel="stylesheet" />
     </noscript>    
     
     
@@ -151,6 +153,7 @@
     );
     setupChapterLate();
 
+    
     const { setupIDE } = await import(
       "/static/js/ide.js"
       );
@@ -178,6 +181,7 @@
     }
 
     await setupIDE(ideConfig);
+    
   });
 </script></head>
   <body class="loading-page"><nav class="top-nav">
@@ -262,42 +266,12 @@
   </div>
 
   <div class="icon-group center">
-    <a
-      href="/book/introduction/"
-      title="Welcome to Discover three.js!"
-      class="control-elem previous"
-    >
-      <svg
-        class="icon"
-        role="img"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 320 512"
-      >
-        <path
-          fill="currentColor"
-          d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
-        />
-      </svg>
-    </a>
-    <a
-      href="/book/introduction/prerequisites/"
-      class="control-elem next"
-      title="What Do You Need to Run a three.js App?"
-    >
-      <svg
-        class="icon"
-        role="img"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 320 512"
-      >
-        <path
-          fill="currentColor"
-          d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-        />
-      </svg>
-    </a>
+
+
+
+
+
+<a href="/book/first-steps/" title="Getting Started: Here&#39;s Where the Real Fun Begins!" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/first-scene/" class="control-elem next" title="Your First three.js Scene: Hello, Cube!"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
   </div>
 
   <div class="icon-group right">
@@ -338,11 +312,11 @@
         <div class="scroller">
           <div class="content">
             
-              <div class="chapter-info">Word Count:1192, reading time: ~6minutes</div>
+              <div class="chapter-info">Word Count:1176, reading time: ~6minutes</div>
             
             <h1 id="the-structure-of-a-threejs-app">The Structure of a three.js App</h1>
 <p>Before we can build a three.js app, we need to create a web page. We briefly discussed how we&rsquo;re going to do that in the introduction (<a href="/book/introduction/get-threejs/">Ch 0.5</a> and <a href="/book/introduction/threejs-with-frameworks/">Ch 0.6</a>), but let&rsquo;s take a deeper look now. As we mentioned in the last chapter, our goal here is to create the most basic, simple, unexciting webpage possible, without making any assumptions about what a real-world web application that uses three.js might look like. By doing this, we ensure the code we write can be adapted to work anywhere without too much effort.</p>
-<p>We&rsquo;ll create this basic web page out of just two files: <em><strong>index.html</strong></em>, and <em><strong>styles/main.css</strong></em>. That&rsquo;s it. Open up the editor by pressing the {% include 'partials/icons/solid/columns.svg' %} button now and take a look at both of these files now.</p>
+<p>We&rsquo;ll create this basic web page out of just two files: <em><strong>index.html</strong></em>, and <em><strong>styles/main.css</strong></em>. That&rsquo;s it. Open up the editor by pressing the <svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64V160h160v256zm224 0H288V160h160v256z"/></svg> button now and take a look at both of these files now.</p>
 <blockquote>
 <p>If anything from this chapter is unfamiliar to you, refer to <a href="/book/appendix/html-and-css-reference/">A.1: HTML and CSS Used in This Book</a> where we take a deeper look at the construction of a simple web page.</p>
 </blockquote>
@@ -572,7 +546,7 @@ h1 {
 <p>Finally, we have set the background color to sky blue since that&rsquo;s the background color we&rsquo;ll give most of our three.js scenes in this section. Our scene will take a few milliseconds to get ready, while the browser parses JavaScript, loads 3D models, and builds the scene, and while all that is going on the scene container will be visible. By making the container the same color as the scene we ensure that the transition is as smooth as possible.</p>
 <h2 id="other-folders">Other Folders</h2>
 <p>Turn your attention to the file tree in the editor. There are two folders we haven&rsquo;t looked at so far: <em><strong>assets/</strong></em>, and <em><strong>vendor/</strong></em>.</p>
-<h3 id="hahahugoshortcode-s15-hbhb-the-_vendor_-folder">{% include 'partials/icons/solid/folder-open.svg' %} The <em><strong>vendor/</strong></em> Folder</h3>
+<h3 id="hahahugoshortcode-s15-hbhb-the-_vendor_-folder"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M572.694 292.093L500.27 416.248A63.997 63.997 0 0 1 444.989 448H45.025c-18.523 0-30.064-20.093-20.731-36.093l72.424-124.155A64 64 0 0 1 152 256h399.964c18.523 0 30.064 20.093 20.73 36.093zM152 224h328v-48c0-26.51-21.49-48-48-48H272l-64-64H48C21.49 64 0 85.49 0 112v278.046l69.077-118.418C86.214 242.25 117.989 224 152 224z"/></svg> The <em><strong>vendor/</strong></em> Folder</h3>
 <p>The <em><strong>vendor/</strong></em> folder is where we put JavaScript files that <em>other people</em> have written. For most of the examples in this book, that means files from the three.js library, downloaded from the <a href="/book/introduction/github-repo/">three.js GitHub repo</a>. In this book, we&rsquo;ll use just three files from the library:</p>
 <ul>
 <li><em><strong>vendor/three/build/three.module.js</strong></em>: the main three.js file.</li>
@@ -604,7 +578,7 @@ import { GLTFLoader } from &#39;three/examples/jsm/loaders/GLTFLoader.js&#39;;
   </pre>
 </section>
 
-<p>If you prefer to <a href="/book/introduction/about-the-book/#working-on-your-own-machine">work locally</a>, you can download the files from the editor as a zip archive using the {% include 'partials/icons/solid/download.svg' %} button. Within the zip file, any three.js imports will be converted to CDN imports from unpkg.com:</p>
+<p>If you prefer to <a href="/book/introduction/about-the-book/#working-on-your-own-machine">work locally</a>, you can download the files from the editor as a zip archive using the <svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"/></svg> button. Within the zip file, any three.js imports will be converted to CDN imports from unpkg.com:</p>
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>src/main.js</strong></em>: importing three.js files, CDN style</span>
@@ -630,7 +604,7 @@ import { GLTFLoader } from &#39;https://unpkg.com/three@0.117.0/examples/jsm/loa
 </section>
 
 <p>Refer back to <a href="/book/introduction/get-threejs/">0.5: How to Include three.js in Your Projects</a> for more details.</p>
-<h2 id="hahahugoshortcode-s24-hbhb-the-_assets_-folder">{% include 'partials/icons/solid/folder-open.svg' %} The <em><strong>assets</strong></em> Folder</h2>
+<h2 id="hahahugoshortcode-s24-hbhb-the-_assets_-folder"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M572.694 292.093L500.27 416.248A63.997 63.997 0 0 1 444.989 448H45.025c-18.523 0-30.064-20.093-20.731-36.093l72.424-124.155A64 64 0 0 1 152 256h399.964c18.523 0 30.064 20.093 20.73 36.093zM152 224h328v-48c0-26.51-21.49-48-48-48H272l-64-64H48C21.49 64 0 85.49 0 112v278.046l69.077-118.418C86.214 242.25 117.989 224 152 224z"/></svg> The <em><strong>assets</strong></em> Folder</h2>
 
 
 
@@ -638,17 +612,23 @@ import { GLTFLoader } from &#39;https://unpkg.com/three@0.117.0/examples/jsm/loa
 
 
 
-<figure id="scene-238917456" class="inline-scene loading-dots medium right round"></figure>
+<figure id="scene-782419365" class="inline-scene loading-dots medium right round"></figure>
 
 <script type="module">
   import init from "/static/examples/worlds/inline-scenes/first-steps/flamingo-animated.js";
-  init("#scene-238917456");
+  init("#scene-782419365");
 </script>
-
 <p>Finally, there&rsquo;s the <em><strong>assets/</strong></em> folder. <strong>Anything used in our app that is not HTML, CSS, or JavaScript goes in here</strong>: textures, 3D models, fonts, sounds, and so on. Currently, there&rsquo;s one test texture that we&rsquo;ll use in <a href="/book/first-steps/textures-intro/">1.8: A Brief Introduction to Texture Mapping</a>, and one model of a flamingo that we&rsquo;ll use in <a href="/book/first-steps/load-models/">1.13: Load 3D Models in glTF Format</a>.</p>
 <p style="clear:both; margin: 0; padding: 0; line-height: 0;">&nbsp</p>
 <p>With that out of the way, it&rsquo;s time to get down to business! In the next chapter, we&rsquo;ll create our first simple three.js application.</p>
 
+            <div class="bottom-pagination">
+
+
+
+
+
+<a href="/book/first-steps/" title="Getting Started: Here&#39;s Where the Real Fun Begins!" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/first-scene/" class="control-elem next" title="Your First three.js Scene: Hello, Cube!"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
           </div>
         </div>
       </main><div id="ide-wrapper" class="panel animate disabled hide">
@@ -1048,8 +1028,6 @@ import { GLTFLoader } from &#39;https://unpkg.com/three@0.117.0/examples/jsm/loa
       <span class="chapter">A.5:</span><a href="/book/appendix/asynchronous-javascript/" title="Asynchronous JavaScript">Asynchronous JavaScript</a></li>
     <li class="">
       <span class="chapter">B.1:</span><a href="/book/appendix/threejs-versions/" title="Dealing with Different three.js Versions">Dealing with Different three.js Versions</a></li>
-    <li class="unavailable section-head">
-      <span class="chapter">R:</span><span>References and Resources</span></li>
     <li class="">
       <span class="chapter">:</span><a href="/tips-and-tricks/" title="The Big List of three.js Tips and Tricks!">The Big List of three.js Tips and Tricks!</a></li>
     <li class="">

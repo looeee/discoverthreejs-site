@@ -6,14 +6,18 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+{{ if .Params.noFollow }}
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+{{ else }}
 <meta name="ROBOTS" content="INDEX, FOLLOW" />
+{{ end }}
 
 <meta name="application-name" content="Discover three.js" />
 
 <meta itemprop="name" content="Discover three.js" />
 
-<meta property="og:title" content="How to Use This Book | Discover three.js" />
-<meta name="twitter:title" content="How to Use This Book | Discover three.js" />
+<meta property="og:title" content="{{ .Title }} | Discover three.js" />
+<meta name="twitter:title" content="{{ .Title }} | Discover three.js" />
 
 <meta name="description" content="{{ .Description }}" />
 <meta property="og:description" content="{{ .Description }}" />
@@ -37,10 +41,10 @@
 />
 <meta name="twitter:creator" content="@lewy_blue" />
 <meta name="twitter:site" content="@lewy_blue" />
-<meta name="twitter:card" content="TODO" />
+<meta name="twitter:card" content="{{ .Description }}" />
 <meta name="twitter:image:width" content="1024" />
 <meta name="twitter:image:height" content="1024" />
 
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="msapplication-TileColor" content="#00aba9" />
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=43" />
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=44" />

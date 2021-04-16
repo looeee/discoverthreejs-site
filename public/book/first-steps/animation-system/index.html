@@ -9,18 +9,20 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+
 <meta name="ROBOTS" content="INDEX, FOLLOW" />
+
 
 <meta name="application-name" content="Discover three.js" />
 
 <meta itemprop="name" content="Discover three.js" />
 
-<meta property="og:title" content="How to Use This Book | Discover three.js" />
-<meta name="twitter:title" content="How to Use This Book | Discover three.js" />
+<meta property="og:title" content="The three.js Animation System | Discover three.js" />
+<meta name="twitter:title" content="The three.js Animation System | Discover three.js" />
 
-<meta name="description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
-<meta property="og:description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
-<meta name="twitter:description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
+<meta name="description" content="In this final chapter of the free section, we introduce the three.js animation system, and show you how to play the animations from the bird models we loaded in the previous chapter." />
+<meta property="og:description" content="In this final chapter of the free section, we introduce the three.js animation system, and show you how to play the animations from the bird models we loaded in the previous chapter." />
+<meta name="twitter:description" content="In this final chapter of the free section, we introduce the three.js animation system, and show you how to play the animations from the bird models we loaded in the previous chapter." />
 
 <meta
   itemprop="keywords"
@@ -40,13 +42,13 @@
 />
 <meta name="twitter:creator" content="@lewy_blue" />
 <meta name="twitter:site" content="@lewy_blue" />
-<meta name="twitter:card" content="TODO" />
+<meta name="twitter:card" content="In this final chapter of the free section, we introduce the three.js animation system, and show you how to play the animations from the bird models we loaded in the previous chapter." />
 <meta name="twitter:image:width" content="1024" />
 <meta name="twitter:image:height" content="1024" />
 
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="msapplication-TileColor" content="#00aba9" />
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=43" /><script type="application/ld+json">
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=44" /><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "WebPage",
@@ -80,40 +82,40 @@
     }
   }
 </script><link
-      rel="canonical"
-      href="https://discoverthreejs.com/book/introduction/about-the-book/"
-    />
+  rel="canonical"
+  href="https://discoverthreejs.com/book/first-steps/animation-system/"
+/>
 
-    <link rel="shortcut icon" type="image/png" href="/favicon.ico?v=43" />
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=44" />
 
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/apple-touch-icon.png?v=43"
-    />
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/apple-touch-icon.png?v=44"
+/>
 
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/favicon-16x16.png?v=43"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/favicon-32x32.png?v=43"
-    />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/favicon-16x16.png?v=44"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/favicon-32x32.png?v=44"
+/>
 
-    <link rel="manifest" href="/site.json?v=43" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=43" color="#5bbad5" />
+<link rel="manifest" href="/site.json?v=44" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=44" color="#5bbad5" />
 <style>
       .loading-page {
         display: none;
       }
     </style>
 
-    <link href="/static/css/chapters.min.css?v=43" rel="stylesheet" />
+    <link href="/static/css/chapters.min.css?v=44" rel="stylesheet" />
 
     <noscript>
       <style>
@@ -121,7 +123,7 @@
           display: block;
         }
       </style>
-      <link href="/static/css/noscript.min.css?v=43" rel="stylesheet" />
+      <link href="/static/css/noscript.min.css?v=44" rel="stylesheet" />
     </noscript>    
     
     
@@ -151,6 +153,7 @@
     );
     setupChapterLate();
 
+    
     const { setupIDE } = await import(
       "/static/js/ide.js"
       );
@@ -178,6 +181,7 @@
     }
 
     await setupIDE(ideConfig);
+    
   });
 </script></head>
   <body class="loading-page"><nav class="top-nav">
@@ -262,42 +266,12 @@
   </div>
 
   <div class="icon-group center">
-    <a
-      href="/book/introduction/"
-      title="Welcome to Discover three.js!"
-      class="control-elem previous"
-    >
-      <svg
-        class="icon"
-        role="img"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 320 512"
-      >
-        <path
-          fill="currentColor"
-          d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
-        />
-      </svg>
-    </a>
-    <a
-      href="/book/introduction/prerequisites/"
-      class="control-elem next"
-      title="What Do You Need to Run a three.js App?"
-    >
-      <svg
-        class="icon"
-        role="img"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 320 512"
-      >
-        <path
-          fill="currentColor"
-          d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-        />
-      </svg>
-    </a>
+
+
+
+
+
+<a href="/book/first-steps/load-models/" title="Load 3D Models in glTF Format" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/appendix/" class="control-elem next" title="Production Ready three.js"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
   </div>
 
   <div class="icon-group right">
@@ -349,13 +323,12 @@
 
 
 
-<figure id="scene-637459812" class="inline-scene loading-dots round right medium"></figure>
+<figure id="scene-792134658" class="inline-scene loading-dots round right medium"></figure>
 
 <script type="module">
   import init from "/static/examples/worlds/inline-scenes/first-steps/birds-animated-small.js";
-  init("#scene-637459812");
+  init("#scene-792134658");
 </script>
-
 <p>These models were loaded from the <a href="/book/first-steps/load-models/#types-of-gltf-files">binary glTF files</a> <a href="https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Parrot.glb" target="_blank" rel="noopener noreferrer"><strong><em>parrot.glb</em></strong></a>, <a href="https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Flamingo.glb" target="_blank" rel="noopener noreferrer"><strong><em>flamingo.glb</em></strong></a>, and <a href="https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Stork.glb" target="_blank" rel="noopener noreferrer"><strong><em>stork.glb</em></strong></a>. Alongside the bird models, each of these files also contains an animation clip of the bird flying.</p>
 <p>In this final chapter of the introductory section, we will introduce the three.js animation system and show you how to attach these animation clips to the bird models so that they can take flight.</p>
 <p><strong>The three.js animation system is a complete animation mixing desk.</strong> Using this system you can animate virtually any aspect of an object, such as position, scale, rotation, a material&rsquo;s color or opacity, the bones of a <a href="https://threejs.org/examples/#webgl_animation_skinning_blending" target="_blank" rel="noopener noreferrer">skinned mesh</a>, <a href="https://threejs.org/examples/#webgl_buffergeometry_morphtargets" target="_blank" rel="noopener noreferrer">morph targets</a>, and many other things besides. You can also blend and mix animations, so, for example, if you have a &ldquo;walk&rdquo; animation and a &ldquo;run&rdquo; animation attached to a human character you can make the character speed up from a walk to a run by blending these animations.</p>
@@ -1015,13 +988,12 @@ function setupModel(data) {
 
 
 
-<figure id="scene-712954638" class="inline-scene loading-dots round"></figure>
+<figure id="scene-475891623" class="inline-scene loading-dots round"></figure>
 
 <script type="module">
   import init from "/static/examples/worlds/inline-scenes/first-steps/birds-animated.js";
-  init("#scene-712954638");
+  init("#scene-475891623");
 </script>
-
 <h2 id="youve-reached-the-end-of-the-book---for-now-">You&rsquo;ve Reached the End of the Book - for now :)</h2>
 <p>With our birds on the wing, you have reached the end of the book. Congratulations!</p>
 <p>We&rsquo;ve covered a lot here in a short time, including cameras, geometry, meshes, textures, physically based materials, direct and ambient lighting, rendering our scenes with WebGL, transformations, coordinate systems, and the scene graph, vectors, loading external models, the glTF asset format, and even the three.js animation system, which is a complex beast. While learning about all that, we also found the time to create a simple but well-structured application that you can build on for three.js applications of any size.</p>
@@ -1109,6 +1081,13 @@ action
   
 </aside>
 
+            <div class="bottom-pagination">
+
+
+
+
+
+<a href="/book/first-steps/load-models/" title="Load 3D Models in glTF Format" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/appendix/" class="control-elem next" title="Production Ready three.js"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
           </div>
         </div>
       </main><div id="ide-wrapper" class="panel animate disabled hide">
@@ -1508,8 +1487,6 @@ action
       <span class="chapter">A.5:</span><a href="/book/appendix/asynchronous-javascript/" title="Asynchronous JavaScript">Asynchronous JavaScript</a></li>
     <li class="">
       <span class="chapter">B.1:</span><a href="/book/appendix/threejs-versions/" title="Dealing with Different three.js Versions">Dealing with Different three.js Versions</a></li>
-    <li class="unavailable section-head">
-      <span class="chapter">R:</span><span>References and Resources</span></li>
     <li class="">
       <span class="chapter">:</span><a href="/tips-and-tricks/" title="The Big List of three.js Tips and Tricks!">The Big List of three.js Tips and Tricks!</a></li>
     <li class="">

@@ -1,195 +1,222 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/book/introduction/</loc>
+    <loc>https://discoverthreejs.com/book/introduction/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/introduction/about-the-book/</loc>
+    <loc>https://discoverthreejs.com/book/introduction/about-the-book/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/introduction/prerequisites/</loc>
+    <loc>https://discoverthreejs.com/book/introduction/prerequisites/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/introduction/get-help/</loc>
+    <loc>https://discoverthreejs.com/book/introduction/get-help/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/introduction/github-repo/</loc>
+    <loc>https://discoverthreejs.com/book/introduction/github-repo/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/introduction/get-threejs/</loc>
+    <loc>https://discoverthreejs.com/book/introduction/get-threejs/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/introduction/threejs-with-frameworks/</loc>
+    <loc>https://discoverthreejs.com/book/introduction/threejs-with-frameworks/</loc>
     <lastmod>2019-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>https://discoverthreejs.com/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/first-steps/</loc>
+    <loc>https://discoverthreejs.com/book/first-steps/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/first-steps/app-structure/</loc>
+    <loc>https://discoverthreejs.com/book/first-steps/app-structure/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/first-steps/first-scene/</loc>
+    <loc>https://discoverthreejs.com/book/first-steps/first-scene/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/first-steps/world-app/</loc>
+    <loc>https://discoverthreejs.com/book/first-steps/world-app/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/first-steps/physically-based-rendering/</loc>
+    <loc>https://discoverthreejs.com/book/first-steps/physically-based-rendering/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/first-steps/transformations/</loc>
+    <loc>https://discoverthreejs.com/book/first-steps/transformations/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/first-steps/responsive-design/</loc>
+    <loc>https://discoverthreejs.com/book/first-steps/responsive-design/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/first-steps/animation-loop/</loc>
+    <loc>https://discoverthreejs.com/book/first-steps/animation-loop/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/first-steps/textures-intro/</loc>
+    <loc>https://discoverthreejs.com/book/first-steps/textures-intro/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/first-steps/camera-controls/</loc>
+    <loc>https://discoverthreejs.com/book/first-steps/camera-controls/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/first-steps/ambient-lighting/</loc>
+    <loc>https://discoverthreejs.com/book/first-steps/ambient-lighting/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/first-steps/organizing-with-group/</loc>
+    <loc>https://discoverthreejs.com/book/first-steps/organizing-with-group/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/first-steps/built-in-geometries/</loc>
+    <loc>https://discoverthreejs.com/book/first-steps/built-in-geometries/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/first-steps/load-models/</loc>
+    <loc>https://discoverthreejs.com/book/first-steps/load-models/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/first-steps/animation-system/</loc>
+    <loc>https://discoverthreejs.com/book/first-steps/animation-system/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/appendix/</loc>
-    <lastmod>2018-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/book/appendix/html-and-css-reference/</loc>
+    <loc>https://discoverthreejs.com/book/appendix/html-and-css-reference/</loc>
     <lastmod>2019-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/appendix/javascript-reference/</loc>
+    <loc>https://discoverthreejs.com/book/appendix/javascript-reference/</loc>
     <lastmod>2019-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/appendix/dom-api-reference/</loc>
+    <loc>https://discoverthreejs.com/book/appendix/dom-api-reference/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/appendix/javascript-modules/</loc>
+    <loc>https://discoverthreejs.com/book/appendix/javascript-modules/</loc>
     <lastmod>2019-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/appendix/asynchronous-javascript/</loc>
+    <loc>https://discoverthreejs.com/book/appendix/asynchronous-javascript/</loc>
     <lastmod>2019-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/appendix/threejs-versions/</loc>
+    <loc>https://discoverthreejs.com/book/appendix/threejs-versions/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/book/references/</loc>
-    <lastmod>2018-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tips-and-tricks/</loc>
+    <loc>https://discoverthreejs.com/tips-and-tricks/</loc>
     <lastmod>2018-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/apps/</loc>
+    <loc>https://discoverthreejs.com/book/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/examples/</loc>
-    <lastmod>2018-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/modules/</loc>
-    <lastmod>2018-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/book/</loc>
-    <lastmod>2018-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/privacy/</loc>
-    <lastmod>2018-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/terms/</loc>
-    <lastmod>2018-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
 </urlset>
