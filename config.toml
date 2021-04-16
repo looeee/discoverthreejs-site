@@ -1,10 +1,11 @@
-baseURL = "/"
+baseURL = "https://discoverthreejs.com/"
+
 languageCode = "en-us"
-title = "Chapters"
 
-publishDir = './public/'
+publishDir = 'public'
+contentDir = "markdown"
 
-disableKinds = ["taxonomy", "taxonomyTerm", "category", "RSS", "robotsTXT"]
+disableKinds = ["tags", "taxonomy", "taxonomyTerm", "category", "RSS", "robotsTXT"]
 
 enableInlineShortcodes = true
 
@@ -32,3 +33,15 @@ logFile = "logs.txt"
 
 paginate = 10
 paginatePath = "test"
+
+disableHugoGeneratorInject = true
+
+[sitemap]
+  changefreq = "monthly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
+# Including this causes the build to fail
+# https://gohugo.io/variables/site/#the-siteparams-variable
+#[params]
+#  description = "44"

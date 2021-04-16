@@ -9,18 +9,20 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+
 <meta name="ROBOTS" content="INDEX, FOLLOW" />
+
 
 <meta name="application-name" content="Discover three.js" />
 
 <meta itemprop="name" content="Discover three.js" />
 
-<meta property="og:title" content="How to Use This Book | Discover three.js" />
-<meta name="twitter:title" content="How to Use This Book | Discover three.js" />
+<meta property="og:title" content="How to Include three.js in Your Projects | Discover three.js" />
+<meta name="twitter:title" content="How to Include three.js in Your Projects | Discover three.js" />
 
-<meta name="description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
-<meta property="og:description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
-<meta name="twitter:description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
+<meta name="description" content="The first step in building a three.js app is importing the three.js files. There are three main ways to do this: download the files, use the NPM package, or import from a CDN." />
+<meta property="og:description" content="The first step in building a three.js app is importing the three.js files. There are three main ways to do this: download the files, use the NPM package, or import from a CDN." />
+<meta name="twitter:description" content="The first step in building a three.js app is importing the three.js files. There are three main ways to do this: download the files, use the NPM package, or import from a CDN." />
 
 <meta
   itemprop="keywords"
@@ -40,13 +42,13 @@
 />
 <meta name="twitter:creator" content="@lewy_blue" />
 <meta name="twitter:site" content="@lewy_blue" />
-<meta name="twitter:card" content="TODO" />
+<meta name="twitter:card" content="The first step in building a three.js app is importing the three.js files. There are three main ways to do this: download the files, use the NPM package, or import from a CDN." />
 <meta name="twitter:image:width" content="1024" />
 <meta name="twitter:image:height" content="1024" />
 
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="msapplication-TileColor" content="#00aba9" />
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=43" /><script type="application/ld+json">
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=44" /><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "WebPage",
@@ -80,40 +82,40 @@
     }
   }
 </script><link
-      rel="canonical"
-      href="https://discoverthreejs.com/book/introduction/about-the-book/"
-    />
+  rel="canonical"
+  href="https://discoverthreejs.com/book/introduction/get-threejs/"
+/>
 
-    <link rel="shortcut icon" type="image/png" href="/favicon.ico?v=43" />
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=44" />
 
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/apple-touch-icon.png?v=43"
-    />
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/apple-touch-icon.png?v=44"
+/>
 
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/favicon-16x16.png?v=43"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/favicon-32x32.png?v=43"
-    />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/favicon-16x16.png?v=44"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/favicon-32x32.png?v=44"
+/>
 
-    <link rel="manifest" href="/site.json?v=43" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=43" color="#5bbad5" />
+<link rel="manifest" href="/site.json?v=44" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=44" color="#5bbad5" />
 <style>
       .loading-page {
         display: none;
       }
     </style>
 
-    <link href="/static/css/chapters.min.css?v=43" rel="stylesheet" />
+    <link href="/static/css/chapters.min.css?v=44" rel="stylesheet" />
 
     <noscript>
       <style>
@@ -121,7 +123,7 @@
           display: block;
         }
       </style>
-      <link href="/static/css/noscript.min.css?v=43" rel="stylesheet" />
+      <link href="/static/css/noscript.min.css?v=44" rel="stylesheet" />
     </noscript>    
     
     
@@ -151,6 +153,7 @@
     );
     setupChapterLate();
 
+    
     const { setupIDE } = await import(
       "/static/js/ide.js"
       );
@@ -178,6 +181,7 @@
     }
 
     await setupIDE(ideConfig);
+    
   });
 </script></head>
   <body class="loading-page"><nav class="top-nav">
@@ -262,42 +266,12 @@
   </div>
 
   <div class="icon-group center">
-    <a
-      href="/book/introduction/"
-      title="Welcome to Discover three.js!"
-      class="control-elem previous"
-    >
-      <svg
-        class="icon"
-        role="img"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 320 512"
-      >
-        <path
-          fill="currentColor"
-          d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
-        />
-      </svg>
-    </a>
-    <a
-      href="/book/introduction/prerequisites/"
-      class="control-elem next"
-      title="What Do You Need to Run a three.js App?"
-    >
-      <svg
-        class="icon"
-        role="img"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 320 512"
-      >
-        <path
-          fill="currentColor"
-          d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-        />
-      </svg>
-    </a>
+
+
+
+
+
+<a href="/book/introduction/github-repo/" title="three.js on GitHub - Where the Magic Happens" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/introduction/threejs-with-frameworks/" class="control-elem next" title="Using three.js with React, Vue.js, Angular, Svelte, TypeScript..."><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
   </div>
 
   <div class="icon-group right">
@@ -338,7 +312,7 @@
         <div class="scroller">
           <div class="content">
             
-              <div class="chapter-info">Word Count:1368, reading time: ~7minutes</div>
+              <div class="chapter-info">Word Count:1364, reading time: ~7minutes</div>
             
             <h1 id="how-to-include-threejs-in-your-projects">How to Include three.js in Your Projects</h1>
 <p>There are several ways to include three.js in your JavaScript application, some simple, some a little more complex, but they all boil down to this: you need to include the three.js core in your project, which you can find in this file on the three.js repo:</p>
@@ -349,7 +323,7 @@
 <ul>
 <li><a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js" target="_blank" rel="noopener noreferrer"><em><strong>examples/jsm/controls/OrbitControls.js</strong></em></a></li>
 </ul>
-<p>Open up the editor on this page by clicking the {% include 'partials/icons/solid/columns.svg' %} icon, and you&rsquo;ll see that we have included these two files inside the <em><strong>vendor/</strong></em> folder:</p>
+<p>Open up the editor on this page by clicking the <svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64V160h160v256zm224 0H288V160h160v256z"/></svg> icon, and you&rsquo;ll see that we have included these two files inside the <em><strong>vendor/</strong></em> folder:</p>
 <ul>
 <li>The core is in <em><strong>vendor/three/build/three.module.js</strong></em></li>
 <li><code>OrbitControls</code> is in <em><strong>vendor/three/examples/jsm/controls/OrbitControls.js</strong></em>.</li>
@@ -630,6 +604,13 @@ import { OrbitControls } from &#39;three/examples/jsm/controls/OrbitControls.js&
 <p>In the examples throughout this book, we&rsquo;ll use NPM style imports since these are both the shortest way of writing the import statements, and the style you are most likely to encounter in a professional setting.</p>
 <p>In most chapters, in the editor, you can switch between NPM and CDN imports (using <em><strong>unpkg.com</strong></em>). However, if you download the code from the editor, the downloaded code will use CDN imports. This means you can use the downloaded code immediately on your local computer without the trouble of setting up a bundler or installing NPM packages. You will, however, need to <a href="/book/introduction/about-the-book/#code-examples">set up a local development server</a>.</p>
 
+            <div class="bottom-pagination">
+
+
+
+
+
+<a href="/book/introduction/github-repo/" title="three.js on GitHub - Where the Magic Happens" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/introduction/threejs-with-frameworks/" class="control-elem next" title="Using three.js with React, Vue.js, Angular, Svelte, TypeScript..."><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
           </div>
         </div>
       </main><div id="ide-wrapper" class="panel animate disabled hide">
@@ -1029,8 +1010,6 @@ import { OrbitControls } from &#39;three/examples/jsm/controls/OrbitControls.js&
       <span class="chapter">A.5:</span><a href="/book/appendix/asynchronous-javascript/" title="Asynchronous JavaScript">Asynchronous JavaScript</a></li>
     <li class="">
       <span class="chapter">B.1:</span><a href="/book/appendix/threejs-versions/" title="Dealing with Different three.js Versions">Dealing with Different three.js Versions</a></li>
-    <li class="unavailable section-head">
-      <span class="chapter">R:</span><span>References and Resources</span></li>
     <li class="">
       <span class="chapter">:</span><a href="/tips-and-tricks/" title="The Big List of three.js Tips and Tricks!">The Big List of three.js Tips and Tricks!</a></li>
     <li class="">

@@ -626,7 +626,7 @@ p img {
   height: auto;
 }
 
-details summary::-webkit-details-marker {
+details summary::marker {
   display: none;
 }
 
@@ -2092,7 +2092,7 @@ pre[data-line] {
   position: absolute;
   left: 0;
   right: 0;
-  padding: inherit 0;
+  padding: 0;
   margin-top: 0.5em;
   /* Same as .prism’s padding-top */
   background: rgba(255, 255, 255, 0.2);
@@ -3384,8 +3384,8 @@ div.code-toolbar > .toolbar span:focus {
 .es6-tree-inline details.file > summary {
   list-style: none;
 }
-.es6-tree details.file > summary::-webkit-details-marker,
-.es6-tree-inline details.file > summary::-webkit-details-marker {
+.es6-tree details.file > summary::marker,
+.es6-tree-inline details.file > summary::marker {
   display: none;
 }
 .es6-tree details.file > summary > .open-icon,

@@ -9,18 +9,20 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+
 <meta name="ROBOTS" content="INDEX, FOLLOW" />
+
 
 <meta name="application-name" content="Discover three.js" />
 
 <meta itemprop="name" content="Discover three.js" />
 
-<meta property="og:title" content="How to Use This Book | Discover three.js" />
-<meta name="twitter:title" content="How to Use This Book | Discover three.js" />
+<meta property="og:title" content="Your First three.js Scene: Hello, Cube! | Discover three.js" />
+<meta name="twitter:title" content="Your First three.js Scene: Hello, Cube! | Discover three.js" />
 
-<meta name="description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
-<meta property="og:description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
-<meta name="twitter:description" content="This page has been temporarily removed while I  work hard on updates. Please check back soon! Lots of goodies are planned :D" />
+<meta name="description" content="In this chapter, we build our first three.js scene and create the Hello World of three.js apps: a simple white cube. While doing so, we introduce many important concepts such as the scene, renderer, and camera." />
+<meta property="og:description" content="In this chapter, we build our first three.js scene and create the Hello World of three.js apps: a simple white cube. While doing so, we introduce many important concepts such as the scene, renderer, and camera." />
+<meta name="twitter:description" content="In this chapter, we build our first three.js scene and create the Hello World of three.js apps: a simple white cube. While doing so, we introduce many important concepts such as the scene, renderer, and camera." />
 
 <meta
   itemprop="keywords"
@@ -40,13 +42,13 @@
 />
 <meta name="twitter:creator" content="@lewy_blue" />
 <meta name="twitter:site" content="@lewy_blue" />
-<meta name="twitter:card" content="TODO" />
+<meta name="twitter:card" content="In this chapter, we build our first three.js scene and create the Hello World of three.js apps: a simple white cube. While doing so, we introduce many important concepts such as the scene, renderer, and camera." />
 <meta name="twitter:image:width" content="1024" />
 <meta name="twitter:image:height" content="1024" />
 
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="msapplication-TileColor" content="#00aba9" />
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=43" /><script type="application/ld+json">
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=44" /><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "WebPage",
@@ -80,40 +82,40 @@
     }
   }
 </script><link
-      rel="canonical"
-      href="https://discoverthreejs.com/book/introduction/about-the-book/"
-    />
+  rel="canonical"
+  href="https://discoverthreejs.com/book/first-steps/first-scene/"
+/>
 
-    <link rel="shortcut icon" type="image/png" href="/favicon.ico?v=43" />
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=44" />
 
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/apple-touch-icon.png?v=43"
-    />
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/apple-touch-icon.png?v=44"
+/>
 
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/favicon-16x16.png?v=43"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/favicon-32x32.png?v=43"
-    />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/favicon-16x16.png?v=44"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/favicon-32x32.png?v=44"
+/>
 
-    <link rel="manifest" href="/site.json?v=43" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=43" color="#5bbad5" />
+<link rel="manifest" href="/site.json?v=44" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=44" color="#5bbad5" />
 <style>
       .loading-page {
         display: none;
       }
     </style>
 
-    <link href="/static/css/chapters.min.css?v=43" rel="stylesheet" />
+    <link href="/static/css/chapters.min.css?v=44" rel="stylesheet" />
 
     <noscript>
       <style>
@@ -121,7 +123,7 @@
           display: block;
         }
       </style>
-      <link href="/static/css/noscript.min.css?v=43" rel="stylesheet" />
+      <link href="/static/css/noscript.min.css?v=44" rel="stylesheet" />
     </noscript>    
     
     
@@ -151,6 +153,7 @@
     );
     setupChapterLate();
 
+    
     const { setupIDE } = await import(
       "/static/js/ide.js"
       );
@@ -178,6 +181,7 @@
     }
 
     await setupIDE(ideConfig);
+    
   });
 </script></head>
   <body class="loading-page"><nav class="top-nav">
@@ -262,42 +266,12 @@
   </div>
 
   <div class="icon-group center">
-    <a
-      href="/book/introduction/"
-      title="Welcome to Discover three.js!"
-      class="control-elem previous"
-    >
-      <svg
-        class="icon"
-        role="img"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 320 512"
-      >
-        <path
-          fill="currentColor"
-          d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
-        />
-      </svg>
-    </a>
-    <a
-      href="/book/introduction/prerequisites/"
-      class="control-elem next"
-      title="What Do You Need to Run a three.js App?"
-    >
-      <svg
-        class="icon"
-        role="img"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 320 512"
-      >
-        <path
-          fill="currentColor"
-          d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-        />
-      </svg>
-    </a>
+
+
+
+
+
+<a href="/book/first-steps/app-structure/" title="The Structure of a three.js App" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/world-app/" class="control-elem next" title="Introducing the World App"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
   </div>
 
   <div class="icon-group right">
@@ -338,7 +312,7 @@
         <div class="scroller">
           <div class="content">
             
-              <div class="chapter-info">Word Count:4172, reading time: ~20minutes</div>
+              <div class="chapter-info">Word Count:4168, reading time: ~20minutes</div>
             
             <h1 id="your-first-threejs-scene-hello-cube">Your First three.js Scene: Hello, Cube!</h1>
 <p>In this chapter, we&rsquo;ll create the Hello World of three.js apps: a simple white cube. Since we&rsquo;ve already set up a simple webpage, as described in the last chapter, all we need to do is write a couple of lines of JavaScript in <em><strong>src/main.js</strong></em> and our app will spring to life. We&rsquo;ll introduce quite a bit of theory along the way, but the actual code is short. Below is what this file will look like by the end of the chapter. Not counting the import statement and comments, there are under twenty lines of code in total. That&rsquo;s all it takes to create a simple &ldquo;Hello Cube!&rdquo; three.js app.</p>
@@ -415,7 +389,7 @@ renderer.render(scene, camera);
   </pre>
 </section>
 
-<p>Click the <input type="checkbox" class="simple-toggle" title="Find the real toggle!"> toggle on the top left of the editor to <a href="/book/introduction/about-the-book/#before-and-after-code-comparison">see this code in action</a>, or, if you prefer to <a href="/book/introduction/about-the-book/#working-on-your-own-machine">work locally</a>, you can click the {% include 'partials/icons/solid/download.svg' %} button to download a zip archive containing all the files from the editor. If any of the JavaScript here is unfamiliar to you, refer to <a href="/book/appendix/javascript-reference/">A.2: JavaScript Reference</a> and <a href="/book/appendix/dom-api-reference/">A.3: The Document Object Model and DOM API</a> in the appendices.</p>
+<p>Click the <input type="checkbox" class="simple-toggle" title="Find the real toggle!"> toggle on the top left of the editor to <a href="/book/introduction/about-the-book/#before-and-after-code-comparison">see this code in action</a>, or, if you prefer to <a href="/book/introduction/about-the-book/#working-on-your-own-machine">work locally</a>, you can click the <svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"/></svg> button to download a zip archive containing all the files from the editor. If any of the JavaScript here is unfamiliar to you, refer to <a href="/book/appendix/javascript-reference/">A.2: JavaScript Reference</a> and <a href="/book/appendix/dom-api-reference/">A.3: The Document Object Model and DOM API</a> in the appendices.</p>
 <h2 id="the-components-of-a-real-time-3d-app">The Components of a Real-Time 3D App</h2>
 <figure >
   <img src="/static/images/first-steps/rendered_scene_canvas.svg" loading="lazy" alt="A basic scene" title="A basic scene"  /></figure>
@@ -1110,6 +1084,13 @@ renderer.render(scene, camera);
 <p>With this single line, we&rsquo;re telling the renderer to create a still picture of the scene using the camera and output that picture into the <code>&lt;canvas&gt;</code> element. If everything is set up correctly, you&rsquo;ll see a white cube against a blue background. It&rsquo;s hard to see that it&rsquo;s a cube since we&rsquo;re looking directly at a single square face, but we&rsquo;ll fix that over the next few chapters.</p>
 <p>Well done! <strong>By completing this chapter, you&rsquo;ve taken the first giant leap in your career as a three.js developer</strong>. Our scene may not be that interesting yet, but we&rsquo;ve laid some important groundwork and covered some fundamental concepts of computer graphics that you&rsquo;ll use in every scene you build from now on, whether you are using three.js or any other 3D graphics system.</p>
 
+            <div class="bottom-pagination">
+
+
+
+
+
+<a href="/book/first-steps/app-structure/" title="The Structure of a three.js App" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/world-app/" class="control-elem next" title="Introducing the World App"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
           </div>
         </div>
       </main><div id="ide-wrapper" class="panel animate disabled hide">
@@ -1509,8 +1490,6 @@ renderer.render(scene, camera);
       <span class="chapter">A.5:</span><a href="/book/appendix/asynchronous-javascript/" title="Asynchronous JavaScript">Asynchronous JavaScript</a></li>
     <li class="">
       <span class="chapter">B.1:</span><a href="/book/appendix/threejs-versions/" title="Dealing with Different three.js Versions">Dealing with Different three.js Versions</a></li>
-    <li class="unavailable section-head">
-      <span class="chapter">R:</span><span>References and Resources</span></li>
     <li class="">
       <span class="chapter">:</span><a href="/tips-and-tricks/" title="The Big List of three.js Tips and Tricks!">The Big List of three.js Tips and Tricks!</a></li>
     <li class="">

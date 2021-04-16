@@ -1,4 +1,3 @@
-{{ $currentPageUrl := .Permalink }}
 {{- $paginator := (.Site.Pages).ByWeight -}}
 <ul>
   {{- range $paginator -}}
@@ -8,7 +7,7 @@
       {{- if and (not .Params.available) (not .Params.summaryAvailable) -}}
         <span>{{ .Title }}</span>
       {{- else -}}
-      <a href="{{ .Permalink | replaceRE "[^/]*$" "" }}" title="{{ .Title }}">{{ .Title }}</a>
+      <a href="{{ .RelPermalink | replaceRE "[^/]*$" "" }}" title="{{ .Title }}">{{ .Title }}</a>
       {{- end -}}
     </li>
     {{- end -}}

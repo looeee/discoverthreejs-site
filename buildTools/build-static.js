@@ -4,16 +4,7 @@ export default function buildStatic() {
   return new Promise((resolve) => {
     const process = exec.execFile(
       ".\\hugo.exe",
-      [
-        "--templateMetrics",
-        "--templateMetricsHints",
-        "--verbose",
-        // Moving the layout dir breaks shortcodes
-        // "--layoutDir",
-        // ".\\markdown\\layout",
-        "--contentDir",
-        ".\\markdown\\content",
-      ],
+      ["--templateMetrics", "--templateMetricsHints", "--verbose"],
       (error, stdout, stderr) => {
         // looks like this not not needed
         // process.kill();

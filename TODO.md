@@ -1,12 +1,11 @@
 # TODO
 
 * Figure out a better aproach than symlinked node_modules/three
-* Check sitemap
+* pagination is not working across section ends/beginnings
 * Check pages in this build are exactly the same as on discoverthreejs.com
-* Check schema and meta correct on all pages
-* <meta name="twitter:card" content="TODO" />
+* create site param for ?v=version
 
 # Redirects:
 
-book -> book/content
+book/content -> book
 tips -> tips and tricks

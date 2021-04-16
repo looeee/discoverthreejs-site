@@ -45,7 +45,7 @@ async function compileSCSS(inputFile, outputFile) {
 }
 
 function getAppName(path) {
-  if (!path || !path.includes("styles\\apps\\")) {
+  if (!path || !path.includes("scss\\apps\\")) {
     return null;
   }
   const folders = path.split("\\");
@@ -58,7 +58,7 @@ function getAppName(path) {
 
 export default async function buildCSS(path) {
   const appName = getAppName(path);
-  const inputFile = `styles\\apps\\${appName}\\main.scss`;
+  const inputFile = `scss\\apps\\${appName}\\main.scss`;
   const outputFile = `public\\static\\css\\${appName}.css`;
 
   console.log(`Building ${outputFile}`);

@@ -4,10 +4,13 @@
     window.name = `bs_${Math.random()}`;
   }
 
-  const elem = $document.querySelector('.scroller');
+  const elem = $document.querySelector(".scroller");
+  if (!elem) {
+    return;
+  }
 
   const scrollState = JSON.parse(
-    sessionStorage.getItem(`bs-scroll_${window.name}`),
+    sessionStorage.getItem(`bs-scroll_${window.name}`)
   );
 
   if (scrollState) {
@@ -18,8 +21,8 @@
     //   elem.scrollTop = scrollState;
     // }, 16);
 
-    // after everything has loaded, refine scroll
-    window.addEventListener('load', () => {
+    // or wait until  everything has loaded for better result but with a delay
+    window.addEventListener("load", () => {
       setTimeout(() => {
         elem.scrollTop = scrollState;
         // clearInterval(intID);
@@ -27,10 +30,10 @@
     });
   }
 
-  elem.addEventListener('scroll', (e) => {
+  elem.addEventListener("scroll", (e) => {
     sessionStorage.setItem(
       `bs-scroll_${window.name}`,
-      JSON.stringify(e.srcElement.scrollTop),
+      JSON.stringify(e.srcElement.scrollTop)
     );
   });
 })(window, document, ___browserSync___);
