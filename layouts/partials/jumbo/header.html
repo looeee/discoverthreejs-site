@@ -1,29 +1,21 @@
 <div
 class="background"
 style="
-  background-image: url(/static/images/overlay.png),
+  background-image: url(/images/overlay.png),
     linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-    url(/static/images/bg.jpg);
+    url(/images/bg.jpg);
 "
 ></div>
 
 <header id="header">
 <a href="/"
   ><img
-    src="/static/images/logo/banner_trans.png"
+    src="/images/logo/banner_trans.png"
     alt="Discover three.js banner"
 /></a>
 </header>
 <div class="nav-wrapper">
-<nav class="nav">
-  <ul class="links" style="justify-content: left">
-    <li><a href="/book/contents/">Table Of Contents</a></li>
-    <!-- <li><a href="/blog/">Blog</a></li>-->
-    <li style="margin: auto">
-      <a href="/#mailing-list-signup" class="internal-link"
-        >Stay up to date - sign up to the mailing list!</a
-      >
-    </li>
-  </ul>
-</nav>
+  <nav class="nav">
+    {{- partialCached "mainLinks.html" . -}}
+  </nav>
 </div>

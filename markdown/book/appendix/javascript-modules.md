@@ -5,7 +5,6 @@ date: 2019-01-01
 weight: 9904
 chapter: 'A.4'
 available: true
-toc: true
 showIDE: true
 IDEFiles: [
   'worlds/appendix/javascript-modules/src/main.js',

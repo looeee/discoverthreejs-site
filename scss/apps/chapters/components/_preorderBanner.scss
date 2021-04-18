@@ -1,8 +1,7 @@
 .preorder-banner {
   border: 2px solid #8fbcd4;
   background: radial-gradient(circle, transparent 40%, black 75%),
-    linear-gradient(to right, grey, grey),
-    url(/static/images/logo.png);
+    linear-gradient(to right, grey, grey), url(/images/logo.png);
   background-position: center center;
   background-size: cover;
   box-shadow: 3px 6px 14px 3px black;
@@ -69,8 +68,7 @@
     width: 50%;
     margin: 1rem auto;
     padding: 1rem;
-    transition: background 0.2s ease-in-out,
-      box-shadow 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     text-align: center;
     color: #f4f4f4;
     border: 1px solid silver;

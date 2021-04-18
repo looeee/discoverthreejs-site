@@ -1,9 +1,20 @@
 # TODO
 
+* Consider using hugo pipes for js and SCSS
+* hugo is not copying over static/examples/vendor/three folder
 * Figure out a better aproach than symlinked node_modules/three
-* pagination is not working across section ends/beginnings
 * Check pages in this build are exactly the same as on discoverthreejs.com
-* create site param for ?v=version
+ - Home: checked, OK
+
+# Source Check
+- Home
+
+
+# Visual Inspection
+- Home
+- Terms
+- Contact
+- Privacy
 
 # Redirects:
 

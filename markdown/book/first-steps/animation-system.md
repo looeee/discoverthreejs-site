@@ -34,7 +34,7 @@ IDEComparisonMode: true
 IDEClosedFolders: ['assets', 'systems', 'styles', 'vendor']
 IDEStripDirectory: 'worlds/first-steps/animation-system/'
 IDEActiveDocument: 'src/World/components/birds/setupModel.js'
-nextURL: "/appendix/"
+nextURL: "/book/appendix/"
 nextTitle: "Production Ready three.js"
 ---
 

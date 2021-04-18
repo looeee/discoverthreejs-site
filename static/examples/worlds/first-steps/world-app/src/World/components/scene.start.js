@@ -1,0 +1,3 @@
+import { Color, Scene } from 'three';
+
+// To do...

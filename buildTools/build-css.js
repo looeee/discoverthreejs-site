@@ -59,7 +59,7 @@ function getAppName(path) {
 export default async function buildCSS(path) {
   const appName = getAppName(path);
   const inputFile = `scss\\apps\\${appName}\\main.scss`;
-  const outputFile = `public\\static\\css\\${appName}.css`;
+  const outputFile = `static\\css\\${appName}.css`;
 
   console.log(`Building ${outputFile}`);
   try {

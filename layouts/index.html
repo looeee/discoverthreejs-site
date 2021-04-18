@@ -2,10 +2,10 @@
 <html dir="ltr" lang="en">
   <head>
     <title>{{ .Title }} | Discover three.js</title>
-    {{- partial "head/meta.html" . -}}
-    {{- partial "head/schema.html" . -}}
-    {{- partial "head/links.html" . -}}
-    <link href="/static/css/jumbo.min.css?v=44" rel="stylesheet" />
+    {{- partialCached "head/meta.html" . .Params.noFollow .Params.Title .Params.Description -}}
+    {{- partialCached "head/schema.html" . -}}
+    {{- partialCached "head/links.html" . .Permalink -}}
+    <link href="/css/jumbo.min.css?v={{ now.Unix }}" rel="stylesheet" />
 
     <noscript>
       <style>
@@ -13,21 +13,21 @@
           display: block;
         }
       </style>
-      <link href="/static/css/noscript.min.css?v=44" rel="stylesheet" />
+      <link href="/css/noscript.min.css?v={{ now.Unix }}" rel="stylesheet" />
     </noscript>
 
-    <script type="module" src="/static/js/home.js?v=44"></script>
+    <script type="module" src="/js/home.js?v={{ now.Unix }}"></script>
   </head>
 
   <body>
-    {{- partial "jumbo/nav.html" . -}}
+    {{- partialCached "jumbo/nav.html" . -}}
     <div class="wrapper">
       <div
         class="background"
         style="
-          background-image: url(/static/images/overlay.png),
+          background-image: url(/images/overlay.png),
             linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-            url(/static/images/bg.jpg);
+            url(/images/bg.jpg);
         "
       ></div>
 
@@ -44,39 +44,19 @@
           title="Scroll Down"
           aria-label="Click here to scroll down"
         >
-          <svg
-            class="icon"
-            role="img"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
-          >
-            <path
-              fill="currentColor"
-              d="M413.1 222.5l22.2 22.2c9.4 9.4 9.4 24.6 0 33.9L241 473c-9.4 9.4-24.6 9.4-33.9 0L12.7 278.6c-9.4-9.4-9.4-24.6 0-33.9l22.2-22.2c9.5-9.5 25-9.3 34.3.4L184 343.4V56c0-13.3 10.7-24 24-24h32c13.3 0 24 10.7 24 24v287.4l114.8-120.5c9.3-9.8 24.8-10 34.3-.4z"
-            />
-          </svg>
+        {{- partialCached "icons/solid/arrow-down.svg" . -}}
         </a>
       </div>
-
       <header id="header">
         <a href="/"
           ><img
-            src="/static/images/logo/banner_trans.png"
+            src="/images/logo/banner_trans.png"
             alt="Discover three.js banner"
         /></a>
       </header>
       <div class="nav-wrapper">
         <nav class="nav">
-          <ul class="links" style="justify-content: left">
-            <li><a href="/book/contents/">Table Of Contents</a></li>
-            <!-- <li><a href="/blog/">Blog</a></li>-->
-            <li style="margin: auto">
-              <a href="/#mailing-list-signup" class="internal-link"
-                >Stay up to date - sign up to the mailing list!</a
-              >
-            </li>
-          </ul>
+          {{- partialCached "mainLinks.html" . -}}
         </nav>
       </div>
 
@@ -124,7 +104,7 @@
           <h2 class="logo-title">
             <img
               class="logo"
-              src="/static/images/app-logos/forum.png"
+              src="/images/app-logos/forum.png"
               alt="three.js logo"
               title="three.js logo"
               loading="lazy"
@@ -156,7 +136,7 @@
               rel="noopener noreferrer"
             >
               <img
-                src="/static/images/threejs_site_screenshot.jpg"
+                src="/images/threejs_site_screenshot.jpg"
                 alt="threejs.org - the homepage of three.js"
                 title="threejs.org - the homepage of three.js"
                 loading="lazy"
@@ -217,7 +197,7 @@
               preload="none"
               title="The live code editor in action"
             >
-              <source src="/static/images/home/editor.mp4" type="video/mp4" />
+              <source src="/images/home/editor.mp4" type="video/mp4" />
             </video>
           </div>
         </section>
@@ -234,7 +214,7 @@
           <div class="diagrams columns">
             <figure class="column">
               <img
-                src="/static/images/first-steps/perspective_frustum.svg"
+                src="/images/first-steps/perspective_frustum.svg"
                 alt="Perspective camera frustum"
                 title="Perspective camera frustum"
                 loading="lazy"
@@ -242,7 +222,7 @@
             </figure>
             <figure class="column">
               <img
-                src="/static/images/first-steps/animation_dancer.jpg"
+                src="/images/first-steps/animation_dancer.jpg"
                 alt="Dancing animation, selected frames"
                 title="Dancing animation selected frames"
                 loading="lazy"
@@ -250,7 +230,7 @@
             </figure>
             <figure class="column">
               <img
-                src="/static/images/first-steps/directional_light.svg"
+                src="/images/first-steps/directional_light.svg"
                 alt="Directional Lighting"
                 title="Directional Lighting"
                 loading="lazy"
@@ -258,7 +238,7 @@
             </figure>
             <figure class="column">
               <img
-                src="/static/images/first-steps/cylinder_final_rotation.svg"
+                src="/images/first-steps/cylinder_final_rotation.svg"
                 alt="Cylinder rotation around Z-axis"
                 title="Cylinder rotation around Z-axis"
                 loading="lazy"
@@ -549,7 +529,7 @@
           <div class="columns">
             <div class="column">
               <img
-                src="/static/images/about/portrait-color.jpg"
+                src="/images/about/portrait-color.jpg"
                 class="portrait big"
                 alt="Portrait of the author"
                 title="Portrait of the author"
@@ -593,8 +573,8 @@
           </div>
         </section>
       </main>
-      {{- partial "jumbo/footer.html" . -}}
+      {{- partialCached "jumbo/footer.html" . -}}
     </div>
-    {{- partial "fonts.html" . -}}
+    {{- partialCached "fonts.html" . -}}
   </body>
 </html>

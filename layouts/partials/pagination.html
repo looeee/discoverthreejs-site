@@ -9,20 +9,20 @@
 {{- if not (eq .Params.pagination false ) -}}
   {{- if .Params.prevURL -}}
     <a href="{{ .Params.prevURL }}" title="{{ .Params.prevTitle }}" class="control-elem previous">
-      {{- partial "icons/solid/chevron-left.svg" . -}}
+      {{- partialCached "icons/solid/chevron-left.svg" . -}}
     </a>
   {{- else if .NextInSection -}}
     <a href="{{ .NextInSection.RelPermalink | replaceRE "[^/]*$" "" }}" title="{{ .NextInSection.Title }}" class="control-elem previous">
-      {{- partial "icons/solid/chevron-left.svg" . -}}
+      {{- partialCached "icons/solid/chevron-left.svg" . -}}
     </a>
   {{- end -}}
   {{- if .Params.nextURL -}}
     <a href="{{ .Params.nextURL }}" class="control-elem next" title="{{ .Params.nextTitle }}">
-      {{- partial "icons/solid/chevron-right.svg" . -}}
+      {{- partialCached "icons/solid/chevron-right.svg" . -}}
     </a>
   {{- else if .PrevInSection -}}
     <a href="{{ .PrevInSection.RelPermalink | replaceRE "[^/]*$" "" }}" class="control-elem next" title="{{ .PrevInSection.Title }}">
-      {{- partial "icons/solid/chevron-right.svg" . -}}
+      {{- partialCached "icons/solid/chevron-right.svg" . -}}
     </a>
   {{- end -}}
 {{- else -}}

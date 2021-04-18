@@ -34,11 +34,11 @@
 <meta property="og:url" content="https://discoverthreejs.com/" />
 <meta
   property="og:image"
-  content="https://discoverthreejs.com/static/images/logo.png"
+  content="https://discoverthreejs.com/images/logo.png"
 />
 <meta
   property="twitter:image"
-  content="https://discoverthreejs.com/static/images/logo.png"
+  content="https://discoverthreejs.com/images/logo.png"
 />
 <meta name="twitter:creator" content="@lewy_blue" />
 <meta name="twitter:site" content="@lewy_blue" />
@@ -48,11 +48,11 @@
 
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="msapplication-TileColor" content="#00aba9" />
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=44" /><script type="application/ld+json">
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1618741133" /><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "WebPage",
-    "image": "https://discoverthreejs.com/static/images/logo.png",
+    "image": "https://discoverthreejs.com/images/logo.png",
     "mainEntity": {
       "@type": "Book",
       "author": {
@@ -66,7 +66,7 @@
       "copyrightYear": "2021",
       "bookFormat": "http://schema.org/EBook",
       "datePublished": "2018-10-01",
-      "image": "https://discoverthreejs.com/static/images/logo.png",
+      "image": "https://discoverthreejs.com/images/logo.png",
       "inLanguage": "English",
       "name": "Discover three.js",
       "genre": "Education",
@@ -76,7 +76,7 @@
         "name": "https://discoverthreejs.com",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://discoverthreejs.com/static/images/logo.png"
+          "url": "https://discoverthreejs.com/images/logo.png"
         }
       }
     }
@@ -86,36 +86,36 @@
   href="https://discoverthreejs.com/book/first-steps/first-scene/"
 />
 
-<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=44" />
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1618741133" />
 
 <link
   rel="apple-touch-icon"
   sizes="180x180"
-  href="/apple-touch-icon.png?v=44"
+  href="/apple-touch-icon.png?v=1618741133"
 />
 
 <link
   rel="icon"
   type="image/png"
   sizes="16x16"
-  href="/favicon-16x16.png?v=44"
+  href="/favicon-16x16.png?v=1618741133"
 />
 <link
   rel="icon"
   type="image/png"
   sizes="32x32"
-  href="/favicon-32x32.png?v=44"
+  href="/favicon-32x32.png?v=1618741133"
 />
 
-<link rel="manifest" href="/site.json?v=44" />
-<link rel="mask-icon" href="/safari-pinned-tab.svg?v=44" color="#5bbad5" />
+<link rel="manifest" href="/site.json?v=1618741133" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1618741133" color="#5bbad5" />
 <style>
       .loading-page {
         display: none;
       }
     </style>
 
-    <link href="/static/css/chapters.min.css?v=44" rel="stylesheet" />
+    <link href="/css/chapters.min.css?v=1618741133" rel="stylesheet" />
 
     <noscript>
       <style>
@@ -123,7 +123,7 @@
           display: block;
         }
       </style>
-      <link href="/static/css/noscript.min.css?v=44" rel="stylesheet" />
+      <link href="/css/noscript.min.css?v=1618741133" rel="stylesheet" />
     </noscript>    
     
     
@@ -144,18 +144,18 @@
     
 
     <script type="module">
-  import { setupChapterEarly } from "/static/js/chapterEarly.js";
+  import { setupChapterEarly } from "/js/chapterEarly.js";
   setupChapterEarly();
 
   window.addEventListener('load', async () => {
     const { setupChapterLate } = await import(
-      "/static/js/chapterLate.js"
+      "/js/chapterLate.js"
     );
     setupChapterLate();
 
     
     const { setupIDE } = await import(
-      "/static/js/ide.js"
+      "/js/ide.js"
       );
 
     const ideConfig = {
@@ -164,7 +164,7 @@
       IDE: {
         fullScreen: false,
         container: '#ide-wrapper',
-        serverDirectory: 'static\/examples',
+        serverDirectory: 'examples',
         stripDirectory: 'worlds\/first-steps\/first-scene\/',
         closedFolders: 'styles,vendor'
           .replace(/[\s\'\[\]']+/g, '')
@@ -194,34 +194,8 @@
       class="control-elem"
       title="Table Of Contents"
     >
-      <span class="open-icon">
-        <svg
-          class="icon"
-          role="img"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-        >
-          <path
-            fill="currentColor"
-            d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"
-          />
-        </svg>
-      </span>
-      <span class="close-icon">
-        <svg
-          class="icon"
-          role="img"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 352 512"
-        >
-          <path
-            fill="currentColor"
-            d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
-          />
-        </svg>
-      </span>
+      <span class="open-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"/></svg></span>
+      <span class="close-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg></span>
     </label>
 
     <input
@@ -234,34 +208,8 @@
       class="control-elem ide-control hide"
       title="Show/Hide IDE"
     >
-      <span class="on-icon">
-        <svg
-          class="icon"
-          role="img"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 512 512"
-        >
-          <path
-            fill="currentColor"
-            d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64V160h160v256zm224 0H288V160h160v256z"
-          />
-        </svg>
-      </span>
-      <span class="off-icon">
-        <svg
-          class="icon"
-          role="img"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 512 512"
-        >
-          <path
-            fill="currentColor"
-            d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64V160h160v256zm224 0H288V160h160v256z"
-          />
-        </svg>
-      </span>
+      <span class="on-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M384 64H192C86 64 0 150 0 256s86 192 192 192h192c106 0 192-86 192-192S490 64 384 64zm0 320c-70.8 0-128-57.3-128-128 0-70.8 57.3-128 128-128 70.8 0 128 57.3 128 128 0 70.8-57.3 128-128 128z"/></svg></span>
+      <span class="off-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M384 64H192C85.961 64 0 149.961 0 256s85.961 192 192 192h192c106.039 0 192-85.961 192-192S490.039 64 384 64zM64 256c0-70.741 57.249-128 128-128 70.741 0 128 57.249 128 128 0 70.741-57.249 128-128 128-70.741 0-128-57.249-128-128zm320 128h-48.905c65.217-72.858 65.236-183.12 0-256H384c70.741 0 128 57.249 128 128 0 70.74-57.249 128-128 128z"/></svg></span>
     </label>
   </div>
 
@@ -277,34 +225,8 @@
   <div class="icon-group right">
     <input type="checkbox" id="right-menu-toggle" class="hidden-input" />
     <label for="right-menu-toggle" class="control-elem" title="Main Menu">
-      <span class="open-icon">
-        <svg
-          class="icon"
-          role="img"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-        >
-          <path
-            fill="currentColor"
-            d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
-          />
-        </svg>
-      </span>
-      <span class="close-close hide">
-        <svg
-          class="icon"
-          role="img"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 352 512"
-        >
-          <path
-            fill="currentColor"
-            d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
-          />
-        </svg>
-      </span>
+      <span class="open-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg></span>
+      <span class="close-close hide"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg></span>
     </label>
   </div>
 </nav><div class="wrapper orientation-auto">
@@ -392,7 +314,7 @@ renderer.render(scene, camera);
 <p>Click the <input type="checkbox" class="simple-toggle" title="Find the real toggle!"> toggle on the top left of the editor to <a href="/book/introduction/about-the-book/#before-and-after-code-comparison">see this code in action</a>, or, if you prefer to <a href="/book/introduction/about-the-book/#working-on-your-own-machine">work locally</a>, you can click the <svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"/></svg> button to download a zip archive containing all the files from the editor. If any of the JavaScript here is unfamiliar to you, refer to <a href="/book/appendix/javascript-reference/">A.2: JavaScript Reference</a> and <a href="/book/appendix/dom-api-reference/">A.3: The Document Object Model and DOM API</a> in the appendices.</p>
 <h2 id="the-components-of-a-real-time-3d-app">The Components of a Real-Time 3D App</h2>
 <figure >
-  <img src="/static/images/first-steps/rendered_scene_canvas.svg" loading="lazy" alt="A basic scene" title="A basic scene"  /></figure>
+  <img src="/images/first-steps/rendered_scene_canvas.svg" loading="lazy" alt="A basic scene" title="A basic scene"  /></figure>
 <p>Before we get started on the code, let&rsquo;s look at the basic components that make up every three.js app. First, there&rsquo;s the scene, camera, and renderer, which form the basic scaffolding of the application. Next, there&rsquo;s the HTML <a href="/book/first-steps/app-structure/#adding-a-three-js-scene-to-the-page"><code>&lt;canvas&gt;</code> element</a>, where we see the results. Last but not least, there&rsquo;s a visible object such as a mesh. With the exception of the canvas (which is specific to the browser), an equivalent to each of these components can be found in any 3D graphics system, making the knowledge you&rsquo;ll gain in these pages highly transferable.</p>
 <h3 id="the-scene-a-tiny-universe">The Scene: a Tiny Universe</h3>
 <p><strong>The scene is a holder for everything we can see</strong>. You can think of it as a &ldquo;tiny universe&rdquo; in which all your 3D objects live. The three.js class we use to create a scene is simply called <a href="https://threejs.org/docs/#api/en/scenes/Scene" target="_blank" rel="noopener noreferrer"><code>Scene</code></a>. The constructor takes no parameters.</p>
@@ -416,17 +338,17 @@ const scene = new Scene();
 </section>
 
 <figure class="small left">
-  <img src="/static/images/first-steps/coordinate_system_simple.svg" loading="lazy" alt="The world space coordinate system, defined by the Scene" title="The world space coordinate system, defined by the Scene"  />
+  <img src="/images/first-steps/coordinate_system_simple.svg" loading="lazy" alt="The world space coordinate system, defined by the Scene" title="The world space coordinate system, defined by the Scene"  />
     <figcaption>The world space coordinate system, defined by the Scene</figcaption></figure>
 <p>The <code>scene</code> defines a coordinate system called <strong>World Space</strong>, which is our main frame of reference when working with visible objects in three.js. World space is a <a href="https://mathinsight.org/cartesian_coordinates" target="_blank" rel="noopener noreferrer">3D Cartesian coordinate system</a>. We&rsquo;ll explore what that means and how to use world space in more detail in <a href="/book/first-steps/transformations/#coordinate-systems">1.5: Transformations and Coordinate Systems</a>.</p>
 <p>The very center of the scene is the point $(0,0,0)$, also called the <strong>origin</strong> of the coordinate system. Whenever we create a new object and add it to our scene, it will be placed at the origin, and whenever we move it around, we do so within this coordinate system.</p>
 <figure class="small right">
-  <img src="/static/images/first-steps/scene_graph.svg" loading="lazy" alt="Objects added to the Scene live in the scene-graph, &lt;br&gt; a tree of visible objects" title="Objects added to the Scene live in the scene-graph, &lt;br&gt; a tree of visible objects"  />
+  <img src="/images/first-steps/scene_graph.svg" loading="lazy" alt="Objects added to the Scene live in the scene-graph, &lt;br&gt; a tree of visible objects" title="Objects added to the Scene live in the scene-graph, &lt;br&gt; a tree of visible objects"  />
     <figcaption>Objects added to the Scene live in the scene-graph, <br> a tree of visible objects</figcaption></figure>
 <p>When we add objects to the scene, they are placed into the <a href="http://what-when-how.com/advanced-methods-in-computer-graphics/scene-graphs-advanced-methods-in-computer-graphics-part-1/" target="_blank" rel="noopener noreferrer"><strong>scene graph</strong></a> which is a tree structure with the scene at the top.</p>
 <p style="clear:both; margin: 0; padding: 0; line-height: 0;">&nbsp</p>
 <figure class="small left">
-  <img src="/static/images/appendix/html-tree.svg" loading="lazy" alt="Elements on a HTML page also form a tree structure" title="Elements on a HTML page also form a tree structure"  />
+  <img src="/images/appendix/html-tree.svg" loading="lazy" alt="Elements on a HTML page also form a tree structure" title="Elements on a HTML page also form a tree structure"  />
     <figcaption>Elements on a HTML page also form a tree structure</figcaption></figure>
 <p>This is similar to the way elements on a HTML page are structured, except that the HTML page is 2D while the scene graph is 3D.</p>
 <h3 id="the-camera-a-telescope-pointed-at-the-tiny-universe">The Camera: a Telescope pointed at the Tiny Universe</h3>
@@ -483,7 +405,7 @@ const renderer = new WebGLRenderer();
 <p>Together, <strong>the scene, camera, and renderer give us the basic scaffolding of a three.js application</strong>. However, none of them can be <em>seen</em>. In this chapter, we&rsquo;ll introduce a type of visible object called a <strong>mesh</strong>.</p>
 <h2 id="our-first-visible-object-mesh">Our First Visible Object: Mesh</h2>
 <figure class="medium left">
-  <img src="/static/images/first-steps/mesh_details.svg" loading="lazy" alt="A mesh contains of a geometry and a material" title="A mesh contains of a geometry and a material"  />
+  <img src="/images/first-steps/mesh_details.svg" loading="lazy" alt="A mesh contains of a geometry and a material" title="A mesh contains of a geometry and a material"  />
     <figcaption>A mesh contains of a geometry and a material</figcaption></figure>
 <p><strong><a href="https://threejs.org/docs/#api/en/objects/Mesh" target="_blank" rel="noopener noreferrer">Meshes</a> are the most common kind of visible object used in 3D computer graphics</strong>, and are used to display all kinds of 3D objects - cats and dogs and humans and trees and buildings and flowers and mountains can all be represented using a mesh. There are other kinds of visible objects, such as lines, and shapes, and sprites, and particles, and so on, and we&rsquo;ll see all of them in later sections, but we&rsquo;ll stick with meshes throughout these introductory chapters.</p>
 
@@ -683,7 +605,7 @@ const container = document.querySelector(&#39;#scene-container&#39;);
 
 <h2 id="create-scene">2. Create the Scene</h2>
 <figure class="small left">
-  <img src="/static/images/first-steps/scene_only.svg" loading="lazy" alt="The scene" title="The scene"  /></figure>
+  <img src="/images/first-steps/scene_only.svg" loading="lazy" alt="The scene" title="The scene"  /></figure>
 <p>With the setup out of the way, we&rsquo;ll start by creating the scene, our very own tiny universe. We&rsquo;ll use the <a href="https://threejs.org/docs/#api/scenes/Scene" target="_blank" rel="noopener noreferrer"><code>Scene</code></a> constructor (with an uppercase &ldquo;S&rdquo;) to create a <code>scene</code> instance (with a lowercase &ldquo;s&rdquo;):</p>
 
 
@@ -724,7 +646,7 @@ scene.background = new Color(&#39;skyblue&#39;);
 <p><code>'skyblue'</code> is a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value" target="_blank" rel="noopener noreferrer">CSS color name</a>, and we can use any of the CSS colors here, giving us 140 named colors. You&rsquo;re not limited to just these few colors, of course. You can use any color your monitor can display, and there are several ways of specifying them, just as there are in CSS.</p>
 <h2 id="create-camera">3. Create The Camera</h2>
 <figure class="small left">
-  <img src="/static/images/first-steps/camera.svg" loading="lazy" alt="The camera" title="The camera"  /></figure>
+  <img src="/images/first-steps/camera.svg" loading="lazy" alt="The camera" title="The camera"  /></figure>
 <p>There are a couple of different cameras available in the three.js core, but as we discussed above, we will mostly use the <a href="https://threejs.org/docs/#api/cameras/PerspectiveCamera" target="_blank" rel="noopener noreferrer"><code>PerspectiveCamera</code></a> since it draws a view of the scene that looks similar to how our eyes see the real world. The <code>PerspectiveCamera</code> constructor takes four parameters:</p>
 <ol>
 <li><code>fov</code>, or <strong>field of view</strong>: how wide the camera&rsquo;s view is, in degrees.</li>
@@ -757,11 +679,11 @@ const camera = new PerspectiveCamera(fov, aspect, near, far);
 <p>Together, these four parameters are used to create a bounded region of space which we call a <a href="https://en.wikipedia.org/wiki/Viewing_frustum" target="_blank" rel="noopener noreferrer"><strong>viewing frustum</strong></a>.</p>
 <h3 id="viewing-frustum">The Camera&rsquo;s Viewing Frustum</h3>
 <figure class="small left">
-  <img src="/static/images/first-steps/frustum.png" loading="lazy" alt="A frustum" title="A frustum"  />
+  <img src="/images/first-steps/frustum.png" loading="lazy" alt="A frustum" title="A frustum"  />
     <figcaption>A frustum</figcaption></figure>
 <p><strong>If the <code>scene</code> is a tiny universe, stretching forever in all directions, the camera&rsquo;s viewing frustum is the part of it that we can <em>see</em></strong>. A <em>frustum</em> is a mathematical term meaning a four-sided rectangular pyramid with the top cut off. When we view the scene through a <code>PerspectiveCamera</code>, everything inside the frustum is visible, while everything outside it is not. In the following diagram, the area in between the <strong>Near Clipping Plane</strong> and the <strong>Far Clipping Plane</strong> is the camera&rsquo;s viewing frustum.</p>
 <figure >
-  <img src="/static/images/first-steps/perspective_frustum.svg" loading="lazy" alt="Perspective camera frustum" title="Perspective camera frustum"  /></figure>
+  <img src="/images/first-steps/perspective_frustum.svg" loading="lazy" alt="Perspective camera frustum" title="Perspective camera frustum"  /></figure>
 <p>The four parameters we pass into the <code>PerspectiveCamera</code> constructor each create one aspect of the frustum:</p>
 <ol>
 <li>The <strong>field of view</strong> defines the angle at which the frustum expands. A small field of view will create a narrow frustum, and a wide field of view will create a wide frustum.</li>
@@ -833,7 +755,7 @@ camera.position.z = 10;
 <p>Both ways of setting the position give the same result. The position is stored in a <a href="https://threejs.org/docs/#api/en/math/Vector3" target="_blank" rel="noopener noreferrer"><code>Vector3</code></a>, a three.js class representing a 3D vector which we&rsquo;ll explore in more detail in <a href="/book/first-steps/transformations/">1.5: Transformations and Coordinate Systems</a>.</p>
 <h2 id="create-visible">4. Create a Visible Object</h2>
 <figure class="small left">
-  <img src="/static/images/first-steps/box.png" loading="lazy" alt="A visible object" title="A visible object"  /></figure>
+  <img src="/images/first-steps/box.png" loading="lazy" alt="A visible object" title="A visible object"  /></figure>
 <p>We&rsquo;ve created a <code>camera</code> to see things with, and a <code>scene</code> to put them in. The next step is to create something we can see. Here, we&rsquo;ll create a simple box-shaped <a href="https://threejs.org/docs/#api/objects/Mesh" target="_blank" rel="noopener noreferrer"><code>Mesh</code></a>. As we mentioned above, the mesh has two sub-components which we need to create first: a geometry and a material.</p>
 <h3 id="create-geometry">Create a Geometry</h3>
 <p>The geometry of a mesh defines its shape. If we create a box-shaped geometry (as we do here), our mesh will be shaped like a box. If we create a sphere-shaped geometry, our mesh will be shaped like a sphere. If we create a cat-shaped geometry, our mesh will be shaped like a cat&hellip; you get the picture. Here, we create a cube using a <a href="https://threejs.org/docs/#api/geometries/BoxBufferGeometry" target="_blank" rel="noopener noreferrer"><code>BoxBufferGeometry</code></a>. The three parameters define the width, height, and depth of the box:</p>
@@ -903,7 +825,7 @@ const material = new MeshBasicMaterial();
 </aside>
 <h3 id="create-mesh">Create the Mesh</h3>
 <figure class="large">
-  <img src="/static/images/first-steps/mesh_details.svg" loading="lazy" alt="A mesh consists of a geometry and a material" title="A mesh consists of a geometry and a material"  /></figure>
+  <img src="/images/first-steps/mesh_details.svg" loading="lazy" alt="A mesh consists of a geometry and a material" title="A mesh consists of a geometry and a material"  /></figure>
 <p>Now that we have a geometry and a material, we can create our mesh, passing in both as parameters.</p>
 
 
@@ -951,7 +873,7 @@ scene.add(cube);
 <p>Later, if we want to remove it, we can use <code>scene.remove(mesh)</code>. Once the mesh has been added to the scene, we call the mesh <em>a child</em> of the scene, and we call the scene <em>the parent</em> of the mesh.</p>
 <h2 id="create-the-renderer">5. Create the Renderer</h2>
 <figure class="medium right">
-  <img src="/static/images/first-steps/rendered_scene_canvas.svg" loading="lazy" alt="The rendered scene outputs to a canvas element" title="The rendered scene outputs to a canvas element"  /></figure>
+  <img src="/images/first-steps/rendered_scene_canvas.svg" loading="lazy" alt="The rendered scene outputs to a canvas element" title="The rendered scene outputs to a canvas element"  /></figure>
 <p>The final component of our simple app is the renderer, which is responsible for drawing (<strong>rendering</strong>) the scene into the <code>&lt;canvas&gt;</code> element. We&rsquo;ll use the <a href="https://threejs.org/docs/#api/renderers/WebGLRenderer" target="_blank" rel="noopener noreferrer"><code>WebGLRenderer</code></a> here. There are some other renderers available as plugins, but the <code>WebGLRenderer</code> is by far the most powerful renderer available, and usually the only one you need. Let&rsquo;s go ahead and create a <code>WebGLRenderer</code> now, once again with default settings.</p>
 
 
@@ -1061,7 +983,7 @@ container.append(renderer.domElement);
 <p>This assumes a browser window size of $800 \times 600$, so what you see may look slightly different. Notice that <code>renderer.setSize</code> has also set the width, height, and style attributes on the canvas.</p>
 <h2 id="render-scene">6. Render the Scene</h2>
 <figure class="medium left">
-  <img src="/static/images/first-steps/rendered_scene.svg" loading="lazy" alt="A rendered scene" title="A rendered scene"  /></figure>
+  <img src="/images/first-steps/rendered_scene.svg" loading="lazy" alt="A rendered scene" title="A rendered scene"  /></figure>
 <p style="clear:both"> </p>
 <p>With everything in place, all that remains to do is <strong>render the scene!</strong> Add the following and final line to your code:</p>
 
@@ -1102,7 +1024,6 @@ renderer.render(scene, camera);
       title="Show completed code (your changes will be saved)"
       disabled="true"
     />
-
     <input
       type="checkbox"
       id="toggle-filetree"
@@ -1113,76 +1034,23 @@ renderer.render(scene, camera);
       class="control-elem"
       title="Toggle Filetree"
     >
-      <span class="off-icon">
-        <svg
-          class="icon"
-          role="img"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 512 512"
-        >
-          <path
-            fill="currentColor"
-            d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"
-          />
-        </svg>
-      </span>
-      <span class="on-icon">
-        <svg
-          class="icon"
-          role="img"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 512 512"
-        >
-          <path
-            fill="currentColor"
-            d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"
-          />
-        </svg>
-      </span>
+      <span class="off-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"/></svg></span>
+      <span class="on-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M572.694 292.093L500.27 416.248A63.997 63.997 0 0 1 444.989 448H45.025c-18.523 0-30.064-20.093-20.731-36.093l72.424-124.155A64 64 0 0 1 152 256h399.964c18.523 0 30.064 20.093 20.73 36.093zM152 224h328v-48c0-26.51-21.49-48-48-48H272l-64-64H48C21.49 64 0 85.49 0 112v278.046l69.077-118.418C86.214 242.25 117.989 224 152 224z"/></svg></span>
     </label>
-
     <button
       type="button"
       id="reset-active-file"
       class="control-elem"
       title="Reset Current File"
       disabled
-    >
-      <svg
-        class="icon"
-        role="img"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 448 512"
-      >
-        <path
-          fill="currentColor"
-          d="M64 468V44c0-6.6 5.4-12 12-12h48c6.6 0 12 5.4 12 12v176.4l195.5-181C352.1 22.3 384 36.6 384 64v384c0 27.4-31.9 41.7-52.5 24.6L136 292.7V468c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12z"
-        />
-      </svg>
-    </button>
+    ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M64 468V44c0-6.6 5.4-12 12-12h48c6.6 0 12 5.4 12 12v176.4l195.5-181C352.1 22.3 384 36.6 384 64v384c0 27.4-31.9 41.7-52.5 24.6L136 292.7V468c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12z"/></svg></button>
     <button
       type="button"
       id="reset-all-files"
       class="control-elem"
       title="Reset All Changes"
       disabled
-    >
-      <svg
-        class="icon"
-        role="img"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 512 512"
-      >
-        <path
-          fill="currentColor"
-          d="M0 436V76c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v151.9L235.5 71.4C256.1 54.3 288 68.6 288 96v131.9L459.5 71.4C480.1 54.3 512 68.6 512 96v320c0 27.4-31.9 41.7-52.5 24.6L288 285.3V416c0 27.4-31.9 41.7-52.5 24.6L64 285.3V436c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12z"
-        />
-      </svg>
-    </button>
+    ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M11.5 280.6l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2zm256 0l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2z"/></svg></button>
     <input
       type="checkbox"
       id="toggle-preview"
@@ -1193,54 +1061,15 @@ renderer.render(scene, camera);
       class="control-elem"
       title="Toggle Preview"
     >
-      <span class="on-icon">
-        <svg
-          class="icon"
-          role="img"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 576 512"
-        >
-          <path
-            fill="currentColor"
-            d="M528 0H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h192l-16 48h-72c-13.3 0-24 10.7-24 24s10.7 24 24 24h272c13.3 0 24-10.7 24-24s-10.7-24-24-24h-72l-16-48h192c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-16 352H64V64h448v288z"
-          />
-        </svg>
-      </span>
-      <span class="off-icon">
-        <svg
-          class="icon"
-          role="img"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 576 512"
-        >
-          <path
-            fill="currentColor"
-            d="M528 0H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h192l-16 48h-72c-13.3 0-24 10.7-24 24s10.7 24 24 24h272c13.3 0 24-10.7 24-24s-10.7-24-24-24h-72l-16-48h192c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-16 352H64V64h448v288z"
-          />
-        </svg>
-      </span>
+      <span class="on-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M624 416H381.54c-.74 19.81-14.71 32-32.74 32H288c-18.69 0-33.02-17.47-32.77-32H16c-8.8 0-16 7.2-16 16v16c0 35.2 28.8 64 64 64h512c35.2 0 64-28.8 64-64v-16c0-8.8-7.2-16-16-16zM576 48c0-26.4-21.6-48-48-48H112C85.6 0 64 21.6 64 48v336h512V48zm-64 272H128V64h384v256z"/></svg></span>
+      <span class="off-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm0 394c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V192h416v234z"/></svg></span>
     </label>
     <button
       type="button"
       id="new-window-preview"
       class="control-elem hide"
       title="Open Preview in New Window"
-    >
-      <svg
-        class="icon"
-        role="img"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 512 512"
-      >
-        <path
-          fill="currentColor"
-          d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"
-        />
-      </svg>
-    </button>
+    ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg></button>
   </nav>
   <div id="editor-panel" class="panel animate">
     <section
@@ -1253,40 +1082,14 @@ renderer.render(scene, camera);
           id="create-file-button"
           class="control-elem"
           title="New File or Folder"
-        >
-          <svg
-            class="icon"
-            role="img"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 384 512"
-          >
-            <path
-              fill="currentColor"
-              d="M377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 160v48c0 4.4-3.6 8-8 8h-56v56c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8v-56h-56c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h56v-56c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v56h56c4.4 0 8 3.6 8 8z"
-            />
-          </svg>
-        </button>
+        ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 160v48c0 4.4-3.6 8-8 8h-56v56c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8v-56h-56c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h56v-56c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v56h56c4.4 0 8 3.6 8 8z"/></svg></button>
         <button
           type="button"
           id="delete-file-button"
           class="control-elem"
           title="Delete File"
           disabled
-        >
-          <svg
-            class="icon"
-            role="img"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
-          >
-            <path
-              fill="currentColor"
-              d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
-            />
-          </svg>
-        </button>
+        ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"/></svg></button>
       </div>
       <div id="filetree"></div>
       <div class="file-control-bar-bottom control-bar">
@@ -1295,20 +1098,7 @@ renderer.render(scene, camera);
           id="download-button"
           class="control-elem"
           title="Download as Zip"
-        >
-          <svg
-            class="icon"
-            role="img"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
-          >
-            <path
-              fill="currentColor"
-              d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"
-            />
-          </svg>
-        </button>
+        ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"/></svg></button>
         <div class="import-style-select">
           <span>Import Style</span>
           <select
@@ -1318,7 +1108,6 @@ renderer.render(scene, camera);
             disabled
           >
             <option value="npm" selected="selected">NPM (default)</option>
-            
             <option value="cdn">CDN</option>
           </select>
         </div>
@@ -1346,34 +1135,8 @@ renderer.render(scene, camera);
       class="control-elem"
       title="Day/Night Theme"
     >
-      <span class="day-icon">
-        <svg
-          class="icon"
-          role="img"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 512 512"
-        >
-          <path
-            fill="currentColor"
-            d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"
-          />
-        </svg>
-      </span>
-      <span class="night-icon">
-        <svg
-          class="icon"
-          role="img"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 512 512"
-        >
-          <path
-            fill="currentColor"
-            d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"
-          />
-        </svg>
-      </span>
+      <span class="day-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"/></svg></span>
+      <span class="night-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg></span>
     </label>
 
     <input type="checkbox" id="orientation-toggle" class="hidden-input" />
@@ -1382,53 +1145,14 @@ renderer.render(scene, camera);
       class="control-elem hide"
       title="Orientation lock: auto/portrait/landscape"
     >
-      <span class="auto-icon hide">
-        <svg
-          class="icon"
-          role="img"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 512 512"
-        >
-          <path
-            fill="currentColor"
-            d="M440.65 12.57l4 82.77A247.16 247.16 0 0 0 255.83 8C134.73 8 33.91 94.92 12.29 209.82A12 12 0 0 0 24.09 224h49.05a12 12 0 0 0 11.67-9.26 175.91 175.91 0 0 1 317-56.94l-101.46-4.86a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12H500a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12h-47.37a12 12 0 0 0-11.98 12.57zM255.83 432a175.61 175.61 0 0 1-146-77.8l101.8 4.87a12 12 0 0 0 12.57-12v-47.4a12 12 0 0 0-12-12H12a12 12 0 0 0-12 12V500a12 12 0 0 0 12 12h47.35a12 12 0 0 0 12-12.6l-4.15-82.57A247.17 247.17 0 0 0 255.83 504c121.11 0 221.93-86.92 243.55-201.82a12 12 0 0 0-11.8-14.18h-49.05a12 12 0 0 0-11.67 9.26A175.86 175.86 0 0 1 255.83 432z"
-          />
-        </svg>
-      </span>
-      <span class="portrait-icon hide">
-        <svg
-          class="icon"
-          role="img"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 320 512"
-        >
-          <path
-            fill="currentColor"
-            d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"
-          />
-        </svg>
-      </span>
-      <span class="landscape-icon">
-        <svg
-          class="icon"
-          role="img"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 320 512"
-        >
-          <path
-            fill="currentColor"
-            d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"
-          />
-        </svg>
-      </span>
+      <span class="auto-icon hide"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M440.65 12.57l4 82.77A247.16 247.16 0 0 0 255.83 8C134.73 8 33.91 94.92 12.29 209.82A12 12 0 0 0 24.09 224h49.05a12 12 0 0 0 11.67-9.26 175.91 175.91 0 0 1 317-56.94l-101.46-4.86a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12H500a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12h-47.37a12 12 0 0 0-11.98 12.57zM255.83 432a175.61 175.61 0 0 1-146-77.8l101.8 4.87a12 12 0 0 0 12.57-12v-47.4a12 12 0 0 0-12-12H12a12 12 0 0 0-12 12V500a12 12 0 0 0 12 12h47.35a12 12 0 0 0 12-12.6l-4.15-82.57A247.17 247.17 0 0 0 255.83 504c121.11 0 221.93-86.92 243.55-201.82a12 12 0 0 0-11.8-14.18h-49.05a12 12 0 0 0-11.67 9.26A175.86 175.86 0 0 1 255.83 432z"/></svg></span>
+      <span class="portrait-icon hide"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"/></svg></span>
+      <span class="landscape-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"/></svg></span>
     </label>
   </div>
 
   <nav class="table-of-contents">
-    <h2><a href="/book/contents/">Table of Contents</a></h2>
+    <h2><a href="/book/">Table of Contents</a></h2>
     <div id="main-toc"><ul>
     <li class="section-head">
       <span class="chapter">0:</span><a href="/book/introduction/" title="Welcome to Discover three.js!">Welcome to Discover three.js!</a></li>
@@ -1444,8 +1168,6 @@ renderer.render(scene, camera);
       <span class="chapter">0.5:</span><a href="/book/introduction/get-threejs/" title="How to Include three.js in Your Projects">How to Include three.js in Your Projects</a></li>
     <li class="">
       <span class="chapter">0.7:</span><a href="/book/introduction/threejs-with-frameworks/" title="Using three.js with React, Vue.js, Angular, Svelte, TypeScript...">Using three.js with React, Vue.js, Angular, Svelte, TypeScript...</a></li>
-    <li class="">
-      <span class="chapter">:</span><a href="/" title="Discover three.js!">Discover three.js!</a></li>
     <li class="section-head">
       <span class="chapter">1:</span><a href="/book/first-steps/" title="Getting Started: Here&#39;s Where the Real Fun Begins!">Getting Started: Here&#39;s Where the Real Fun Begins!</a></li>
     <li class="">
@@ -1491,17 +1213,7 @@ renderer.render(scene, camera);
     <li class="">
       <span class="chapter">B.1:</span><a href="/book/appendix/threejs-versions/" title="Dealing with Different three.js Versions">Dealing with Different three.js Versions</a></li>
     <li class="">
-      <span class="chapter">:</span><a href="/tips-and-tricks/" title="The Big List of three.js Tips and Tricks!">The Big List of three.js Tips and Tricks!</a></li>
-    <li class="">
-      <span class="chapter">:</span><a href="/apps/" title="Apps and Utilities">Apps and Utilities</a></li>
-    <li class="">
-      <span class="chapter">:</span><a href="/examples/" title="Live Code Examples">Live Code Examples</a></li>
-    <li class="">
-      <span class="chapter">:</span><a href="/modules/" title="NPM Modules">NPM Modules</a></li>
-    <li class="">
-      <span class="chapter">:</span><a href="/privacy/" title="Privacy">Privacy</a></li>
-    <li class="">
-      <span class="chapter">:</span><a href="/terms/" title="Terms and Conditions">Terms and Conditions</a></li>
+      <span class="chapter">B.2:</span><a href="/tips-and-tricks/" title="The Big List of three.js Tips and Tricks!">The Big List of three.js Tips and Tricks!</a></li>
 </ul>
 </div>
   </nav>
@@ -1512,21 +1224,17 @@ renderer.render(scene, camera);
       <img
         alt="Discover three.js logo"
         width="100%"
-        src="/static/images/logo/banner_trans_512.png"
+        src="/images/logo/banner_trans_512.png"
       />
     </a>
-  </h2>
-  <ul class="links" style="text-align: center">
-    <li><a href="/book/contents/">Table Of Contents</a></li>
-    <li><a href="/tips-and-tricks/">Tips and Tricks</a></li>
-
-    <li style="margin: auto">
-      <a href="/#mailing-list-signup" class="internal-link"
-        >Stay up to date - sign up to the mailing list!</a
-      >
-    </li>
-  </ul>
-</nav><style>
+  </h2><ul class="links" style="justify-content: left">
+  <li><a href="/book/">Table Of Contents</a></li>
+  <li style="margin: auto">
+    <a href="/#mailing-list-signup" class="internal-link"
+      >Stay up to date - sign up to the mailing list!</a
+    >
+  </li>
+</ul></nav><style>
   @font-face {
     font-family: "Open Sans";
     font-style: normal;

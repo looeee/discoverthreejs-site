@@ -17,15 +17,7 @@ bs.init({
   ui: {
     port: 3001,
   },
-  // files: [
-  //   'static/css/*.css',
-  //   'static/js/*.js',
-  //   'static/images/**/*.*',
-  //   'templates/**/*.html',
-  // ],
-  // watchEvents: ['change'],
   watch: false,
-  // ignore: [],
   single: false,
   watchOptions: {
     ignoreInitial: true,
