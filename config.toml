@@ -2,7 +2,7 @@ baseURL = "https://discoverthreejs.com/"
 
 languageCode = "en-us"
 
-publishDir = 'public'
+publishDir = "public"
 contentDir = "markdown"
 
 disableKinds = ["tags", "taxonomy", "taxonomyTerm", "category", "RSS", "robotsTXT"]
@@ -40,8 +40,3 @@ disableHugoGeneratorInject = true
   changefreq = "monthly"
   filename = "sitemap.xml"
   priority = 0.5
-
-# Including this causes the build to fail
-# https://gohugo.io/variables/site/#the-siteparams-variable
-#[params]
-#  description = "44"

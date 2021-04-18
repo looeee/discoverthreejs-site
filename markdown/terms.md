@@ -5,6 +5,7 @@ description: "Terms and conditions for use of discoverthreejs.com. By using this
 available: true
 type: 'jumbo'
 excludeFromSiteMap: true
+excludeFromTOC: true
 noFollow: true
 ---
 
@@ -76,14 +77,3 @@ These Terms constitute the entire agreement between discoverthreejs.com and you 
 ### Governing Law & Jurisdiction
 
 These Terms will be governed by and interpreted in accordance with the laws of the State of Ireland, and you submit to the non-exclusive jurisdiction of the state and federal courts located in Ireland for the resolution of any disputes.---
-title: "The Big List of three.js Tips and Tricks!"
-date: 2018-01-01
-description: "Here lie hundreds of tips, tricks, and suggestions for best practices while building a high performance three.js application."
-weight: 9999
-chapter: 'R'
-contents: false
-available: true
-pagination: false
-excludeFromTOC: false
-hideWordCount: true
----

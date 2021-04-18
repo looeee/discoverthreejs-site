@@ -1,17 +1,17 @@
-import { sRGBEncoding, TextureLoader } from 'three';
+import { sRGBEncoding, TextureLoader } from "three";
 
 function loadTextures() {
   const textureLoader = new TextureLoader();
 
   const cover = textureLoader.load(
-    '/static/models/front_page/book/cover_splatter_new.jpg',
+    "/models/front_page/book/cover_splatter_new.jpg"
   );
   cover.encoding = sRGBEncoding;
   cover.anisotropy = 16;
   cover.flipY = false;
 
   const reflection = textureLoader.load(
-    '/static/models/front_page/book/reflection_512.png',
+    "/models/front_page/book/reflection_512.png"
   );
   reflection.encoding = sRGBEncoding;
 

@@ -10,7 +10,7 @@ export default async function buildJS(path) {
     plugins: [glslify()],
     entryPoints: [path],
     bundle: true,
-    outdir: "public/static/js",
+    outdir: "static/js",
     minify: true,
     format: "esm",
     sourcemap: true,

@@ -2,16 +2,16 @@
 <html dir="ltr" lang="en">
   <head>
     <title>{{ .Title }} | Discover three.js</title>
-    {{- partial "head/meta.html" . -}}
-    {{- partial "head/schema.html" . -}}
-    {{- partial "head/links.html" . -}}
+    {{- partialCached "head/meta.html" . .Params.noFollow .Params.Title .Params.Description -}}
+    {{- partialCached "head/schema.html" . -}}
+    {{- partialCached "head/links.html" . .Permalink -}}
     <style>
       .loading-page {
         display: none;
       }
     </style>
 
-    <link href="/static/css/chapters.min.css?v=44" rel="stylesheet" />
+    <link href="/css/chapters.min.css?v={{ now.Unix }}" rel="stylesheet" />
 
     <noscript>
       <style>
@@ -19,9 +19,9 @@
           display: block;
         }
       </style>
-      <link href="/static/css/noscript.min.css?v=44" rel="stylesheet" />
+      <link href="/css/noscript.min.css?v={{ now.Unix }}" rel="stylesheet" />
     </noscript>
-    {{- partial "head/preload.html" . -}}
+    {{- partialCached "head/preload.html" . -}}
     {{- partial "chapterScript.html" . -}}
   </head>
   <body class="loading-page">
@@ -31,12 +31,13 @@
         <div class="scroller">
           <div class="content">
             {{ if .Params.available }}{{ .Content  }}{{ end }}
+            {{- partial "sectionTOC.html" . .Section -}}
             </div>
         </div>
       </main>
     </div>
     {{- partial "leftMenu.html" . -}}
-    {{- partial "rightMenu.html" . -}}
-    {{- partial "fonts.html" . -}}
+    {{- partialCached "rightMenu.html" . -}}
+    {{- partialCached "fonts.html" . -}}
   </body>
 </html>

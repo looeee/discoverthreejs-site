@@ -43,7 +43,7 @@
       {{- if ne $inner "" -}}
         {{- replaceRE "```" "" (replaceRE "```js" "" (replaceRE "``` js" "" $inner)) -}}
       {{- else -}}
-        {{- $lines := ( split (readFile ( printf "%s%s" "public/static/examples/" $file )) "\n" ) -}}
+        {{- $lines := ( split (readFile ( printf "%s%s" "static/examples/" $file )) "\n" ) -}}
         {{- $selectedLines := slice "" -}}
 
 

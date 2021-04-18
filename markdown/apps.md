@@ -5,6 +5,7 @@ date: 2018-04-02
 available: true
 type: 'jumbo'
 excludeFromSiteMap: true
+excludeFromTOC: true
 noFollow: true
 ---
 

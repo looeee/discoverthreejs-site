@@ -5,6 +5,7 @@ description: "This page is used to inform website visitors regarding our policie
 available: true
 type: 'jumbo'
 excludeFromSiteMap: true
+excludeFromTOC: true
 noFollow: true
 ---
 

@@ -1,0 +1,3 @@
+import { Mesh } from 'three';
+
+// To do...

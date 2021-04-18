@@ -14,12 +14,13 @@ For larger contributions, please get in touch with on lewy@discoverthreejs.com b
 
 To build and view the book, use the following command four step process.
 
-Prerequisites: Node.js
+Prerequisites: Node.js, [Hugo](https://github.com/gohugoio/hugo)
 
 1. Clone or download the repo
 2. Run `npm install`
-3. Run `npm start`
-4. Go to `http://localhost:8080/` (with livereload) or `http://localhost:3000/` (without livereload)
+3. If you're using Windows, you are good to go. Otherwise, go [here](https://github.com/gohugoio/hugo/releases/tag/v0.74.3) and download the Hugo binary for you system, then replace hugo.exe in the project root with it.
+4. Run `npm start`
+5. Go to `http://localhost:8080/` (with livereload) or `http://localhost:3000/` (without livereload)
 
 ## Technical Details
 

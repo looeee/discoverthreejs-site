@@ -1,8 +1,8 @@
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 function setupBook(book, materials) {
-  const cover = book.getObjectByName('cover');
-  const pages = book.getObjectByName('pages');
+  const cover = book.getObjectByName("cover");
+  const pages = book.getObjectByName("pages");
 
   cover.material = materials.book.cover;
   pages.material = materials.book.pages;
@@ -29,18 +29,10 @@ async function loadGLTFModels(materials) {
   const loader = new GLTFLoader();
 
   // first, start all the async operation
-  const bookPromise = loader.loadAsync(
-    '/static/models/front_page/book/book.glb',
-  );
-  const parrotPromise = loader.loadAsync(
-    '/static/models/front_page/Parrot.glb',
-  );
-  const flamingoPromise = loader.loadAsync(
-    '/static/models/front_page/Flamingo.glb',
-  );
-  const storkPromise = loader.loadAsync(
-    '/static/models/front_page/Stork.glb',
-  );
+  const bookPromise = loader.loadAsync("/models/front_page/book/book.glb");
+  const parrotPromise = loader.loadAsync("/models/front_page/Parrot.glb");
+  const flamingoPromise = loader.loadAsync("/models/front_page/Flamingo.glb");
+  const storkPromise = loader.loadAsync("/models/front_page/Stork.glb");
 
   // next, wait for them to complete
   const bookResult = await bookPromise;

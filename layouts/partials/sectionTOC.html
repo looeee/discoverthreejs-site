@@ -1,0 +1,21 @@
+{{ $paginator := .Paginate (where .Data.Pages "Section" .Section) 99 }}
+<section class="table-of-contents-large">
+  <nav>
+    <h2>Coming Up in this Section</h2>
+    <ul class="contents">
+
+    {{- range $paginator.Pages -}}
+      {{- if not .Params.excludeFromTOC -}}
+        <li class="{{ if not .Params.available }}unavailable {{ end }}">
+          <span class="chapter-number">{{ .Params.Chapter }}</span>
+          {{- if and (not .Params.available) (not .Params.summaryAvailable) -}}
+            <span data-url="{{ .RelPermalink | replaceRE "[^/]*$" "" }}">{{ .Title }}</span>
+          {{- else -}}
+            <a href="{{ .RelPermalink | replaceRE "[^/]*$" "" }}" title="{{ .Title }}">{{ .Title }}</a>
+          {{- end -}}
+        </li>
+      {{- end -}}
+    {{- end -}}
+    </ul>
+  </nav>
+</section>

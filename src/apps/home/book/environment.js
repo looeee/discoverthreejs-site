@@ -4,9 +4,9 @@ import {
   PMREMGenerator,
   sRGBEncoding,
   UnsignedByteType,
-} from 'three';
+} from "three";
 
-import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
+import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 
 function createPMREM(renderer, scene) {
   const pmremGenerator = new PMREMGenerator(renderer);
@@ -14,10 +14,9 @@ function createPMREM(renderer, scene) {
 
   new RGBELoader()
     .setDataType(UnsignedByteType)
-    .setPath('/static/textures/equirectangular/')
-    .load('royal_esplanade_1k.hdr', (texture) => {
-      const envMap = pmremGenerator.fromEquirectangular(texture)
-        .texture;
+    .setPath("/textures/equirectangular/")
+    .load("royal_esplanade_1k.hdr", (texture) => {
+      const envMap = pmremGenerator.fromEquirectangular(texture).texture;
 
       // scene.background = envMap;
       scene.environment = envMap;
@@ -32,7 +31,7 @@ export function loadEnvironments(app) {
 
   // const cubeTextureLoader = new CubeTextureLoader();
 
-  // const path = '/static/textures/cube/skyboxsun25deg/';
+  // const path = '/textures/cube/skyboxsun25deg/';
 
   // const urls = [
   //   `${path}px.jpg`,

@@ -10,15 +10,15 @@ let busy = false;
 chokidar
   .watch(
     [
-      "public/static/images/**/*.png",
-      "public/static/images/**/*.svg",
-      "public/static/images/**/*.jpg",
-      "public/static/examples/assets",
-      "public/static/examples/styles",
-      "public/static/examples/worlds/**/*.js",
-      // "public/**/*.html",
+      "public/images/**/*.png",
+      "public/images/**/*.svg",
+      "public/images/**/*.jpg",
+      "public/examples/assets",
+      "public/examples/styles",
+      "public/examples/worlds/**/*.js",
       "scss/**/*.scss",
       "src/**/*.js",
+      "static/**/*.*",
       "markdown/**/*.md",
       "layouts/**/*.html",
       "config.toml",
@@ -39,15 +39,31 @@ chokidar
   )
   .on("change", async (path) => {
     if (busy) return;
-    if (path.includes("index.html")) {
-      console.log(`Page changed: ${path}`);
-      busy = true;
-      reload();
-      // Hugo will update many files at once,
-      // wait for a while after catching the first one
-      setTimeout(() => {
+    if (
+      path.includes("markdown\\") ||
+      path.includes("static\\") ||
+      path.includes("config.toml") ||
+      path.includes("layouts\\")
+    ) {
+      if (!busy) {
+        console.log("Rebuilding markdown files");
+        busy = true;
+        const success = await buildStatic();
+        console.log("success: ", success);
+        if (success) {
+          reload();
+        }
         busy = false;
-      }, 2000);
+      }
+      // } else if (path.includes("index.html")) {
+      // console.log(`Page changed: ${path}`);
+      // busy = true;
+      // reload();
+      // // Hugo will update many files at once,
+      // // wait for a while after catching the first one
+      // setTimeout(() => {
+      //   busy = false;
+      // }, 2000);
     } else if (path.includes("examples\\")) {
       console.log(`Example files changed: ${path}`);
       reload();
@@ -81,20 +97,5 @@ chokidar
       setTimeout(() => {
         busy = false;
       }, 2000);
-    } else if (
-      path.includes("markdown\\") ||
-      path.includes("config.toml") ||
-      path.includes("layouts\\")
-    ) {
-      if (!busy) {
-        console.log("Rebuilding markdown files");
-        busy = true;
-        const success = await buildStatic();
-        console.log("success: ", success);
-        if (success) {
-          reload();
-        }
-        busy = false;
-      }
     }
   });

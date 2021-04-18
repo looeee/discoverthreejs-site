@@ -6,7 +6,7 @@
 {{- $height := .Get "height" | default "" -}}
 
 <figure {{ if ne $class "" }}class="{{ $class }}"{{ end }}>
-  <img src="/static/images/{{$src}}" loading="lazy" alt="{{$alt}}" title="{{ $title }}" {{ if ne $height "" }}style="height: {{ $height }};"{{ end }} />
+  <img src="/images/{{$src}}" loading="lazy" alt="{{$alt}}" title="{{ $title }}" {{ if ne $height "" }}style="height: {{ $height }};"{{ end }} />
   {{- if ne $caption "" }}
     <figcaption>
       {{- $caption | markdownify -}}
