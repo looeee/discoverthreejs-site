@@ -6,10 +6,10 @@ import {
   WebGLRenderer,
   MeshBasicMaterial,
   sRGBEncoding,
-} from '../../../vendor/three/build/three.module.js';
+} from "../../../vendor/three/build/three.module.js";
 
-import { GLTFLoader } from '../../../vendor/three/examples/jsm/loaders/GLTFLoader.js';
-import { OrbitControls } from '../../../vendor/three/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from "../../../vendor/three/examples/jsm/loaders/GLTFLoader.js";
+import { OrbitControls } from "../../../vendor/three/examples/jsm/controls/OrbitControls.js";
 
 // these need to be accessed inside more than one function so we'll declare them first
 let container;
@@ -42,7 +42,7 @@ function createCamera() {
     35,
     container.clientWidth / container.clientHeight,
     1,
-    100,
+    100
   );
   camera.position.set(2, 2, 17);
 }
@@ -86,10 +86,10 @@ function loadModels() {
   };
 
   loader.load(
-    '/static/examples/assets/models/Horse.glb',
+    "/examples/assets/models/Horse.glb",
     (gltf) => onLoad(gltf),
     onProgress,
-    onError,
+    onError
   );
 }
 
@@ -130,4 +130,4 @@ function onWindowResize() {
   renderer.setSize(container.clientWidth, container.clientHeight);
 }
 
-window.addEventListener('resize', onWindowResize);
+window.addEventListener("resize", onWindowResize);

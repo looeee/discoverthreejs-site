@@ -7,9 +7,9 @@ import {
   Scene,
   TextureLoader,
   WebGLRenderer,
-} from '../../../vendor/three/build/three.module.js';
+} from "../../../vendor/three/build/three.module.js";
 
-import { OrbitControls } from '../../../vendor/three/examples/jsm/controls/OrbitControls.js';
+import { OrbitControls } from "../../../vendor/three/examples/jsm/controls/OrbitControls.js";
 
 // these need to be accessed inside more than one function so we'll declare them first
 let container;
@@ -54,7 +54,7 @@ export default function init(containerID) {
     35,
     container.clientWidth / container.clientHeight,
     0.1,
-    50,
+    50
   );
 
   // every object is initially created at ( 0, 0, 0 )
@@ -71,7 +71,7 @@ export default function init(containerID) {
   const textureLoader = new TextureLoader();
 
   const texture = textureLoader.load(
-    '/static/examples/assets/textures/uv-test-bw.png',
+    "/examples/assets/textures/uv-test-bw.png"
   );
 
   texture.anisotropy = 16;
@@ -98,5 +98,5 @@ export default function init(containerID) {
     render();
   });
 
-  window.addEventListener('resize', onWindowResize);
+  window.addEventListener("resize", onWindowResize);
 }

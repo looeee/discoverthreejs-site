@@ -1,4 +1,4 @@
-import { promises as fs } from "fs";
+import { existsSync, mkdirSync, promises as fs } from "fs";
 import sass from "sass";
 import autoprefixer from "autoprefixer";
 import postcss from "postcss";
@@ -38,6 +38,9 @@ async function compileSCSS(inputFile, outputFile) {
     to: outputFile,
   });
 
+  if (!existsSync("public/css")) {
+    mkdirSync("public/css");
+  }
   await fs.writeFile(outputFile, processed.css);
 
   const minified = minifyCSS(outputFile, processed.css);
@@ -59,7 +62,7 @@ function getAppName(path) {
 export default async function buildCSS(path) {
   const appName = getAppName(path);
   const inputFile = `scss\\apps\\${appName}\\main.scss`;
-  const outputFile = `static\\css\\${appName}.css`;
+  const outputFile = `public\\css\\${appName}.css`;
 
   console.log(`Building ${outputFile}`);
   try {

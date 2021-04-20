@@ -378,7 +378,7 @@ body {
   padding: 0;
   min-width: 320px;
   overflow-x: hidden;
-  font-size: calc( 16px + (18 - 16) * ((100vw - 400px) / (1200 - 400)) );
+  font-size: calc(16px + (18 - 16) * ((100vw - 400px) / (1200 - 400)));
   background-color: black;
 }
 

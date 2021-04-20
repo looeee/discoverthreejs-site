@@ -9,9 +9,9 @@ import {
   Scene,
   TextureLoader,
   WebGLRenderer,
-} from '../../../vendor/three/build/three.module.js';
+} from "../../../vendor/three/build/three.module.js";
 
-import { OrbitControls } from '../../../vendor/three/examples/jsm/controls/OrbitControls.js';
+import { OrbitControls } from "../../../vendor/three/examples/jsm/controls/OrbitControls.js";
 
 // these need to be accessed inside more than one function so we'll declare them first
 let container;
@@ -31,7 +31,7 @@ function createCamera() {
     35, // FOV
     container.clientWidth / container.clientHeight, // aspect
     0.1, // near clipping plane
-    100, // far clipping plane
+    100 // far clipping plane
   );
 
   camera.position.set(-3.5, 2.5, -5);
@@ -45,9 +45,9 @@ function createControls() {
 
 function createLights() {
   const ambientLight = new HemisphereLight(
-    'white', // bright sky color
-    'darkslategrey', // dim ground color
-    10, // intensity
+    "white", // bright sky color
+    "darkslategrey", // dim ground color
+    10 // intensity
   );
 
   const mainLight = new DirectionalLight(0xffffff, 5);
@@ -62,7 +62,7 @@ function createMeshes() {
   const textureLoader = new TextureLoader();
 
   const texture = textureLoader.load(
-    '/static/examples/assets/textures/uv-test-bw.png',
+    "/examples/assets/textures/uv-test-bw.png"
   );
   texture.anisotropy = 16;
 
@@ -124,5 +124,5 @@ export default function init(containerID) {
     render();
   });
 
-  window.addEventListener('resize', onWindowResize);
+  window.addEventListener("resize", onWindowResize);
 }

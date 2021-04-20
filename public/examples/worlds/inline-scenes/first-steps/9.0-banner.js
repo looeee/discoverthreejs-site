@@ -10,10 +10,10 @@ import {
   sRGBEncoding,
   TextureLoader,
   WebGLRenderer,
-} from '../../../vendor/three/build/three.module.js';
+} from "../../../vendor/three/build/three.module.js";
 
-import { GLTFLoader } from '../../../vendor/three/examples/jsm/loaders/GLTFLoader.js';
-import { OrbitControls } from '../../../vendor/three/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from "../../../vendor/three/examples/jsm/loaders/GLTFLoader.js";
+import { OrbitControls } from "../../../vendor/three/examples/jsm/controls/OrbitControls.js";
 
 // these need to be accessed inside more than one function so we'll declare them first
 let container;
@@ -30,7 +30,7 @@ function createCamera() {
     35,
     container.clientWidth / container.clientHeight,
     1,
-    100,
+    100
   );
   camera.position.set(2, 2, 17);
 }
@@ -67,16 +67,12 @@ function updateMorphTargets(points) {
   }
 }
 
-const sizesAttribute = new Float32BufferAttribute([], 1).setDynamic(
-  true,
-);
+const sizesAttribute = new Float32BufferAttribute([], 1).setDynamic(true);
 
 function loadModels() {
   const loader = new GLTFLoader();
 
-  const map = new TextureLoader().load(
-    '/static/textures/sprites/spark1.png',
-  );
+  const map = new TextureLoader().load("/textures/sprites/spark1.png");
 
   const onLoad = (gltf) => {
     const model = gltf.scene.children[0];
@@ -95,8 +91,8 @@ function loadModels() {
 
     material.onBeforeCompile = (shader) => {
       shader.vertexShader = shader.vertexShader.replace(
-        'uniform float size;',
-        'attribute float size;',
+        "uniform float size;",
+        "attribute float size;"
       );
     };
 
@@ -111,7 +107,7 @@ function loadModels() {
     sizesAttribute.setArray(new Float32Array(sizes));
     sizesAttribute.needsUpdate = true;
 
-    model.geometry.addAttribute('size', sizesAttribute);
+    model.geometry.addAttribute("size", sizesAttribute);
 
     const points = new Points(model.geometry, material);
 
@@ -135,10 +131,10 @@ function loadModels() {
   };
 
   loader.load(
-    '/static/examples/assets/models/Horse.glb',
+    "/examples/assets/models/Horse.glb",
     (gltf) => onLoad(gltf),
     null,
-    onError,
+    onError
   );
 }
 
@@ -205,5 +201,5 @@ export default function init(containerID) {
     render();
   });
 
-  window.addEventListener('resize', onWindowResize);
+  window.addEventListener("resize", onWindowResize);
 }

@@ -9,9 +9,9 @@ import {
   Scene,
   TextureLoader,
   WebGLRenderer,
-} from '../../../vendor/three/build/three.module.js';
+} from "../../../vendor/three/build/three.module.js";
 
-import { OrbitControls } from '../../../vendor/three/examples/jsm/controls/OrbitControls.js';
+import { OrbitControls } from "../../../vendor/three/examples/jsm/controls/OrbitControls.js";
 
 let container;
 let camera;
@@ -30,7 +30,7 @@ function createCamera() {
     40,
     container.clientWidth / container.clientHeight, // aspect
     0.1,
-    100,
+    100
   );
 
   camera.position.set(-3.5, 2.5, -5);
@@ -61,7 +61,7 @@ function createMeshes() {
   const textureLoader = new TextureLoader();
 
   const texture = textureLoader.load(
-    '/static/examples/assets/textures/uv-test-bw.png',
+    "/examples/assets/textures/uv-test-bw.png"
   );
   texture.anisotropy = 16;
 
@@ -123,5 +123,5 @@ export default function init(containerID) {
     render();
   });
 
-  window.addEventListener('resize', onWindowResize);
+  window.addEventListener("resize", onWindowResize);
 }

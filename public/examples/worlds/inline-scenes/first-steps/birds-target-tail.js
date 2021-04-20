@@ -8,10 +8,10 @@ import {
   Scene,
   Vector3,
   WebGLRenderer,
-} from '../../../vendor/three/build/three.module.js';
+} from "../../../vendor/three/build/three.module.js";
 
-import { GLTFLoader } from '../../../vendor/three/examples/jsm/loaders/GLTFLoader.js';
-import { OrbitControls } from '../../../vendor/three/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from "../../../vendor/three/examples/jsm/loaders/GLTFLoader.js";
+import { OrbitControls } from "../../../vendor/three/examples/jsm/controls/OrbitControls.js";
 
 // these need to be accessed inside more than one function so we'll declare them first
 let container;
@@ -28,7 +28,7 @@ function createCamera() {
     35,
     container.clientWidth / container.clientHeight,
     1,
-    1000,
+    1000
   );
   camera.position.set(-1.5, 1.5, 6.5);
 }
@@ -70,26 +70,26 @@ function loadModels() {
 
   const parrotPosition = new Vector3(0, 0, 2.5);
   loader.load(
-    '/static/examples/assets/models/Parrot.glb',
+    "/examples/assets/models/Parrot.glb",
     (gltf) => onLoad(gltf, parrotPosition),
     null,
-    null,
+    null
   );
 
   const flamingoPosition = new Vector3(7.5, 0, -10);
   loader.load(
-    '/static/examples/assets/models/Flamingo.glb',
+    "/examples/assets/models/Flamingo.glb",
     (gltf) => onLoad(gltf, flamingoPosition),
     null,
-    null,
+    null
   );
 
   const storkPosition = new Vector3(0, -2.5, -10);
   loader.load(
-    '/static/examples/assets/models/Stork.glb',
+    "/examples/assets/models/Stork.glb",
     (gltf) => onLoad(gltf, storkPosition),
     null,
-    null,
+    null
   );
 }
 
@@ -146,5 +146,5 @@ export default function init(containerID) {
     render();
   });
 
-  window.addEventListener('resize', onWindowResize);
+  window.addEventListener("resize", onWindowResize);
 }

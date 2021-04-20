@@ -3,13 +3,13 @@ import chokidar from "chokidar";
 import reload from "./livereload.js";
 import buildCSS from "./build-css.js";
 import buildJS from "./build-js.js";
-import buildStatic from "./build-static.js";
 
 let busy = false;
 
 chokidar
   .watch(
     [
+      "public/**/*.html",
       "public/images/**/*.png",
       "public/images/**/*.svg",
       "public/images/**/*.jpg",
@@ -18,10 +18,6 @@ chokidar
       "public/examples/worlds/**/*.js",
       "scss/**/*.scss",
       "src/**/*.js",
-      "static/**/*.*",
-      "markdown/**/*.md",
-      "layouts/**/*.html",
-      "config.toml",
     ],
     {
       ignored: ["templates/chapters/build"],
@@ -39,31 +35,15 @@ chokidar
   )
   .on("change", async (path) => {
     if (busy) return;
-    if (
-      path.includes("markdown\\") ||
-      path.includes("static\\") ||
-      path.includes("config.toml") ||
-      path.includes("layouts\\")
-    ) {
-      if (!busy) {
-        console.log("Rebuilding markdown files");
-        busy = true;
-        const success = await buildStatic();
-        console.log("success: ", success);
-        if (success) {
-          reload();
-        }
+    if (path.includes("index.html")) {
+      console.log(`Page changed: ${path}`);
+      busy = true;
+      reload();
+      // Hugo will update many files at once,
+      // wait for a while after catching the first one
+      setTimeout(() => {
         busy = false;
-      }
-      // } else if (path.includes("index.html")) {
-      // console.log(`Page changed: ${path}`);
-      // busy = true;
-      // reload();
-      // // Hugo will update many files at once,
-      // // wait for a while after catching the first one
-      // setTimeout(() => {
-      //   busy = false;
-      // }, 2000);
+      }, 2000);
     } else if (path.includes("examples\\")) {
       console.log(`Example files changed: ${path}`);
       reload();
@@ -83,7 +63,7 @@ chokidar
       const cssName = await buildCSS(path);
       if (cssName) {
         console.log("cssName: ", cssName);
-        reload(`/static/css/${cssName}.min.css`);
+        reload("*.css");
       }
       setTimeout(() => {
         busy = false;
@@ -92,7 +72,7 @@ chokidar
       busy = true;
       const jsFile = await buildJS(path);
       if (jsFile) {
-        reload(`/static/js/${jsFile}`);
+        reload("*.js");
       }
       setTimeout(() => {
         busy = false;
