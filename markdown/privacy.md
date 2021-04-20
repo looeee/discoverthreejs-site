@@ -11,21 +11,21 @@ noFollow: true
 
 # PRIVACY POLICY
 
-
 ## Discoverthreejs.com Operates the Discoverthreejs.com Website.
-
 
 This page is used to inform website visitors regarding our policies with the collection, use, and disclosure of Personal Information if anyone decided to use any services found on this site.
 
 ### Information Collection and Use
 
-We will never collect any private data from you. If you upload a file or files to this site for any reason, they will not be stored, or if stored will be automatically deleted within 24 hours and without being viewed or shared in any way.
+We will never collect any private, personally identifiable information, analytics, or tracking data of any kind from you. If you upload a file or files to this site for any reason, they will not be stored, or if stored will be automatically deleted within 24 hours and without being viewed or shared in any way.
 
 ### Cookies
 
 Cookies are files with small amount of data that is commonly used an anonymous unique identifier. These are sent to your browser from the website that you visit and are stored on your computer’s hard drive.
 
-Our website uses these “cookies” to collection information and to improve our Service. You have the option to either accept or refuse these cookies, and know when a cookie is being sent to your computer. If you choose to refuse our cookies, you may not be able to use some portions of our Service.
+Cookies can also mean other storage methods available to the browser such as window.localStorage.
+
+This website does not collect any analytics or tracking data of any kind. Any cookies stored are used to improve your browsing experience exclusively, for example to store page layout states or the state of text entry fields between page reloads.
 
 ### Service Providers
 

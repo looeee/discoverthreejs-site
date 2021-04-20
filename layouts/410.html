@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
-    <title>Page Not Found! | Discover three.js</title>
+    <title>{{ .Title }} | Discover three.js</title>
     {{- partialCached "head/meta.html" . .Params.noFollow .Params.Title .Params.Description -}}
     {{- partialCached "head/links.html" . .Permalink -}}
     <link href="/css/jumbo.min.css?v={{ now.Unix }}" rel="stylesheet" />
@@ -22,7 +22,11 @@
       <main>
         <main>
           <section>
-            {{ .Content }}
+            <h1>Page Not Found &nbsp;{{- partialCached "icons/regular/frown.svg" . -}}</h1>
+            <h2>Perhaps you were looking for one of these pages?</h2>
+            <nav class="table-of-contents-large">
+              {{- partial "toc.html" . -}}
+            </nav>
           </section>
         </main>
       </main>
