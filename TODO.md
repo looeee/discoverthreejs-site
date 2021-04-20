@@ -5,6 +5,8 @@
 * hugo is not copying over static/examples/vendor/three folder
 * Figure out a better aproach than symlinked node_modules/three
 * check why katex fonts included on Jumbo pages
+* check all the favicon stuff on live site
+* hugo can't handle custom 410 pages, created it manually for now
 
 # Redirects:
 
