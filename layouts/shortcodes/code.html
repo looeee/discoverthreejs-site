@@ -46,7 +46,6 @@
         {{- $lines := ( split (readFile ( printf "%s%s" "static/examples/" $file )) "\n" ) -}}
         {{- $selectedLines := slice "" -}}
 
-
         {{- range $index, $line := first $to $lines -}}
           {{- if ge $index (sub $from 0) -}}
             {{- $selectedLines = $selectedLines | append ($line | safeHTML) ("\n" | safeHTML) -}}

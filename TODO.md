@@ -1,8 +1,5 @@
 # TODO
 
 * All icon controls in IDE and top nav need to be made accessible.
-* Consider using hugo pipes for js and SCSS
-* hugo is not copying over static/examples/vendor/three folder
-* Figure out a better aproach than symlinked node_modules/three
-* check why katex fonts included on Jumbo pages
+* Figure out a better approach than copying node_modules/three into static/examples/vendor/three
 * check all the favicon stuff on live site
