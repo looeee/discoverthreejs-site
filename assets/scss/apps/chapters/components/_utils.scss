@@ -1,0 +1,27 @@
+.round {
+  border-radius: 50%;
+}
+
+.hidden-input,
+.hide {
+  display: none;
+}
+
+.loading-dots {
+  background: #fff url("/images/loading-dots.gif") no-repeat center;
+  background-size: cover;
+}
+
+.fade-summary {
+  height: 14rem;
+  top: -12rem;
+  margin-bottom: -18rem;
+  width: 100%;
+  position: relative;
+  z-index: 3;
+
+  background: linear-gradient(
+    rgba(255, 255, 255, 0) 0%,
+    rgba(244, 244, 244, 1) 100%
+  );
+}

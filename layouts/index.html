@@ -5,15 +5,15 @@
     {{- partialCached "head/meta.html" . .Params.noFollow .Params.Title .Params.Description -}}
     {{- partialCached "head/schema.html" . -}}
     {{- partialCached "head/links.html" . .Permalink -}}
-    <link href="/css/jumbo.min.css?v={{ now.Unix }}" rel="stylesheet" />
+
+    {{ $options := (dict "targetPath" "styles/jumbo.css" "outputStyle" "compressed" ) }}
+    {{ $style := resources.Get "scss/apps/jumbo/main.scss" | toCSS $options | postCSS }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}?v={{ now.Unix }}">
 
     <noscript>
-      <style>
-        .loading-page {
-          display: block;
-        }
-      </style>
-      <link href="/css/noscript.min.css?v={{ now.Unix }}" rel="stylesheet" />
+      {{ $optionsNS := (dict "targetPath" "styles/noscript.css" "outputStyle" "compressed" ) }}
+      {{ $style := resources.Get "scss/noscript.scss" | toCSS $optionsNS | postCSS | minify }}
+      <link rel="stylesheet" href="{{ $style.RelPermalink }}?v={{ now.Unix }}">
     </noscript>
 
     <script type="module" src="/js/home.js?v={{ now.Unix }}"></script>

@@ -11,16 +11,16 @@
       }
     </style>
 
-    <link href="/css/chapters.min.css?v={{ now.Unix }}" rel="stylesheet" />
+    {{ $options := (dict "targetPath" "styles/chapter.css" "outputStyle" "compressed" ) }}
+    {{ $style := resources.Get "scss/apps/chapters/main.scss" | toCSS $options | postCSS }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}?v={{ now.Unix }}">
 
     <noscript>
-      <style>
-        .loading-page {
-          display: block;
-        }
-      </style>
-      <link href="/css/noscript.min.css?v={{ now.Unix }}" rel="stylesheet" />
+      {{ $optionsNS := (dict "targetPath" "styles/noscript.css" "outputStyle" "compressed" ) }}
+      {{ $style := resources.Get "scss/noscript.scss" | toCSS $optionsNS | postCSS | minify }}
+      <link rel="stylesheet" href="{{ $style.RelPermalink }}?v={{ now.Unix }}">
     </noscript>
+
     {{- partialCached "head/preload.html" . -}}
     {{- partial "chapterScript.html" . -}}
   </head>

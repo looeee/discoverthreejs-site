@@ -20,51 +20,55 @@
     <meta name="msapplication-TileColor" content="#00aba9" />
     <meta
       name="msapplication-TileImage"
-      content="/mstile-150x150.png?v=1618908049"
+      content="/mstile-150x150.png?v={{ now.Unix }}"
     />
 
     <link
       rel="shortcut icon"
       type="image/png"
-      href="/favicon.ico?v=1618908049"
+      href="/favicon.ico?v={{ now.Unix }}"
     />
 
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="/apple-touch-icon.png?v=1618908049"
+      href="/apple-touch-icon.png?v={{ now.Unix }}"
     />
 
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="/favicon-16x16.png?v=1618908049"
+      href="/favicon-16x16.png?v={{ now.Unix }}"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/favicon-32x32.png?v=1618908049"
+      href="/favicon-32x32.png?v={{ now.Unix }}"
     />
 
-    <link rel="manifest" href="/site.json?v=1618908049" />
+    <link rel="manifest" href="/site.json?v={{ now.Unix }}" />
     <link
       rel="mask-icon"
-      href="/safari-pinned-tab.svg?v=1618908049"
+      href="/safari-pinned-tab.svg?v={{ now.Unix }}"
       color="#5bbad5"
     />
-    <link href="/css/jumbo.min.css?v=1618908049" rel="stylesheet" />
+
+    {{ $options := (dict "targetPath" "styles/jumbo.css" "outputStyle" "compressed" ) }}
+    {{ $style := resources.Get "scss/apps/jumbo/main.scss" | toCSS $options | postCSS }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}?v={{ now.Unix }}">
 
     <noscript>
-      <link href="/css/noscript.min.css?v=1618908049" rel="stylesheet" />
+      {{ $optionsNS := (dict "targetPath" "styles/noscript.css" "outputStyle" "compressed" ) }}
+      {{ $style := resources.Get "scss/noscript.scss" | toCSS $optionsNS | postCSS | minify }}
+      <link rel="stylesheet" href="{{ $style.RelPermalink }}?v={{ now.Unix }}">
     </noscript>
   </head>
   <body>
     {{- partialCached "jumbo/nav.html" . -}}
     <div class="wrapper">
       {{- partialCached "jumbo/header.html" . -}}
-
       <main>
         <h1 id="page-not-found">Page Not Found</h1>
         <h2 style="text-align: center">
