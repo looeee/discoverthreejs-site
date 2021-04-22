@@ -1,1 +1,0 @@
-Create a symlink to (or copy) node_modules\three here. See main readme for details

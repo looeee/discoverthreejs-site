@@ -1,4 +1,4 @@
-import { setup } from "../../base.js";
+import { setup } from "./base.js";
 
 import { scrollToMain } from "./layout/scrollToMain.js";
 

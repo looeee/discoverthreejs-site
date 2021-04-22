@@ -6,8 +6,8 @@
     {{- partialCached "head/schema.html" . -}}
     {{- partialCached "head/links.html" . .Permalink -}}
 
-    {{ $options := (dict "targetPath" "styles/jumbo.css" "outputStyle" "compressed" ) }}
-    {{ $style := resources.Get "scss/apps/jumbo/main.scss" | toCSS $options | postCSS }}
+    {{ $optionsCSS := (dict "targetPath" "styles/jumbo.css" "outputStyle" "compressed" ) }}
+    {{ $style := resources.Get "scss/apps/jumbo/main.scss" | toCSS $optionsCSS | postCSS }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}?v={{ now.Unix }}">
 
     <noscript>
@@ -16,7 +16,9 @@
       <link rel="stylesheet" href="{{ $style.RelPermalink }}?v={{ now.Unix }}">
     </noscript>
 
-    <script type="module" src="/js/home.js?v={{ now.Unix }}"></script>
+    {{ $optionsJS := (dict "targetPath" "js/home.js" "minify" true "target" "es2017" "format" "esm" ) }}
+    {{ $js := resources.Get "src/apps/home/home.js" | js.Build $optionsJS }}
+    <script type="module" src="{{ $js.RelPermalink }}?v={{ now.Unix }}"></script>
   </head>
 
   <body>

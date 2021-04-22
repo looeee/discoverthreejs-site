@@ -1,20 +1,28 @@
 <script type="module">
-  import { setupChapterEarly } from "/js/chapterEarly.js";
+  {{ $optionsChapterEarly := (dict "targetPath" "js/chapterEarly.js" "minify" true "target" "es2017" "format" "esm" ) }}
+  {{ $chapterEarly := resources.Get "src/apps/chapterEarly/chapterEarly.js" | js.Build $optionsChapterEarly }}
+
+  {{ $optionsChapterLate := (dict "targetPath" "js/chapterLate.js" "minify" true "target" "es2017" "format" "esm" ) }}
+  {{ $chapterLate := resources.Get "src/apps/chapterLate/chapterLate.js" | js.Build $optionsChapterLate }}
+
+  {{ $optionsIde := (dict "targetPath" "js/ide.js" "minify" true "target" "es2017" "format" "esm" ) }}
+  {{ $ide := resources.Get "src/apps/ide/ide.js" | js.Build $optionsIde }}
+
+  import { setupChapterEarly } from "{{ $chapterEarly.RelPermalink | safeJS }}";
   setupChapterEarly();
 
   window.addEventListener('load', async () => {
     const { setupChapterLate } = await import(
-      "/js/chapterLate.js"
+      "{{ $chapterLate.RelPermalink | safeJS }}"
     );
     setupChapterLate();
 
     {{ if eq .Params.showIDE true }}
     const { setupIDE } = await import(
-      "/js/ide.js"
-      );
+      "{{ $ide.RelPermalink | safeJS }}"
+    );
 
     const ideConfig = {
-
       showIDE: {{ .Params.showIDE | default false }},
       IDE: {
         fullScreen: false,

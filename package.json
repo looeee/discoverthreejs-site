@@ -24,16 +24,9 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
-    "browser-sync": "^2.26.14",
-    "chokidar": "^3.5.1",
-    "clean-css": "^5.1.2",
     "concurrently": "^6.0.0",
     "esbuild": "^0.11.5",
-    "esbuild-glslify": "github:ayamflow/esbuild-glslify",
-    "postcss": "^8.2.10",
-    "postcss-cli": "^8.3.1",
-    "sass": "^1.32.8",
-    "servez": "^1.11.0"
+    "postcss-cli": "^8.3.1"
   },
   "browserslist": [
     ">0.3%",

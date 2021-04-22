@@ -1,3 +1,0 @@
-import { PerspectiveCamera } from 'three';
-
-// To do...

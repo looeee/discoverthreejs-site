@@ -1,3 +1,0 @@
-import { DirectionalLight } from 'three';
-
-// To do...
