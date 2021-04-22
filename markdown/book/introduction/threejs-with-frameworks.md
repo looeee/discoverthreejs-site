@@ -9,9 +9,7 @@ nextURL: "/book/first-steps/"
 nextTitle: "Getting Started: Here's Where the Real Fun Begins!"
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # Using three.js with React, Vue.js, Angular, Svelte, TypeScript and More
 

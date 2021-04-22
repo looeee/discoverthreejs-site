@@ -32,9 +32,7 @@ IDEStripDirectory: 'worlds/first-steps/camera-controls/'
 IDEActiveDocument: 'src/World/systems/controls.js'
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # Extend three.js With a Camera Controls Plugin
 
@@ -165,7 +163,7 @@ With that, the controls should start to work. Take them for a spin!
 You'll immediately notice [the cube is not illuminated from the back](#a-glaring-problem). We'll explain why and how to fix this in the next chapter.
 
 {{% note %}}
-TODO-POSTLAUNCH: add a "using the controls section" that explains how the controls work
+TODO-LOW: add a "using the controls section" that explains how the controls work
 {{% /note %}}
 
 ## Working with the Controls

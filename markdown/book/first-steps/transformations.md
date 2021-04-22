@@ -25,9 +25,7 @@ IDEActiveDocument: 'src/World/components/cube.js'
 membershipLevel: free
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # Transformations, Coordinate Systems, and the Scene Graph
 
@@ -157,7 +155,7 @@ There are more sophisticated ways to access a particular child, for example, the
 3D space is described using a 3D [Cartesian coordinate system](https://en.wikipedia.org/wiki/Cartesian_coordinate_system).
 
 {{% note %}}
-TODO-POSTLAUNCH: make the coordinate system diagram 3D
+TODO-LOW: make the coordinate system diagram 3D
 {{% /note %}}
 
 {{< figure src="first-steps/coordinate_system_simple.svg" caption="A 3D Cartesian coordinate system" class="medium left" lightbox="true" >}}
@@ -753,7 +751,7 @@ For now, make a note of these two ways to rotate an object:
 Despite the issues we highlighted in this section, rotating object is generally intuitive. Here are a couple of important things to take note of:
 
 {{% note %}}
-TODO-POSTLAUNCH: if non-targeted DirectionalLight is ever added revisit
+TODO-LOW: if non-targeted DirectionalLight is ever added revisit
 {{% /note %}}
 
 1. Not all objects can be rotated. For example, {{< link path="/book/first-steps/physically-based-rendering/#introducing-the-directionallight" title="the `DirectionalLight` we introduced in the last chapter" >}} cannot be rotated. The light shines _from_ a position, _towards_ a target, and the angle of the light is calculated from the target's position, not the `.rotation` property.

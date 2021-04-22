@@ -24,9 +24,7 @@ prevURL: "/book/first-steps/"
 prevTitle: "Getting Started: Here's Where the Real Fun Begins!"
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # The Structure of a three.js App
 

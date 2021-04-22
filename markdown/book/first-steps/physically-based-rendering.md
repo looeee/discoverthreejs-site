@@ -29,9 +29,7 @@ IDEStripDirectory: 'worlds/first-steps/physically-based-rendering/'
 IDEActiveDocument: 'src/World/components/cube.js'
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # Physically Based Rendering and Lighting
 
@@ -56,7 +54,7 @@ Creating good-looking scenes using old-school, non-physically based rendering in
 Now, imagine the same scenario, but this time you're using physically correct lighting and materials. To switch day-time to night-time, you simply turn off the light representing the sun and switch on the lights in the light fixtures. That main ceiling light is a hundred-watt incandescent bulb? Examine the packaging of the equivalent bulb in the real world, note how many lumens it outputs, and then use that value in your code, and you are done.
 
 {{% note %}}
-TODO-POSTLAUNCH: add an image to break up the above text
+TODO-LOW: add an image to break up the above text
 {{% /note %}}
 
 **Well crafted physically based materials look great in all lighting conditions.**

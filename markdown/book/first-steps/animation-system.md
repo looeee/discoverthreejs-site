@@ -38,9 +38,7 @@ nextURL: "/book/appendix/"
 nextTitle: "Production Ready three.js"
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # The three.js Animation System
 

@@ -11,9 +11,7 @@ nextTitle: "How to Use This Book"
 hideWordCount: true
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # Welcome to Discover three.js! {#welcome}
 

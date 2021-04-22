@@ -7,9 +7,7 @@ chapter: '0.4'
 available: true
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # three.js on GitHub - Where the Magic Happens {#github}
 

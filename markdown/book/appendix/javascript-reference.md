@@ -16,11 +16,6 @@ IDEActiveDocument: 'src/main.js'
 IDESwitchImportsAllow: false
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-Only update this chapter to document additional features
-{{% /note %}}
-
 # JavaScript Reference
 
 {{< figure src="app-logos/javascript.png" alt="JavaScript logo" lightbox="false" class="tiny right noborder" >}}

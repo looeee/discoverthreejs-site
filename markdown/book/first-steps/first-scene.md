@@ -20,9 +20,7 @@ IDEActiveDocument: 'index.html'
 IDEActiveDocument: 'src/main.js'
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # Your First three.js Scene: Hello, Cube!
 
@@ -55,7 +53,7 @@ const scene = new Scene();
 {{< figure src="first-steps/coordinate_system_simple.svg" caption="The world space coordinate system, defined by the Scene" class="small left" lightbox="true" >}}
 
 {{% note %}}
-TODO-POSTLAUNCH: replace all coordinate diagrams with a 3D coordinate systems
+TODO-LOW: replace all coordinate diagrams with a 3D coordinate systems
 {{% /note %}}
 
 The `scene` defines a coordinate system called **World Space**, which is our main frame of reference when working with visible objects in three.js. World space is a [3D Cartesian coordinate system](https://mathinsight.org/cartesian_coordinates). We'll explore what that means and how to use world space in more detail in {{< link path="/book/first-steps/transformations/#coordinate-systems" title="" >}}.
@@ -102,7 +100,7 @@ The following example shows the difference between these two cameras. The left s
 {{< iframe src="https://threejs.org/examples/webgl_camera.html" height="500" title="The OrthographicCamera and PerspectiveCamera in action" caption="The OrthographicCamera and PerspectiveCamera in action" >}}
 
 {{% note %}}
-TODO-POSTLAUNCH: improve this - simple show ortho left and perspective right
+TODO-LOW: improve this - simple show ortho left and perspective right
 {{% /note %}}
 
 ### The Renderer: An Artist of Extraordinary Talent and Speed
@@ -110,7 +108,7 @@ TODO-POSTLAUNCH: improve this - simple show ortho left and perspective right
 If the scene is a tiny universe, and the camera is a telescope pointed at that universe, then the renderer is an artist who looks through the telescope and draws what they see onto a `<canvas>`, _incredibly fast_. We call this process **rendering**, and the resulting picture is a **render**. In this book, we will exclusively use the [`WebGLRenderer`](https://threejs.org/docs/#api/en/renderers/WebGLRenderer) which renders our scenes using [**WebGL2**](https://en.wikipedia.org/wiki/WebGL), if it's available, and falls back to **WebGL V1** if it's not. The constructor for the renderer does take several parameters, however, if we leave them out default values will be used, which is fine for now.
 
 {{% note %}}
-TODO-POSTLAUNCH: if WEBGPU becomes a thing this will have to be updated
+TODO-LOW: if WEBGPU becomes a thing this will have to be updated
 {{% /note %}}
 
 {{< code linenos="false" caption="Creating a renderer with default parameters" >}}
@@ -381,7 +379,7 @@ Later, if we want to remove it, we can use `scene.remove(mesh)`. Once the mesh h
 {{< figure src="first-steps/rendered_scene_canvas.svg" alt="The rendered scene outputs to a canvas element" lightbox="true" class="medium right" >}}
 
 {{% note %}}
-TODO-POSTLAUNCH: update if WebGPURenderer becomes default
+TODO-LOW: update if WebGPURenderer becomes default
 {{% /note %}}
 
 The final component of our simple app is the renderer, which is responsible for drawing (**rendering**) the scene into the `<canvas>` element. We'll use the [`WebGLRenderer`](https://threejs.org/docs/#api/renderers/WebGLRenderer) here. There are some other renderers available as plugins, but the `WebGLRenderer` is by far the most powerful renderer available, and usually the only one you need. Let's go ahead and create a `WebGLRenderer` now, once again with default settings.

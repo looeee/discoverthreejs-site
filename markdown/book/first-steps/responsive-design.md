@@ -28,9 +28,7 @@ IDEStripDirectory: 'worlds/first-steps/responsive-design/'
 IDEActiveDocument: 'src/World/systems/Resizer.js'
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # Making Our Scenes Responsive (and also Dealing with Jaggies)
 

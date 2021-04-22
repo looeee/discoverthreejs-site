@@ -13,9 +13,7 @@ prevTitle: "Using three.js with React, Vue.js, Angular, Svelte, TypeScript..."
 hideWordCount: true
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # Getting Started: Here's Where the Real Fun Begins!
 

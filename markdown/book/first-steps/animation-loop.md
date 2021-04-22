@@ -30,9 +30,7 @@ IDEStripDirectory: 'worlds/first-steps/animation-loop/'
 IDEActiveDocument: 'src/World/systems/Loop.js'
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # The Animation Loop
 

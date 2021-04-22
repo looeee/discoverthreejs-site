@@ -32,9 +32,7 @@ membershipLevel: free
 ---
 
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # Organizing Your Scenes
 
@@ -504,7 +502,7 @@ sphere.position.z = -i * 5;
 {{< inlineScene entry="first-steps/snake.js" class="round" >}}
 
 {{% note %}}
-TODO-POSTLAUNCH: better position controls target on snake scene
+TODO-LOW: better position controls target on snake scene
 {{% /note %}}
 
 You'll have to adjust the camera as well to get this exact view. That sounds like a "hard" challenge!

@@ -37,9 +37,7 @@ IDEStripDirectory: 'worlds/first-steps/load-models/'
 IDEActiveDocument: 'src/World/components/birds/birds.js'
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # Load 3D Models in glTF Format
 

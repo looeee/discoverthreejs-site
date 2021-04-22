@@ -22,9 +22,7 @@ IDEActiveDocument: 'src/6-async-functions.js'
 IDESwitchImportsAllow: false
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # Asynchronous JavaScript
 
@@ -85,10 +83,6 @@ Loading files is not the only use case for asynchronous code. Whenever you _want
 
 
 We've set up a few examples in the IDE in each of these three styles. In all of them (except _**1-synchronous-callback.js**_) we have used `setTimeout` to simulate a model that takes several seconds to load.
-
-{{% note %}}
-TODO-LINK: add link to setTimeout once documented
-{{% /note %}}
 
 ### Generating Asynchronous Code with `setTimeout`
 
@@ -747,11 +741,6 @@ Promise.all([
   setupPhysics(modelA, modelB, modelC, modelD);
 });
 {{< /code >}}
-
-{{% note %}}
-TODO-LINK: add link to destructuring assignment once documented
-{{% /note %}}
-
 
 ### Error Handling with `Promise.all`
 

@@ -32,9 +32,7 @@ IDEStripDirectory: 'worlds/first-steps/ambient-lighting/'
 IDEActiveDocument: 'src/World/components/lights.js'
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # Ambient Lighting: Illumination from Every Direction
 
@@ -111,7 +109,7 @@ TODO-LINK: add link to IBL section
 {{% /note %}}
 
 {{% note %}}
-TODO-POSTLAUNCH: add light probes overview
+TODO-LOW: add light probes overview
 {{% /note %}}
 
 ### The Fast and Easy Solution: Ambient Lighting
@@ -161,7 +159,7 @@ Over in World, the `createLights` function now returns two lights. Add both of t
 {{< code file="worlds/first-steps/ambient-lighting/src/World/World.final.js" from="17" to="33" lang="js" linenos="true" hl_lines="27, 30"  caption="_**World.js**_: add the ambient light to the scene" >}}{{< /code >}}
 
 {{% note %}}
-TODO-POSTLAUNCH: once destructuring assignment is documented, link it here
+TODO-LOW: once destructuring assignment is documented, link it here
 {{% /note %}}
 
 We'll usually set the intensity of the `AmbientLight` to a lower value than the direct light it has been paired with. Here, white light with a low intensity results in a dim gray ambient illumination. Combined with the single bright `DirectionalLight`, this dim ambient light solves our lighting issues and the rear faces of the cube become illuminated:
@@ -169,8 +167,8 @@ We'll usually set the intensity of the `AmbientLight` to a lower value than the 
 {{< inlineScene entry="first-steps/ambient-with-directional.js" >}}
 
 {{% note %}}
-TODO-POSTLAUNCH: the lighting in this chapter needs to be improved
-TODO-POSTLAUNCH: add controls to disable direct light to allow viewing ambient on it's own
+TODO-LOW: the lighting in this chapter needs to be improved
+TODO-LOW: add controls to disable direct light to allow viewing ambient on it's own
 {{% /note %}}
 
 However, the lighting on the rear faces of the cube looks rather dull. To make a setup based around `AmbientLight` and `DirectionalLight` look good, we would need to add multiple directional lights with varying direction and intensity. That runs into many of the same problems we described above for [a setup using multiple direct lights](#multiple-direct-lights). As we'll see in a moment, the `HemisphereLight` gives better results here, for almost no additional performance cost.

@@ -21,9 +21,7 @@ IDEActiveDocument: 'src/main.js'
 IDESwitchImportsAllow: false
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # How to Include three.js in Your Projects
 

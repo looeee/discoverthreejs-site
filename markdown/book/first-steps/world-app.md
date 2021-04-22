@@ -31,9 +31,7 @@ IDEStripDirectory: "worlds/first-steps/world-app/"
 IDEActiveDocument: "src/World/World.js"
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # Introducing the World App
 

@@ -9,9 +9,7 @@ nextURL: "/tips-and-tricks/"
 nextTitle: "Tips and Tricks"
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # Dealing with Different three.js Versions
 

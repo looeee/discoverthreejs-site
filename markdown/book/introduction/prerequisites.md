@@ -7,9 +7,7 @@ chapter: '0.2'
 available: true
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # What Do You Need to Run a three.js App?
 

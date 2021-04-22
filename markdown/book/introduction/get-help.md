@@ -7,13 +7,6 @@ chapter: '0.3'
 available: true
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-
-Only edit this chapter if you need to update forum details
-{{% /note %}}
-
-
 # Welcome to Our Community: three.js Around the Web
 
 If there's one thing that sets three.js apart from the competition more than anything else, it's the amazing community that will help and support you while you learn to use the library. No matter what your issue is, whether you need help with a thorny 3D math problem, are trying to understand some difficult syntax, have an idea for a new feature, want feedback on your work, or think that you've found a bug, you can usually get a response in a matter of hours. Provided you ask in the right place, that is.

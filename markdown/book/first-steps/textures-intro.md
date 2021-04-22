@@ -29,11 +29,6 @@ IDEStripDirectory: 'worlds/first-steps/textures-intro/'
 IDEActiveDocument: 'src/World/components/cube.js'
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-B-GRADE: was not in perfect head space while correcting. Come back to this post launch
-{{% /note %}}
-
 # A Brief Introduction to Texture Mapping
 
 
@@ -92,7 +87,7 @@ Once we have a geometry with a UV mapping, we can take any texture and apply it 
 ## Types of Data that can be Stored in a Texture
 
 {{% note %}}
-TODO-POSTLAUNCH: add example images of textures in use here: see this link
+TODO-LOW: add example images of textures in use here: see this link
  https://conceptartempire.com/texture-maps/
 {{% /note %}}
 

@@ -48,8 +48,6 @@ prevTitle: "Welcome to Discover three.js!"
 ---
 
 {{% note %}}
-THIS CHAPTER IS COMPLETE!
-
 TODO-LOW: go over sparkleHorse code: before comparison should be non-sparkle horse
 {{% /note %}}
 

@@ -38,9 +38,7 @@ IDEActiveDocument: 'src/World/components/Train/Train.js'
 membershipLevel: free
 ---
 
-{{% note %}}
-THIS CHAPTER IS COMPLETE!
-{{% /note %}}
+
 
 # Getting Creative with The Built-In Geometries
 
