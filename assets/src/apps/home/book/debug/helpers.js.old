@@ -1,0 +1,18 @@
+import {
+  DirectionalLightHelper,
+  CameraHelper,
+} from 'three';
+
+export function createHelpers(app, lights) {
+  const directionLightHelper = new DirectionalLightHelper(
+    lights.main,
+  );
+  const directionLightShadowHelper = new CameraHelper(
+    lights.main.shadow.camera,
+  );
+
+  return {
+    directionLightHelper,
+    directionLightShadowHelper,
+  };
+}

@@ -1,4 +1,7 @@
-node_modules
-.vscode
+node_modules/
+.vscode/
 
 resources/_gen/**/*
+public/
+
+hugo.exe
