@@ -6,8 +6,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": ".\\hugo serve --templateMetrics --templateMetricsHints --verbose",
-    "production": ".\\hugo --templateMetrics --templateMetricsHints --verbose"
+    "start": "npm run copy-three && .\\hugo serve --templateMetrics --templateMetricsHints --verbose",
+    "production": "npm run copy-three && .\\hugo --templateMetrics --templateMetricsHints --verbose",
+    "copy-three": "node scripts/copy-three.cjs"
   },
   "author": "Lewy Blue",
   "license": "MIT",
@@ -24,6 +25,7 @@
     "autoprefixer": "^10.2.5",
     "concurrently": "^6.0.0",
     "esbuild": "^0.11.5",
+    "fs-extra": "^9.1.0",
     "postcss": "^8.2.10",
     "postcss-cli": "^8.3.1"
   },
