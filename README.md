@@ -30,8 +30,8 @@ The book is built with Hugo, and this repo follows a fairly typical folder struc
 
 ### Important folders
 
-* `markdown` - all the words in the book are contained here
-* `assets/src` - JS source code
+* `markdown` - all the words in the book are contained here.
+* `assets/src` - JS source code.
 * `assets/scss` - SCSS styles for the book are here.
 * `static` - all static files such as figures, fonts, models, textures, images, and favicons are here.
 * `static/examples` - the code for the IDE examples are here. Each example is a `World` - for examples: `static/examples/worlds/first-steps/first-scene` contains the example for the chapter **First Scene**. See `static/examples/README.md` for more details.
@@ -46,3 +46,7 @@ The three.js folder in node_modules is copied to the `/static/examples/vendor/th
 This is required since the IDE needs to load Three.js at runtime. To prevent three.js versions getting out of sync across the project, it's best to have one source of the file in node_modules/ and reference this everywhere. However, the IDE can only access files in static/.
 
 Whenever you update the three.js version, remember to copy the file across to the examples folder!
+
+## Notes
+
+* [Hugo Pipes](https://gohugo.io/hugo-pipes/) are used to build [SCSS](https://gohugo.io/hugo-pipes/scss-sass/) and [JS](https://gohugo.io/hugo-pipes/js/) assets. This means the Hugo extended version must be used.
