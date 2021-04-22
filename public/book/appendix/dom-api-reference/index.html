@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <title>The Document Object Model and DOM API | Discover three.js</title><meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="ROBOTS" content="INDEX, FOLLOW" />
+
+
+<meta name="application-name" content="Discover three.js" />
+
+<meta itemprop="name" content="Discover three.js" />
+
+<meta property="og:title" content="The Document Object Model and DOM API | Discover three.js" />
+<meta name="twitter:title" content="The Document Object Model and DOM API | Discover three.js" />
+
+<meta name="description" content="JavaScript is connected to a web page using using the Document Object Model (DOM) and we can access it using the DOM API. Here, we provide a reference for the parts of the DOM we use in this book." />
+<meta property="og:description" content="JavaScript is connected to a web page using using the Document Object Model (DOM) and we can access it using the DOM API. Here, we provide a reference for the parts of the DOM we use in this book." />
+<meta name="twitter:description" content="JavaScript is connected to a web page using using the Document Object Model (DOM) and we can access it using the DOM API. Here, we provide a reference for the parts of the DOM we use in this book." />
+
+<meta
+  itemprop="keywords"
+  content="threejs webgl opengl fbx gltf khronos webvr vr webdev design cg graphics animation javascript esnext es6 education tutorials blog ebook node npm"
+/>
+
+<meta property="og:site_name" content="Discover three.js" />
+<meta property="og:type" content="book" />
+<meta property="og:url" content="https://discoverthreejs.com/" />
+<meta
+  property="og:image"
+  content="https://discoverthreejs.com/images/logo.png"
+/>
+<meta
+  property="twitter:image"
+  content="https://discoverthreejs.com/images/logo.png"
+/>
+<meta name="twitter:creator" content="@lewy_blue" />
+<meta name="twitter:site" content="@lewy_blue" />
+<meta name="twitter:card" content="JavaScript is connected to a web page using using the Document Object Model (DOM) and we can access it using the DOM API. Here, we provide a reference for the parts of the DOM we use in this book." />
+<meta name="twitter:image:width" content="1024" />
+<meta name="twitter:image:height" content="1024" />
+
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="msapplication-TileColor" content="#00aba9" />
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619078540" /><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "image": "https://discoverthreejs.com/images/logo.png",
+    "mainEntity": {
+      "@type": "Book",
+      "author": {
+        "@type": "Person",
+        "name": "Lewy Blue",
+        "jobTitle": "Author",
+        "url": "https://twitter.com/lewy_blue"
+      },
+      "about": "",
+      "copyrightHolder": "https://discoverthreejs.com",
+      "copyrightYear": "2021",
+      "bookFormat": "http://schema.org/EBook",
+      "datePublished": "2018-10-01",
+      "image": "https://discoverthreejs.com/images/logo.png",
+      "inLanguage": "English",
+      "name": "Discover three.js",
+      "genre": "Education",
+      "keywords": "threejs webgl animation javascript es6 education tutorials blog ebook",
+      "publisher": {
+        "@type": "Organization",
+        "name": "https://discoverthreejs.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://discoverthreejs.com/images/logo.png"
+        }
+      }
+    }
+  }
+</script><link
+  rel="canonical"
+  href="https://discoverthreejs.com/book/appendix/dom-api-reference/"
+/>
+
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619078540" />
+
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/apple-touch-icon.png?v=1619078540"
+/>
+
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/favicon-16x16.png?v=1619078540"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/favicon-32x32.png?v=1619078540"
+/>
+
+<link rel="manifest" href="/site.json?v=1619078540" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619078540" color="#5bbad5" />
+<style>
+      .loading-page {
+        display: none;
+      }
+    </style>
+
+    
+    
+    <link rel="stylesheet" href="/styles/chapter.css?v=1619078544">
+
+    <noscript>
+      
+      
+      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619078544">
+    </noscript>    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <script type="module">
+  
+  
+
+  
+  
+
+  
+  
+
+  import { setupChapterEarly } from "\/js\/chapterEarly.js";
+  setupChapterEarly();
+
+  window.addEventListener('load', async () => {
+    const { setupChapterLate } = await import(
+      "\/js\/chapterLate.js"
+    );
+    setupChapterLate();
+
+    
+    const { setupIDE } = await import(
+      "\/js\/ide.js"
+    );
+
+    const ideConfig = {
+      showIDE:  true ,
+      IDE: {
+        fullScreen: false,
+        container: '#ide-wrapper',
+        serverDirectory: 'examples',
+        stripDirectory: 'worlds\/appendix\/dom-api-reference\/',
+        closedFolders: 'styles'
+          .replace(/[\s\'\[\]']+/g, '')
+          .split(','),
+        comparisonMode: '',
+        files: 'worlds\/appendix\/dom-api-reference\/src\/main.js, worlds\/appendix\/dom-api-reference\/index.html'
+          .replace(/[\s\'\[\]']+/g, '')
+          .split(','),
+        entry: 'index.html',
+        activeDocument: 'src\/main.js',
+        switchImportsAllowed:
+          'false',
+      },
+    }
+
+    await setupIDE(ideConfig);
+    
+  });
+</script></head>
+  <body class="loading-page"><nav class="top-nav">
+  <div class="nav-background"></div>
+
+  <div class="icon-group left">
+    <input type="checkbox" id="left-menu-toggle" class="hidden-input" />
+    <label
+      for="left-menu-toggle"
+      class="control-elem"
+      title="Table Of Contents"
+    >
+      <span class="open-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"/></svg></span>
+      <span class="close-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg></span>
+    </label>
+
+    <input
+      type="checkbox"
+      id="toggle-ide"
+      class="hidden-input ide-toggle"
+    />
+    <label
+      for="toggle-ide"
+      class="control-elem ide-control hide"
+      title="Show/Hide IDE"
+    >
+      <span class="on-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M384 64H192C86 64 0 150 0 256s86 192 192 192h192c106 0 192-86 192-192S490 64 384 64zm0 320c-70.8 0-128-57.3-128-128 0-70.8 57.3-128 128-128 70.8 0 128 57.3 128 128 0 70.8-57.3 128-128 128z"/></svg></span>
+      <span class="off-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M384 64H192C85.961 64 0 149.961 0 256s85.961 192 192 192h192c106.039 0 192-85.961 192-192S490.039 64 384 64zM64 256c0-70.741 57.249-128 128-128 70.741 0 128 57.249 128 128 0 70.741-57.249 128-128 128-70.741 0-128-57.249-128-128zm320 128h-48.905c65.217-72.858 65.236-183.12 0-256H384c70.741 0 128 57.249 128 128 0 70.74-57.249 128-128 128z"/></svg></span>
+    </label>
+  </div>
+
+  <div class="icon-group center">
+
+
+
+
+
+<a href="/book/appendix/javascript-reference/" title="JavaScript Reference" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/appendix/javascript-modules/" class="control-elem next" title="JavaScript Modules"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
+  </div>
+
+  <div class="icon-group right">
+    <input type="checkbox" id="right-menu-toggle" class="hidden-input" />
+    <label for="right-menu-toggle" class="control-elem" title="Main Menu">
+      <span class="open-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg></span>
+      <span class="close-close hide"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg></span>
+    </label>
+  </div>
+</nav><div class="wrapper orientation-auto">
+      <main class="panel animate">
+        <div class="scroller">
+          <div class="content">
+            
+              <div class="chapter-info">Word Count:3248, reading time: ~16minutes</div>
+            
+            <h1 id="the-document-object-model-and-dom-api">The Document Object Model and DOM API</h1>
+<p>Over the last couple of chapters, we&rsquo;ve covered <a href="/book/appendix/html-and-css-reference/">some very basic HTML and CSS</a>, and a whole lot of <a href="/book/appendix/javascript-reference/">slightly less basic JavaScript</a>.</p>
+<p>In this chapter, we&rsquo;ll look at how HTML, CSS, and JavaScript interact to create a web page. While doing so, we&rsquo;ll show you how to manipulate your HTML document from within JavaScript.</p>
+<h2 id="the-developer-console">The Developer Console</h2>
+<p>You can press the <strong>F12</strong> key on most browsers to open the <a href="https://developer.mozilla.org/en-US/docs/Tools/Browser_Console" target="_blank" rel="noopener noreferrer">Developer Console</a>. Try that now, and if it doesn&rsquo;t work then look up the documentation for your browser and find out how to open the console.</p>
+<p>Take some time to explore this window now. You&rsquo;ll be using this a <em>lot</em> throughout your career as a three.js developer, or indeed while doing any kind of web development.</p>
+<p>There&rsquo;s a lot to see here, but we&rsquo;ll only use two of the tabs in this book: the <em>Elements</em> tab, and the <em>Console</em> tab.</p>
+<h3 id="the-elements-tab">The Elements Tab</h3>
+<p>The <em>Elements</em> tab shows the structure of your HTML page. Here, you can view and edit HTML elements and the CSS applied to them.</p>
+<h3 id="the-console-tab">The Console Tab</h3>
+<p>The <em>Console</em> tab displays any messages, warning, or errors generated by the current page, and you can also use this as an interactive JavaScript shell, or <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop" target="_blank" rel="noopener noreferrer">REPL</a>, which is great for testing small pieces of JavaScript code.</p>
+<h3 id="log-to-console">Logging to the Console with <a href="https://developer.mozilla.org/en-US/docs/Web/API/Console/log" target="_blank" rel="noopener noreferrer"><code>console.log</code></a></h3>
+<p><code>console.log()</code> allows you to log information to the console. This is the main debugging technique we&rsquo;ll use in this book. It&rsquo;s a simple but powerful technique, and until you start to create more complex apps it&rsquo;s likely to be the only one you need. Whenever you want to check the value of a variable, or details of an object or class, you can simply log them to the console and take a look.</p>
+<p>Here&rsquo;s how to check the value of a variable called <code>x</code> using the browser console:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Using the console to view the value of a variable</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+let x = &#39;something&#39;;
+
+// You have done some work and  now you expect that x = &#39;something else&#39;.
+// But how do you test this? Simple! Use:
+
+console.log(x);
+
+// output: &#34;something else&#34;
+</code>
+  </pre>
+</section>
+
+<p>There are a range of other console methods that we can use, such as <code>console.warn</code>, <code>console.error</code>, <code>console.table</code>, <code>console.time</code>, and so on. You can see them all on the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Console" target="_blank" rel="noopener noreferrer">MDN console page</a>.</p>
+<h2 id="the-document-object-model-dom">The Document Object Model (DOM)</h2>
+<p>An HTML document is a tree structure, where <a href="/book/appendix/html-and-css-reference/#element">elements</a> like <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code>, <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, and so on, are leaves of the tree:</p>
+<figure >
+  <img src="/images//appendix/html-tree.svg" loading="lazy" alt="The HTML Tree Structure" title="The HTML Tree Structure"  /></figure>
+<p>To work with an HTML page in JavaScript, we need to create a representation of this structure as a JavaScript object, and that&rsquo;s where the Document Object Model comes in.</p>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction" target="_blank" rel="noopener noreferrer">Document Object Model</a> (DOM) is a representation of the HTML document modeled as a JavaScript object.</p>
+<p>Using the DOM, we can access and manipulate the elements in an HTML page using JavaScript.</p>
+<p>A web page that looks like this:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A minimalistic HTML document</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;h1&gt;A Heading&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+  </pre>
+</section>
+
+<p>&hellip;is represented as a series of nested JavaScript objects that looks like this:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The DOM: A representation of an HTML document in JavaScript</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+window = {
+  document: {
+    head: {
+      ...
+    },
+
+    body: {
+      ...
+    },
+  },
+};
+</code>
+  </pre>
+</section>
+
+<p>This is a highly simplified example. There are <em>lots</em> of properties and methods attached to the <code>window</code> and <code>document</code> objects, which we have represented here using <code>...</code>. You can open up the developer console (press F12) on any web page and type <code>window</code> to explore them.</p>
+<h2 id="the-dom-api">The DOM API</h2>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API" target="_blank" rel="noopener noreferrer">DOM API</a> is a set of interfaces that we can use in JavaScript to manipulate the DOM. We&rsquo;ll find these interfaces (in plainer words, methods and properties), attached to every level of the DOM.</p>
+<p>For example, often we want to set CSS styles on an element using JavaScript. Nearly every element in the DOM has a <code>.style</code> property that we can use for this purpose. Using our simple example above, in JavaScript, we can access the style properties of the head and body like this:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Using the DOM API, we can access properties and methods such as style on HTML elements</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+window.document.head.style;
+
+window.document.body.style;
+</code>
+  </pre>
+</section>
+
+<p>We can also access the <code>&lt;h1&gt;</code> element&rsquo;s style, although it takes a little more work, as we&rsquo;ll see below.</p>
+<h3 id="global-object">The Browser&rsquo;s Global Object: Window</h3>
+<p>In the previous chapter, we explored how the <a href="/book/appendix/javascript-reference/#global-scope">global scope</a> is represented in the browser using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window" target="_blank" rel="noopener noreferrer"><code>window</code></a> object.</p>
+<p>As we saw then, we can access <code>window</code> and any properties attached to it from anywhere in our code. The DOM API is attached to <code>window</code> which means we can access that from anywhere too.</p>
+<p>The global <code>window</code> object is specific to web browsers. Other JavaScript environments such as Node.js may behave differently.</p>
+<h3 id="document">Document</h3>
+<p>Another important part of the DOM API is <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document" target="_blank" rel="noopener noreferrer"><code>Document</code></a>. We can access this using <code>window.document</code> (or just <code>document</code> as we&rsquo;ll see in a moment). This represents the actual HTML document of the current page. The rest of the elements on the page are located further down, like <code>document.body</code> and <code>document.head</code>.</p>
+<h3 id="you-dont-always-need-to-type-window">You Don&rsquo;t Always Need to Type <code>window</code></h3>
+<p>Whenever we use a variable in JavaScript, the engine searches for it in the local scope (say, inside the current function). If it doesn&rsquo;t find it there, it looks in the parent scope (for example, the module scope). The engine keeps searching through scopes for the variable until it reaches the final scope, which is global scope.</p>
+<p>This means, to access a property of <code>window</code>, we don&rsquo;t need to type <code>window</code>.</p>
+<p>In the second line here, when we type <code>document</code>, the engine searches for this value in every scope until it reaches the global scope <code>window</code>, where it finds the <code>window.document</code> property.</p>
+<p>This makes <code>window.document</code> and <code>document</code> equivalent, so we can save a few keystrokes and leave out <code>window</code>.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">There&rsquo;s rarely any need to type window</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// These two statements are equivalent
+window.document;
+document;
+</code>
+  </pre>
+</section>
+
+<p>This applies to any custom data to you add to <code>window</code> as well.</p>
+
+
+<section class="highlight-wrapper">
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+window.yourData = {
+  squirrels: &#39;nice&#39;
+};
+
+// Now these statements are equivalent
+window.yourData;
+yourData;
+</code>
+  </pre>
+</section>
+
+<p>There are lots of methods and properties attached to <code>window</code>, so we can avoid a bit of typing this way. For the rest of this chapter, we&rsquo;ll mostly omit <code>window</code>. However, this is not a rule so if at any point you feel it&rsquo;s more clear to include <code>window</code> in your code, feel free to do so.</p>
+<h3 id="documenthead-and-documentbody">document.head and document.body</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/head" target="_blank" rel="noopener noreferrer"><code>document.head</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/body" target="_blank" rel="noopener noreferrer"><code>document.body</code></a> refer the <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code> elements in your HTML document. As we saw above, we can access and edit properties of these elements such as <code>document.body.style</code>.</p>
+<h2 id="html-elements">HTML Elements</h2>
+<p>HTML elements are represented using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" target="_blank" rel="noopener noreferrer">the <code>Element</code> class</a>. Many of the DOM API methods that we&rsquo;ll encounter throughout this chapter are attached to every element.</p>
+<h2 id="accessing-html-elements">Accessing HTML Elements</h2>
+<p>The <code>.head</code> and <code>.body</code> can be accessed in a couple of keystrokes from anywhere in our code, but this is not the case for the rest of the elements on our page. This is because every valid HTML document will have both a <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code>, so it makes sense to provide shortcuts to these. Every other element is optional, however, so we&rsquo;ll have to do a little more work to access them.</p>
+<h3 id="accessing-child-elements-using-elementchildren">Accessing Child Elements Using <code>element.children</code></h3>
+<p>We can find all the child elements of a given element in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/children" target="_blank" rel="noopener noreferrer"><code>element.children</code></a> property. Given this page:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Our simple HTML document again</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;h1&gt;A Heading&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+  </pre>
+</section>
+
+<p>&hellip; we&rsquo;ll find the <code>&lt;title&gt;</code> element in <code>document.head.children</code> and the <code>&lt;h1&gt;</code> element in <code>document.body.children</code>.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">An elements children are can be accessed via element.children</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+console.log(document.head.children);
+// =&gt; HTMLCollection(1) [title]
+</code>
+  </pre>
+</section>
+
+<p><code>element.children</code> is read-only, so we cannot use this to add or remove elements from the page.</p>
+<h3 id="queryselector-and-queryselectorall"><code>querySelector</code> and <code>querySelectorAll</code></h3>
+<p>Accessing the <code>.children</code> property is fine for an extremely simple example like this, but web pages often consist of thousands of elements. To help us search through these and find the elements we need, the DOM API has lots of methods for selecting elements on the page.</p>
+<p>In this book, we&rsquo;ll restrain ourselves to using just two of these selector functions: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector" target="_blank" rel="noopener noreferrer"><code>querySelector</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll" target="_blank" rel="noopener noreferrer"><code>querySelectorAll</code></a>. The difference between these is that <code>querySelector</code> will return only the first matching element, while <code>querySelectorAll</code> will return any number of matches.</p>
+<p>If we have an HTML page like this:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Adding some more elements to our HTML document</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;h1&gt;Title&lt;/h1&gt;
+
+    &lt;div id=&#34;scene-container&#34;&gt;&lt;/div&gt;
+
+    &lt;p class=&#34;alert&#34;&gt;Oh No!&lt;/p&gt;
+    &lt;p class=&#34;alert&#34;&gt;Watch Out!&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+  </pre>
+</section>
+
+<p>&hellip;we can access the elements individually using <code>querySelector</code>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">document.querySelector returns the first matching element</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const html = document.querySelector(&#39;html&#39;);
+
+const head = document.querySelector(&#39;head&#39;);
+
+const title = document.querySelector(&#39;title&#39;);
+
+const body = document.querySelector(&#39;body&#39;);
+
+const heading = document.querySelector(&#39;h1&#39;);
+
+const sceneContainer = document.querySelector(&#39;#scene-container&#39;);
+
+// Return the first of the two alerts
+const firstAlert = document.querySelector(&#39;.alert&#39;);
+</code>
+  </pre>
+</section>
+
+<p>In the last two examples, we use the <code>#</code> symbol to refer to an element by ID, and the <code>.</code> symbol to refer to a class, as we do in CSS.</p>
+<p>If <code>querySelector</code> finds more than one matching element, it will return the first element and stop looking. Here, that means our <code>alertElem</code> variable will contain only the first of the two elements with an <code>alert</code> class. If we want <em>all</em> matching elements, we can use <code>querySelectorAll</code>.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">.querySelectorAll returns all matching elements</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const allAlertElements = document.querySelectorAll(&#39;.alert&#39;);
+</code>
+  </pre>
+</section>
+
+<p><code>allAlertElements</code> is a list of all matching elements, but it&rsquo;s not an array. Instead, it&rsquo;s a special array-like object called a <a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeList" target="_blank" rel="noopener noreferrer"><code>NodeList</code></a>. You can use a <code>NodeList</code> in a similar manner to an array, however, it lacks many of the built-in array methods.</p>
+<h3 id="most-dom-api-methods-are-available-on-all-elements">Most DOM API Methods are Available on All Elements</h3>
+<p>These methods, like most DOM API methods, are available on all HTML elements. This means we don&rsquo;t have to search through the whole document every time we are looking for an element. This can improve the performance of your application a lot when dealing with huge web pages.</p>
+<p>For example, using our above document again, we can search through the <code>document.body</code> for the <code>h1</code> element.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Improve performance by avoiding searching through the entire document</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const bodyElem = document.querySelector(&#39;body&#39;);
+const headingElem = bodyElem.querySelector(&#39;h1&#39;);
+
+// alternatively:
+const headingElem = document.body.querySelector(&#39;h1&#39;);
+</code>
+  </pre>
+</section>
+
+<h2 id="changing-the-text-in-an-element">Changing the Text in an Element</h2>
+<p>There are many ways to change the text of an element, but we&rsquo;ll always use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent" target="_blank" rel="noopener noreferrer"><code>element.textContent</code></a>.</p>
+<p>Let&rsquo;s use that to give our page a more interesting heading:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Changing the text in the page heading</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const headingElem = document.querySelector(&#39;h1&#39;);
+
+headElem.textContent = &#39;The Secret and Amazing Life of Honey Bees&#39;;
+</code>
+  </pre>
+</section>
+
+<h2 id="find-the-current-browser-window-width-and-height">Find the Current Browser Window Width and Height</h2>
+<p>When using three.js we need to give our scenes a size pixels. Often, we want to match the same size as the browser window.</p>
+<p>At any time, we can access the width and height of the browser window using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth" target="_blank" rel="noopener noreferrer"><code>window.innerWidth</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/innerHeight" target="_blank" rel="noopener noreferrer"><code>window.innerHeight</code></a>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The current size of the browser window</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const windowWidth = window.innerWidth;
+const windowHeight = window.innerHeight;
+</code>
+  </pre>
+</section>
+
+<p>The value returned is in pixels, and you will see these values used a lot in three.js examples around the web. Any time the browser window size changes, these values will also change and we will need to update our scene. We&rsquo;ll see how to <a href="#listening-for-events">listen for <code>resize</code> events</a> in a few moments.</p>
+<h2 id="find-an-elements-width-and-height">Find an Element&rsquo;s Width and Height</h2>
+<p>We can access the width and height of an HTML element using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/clientWidth" target="_blank" rel="noopener noreferrer"><code>element.clientWidth</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/clientHeight" target="_blank" rel="noopener noreferrer"><code>element.clientHeight</code></a>.</p>
+<p>In this book, we&rsquo;ll put our three.js scenes into a <code>#scene-container</code> element, set the size of that using CSS (either the full window size or a specific part of the window), and then use the width and height of the element to size our scene.</p>
+<p>We&rsquo;ll mostly create full-screen examples throughout the book, so there&rsquo;s not much difference between using the container width or the full window width. However, the usefulness of this approach becomes apparent when you need to create scenes that <em>don&rsquo;t</em> take up the full page. In that case, we don&rsquo;t need to change any code, we simply change a couple of lines of CSS instead.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Accessing the width and height of an element</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const sceneContainerElem = document.querySelector(&#39;#scene-container&#39;);
+
+const sceneWidth = sceneContainerElem.clientWidth;
+const sceneHeight = sceneContainerElem.clientHeight;
+</code>
+  </pre>
+</section>
+
+<p>There are other ways of getting information about an element&rsquo;s dimensions, such as <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetWidth" target="_blank" rel="noopener noreferrer"><code>.offsetWidth</code>/<code>.offsetHeight</code></a> which takes into account any borders and padding that may have been set in the CSS, and <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollWidth" target="_blank" rel="noopener noreferrer"><code>.scrollWidth</code>/.scrollHeight</a>, which also includes parts of the element that may be off-screen.</p>
+<h2 id="creating-new-elements">Creating New Elements</h2>
+<p>There are many to create new HTML elements, but we&rsquo;ll stick to <code>document.createElement</code>](<a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement">https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement</a>) to do this:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Creating a new sub-heading element</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const headingElem = document.createElement(&#39;h2&#39;);
+
+headingElem.textContent =
+  &#39;Section Two: Waggle Dancing for Children and Teenagers&#39;;
+</code>
+  </pre>
+</section>
+
+<h3 id="adding-elements-to-our-page">Adding Elements to Our Page</h3>
+<p>To add the newly created element to our page, we can use <a href="https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append" target="_blank" rel="noopener noreferrer"><code>.append</code></a>.</p>
+<p>Let&rsquo;s add our newly created <code>&lt;h2&gt;</code> as a child of the <code>&lt;body&gt;</code> element:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Append the new element to our page</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+document.body.append(headingElem);
+</code>
+  </pre>
+</section>
+
+<p>Once added this way, our new <code>headingElem</code> will be immediately become visible, positioned after the <code>&lt;h1&gt;</code> that we created in HTML.</p>
+<p>There&rsquo;s a similar method called <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild" target="_blank" rel="noopener noreferrer"><code>.appendChild</code></a>, that works <em>almost</em> the same way as <code>.append</code>. There are some technical differences between these two methods, but for our purposes, they are not important. We&rsquo;ll simply choose <code>.append</code> since it saves a few keystrokes.</p>
+<h2 id="listening-for-events">Listening for Events</h2>
+<p>One of the most important functions of a web application is <strong>reacting to change</strong>. In JavaScript, changes are called <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event" target="_blank" rel="noopener noreferrer">Events</a>, and there&rsquo;s <a href="https://developer.mozilla.org/en-US/docs/Web/Events" target="_blank" rel="noopener noreferrer">a huge list of events</a> to choose from.</p>
+<p>One important category of events is user input such as
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event" target="_blank" rel="noopener noreferrer">clicks</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event" target="_blank" rel="noopener noreferrer">key presses</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event" target="_blank" rel="noopener noreferrer">scrolling the mouse
+wheel</a>, screaming, and so on. OK, not that last one. There are many other events returned by the browser, for example, when media such as video has loaded and is ready to play, or has finished playing, events related to CSS transitions and animation, and even events related to printing the current webpage. Another important event which we&rsquo;ll look at in a moment is <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/resize_event" target="_blank" rel="noopener noreferrer">the <code>resize</code> event</a>. We&rsquo;ll use this to update the size of our three.js scenes whenever the browser window changes size.</p>
+<p>When we&rsquo;re talking about events, we sometimes refer to HTML elements as <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget" target="_blank" rel="noopener noreferrer"><strong>event targets</strong></a>.</p>
+<h3 id="the-addeventlistener-method">The <code>addEventListener</code> Method</h3>
+<p>To listen for events, we&rsquo;ll use something appropriately called an event listener. We can attach event listeners to nearly any HTML element, from the <code>window</code> itself, to the <code>document</code>, to sub-elements like headings, paragraphs, and buttons. If we attach an event listener (for example, a listener for mouse <code>click</code> events) to <code>window</code> or <code>document</code>, events will be captured on the whole page. However, if we attach the listener to a single element such as a button, the <code>click</code> events will only be captured when the button is clicked.</p>
+<p>To attach an event listener to an element, we use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener" target="_blank" rel="noopener noreferrer"><code>element.addEventListener</code></a> method. This takes three arguments: the event type to listen for, a <a href="/book/appendix/javascript-reference/#callback-functions">callback function</a> specifying what to do when the event occurs, and optional options. We&rsquo;ll leave out the options here for the sake of brevity.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Listen for click events on the whole window</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+window.addEventListener(&#39;click&#39;, (event) =&gt; {
+  console.log(&#39;You clicked the mouse!&#39;);
+} );
+</code>
+  </pre>
+</section>
+
+<p>As another example, let&rsquo;s say we have a button defined in HTML:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">An ominous button</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;button id=&#34;risky-click-button&#34;&gt;Release the bees!&lt;/button&gt;
+</code>
+  </pre>
+</section>
+
+<p>We can listen for clicks on the button like this:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Listen for events on the button</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const button = document.querySelector(&#39;#risky-click-button&#39;);
+
+button.addEventListener(&#39;click&#39;, (event) =&gt; {
+  console.log(&#39;Buzz buzz!! Buzz buzz!!&#39;);
+});
+</code>
+  </pre>
+</section>
+
+<h3 id="the-event-argument">The <code>event</code> Argument</h3>
+<p>The callback function receives a single argument, <code>event</code>, containing details about the event:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The callback receives an object containing details about the event</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+window.addEventListener(&#39;click&#39;, (event) =&gt; {
+  console.log(event);
+});
+</code>
+  </pre>
+</section>
+
+<p><code>event</code> (often abbreviated to <code>evt</code>, <code>ev</code> or <code>e</code>) will be different for each event type. In this case, assuming the user is using a mouse and not a touchscreen, clicking anywhere on the page will return a <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent" target="_blank" rel="noopener noreferrer"><code>MouseEvent</code></a> which contains various data telling us where on the page the click landed, which mouse button was clicked, and so on.</p>
+<h3 id="removing-event-listeners">Removing Event Listeners</h3>
+<p>When we create a button that will always remain active, it&rsquo;s fine for an event listener to remain active until you close the page. However, it&rsquo;s best practice to clean up event listeners when you are done with them. There&rsquo;s a corresponding <code>.removeEventListener</code> method, but for that to work, we need to use a named callback.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">An event listener with a named callback</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const releaseBees = event =&gt; {
+  console.log(&#39;Buzz buzz!! Buzz buzz!!&#39;);
+};
+
+button.addEventListener(&#39;click&#39;, releaseBees);
+</code>
+  </pre>
+</section>
+
+<p>Now we can remove the event listener:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Using .removeEventListener to remove a listener</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// on second thoughts, let&#39;s not release the bees...
+button.removeEventListener(&#39;click&#39;, releaseBees);
+</code>
+  </pre>
+</section>
+
+<h3 id="prevent-the-default-behavior-of-an-event">Prevent the Default Behavior of an Event</h3>
+<p>When we add the <code>click</code> event to the button above, clicking on the button still works as normal, by which we mean any functionality that a browser usually associates with buttons will be processed.</p>
+<p>Often, that&rsquo;s not what we want. For example, we might want to use an <code>&lt;a&gt;</code> element instead of a button (a common, if questionable, practice):</p>
+
+
+<section class="highlight-wrapper"><span class="caption">An anchor element masquerading as a button</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;a class=&#34;button&#34; id=&#34;risky-click-button&#34; href=&#34;#&#34;&gt;Release the bees!&lt;/a&gt;
+</code>
+  </pre>
+</section>
+
+<p>Here, we&rsquo;ve styled the anchor element to look like a button using the <code>.button</code> class (details omitted). In this case, we <em>don&rsquo;t</em> want clicks on the link to exhibit normal link behavior such as redirecting to a new page.</p>
+<p>To disable the default behavior, we&rsquo;ll call <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault" target="_blank" rel="noopener noreferrer"><code>event.preventDefault</code></a> in the callback. Only our custom behavior will be processed.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">.preventDefault prevents default event behavior</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const fakeButton = document.querySelector(&#39;#risky-click-button&#39;);
+
+fakeButton.addEventListener(&#39;click&#39;, (event) =&gt; {
+  event.preventDefault();
+
+  console.log(&#39;Buzz buzz!! Buzz buzz!!&#39;);
+});
+</code>
+  </pre>
+</section>
+
+<h3 id="the-resize-event">The <code>resize</code> Event</h3>
+<p>Another important event is the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/resize_event" target="_blank" rel="noopener noreferrer"><code>resize</code></a> event, which occurs when the browser window changes size. This also occurs when a user rotates their phone from portrait to landscape mode.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Listening for the resize event</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+window.addEventListener(&#39;resize&#39;, () =&gt; {
+  console.log(&#39;The new width is:&#39;, window.innerWidth);
+  console.log(&#39;The new height is:&#39;, window.innerHeight);
+});
+</code>
+  </pre>
+</section>
+
+<p>Note that the <code>resize</code> event won&rsquo;t work when attached to anything other than the <code>window</code>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The resize event must be added to the entire window</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// this won&#39;t work!
+document.addEventListener(&#39;resize&#39;, onResizeCallback);
+</code>
+  </pre>
+</section>
+
+<h2 id="the-virtual-viewport">The Virtual Viewport</h2>
+<p>Mobile devices render your page in a <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag" target="_blank" rel="noopener noreferrer">virtual viewport</a>, then scale it and draw it onto the physical device screen. <strong>These virtual pixels (<strong>CSS pixels</strong>) may not be the same size as the device&rsquo;s physical pixels</strong>. They often differ by a factor of between two and five. This is known as the device&rsquo;s pixel ratio.</p>
+<h3 id="the-device-pixel-ratio">The Device Pixel Ratio</h3>
+<p>We&rsquo;ll need to take the pixel ratio into account when we set the size of three.js scenes to make sure rendered images are not blurry on mobile devices. We can access this value using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio" target="_blank" rel="noopener noreferrer"><code>window.devicePixelRatio</code></a>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The pixel ratio is the difference between physical pixels in the screen and CSS pixels</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const pixelRatio = window.devicePixelRatio;
+</code>
+  </pre>
+</section>
+
+<h2 id="drawing-animation-frames">Drawing Animation Frames</h2>
+<p>Usually, our three.js scene will contain movement. This means drawing frames - lots of frames! Ideally, we want to draw 60 frames per second. Modern browsers have a function designed to help us with this called <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame" target="_blank" rel="noopener noreferrer"><code>window.requestAnimationFrame</code></a>. Since <code>requestAnimationFrame</code> is part of the DOM API, it&rsquo;s not available in other environments such as Node.js.</p>
+<p>We&rsquo;ll cover how this works in a lot more detail in <a href="/book/first-steps/animation-loop/#the-solution-requestanimationframe">1.7: The Animation Loop</a> when we set up our animation loop.</p>
+<p>That&rsquo;s it for our exploration of the DOM and DOM API. We&rsquo;ve touched only a fraction of the functionality added to JavaScript by the web browser here, but we&rsquo;ve covered everything you need to follow the examples in this book. In this chapter and the last, we&rsquo;ve covered a lot of syntax. In the next chapters, we&rsquo;ll take a deeper look at the reality of using JavaScript to build applications. First up is a deep dive into JavaScript modules.</p>
+
+            <div class="bottom-pagination">
+
+
+
+
+
+<a href="/book/appendix/javascript-reference/" title="JavaScript Reference" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/appendix/javascript-modules/" class="control-elem next" title="JavaScript Modules"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
+          </div>
+        </div>
+      </main><div id="ide-wrapper" class="panel animate disabled hide">
+  <nav id="ide-controls-top" class="control-bar fuzzy-background">
+    <input
+      type="checkbox"
+      id="toggle-complete"
+      class="ide-toggle simple-toggle"
+      title="Show completed code (your changes will be saved)"
+      disabled="true"
+    />
+    <input
+      type="checkbox"
+      id="toggle-filetree"
+      class="hidden-input ide-toggle"
+    />
+    <label
+      for="toggle-filetree"
+      class="control-elem"
+      title="Toggle Filetree"
+    >
+      <span class="off-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"/></svg></span>
+      <span class="on-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M572.694 292.093L500.27 416.248A63.997 63.997 0 0 1 444.989 448H45.025c-18.523 0-30.064-20.093-20.731-36.093l72.424-124.155A64 64 0 0 1 152 256h399.964c18.523 0 30.064 20.093 20.73 36.093zM152 224h328v-48c0-26.51-21.49-48-48-48H272l-64-64H48C21.49 64 0 85.49 0 112v278.046l69.077-118.418C86.214 242.25 117.989 224 152 224z"/></svg></span>
+    </label>
+    <button
+      type="button"
+      id="reset-active-file"
+      class="control-elem"
+      title="Reset Current File"
+      disabled
+    ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M64 468V44c0-6.6 5.4-12 12-12h48c6.6 0 12 5.4 12 12v176.4l195.5-181C352.1 22.3 384 36.6 384 64v384c0 27.4-31.9 41.7-52.5 24.6L136 292.7V468c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12z"/></svg></button>
+    <button
+      type="button"
+      id="reset-all-files"
+      class="control-elem"
+      title="Reset All Changes"
+      disabled
+    ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M11.5 280.6l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2zm256 0l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2z"/></svg></button>
+    <input
+      type="checkbox"
+      id="toggle-preview"
+      class="hidden-input ide-toggle"
+    />
+    <label
+      for="toggle-preview"
+      class="control-elem"
+      title="Toggle Preview"
+    >
+      <span class="on-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M624 416H381.54c-.74 19.81-14.71 32-32.74 32H288c-18.69 0-33.02-17.47-32.77-32H16c-8.8 0-16 7.2-16 16v16c0 35.2 28.8 64 64 64h512c35.2 0 64-28.8 64-64v-16c0-8.8-7.2-16-16-16zM576 48c0-26.4-21.6-48-48-48H112C85.6 0 64 21.6 64 48v336h512V48zm-64 272H128V64h384v256z"/></svg></span>
+      <span class="off-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm0 394c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V192h416v234z"/></svg></span>
+    </label>
+    <button
+      type="button"
+      id="new-window-preview"
+      class="control-elem hide"
+      title="Open Preview in New Window"
+    ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg></button>
+  </nav>
+  <div id="editor-panel" class="panel animate">
+    <section
+      id="filetree-panel"
+      class="filetree panel animate fuzzy-background"
+    >
+      <div class="file-control-bar-top control-bar">
+        <button
+          type="button"
+          id="create-file-button"
+          class="control-elem"
+          title="New File or Folder"
+        ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 160v48c0 4.4-3.6 8-8 8h-56v56c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8v-56h-56c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h56v-56c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v56h56c4.4 0 8 3.6 8 8z"/></svg></button>
+        <button
+          type="button"
+          id="delete-file-button"
+          class="control-elem"
+          title="Delete File"
+          disabled
+        ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"/></svg></button>
+      </div>
+      <div id="filetree"></div>
+      <div class="file-control-bar-bottom control-bar">
+        <button
+          type="button"
+          id="download-button"
+          class="control-elem"
+          title="Download as Zip"
+        ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"/></svg></button>
+        <div class="import-style-select">
+          <span>Import Style</span>
+          <select
+            id="select-import-style"
+            class=""
+            title="Select Import Style"
+            disabled
+          >
+            <option value="npm" selected="selected">NPM (default)</option>
+            <option value="cdn">CDN</option>
+          </select>
+        </div>
+      </div>
+    </section>
+    <section id="editor" class="panel animate">
+      <div class="image-wrapper fuzzy-background">
+        <img
+          src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
+          alt="Selected Texture"
+          id="image-preview"
+        />
+      </div>
+    </section>
+  </div>
+  <div id="preview" class="panel animate">
+    <div id="preview-overlay"></div>
+    
+  </div>
+</div></div><div class="side-menu left-menu">
+  <div class="icons">
+    <input type="checkbox" id="invert-colors-toggle" class="hidden-input" />
+    <label
+      for="invert-colors-toggle"
+      class="control-elem"
+      title="Day/Night Theme"
+    >
+      <span class="day-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"/></svg></span>
+      <span class="night-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg></span>
+    </label>
+
+    <input type="checkbox" id="orientation-toggle" class="hidden-input" />
+    <label
+      for="orientation-toggle"
+      class="control-elem hide"
+      title="Orientation lock: auto/portrait/landscape"
+    >
+      <span class="auto-icon hide"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M440.65 12.57l4 82.77A247.16 247.16 0 0 0 255.83 8C134.73 8 33.91 94.92 12.29 209.82A12 12 0 0 0 24.09 224h49.05a12 12 0 0 0 11.67-9.26 175.91 175.91 0 0 1 317-56.94l-101.46-4.86a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12H500a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12h-47.37a12 12 0 0 0-11.98 12.57zM255.83 432a175.61 175.61 0 0 1-146-77.8l101.8 4.87a12 12 0 0 0 12.57-12v-47.4a12 12 0 0 0-12-12H12a12 12 0 0 0-12 12V500a12 12 0 0 0 12 12h47.35a12 12 0 0 0 12-12.6l-4.15-82.57A247.17 247.17 0 0 0 255.83 504c121.11 0 221.93-86.92 243.55-201.82a12 12 0 0 0-11.8-14.18h-49.05a12 12 0 0 0-11.67 9.26A175.86 175.86 0 0 1 255.83 432z"/></svg></span>
+      <span class="portrait-icon hide"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"/></svg></span>
+      <span class="landscape-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"/></svg></span>
+    </label>
+  </div>
+
+  <nav class="table-of-contents">
+    <h2><a href="/book/">Table of Contents</a></h2>
+    <div id="main-toc"><ul>
+    <li class="section-head">
+      <span class="chapter">0:</span><a href="/book/introduction/" title="Welcome to Discover three.js!">Welcome to Discover three.js!</a></li>
+    <li class="">
+      <span class="chapter">0.1:</span><a href="/book/introduction/about-the-book/" title="How to Use This Book">How to Use This Book</a></li>
+    <li class="">
+      <span class="chapter">0.2:</span><a href="/book/introduction/prerequisites/" title="What Do You Need to Run a three.js App?">What Do You Need to Run a three.js App?</a></li>
+    <li class="">
+      <span class="chapter">0.3:</span><a href="/book/introduction/get-help/" title="Welcome to the Community: three.js Around the Web">Welcome to the Community: three.js Around the Web</a></li>
+    <li class="">
+      <span class="chapter">0.4:</span><a href="/book/introduction/github-repo/" title="three.js on GitHub - Where the Magic Happens">three.js on GitHub - Where the Magic Happens</a></li>
+    <li class="">
+      <span class="chapter">0.5:</span><a href="/book/introduction/get-threejs/" title="How to Include three.js in Your Projects">How to Include three.js in Your Projects</a></li>
+    <li class="">
+      <span class="chapter">0.7:</span><a href="/book/introduction/threejs-with-frameworks/" title="Using three.js with React, Vue.js, Angular, Svelte, TypeScript...">Using three.js with React, Vue.js, Angular, Svelte, TypeScript...</a></li>
+    <li class="section-head">
+      <span class="chapter">1:</span><a href="/book/first-steps/" title="Getting Started: Here&#39;s Where the Real Fun Begins!">Getting Started: Here&#39;s Where the Real Fun Begins!</a></li>
+    <li class="">
+      <span class="chapter">1.1:</span><a href="/book/first-steps/app-structure/" title="The Structure of a three.js App">The Structure of a three.js App</a></li>
+    <li class="">
+      <span class="chapter">1.2:</span><a href="/book/first-steps/first-scene/" title="Your First three.js Scene: Hello, Cube!">Your First three.js Scene: Hello, Cube!</a></li>
+    <li class="">
+      <span class="chapter">1.3:</span><a href="/book/first-steps/world-app/" title="Introducing the World App">Introducing the World App</a></li>
+    <li class="">
+      <span class="chapter">1.4:</span><a href="/book/first-steps/physically-based-rendering/" title="Physically Based Rendering and Lighting">Physically Based Rendering and Lighting</a></li>
+    <li class="">
+      <span class="chapter">1.5:</span><a href="/book/first-steps/transformations/" title="Transformations and Coordinate Systems">Transformations and Coordinate Systems</a></li>
+    <li class="">
+      <span class="chapter">1.6:</span><a href="/book/first-steps/responsive-design/" title="Making Our Scenes Responsive (and also Dealing with Jaggies)">Making Our Scenes Responsive (and also Dealing with Jaggies)</a></li>
+    <li class="">
+      <span class="chapter">1.7:</span><a href="/book/first-steps/animation-loop/" title="The Animation Loop">The Animation Loop</a></li>
+    <li class="">
+      <span class="chapter">1.8:</span><a href="/book/first-steps/textures-intro/" title="A Brief Introduction to Texture Mapping">A Brief Introduction to Texture Mapping</a></li>
+    <li class="">
+      <span class="chapter">1.9:</span><a href="/book/first-steps/camera-controls/" title="Extend three.js With a Camera Controls Plugin">Extend three.js With a Camera Controls Plugin</a></li>
+    <li class="">
+      <span class="chapter">1.10:</span><a href="/book/first-steps/ambient-lighting/" title="Ambient Lighting: Illumination from Every Direction">Ambient Lighting: Illumination from Every Direction</a></li>
+    <li class="">
+      <span class="chapter">1.11:</span><a href="/book/first-steps/organizing-with-group/" title="Organizing Your Scenes">Organizing Your Scenes</a></li>
+    <li class="">
+      <span class="chapter">1.12:</span><a href="/book/first-steps/built-in-geometries/" title="The Built-In Geometries">The Built-In Geometries</a></li>
+    <li class="">
+      <span class="chapter">1.13:</span><a href="/book/first-steps/load-models/" title="Load 3D Models in glTF Format">Load 3D Models in glTF Format</a></li>
+    <li class="">
+      <span class="chapter">1.14:</span><a href="/book/first-steps/animation-system/" title="The three.js Animation System">The three.js Animation System</a></li>
+    <li class="section-head">
+      <span class="chapter">A:</span><a href="/book/appendix/" title="Appendices">Appendices</a></li>
+    <li class="">
+      <span class="chapter">A.1:</span><a href="/book/appendix/html-and-css-reference/" title="HTML and CSS Used in This Book">HTML and CSS Used in This Book</a></li>
+    <li class="">
+      <span class="chapter">A.2:</span><a href="/book/appendix/javascript-reference/" title="JavaScript Reference">JavaScript Reference</a></li>
+    <li class="">
+      <span class="chapter">A.3:</span><a href="/book/appendix/dom-api-reference/" title="The Document Object Model and DOM API">The Document Object Model and DOM API</a></li>
+    <li class="">
+      <span class="chapter">A.4:</span><a href="/book/appendix/javascript-modules/" title="JavaScript Modules">JavaScript Modules</a></li>
+    <li class="">
+      <span class="chapter">A.5:</span><a href="/book/appendix/asynchronous-javascript/" title="Asynchronous JavaScript">Asynchronous JavaScript</a></li>
+    <li class="">
+      <span class="chapter">B.1:</span><a href="/book/appendix/threejs-versions/" title="Dealing with Different three.js Versions">Dealing with Different three.js Versions</a></li>
+    <li class="">
+      <span class="chapter">B.2:</span><a href="/tips-and-tricks/" title="The Big List of three.js Tips and Tricks!">The Big List of three.js Tips and Tricks!</a></li>
+</ul>
+</div>
+  </nav>
+</div>
+<nav class="side-menu right-menu">
+  <h2>
+    <a href="/">
+      <img
+        alt="Discover three.js logo"
+        width="100%"
+        src="/images/logo/banner_trans_512.png"
+      />
+    </a>
+  </h2><ul class="links" style="justify-content: left">
+  <li><a href="/book/">Table Of Contents</a></li>
+  <li style="margin: auto">
+    <a href="/#mailing-list-signup" class="internal-link"
+      >Stay up to date - sign up to the mailing list!</a
+    >
+  </li>
+</ul></nav><style>
+  @font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Open Sans Regular"), local("OpenSans-Regular"),
+      url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0b.woff2)
+        format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "Varela Round";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Varela Round Regular"), local("VarelaRound-Regular"),
+      url(https://fonts.gstatic.com/s/varelaround/v12/w8gdH283Tvk__Lua32TysjIfp8uP.woff2)
+        format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "Fira Code";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2)
+      format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style></body>
+</html>

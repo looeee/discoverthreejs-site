@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <title>HTML and CSS Used in This Book | Discover three.js</title><meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="ROBOTS" content="INDEX, FOLLOW" />
+
+
+<meta name="application-name" content="Discover three.js" />
+
+<meta itemprop="name" content="Discover three.js" />
+
+<meta property="og:title" content="HTML and CSS Used in This Book | Discover three.js" />
+<meta name="twitter:title" content="HTML and CSS Used in This Book | Discover three.js" />
+
+<meta name="description" content="Here, we look more deeply at the HTML and CSS we used to create a simple web page for showcasing our three.js scenes. Even if you are new to web development, you should be able to get up to speed quickly." />
+<meta property="og:description" content="Here, we look more deeply at the HTML and CSS we used to create a simple web page for showcasing our three.js scenes. Even if you are new to web development, you should be able to get up to speed quickly." />
+<meta name="twitter:description" content="Here, we look more deeply at the HTML and CSS we used to create a simple web page for showcasing our three.js scenes. Even if you are new to web development, you should be able to get up to speed quickly." />
+
+<meta
+  itemprop="keywords"
+  content="threejs webgl opengl fbx gltf khronos webvr vr webdev design cg graphics animation javascript esnext es6 education tutorials blog ebook node npm"
+/>
+
+<meta property="og:site_name" content="Discover three.js" />
+<meta property="og:type" content="book" />
+<meta property="og:url" content="https://discoverthreejs.com/" />
+<meta
+  property="og:image"
+  content="https://discoverthreejs.com/images/logo.png"
+/>
+<meta
+  property="twitter:image"
+  content="https://discoverthreejs.com/images/logo.png"
+/>
+<meta name="twitter:creator" content="@lewy_blue" />
+<meta name="twitter:site" content="@lewy_blue" />
+<meta name="twitter:card" content="Here, we look more deeply at the HTML and CSS we used to create a simple web page for showcasing our three.js scenes. Even if you are new to web development, you should be able to get up to speed quickly." />
+<meta name="twitter:image:width" content="1024" />
+<meta name="twitter:image:height" content="1024" />
+
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="msapplication-TileColor" content="#00aba9" />
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619078540" /><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "image": "https://discoverthreejs.com/images/logo.png",
+    "mainEntity": {
+      "@type": "Book",
+      "author": {
+        "@type": "Person",
+        "name": "Lewy Blue",
+        "jobTitle": "Author",
+        "url": "https://twitter.com/lewy_blue"
+      },
+      "about": "",
+      "copyrightHolder": "https://discoverthreejs.com",
+      "copyrightYear": "2021",
+      "bookFormat": "http://schema.org/EBook",
+      "datePublished": "2018-10-01",
+      "image": "https://discoverthreejs.com/images/logo.png",
+      "inLanguage": "English",
+      "name": "Discover three.js",
+      "genre": "Education",
+      "keywords": "threejs webgl animation javascript es6 education tutorials blog ebook",
+      "publisher": {
+        "@type": "Organization",
+        "name": "https://discoverthreejs.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://discoverthreejs.com/images/logo.png"
+        }
+      }
+    }
+  }
+</script><link
+  rel="canonical"
+  href="https://discoverthreejs.com/book/appendix/html-and-css-reference/"
+/>
+
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619078540" />
+
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/apple-touch-icon.png?v=1619078540"
+/>
+
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/favicon-16x16.png?v=1619078540"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/favicon-32x32.png?v=1619078540"
+/>
+
+<link rel="manifest" href="/site.json?v=1619078540" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619078540" color="#5bbad5" />
+<style>
+      .loading-page {
+        display: none;
+      }
+    </style>
+
+    
+    
+    <link rel="stylesheet" href="/styles/chapter.css?v=1619078544">
+
+    <noscript>
+      
+      
+      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619078544">
+    </noscript>    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <script type="module">
+  
+  
+
+  
+  
+
+  
+  
+
+  import { setupChapterEarly } from "\/js\/chapterEarly.js";
+  setupChapterEarly();
+
+  window.addEventListener('load', async () => {
+    const { setupChapterLate } = await import(
+      "\/js\/chapterLate.js"
+    );
+    setupChapterLate();
+
+    
+    const { setupIDE } = await import(
+      "\/js\/ide.js"
+    );
+
+    const ideConfig = {
+      showIDE:  true ,
+      IDE: {
+        fullScreen: false,
+        container: '#ide-wrapper',
+        serverDirectory: 'examples',
+        stripDirectory: 'worlds\/appendix\/html-and-css-reference\/',
+        closedFolders: ''
+          .replace(/[\s\'\[\]']+/g, '')
+          .split(','),
+        comparisonMode: '',
+        files: 'styles\/main.css, worlds\/appendix\/html-and-css-reference\/index.html'
+          .replace(/[\s\'\[\]']+/g, '')
+          .split(','),
+        entry: 'index.html',
+        activeDocument: 'index.html',
+        switchImportsAllowed:
+          'false',
+      },
+    }
+
+    await setupIDE(ideConfig);
+    
+  });
+</script></head>
+  <body class="loading-page"><nav class="top-nav">
+  <div class="nav-background"></div>
+
+  <div class="icon-group left">
+    <input type="checkbox" id="left-menu-toggle" class="hidden-input" />
+    <label
+      for="left-menu-toggle"
+      class="control-elem"
+      title="Table Of Contents"
+    >
+      <span class="open-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"/></svg></span>
+      <span class="close-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg></span>
+    </label>
+
+    <input
+      type="checkbox"
+      id="toggle-ide"
+      class="hidden-input ide-toggle"
+    />
+    <label
+      for="toggle-ide"
+      class="control-elem ide-control hide"
+      title="Show/Hide IDE"
+    >
+      <span class="on-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M384 64H192C86 64 0 150 0 256s86 192 192 192h192c106 0 192-86 192-192S490 64 384 64zm0 320c-70.8 0-128-57.3-128-128 0-70.8 57.3-128 128-128 70.8 0 128 57.3 128 128 0 70.8-57.3 128-128 128z"/></svg></span>
+      <span class="off-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M384 64H192C85.961 64 0 149.961 0 256s85.961 192 192 192h192c106.039 0 192-85.961 192-192S490.039 64 384 64zM64 256c0-70.741 57.249-128 128-128 70.741 0 128 57.249 128 128 0 70.741-57.249 128-128 128-70.741 0-128-57.249-128-128zm320 128h-48.905c65.217-72.858 65.236-183.12 0-256H384c70.741 0 128 57.249 128 128 0 70.74-57.249 128-128 128z"/></svg></span>
+    </label>
+  </div>
+
+  <div class="icon-group center">
+
+
+
+
+
+<a href="/book/appendix/" title="Appendices" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/appendix/javascript-reference/" class="control-elem next" title="JavaScript Reference"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
+  </div>
+
+  <div class="icon-group right">
+    <input type="checkbox" id="right-menu-toggle" class="hidden-input" />
+    <label for="right-menu-toggle" class="control-elem" title="Main Menu">
+      <span class="open-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg></span>
+      <span class="close-close hide"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg></span>
+    </label>
+  </div>
+</nav><div class="wrapper orientation-auto">
+      <main class="panel animate">
+        <div class="scroller">
+          <div class="content">
+            
+              <div class="chapter-info">Word Count:3902, reading time: ~19minutes</div>
+            
+            <h1 id="html-and-css-used-in-this-book">HTML and CSS Used in This Book</h1>
+<p>In recent years, the number of ways in which you can build a website has exploded. It seems like there are a million different libraries and frameworks, with names like React, Vue, Angular, Svelte, and related tools like Webpack, Parcel, Rollup, Browserify, Babel, SCSS. New ones are being created almost daily. These are amazing tools, and each solves the problem of building complex web applications in their own unique way. Nonetheless, the sheer amount and variety of tools and frameworks can seem overwhelming, and this is especially apparent when it comes to writing a book about web development. Webpack and Babel allow us to create beautifully structured projects and use cutting edge JavaScript syntax even before it&rsquo;s available in any browser. React, Svelte, and other frameworks are perfect for building large and complex applications. However, any tool, especially one complicated enough to build a website, comes at the price of added complexity. When learning something new, such as three.js, it&rsquo;s important to keep your mental overhead low and leave room for new information to filter into place.</p>
+<p>In this book, we&rsquo;ll strip the concept of a web page down to the bare minimum that will allow us to run a three.js application, and work from there. When we do this, we are left with three components: a single HTML file, a single CSS file, and some JavaScript. In this chapter, we&rsquo;ll explore the <em><strong>index.html</strong></em> and <em><strong>styles/main.css</strong></em> files. Over the following couple of chapters, we&rsquo;ll take a looks at how to build a modern JavaScript application and the browser API that allows us to connect it to to a webpage.</p>
+<p>These chapters are intended to serve as a quick and basic introduction to web development. You can either read them straight through or use them as a reference as you work through the main book. There, whenever we encounter something new, a link will be provided to the relevant section of these appendices.</p>
+<p>Later in your career as a three.js developer, you will encounter many of these tools and frameworks, and find that they provide a very different style of creating websites than our two simple files - both more complicated and more powerful. At this point, you&rsquo;ll find it matters very little which framework, if any, was used to create a page. As long as you have taken care with the structure of your application, <strong>you can take the <em>very same</em> three.js application and with almost no effort make it work in a React app, or an Angular app, or a Svelte app, or with a minimalistic web page such as the one we have created here</strong>.</p>
+<p>Of course, you might prefer to re-create the application to better suit the philosophy of your favorite framework, and there is nothing wrong with doing that. However, it&rsquo;s important to be aware that doing so is a choice, not a requirement.</p>
+<p>This suits us well since our goal in this book is not to teach you about HTML and CSS or to talk about web development tooling. Our focus is on three.js and computer graphics, and, aside from this chapter, we&rsquo;ll leave the talk of HTML, CSS, and frameworks to the millions of other books and articles on these topics.</p>
+<p>Our simple HTML page can be created using nothing more than a text editor and styled with just a few lines of CSS. Let&rsquo;s take a look at what goes into <em><strong>index.html</strong></em> and <em><strong>styles/main.css</strong></em> now.</p>
+<h2 id="hypertext-markup-language-html">Hypertext Markup Language (HTML)</h2>
+<figure class="tiny left noborder">
+  <img src="/images/app-logos/html5.png" loading="lazy" alt="html5 logo" title="html5 logo"  /></figure>
+<p><a href="https://en.wikipedia.org/wiki/HTML" target="_blank" rel="noopener noreferrer">Hypertext Markup Language</a>, or HTML, is the main language used to create web pages.</p>
+<p>The building blocks of HTML are <strong>elements</strong>, <strong>tags</strong>, and <strong>attributes</strong>.</p>
+<h3 id="element">Element</h3>
+<p>The terms <a href="https://developer.mozilla.org/en-US/docs/Glossary/Element" target="_blank" rel="noopener noreferrer"><strong>element</strong></a> and <strong>node</strong> are used interchangeably and refer to a complete section of an HTML document. Here are some common examples:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Some common HTML elements</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;h1&gt;A heading element&lt;/h1&gt;
+
+&lt;p&gt;A paragraph element.&lt;/p&gt;
+
+&lt;a&gt;An anchor element&lt;/a&gt;
+
+&lt;button&gt;A button element&lt;/button&gt;
+</code>
+  </pre>
+</section>
+
+<p>The above elements create visual objects on the page, such as text, links, and buttons. These elements have default appearance set by the browser, which we can override using CSS styles (as we&rsquo;ll see below).</p>
+<p>Some elements cannot be seen directly. For example, the <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, and <code>&lt;body&gt;</code> elements create the basic structure of the page, while <code>&lt;link&gt;</code> and <code>&lt;script&gt;</code> elements are used for things like loading CSS and JavaScript files.</p>
+<p>Another very common element is <code>&lt;div&gt;</code>, which is used to mark an area of the page. <code>&lt;div&gt;</code> is the basic container element of HTML, and the average website is likely to have hundreds of these.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">div elements define a section of the page</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;div&gt;&lt;/div&gt;
+</code>
+  </pre>
+</section>
+
+<p>HTML documents are created by nesting elements inside each other.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Elements can be nested</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;div&gt;
+  &lt;h1&gt;A heading element&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+  &lt;p&gt;A paragraph of test with a &lt;a&gt;link&lt;/a&gt; inside it.&lt;/p&gt;
+&lt;/div&gt;
+</code>
+  </pre>
+</section>
+
+<p>Here, we&rsquo;ve divided our page into two parts. The top <code>&lt;div&gt;</code> contains the heading, and the bottom <code>&lt;div&gt;</code> contains the main text.</p>
+<p>The <code>&lt;p&gt;</code> element has a further <code>&lt;a&gt;</code> (anchor) element nested inside it. Anchor elements are used as links which can lead to other pages (on this site or another site), or a different place on the same page. This <code>&lt;a&gt;</code> anchor doesn&rsquo;t link <em>to</em> anywhere yet. We&rsquo;ll see how to set up links using attributes in a few moments.</p>
+<h3 id="a-minimal-html-document">A Minimal HTML Document</h3>
+<p>With just the above elements, we can create a basic HTML document.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A minimal HTML document</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;
+      Rock and Roll Baby!
+    &lt;/title&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;h1&gt;
+      Rock, Shake, Rattle and Roll!
+    &lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+  </pre>
+</section>
+
+<p>You can save this in a file called <em><strong>rock.html</strong></em>, then open it up in any web browser, and <em>Hey presto!</em> you have a website!</p>
+<p>In the above example, <code>&lt;!DOCTYPE html&gt;</code> marks the start of a new HTML file. Unlike most elements, the <code>!DOCTYPE</code> element does not have a closing tag.</p>
+<p>Next, we have an <code>&lt;html&gt;</code> element. The opening tag is <code>&lt;html&gt;</code>, marking the start of an element, and the closing tag is <code>&lt;/html&gt;</code>, placed at the very end of the file.</p>
+<p>Inside the <code>&lt;html&gt;</code> element, we have two sub-elements, <code>&lt;head&gt;</code>, and <code>&lt;body&gt;</code>. Each of these has further sub-elements.</p>
+<p>The only element we haven&rsquo;t seen so far is the <code>&lt;title&gt;</code>, which tells the browser what to display in the URL bar or tab at the top of the browser window.</p>
+<p>These elements and sub-elements define a tree-structure:</p>
+<figure >
+  <img src="/images//appendix/html-tree.svg" loading="lazy" alt="The HTML Tree Structure" title="The HTML Tree Structure"  />
+    <figcaption>The HTML Tree Structure</figcaption></figure>
+<h3 id="tag">Tag</h3>
+<p>Elements are defined by <a href="https://developer.mozilla.org/en-US/docs/Glossary/tag" target="_blank" rel="noopener noreferrer">tags</a>, which are used to mark the start or end of an element.</p>
+<p>For example, to start an HTML document, you create the opening <code>&lt;html&gt;</code> tag, and to end the document, you place a closing <code>&lt;/html&gt;</code> tag. To start a paragraph, you create an opening <code>&lt;p&gt;</code> tag, and to end the paragraph you create a closing <code>&lt;/p&gt;</code> tag. In every case, the closing tag will look the same as the opening tag with an extra <code>/</code> character.</p>
+<p>Most elements require both an opening and a closing tag, although some do not, such as the <code>&lt;!DOCTYPE html&gt;</code> tag at the start of the file.</p>
+<h3 id="attribute">Attribute</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Glossary/Attribute" target="_blank" rel="noopener noreferrer">Attributes</a> are additional data that can be added to an element. They are placed within the opening tag.</p>
+<h4 id="the-id-and-class-attributes">The <code>id</code> and <code>class</code> Attributes</h4>
+<p>The two most common attributes are <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id" target="_blank" rel="noopener noreferrer"><code>id</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class" target="_blank" rel="noopener noreferrer"><code>class</code></a>. We can use these attributes to reference an element within a CSS or JavaScript file. In the CSS file, we can apply style rules, and within the JavaScript file, we have almost unlimited ability to control the element, allowing us to delete, replace, edit, or animate the element in any way we like.</p>
+<p>Here is a button with an ID:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A button with an ID attribute</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;button id=&#34;close-button&#34;&gt;Click here to close!&lt;/button&gt;
+</code>
+  </pre>
+</section>
+
+<p>Here, we can use the <code>close-button</code> ID within our CSS file to change the appearance of the button, and within JavaScript, we might add a function to control what happens when the button is clicked.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Two elements with the same class attribute</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;h1 class=&#34;notice&#34;&gt;A heading you want to stand out.&lt;/h1&gt;
+
+&lt;p class=&#34;notice&#34;&gt;Some text you want to stand out.&lt;/p&gt;
+</code>
+  </pre>
+</section>
+
+<p>Classes are not unique. You can have any number of elements with a <code>.notice</code> class. If you use this class in your CSS file to set the text color to red, for example, text in both the <code>&lt;h1&gt;</code> and <code>&lt;p&gt;</code> elements will turn red (unless already controlled by a stronger CSS rule elsewhere in your application). Within JavaScript, you can use the class to reference either or both of these elements.</p>
+<h4 id="the-style-attribute">The <code>style</code> Attribute</h4>
+<p>As well as connecting CSS styling to an element using IDs and classes, you can use the <code>style</code> attribute to attach inline styles directly to an element. For example, here we have set the text color for a single paragraph element to <code>skyblue</code>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">An inline style declaration</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;p style=&#34;color: skyblue;&#34;&gt;This text will be red.&lt;/p&gt;
+</code>
+  </pre>
+</section>
+
+<h4 id="the-href-attribute">The <code>href</code> Attribute</h4>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/href" target="_blank" rel="noopener noreferrer"><code>href</code> attribute</a> links to a resource using an URL. Usually, this attribute is used with an <code>&lt;a&gt;</code> anchor element:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">An anchor element linking to the three.js forum</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;a href=&#34;https://discourse.threejs.org/&#34;&gt;the three.js forum&lt;/a&gt;
+</code>
+  </pre>
+</section>
+
+<p>When a user clicks on the above link, they will be redirected to <a href="https://discourse.threejs.org/" target="_blank" rel="noopener noreferrer">the three.js forum</a>.</p>
+<p>Anchor elements can lead to external sites, other pages on the same site, or even a different section of the same page.</p>
+<p>Another common use case for the <code>href</code> attribute is to connect a CSS files using the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link" target="_blank" rel="noopener noreferrer"><code>&lt;link&gt;</code></a> element.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A link element referencing the main stylesheet</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;link href=&#34;/styles/main.css&#34; rel=&#34;stylesheet&#34;&gt;
+</code>
+  </pre>
+</section>
+
+<p>We have also added the <code>rel=stylesheet</code> attribute here. <code>&lt;link&gt;</code> elements can be used for many purposes, so we need to inform the browser that this one is linking to a CSS style sheet.</p>
+<h4 id="the-src-attribute">The <code>src</code> Attribute</h4>
+<p>Similar to the <code>href</code> attribute, the <code>src</code> attribute points to a resource in another location. These resources can be <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img" target="_blank" rel="noopener noreferrer">images</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video" target="_blank" rel="noopener noreferrer">videos</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio" target="_blank" rel="noopener noreferrer">sound</a> files, and more:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Image and audio elements</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;img src=&#34;chuck.jpg&#34;&gt;
+
+&lt;audio src=&#34;johny-be-good.mp3&#34;&gt;&lt;/audio&gt;
+</code>
+  </pre>
+</section>
+
+<p>More importantly for us in this book, we can also use the <code>src</code> attribute to link to JavaScript files using the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script" target="_blank" rel="noopener noreferrer"><code>&lt;script&gt;</code> element</a>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A script element referencing a JavaScript file</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;script src=&#34;main.js&#34;&gt;&lt;/script&gt;
+</code>
+  </pre>
+</section>
+
+<h4 id="the-module-attribute">The <code>module</code> Attribute</h4>
+<p>We&rsquo;ll be writing our JavaScript using ES6 modules in this book (more on those in the following chapter), so we need to add one more attribute to our script tag:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A script element referencing a JavaScript module</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;script type=&#34;module&#34; src=&#34;main.js&#34;&gt;&lt;/script&gt;
+</code>
+  </pre>
+</section>
+
+<p>Now the browser knows we are using JavaScript modules and it can interpret the <code>main.js</code> file correctly.</p>
+<h3 id="the-html-and-doctype-elements">The <code>&lt;html&gt;</code> and DOCTYPE Elements</h3>
+<p>Every webpage starts with these two elements. These simply inform any interested parties (such as a web browser) that this is an HTML document.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Defining an HTML document</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;!-- You page goes here --&gt;
+&lt;/html&gt;
+</code>
+  </pre>
+</section>
+
+<p>Incidentally, here&rsquo;s how you write a comment in HTML: <code>&lt;!-- You page goes here --&gt;</code>. Anything between <code>&lt;!--</code> and <code>--&gt;</code> is for human eyes only and will be ignored by the browser.</p>
+<h3 id="the-head-element">The <code>&lt;head&gt;</code> Element</h3>
+<p>Inside the <code>&lt;html&gt;</code> element, there are two sub-elements called <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code>.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The head element contains metadata and the body contains the content</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;!-- Metadata --&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!-- The main content --&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+  </pre>
+</section>
+
+<p>The <code>&lt;head&gt;</code> element is the place where we put metadata. This can include instructions for the browser on how to render the page, as well as information for search engines and social media sites, links to CSS and JavaScript files, and more.</p>
+<p>Every example in this book will use the same <code>&lt;head&gt;</code> section:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The head section of our minimal web page</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;head&gt;
+  &lt;title&gt;Discoverthreejs.com&lt;/title&gt;
+
+  &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1&#34; /&gt;
+
+  &lt;meta charset=&#34;UTF-8&#34; /&gt;
+
+  &lt;link
+    rel=&#34;icon&#34;
+    href=&#34;https://discoverthreejs.com/favicon.ico&#34;
+    type=&#34;image/x-icon&#34;
+  /&gt;
+
+  &lt;link rel=&#34;stylesheet&#34; href=&#34;./styles/main.css&#34; type=&#34;text/css&#34; /&gt;
+
+  &lt;script type=&#34;module&#34; src=&#34;js/main.js&#34;&gt;&lt;/script&gt;
+&lt;/head&gt;
+</code>
+  </pre>
+</section>
+
+<p>First, there&rsquo;s the <code>&lt;title&gt;</code>. This contains some text that will appear in the tab on your browser. Next, the two <code>&lt;meta&gt;</code> elements ensure that our page looks the same no matter what browser or device we display it on:</p>
+<ul>
+<li>The <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag" target="_blank" rel="noopener noreferrer">Viewport meta tag</a> only applies to mobile devices, which render the page in a virtual viewport:
+<ul>
+<li><code>width=device-width</code>: render the page at the same width as the device.</li>
+<li><code>initial-scale=1</code>: set the initial scale to 1.</li>
+</ul>
+</li>
+<li>The <code>&lt;meta charset&gt;</code> tag tells the browser how to decode the HTML document itself.</li>
+</ul>
+<p>Next, there are two <code>&lt;link&gt;</code> elements:</p>
+<ul>
+<li><code>&lt;link rel=&quot;icon&quot; ...</code>: links to a <a href="https://discoverthreejs.com/favicon.ico" target="_blank" rel="noopener noreferrer"><em>favicon</em></a> that shows up in the browser&rsquo;s URL bar, next to the title.</li>
+<li><code>&lt;link rel=&quot;stylesheet&quot; ...</code>: links to a style sheet called <em>main.css</em> which we can use to control the color, font, width, height, position, and so on, of elements on the page. This file is located in a folder called <em>/styles</em>, relative to our HTML file.</li>
+</ul>
+<p>Finally, there&rsquo;s a <code>&lt;script&gt;</code> tag linking to our main JavaScript file, <em><strong>main.js</strong></em>. This file is also known as the <em>entry point</em> of our JavaScript application, and it may contain links to other JavaScript files inside it. We will always put script elements into the head section of our HTML, but in the real world, you may find scripts elements anywhere in an HTML document.</p>
+<p>That&rsquo;s it for the <code>&lt;head&gt;</code> section.</p>
+<h3 id="the-body-element">The <code>&lt;body&gt;</code> Element</h3>
+<p>The <code>&lt;body&gt;</code> element (mostly) contains things that we want to see in the browser.</p>
+<p>Here, we have created a heading and a paragraph.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The body element containing a title and some text</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;body&gt;
+  &lt;h1&gt;
+    Rock, Shake, Rattle and Roll!
+  &lt;/h1&gt;
+  &lt;p&gt;Charles Edward Anderson Berry was an American singer and songwriter, and one of the pioneers of rock and roll music.&lt;/p&gt;
+&lt;/body&gt;
+</code>
+  </pre>
+</section>
+
+<p>The <code>&lt;h1&gt;</code> element is the main title which will show in large bold font at the top of the page. Text with then <code>&lt;p&gt;</code> element will be rendered at the standard size (either the browser default or styles we have created in CSS).</p>
+<h3 id="the-canvas-element">The <code>&lt;canvas&gt;</code> Element</h3>
+<p>A very important element for us is the <code>&lt;canvas&gt;</code> element. All WebGL scenes are drawn inside a canvas element like this one.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A canvas element</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;canvas&gt;&lt;/canvas&gt;
+</code>
+  </pre>
+</section>
+
+<p>Usually, we won&rsquo;t create the canvas ourselves. Instead, we&rsquo;ll let three.js create and set up the <code>&lt;canvas&gt;</code> for us, then use JavaScript to add it to the page.</p>
+<p>In addition to WebGL, canvas elements can be used with the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D" target="_blank" rel="noopener noreferrer">2D Canvas API</a> to create simple 2D drawings.</p>
+<h2 id="cascading-style-sheets-css">Cascading Style Sheets (CSS)</h2>
+<figure class="tiny left noborder">
+  <img src="/images/app-logos/css3.png" loading="lazy" alt="css3 logo" title="css3 logo"  /></figure>
+<p>As we mentioned above, when you create a visible HTML element such as a <code>&lt;button&gt;</code> or <code>&lt;h1&gt;</code> heading, the browser will apply a default style to it. The web would be a very boring place if all buttons and headings on every website looked exactly the same. Fortunately, we can override the defaults with styles with our own.</p>
+<p><a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets" target="_blank" rel="noopener noreferrer">Cascading Style Sheets</a>, or CSS, is the language we use to add create these custom styles.</p>
+<p>Using CSS, we can change things like width/height/margins/rounded corners/colors/fonts and so on or HTML elements.</p>
+<p>It&rsquo;s possible to write CSS styles directly in the HTML file, either inline in the <code>style</code> attribute or inside a <code>&lt;style&gt;</code> element. However, it&rsquo;s best practice to define your styles in a separate file and then use a <code>&lt;link&gt;</code> element to reference it from your HTML document, as we described above.</p>
+<p>One thing to be aware of when writing CSS styles is that every HTML element already has default CSS rules applied, and these <em>may</em> vary from browser to browser. <strong>When we specify a rule in our CSS, we are overwriting the browser defaults</strong>.</p>
+<h3 id="specificity">Specificity</h3>
+<p>CSS styles have a specificity level, which is a weight applied to each style rule. Browser default styles have the lowest specificity, while custom styles that you create may have various levels of specificity depending on how you create them.</p>
+<p>We won&rsquo;t get into this further here since it&rsquo;s a fairly complex topic, but it&rsquo;s important to remember that if you have created a style and it doesn&rsquo;t seem to be working, it may be because it&rsquo;s overridden by a style with higher specificity elsewhere. The browser dev tools (F12) are very useful in determining what styles are applied to an element.</p>
+<p>There are three different ways to create CSS styles, ranked from <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity" target="_blank" rel="noopener noreferrer">least to most specific</a>.</p>
+<h3 id="styling-elements">Styling Elements</h3>
+<p>First, we can set styles for an element such as <code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code> or <code>&lt;div&gt;</code>, in which case, all elements of the same type will be styled. Here, we will make all <code>&lt;p&gt;</code> elements red and all <code>&lt;h1&gt;</code> elements blue:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Style for paragraphs and the largest heading size</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-css match-braces">
+p {
+  color: red;
+}
+
+h1 {
+  color: blue;
+}
+</code>
+  </pre>
+</section>
+
+<h3 id="styling-classes">Styling Classes</h3>
+<p>Next, we can define CSS classes that correspond to the HTML <code>class</code> attribute we described above. Suppose we have some paragraphs of text in our HTML file, some of which have a <code>notice</code> class applied:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Styling all paragraphs with the &lsquo;notice&rsquo; class</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;p class=&#34;notice&#34;&gt;Some text that you want to stand out.&lt;/p&gt;
+
+&lt;p&gt;Some normal text.&lt;/p&gt;
+
+&lt;p class=&#34;notice&#34;&gt;More text that you want to stand out.&lt;/p&gt;
+</code>
+  </pre>
+</section>
+
+<p>If we define the <code>notice</code> class in our CSS file, we can style the text in only those paragraphs with the class. Classes in CSS are denoted using a <code>.</code> followed by the class name.</p>
+<p>Here, we&rsquo;ll make the text red once again:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Set text color of all elements with the &lsquo;notice&rsquo; class</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-css match-braces">
+.notice {
+  color: red
+}
+</code>
+  </pre>
+</section>
+
+<p>But this time, only the first and third paragraphs will become red, while the middle one will remain black. We can add the notice class to any element, not just <code>&lt;p&gt;</code>. Here, the first <code>&lt;h2&gt;</code> element will also have red text:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">You can use a class with any type of element</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;h2 class=&#34;notice&#34;&gt;A very important heading&lt;/h2&gt;
+
+&lt;h2&gt;A heading of normal import&lt;/h2&gt;
+</code>
+  </pre>
+</section>
+
+<h3 id="styling-ids">Styling IDs</h3>
+<p>The most specific way of styling things in a CSS file is using IDs, which again correspond to the <code>id</code> attribute in HTML. Styles defined using an ID are applied to a single element. Here is a button with a unique <code>id</code> attribute.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Give a single button a unique ID</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;button id=&#34;close-button&#34;&gt;Click here to close!&lt;/button&gt;
+</code>
+  </pre>
+</section>
+
+<p>Within CSS files, IDs are written using a <code>#</code> character followed by the ID name.</p>
+<p>This time, just to be different, let&rsquo;s give our close button a red border:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Define styles for the &lsquo;close-button&rsquo; ID</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-css match-braces">
+#close-button {
+  border: 1px solid red;
+}
+</code>
+  </pre>
+</section>
+
+<h2 id="our-simple-web-page">Our Simple Web Page</h2>
+<p>Now, we are ready to fill in the details of our <em><strong>index.html</strong></em> and <em><strong>styles/main.css</strong></em> files to create our simple web page.</p>
+<h3 id="_indexhtml_"><em><strong>index.html</strong></em></h3>
+
+
+<section class="highlight-wrapper"><span class="caption">Our index.html file</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-html match-braces">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Discoverthreejs.com - HTML and CSS Used in This Book&lt;/title&gt;
+
+    &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1&#34;&gt;
+    &lt;meta charset=&#34;UTF-8&#34; /&gt;
+
+    &lt;link rel=&#34;icon&#34; href=&#34;https://discoverthreejs.com/favicon.ico&#34; type=&#34;image/x-icon&#34;&gt;
+    &lt;link href=&#34;./styles/main.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34;&gt;
+
+    &lt;script type=&#34;module&#34; src=&#34;./src/main.js&#34;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Discoverthreejs.com - HTML and CSS Used in This Book&lt;/h1&gt;
+
+    &lt;div id=&#34;scene-container&#34;&gt;
+      &lt;!-- Our &lt;canvas&gt; will be inserted here --&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+  </pre>
+</section>
+
+<p>Take a look at the <code>&lt;div id=&quot;scene-container&quot;&gt;</code>. We will use three.js to automatically create a <code>&lt;canvas&gt;</code> element, and then we&rsquo;ll use JavaScript to insert it with this <code>&lt;div&gt;</code>. Most of the examples in this book will take up the whole page, so we will use some CSS to make this element the correct size.</p>
+<h3 id="_maincss_"><em><strong>main.css</strong></em></h3>
+<p>Within our CSS file, we want to make sure that the <code>&lt;body&gt;</code> element takes up the whole screen, that the <code>&lt;div id=&quot;scene-container&quot;&gt;</code> element fills the whole body, and that the <code>&lt;h1&gt;</code> heading gets drawn on top of the <code>&lt;canvas&gt;</code> and not underneath it. Aside from that, we&rsquo;ll to set the <code>color</code> of our heading text, and center it near the top of the screen&hellip; and that&rsquo;s about it. Here&rsquo;s what we need to put inside the <em><strong>main.css</strong></em> style sheet to achieve all that:</p>
+
+
+<section class="highlight-wrapper">
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-css match-braces">body {
+  /* remove margins and scroll bars */
+  margin: 0;
+  overflow: hidden;
+
+  /* style text */
+  text-align: center;
+  font-size: 12px;
+  font-family: Sans-Serif;
+
+  /* color text */
+  color: #444;
+}
+
+h1 {
+  /* position the heading */
+  position: absolute;
+  width: 100%;
+
+  /* make sure that the heading is drawn on top */
+  z-index: 1;
+}
+
+#scene-container {
+  /* tell our scene container to take up the full page */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  /*
+    Set the container&#39;s background color to the same as the scene&#39;s
+    background to prevent flashing on load
+  */
+  background-color: skyblue;
+}
+
+</code>
+  </pre>
+</section>
+
+<h3 id="the-body-styles">The Body Styles</h3>
+<p>In most browsers, the body element has a default <code>margin</code> of 8 pixels. This means there will be an empty gap of 8 pixels on all sides of the screen, and these will show up as white lines around the edges of our full-screen three.js scene. We don&rsquo;t want this, so we&rsquo;ll override the default and set the margin to zero:</p>
+
+
+<section class="highlight-wrapper">
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-css match-braces">
+margin: 0;
+</code>
+  </pre>
+</section>
+
+<p>Next, we want to hide the scroll bars since our scene has no off-screen content:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Set the body margin to zero</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-css match-braces">
+overflow: hidden;
+</code>
+  </pre>
+</section>
+
+<p>Finally, we&rsquo;ll set some styles for any text on the page. Here, we are aligning text to the center of the screen, setting a base size of twelve pixels for one character, using a sans-serif font, and setting the text color to a light grey:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Set text styles for all elements on the page</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-css match-braces">
+text-align: center;
+font-size: 12px;
+font-family: Sans-Serif;
+
+color: #444;
+</code>
+  </pre>
+</section>
+
+<p>Look at the tree structure of our HTML page again:</p>
+<figure >
+  <img src="/images//appendix/html-inheritance.svg" loading="lazy" alt="Inheritance of CSS classes" title="Inheritance of CSS classes"  /></figure>
+<p>When we set the font properties on the <code>body</code> like this, all children of the body will <em>inherit</em> these properties unless we or the browser have already defined styles for them. Here, this means that the <code>&lt;h1&gt;</code> element will also have center-aligned, grey, sans-serif font.</p>
+<p>However, the browser has already set a margin value on <code>&lt;h1&gt;</code> elements that will override the margin of zero we set on the body. If we want to remove the <code>&lt;h1&gt;</code> margin, we would have to add another style to do so.</p>
+<p>When it comes to font sizing, things are a little more complicated. The browser considers the font size we set on the <code>&lt;body&gt;</code> to be the <em>base size</em>, then calculates the font size of various elements as percentages of that. <code>h1</code> is the largest heading size, and the browser will set the font size to 200% of the base size, or 24px. <code>h2</code> elements will be 150% of the base size, or 18px, and <code>&lt;p&gt;</code> elements will be 100% of the base size, 12px.</p>
+<h3 id="style-the-heading">Style the Heading</h3>
+<p>Next up, in the heading selector, we&rsquo;re using <a href="https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/" target="_blank" rel="noopener noreferrer">absolute positioning</a>, which means <em>relative to the containing element</em> (in this case, the <code>&lt;body&gt;</code> element). We&rsquo;ve given the element a width of 100% of the containing element, which is the body, so the heading will take up the full-screen width.</p>
+<p>Next, we&rsquo;ve set the <code>z-index</code> which controls the order in which elements are drawn. If we didn&rsquo;t add this, the browser would draw the heading first and then draw the <code>&lt;canvas&gt;</code> on top of it, hiding the heading. All elements have a default <code>z-index</code> of zero, so by setting the heading to one, we ensure that it is drawn on top.</p>
+<h3 id="style-the-scene-container-element">Style the Scene Container Element</h3>
+<p>The <code>#</code> symbol is used to represent an ID, so <code>#scene-container</code> controls the appearance of <code>&lt;div id=&quot;scene-container&quot;&gt;</code>.</p>
+<p>Once again, we are using <code>absolute</code> positioning for our scene container and setting its <code>width</code> and <code>height</code> both to <code>100%</code>, meaning that it will take up 100% of the parent element, in this case, the <code>body</code>. As we already made sure that the <code>body</code> will take up the whole screen, that means our <code>#scene-container</code> will also take up the whole screen.</p>
+<p>Finally, we&rsquo;ll set the background color of the container the same color as the color of the background of our scene, or at least, as close as possible. This will reduce flashing and flickering on load as your three.js scene will usually be rendered a couple of frames later than the container.</p>
+<p>With that out of the way, our page is ready to go! In the next chapter, we&rsquo;ll turn our attention to basic JavaScript syntax that we&rsquo;ll be using throughout the book.</p>
+
+            <div class="bottom-pagination">
+
+
+
+
+
+<a href="/book/appendix/" title="Appendices" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/appendix/javascript-reference/" class="control-elem next" title="JavaScript Reference"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
+          </div>
+        </div>
+      </main><div id="ide-wrapper" class="panel animate disabled hide">
+  <nav id="ide-controls-top" class="control-bar fuzzy-background">
+    <input
+      type="checkbox"
+      id="toggle-complete"
+      class="ide-toggle simple-toggle"
+      title="Show completed code (your changes will be saved)"
+      disabled="true"
+    />
+    <input
+      type="checkbox"
+      id="toggle-filetree"
+      class="hidden-input ide-toggle"
+    />
+    <label
+      for="toggle-filetree"
+      class="control-elem"
+      title="Toggle Filetree"
+    >
+      <span class="off-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"/></svg></span>
+      <span class="on-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M572.694 292.093L500.27 416.248A63.997 63.997 0 0 1 444.989 448H45.025c-18.523 0-30.064-20.093-20.731-36.093l72.424-124.155A64 64 0 0 1 152 256h399.964c18.523 0 30.064 20.093 20.73 36.093zM152 224h328v-48c0-26.51-21.49-48-48-48H272l-64-64H48C21.49 64 0 85.49 0 112v278.046l69.077-118.418C86.214 242.25 117.989 224 152 224z"/></svg></span>
+    </label>
+    <button
+      type="button"
+      id="reset-active-file"
+      class="control-elem"
+      title="Reset Current File"
+      disabled
+    ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M64 468V44c0-6.6 5.4-12 12-12h48c6.6 0 12 5.4 12 12v176.4l195.5-181C352.1 22.3 384 36.6 384 64v384c0 27.4-31.9 41.7-52.5 24.6L136 292.7V468c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12z"/></svg></button>
+    <button
+      type="button"
+      id="reset-all-files"
+      class="control-elem"
+      title="Reset All Changes"
+      disabled
+    ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M11.5 280.6l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2zm256 0l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2z"/></svg></button>
+    <input
+      type="checkbox"
+      id="toggle-preview"
+      class="hidden-input ide-toggle"
+    />
+    <label
+      for="toggle-preview"
+      class="control-elem"
+      title="Toggle Preview"
+    >
+      <span class="on-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M624 416H381.54c-.74 19.81-14.71 32-32.74 32H288c-18.69 0-33.02-17.47-32.77-32H16c-8.8 0-16 7.2-16 16v16c0 35.2 28.8 64 64 64h512c35.2 0 64-28.8 64-64v-16c0-8.8-7.2-16-16-16zM576 48c0-26.4-21.6-48-48-48H112C85.6 0 64 21.6 64 48v336h512V48zm-64 272H128V64h384v256z"/></svg></span>
+      <span class="off-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm0 394c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V192h416v234z"/></svg></span>
+    </label>
+    <button
+      type="button"
+      id="new-window-preview"
+      class="control-elem hide"
+      title="Open Preview in New Window"
+    ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg></button>
+  </nav>
+  <div id="editor-panel" class="panel animate">
+    <section
+      id="filetree-panel"
+      class="filetree panel animate fuzzy-background"
+    >
+      <div class="file-control-bar-top control-bar">
+        <button
+          type="button"
+          id="create-file-button"
+          class="control-elem"
+          title="New File or Folder"
+        ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 160v48c0 4.4-3.6 8-8 8h-56v56c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8v-56h-56c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h56v-56c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v56h56c4.4 0 8 3.6 8 8z"/></svg></button>
+        <button
+          type="button"
+          id="delete-file-button"
+          class="control-elem"
+          title="Delete File"
+          disabled
+        ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"/></svg></button>
+      </div>
+      <div id="filetree"></div>
+      <div class="file-control-bar-bottom control-bar">
+        <button
+          type="button"
+          id="download-button"
+          class="control-elem"
+          title="Download as Zip"
+        ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"/></svg></button>
+        <div class="import-style-select">
+          <span>Import Style</span>
+          <select
+            id="select-import-style"
+            class=""
+            title="Select Import Style"
+            disabled
+          >
+            <option value="npm" selected="selected">NPM (default)</option>
+            <option value="cdn">CDN</option>
+          </select>
+        </div>
+      </div>
+    </section>
+    <section id="editor" class="panel animate">
+      <div class="image-wrapper fuzzy-background">
+        <img
+          src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
+          alt="Selected Texture"
+          id="image-preview"
+        />
+      </div>
+    </section>
+  </div>
+  <div id="preview" class="panel animate">
+    <div id="preview-overlay"></div>
+    
+  </div>
+</div></div><div class="side-menu left-menu">
+  <div class="icons">
+    <input type="checkbox" id="invert-colors-toggle" class="hidden-input" />
+    <label
+      for="invert-colors-toggle"
+      class="control-elem"
+      title="Day/Night Theme"
+    >
+      <span class="day-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"/></svg></span>
+      <span class="night-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg></span>
+    </label>
+
+    <input type="checkbox" id="orientation-toggle" class="hidden-input" />
+    <label
+      for="orientation-toggle"
+      class="control-elem hide"
+      title="Orientation lock: auto/portrait/landscape"
+    >
+      <span class="auto-icon hide"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M440.65 12.57l4 82.77A247.16 247.16 0 0 0 255.83 8C134.73 8 33.91 94.92 12.29 209.82A12 12 0 0 0 24.09 224h49.05a12 12 0 0 0 11.67-9.26 175.91 175.91 0 0 1 317-56.94l-101.46-4.86a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12H500a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12h-47.37a12 12 0 0 0-11.98 12.57zM255.83 432a175.61 175.61 0 0 1-146-77.8l101.8 4.87a12 12 0 0 0 12.57-12v-47.4a12 12 0 0 0-12-12H12a12 12 0 0 0-12 12V500a12 12 0 0 0 12 12h47.35a12 12 0 0 0 12-12.6l-4.15-82.57A247.17 247.17 0 0 0 255.83 504c121.11 0 221.93-86.92 243.55-201.82a12 12 0 0 0-11.8-14.18h-49.05a12 12 0 0 0-11.67 9.26A175.86 175.86 0 0 1 255.83 432z"/></svg></span>
+      <span class="portrait-icon hide"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"/></svg></span>
+      <span class="landscape-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"/></svg></span>
+    </label>
+  </div>
+
+  <nav class="table-of-contents">
+    <h2><a href="/book/">Table of Contents</a></h2>
+    <div id="main-toc"><ul>
+    <li class="section-head">
+      <span class="chapter">0:</span><a href="/book/introduction/" title="Welcome to Discover three.js!">Welcome to Discover three.js!</a></li>
+    <li class="">
+      <span class="chapter">0.1:</span><a href="/book/introduction/about-the-book/" title="How to Use This Book">How to Use This Book</a></li>
+    <li class="">
+      <span class="chapter">0.2:</span><a href="/book/introduction/prerequisites/" title="What Do You Need to Run a three.js App?">What Do You Need to Run a three.js App?</a></li>
+    <li class="">
+      <span class="chapter">0.3:</span><a href="/book/introduction/get-help/" title="Welcome to the Community: three.js Around the Web">Welcome to the Community: three.js Around the Web</a></li>
+    <li class="">
+      <span class="chapter">0.4:</span><a href="/book/introduction/github-repo/" title="three.js on GitHub - Where the Magic Happens">three.js on GitHub - Where the Magic Happens</a></li>
+    <li class="">
+      <span class="chapter">0.5:</span><a href="/book/introduction/get-threejs/" title="How to Include three.js in Your Projects">How to Include three.js in Your Projects</a></li>
+    <li class="">
+      <span class="chapter">0.7:</span><a href="/book/introduction/threejs-with-frameworks/" title="Using three.js with React, Vue.js, Angular, Svelte, TypeScript...">Using three.js with React, Vue.js, Angular, Svelte, TypeScript...</a></li>
+    <li class="section-head">
+      <span class="chapter">1:</span><a href="/book/first-steps/" title="Getting Started: Here&#39;s Where the Real Fun Begins!">Getting Started: Here&#39;s Where the Real Fun Begins!</a></li>
+    <li class="">
+      <span class="chapter">1.1:</span><a href="/book/first-steps/app-structure/" title="The Structure of a three.js App">The Structure of a three.js App</a></li>
+    <li class="">
+      <span class="chapter">1.2:</span><a href="/book/first-steps/first-scene/" title="Your First three.js Scene: Hello, Cube!">Your First three.js Scene: Hello, Cube!</a></li>
+    <li class="">
+      <span class="chapter">1.3:</span><a href="/book/first-steps/world-app/" title="Introducing the World App">Introducing the World App</a></li>
+    <li class="">
+      <span class="chapter">1.4:</span><a href="/book/first-steps/physically-based-rendering/" title="Physically Based Rendering and Lighting">Physically Based Rendering and Lighting</a></li>
+    <li class="">
+      <span class="chapter">1.5:</span><a href="/book/first-steps/transformations/" title="Transformations and Coordinate Systems">Transformations and Coordinate Systems</a></li>
+    <li class="">
+      <span class="chapter">1.6:</span><a href="/book/first-steps/responsive-design/" title="Making Our Scenes Responsive (and also Dealing with Jaggies)">Making Our Scenes Responsive (and also Dealing with Jaggies)</a></li>
+    <li class="">
+      <span class="chapter">1.7:</span><a href="/book/first-steps/animation-loop/" title="The Animation Loop">The Animation Loop</a></li>
+    <li class="">
+      <span class="chapter">1.8:</span><a href="/book/first-steps/textures-intro/" title="A Brief Introduction to Texture Mapping">A Brief Introduction to Texture Mapping</a></li>
+    <li class="">
+      <span class="chapter">1.9:</span><a href="/book/first-steps/camera-controls/" title="Extend three.js With a Camera Controls Plugin">Extend three.js With a Camera Controls Plugin</a></li>
+    <li class="">
+      <span class="chapter">1.10:</span><a href="/book/first-steps/ambient-lighting/" title="Ambient Lighting: Illumination from Every Direction">Ambient Lighting: Illumination from Every Direction</a></li>
+    <li class="">
+      <span class="chapter">1.11:</span><a href="/book/first-steps/organizing-with-group/" title="Organizing Your Scenes">Organizing Your Scenes</a></li>
+    <li class="">
+      <span class="chapter">1.12:</span><a href="/book/first-steps/built-in-geometries/" title="The Built-In Geometries">The Built-In Geometries</a></li>
+    <li class="">
+      <span class="chapter">1.13:</span><a href="/book/first-steps/load-models/" title="Load 3D Models in glTF Format">Load 3D Models in glTF Format</a></li>
+    <li class="">
+      <span class="chapter">1.14:</span><a href="/book/first-steps/animation-system/" title="The three.js Animation System">The three.js Animation System</a></li>
+    <li class="section-head">
+      <span class="chapter">A:</span><a href="/book/appendix/" title="Appendices">Appendices</a></li>
+    <li class="">
+      <span class="chapter">A.1:</span><a href="/book/appendix/html-and-css-reference/" title="HTML and CSS Used in This Book">HTML and CSS Used in This Book</a></li>
+    <li class="">
+      <span class="chapter">A.2:</span><a href="/book/appendix/javascript-reference/" title="JavaScript Reference">JavaScript Reference</a></li>
+    <li class="">
+      <span class="chapter">A.3:</span><a href="/book/appendix/dom-api-reference/" title="The Document Object Model and DOM API">The Document Object Model and DOM API</a></li>
+    <li class="">
+      <span class="chapter">A.4:</span><a href="/book/appendix/javascript-modules/" title="JavaScript Modules">JavaScript Modules</a></li>
+    <li class="">
+      <span class="chapter">A.5:</span><a href="/book/appendix/asynchronous-javascript/" title="Asynchronous JavaScript">Asynchronous JavaScript</a></li>
+    <li class="">
+      <span class="chapter">B.1:</span><a href="/book/appendix/threejs-versions/" title="Dealing with Different three.js Versions">Dealing with Different three.js Versions</a></li>
+    <li class="">
+      <span class="chapter">B.2:</span><a href="/tips-and-tricks/" title="The Big List of three.js Tips and Tricks!">The Big List of three.js Tips and Tricks!</a></li>
+</ul>
+</div>
+  </nav>
+</div>
+<nav class="side-menu right-menu">
+  <h2>
+    <a href="/">
+      <img
+        alt="Discover three.js logo"
+        width="100%"
+        src="/images/logo/banner_trans_512.png"
+      />
+    </a>
+  </h2><ul class="links" style="justify-content: left">
+  <li><a href="/book/">Table Of Contents</a></li>
+  <li style="margin: auto">
+    <a href="/#mailing-list-signup" class="internal-link"
+      >Stay up to date - sign up to the mailing list!</a
+    >
+  </li>
+</ul></nav><style>
+  @font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Open Sans Regular"), local("OpenSans-Regular"),
+      url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0b.woff2)
+        format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "Varela Round";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Varela Round Regular"), local("VarelaRound-Regular"),
+      url(https://fonts.gstatic.com/s/varelaround/v12/w8gdH283Tvk__Lua32TysjIfp8uP.woff2)
+        format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "Fira Code";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2)
+      format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style></body>
+</html>

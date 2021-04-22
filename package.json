@@ -6,10 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently --names \"WATCH,HTTP,HUGO\" -c \"bgBlue.bold,bgGreen.bold,bgMagenta.bold\" \"npm run watch\" \"npm run serve\" \"npm run hugo\"",
-    "watch": "node ./buildTools/watch.js",
-    "hugo": ".\\hugo -w --templateMetrics --templateMetricsHints --verbose",
-    "serve": "servez -p 3000 public"
+    "start": ".\\hugo serve --templateMetrics --templateMetricsHints --verbose",
+    "production": ".\\hugo --templateMetrics --templateMetricsHints --verbose"
   },
   "author": "Lewy Blue",
   "license": "MIT",
