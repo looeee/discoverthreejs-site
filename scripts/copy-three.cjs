@@ -5,7 +5,7 @@ const fse = require("fs-extra");
 const path = require("path");
 
 const originPath = path.resolve(__dirname, "../node_modules/three");
-const targetPath = path.resolve(__dirname, "../static/examples/three");
+const targetPath = path.resolve(__dirname, "../static/examples/vendor/three");
 
 // Check if a directory exists
 function fsExistsSync(path) {
