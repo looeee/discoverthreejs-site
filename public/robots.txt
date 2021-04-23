@@ -1,2 +1,0 @@
-Sitemap: https://discoverthreejs.com/sitemap.xml
-User-agent: *

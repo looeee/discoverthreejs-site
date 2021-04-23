@@ -1,3 +1,0 @@
-import { BoxBufferGeometry, CylinderBufferGeometry } from 'three';
-
-// To do...
