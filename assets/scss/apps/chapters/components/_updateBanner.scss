@@ -1,46 +1,9 @@
-#update-banner {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: #989a9c;
-  color: white;
-
-  margin: 0;
-  padding: 0;
-
-  &.hide {
-    display: none;
-  }
-
-  button {
-    position: absolute;
-    align-self: flex-end;
-    justify-self: flex-end;
-    font-size: 1.5rem;
-    font-weight: bolder;
-    padding-right: 1rem;
-    margin-right: 1rem;
-    font-family: $font-family-fixed;
-    &:hover,
-    &:focus {
-      color: #9c0026;
-    }
-  }
-
-  h2 {
-    border: none;
-    margin-top: 1rem;
-  }
-
-  p {
-    text-align: center;
-  }
-
-  a {
-    color: white;
-    &:hover,
-    &:focus {
-      color: #9c0026;
-    }
-  }
+.update-banner {
+  width: calc(100% - 1rem);
+  margin: 0 0 1rem 0;
+  padding: 0.5rem;
+  background-color: skyblue;
+  border: 1px solid #848484;
+  text-align: center;
+  font-weight: bold;
 }

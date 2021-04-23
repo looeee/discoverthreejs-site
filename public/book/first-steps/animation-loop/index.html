@@ -48,7 +48,7 @@
 
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="msapplication-TileColor" content="#00aba9" />
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619177891" /><script type="application/ld+json">
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619180747" /><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "WebPage",
@@ -86,29 +86,29 @@
   href="https://discoverthreejs.com/book/first-steps/animation-loop/"
 />
 
-<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619177891" />
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619180747" />
 
 <link
   rel="apple-touch-icon"
   sizes="180x180"
-  href="/apple-touch-icon.png?v=1619177891"
+  href="/apple-touch-icon.png?v=1619180747"
 />
 
 <link
   rel="icon"
   type="image/png"
   sizes="16x16"
-  href="/favicon-16x16.png?v=1619177891"
+  href="/favicon-16x16.png?v=1619180747"
 />
 <link
   rel="icon"
   type="image/png"
   sizes="32x32"
-  href="/favicon-32x32.png?v=1619177891"
+  href="/favicon-32x32.png?v=1619180747"
 />
 
-<link rel="manifest" href="/site.json?v=1619177891" />
-<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619177891" color="#5bbad5" />
+<link rel="manifest" href="/site.json?v=1619180747" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619180747" color="#5bbad5" />
 <style>
       .loading-page {
         display: none;
@@ -117,12 +117,12 @@
 
     
     
-    <link rel="stylesheet" href="/styles/chapter.css?v=1619177891">
+    <link rel="stylesheet" href="/styles/chapter.css?v=1619180747">
 
     <noscript>
       
       
-      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619177891">
+      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619180747">
     </noscript>    
     
     
@@ -240,6 +240,7 @@
       <main class="panel animate">
         <div class="scroller">
           <div class="content">
+            <div class="update-banner">Discover three.js is now <a href="https://github.com/looeee/discoverthreejs-site" target="_blank" rel="noopener noreferrer">open source</a>!</div>
             
               <div class="chapter-info">Word Count:5348, reading time: ~26minutes</div>
             
@@ -251,11 +252,11 @@
 
 
 
-<figure id="scene-813926475" class="inline-scene loading-dots small right"><figcaption>The output from a single call of<br>renderer.render</figcaption></figure>
+<figure id="scene-413586297" class="inline-scene loading-dots small right"><figcaption>The output from a single call of<br>renderer.render</figcaption></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/static-cube.js";
-  init("#scene-813926475");
+  init("#scene-413586297");
 </script>
 <p>Over the last couple of chapters, we&rsquo;ve made amazing progress with our app. We have lights, colors, physically correct rendering, anti-aliasing, automatic-resizing, we know how to move objects around in 3D space, and our code is clean, modular, and well-structured. But our scene is missing one vital ingredient: <strong>movement!</strong></p>
 <p>We&rsquo;re using the <code>renderer.render</code> method to draw the scene. This method takes a scene and a camera as input and outputs a single still image to the HTML <code>&lt;canvas&gt;</code> element. The output is the non-moving purple box you can see above.</p>
@@ -286,11 +287,11 @@
 
 
 
-<figure id="scene-497851632" class="inline-scene loading-dots small right"></figure>
+<figure id="scene-295481673" class="inline-scene loading-dots small right"></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/animation-loop.js";
-  init("#scene-497851632");
+  init("#scene-295481673");
 </script>
 <p>In this chapter, we&rsquo;ll add a simple rotation animation to the cube. Here&rsquo;s how we&rsquo;ll do it:</p>
 <ul>
@@ -1184,11 +1185,11 @@ function createCube() {
 
 
 
-<figure id="scene-576912438" class="inline-scene loading-dots small right"></figure>
+<figure id="scene-514973286" class="inline-scene loading-dots small right"></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/animation-loop-duplicate.js";
-  init("#scene-576912438");
+  init("#scene-514973286");
 </script>
 <p>Now, once again the cube will be rotating thirty degrees per second around each axis, but with an important difference: the animation will now play at the same speed no matter where we run it, whether on a VR rig running at 90FPS, or a ten-year-old smartphone that can barely crank out 10FPS, or some future system from the year 3000 that runs at a billion FPS. <strong>The frame rate may change, but the animation speed will not</strong>.</p>
 <p>With this change, <strong>we have successfully decoupled animation speed from frame rate.</strong></p>
