@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 
-const fs = require('fs');
-const fse = require('fs-extra');
-const path = require('path');
+const fs = require("fs");
+const fse = require("fs-extra");
+const path = require("path");
 
-const originPath = path.resolve(__dirname, '../node_modules/three');
-const targetPath = path.resolve(__dirname, '../static/examples/three');
+const originPath = path.resolve(__dirname, "../node_modules/three");
+const targetPath = path.resolve(__dirname, "../static/examples/three");
 
 // Check if a directory exists
 function fsExistsSync(path) {
@@ -17,17 +17,19 @@ function fsExistsSync(path) {
   return true;
 }
 
-// Check if the versions are the same
-function isVersionEqual(path1, path2) {
-  const v1 = require(path.join(path1, './package.json')).version;
-  const v2 = require(path.join(path2, './package.json')).version;
-  return v1 === v2;
+function getVersion(p) {
+  return require(path.join(p, "./package.json")).version;
 }
+
+const vNodeFolder = getVersion(originPath);
+const vExamplesFolder = getVersion(targetPath);
+
+console.info(`Copying three.js V${vNodeFolder} to examples folder...`);
 
 const isExist = fsExistsSync(targetPath);
 
 if (isExist) {
-  if (!isVersionEqual(originPath, targetPath)) {
+  if (!(vNodeFolder === vExamplesFolder)) {
     fse.removeSync(targetPath);
     fse.copySync(originPath, targetPath);
   }
