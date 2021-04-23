@@ -33,7 +33,7 @@ Click the <input type="checkbox" class="simple-toggle" title="Find the real togg
 ## The Components of a Real-Time 3D App
 
 {{% note %}}
-  TODO-DIAGRAM: This graph is confusing. See Annie-Chen's updated graph
+  TODO-DIAGRAM: This graph is confusing - Annie Chen
 {{% /note %}}
 
 {{< figure src="first-steps/rendered_scene_canvas.svg" alt="A basic scene" lightbox="true" >}}

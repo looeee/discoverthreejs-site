@@ -76,4 +76,6 @@ These Terms constitute the entire agreement between discoverthreejs.com and you 
 
 ### Governing Law & Jurisdiction
 
-These Terms will be governed by and interpreted in accordance with the laws of the State of Ireland, and you submit to the non-exclusive jurisdiction of the state and federal courts located in Ireland for the resolution of any disputes.---
+These Terms will be governed by and interpreted in accordance with the laws of the State of Ireland, and you submit to the non-exclusive jurisdiction of the state and federal courts located in Ireland for the resolution of any disputes.
+
+:)

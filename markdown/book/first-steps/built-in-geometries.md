@@ -196,7 +196,8 @@ We want the wheels to lie parallel to the $Z$-axis, so this time, we'll rotate a
 The final mesh we need to consider is the chimney. Once again, we'll create a geometry (this time, cone-shaped) that starts out pointing up along the $Y$-axis. The chimney also points upwards, so we won't need to rotate this mesh after creating it.
 
 {{% note %}}
-TODO-DIAGRAM: seems kind of sad there is not chimney diagram
+TODO-DIAGRAM: seems kind of sad there is no chimney diagram
+(comment from a reader)
 {{% /note %}}
 
 When working with rotations, often, we'll use the[ three.js helper function `.degToRad`](https://threejs.org/docs/#api/en/math/MathUtils.degToRad) to {{< link path="/book/first-steps/animation-loop/#scale-the-cubes-rotation-by-delta" title="convert from degrees to radians" >}}. However, many degree values are easy to write as radians since $180^{\circ} = \pi$ radians, so simple division will give us a range of other radian values, in particular, $90^{\circ} = \frac{\pi}{2}$ and $45^{\circ} = \frac{\pi}{4}$.
