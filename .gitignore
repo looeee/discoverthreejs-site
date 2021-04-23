@@ -3,4 +3,6 @@ node_modules/
 
 resources/_gen/**/*
 
+static/examples/three
+
 hugo.exe
