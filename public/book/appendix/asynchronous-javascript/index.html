@@ -1,0 +1,2257 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <title>Asynchronous JavaScript | Discover three.js</title><meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="ROBOTS" content="INDEX, FOLLOW" />
+
+
+<meta name="application-name" content="Discover three.js" />
+
+<meta itemprop="name" content="Discover three.js" />
+
+<meta property="og:title" content="Asynchronous JavaScript | Discover three.js" />
+<meta name="twitter:title" content="Asynchronous JavaScript | Discover three.js" />
+
+<meta name="description" content="Asynchronous coding means writing code in such a way that our app will keep working while a long task, like loading a model, is running. Here, we cover the different ways we can do this in JavaScript." />
+<meta property="og:description" content="Asynchronous coding means writing code in such a way that our app will keep working while a long task, like loading a model, is running. Here, we cover the different ways we can do this in JavaScript." />
+<meta name="twitter:description" content="Asynchronous coding means writing code in such a way that our app will keep working while a long task, like loading a model, is running. Here, we cover the different ways we can do this in JavaScript." />
+
+<meta
+  itemprop="keywords"
+  content="threejs webgl opengl fbx gltf khronos webvr vr webdev design cg graphics animation javascript esnext es6 education tutorials blog ebook node npm"
+/>
+
+<meta property="og:site_name" content="Discover three.js" />
+<meta property="og:type" content="book" />
+<meta property="og:url" content="https://discoverthreejs.com/" />
+<meta
+  property="og:image"
+  content="https://discoverthreejs.com/images/logo.png"
+/>
+<meta
+  property="twitter:image"
+  content="https://discoverthreejs.com/images/logo.png"
+/>
+<meta name="twitter:creator" content="@lewy_blue" />
+<meta name="twitter:site" content="@lewy_blue" />
+<meta name="twitter:card" content="Asynchronous coding means writing code in such a way that our app will keep working while a long task, like loading a model, is running. Here, we cover the different ways we can do this in JavaScript." />
+<meta name="twitter:image:width" content="1024" />
+<meta name="twitter:image:height" content="1024" />
+
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="msapplication-TileColor" content="#00aba9" />
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619160143" /><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "image": "https://discoverthreejs.com/images/logo.png",
+    "mainEntity": {
+      "@type": "Book",
+      "author": {
+        "@type": "Person",
+        "name": "Lewy Blue",
+        "jobTitle": "Author",
+        "url": "https://twitter.com/lewy_blue"
+      },
+      "about": "",
+      "copyrightHolder": "https://discoverthreejs.com",
+      "copyrightYear": "2021",
+      "bookFormat": "http://schema.org/EBook",
+      "datePublished": "2018-10-01",
+      "image": "https://discoverthreejs.com/images/logo.png",
+      "inLanguage": "English",
+      "name": "Discover three.js",
+      "genre": "Education",
+      "keywords": "threejs webgl animation javascript es6 education tutorials blog ebook",
+      "publisher": {
+        "@type": "Organization",
+        "name": "https://discoverthreejs.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://discoverthreejs.com/images/logo.png"
+        }
+      }
+    }
+  }
+</script><link
+  rel="canonical"
+  href="https://discoverthreejs.com/book/appendix/asynchronous-javascript/"
+/>
+
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619160143" />
+
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/apple-touch-icon.png?v=1619160143"
+/>
+
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/favicon-16x16.png?v=1619160143"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/favicon-32x32.png?v=1619160143"
+/>
+
+<link rel="manifest" href="/site.json?v=1619160143" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619160143" color="#5bbad5" />
+<style>
+      .loading-page {
+        display: none;
+      }
+    </style>
+
+    
+    
+    <link rel="stylesheet" href="/styles/chapter.css?v=1619160145">
+
+    <noscript>
+      
+      
+      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619160145">
+    </noscript>    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <script type="module">
+  
+  
+
+  
+  
+
+  
+  
+
+  import { setupChapterEarly } from "\/js\/chapterEarly.js";
+  setupChapterEarly();
+
+  window.addEventListener('load', async () => {
+    const { setupChapterLate } = await import(
+      "\/js\/chapterLate.js"
+    );
+    setupChapterLate();
+
+    
+    const { setupIDE } = await import(
+      "\/js\/ide.js"
+    );
+
+    const ideConfig = {
+      showIDE:  true ,
+      IDE: {
+        fullScreen: false,
+        container: '#ide-wrapper',
+        serverDirectory: 'examples',
+        stripDirectory: 'worlds\/appendix\/asynchronous-javascript\/',
+        closedFolders: 'styles'
+          .replace(/[\s\'\[\]']+/g, '')
+          .split(','),
+        comparisonMode: '',
+        files: 'worlds\/appendix\/asynchronous-javascript\/src\/1-asynchronous-callback.js, worlds\/appendix\/asynchronous-javascript\/src\/2-multiple-asynchronous-callbacks.js, worlds\/appendix\/asynchronous-javascript\/src\/3-promises.js, worlds\/appendix\/asynchronous-javascript\/src\/4-multiple-promises.js, worlds\/appendix\/asynchronous-javascript\/src\/5-multiple-promises-handle-error.js, worlds\/appendix\/asynchronous-javascript\/src\/6-async-functions.js, worlds\/appendix\/asynchronous-javascript\/src\/7-multiple-async-functions.js, worlds\/appendix\/asynchronous-javascript\/index.html'
+          .replace(/[\s\'\[\]']+/g, '')
+          .split(','),
+        entry: 'index.html',
+        activeDocument: 'src\/6-async-functions.js',
+        switchImportsAllowed:
+          'false',
+      },
+    }
+
+    await setupIDE(ideConfig);
+    
+  });
+</script></head>
+  <body class="loading-page"><nav class="top-nav">
+  <div class="nav-background"></div>
+
+  <div class="icon-group left">
+    <input type="checkbox" id="left-menu-toggle" class="hidden-input" />
+    <label
+      for="left-menu-toggle"
+      class="control-elem"
+      title="Table Of Contents"
+    >
+      <span class="open-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"/></svg></span>
+      <span class="close-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg></span>
+    </label>
+
+    <input
+      type="checkbox"
+      id="toggle-ide"
+      class="hidden-input ide-toggle"
+    />
+    <label
+      for="toggle-ide"
+      class="control-elem ide-control hide"
+      title="Show/Hide IDE"
+    >
+      <span class="on-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M384 64H192C86 64 0 150 0 256s86 192 192 192h192c106 0 192-86 192-192S490 64 384 64zm0 320c-70.8 0-128-57.3-128-128 0-70.8 57.3-128 128-128 70.8 0 128 57.3 128 128 0 70.8-57.3 128-128 128z"/></svg></span>
+      <span class="off-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M384 64H192C85.961 64 0 149.961 0 256s85.961 192 192 192h192c106.039 0 192-85.961 192-192S490.039 64 384 64zM64 256c0-70.741 57.249-128 128-128 70.741 0 128 57.249 128 128 0 70.741-57.249 128-128 128-70.741 0-128-57.249-128-128zm320 128h-48.905c65.217-72.858 65.236-183.12 0-256H384c70.741 0 128 57.249 128 128 0 70.74-57.249 128-128 128z"/></svg></span>
+    </label>
+  </div>
+
+  <div class="icon-group center">
+
+
+
+
+
+<a href="/book/appendix/javascript-modules/" title="JavaScript Modules" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/appendix/threejs-versions/" class="control-elem next" title="Dealing with Different three.js Versions"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
+  </div>
+
+  <div class="icon-group right">
+    <input type="checkbox" id="right-menu-toggle" class="hidden-input" />
+    <label for="right-menu-toggle" class="control-elem" title="Main Menu">
+      <span class="open-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg></span>
+      <span class="close-close hide"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg></span>
+    </label>
+  </div>
+</nav><div class="wrapper orientation-auto">
+      <main class="panel animate">
+        <div class="scroller">
+          <div class="content">
+            
+              <div class="chapter-info">Word Count:7859, reading time: ~37minutes</div>
+            
+            <h1 id="asynchronous-javascript">Asynchronous JavaScript</h1>
+<figure class="tiny left noborder">
+  <img src="/images/app-logos/javascript.png" loading="lazy" alt="JavaScript logo" title="JavaScript logo"  /></figure>
+<p>Over the last couple of chapters, we&rsquo;ve created a bunch of examples. They all have something in common: they are all <a href="https://developer.mozilla.org/en-US/docs/Glossary/Synchronous" target="_blank" rel="noopener noreferrer">synchronous</a>. This means the JavaScript statements are executed line by line, reading from top to bottom:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Most JavaScript statements are synchronous</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const x = 5; // executed first
+
+const y = 100; // executed second
+
+add(x, y); // executed third
+</code>
+  </pre>
+</section>
+
+<p>While working with three.js, we&rsquo;ll often load assets such as models, animations, textures, and other media. These files can be stored in many different file formats, and loading them over a slow and unreliable internet connection can take some time, or fail for any number of reasons from whale sharks snacking on undersea cables to a mistyped file name. If we take the obvious approach and run a long task like loading a model in the main thread, our entire page will freeze while we wait for the model to load.</p>
+<p>In this chapter, we&rsquo;ll discuss the various methods JavaScript provides for performing long-running tasks such as loading models without causing your app to grind to a halt while the task is running. Collectively, these methods are referred to as <strong>asynchronous programming</strong>.</p>
+<aside class="notice">
+  
+    <p><strong>As of three.js r116, the new <code>loader.loadAsync</code> method is recommended over all the other techniques described here.</strong></p>
+<p>Using <a href="https://threejs.org/docs/#api/en/loaders/Loader.loadAsync" target="_blank" rel="noopener noreferrer"><code>.loadAsync</code></a> means you no longer need most of the information from this chapter to follow the examples in this book. No more <strong>asynchronous callback functions</strong>, no more converting loaders to use <strong>Promises</strong>, instead, loading a model is now a single line operation:</p>
+<section class="highlight-wrapper"><span class="caption">Using loadAsync, an asynchronous operation can be performed in a single line</span>
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const modelData = loader.loadAsync(&#39;yourModel.file&#39;);
+</code>
+  </pre>
+</section>
+<p>However, the information here is not specific to three.js so we won&rsquo;t remove the chapter. If you want to skip ahead to the info you absolutely need to use this book, skip to the section on<a href="#async-await"><em>async functions</em>*</a>. Otherwise, read on.</p>
+
+  
+</aside>
+<p>Let&rsquo;s look at what happens when we try to load a model synchronously.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Loading a huge model synchronously is a bad idea</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const x = 5;
+
+const y = 100;
+
+const hugeModel = loadModel(&#39;path/to/hugeModel.file&#39;);
+
+add(x, y);
+</code>
+  </pre>
+</section>
+
+<p>We&rsquo;re talking about loading things over the internet here. Connections are often slow and unreliable, and loading a model might take a long time or fail completely.</p>
+<p>In the above example, the JavaScript engine will reach <code>loadModel(...)</code> and then pause until the model has loaded, which might take ten seconds or ten minutes. We&rsquo;ll have to wait until the model has finished loading before the line <code>add(x, y)</code> will execute. In practical terms, this means your page will freeze while waiting for the model to load, and while that&rsquo;s happening, your users will have to sit and wait. Or, more likely, they&rsquo;ll go and find a page that loads faster.</p>
+<p>Clearly, synchronous code is not suitable for loading things over a network (or anywhere else, for that matter).</p>
+<p>Whenever we need to load something, whether it&rsquo;s an image, a video, the response from a form a user has submitted, or a 3D model, we&rsquo;ll switch to an <a href="https://developer.mozilla.org/en-US/docs/Glossary/Asynchronous" target="_blank" rel="noopener noreferrer">asynchronous</a> code style. There three main ways to perform <strong>asynchronous operations</strong> using JavaScript, and we&rsquo;ll look at each of them in turn here, from the old-school <strong>asynchronous callbacks</strong>, to modern <strong>Promises</strong>, and finally, cutting edge <strong>async functions</strong>.</p>
+<p>In this chapter, we&rsquo;ll explore <strong>callback functions</strong>, <strong>Promises</strong>, and <strong>async functions</strong>. While doing so, we&rsquo;ll create imaginary <code>loadModel</code> functions in each of the three styles, although in place of displaying an actual 3D model we&rsquo;ll simply log a message to the console.</p>
+<p>Loading files is not the only use case for asynchronous code. Whenever you <em>want</em> or <em>need</em> to wait a while before executing some code, you&rsquo;ll switch to an asynchronous code style. When we load a 3D model, we <em>need</em> to wait a while before executing the code to add that model to the scene. Sometimes, you <em>want</em> to wait a while, for example, before displaying a message to a user, in which case, you can use <code>setTimeout</code> to create an artificial asynchronous operation.</p>
+<p>We&rsquo;ve set up a few examples in the IDE in each of these three styles. In all of them (except <em><strong>1-synchronous-callback.js</strong></em>) we have used <code>setTimeout</code> to simulate a model that takes several seconds to load.</p>
+<h3 id="generating-asynchronous-code-with-settimeout">Generating Asynchronous Code with <code>setTimeout</code></h3>
+<p>To demonstrate asynchronous techniques, we need to perform an asynchronous operation. However, most asynchronous operations are kind of complicated, like loading a model, or submitting a form and waiting for a response from the server.</p>
+<p>Fortunately, there&rsquo;s a function that allows us to perform a very simple asynchronous operation, called <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout" target="_blank" rel="noopener noreferrer"><code>setTimeout</code></a>. This method takes two arguments, a <a href="/book/appendix/javascript-reference/#callback-functions">callback function</a>, and the amount of time we want to wait (in milliseconds) before executing the callback function.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The setTimeout method allows us to wait for a set amount of time before executing a callback</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+onTimeout = () =&gt; {
+  console.log(&#39;The time has passed&#39;);
+}
+
+// wait 3000 milliseconds (3 seconds), then execute the callback
+setTimeout(onTimeout, 3000);
+</code>
+  </pre>
+</section>
+
+<p>Note that we&rsquo;ll usually wrap the callback in an anonymous <a href="/book/appendix/javascript-reference/#arrow-functions">arrow function</a>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">It&rsquo;s often required to wrap the setTimeout callback in an anonymous function</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+onTimeout = () =&gt; {
+  console.log(&#39;The time has passed&#39;);
+}
+
+// wait 3000 milliseconds (3 seconds), then execute the callback
+setTimeout(() =&gt; {
+  onTimeout();
+}, 3000);
+</code>
+  </pre>
+</section>
+
+<p>We won&rsquo;t get into the reasons for this here. It&rsquo;s all about <a href="/book/appendix/javascript-reference/#scope-and-closures">scope</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout#The_this_problem" target="_blank" rel="noopener noreferrer">the &ldquo;this&rdquo; problem</a>. In any case, you&rsquo;ll notice we do this a lot when using callback functions.</p>
+<p>One final thing about <code>setTimeout</code>: it&rsquo;s not accurate. We have passed in 3000 milliseconds to the method above, but we cannot guarantee that exactly 3000 milliseconds will have passed by the time the callback executes. There are two reasons for this.</p>
+<ol>
+<li>The callback we pass to <code>setTimeout</code> gets added to a stack of callbacks that need to be executed. If lots of callbacks pile up on the stack, you&rsquo;ll need to wait until yours gets executed. That can be a few milliseconds later than the time you specified.</li>
+<li>Browsers currently reduce the accuracy of their timers to prevent malicious scripts from using <a href="https://en.wikipedia.org/wiki/Timing_attack" target="_blank" rel="noopener noreferrer"><strong>time-based attacks</strong></a> or <a href="https://pixelprivacy.com/resources/browser-fingerprinting/" target="_blank" rel="noopener noreferrer"><strong>browser fingerprinting</strong></a>. For security, browsers don&rsquo;t let us measure sub-millisecond time, and a certain amount of jitter is added to the result (usually around one millisecond).</li>
+</ol>
+<p>For these reasons, <code>setTimeout</code> (along with all JavaScript timer functions) is not accurate enough for things like scheduling animation frames. However, it&rsquo;s perfect for us to simulate a slow model loading since we don&rsquo;t care when the callback executes.</p>
+<p>The callback we pass into <code>setTimeout</code> is an <strong>asynchronous callback function</strong>, the first of the three asynchronous techniques we&rsquo;ll cover in this chapter.</p>
+<aside class="notice">
+  
+    <h2 id="real-world-asynchronous-file-loading">Real World Asynchronous File Loading</h2>
+<p>Using <code>setTimeout</code> allows us to skip over all the annoying technical details of loading 3D models. But how does loading a file from a web server work in the real world?</p>
+<p>There are two main Web APIs used to load files from servers: the old-school <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank" rel="noopener noreferrer"><code>XMLHttpRequest</code></a> and the modern <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank" rel="noopener noreferrer">Fetch API</a>.</p>
+<p><code>XMLHttpRequest</code> works via callbacks and is notorious for two things:</p>
+<ol>
+<li>It&rsquo;s tedious to set up and use.</li>
+<li>It&rsquo;s badly named (no one <em>ever</em> uses it to load XML files).</li>
+</ol>
+<p>The three.js loaders are currently implemented using <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank" rel="noopener noreferrer"><code>XMLHttpRequest</code></a>. Fortunately, they hide all the complexity from us.</p>
+<p>The newer <code>Fetch</code> API uses Promises rather than callbacks and has a much-improved syntax. Whenever possible, you should choose <code>Fetch</code> instead of <code>XMLHttpRequest</code> for loading files from a web server.</p>
+
+  
+</aside>
+<h2 id="asynchronous-callback-functions">Asynchronous Callback Functions</h2>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Glossary/Callback_function" target="_blank" rel="noopener noreferrer">callback function</a> is a function that gets passed into another function as an argument. When the parent function is asynchronous, we refer to the callback as an <strong>asynchronous callback function</strong>.</p>
+<p>In <a href="/book/appendix/javascript-reference/#old-school-and-modern-javascript">old-school JavaScript</a>, before the release of version ES6 sometime around 2015, the <em>only</em> way to write asynchronous code in JavaScript was to use asynchronous callback functions. These are the simplest way of writing asynchronous code, although they do have some drawbacks which mean that we&rsquo;ll prefer to use other techniques.</p>
+<p>We introduced callback functions back in <a href="/book/appendix/javascript-reference/#callback-functions">A.2: JavaScript Reference</a>, however, aside from the ones we passed into <code>setTimeout</code> above, all the callbacks we have written so far are synchronous.</p>
+<p>There&rsquo;s nothing different about the callback we passed into <code>setTimeout</code>. The only difference between a synchronous callback and an asynchronous callback is the context in which we use it. For example, we introduced callbacks using the <a href="/book/appendix/javascript-reference/#foreach"><code>array.forEach</code> method</a>. We can pass the same callback into <code>.forEach</code> and <code>setTimeout</code>. In the first case, the callback is synchronous, and in the second, it is asynchronous.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The same callback can be both synchronous and asynchronous</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+function callbackTest() {
+  console.log(&#39;Callback executed&#39;);
+}
+
+const array = [1, 2, 3, 4];
+
+array.forEach(callbackTest); // =&gt; &#39;Callback executed&#39; (four times, synchronously)
+
+setTimeout(testCallback, 3000); // =&gt; &#39;Callback executed&#39; (after 3000ms, asynchronously)
+</code>
+  </pre>
+</section>
+
+<p>What&rsquo;s the difference? Without going into much detail, the synchronous callback function is executed immediately and blocks the main thread. This can cause your application to freeze if it takes a long time to complete. By comparison, the asynchronous callback function is put onto something called a task queue which does not block the main thread. However, the callback must wait for its turn in the queue before being executed.</p>
+<h3 id="a-synchronous-callback-operation">A Synchronous Callback Operation</h3>
+<p>Rather than use <code>Array.forEach</code>, we can create a simple synchronous function that takes a callback.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A simple function that takes a callback and immediately executes it</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+function synchronousCallbackOperation(callback) {
+  callback(&#39;Data passed to callback&#39;);
+}
+
+const onComplete = (result) =&gt; {
+  console.log(result);
+};
+
+synchronousCallbackOperation(onComplete);
+</code>
+  </pre>
+</section>
+
+<p>There&rsquo;s no waiting involved here, the <code>synchronousCallbackOperation</code> function executes the <code>onComplete</code> callback immediately. The important thing to note here is the data passed to the callback by the parent function. Here, it&rsquo;s the string <code>'Data passed to callback'</code>. In a real example, this might be a loaded model or the data returned by the server after the user submits a form.</p>
+<h3 id="an-asynchronous-callback-operation">An Asynchronous Callback Operation</h3>
+<p>We&rsquo;ll take the <code>synchronousCallbackOperation</code> and combine it with <code>setTimeout</code> to turn it into an asynchronous <code>loadModelUsingCallback</code> function.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A simple function that takes a callback, waits a while, then executes it</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+function asynchronousCallbackOperation(callback) {
+  setTimeout(() =&gt; {
+    callback(&#39;Data passed to callback&#39;);
+  }, 3000);
+}
+
+const onComplete = (result) =&gt; {
+  console.log(result);
+};
+
+asynchronousCallbackOperation(onComplete);
+</code>
+  </pre>
+</section>
+
+<p>Next, we&rsquo;ll take this and turn it into a fake <code>loadModelUsingCallback</code> function. Along with the name change, the function now takes an <code>url</code> argument, and we have renamed the callback to <code>onLoad</code>.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">1-asynchronous-callback.js</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">function loadModelUsingCallback(url, callback) {
+  // Wait a few seconds, then execute the callback
+  // (simulating a model that loads in 3 seconds)
+  setTimeout(() =&gt; {
+    callback(`Example 2: Model ${url} loaded successfully`);
+  }, 3000);
+}
+
+loadModelUsingCallback(&#39;callback_test.file&#39;, (result) =&gt; {
+  console.log(result);
+});
+</code>
+  </pre>
+</section>
+
+<h3 id="error-handling-with-callbacks">Error Handling with Callbacks</h3>
+<p>What happens if loading the model fails? There are lots of reasons why a model might fail to load. For example, you might have typed the model&rsquo;s name wrong. Or a whale shark might decide to snack on an undersea cable at that exact moment.</p>
+<p>To handle errors like these, we need to add a second callback to our <code>loadModelUsingCallback</code> function.</p>
+<p>Then we&rsquo;ll have two callbacks: one for success which we&rsquo;ll call <code>onLoad</code>, and one for failure which we&rsquo;ll call <code>onError</code>.</p>
+<p>At this point, using <code>setTimeout</code> to simulate loading a model falls short since there&rsquo;s no way for this method to fail, or to take a second callback. But here&rsquo;s what a <code>loadModel</code> function with both callbacks would look like:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Asynchronous error handling with callbacks</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// This callback will be executed if loading succeeds
+const onLoad = result =&gt; {
+  addModelToScene(result);
+};
+
+// This callback will be executed if loading fails
+const onError = error =&gt; {
+  console.error(error);
+};
+
+loadModelUsingCallback(&#39;path/to/model.file&#39;, onLoad, onError);
+</code>
+  </pre>
+</section>
+
+<p>We have named the callbacks <code>onLoad</code> and <code>onError</code>, but you can call them whatever you like.</p>
+<p><em>Note: the three.js loaders also take an <code>onProgress</code> callback which we have skipped here to keep things simple.</em></p>
+<h3 id="performing-multiple-asynchronous-operations-with-callbacks">Performing Multiple Asynchronous Operations with Callbacks</h3>
+<p>When using callbacks, loading multiple models is easy. We simply need to run the <code>loadModelUsingCallback</code> function multiple times with different <code>url</code> arguments (and perhaps different callbacks).</p>
+<p>To add a bit of spice here, for this example, we&rsquo;re using <a href="/book/appendix/javascript-reference/#the-math-object"><code>Math.random</code></a> to add a bit of chaos to our fake model loading function. Now, every model will load in somewhere between zero and five seconds.</p>
+<p>Which model will load first? A, B, C, or D?</p>
+
+
+<section class="highlight-wrapper"><span class="caption">2-multiple-asynchronous-callbacks.js</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">function loadModelUsingCallback(url, callback) {
+  // Wait a few seconds, then execute the callback
+  // (simulating a model that loads in less than 5 seconds)
+  setTimeout(() =&gt; {
+    callback(`Example 3: Model ${url} loaded successfully`);
+  }, Math.random() * 5000);
+}
+
+const onLoad = (result) =&gt; {
+  console.log(result);
+};
+
+loadModelUsingCallback(&#39;callback_test_A.file&#39;, onLoad);
+loadModelUsingCallback(&#39;callback_test_B.file&#39;, onLoad);
+loadModelUsingCallback(&#39;callback_test_C.file&#39;, onLoad);
+loadModelUsingCallback(&#39;callback_test_D.file&#39;, onLoad);
+</code>
+  </pre>
+</section>
+
+<p>The answer, of course, is that we have no idea.</p>
+<p>When you load a model asynchronously, you no longer have any idea when, if at all, the model will load. This point holds for any asynchronous technique, not just callbacks. It&rsquo;s kind of the whole point of asynchronous code.</p>
+<p>When we load multiple models, we have no idea which one will load first, or whether they will all load successfully. In this example, we&rsquo;ve set a random time between zero and five seconds for each callback to complete. In the real world, the models might be different sizes, or even located on different servers in different countries. The server in one country might be down (whale sharks again). A 1kb model will probably load faster than a 100mb model even if we start loading the 100mb model first, but you can never be totally sure about that.</p>
+<p><strong>The only safe approach: never make any assumptions about when, or if, a block of asynchronous code will run.</strong></p>
+<h2 id="problems-with-callbacks">Problems with Callbacks</h2>
+<p>It&rsquo;s not obvious from these simple examples, but callbacks can become unpleasant to deal with once your app grows in size.</p>
+<h3 id="the-onload-callback-ends-up-stuffed-with-functionality">The <code>onLoad</code> Callback Ends up Stuffed with Functionality</h3>
+<p>Here&rsquo;s the first problem: <strong>You cannot easily access the loaded model from <em>outside</em> the callback.</strong> Everything that you want to do with the model has to be done <em>inside the callback</em>. That&rsquo;s fine if you simply want to log some data to the console or add the model to your scene, but in the real world, you&rsquo;ll probably want to so much more than that.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Accessing the model from outside the callback is hard</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const onLoad = model =&gt; {
+  // If we simply add the model to the scene
+  // it&#39;s not a big deal.
+  addModelToScene(model);
+
+  // ... but what if we want to do more than that?
+  setupControls(model);
+  setupPhysics(model);
+  adjustMaterials(model);
+  adjustGeometry(model);
+  // ... and so on.
+};
+
+loadModelUsingCallback(&#39;path/to/model.file&#39;, onLoad);
+</code>
+  </pre>
+</section>
+
+<p>If you are not careful, <code>onLoad</code> can end up containing almost your entire app.</p>
+<h3 id="its-hard-for-loaded-models-to-interact-with-each-other">It&rsquo;s Hard for Loaded Models to Interact with Each Other</h3>
+<p>Next, what if you want two or more models to interact with each other in some way? This is a problem, because the other models can only be accessed (easily) from <em>their</em> callback functions.</p>
+<p>Suppose models A and B need to interact with each other inside a <code>setupPhysics</code> function. Where should we put that when loading the models using callbacks?</p>
+
+
+<section class="highlight-wrapper"><span class="caption">With callbacks, it&rsquo;s hard for multiple models to interact with each other</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const onLoadModelA = model =&gt; {
+  addModelToScene(model);
+};
+
+const onLoadModelB = model =&gt; {
+  addModelToScene(model);
+};
+
+loadModelUsingCallback(&#39;path/to/modelA.file&#39;, onLoadModelA);
+loadModelUsingCallback(&#39;path/to/modelB.file&#39;, onLoadModelB);
+</code>
+  </pre>
+</section>
+
+<p>You can&rsquo;t put it in model A&rsquo;s callback because we don&rsquo;t know if model B has loaded yet. You can&rsquo;t put it in model B&rsquo;s callback because we don&rsquo;t know if model A has loaded yet.</p>
+<p>Of course, there are ways around these problems. You can build a complex system that collates the loaded data, keeps it in a central structure somewhere, then, once everything has finished loading, sets up the rest of your app. Sounds complicated though. While callbacks themselves are simple, using them usually means offloading the complexity to another part of your code.</p>
+<p>There are other problems with callbacks besides these. We haven&rsquo;t even touched on <strong>callback hell</strong>, a problem so notorious <a href="https://callbackhell.com/" target="_blank" rel="noopener noreferrer">it has a website!</a></p>
+<h3 id="inversion-of-control-ioc">Inversion of Control (IoC)</h3>
+<p>These issues stem from the fact that callbacks force us to use a programming pattern called <a href="https://en.wikipedia.org/wiki/Inversion_of_control" target="_blank" rel="noopener noreferrer">inversion of control</a>, so-called because we have passed control from our <code>loadModel</code> function into the callback function.</p>
+<p>Inversion of control is not inherently a bad thing. The problem is being forced into this design choice when in many cases a different design would be better. Callbacks are relatively easy to understand, and for simple applications this way of writing asynchronous code is fine. However, as your app grows in size being forced to design your code around an IoC pattern becomes more and more stifling.</p>
+<h3 id="the-perfect-solution">The Perfect Solution</h3>
+<p>The &ldquo;perfect&rdquo; solution would be a <code>loadModel</code> function that directly <em>returns</em> the loaded model for us to use.</p>
+
+
+<section class="highlight-wrapper">
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const model = loadModel(&#39;path/to/model.file&#39;);
+</code>
+  </pre>
+</section>
+
+<p>An asynchronous function like this would afford us complete freedom to design our app however we like.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A hypothetical perfect solution to loading a model</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const model = loadModel(&#39;path/to/model.file&#39;);
+
+addModelToScene(model);
+setupControls(model);
+setupPhysics(model);
+adjustMaterials(model);
+adjustGeometry(model);
+</code>
+  </pre>
+</section>
+
+<p>No inversion of control, <code>loadModel</code> is simply a normal function that returns a value. This code would shine when multiple models need to interact:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A hypothetical perfect solution to loading multiple models</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const parrot = loadModel(&#39;path/to/parrotModel.file&#39;);
+const rabbit = loadModel(&#39;path/to/rabbitModel.file&#39;);
+const horse = loadModel(&#39;path/to/horseModel.file&#39;);
+
+addModelsToScene(parrot, rabbit, horse);
+setupPhysics(parrot, rabbit, horse);
+</code>
+  </pre>
+</section>
+
+<p>Well, that is how <em>using</em> the function would work. Unfortunately, we have to <em>implement</em> the function to use it, and there we run into trouble. This perfect function is not possible, in general. The three.js <code>TextureLoader</code> does work this way, since it returns a dummy texture for us to use while the real texture is loading.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The TextureLoader returns a dummy texture that we can use immediately</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="0"
+    data-line=""
+    data-line-offset="0"
+    >
+    <code class="highlight language-js match-braces">
+import { TextureLoader } from &#39;three&#39;;
+
+const loader = new TextureLoader();
+
+const texture = loader.load(&#39;kittens.png&#39;);
+</code>
+  </pre>
+</section>
+
+<p>However, this is a special case. Textures are simple image files, but most things we want to load are too complicated to use this approach. In other words, we know what&rsquo;s in an image before we load it (colored pixels), but we don&rsquo;t know what is going to be in most other files so we have to wait until they are loaded before can process them.</p>
+<p>In general, we&rsquo;ll never reach this level of beauty and simplicity while asynchronously loading files, but we can get close.</p>
+<p>First, <strong>Promises</strong> will enable us to get out of the IoC pattern, but we&rsquo;ll still need to use callbacks. Next, <strong>async function</strong> will take us the rest of the way. Our code will end up looking <em>almost</em> like the &ldquo;perfect&rdquo; solution, except there will be a few <code>async</code> and <code>await</code> keywords in the mix. Async functions are built on top of promises but have a much nicer API.</p>
+<blockquote>
+<p>As of r116 three.js ships with the <a href="https://threejs.org/docs/#api/en/loaders/Loader.loadAsync" target="_blank" rel="noopener noreferrer"><code>.loadAsync</code></a> method that allows us to use <a href="#async-await">async functions</a> directly.</p>
+</blockquote>
+<p>Before we get to those, we&rsquo;ll continue our exploration of JavaScript&rsquo;s asynchronous toolkit with Promises.</p>
+<h2 id="promises">Promises</h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises" target="_blank" rel="noopener noreferrer">Promises</a> are the second asynchronous technique we&rsquo;ll explore in this chapter. They were added to JavaScript in version ES6. We can create a <code>promise</code> (small p) using <code>new Promise</code> (capital P).</p>
+
+
+<section class="highlight-wrapper">
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const promise = new Promise(executorCallback);
+</code>
+  </pre>
+</section>
+
+<p>Promises are so-called because when we place a Promise in our code, we are promising we&rsquo;ll get the result of an asynchronous operation back at some point. The result will be either <em>success</em> or <em>failure</em>.</p>
+<p>In this section of this chapter of this book, we&rsquo;ll cover everything you need to know to get started with promises, and also to follow the examples in the book, but this is not a complete promise reference. In the interest of brevity, and of keeping <em>you</em> interested while we cover all this dry theory, we&rsquo;ll skip quite a few features of promises.</p>
+<p>Promises don&rsquo;t remove callbacks from our code. On the contrary, using promises requires a whole bunch of callbacks. It&rsquo;s also fair to say that promises are harder to understand than asynchronous callbacks, so you may find yourself wondering what the big deal is. After all, if the code we write is harder to understand <em>and</em> still uses callbacks, we haven&rsquo;t solved anything, right?</p>
+<p>It&rsquo;s hard to get across just why promises are such an improvement using simple examples like the ones in this chapter. However, once you start using them, their value will become apparent. Also, the biggest advantage of Promises is that they enable us to use <a href="#async-await">async functions</a>, the holy grail of asynchronous JavaScript techniques.</p>
+<h3 id="pending-fulfilled-rejected-settled">Pending, Fulfilled, Rejected, Settled</h3>
+<p>Promises are always in one of three <em>states</em>:</p>
+<ol>
+<li><strong>Pending</strong>: When we create a <code>new Promise</code> (or get a promise back from an API like fetch), it is in <em>pending state</em>, and it will remain there until the asynchronous operation has succeeded or failed.</li>
+<li><strong>Fulfilled</strong>: If the asynchronous operation completes successfully, the promise will move into <em>fulfilled state</em>.</li>
+<li><strong>Rejected</strong>: If the asynchronous operation fails, the promise will move into <em>rejected state</em>.</li>
+</ol>
+<p>Another possibility is that the asynchronous operation <em>never</em> completes, in which case the promise will remain in pending state forever, or at least until you refresh the page. In other words, promises don&rsquo;t have a time limit on how long the operation can take.</p>
+<p>There&rsquo;s a fourth state as well, called <strong>settled</strong>. This means <em>either</em> fulfilled or rejected, and we can check for settled state when we want to know if the asynchronous operation has completed and we don&rsquo;t care if it was successful or not.</p>
+<h3 id="promise-based-apis">Promise Based APIs</h3>
+<p>Usually, you don&rsquo;t need to create promises yourself, or in other words, you&rsquo;ll rarely need to type <code>new Promise</code>. Instead, you&rsquo;ll use promise-based APIs that create promises for you.</p>
+<p>For example, here&rsquo;s how we can use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank" rel="noopener noreferrer">the Fetch API</a> to load a file from a web server:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Loading a file from the server using Fetch returns a promise</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const filePromise = fetch(&#39;path/to/file.json&#39;);
+</code>
+  </pre>
+</section>
+
+<p><code>fetch</code> returns a promise instance which we have called <code>filePromise</code>. Later, if loading the file succeeds, the promise will return any data contained in the file for us to process, and if loading fails, the promise will return an error object with details about the cause of the error.</p>
+<p>For more information on how to use the Fetch API, check out the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank" rel="noopener noreferrer">using Fetch page</a> on MDN.</p>
+<p>In this section, we&rsquo;ll look at how to use a generic promise created using <code>new Promise</code>, but the theory we cover here applies to any promise-based API.</p>
+<h3 id="using-promises">Using Promises</h3>
+<p>Here&rsquo;s a complete example of a promise in action:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Using a promise requires five callbacks</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const executorCallback = (resolve, reject) =&gt; {
+  resolve(&#39;Promise succeeded&#39;);
+  reject(&#39;Promise failed&#39;);
+}
+
+const promise = new Promise(executorCallback);
+
+// if the asynchronous operation succeeds, .then will run,
+// and
+promise
+  .then((result) =&gt; {
+    console.log(result); // =&gt; &#39;Promise succeeded&#39;
+  })
+  .catch((err) =&gt; {
+    console.error(error); // =&gt; &#39;Promise failed&#39;
+  });
+</code>
+  </pre>
+</section>
+
+<p>There&rsquo;s a lot to unpack here. There are three named callbacks: <code>executorCallback</code>, <code>resolve</code>, and <code>reject</code>, and then there&rsquo;s <code>.then</code> and <code>.catch</code>, each of which takes an anonymous callback of their own. That&rsquo;s five callbacks! Let&rsquo;s go over everything now, and hopefully, it will become more manageable.</p>
+<p><em>Note: the above promise will immediately execute <code>resolve('Promise succeeded')</code> and will never reach <code>reject('Promise failed')</code>. We&rsquo;ve included both callbacks for illustration purposes.</em></p>
+<p><em>Second note: for many people, it takes a while to get a deep understanding of promises. However, <strong>using</strong> promises is much easier than <strong>understanding</strong> promises, so if you find yourself struggling with all the callbacks, focus on using promises for now. A deeper understanding will come later.</em></p>
+<h3 id="the-executor-callback">The Executor Callback</h3>
+<p>The first callback we encounter when using promises is the <strong>executor callback</strong>.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The executor callback</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const executorCallback = (resolve, reject) =&gt; {
+  resolve(&#39;Promise succeeded&#39;);
+  reject(&#39;Promise failed&#39;);
+};
+
+const promise = new Promise(executorCallback);
+</code>
+  </pre>
+</section>
+
+<p>You&rsquo;ll never see <code>executorCallback</code> explicitly typed out (except in a book). Instead, we&rsquo;ll write the executor callback inline.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The executor callback is always written inline</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const promise = new Promise((resolve, reject) =&gt; {
+  resolve(&#39;Promise succeeded&#39;);
+  reject(&#39;Promise failed&#39;);
+});
+</code>
+  </pre>
+</section>
+
+<h3 id="the-resolve-and-reject-callbacks">The <code>resolve</code> and <code>reject</code> Callbacks</h3>
+<p>The executor callback <em>itself</em> takes two callbacks, called <code>resolve</code> and <code>reject</code>. If the promise succeeds, it will call <code>resolve</code>, and if it fails it will call <code>reject</code>. We don&rsquo;t need to write the <code>resolve</code> and <code>reject</code> callbacks ourselves, we simply pass them into the executor callback as arguments.</p>
+<p>In other words, you will never do this:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Not required: resolve and reject are defined within the JavaScript engine</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const resolve = (value) =&gt; {
+  ...
+}
+
+const resolve = (err) =&gt; {
+  ...
+}
+</code>
+  </pre>
+</section>
+
+<h4 id="getting-data-back-from-a-promise-resolve">Getting Data Back from a Promise: <code>resolve</code></h4>
+<p>If the asynchronous operation succeeds, we use <code>resolve</code> to get any data from the operation out of the promise. For example, if we are loading a 3D model, then we&rsquo;ll call <code>resolve(loadedModelData)</code>. In this chapter, we&rsquo;ll return the string <code>'Promise succeeded'</code> in place of real data.</p>
+<h4 id="return-a-useful-error-message-on-failure-reject">Return a Useful Error Message on Failure: <code>reject</code></h4>
+<p>If the asynchronous operation fails, we use <code>reject</code> to get information about <em>why</em> it failed.</p>
+<p>Once again, we are using a string <code>'Promise failed'</code> as a placeholder, but in a real application, you&rsquo;ll probably get back an object with lots of info. For example, when using Fetch to load files from a web server, errors have codes like 404 (file not found), and 403 (access forbidden). You can use this data to create a helpful message for your users or otherwise handle the error.</p>
+<h3 id="handling-a-successful-operation-promisethen">Handling a Successful Operation: <code>Promise.then</code></h3>
+<p>If the asynchronous operation <em>succeeds</em>, the promise&rsquo;s state will move from <em>pending</em> to <em>fulfilled</em>, and the <code>resolve</code> callback will be executed, sending any data into the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then" target="_blank" rel="noopener noreferrer"><code>Promise.then</code></a> callback.</p>
+<p>In this example, that means <code>resolve('Promise succeeded')</code> will execute and <code>.then</code> will receive the string <code>'Promise succeeded'</code>. Here, we simply log that to the console. In a real app, we might add a loaded model to the scene, or do something with a file returned by <code>Fetch</code>.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Any data returned by a successful operation is passed into .then for us to process</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+promise
+  .then((result) =&gt; {
+    console.log(result); // =&gt; &#39;Promise succeeded&#39;
+  });
+</code>
+  </pre>
+</section>
+
+<p>The <code>.then</code> callback is equivalent to the <code>onLoad</code> callback from our earlier <a href="#an-asynchronous-callback-operation">asynchronous callback example</a>.</p>
+<h3 id="error-handling-with-promisecatch">Error Handling with <code>Promise.catch</code></h3>
+<p>If the asynchronous operation <em>fails</em>, the promise&rsquo;s state will move from <em>pending</em> to <em>rejected</em>, and the <code>reject</code> callback will be executed, sending any data into the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch" target="_blank" rel="noopener noreferrer"><code>Promise.catch</code></a> callback.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Any data returned by a failed operation is passed into .catch for us to process</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+promise
+  .then((result) =&gt; {
+    console.log(result); // =&gt; &#39;Promise succeeded&#39;
+  })
+  .catch((error) =&gt; {
+    console.error(error); // =&gt; &#39;Promise failed&#39;
+  });
+</code>
+  </pre>
+</section>
+
+<p>The <code>.catch</code> callback is equivalent to our <a href="#an-asynchronous-callback-operation"><code>onError</code> callback</a> from earlier.</p>
+<p>We can test <code>.catch</code> by making the promise fail immediately. To do that, comment out <code>resolve</code> in the above example.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A promise that rejects immediately</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const promise = new Promise((resolve, reject) =&gt; {
+  // resolve(&#39;Promise succeeded&#39;);
+  reject(&#39;Promise failed&#39;); // reject immediately
+});
+</code>
+  </pre>
+</section>
+
+<h4 id="error-handling-with-then">Error Handling with <code>.then</code></h4>
+<p>Rather than use <code>.catch</code>, we can pass both callbacks into <code>.then</code>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">.then can take two callbacks</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+promise.then(
+  // onSuccess callback
+  (result) =&gt; {
+    console.log(result);
+  },
+  // onError callback
+  (error) =&gt; {
+    console.error(error);
+  },
+)
+</code>
+  </pre>
+</section>
+
+<p>However, using <code>.catch</code> results in cleaner code and we&rsquo;ll always prefer to use that rather than passing two callbacks into <code>.then</code>.</p>
+<h3 id="code-that-needs-to-run-on-success-or-failure-promisefinally">Code that Needs to Run on Success or Failure: <code>Promise.finally</code></h3>
+<p>If <code>.then</code> handles success, and <code>.catch</code> handles failure, what about code that needs to run in either case? For this case, there&rsquo;s a third method called <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally" target="_blank" rel="noopener noreferrer"><code>Promise.finally</code></a>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">.finally runs once the promise has settled</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+promise
+  .then((result) =&gt; {
+    console.log(result); // =&gt; &#39;Promise succeeded&#39;
+  })
+  .catch((error) =&gt; {
+    console.error(error); // =&gt; &#39;Promise failed&#39;
+  })
+  .finally(() =&gt; {
+    console.log(&#39;Promise settled&#39;);
+  });
+</code>
+  </pre>
+</section>
+
+<p><code>.finally</code> will run when the promise reaches a settled state, meaning either resolved or rejected.</p>
+<h3 id="promises-are-always-asynchronous">Promises are Always Asynchronous</h3>
+<p>The promise example we have created is <em>nearly</em> equivalent to the <a href="#a-synchronous-callback-operation">synchronous callback operation</a> from earlier in the chapter.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A synchronous callback operation</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+function synchronousCallbackOperation(callback) {
+  callback(&#39;Synchronous callback function executed&#39;);
+}
+
+synchronousCallbackOperation(result =&gt; {
+  console.log(result);
+});
+</code>
+  </pre>
+</section>
+
+<p>&hellip; is nearly equivalent to:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A simple promise example</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const promise = new Promise((resolve, reject) =&gt; {
+  resolve(&#39;Promise succeeded&#39;); // =&gt; resolve immediately
+});
+
+promise
+  .then((result) =&gt; {
+    console.log(result); // =&gt; &#39;Promise succeeded&#39;
+  });
+</code>
+  </pre>
+</section>
+
+<p>However, there are differences. Promises are always asynchronous, so the above code is closer (but still has important differences) to this:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">setTimeout with a delay of zero milliseconds</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+function asynchronousCallbackOperation(callback) {
+  setTimeout(() =&gt; {
+    callback(&#39;Data passed to callback&#39;);
+  }, 0);
+}
+
+asynchronousCallbackOperation((result) =&gt; {
+  console.log(result);
+});
+</code>
+  </pre>
+</section>
+
+<p>If you test these two example, <code>promise</code> and <code>asynchronousCallbackOperation</code>, you&rsquo;ll find that <code>setTimeout</code> with a time of zero executes <em>after</em> the promise resolves, even if we call <code>setTimeout</code> first. What&rsquo;s going on?</p>
+<p><code>setTimeout</code> with a time of zero schedules the callback to be executed immediately. This means the callback gets pushed onto the task queue. There may be other tasks already on the queue, so the callback has to wait for its turn to be executed.</p>
+<p>When we create a promise and then call <code>resolve</code> immediately, <code>resolve</code> is pushed onto a different queue called the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide" target="_blank" rel="noopener noreferrer">microtask queue</a>. The microtask queue has a higher priority than the standard task queue, so the promise will resolve faster than the <code>setTimeout</code> callback.</p>
+<p>If you want to go deeper into this, see <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop#Zero_delays" target="_blank" rel="noopener noreferrer">concurrency model and the event loop</a> on MDN, as well as <a href="https://stackoverflow.com/questions/779379/why-is-settimeoutfn-0-sometimes-useful" target="_blank" rel="noopener noreferrer">this Stackoverflow post on <code>setTimeout(fn,0)</code></a> and <a href="https://stackoverflow.com/questions/38752620/promise-vs-settimeout" target="_blank" rel="noopener noreferrer">this Stackoverflow post on Promise vs <code>setTimeout</code></a>.</p>
+<h3 id="loading-a-file-with-the-fetch-api-using-promises">Loading a File with the Fetch API Using Promises</h3>
+<p>As a practical example, let&rsquo;s take a look at how to load a JSON file using the Fetch API.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Loading a JSON file with Fetch</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const filePromise = fetch(&#39;path/to/file.json&#39;);
+
+filePromise
+  .then(fileData =&gt; {
+    console.log(fileData);
+  })
+  .catch(error =&gt; {
+    console.error(error);
+  });
+</code>
+  </pre>
+</section>
+
+<p>There&rsquo;s usually no need to save the promise to a variable, so we can write this even more succinctly:</p>
+
+
+<section class="highlight-wrapper">
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+fetch(&#39;path/to/file.json&#39;)
+  .then(fileData =&gt; {
+    console.log(fileData);
+  })
+  .catch(error =&gt; {
+    console.error(error);
+  });
+</code>
+  </pre>
+</section>
+
+<p>As you can see, using promises results in clear and simple code. We&rsquo;ll spare you the horror of the equivalent using <code>XMLHttpRequest</code>!</p>
+<h3 id="implementing-loadmodel-using-promises">Implementing <code>loadModel</code> Using Promises</h3>
+<p>Recall our <a href="#an-asynchronous-callback-operation">callback-based model loading function</a> from earlier in the chapter:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">1-asynchronous-callback.js: a callback-based load model function</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">function loadModelUsingCallback(url, callback) {
+  // Wait a few seconds, then execute the callback
+  // (simulating a model that loads in 3 seconds)
+  setTimeout(() =&gt; {
+    callback(`Example 2: Model ${url} loaded successfully`);
+  }, 3000);
+}
+</code>
+  </pre>
+</section>
+
+<p>Let&rsquo;s rewrite this using Promises.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">3-promises.js: a Promise based load model function</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">function loadModelUsingPromise(url) {
+  return new Promise((resolve, reject) =&gt; {
+    // Wait a few seconds, then resolve the promise
+    // (simulating a model that loads in 4 seconds)
+    setTimeout(() =&gt; {
+      resolve(`Example 4: Model ${url} loaded successfully`);
+    }, 4000);
+  });
+}
+</code>
+  </pre>
+</section>
+
+<p>It&rsquo;s quite similar. We&rsquo;re still using <code>setTimeout</code> to simulate loading a model (this time, one that loads in 4000 milliseconds). The important difference is that <strong>the <code>loadModelUsingPromise</code> function returns a Promise</strong>. Let&rsquo;s see the two versions in action. First, we&rsquo;ll load a (fake) URL using <code>loadModelUsingCallback</code>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">1-asynchronous-callback.js: loadModelUsingCallback in action</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="9"
+    data-line="1"
+    data-line-offset="9"
+    >
+    <code class="highlight language-js match-braces">loadModelUsingCallback(&#39;callback_test.file&#39;, (result) =&gt; {
+  console.log(result);
+});
+</code>
+  </pre>
+</section>
+
+<p>Next, we&rsquo;ll do the same with <code>loadModelUsingPromise</code>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">3-promises.js: loadModelUsingPromise in action</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="11"
+    data-line=""
+    data-line-offset="11"
+    >
+    <code class="highlight language-js match-braces">loadModelUsingPromise(&#39;promises_test.file&#39;)
+  .then((result) =&gt; {
+    console.log(result);
+  })
+  .catch((error) =&gt; {
+    console.log(error);
+  });
+</code>
+  </pre>
+</section>
+
+<p>This latter example is a bit longer since it includes the <code>.catch</code> method to handle errors.</p>
+<h3 id="loading-multiple-files-with-promises-a-first-attempt">Loading Multiple Files with Promises, a First Attempt</h3>
+<p>Looking at those two examples, there&rsquo;s no obvious benefit to the version using a promise. Earlier, we claimed that promises shine when it comes to loading multiple models, so let&rsquo;s try doing that.</p>
+<p>Once again, let&rsquo;s start with our <a href="#performing-multiple-asynchronous-operations-with-callbacks">multiple callbacks example</a> from earlier:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">2-multiple-asynchronous-callbacks.js: loading multiple models with loadModelUsingCallback</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="9"
+    data-line=""
+    data-line-offset="9"
+    >
+    <code class="highlight language-js match-braces">const onLoad = (result) =&gt; {
+  console.log(result);
+};
+
+loadModelUsingCallback(&#39;callback_test_A.file&#39;, onLoad);
+loadModelUsingCallback(&#39;callback_test_B.file&#39;, onLoad);
+loadModelUsingCallback(&#39;callback_test_C.file&#39;, onLoad);
+loadModelUsingCallback(&#39;callback_test_D.file&#39;, onLoad);
+</code>
+  </pre>
+</section>
+
+<p>Next, let&rsquo;s try the obvious approach to loading model with <code>loadModelUsingPromise</code>.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">loading multiple models with loadModelUsingPromise, the obvious approach</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const onResolve = (result) =&gt; {
+  console.log(result);
+};
+
+const onReject = (error) =&gt; {
+  console.error(error);
+};
+
+
+loadModelUsingPromise(&#39;promise_A.file&#39;)
+  .then(onResolve)
+  .catch(onReject);
+
+loadModelUsingPromise(&#39;promise_B.file&#39;)
+  .then(onResolve)
+  .catch(onReject);
+
+loadModelUsingPromise(&#39;promise_C.file&#39;)
+  .then(onResolve)
+  .catch(onReject);
+
+loadModelUsingPromise(&#39;promise_D.file&#39;)
+  .then(onResolve)
+  .catch(onReject);
+</code>
+  </pre>
+</section>
+
+<p>One of the major problems with callbacks is that it&rsquo;s hard for the loaded models to interact with each other. Earlier, we claimed that promises would help with this. Here&rsquo;s the <code>setupPhysics</code> method we struggled with earlier:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">As we saw, it can be hard to get loaded models to interact with each other</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+setupPhysics(modelA, modelB, modelC, modelD);
+</code>
+  </pre>
+</section>
+
+<p>It doesn&rsquo;t seem like we have improved anything here. There&rsquo;s still nowhere for us to put the <code>setupPhysics</code> function and give it access to all the loaded models. Each model is still being handled in a separate callback, so it doesn&rsquo;t look like we have solved anything. There is no obvious advantage at all here, we&rsquo;ve simply renamed <code>onLoad</code> to <code>onResolve</code>.</p>
+<p>Fortunately, promises give us more options when it comes to handling asynchronously loading files. Let&rsquo;s try out one called <code>Promise.all</code>.</p>
+<h3 id="loading-multiple-files-with-promiseall">Loading Multiple Files with <code>Promise.all</code></h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" target="_blank" rel="noopener noreferrer">Promise.all</a> allows us to handle multiple loading operations gracefully. Using this method, we even get the results of our operations back in the same order we started them (<strong>deterministic ordering</strong>), which is kind of a big deal when it comes to asynchronous operations.</p>
+<p><code>Promise.all</code> takes an array of promises and returns a single promise that will resolve when <em>all</em> the promises are resolved, or reject when <em>one or more</em> of the promises are rejected.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Promise.all takes an array of promises and returns a promise</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+Promise.all([
+  promiseA,
+  promiseB,
+  promiseC,
+  // ... and so on
+  promiseZ,
+]).then((allResults) =&gt; {
+  console.log(allResults);
+});
+</code>
+  </pre>
+</section>
+
+<p>The <code>allResults</code> argument is an array containing all of the loaded models, so <strong>we can process them all at once in a single callback</strong>.</p>
+<p>We can use the fact that <code>allResults</code> returns the results in the same order as we loaded them, along with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank" rel="noopener noreferrer">destructuring assignment</a>, to write very succinct code here.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">4-multiple-promises.js: loading multiple models using Promise.all</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="11"
+    data-line=""
+    data-line-offset="11"
+    >
+    <code class="highlight language-js match-braces">Promise.all([
+  loadModelUsingPromise(&#39;promise_A.file&#39;),
+  loadModelUsingPromise(&#39;promise_B.file&#39;),
+  loadModelUsingPromise(&#39;promise_C.file&#39;),
+  loadModelUsingPromise(&#39;promise_D.file&#39;),
+]).then((results) =&gt; {
+  const [modelA, modelB, modelC, modelD] = results;
+
+  console.log(modelA);
+  console.log(modelB);
+  console.log(modelC);
+  console.log(modelD);
+});
+</code>
+  </pre>
+</section>
+
+<p>Finally, we have reached the point where all of the loaded models are in one place, and we have somewhere to put the <code>setupPhysics</code> method:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Finally, we can easily make the loaded models interact</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+Promise.all([
+  // ...
+]).then((results) =&gt; {
+  const [modelA, modelB, modelC, modelD] = results;
+  setupPhysics(modelA, modelB, modelC, modelD);
+});
+</code>
+  </pre>
+</section>
+
+<h3 id="error-handling-with-promiseall">Error Handling with <code>Promise.all</code></h3>
+<p>No asynchronous operation is complete unless it can handle errors, so let&rsquo;s make one of our promises fail. We&rsquo;ll add a second fake model loading function, but this time have it immediately reject.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">5-multiple-promises-handle-error.js: error handling with Promise.all</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">function loadModelUsingPromise(url) {
+  return new Promise((resolve, reject) =&gt; {
+    // Wait a few seconds, then execute the callback
+    // (simulating a model that loads in less than 5 seconds)
+    setTimeout(() =&gt; {
+      resolve(`Example 6: Model ${url} loaded successfully`);
+    }, Math.random() * 5000);
+  });
+}
+
+function loadModelUsingPromiseFAIL(url) {
+  return new Promise((resolve, reject) =&gt; {
+    reject(`Example 6: MODEL ${url} FAILED TO LOAD!`);
+  });
+}
+
+Promise.all([
+  loadModelUsingPromise(&#39;promise_A.file&#39;),
+  loadModelUsingPromise(&#39;promise_B.file&#39;),
+  loadModelUsingPromiseFAIL(&#39;promise_C.file&#39;),
+  loadModelUsingPromise(&#39;promise_D.file&#39;),
+])
+  .then((results) =&gt; {
+    const [modelA, modelB, modelC, modelD] = results;
+
+    console.log(modelA);
+    console.log(modelB);
+    console.log(modelC);
+    console.log(modelD);
+  })
+  .catch((error) =&gt; {
+    console.error(error);
+  });
+</code>
+  </pre>
+</section>
+
+<p>Now model C will immediately reject. Just like when loading a single model, we can use <code>.catch</code> to handle the error.</p>
+<p>Note that <code>Promise.all</code> will reject if <em>one or more</em> of the promises rejects. In other words, if even one model fails to load none of the models will be returned.</p>
+<p>We could use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled" target="_blank" rel="noopener noreferrer"><code>Promise.allSettled</code></a> to get data for successful models even when some fail to load. At the time of writing this chapter (July 2020), browser support for <code>.allSettled</code> is not great, so we will avoid using it in this book. Here, to keep things simple, we&rsquo;ll accept this limitation and continue to use <code>Promise.all</code>. After all, if any of your models fail to load it usually means there&rsquo;s a problem that needs to be fixed.</p>
+<h2 id="async-await">Async Functions</h2>
+<p>Earlier we tried to imagine <a href="#the-perfect-solution">how the best possible version of a <code>loadModel</code> function would work</a>, and came up with this:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">A hypothetical &lsquo;perfect&rsquo; model loading function</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const modelData = loadModel(&#39;path/to/model.file&#39;);
+</code>
+  </pre>
+</section>
+
+<p>This is the &ldquo;perfect&rdquo; solution to the problem of loading a model or other data over a slow network such as the internet, but as we noted earlier, aside from some special cases, such a <code>loadModel</code> function is impossible to implement.</p>
+<p>However, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function" target="_blank" rel="noopener noreferrer">async functions</a> get us very close. These are also the newest way of performing asynchronous operations, having been added to JavaScript only recently. Async functions are based on promises, so it will help if you have a basic understanding of those before you start to use async functions.</p>
+<h3 id="loaderloadasync"><code>Loader.loadAsync</code></h3>
+<p>Until recently, using async functions in three.js was difficult. Fortunately, as of r116 there is a new <a href="https://threejs.org/docs/#api/en/loaders/Loader.loadAsync" target="_blank" rel="noopener noreferrer"><code>Loader.loadAsync</code> method</a> that allows us to use them immediately.</p>
+<h3 id="the-await-keyword">The <code>await</code> Keyword</h3>
+<p><strong>Async functions introduce two new keywords: <code>async</code>, which we&rsquo;ll explain in a moment, and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await" target="_blank" rel="noopener noreferrer"><code>await</code></a>, which we use to tell our program to wait for the result of an asynchronous operation.</strong></p>
+<p>Using <code>await</code>, loading a model becomes as simple as this:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The await keyword tells JavaScript to wait for the result</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const result = await loadModelAsync(&#39;path/to/model.file&#39;);
+</code>
+  </pre>
+</section>
+
+<p>Not a callback in sight!</p>
+<p><strong>When an <code>await</code> is encountered, the JavaScript engine will stop executing the current function until the asynchronous operation has completed. However, the rest of your application will continue to run as normal.</strong></p>
+<h3 id="the-async-keyword">The <code>async</code> Keyword</h3>
+<p>To use <code>await</code>, we need to mark the containing function as <code>async</code>. <code>await</code> can only be used inside an <code>async</code> function. Attempting to use it elsewhere will result in an error. Here, that means we need to create a new function to handle loading the model.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">await must be used inside an async function</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+async function main() {
+ const result = await loadModelAsync(&#39;path/to/model.file&#39;);
+}
+
+main();
+</code>
+  </pre>
+</section>
+
+<p>In a real app (a well designed one, at least), you would already have a special function or class method for this purpose, so this shouldn&rsquo;t disrupt the design of your code too badly.</p>
+<h3 id="implementing-loadmodel-with-async-functions">Implementing <code>loadModel</code> with Async Functions</h3>
+<p>As we mentioned earlier, async functions are implemented using <a href="#promises">Promises</a>. This means a <code>loadModelAsync</code> function looks exactly like the <a href="#implementing-our-loadmodel-function-using-promises"><code>loadModelUsingPromise</code> function</a> we created earlier.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">6-async-functions.js: Async functions use Promises under the hood</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">function loadModelUsingPromise(url) {
+  return new Promise((resolve, reject) =&gt; {
+    // Wait a few seconds, then execute the callback
+    // (simulating a model that loads in 5 seconds)
+    setTimeout(() =&gt; {
+      resolve(`Example 7: Model ${url} loaded successfully`);
+    }, 5000);
+  });
+}
+</code>
+  </pre>
+</section>
+
+<p>However, now we&rsquo;ll use it like this:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">6-async-functions.js: loading a model with async/await</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+async function main() {
+ const result = await loadModelUsingPromise(&#39;path/to/model.file&#39;);
+
+ console.log(result);
+}
+
+main();
+</code>
+  </pre>
+</section>
+
+<p>&hellip; AND THAT&rsquo;S IT!!!</p>
+<p>Sorry for shouting, it&rsquo;s just such a relief after dealing with all the callbacks from the last few sections. No callbacks!</p>
+<h3 id="loading-a-file-using-fetch-asyncawait-version">Loading a File using Fetch, <code>async</code>/<code>await</code> Version</h3>
+<p>OK, there are still some callbacks in the <code>loadModelUsingPromise</code> function. However, normally you wouldn&rsquo;t write that function yourself. It&rsquo;s more common to use a promise based loader that someone else wrote such as the three.js loaders or the Fetch API.</p>
+<p>As a real world example, see how easy it is to load a file using the Fetch API and <code>async</code>/<code>await</code>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Fetch with async/await</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+async function main() {
+  const result = await fetch(&#39;path/to/file.json&#39;);
+
+  console.log(result)
+}
+
+main();
+</code>
+  </pre>
+</section>
+
+<p>Now that&rsquo;s some succinct, beautiful code.</p>
+<p>If you are familiar with Fetch, at this point you may be saying &ldquo;<em>yes, but you also need to decode the file before you can read it, which is a second asynchronous operation</em>&rdquo;. Fair point. Here&rsquo;s how to load <em>and</em> decode a JSON file using async functions:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Loading and decoding a JSON file can be accomplished in a single line with async/await</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+async function main() {
+  const decodedJSON = await (await fetch(&#39;path/to/file.json&#39;)).toJSON();
+}
+
+main();
+</code>
+  </pre>
+</section>
+
+<p>Not one, but <em>two</em> asynchronous operations in a single line of code, and it&rsquo;s still (fairly) readable. If you&rsquo;ve spent years working with JavaScript callbacks, this will feel like magic.</p>
+<h3 id="error-handling-with-async-functions-and-catch">Error Handling with Async Functions and <code>.catch</code></h3>
+<p>To test error handling, once again, <a href="#error-handling-with-promise-all">we&rsquo;ll make <code>loadModelUsingPromise</code> fail</a>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">6-async-functions.js: change the function so that it rejects immediately</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+function loadModelUsingPromiseFAIL(url) {
+  return new Promise((resolve, reject) =&gt; {
+    reject(&#39;`Model ${url} failed to load!`&#39;)
+  });
+}
+</code>
+  </pre>
+</section>
+
+<p>Currently, our code does nothing to handle errors, so when we load the model as before:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">6-async-functions.js: our code does not handle errors</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+async function main() {
+  const model = await loadModelUsingPromiseFAIL(&#39;path/to/model.file&#39;);
+
+  scene.add(model);
+}
+
+main();
+</code>
+  </pre>
+</section>
+
+<p>&hellip; we&rsquo;ll get an ugly red error message in the console:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Chrome message for unhandled error in a Promise</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-null match-braces">
+Uncaught (in promise) Model async_test.file Failed!
+</code>
+  </pre>
+</section>
+
+<p>There are a few methods we could use to handle errors with <code>async</code>/<code>await</code>. For example, we could use a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch" target="_blank" rel="noopener noreferrer"><code>try...catch</code> statement</a>. In the interest of keeping this chapter short and <a href="#handling-errors-the-promise-catch-method">since we covered these already</a>, we&rsquo;ll use <code>.catch</code>.</p>
+<p><code>.catch</code> works a little differently with async functions than with Promises. Previously, we attached <code>.catch</code> directly to the promise. Here, <strong>we&rsquo;ll attach <code>.catch</code> to the asynchronous function</strong>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Handling errors using .catch, async/await version</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+async function main() {
+  const model = await loadModelUsingPromise(&#39;path/to/model.file&#39;);
+
+  scene.add(model);
+}
+
+main().catch(err =&gt; {
+  console.error(error);
+});
+</code>
+  </pre>
+</section>
+
+<p>By the way, if you&rsquo;re thinking this must mean you can use <a href="#handling-a-successful-operation-promise-then"><code>.then</code></a> and <a href="#code-that-needs-to-run-on-success-or-failure-promise-finally"><code>.finally</code></a> with async functions, you would be right! <code>.then</code> will be passed the return value (if any) from the async function, while <code>.finally</code> runs after all operations have completed, as before.</p>
+<h3 id="be-careful-where-you-place-the-await-call">Be Careful Where You Place the <code>await</code> Call</h3>
+<p>The power of async functions lie in the <code>await</code> keyword, and the fact that promises are objects which we can pass around.</p>
+<p>This means that we can start an asynchronous operation early and store the promise.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">We can start loading early, set up the rest of the app, and finally await for the model</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+async function main() {
+  // start loading the model (notice there&#39;s no &#34;await&#34;)
+  const pigPromise = modelPromise(&#39;model/pig.glb&#39;);
+
+  // set up the app while the model is loading
+  setupCamera();
+  setupRenderer();
+  setupControls();
+  // etc.
+
+  // finally, wait for the model to finish loading
+  const pigModel = await pigPromise;
+
+  // then add it to the scene
+  scene.add(pigModel);
+}
+</code>
+  </pre>
+</section>
+
+<p>This is a slightly contrived example since it&rsquo;s unlikely setting up the scene, camera, and renderer will take long enough for this to make any difference. However, the power of <code>await</code> will start to shine once you are dealing with a large application with many asynchronous components.</p>
+<p>The point being made here is that async functions give us full control over the asynchronous sections of our code. Some of this is simply the result of cleaner and more readable code, but async functions also allow us to structure our code in a way that would simply not be possible with callbacks and <code>Promises</code> alone.</p>
+<h3 id="loading-multiple-files-with-async-functions-first-attempt">Loading Multiple Files with Async Functions, First Attempt</h3>
+<p><em>In this section, we&rsquo;re using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Console/time" target="_blank" rel="noopener noreferrer"><code>console.time</code> and <code>console.timeEnd</code></a>, which time how long code in between those two statements takes to run.</em></p>
+<p>Loading a single model is easy, but what happens when we try to load several at once?</p>
+<p>Once again, we&rsquo;ll use the <code>loadModelUsingPromise</code>, this time set to resolve in exactly five seconds.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">loadModelUsingPromise set to load in exactly 5 seconds</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">function loadModelUsingPromise(url) {
+  return new Promise((resolve, reject) =&gt; {
+    // Wait a few seconds, then execute the callback
+    // (simulating a model that loads in 5 seconds)
+    setTimeout(() =&gt; {
+      resolve(`Example 7: Model ${url} loaded successfully`);
+    }, 5000);
+  });
+}
+</code>
+  </pre>
+</section>
+
+<p>Before we proceed, a quick math quiz: <strong>if we load four models, and each model takes five seconds to load, how long will it take to load all four models?</strong></p>
+<p>The obvious (but wrong) answer is twenty seconds. However, the real answer is <strong>around five seconds</strong>. Asynchronous operations don&rsquo;t happen one by one (sequentially), they happen at the same time (in parallel).</p>
+<p>That&rsquo;s the theory at least. The real world being it&rsquo;s usual messy self, you may have to deal with busy networks and CPU cores, so the final answer is somewhere between five and twenty seconds. Unless something is wrong though, it should be closer to five than twenty.</p>
+<p>Here, we&rsquo;re using <code>setTimeout</code> to simulate loading a model in exactly five seconds, so we should get a perfect result of five seconds (to within a couple of milliseconds).</p>
+<p>Let&rsquo;s try it out. Here&rsquo;s our first attempt, which looks similar to our <a href="#loading-multiple-files-with-promises-a-first-attempt">first attempt to load multiple models with promises</a> from earlier in this chapter:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Loading multiple models with async/await, the WRONG way</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+async function main() {
+  console.time(&#39;Total loading time: &#39;);
+
+  const modelA = await loadModelUsingPromise(&#39;async_A.file&#39;);
+  const modelB = await loadModelUsingPromise(&#39;async_B.file&#39;);
+  const modelC = await loadModelUsingPromise(&#39;async_C.file&#39;);
+  const modelD = await loadModelUsingPromise(&#39;async_D.file&#39;);
+
+  console.timeEnd(&#39;Total loading time: &#39;);
+}
+main();
+</code>
+  </pre>
+</section>
+
+<p>However, when you check the console you&rsquo;ll see:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Not the result we want</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+Total loading time: 20002.922119140625ms
+</code>
+  </pre>
+</section>
+
+<p>Twenty seconds. Clearly, we&rsquo;re doing something wrong.</p>
+<blockquote>
+<p><strong>Execution of the <code>main</code> function pauses at each <code>await</code> statement until the current asynchronous operation has completed.</strong></p>
+</blockquote>
+<p>Using this approach, we start to load model $A$, wait for five seconds until it has loaded, <em>then</em> move onto model $B$, wait for five seconds, and so on.</p>
+<p>This highlights an important difference between Promises and async/await. Our first attempt to load multiple models with Promises from earlier doesn&rsquo;t suffer from this problem. There, the issue was difficulty in accessing all of the models at once, but otherwise, it was an OK approach. Here, we are flat out <em>wrong</em>. Never use multiple <code>await</code> statements like this.</p>
+<p>In any case, once again, the solution is <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" target="_blank" rel="noopener noreferrer">Promise.all</a>.</p>
+<h3 id="loading-multiple-files-with-async-functions-using-promiseall">Loading Multiple Files with Async Functions using <code>Promise.all</code></h3>
+<p>The problem above is that we have four <code>await</code> statement. <strong>Always use a single await statement per async function, <em>unless a subsequent operation relies on the result of an earlier one</em></strong> (see <a href="#loading-a-file-using-fetch-async-await-version">the Fetch example above</a> where we fetched and decoded a JSON file for an example of this).</p>
+<p>With <code>Promise.all</code>, we can bundle all of the loading operations into a single promise, <a href="#loading-multiple-files-with-promise-all">just as we did earlier</a>, and then use a single <code>await</code> to wait for all four promises to complete (<a href="#pending-fulfilled-or-rejected">settle</a>):</p>
+
+
+<section class="highlight-wrapper"><span class="caption">7-multiple-async-functions.js: combine multiple promises into a single promise with Promise.all</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="11"
+    data-line=""
+    data-line-offset="11"
+    >
+    <code class="highlight language-js match-braces">async function main() {
+  console.time(&#39;Total loading time: &#39;);
+
+  const [modelA, modelB, modelC, modelD] = await Promise.all([
+    loadModelUsingPromise(&#39;async_A.file&#39;),
+    loadModelUsingPromise(&#39;async_B.file&#39;),
+    loadModelUsingPromise(&#39;async_C.file&#39;),
+    loadModelUsingPromise(&#39;async_D.file&#39;),
+  ]);
+
+  console.timeEnd(&#39;Total loading time: &#39;);
+
+  console.log(modelA);
+  console.log(modelB);
+  console.log(modelC);
+  console.log(modelD);
+}
+
+main().catch((err) =&gt; {
+  console.log(err);
+});
+</code>
+  </pre>
+</section>
+
+<p>This time, if you check the console you&rsquo;ll see something like:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">All four models loaded in five seconds. Much better!</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+Total loading time: 5000.897705078125ms
+</code>
+  </pre>
+</section>
+
+<p><a href="#loading-multiple-files-with-promise-all">Everything we said earlier about <code>Promise.all</code></a> holds here, with the same caveat that if one model fails, they all fail. The only difference is that we have replaced <code>.then</code> with an <code>await</code> statement and moved <code>.catch</code> onto <code>main</code>.</p>
+<h2 id="async-functions-and-the-threejs-loaders">Async Functions and the three.js Loaders</h2>
+<p><strong>As of three.js r116 (May 2020), there is now a <a href="https://threejs.org/docs/#api/en/loaders/Loader.loadAsync" target="_blank" rel="noopener noreferrer"><code>.loadAsync</code> method available on all three.js loaders</a> which allow us to use <code>async</code>/<code>await</code> directly.</strong></p>
+<p>This section originally documented the process required to convert the three.js old-school callback-based loaders to modern promise-based loaders. It was nasty.</p>
+<p>Thankfully, that&rsquo;s all behind us now and we live in the glorious, async future. Here, we&rsquo;ll use the <a href="https://threejs.org/examples/#webgl_loader_gltf" target="_blank" rel="noopener noreferrer"><code>GLTFLoader</code></a> to demonstrate loading a model with <code>.loadAsync</code>, however, this applies to any three.js loader.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Loading a model with .loadAsync</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const loader = new GLTFLoader();
+const modelData = await loader(&#39;models/pig.glb&#39;);
+console.log(modelData);
+</code>
+  </pre>
+</section>
+
+<p>That&rsquo;s all, three lines of code. Of course, you do need an <code>async</code> function to wrap it in, so let&rsquo;s use our <code>main</code> function once again.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Loading a model with .loadAsync</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import { GLTFLoader } from &#39;three/examples/jsm/loaders/GLTFLoader.js&#39;;
+
+async function main() {
+  const loader = new GLTFLoader();
+  const modelData = await loader(&#39;models/pig.glb&#39;);
+
+  console.log(modelData);
+}
+
+main().catch((err) =&gt; {
+  console.log(err);
+});
+</code>
+  </pre>
+</section>
+
+<p>To see the <code>GLTFLoader</code> in action, check out <a href="/book/first-steps/load-models/">1.13: Load 3D Models in glTF Format</a>.</p>
+<p>This concludes our whirlwind tour of modern JavaScript. Armed with this knowledge, you can now safely tackle the rest of this book and start to create beautiful creations using WebGL, three.js, and JavaScript.</p>
+
+            <div class="bottom-pagination">
+
+
+
+
+
+<a href="/book/appendix/javascript-modules/" title="JavaScript Modules" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/appendix/threejs-versions/" class="control-elem next" title="Dealing with Different three.js Versions"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
+          </div>
+        </div>
+      </main><div id="ide-wrapper" class="panel animate disabled hide">
+  <nav id="ide-controls-top" class="control-bar fuzzy-background">
+    <input
+      type="checkbox"
+      id="toggle-complete"
+      class="ide-toggle simple-toggle"
+      title="Show completed code (your changes will be saved)"
+      disabled="true"
+    />
+    <input
+      type="checkbox"
+      id="toggle-filetree"
+      class="hidden-input ide-toggle"
+    />
+    <label
+      for="toggle-filetree"
+      class="control-elem"
+      title="Toggle Filetree"
+    >
+      <span class="off-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"/></svg></span>
+      <span class="on-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M572.694 292.093L500.27 416.248A63.997 63.997 0 0 1 444.989 448H45.025c-18.523 0-30.064-20.093-20.731-36.093l72.424-124.155A64 64 0 0 1 152 256h399.964c18.523 0 30.064 20.093 20.73 36.093zM152 224h328v-48c0-26.51-21.49-48-48-48H272l-64-64H48C21.49 64 0 85.49 0 112v278.046l69.077-118.418C86.214 242.25 117.989 224 152 224z"/></svg></span>
+    </label>
+    <button
+      type="button"
+      id="reset-active-file"
+      class="control-elem"
+      title="Reset Current File"
+      disabled
+    ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M64 468V44c0-6.6 5.4-12 12-12h48c6.6 0 12 5.4 12 12v176.4l195.5-181C352.1 22.3 384 36.6 384 64v384c0 27.4-31.9 41.7-52.5 24.6L136 292.7V468c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12z"/></svg></button>
+    <button
+      type="button"
+      id="reset-all-files"
+      class="control-elem"
+      title="Reset All Changes"
+      disabled
+    ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M11.5 280.6l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2zm256 0l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2z"/></svg></button>
+    <input
+      type="checkbox"
+      id="toggle-preview"
+      class="hidden-input ide-toggle"
+    />
+    <label
+      for="toggle-preview"
+      class="control-elem"
+      title="Toggle Preview"
+    >
+      <span class="on-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M624 416H381.54c-.74 19.81-14.71 32-32.74 32H288c-18.69 0-33.02-17.47-32.77-32H16c-8.8 0-16 7.2-16 16v16c0 35.2 28.8 64 64 64h512c35.2 0 64-28.8 64-64v-16c0-8.8-7.2-16-16-16zM576 48c0-26.4-21.6-48-48-48H112C85.6 0 64 21.6 64 48v336h512V48zm-64 272H128V64h384v256z"/></svg></span>
+      <span class="off-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm0 394c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V192h416v234z"/></svg></span>
+    </label>
+    <button
+      type="button"
+      id="new-window-preview"
+      class="control-elem hide"
+      title="Open Preview in New Window"
+    ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg></button>
+  </nav>
+  <div id="editor-panel" class="panel animate">
+    <section
+      id="filetree-panel"
+      class="filetree panel animate fuzzy-background"
+    >
+      <div class="file-control-bar-top control-bar">
+        <button
+          type="button"
+          id="create-file-button"
+          class="control-elem"
+          title="New File or Folder"
+        ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 160v48c0 4.4-3.6 8-8 8h-56v56c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8v-56h-56c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h56v-56c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v56h56c4.4 0 8 3.6 8 8z"/></svg></button>
+        <button
+          type="button"
+          id="delete-file-button"
+          class="control-elem"
+          title="Delete File"
+          disabled
+        ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"/></svg></button>
+      </div>
+      <div id="filetree"></div>
+      <div class="file-control-bar-bottom control-bar">
+        <button
+          type="button"
+          id="download-button"
+          class="control-elem"
+          title="Download as Zip"
+        ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"/></svg></button>
+        <div class="import-style-select">
+          <span>Import Style</span>
+          <select
+            id="select-import-style"
+            class=""
+            title="Select Import Style"
+            disabled
+          >
+            <option value="npm" selected="selected">NPM (default)</option>
+            <option value="cdn">CDN</option>
+          </select>
+        </div>
+      </div>
+    </section>
+    <section id="editor" class="panel animate">
+      <div class="image-wrapper fuzzy-background">
+        <img
+          src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
+          alt="Selected Texture"
+          id="image-preview"
+        />
+      </div>
+    </section>
+  </div>
+  <div id="preview" class="panel animate">
+    <div id="preview-overlay"></div>
+    
+  </div>
+</div></div><div class="side-menu left-menu">
+  <div class="icons">
+    <input type="checkbox" id="invert-colors-toggle" class="hidden-input" />
+    <label
+      for="invert-colors-toggle"
+      class="control-elem"
+      title="Day/Night Theme"
+    >
+      <span class="day-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"/></svg></span>
+      <span class="night-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg></span>
+    </label>
+
+    <input type="checkbox" id="orientation-toggle" class="hidden-input" />
+    <label
+      for="orientation-toggle"
+      class="control-elem hide"
+      title="Orientation lock: auto/portrait/landscape"
+    >
+      <span class="auto-icon hide"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M440.65 12.57l4 82.77A247.16 247.16 0 0 0 255.83 8C134.73 8 33.91 94.92 12.29 209.82A12 12 0 0 0 24.09 224h49.05a12 12 0 0 0 11.67-9.26 175.91 175.91 0 0 1 317-56.94l-101.46-4.86a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12H500a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12h-47.37a12 12 0 0 0-11.98 12.57zM255.83 432a175.61 175.61 0 0 1-146-77.8l101.8 4.87a12 12 0 0 0 12.57-12v-47.4a12 12 0 0 0-12-12H12a12 12 0 0 0-12 12V500a12 12 0 0 0 12 12h47.35a12 12 0 0 0 12-12.6l-4.15-82.57A247.17 247.17 0 0 0 255.83 504c121.11 0 221.93-86.92 243.55-201.82a12 12 0 0 0-11.8-14.18h-49.05a12 12 0 0 0-11.67 9.26A175.86 175.86 0 0 1 255.83 432z"/></svg></span>
+      <span class="portrait-icon hide"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"/></svg></span>
+      <span class="landscape-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"/></svg></span>
+    </label>
+  </div>
+
+  <nav class="table-of-contents">
+    <h2><a href="/book/">Table of Contents</a></h2>
+    <div id="main-toc"><ul>
+    <li class="section-head">
+      <span class="chapter">0:</span><a href="/book/introduction/" title="Welcome to Discover three.js!">Welcome to Discover three.js!</a></li>
+    <li class="">
+      <span class="chapter">0.1:</span><a href="/book/introduction/about-the-book/" title="How to Use This Book">How to Use This Book</a></li>
+    <li class="">
+      <span class="chapter">0.2:</span><a href="/book/introduction/prerequisites/" title="What Do You Need to Run a three.js App?">What Do You Need to Run a three.js App?</a></li>
+    <li class="">
+      <span class="chapter">0.3:</span><a href="/book/introduction/get-help/" title="Welcome to the Community: three.js Around the Web">Welcome to the Community: three.js Around the Web</a></li>
+    <li class="">
+      <span class="chapter">0.4:</span><a href="/book/introduction/github-repo/" title="three.js on GitHub - Where the Magic Happens">three.js on GitHub - Where the Magic Happens</a></li>
+    <li class="">
+      <span class="chapter">0.5:</span><a href="/book/introduction/get-threejs/" title="How to Include three.js in Your Projects">How to Include three.js in Your Projects</a></li>
+    <li class="">
+      <span class="chapter">0.7:</span><a href="/book/introduction/threejs-with-frameworks/" title="Using three.js with React, Vue.js, Angular, Svelte, TypeScript...">Using three.js with React, Vue.js, Angular, Svelte, TypeScript...</a></li>
+    <li class="section-head">
+      <span class="chapter">1:</span><a href="/book/first-steps/" title="Getting Started: Here&#39;s Where the Real Fun Begins!">Getting Started: Here&#39;s Where the Real Fun Begins!</a></li>
+    <li class="">
+      <span class="chapter">1.1:</span><a href="/book/first-steps/app-structure/" title="The Structure of a three.js App">The Structure of a three.js App</a></li>
+    <li class="">
+      <span class="chapter">1.2:</span><a href="/book/first-steps/first-scene/" title="Your First three.js Scene: Hello, Cube!">Your First three.js Scene: Hello, Cube!</a></li>
+    <li class="">
+      <span class="chapter">1.3:</span><a href="/book/first-steps/world-app/" title="Introducing the World App">Introducing the World App</a></li>
+    <li class="">
+      <span class="chapter">1.4:</span><a href="/book/first-steps/physically-based-rendering/" title="Physically Based Rendering and Lighting">Physically Based Rendering and Lighting</a></li>
+    <li class="">
+      <span class="chapter">1.5:</span><a href="/book/first-steps/transformations/" title="Transformations and Coordinate Systems">Transformations and Coordinate Systems</a></li>
+    <li class="">
+      <span class="chapter">1.6:</span><a href="/book/first-steps/responsive-design/" title="Making Our Scenes Responsive (and also Dealing with Jaggies)">Making Our Scenes Responsive (and also Dealing with Jaggies)</a></li>
+    <li class="">
+      <span class="chapter">1.7:</span><a href="/book/first-steps/animation-loop/" title="The Animation Loop">The Animation Loop</a></li>
+    <li class="">
+      <span class="chapter">1.8:</span><a href="/book/first-steps/textures-intro/" title="A Brief Introduction to Texture Mapping">A Brief Introduction to Texture Mapping</a></li>
+    <li class="">
+      <span class="chapter">1.9:</span><a href="/book/first-steps/camera-controls/" title="Extend three.js With a Camera Controls Plugin">Extend three.js With a Camera Controls Plugin</a></li>
+    <li class="">
+      <span class="chapter">1.10:</span><a href="/book/first-steps/ambient-lighting/" title="Ambient Lighting: Illumination from Every Direction">Ambient Lighting: Illumination from Every Direction</a></li>
+    <li class="">
+      <span class="chapter">1.11:</span><a href="/book/first-steps/organizing-with-group/" title="Organizing Your Scenes">Organizing Your Scenes</a></li>
+    <li class="">
+      <span class="chapter">1.12:</span><a href="/book/first-steps/built-in-geometries/" title="The Built-In Geometries">The Built-In Geometries</a></li>
+    <li class="">
+      <span class="chapter">1.13:</span><a href="/book/first-steps/load-models/" title="Load 3D Models in glTF Format">Load 3D Models in glTF Format</a></li>
+    <li class="">
+      <span class="chapter">1.14:</span><a href="/book/first-steps/animation-system/" title="The three.js Animation System">The three.js Animation System</a></li>
+    <li class="section-head">
+      <span class="chapter">A:</span><a href="/book/appendix/" title="Appendices">Appendices</a></li>
+    <li class="">
+      <span class="chapter">A.1:</span><a href="/book/appendix/html-and-css-reference/" title="HTML and CSS Used in This Book">HTML and CSS Used in This Book</a></li>
+    <li class="">
+      <span class="chapter">A.2:</span><a href="/book/appendix/javascript-reference/" title="JavaScript Reference">JavaScript Reference</a></li>
+    <li class="">
+      <span class="chapter">A.3:</span><a href="/book/appendix/dom-api-reference/" title="The Document Object Model and DOM API">The Document Object Model and DOM API</a></li>
+    <li class="">
+      <span class="chapter">A.4:</span><a href="/book/appendix/javascript-modules/" title="JavaScript Modules">JavaScript Modules</a></li>
+    <li class="">
+      <span class="chapter">A.5:</span><a href="/book/appendix/asynchronous-javascript/" title="Asynchronous JavaScript">Asynchronous JavaScript</a></li>
+    <li class="">
+      <span class="chapter">B.1:</span><a href="/book/appendix/threejs-versions/" title="Dealing with Different three.js Versions">Dealing with Different three.js Versions</a></li>
+    <li class="">
+      <span class="chapter">B.2:</span><a href="/tips-and-tricks/" title="The Big List of three.js Tips and Tricks!">The Big List of three.js Tips and Tricks!</a></li>
+</ul>
+</div>
+  </nav>
+</div>
+<nav class="side-menu right-menu">
+  <h2>
+    <a href="/">
+      <img
+        alt="Discover three.js logo"
+        width="100%"
+        src="/images/logo/banner_trans_512.png"
+      />
+    </a>
+  </h2><ul class="links" style="justify-content: left">
+  <li><a href="/book/">Table Of Contents</a></li>
+  <li style="margin: auto">
+    <a href="/#mailing-list-signup" class="internal-link"
+      >Stay up to date - sign up to the mailing list!</a
+    >
+  </li>
+</ul></nav><style>
+  @font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Open Sans Regular"), local("OpenSans-Regular"),
+      url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0b.woff2)
+        format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "Varela Round";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Varela Round Regular"), local("VarelaRound-Regular"),
+      url(https://fonts.gstatic.com/s/varelaround/v12/w8gdH283Tvk__Lua32TysjIfp8uP.woff2)
+        format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "Fira Code";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2)
+      format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style></body>
+</html>

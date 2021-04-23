@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run copy-three && hugo serve --templateMetrics --templateMetricsHints --verbose",
-    "production": "hugo --templateMetrics --templateMetricsHints --verbose",
+    "start": "npm run copy-three && .\\hugo serve --templateMetrics --templateMetricsHints --verbose",
+    "production": ".\\hugo --templateMetrics --templateMetricsHints --verbose",
     "copy-three": "node scripts/copy-three.cjs"
   },
   "author": "Lewy Blue",

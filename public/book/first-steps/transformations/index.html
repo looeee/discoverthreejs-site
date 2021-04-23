@@ -1,0 +1,2051 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <title>Transformations and Coordinate Systems | Discover three.js</title><meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="ROBOTS" content="INDEX, FOLLOW" />
+
+
+<meta name="application-name" content="Discover three.js" />
+
+<meta itemprop="name" content="Discover three.js" />
+
+<meta property="og:title" content="Transformations and Coordinate Systems | Discover three.js" />
+<meta name="twitter:title" content="Transformations and Coordinate Systems | Discover three.js" />
+
+<meta name="description" content="Here, we explore how to move objects around in 3D space using translation, rotation, and scale, and the coordinate systems which makes up the space itself. We also introduce the scene graph, a structure used to group objects within a three.js scene." />
+<meta property="og:description" content="Here, we explore how to move objects around in 3D space using translation, rotation, and scale, and the coordinate systems which makes up the space itself. We also introduce the scene graph, a structure used to group objects within a three.js scene." />
+<meta name="twitter:description" content="Here, we explore how to move objects around in 3D space using translation, rotation, and scale, and the coordinate systems which makes up the space itself. We also introduce the scene graph, a structure used to group objects within a three.js scene." />
+
+<meta
+  itemprop="keywords"
+  content="threejs webgl opengl fbx gltf khronos webvr vr webdev design cg graphics animation javascript esnext es6 education tutorials blog ebook node npm"
+/>
+
+<meta property="og:site_name" content="Discover three.js" />
+<meta property="og:type" content="book" />
+<meta property="og:url" content="https://discoverthreejs.com/" />
+<meta
+  property="og:image"
+  content="https://discoverthreejs.com/images/logo.png"
+/>
+<meta
+  property="twitter:image"
+  content="https://discoverthreejs.com/images/logo.png"
+/>
+<meta name="twitter:creator" content="@lewy_blue" />
+<meta name="twitter:site" content="@lewy_blue" />
+<meta name="twitter:card" content="Here, we explore how to move objects around in 3D space using translation, rotation, and scale, and the coordinate systems which makes up the space itself. We also introduce the scene graph, a structure used to group objects within a three.js scene." />
+<meta name="twitter:image:width" content="1024" />
+<meta name="twitter:image:height" content="1024" />
+
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="msapplication-TileColor" content="#00aba9" />
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619160145" /><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "image": "https://discoverthreejs.com/images/logo.png",
+    "mainEntity": {
+      "@type": "Book",
+      "author": {
+        "@type": "Person",
+        "name": "Lewy Blue",
+        "jobTitle": "Author",
+        "url": "https://twitter.com/lewy_blue"
+      },
+      "about": "",
+      "copyrightHolder": "https://discoverthreejs.com",
+      "copyrightYear": "2021",
+      "bookFormat": "http://schema.org/EBook",
+      "datePublished": "2018-10-01",
+      "image": "https://discoverthreejs.com/images/logo.png",
+      "inLanguage": "English",
+      "name": "Discover three.js",
+      "genre": "Education",
+      "keywords": "threejs webgl animation javascript es6 education tutorials blog ebook",
+      "publisher": {
+        "@type": "Organization",
+        "name": "https://discoverthreejs.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://discoverthreejs.com/images/logo.png"
+        }
+      }
+    }
+  }
+</script><link
+  rel="canonical"
+  href="https://discoverthreejs.com/book/first-steps/transformations/"
+/>
+
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619160145" />
+
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/apple-touch-icon.png?v=1619160145"
+/>
+
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/favicon-16x16.png?v=1619160145"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/favicon-32x32.png?v=1619160145"
+/>
+
+<link rel="manifest" href="/site.json?v=1619160145" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619160145" color="#5bbad5" />
+<style>
+      .loading-page {
+        display: none;
+      }
+    </style>
+
+    
+    
+    <link rel="stylesheet" href="/styles/chapter.css?v=1619160145">
+
+    <noscript>
+      
+      
+      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619160145">
+    </noscript>    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <script type="module">
+  
+  
+
+  
+  
+
+  
+  
+
+  import { setupChapterEarly } from "\/js\/chapterEarly.js";
+  setupChapterEarly();
+
+  window.addEventListener('load', async () => {
+    const { setupChapterLate } = await import(
+      "\/js\/chapterLate.js"
+    );
+    setupChapterLate();
+
+    
+    const { setupIDE } = await import(
+      "\/js\/ide.js"
+    );
+
+    const ideConfig = {
+      showIDE:  true ,
+      IDE: {
+        fullScreen: false,
+        container: '#ide-wrapper',
+        serverDirectory: 'examples',
+        stripDirectory: 'worlds\/first-steps\/transformations\/',
+        closedFolders: 'systems,styles,vendor'
+          .replace(/[\s\'\[\]']+/g, '')
+          .split(','),
+        comparisonMode: '',
+        files: 'worlds\/first-steps\/transformations\/src\/World\/components\/camera.js, worlds\/first-steps\/transformations\/src\/World\/components\/cube.js, worlds\/first-steps\/transformations\/src\/World\/components\/lights.js, worlds\/first-steps\/transformations\/src\/World\/components\/scene.js, worlds\/first-steps\/transformations\/src\/World\/systems\/renderer.js, worlds\/first-steps\/transformations\/src\/World\/systems\/Resizer.js, worlds\/first-steps\/transformations\/src\/World\/World.js, worlds\/first-steps\/transformations\/src\/main.js, styles\/main.css, vendor\/three\/build\/three.module.js, worlds\/first-steps\/transformations\/index.html'
+          .replace(/[\s\'\[\]']+/g, '')
+          .split(','),
+        entry: 'index.html',
+        activeDocument: 'src\/World\/components\/cube.js',
+        switchImportsAllowed:
+          'true',
+      },
+    }
+
+    await setupIDE(ideConfig);
+    
+  });
+</script></head>
+  <body class="loading-page"><nav class="top-nav">
+  <div class="nav-background"></div>
+
+  <div class="icon-group left">
+    <input type="checkbox" id="left-menu-toggle" class="hidden-input" />
+    <label
+      for="left-menu-toggle"
+      class="control-elem"
+      title="Table Of Contents"
+    >
+      <span class="open-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"/></svg></span>
+      <span class="close-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg></span>
+    </label>
+
+    <input
+      type="checkbox"
+      id="toggle-ide"
+      class="hidden-input ide-toggle"
+    />
+    <label
+      for="toggle-ide"
+      class="control-elem ide-control hide"
+      title="Show/Hide IDE"
+    >
+      <span class="on-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M384 64H192C86 64 0 150 0 256s86 192 192 192h192c106 0 192-86 192-192S490 64 384 64zm0 320c-70.8 0-128-57.3-128-128 0-70.8 57.3-128 128-128 70.8 0 128 57.3 128 128 0 70.8-57.3 128-128 128z"/></svg></span>
+      <span class="off-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M384 64H192C85.961 64 0 149.961 0 256s85.961 192 192 192h192c106.039 0 192-85.961 192-192S490.039 64 384 64zM64 256c0-70.741 57.249-128 128-128 70.741 0 128 57.249 128 128 0 70.741-57.249 128-128 128-70.741 0-128-57.249-128-128zm320 128h-48.905c65.217-72.858 65.236-183.12 0-256H384c70.741 0 128 57.249 128 128 0 70.74-57.249 128-128 128z"/></svg></span>
+    </label>
+  </div>
+
+  <div class="icon-group center">
+
+
+
+
+
+<a href="/book/first-steps/physically-based-rendering/" title="Physically Based Rendering and Lighting" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/responsive-design/" class="control-elem next" title="Making Our Scenes Responsive (and also Dealing with Jaggies)"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
+  </div>
+
+  <div class="icon-group right">
+    <input type="checkbox" id="right-menu-toggle" class="hidden-input" />
+    <label for="right-menu-toggle" class="control-elem" title="Main Menu">
+      <span class="open-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg></span>
+      <span class="close-close hide"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg></span>
+    </label>
+  </div>
+</nav><div class="wrapper orientation-auto">
+      <main class="panel animate">
+        <div class="scroller">
+          <div class="content">
+            
+              <div class="chapter-info">Word Count:8278, reading time: ~39minutes</div>
+            
+            <h1 id="transformations-coordinate-systems-and-the-scene-graph">Transformations, Coordinate Systems, and the Scene Graph</h1>
+<p>This chapter is an introduction to moving objects around in 3D space.</p>
+<p>Many things come together to make a beautiful 3D scene, such as lighting, materials, models, textures, camera settings, post-processing, particle effects, interactivity, and so on, but no matter what kind of scene we create, nothing is more important than the arrangement and movement of the pieces from which it is composed.</p>
+<p>To create architectural renderings, we must become architects and interior decorators. We must consider the proportions of buildings and the rooms inside them, and skillfully place the furniture and light fittings. In a nature scene, whether a close up of a single flower or a wide, sweeping mountain vista, we need to arrange the trees and rocks, or the leaves and petals, in a natural and convincing manner. Perhaps a hoard of <a href="https://threejs.org/examples/#webgl_animation_skinning_morph" target="_blank" rel="noopener noreferrer">invading robots</a> will sweep across the landscape, eyes gleaming, arms and feet swinging as they march in unison, rockets blasting into the sky and creating huge explosions wherever they land - in which cases, we must become both a robot designer and a ballistics expert.</p>
+<p>Even <a href="https://threejs.org/examples/#webgl_interactive_buffergeometry" target="_blank" rel="noopener noreferrer">purely abstract scenes</a> require an understanding of how to move objects around in 3D space.</p>
+<figure class="">
+  <iframe title="An abstract scene from the three.js examples" width="100%" height="500px" src="https://threejs.org/examples/webgl_buffergeometry_drawrange.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe><figcaption>An abstract scene from the three.js examples<br>created by <a href="https://twitter.com/fernandojsg">Fernando Serrano</a></figcaption></figure>
+<p>Finally, we must also become a director and position the camera to artistically frame each shot. When creating a 3D scene, the only limit is your imagination - and the depth of your technical knowledge.</p>
+<p>Moving objects around in 3D space is a fundamental skill on your path of learning three.js. We&rsquo;ll break this skill down into two parts: first, we&rsquo;ll explore the coordinate system used to describe 3D space, and then we&rsquo;ll explore the mathematical operations called transformations that are used to move objects around within a coordinate system.</p>
+<p>Along the way, we&rsquo;ll encounter several mathematical objects, such as <strong>the scene graph</strong>, a structure used to describe the hierarchy of objects that make up our scenes, <strong>vectors</strong>, which are used to describe positions in 3D space (and many other things), and no less than two ways of describing rotations: <strong>Euler angles</strong> and <strong>Quaternions</strong>. We&rsquo;ll finish up the chapter by introducing you to <strong>transformation matrices</strong>, which are used to store an object&rsquo;s complete transformation state.</p>
+<aside class="success">
+  
+    <h3 id="hello-linear-algebra-nice-to-meet-you">Hello, Linear Algebra (Nice to Meet You!)</h3>
+<p>Transformations, coordinate systems, and most of the other mathematical terms we&rsquo;ll encounter in this chapter come from <strong>linear algebra</strong>. You only need a high school level to get through this book, but if your algebra skills are a little rusty, or even if you&rsquo;ve never heard of a coordinate system before, don&rsquo;t worry. You can get by with very little mathematical knowledge when using three.js, and there is a range of mathematical helpers built-in to the three.js core, so we rarely need to do any calculation ourselves.</p>
+<p>If at some point you want to study this subject more deeply, <a href="https://www.khanacademy.org/" target="_blank" rel="noopener noreferrer">Khan Academy</a> is one of the best resources on the web for learning mathematics, and their courses, especially the <a href="https://www.khanacademy.org/math/linear-algebra" target="_blank" rel="noopener noreferrer">linear algebra course</a>, have everything you need to get through this book. If you&rsquo;re already familiar with this subject and want a deeper technical overview of the coordinate systems used in WebGL, check out this <a href="https://learnopengl.com/Getting-started/Coordinate-Systems" target="_blank" rel="noopener noreferrer">excellent article on learnopengl.com</a>.</p>
+<p>On the other hand, if all this talk of mathematics sounds daunting, or if you find this chapter more challenging than the last few, take it slow. You don&rsquo;t need to absorb everything here in one go, especially if it&rsquo;s new to you or you haven&rsquo;t touched linear algebra in years. Pick up what you can now, then treat this chapter as a reference and come back to it as your three.js skills mature. Once you have more experience creating 3D scenes the concepts described here will become easier to grasp.</p>
+
+  
+</aside>
+<h2 id="translation-rotation-and-scaling-the-three-fundamental-transformations">Translation, Rotation, and Scaling: the Three Fundamental Transformations</h2>
+<p><strong>Whenever we move objects around in 3D space, we do so using mathematical operations called <em>transformations</em></strong>. We&rsquo;ve already seen two kinds of transformation: <strong>translation</strong>, stored in an object&rsquo;s <a href="https://threejs.org/docs/#api/en/core/Object3D.position" target="_blank" rel="noopener noreferrer"><code>.position</code></a> property, and <strong>rotation</strong>, stored in the <a href="https://threejs.org/docs/#api/en/core/Object3D.rotation" target="_blank" rel="noopener noreferrer"><code>.rotation</code></a> property. Along with <strong>scaling</strong>, stored in the <a href="https://threejs.org/docs/#api/en/core/Object3D.scale" target="_blank" rel="noopener noreferrer"><code>.scale</code></a> property, these make up the three fundamental transformations that we&rsquo;ll use to move objects around in our scenes. We&rsquo;ll sometimes refer to transform, rotate, and scale using their initials, <strong>TRS</strong>.</p>
+<p>Every object we can add to the scene using <code>scene.add</code> has these properties, including meshes, lights, and cameras, while materials and geometries do not. We previously used <code>.position</code> to <a href="/book/first-steps/first-scene/#position-camera">set the position of our camera</a>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Our First Scene: <em><strong>main.js</strong></em></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+camera.position.set(0, 0, 10);
+</code>
+  </pre>
+</section>
+
+<p>&hellip; and also to <a href="/book/first-steps/physically-based-rendering/#position-the-light">set the position of the directional light</a>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Physically Based Rendering: <em><strong>lights.js</strong></em></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+light.position.set(10, 10, 10);
+</code>
+  </pre>
+</section>
+
+<p>In the last chapter <a href="/book/first-steps/physically-based-rendering/#rotate-the-cube">we used <code>.rotation</code> to get a better view of our cube</a>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Physically Based Rendering: <em><strong>cube.js</strong></em></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+cube.rotation.set(-0.5, -0.1, 0.8);
+</code>
+  </pre>
+</section>
+
+<p>The only fundamental transformation we haven&rsquo;t encountered so far is <code>.scale</code>.</p>
+<p>There&rsquo;s no code to write in this chapter. Instead, the editor has a mesh set up with some transformations applied, which you can use as a scratchpad for testing out ideas while you read.</p>
+<h3 id="butterflies-and-caterpillars">Butterflies and Caterpillars</h3>
+<p>Using the word <strong>transformation</strong> in this way might seem strange to you. In common speech, it&rsquo;s more likely to evoke the idea of a caterpillar turning into a butterfly than moving the caterpillar two units to the left across a leaf. But mathematically speaking, only the second one of these is a transformation. Translation, rotation, and scaling are the most important transformations you&rsquo;ll encounter, and we&rsquo;ll explore each of these in detail in a few moments.</p>
+<h2 id="the-object3d-base-class">The <code>Object3D</code> Base Class</h2>
+<p>Rather than redefining the <code>.position</code>, <code>.rotation</code>, and <code>.scale</code> properties many times for each type of object, these properties are defined once on the <a href="https://threejs.org/docs/#api/en/core/Object3D" target="_blank" rel="noopener noreferrer"><code>Object3D</code></a> base class, then all the other classes that can be added to the scene <a href="/book/appendix/javascript-reference/#class-inheritance-and-the-extends-keyword">derive from this base class</a>. That includes things like meshes, cameras, lights, points, lines, helpers, and even the scene itself. We&rsquo;ll informally refer to classes derived from <code>Object3D</code> as <em>scene objects</em>.</p>
+<p><code>Object3D</code> has many properties and methods besides these three, inherited by every scene object. This means positioning and setting up a camera or a mesh works in much the same way as setting up a light or the scene. Additional properties are then added to scene objects as needed, so lights get color and intensity settings, the scene gets a background color, meshes get a material and geometry, and so on.</p>
+<h2 id="the-scene-graph">The Scene Graph</h2>
+<p>Recall how we <a href="/book/first-steps/first-scene/#add-the-mesh-to-the-scene">add the mesh to scene</a>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The <code>scene.add</code> method</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+scene.add(mesh);
+
+</code>
+  </pre>
+</section>
+
+<p>The <code>.add</code> method is also defined on <code>Object3D</code> and inherited by the scene class, just like <code>.position</code>, <code>.rotation</code>, and <code>.scale</code>. All other derived classes inherit this method too, giving us <code>light.add</code>, <code>mesh.add</code>, <code>camera.add</code> and so on. This means we can add objects to each other to create a tree structure with the scene at the top. This tree structure is known as the <strong>scene graph</strong>.</p>
+<figure >
+  <img src="/images/first-steps/scene_graph.svg" loading="lazy" alt="The scene graph" title="The scene graph"  />
+    <figcaption>The scene graph</figcaption></figure>
+<p>When we add an object to another object, we call one object the parent and the other the child.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Objects within the scene graph have a parent-child relationship</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+parent.add(child);
+</code>
+  </pre>
+</section>
+
+<p>The scene is the top-level parent. The scene in the figure above has three children: one light and two meshes. One of the meshes also has two children. However, every object (except the top-level scene) has exactly one parent.</p>
+<blockquote>
+<p>Each object in the scene graph (except the top-level scene) has exactly one parent, and can have any number of children.</p>
+</blockquote>
+<p>When we render the scene:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Render a frame</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+renderer.render(scene, camera);
+
+</code>
+  </pre>
+</section>
+
+<p>&hellip; the renderer walks through the scene graph, starting with the scene, and uses the position, rotation, and scale of each object relative to its parent to figure out where to draw it.</p>
+<h3 id="accessing-a-scene-objects-children">Accessing a Scene Object&rsquo;s Children</h3>
+<p>You can access all children of a scene object using the <a href="https://threejs.org/docs/#api/en/core/Object3D.children" target="_blank" rel="noopener noreferrer"><code>.children</code></a> array:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Accessing child of a group</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+scene.add(mesh);
+
+// the children array contains the mesh we added
+scene.children; // -&gt; [mesh]
+
+// now, add a light:
+scene.add(light);
+
+// the children array now contains both the mesh and the light
+scene.children; // -&gt; [mesh, light];
+
+// now you can access the mesh and light using array indices
+scene.children[0]; // -&gt; mesh
+scene.children[1]; // -&gt; light
+</code>
+  </pre>
+</section>
+
+<p>There are more sophisticated ways to access a particular child, for example, the <a href="https://threejs.org/docs/#api/en/core/Object3D.getObjectByName" target="_blank" rel="noopener noreferrer"><code>Object3d.getObjectByName</code></a> method. However, directly accessing the children array is useful when you don&rsquo;t know the object&rsquo;s name, or it doesn&rsquo;t have a name.</p>
+<h2 id="coordinate-systems-world-space-and-local-space">Coordinate Systems: World Space and Local Space</h2>
+<p>3D space is described using a 3D <a href="https://en.wikipedia.org/wiki/Cartesian_coordinate_system" target="_blank" rel="noopener noreferrer">Cartesian coordinate system</a>.</p>
+<figure class="medium left">
+  <img src="/images/first-steps/coordinate_system_simple.svg" loading="lazy" alt="A 3D Cartesian coordinate system" title="A 3D Cartesian coordinate system"  />
+    <figcaption>A 3D Cartesian coordinate system</figcaption></figure>
+<p>3D Cartesian coordinate systems are represented using $X$, $Y$, and $Z$ axes crossing at the point $(0,0,0)$ (known as <strong>the origin</strong>). 2D coordinate systems are similar but have only $X$, and $Y$ axes.</p>
+<p>Every 3D graphics system uses a coordinate system like this, from game engines like Unity and Unreal, to the software Pixar uses to create their films, to professional animation and modeling software such as 3DS Max, Maya, and Blender. Even CSS, the language used to position objects on a web page, uses a Cartesian coordinate system. However, there may be minor technical differences between these systems, such as the axes being labeled differently or pointing in different directions.</p>
+<p>We&rsquo;ll encounter several 2D and 3D coordinate systems while using three.js. Here, we&rsquo;ll introduce the two most important of these: <strong>world space</strong> and <strong>local space</strong>.</p>
+<h3 id="world-space">World Space</h3>
+<figure class="medium left">
+  <img src="/images/first-steps/coordinate_system.svg" loading="lazy" alt="Our scene defines world space" title="Our scene defines world space"  />
+    <figcaption>Our scene defines world space</figcaption></figure>
+<p>Our <code>scene</code> defines the world space coordinate system, and the center of the system is the point where the <code>X</code>, <code>Y</code> and, <code>Z</code> axes meet.</p>
+<p>Remember a couple of chapters ago, <a href="/book/first-steps/first-scene/#the-scene">when we first introduced the <code>Scene</code> class</a>, we called it a &ldquo;tiny universe&rdquo;? This tiny universe <em>is</em> world space.</p>
+<figure class="medium right">
+  <img src="/images/first-steps/world_space_scene_graph.svg" loading="lazy" alt="Object added to the scene live within world space" title="Object added to the scene live within world space"  />
+    <figcaption>Object added to the scene live within world space</figcaption></figure>
+<p>When we arrange objects within a scene - whether we are positioning furniture in a room, trees in a forest, or rampaging robots on a battlefield - what we see drawn on our screens is the position of each object in world space.</p>
+<p><strong>When we add an object directly to the scene and then translate, rotate, or scale it, the object will move relative to world space - that is, relative to the center of the scene</strong>.</p>
+
+
+<section class="highlight-wrapper">
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// add a cube to our scene
+scene.add(cube);
+
+// move the cube relative to world space
+cube.position.x = 5;
+</code>
+  </pre>
+</section>
+
+<p>These two statements are equivalent, so long as the object is a direct child of the scene:</p>
+<ol>
+<li>Transform an object relative to world space.</li>
+<li>Move an object around in the scene.</li>
+</ol>
+<p>Whenever we try to visualize something tricky in 3D, it can be useful to drop down a dimension and consider a 2D analogy instead. So, let&rsquo;s consider a chessboard. When we arrange the pieces to start a new game, we place them in certain positions on the board. That means the chessboard is the scene, and the pieces are objects we place in the scene.</p>
+<figure class="medium left">
+  <img src="/images/first-steps/chessboard.svg" loading="lazy" alt="The board is world space in a game of chess" title="The board is world space in a game of chess"  />
+    <figcaption>The board is world space in a game of chess</figcaption></figure>
+<p>Next, when we explain to someone why we have arranged the pieces like this, white on one side, black on the other, pawns on the second row, and so on, we do so relative to the board itself. The board defines a coordinate system, with rows on the Y-axis and columns on the X-axis. This is the world space of a chessboard, and we explain the position of each piece relative to this coordinate system.</p>
+<p>Now the game starts, and we begin to move pieces. When we do, we follow the rules of chess. When we move an object around in a three.js scene, we follow the rules of Cartesian coordinate systems. Here the analogy breaks down a little because each piece on the chessboard has its own way of moving, whereas in a Cartesian coordinate system, translation, rotation, and scale behave the same for any kind of object.</p>
+<h3 id="local-space">Local Space</h3>
+<figure class="medium right">
+  <img src="/images/first-steps/knight.svg" loading="lazy" alt="The local space of a chess piece" title="The local space of a chess piece"  />
+    <figcaption>The local space of a chess piece</figcaption></figure>
+<p>Now, consider one of the chess pieces. If asked to describe the shape of a chess piece, you won&rsquo;t describe how it looks relative to the chessboard since it may be placed anywhere on the board, and indeed, retains its shape even when not on the board at all. Instead, you&rsquo;ll create a new coordinate system in your mind and describe how the piece looks there.</p>
+<p>Just like pieces on a chessboard, <strong>every object we can add to the scene also has a local coordinate system</strong>, and the shape (geometry) of the object is described within this local coordinate system. When we create a mesh or a light, we also create a new local coordinate system, with the mesh or light at its center. This local coordinate system has $X$, $Y$ and, $Z$ axes, just like world space. The local coordinate system of an object is called <strong>local space</strong> (or sometimes <strong>object space</strong>).</p>
+<p>When we create a $2 \times 2 \times 2$ <code>BoxBufferGeometry</code>, and then create a mesh using the geometry, the size of the geometry is two units along each side <em>in the mesh&rsquo;s local space</em>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Geometry is described in the mesh&rsquo;s local space</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const geometry = new BoxBufferGeometry(2, 2, 2);
+
+const mesh = new Mesh(geometry, material);
+</code>
+  </pre>
+</section>
+
+<p>As we&rsquo;ll see below, we can stretch or shrink the mesh using <code>.scale</code>, and the size of the mesh as drawn on our screen will change. However, the size of the geometry does not change when we scale the mesh. When the renderer comes to render the mesh, it will see that it has been scaled, and then draws the mesh at a different size.</p>
+<h3 id="every-object-has-a-coordinate-system">Every Object has a Coordinate System</h3>
+<p>To recap: the top-level scene defines world space, and every other object defines its own local space.</p>
+
+
+<section class="highlight-wrapper">
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// creating the scene creates the world space coordinate system
+const scene = new Scene();
+
+// mesh A has its own local coordinate system
+const meshA = new Mesh();
+
+// mesh B also has its own local coordinate system
+const meshB = new Mesh();
+</code>
+  </pre>
+</section>
+
+<p>With the above three lines of code, we have created three coordinate systems. There&rsquo;s no difference, mathematically, between these three coordinate systems. Any mathematical operation we can do in world space will work the same way in any object&rsquo;s local space.</p>
+<p>It&rsquo;s easy to think of coordinate systems as big complicated things, however, when working in 3D you&rsquo;ll find out that there are a lot of coordinate systems around. Every object has at least one, and some have several. There&rsquo;s another whole set of coordinate systems involved in rendering the scene, that is, converting the objects from 3D world space into something that looks good on the flat 2D surface of your screen. Every texture even has a 2D coordinate system. In the end, they are not so complicated, and they are very cheap to create.</p>
+<h2 id="working-with-the-scene-graph">Working with the Scene Graph</h2>
+<p>Using each object&rsquo;s <code>.add</code> and <code>.remove</code> methods, we can create and manipulate the scene graph.</p>
+<figure class="medium right">
+  <img src="/images/first-steps/local_space_scene_graph.svg" loading="lazy" alt="The scene graph is a series of embedded&lt;br&gt; coordinate systems, with world space at the top" title="The scene graph is a series of embedded&lt;br&gt; coordinate systems, with world space at the top"  />
+    <figcaption>The scene graph is a series of embedded<br> coordinate systems, with world space at the top</figcaption></figure>
+<p>When we add an object to our scene using <code>scene.add</code>, we embed this object within the scene&rsquo;s coordinate system, world space. When we move the object around, it will move relative to world space (or equivalently, relative to the scene).</p>
+<p>When we add an object to another object deeper within the scene graph, we embed the child object within the parent&rsquo;s local space. When we move the child object around, it will move relative to the parent object&rsquo;s coordinate system. The coordinate systems get nested inside each other like Russian dolls.</p>
+<p>Let&rsquo;s look at some code. First, we&rsquo;ll add an object $A$ as a child of the scene:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Add $A$ to the scene</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+scene.add(meshA);
+</code>
+  </pre>
+</section>
+
+<p>Now, the <code>scene</code> is the parent of $A$, or equivalently, $A$ is a child of the <code>scene</code>. Next, we&rsquo;ll translate $A$:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Move $A$ within world space</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+meshA.position.x = 5;
+</code>
+  </pre>
+</section>
+
+<p>Now, $A$ has been translated five units along the positive $X$-axis within world space. <strong>Whenever we transform an object, we do so relative to its parent&rsquo;s coordinate system</strong>. Next, let&rsquo;s look at what happens when we add a second object, $B$, as a child of $A$:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Add $B$ to $A$</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+meshA.add(meshB);
+</code>
+  </pre>
+</section>
+
+<p>$A$ is still a child of the scene, so we have the relationship $Scene \longrightarrow A \longrightarrow B$. So, $A$ is a child of the scene and $B$ is a child of $A$. Or, equivalently, $A$ now lives in world space and $B$ now lives in $A$&rsquo;s local space. When we move $A$, it will move around in world space, and when we move $B$, it will move around in $A$&rsquo;s local space.</p>
+<p>Next, we&rsquo;ll translate $B$:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Move $B$ within the local space of $A$</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+meshB.position.x = 3;
+</code>
+  </pre>
+</section>
+
+<p>Where do you think $B$ will end up?</p>
+<h3 id="what-we-see-is-world-space">What We See is World Space</h3>
+<p>When we call <code>.render</code>, the renderer calculates the world space position of each object. To do this, it starts at the bottom of the scene graph and works its way up, combining the transformations of each parent and child, to calculate the final position of each object relative to world space. <strong>What we finally see on our screen is world space</strong>. Here, we&rsquo;ll do this calculation by hand for $A$ and $B$. Remember, each object starts at $(0,0,0)$ relative to its parent.</p>
+
+
+<section class="highlight-wrapper">
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// A starts at (0,0,0) in world space
+scene.add(meshA);
+
+// B starts at (0,0,0) in A&#39;s local space
+meshA.add(meshB);
+
+meshA.position.x = 5;
+
+meshB.position.x = 3;
+</code>
+  </pre>
+</section>
+
+<p>Calculating $A$&rsquo;s position is easy since it&rsquo;s a direct child of the scene. We moved $A$ five units to the right along the $X$-axis, so its final position is $x=5, y=0, z = 0$, or $(5, 0, 0)$.</p>
+<p>When we move $A$, its local coordinate system moves with it, and we must take that into account when calculating the world space position of $B$. Since, $B$ is a child of $A$, this means it now starts at $(5, 0, 0)$ relative to world space. Next, we moved $B$ three units along the $X$-axis relative to $A$, so the final position of $B$ on the $X$-axis is $5 + 3 = 8$. This gives us the final position of $B$ in world space: $(8, 0, 0)$.</p>
+<h3 id="moving-an-object-between-coordinate-systems">Moving an Object Between Coordinate Systems</h3>
+<p>What happens if we move an object from one coordinate system to another? In other words, what happens if we take mesh $B$, and, without changing its <code>.position</code>, remove it from $A$ and add it directly to the scene? We can do this in a single line:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Add mesh $B$ to the scene, and remove any previous parent</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+scene.add(meshB);
+</code>
+  </pre>
+</section>
+
+<p>An object can only have one parent, so any previous parent of $B$ (in this case, mesh $A$) is removed.</p>
+<p>The following statement still holds: <strong>$B$ has been translated three units along the positive $X$-axis <em>within its parent&rsquo;s coordinate system</em>.</strong> However, $B$&rsquo;s parent is now the scene rather than $A$, so now we must recalculate the position of $B$ in world space rather than $A$&rsquo;s local space, which will give us $(3, 0, 0)$.</p>
+<p>That&rsquo;s it for coordinate systems. Over the rest of the chapter, we&rsquo;ll take a deeper look at each of the three fundamental transformations: translation, translation, rotation, and scale.</p>
+<h2 id="our-first-transformation-translation">Our First Transformation: Translation</h2>
+<p>The simplest of the three fundamental transformations is <strong>translation</strong>. We&rsquo;ve already used it for several of the examples in this chapter, and also to set the position of the camera and light in our scene. We perform translations by changing an object&rsquo;s <a href="https://threejs.org/docs/#api/en/core/Object3D.position" target="_blank" rel="noopener noreferrer"><code>.position</code></a> property. Translating an object moves it to a new position within the coordinate system of its direct parent.</p>
+<p>To fully describe an object&rsquo;s position, we need to store three pieces of information:</p>
+<ol>
+<li>The object&rsquo;s position on the $X$-axis, which we call $x$.</li>
+<li>The object&rsquo;s position on the $Y$-axis, which we call $y$.</li>
+<li>The object&rsquo;s position on the $Z$-axis, which we call $z$.</li>
+</ol>
+<p>We can write these three positions as an ordered list of numbers: $(x, y, z)$.</p>
+<p>Zero on all three axes is written $(0,0,0)$, and <a href="/book/first-steps/first-scene/#the-scene">as we mentioned previously, this point is known as <strong>the origin</strong></a>. <strong>Every object starts at the origin within the coordinate system of its parent.</strong></p>
+<p>A position one unit to the <em>right</em> along the $X$-axis, two units <em>up</em> along the $Y$-axis, and three units <em>out</em> along the $Z$-axis is written $(1,2,3)$. A position two units <em>left</em> along the $X$-axis, four units <em>down</em> along the $Y$-axis, and eight units <em>in</em> along the $Z$-axis is written $(-2,-4,-8)$.</p>
+<blockquote>
+<p>We call an ordered list of numbers like this a <strong>vector</strong>, and since there are three numbers, it&rsquo;s a <strong>3D vector</strong>.</p>
+</blockquote>
+<h3 id="translating-an-object">Translating an Object</h3>
+<p>We can translate along the $X$, $Y$, and $Z$ axes one by one, or we can translate along all three axes at once using <code>position.set</code>. The final result in both cases will be the same.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Two ways of translating and object</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// translate one axis at a time
+mesh.position.x = 1;
+mesh.position.y = 2;
+mesh.position.z = 3;
+
+// translate all three axes at once
+mesh.position.set(1,2,3);
+</code>
+  </pre>
+</section>
+
+<p>When we perform the translation $(1,2,3)$, we are performing the mathematical operation:</p>
+<p>$$(0,0,0) \longrightarrow (1,2,3)$$</p>
+<p>This means: move from the point $(0,0,0)$ to the point $(1,2,3)$.</p>
+<h3 id="the-unit-of-translation-is-meters">The Unit of Translation is Meters</h3>
+<p>When we perform the translation <code>mesh.position.x = 2</code>, we move the object <strong>two three.js units to the right</strong> along the $X$-axis, and <a href="/book/first-steps/physically-based-rendering/#create-physically-sized-scenes">as we mentioned previously</a>, we&rsquo;ll always take one three.js unit to be equal to one meter.</p>
+<h3 id="directions-in-world-space">Directions in World Space</h3>
+<figure class="medium left">
+  <img src="/images/first-steps/coordinate_system.svg" loading="lazy" alt="Directions within World Space" title="Directions within World Space"  />
+    <figcaption>Directions within World Space</figcaption></figure>
+<p>Above we mentioned moving an object left or right on the $X$-axis, up or down on the $Y$-axis, and in or out on the $Z$-axis. These directions are relative to your screen and assume that you have not rotated the camera. In that case, the following directions hold.</p>
+<p style="clear:both; margin: 0; padding: 0; line-height: 0;">&nbsp</p>
+<ul>
+<li>The positive $X$-axis points to the <em>right</em> of your screen.</li>
+<li>The positive $Y$-axis points <em>up</em>, towards the top of your screen.</li>
+<li>The positive $Z$-axis points <em>out</em> of the screen towards you.</li>
+</ul>
+<p>Then, when you move an object:</p>
+<ul>
+<li>A positive translation on the $X$-axis moves the object to the <em>right</em> on your screen.</li>
+<li>A positive translation on the $Y$-axis moves the object <em>up</em> towards the top of your screen.</li>
+<li>A positive translation on the $Z$-axis moves the object <em>out</em> towards you.</li>
+</ul>
+<p>When we put a minus sign into the translation, we reverse those directions:</p>
+<ul>
+<li>A negative translation on the $X$-axis moves the object to the <em>left</em> on your screen.</li>
+<li>A negative translation on the $Y$-axis moves the object <em>down</em> towards the bottom of your screen.</li>
+<li>A negative translation on the $Z$-axis moves the object <em>in</em>, away from you.</li>
+</ul>
+<p>But of course, you can rotate the camera in any direction, in which case these directions will no longer hold. After all, what you see on your screen is the viewpoint of the camera. However, it&rsquo;s useful to be able to describe directions in world space using &ldquo;normal&rdquo; language, so we&rsquo;ll treat this camera position as the default view and continue to describe directions using this terminology, no matter where the camera happens to be.</p>
+<h2 id="positions-are-stored-in-the-vector3-class">Positions are stored in the <code>Vector3</code> Class</h2>
+<p>three.js has a special class for representing 3D vectors called <a href="https://threejs.org/docs/#api/math/Vector3" target="_blank" rel="noopener noreferrer"><code>Vector3</code></a>. This class has <code>.x</code>, <code>.y</code> and <code>.z</code> properties and methods like <code>.set</code> to help us manipulate them. Whenever we create any scene object, such as a <code>Mesh</code>, a <code>Vector3</code> is created automatically and stored in <code>.position</code>:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">An object&rsquo;s translation is stored in a <code>Vector3</code></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// when we create a mesh ...
+const mesh = new Mesh();
+
+// ... internally, three.js creates a Vector3 for us:
+mesh.position = new Vector3();
+</code>
+  </pre>
+</section>
+
+<p>We can also create <code>Vector3</code> instances ourselves:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Creating a <code>Vector3</code> instance</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import { Vector3 } from &#39;three&#39;;
+
+const vector = new Vector3(1, 2, 3);
+</code>
+  </pre>
+</section>
+
+<p>We can access and update the <code>.x</code>, <code>.y</code> and <code>.z</code> properties directly, or we can use <code>.set</code> to change all three at once:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The <code>Vector3</code> class: changing property values</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+vector.x; // 1
+vector.y; // 2
+vector.z; // 3
+
+vector.x = 5;
+
+vector.x; // 5
+
+vector.set(7, 7, 7);
+
+vector.x; // 7
+vector.y; // 7
+vector.z; // 7
+</code>
+  </pre>
+</section>
+
+<p>As with nearly all three.js classes, we can omit the parameters to use default values. If we omit all three parameters the <code>Vector3</code> created will represent the origin, with all zero values:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The <code>Vector3</code> class: default parameters</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const origin = new Vector3();
+
+origin.x; // 0
+origin.y; // 0
+origin.z; // 0
+
+mesh.position = new Vector3();
+mesh.position.x; // 0
+mesh.position.y; // 0
+mesh.position.z; // 0
+</code>
+  </pre>
+</section>
+
+<p>three.js also has classes representing <a href="https://threejs.org/docs/#api/en/math/Vector2" target="_blank" rel="noopener noreferrer">2D vectors</a> and <a href="https://threejs.org/docs/#api/en/math/Vector4" target="_blank" rel="noopener noreferrer">4D vectors</a>, however, 3D vectors are by far the most common type of vector we&rsquo;ll encounter.</p>
+<h3 id="vectors-are-general-purpose-mathematical-objects">Vectors are General Purpose Mathematical Objects</h3>
+<p>Vectors can represent all kinds of things, not just translations. Any data that can be represented as an ordered list of two, three, or four numbers are usually stored in one of the vector classes. These data types fall into three categories:</p>
+<ol>
+<li>A point in space.</li>
+<li><strong>A length and direction within a coordinate system</strong>.</li>
+<li>A list of numbers with no deeper mathematical meaning.</li>
+</ol>
+<p>Category two is the mathematical definition of a vector, and translation falls into this category.  Categories one and three are not technically vectors. However, it&rsquo;s useful to reuse the code within the vector classes so we&rsquo;ll turn a blind eye to this.</p>
+<h2 id="our-second-transformation-scaling">Our Second Transformation: Scaling</h2>
+<p>Scaling an object makes it larger or smaller, so long as we scale by the same amount on all three axes. If we scale the axes by different amounts, the object will become squashed or stretched. As a result, scaling is the only one of the three fundamental transformations that can change the shape of an object.</p>
+<p>Like <code>.position</code>, <code>.scale</code> is stored in a <code>Vector3</code>, and the initial scale of an object is $(1,1,1)$:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">An object&rsquo;s scale is stored in a <code>Vector3</code></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// when create a mesh...
+const mesh = new Mesh();
+
+// ... internally, three.js creates a Vector3 for us:
+mesh.scale = new Vector3(1, 1, 1);
+</code>
+  </pre>
+</section>
+
+<h3 id="scale-values-are-relative-to-the-initial-size-of-the-object">Scale Values are Relative to the Initial Size of the Object</h3>
+<p>Since <code>.scale</code> and <code>.position</code> are both stored in a <code>Vector3</code>, scaling an object works much the same way as translating it. However, while translation uses three.js units, scale does not use any units. Instead, scale values are proportional to the initial size of the object: 1 means 100% of initial size, 2 means 200% of initial size, 0.5 means 50% of initial size, and so on.</p>
+<h3 id="uniform-scaling-use-the-same-value-for-all-three-axes">Uniform Scaling: Use the Same Value for all Three Axes</h3>
+<p>When we scale all three axes by the same amount, the object will expand or shrink, but maintain its proportions. This is called <strong>uniform scaling</strong>. A scale of $(1,1,1)$, meaning 100% scale on the $X$-axis, $Y$-axis, and $Z$-axis, is the default value:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Reset the object to its initial scale</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+mesh.scale.set(1,1,1);
+</code>
+  </pre>
+</section>
+
+<p>A scale of $(2,2,2)$ means 200% scale on the $X$-axis, $Y$-axis, and $Z$-axis. The object will grow to twice its initial size:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Double the object&rsquo;s size</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+mesh.scale.set(2,2,2);
+</code>
+  </pre>
+</section>
+
+<p>A scale of $(0.5,0.5,0.5)$ means 50% scale on the $X$-axis, $Y$-axis, and $Z$-axis. The object will shrink to half its initial size:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Shrink the object to half size</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+mesh.scale.set(0.5,0.5,0.5);
+</code>
+  </pre>
+</section>
+
+<h3 id="non-uniform-scaling-different-scale-values-on-each-axis">Non-Uniform Scaling: Different Scale Values on Each Axis</h3>
+<p>If we scale individual axes the object will lose its proportions and become squashed or stretched. This is called <strong>non-uniform scaling</strong>. If we scale just the $X$-axis, the object will become wider or narrower:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Non-uniform scale on the $X$-axis</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// double the initial width
+mesh.scale.x = 2;
+
+// half the initial width
+mesh.scale.x = 0.5;
+</code>
+  </pre>
+</section>
+
+<p>Scaling on the $Y$-axis will make the object taller or shorter:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Non-uniform scale on the $Y$-axis</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// squash the mesh to one quarter height
+mesh.scale.y = 0.25;
+
+// stretch the mesh to a towering one thousand times its initial height
+mesh.scale.y = 1000;
+</code>
+  </pre>
+</section>
+
+<p>Finally, if we scale on the $Z$-axis, the depth of the object will be affected:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Non-uniform scale on the $Z$-axis</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// stretch the object to eight times its initial depth
+mesh.scale.z = 8;
+
+// squash the object to one tenth of its initial depth
+mesh.scale.z = 0.1;
+</code>
+  </pre>
+</section>
+
+<p>Once again, we can use <code>.set</code> to scale on all three axes at once:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Non-uniform scale on multiple axes</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+mesh.scale.set(2, 0.5, 6);
+</code>
+  </pre>
+</section>
+
+<h3 id="negative-scale-values-mirror-an-object">Negative Scale Values Mirror an Object</h3>
+<p>Scale values less than zero will mirror the object in addition to making it smaller or larger. A scale value of $-1$ <em>on any single axis</em> will mirror the object without affecting the size:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Mirror an object</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// mirror the mesh across the X-axis
+mesh.scale.x = -1;
+
+// mirror the mesh across the Y-axis
+mesh.scale.y = -1;
+
+// mirror the mesh across the Z-axis
+mesh.scale.z = -1;
+</code>
+  </pre>
+</section>
+
+<p>Values less than zero and greater than $-1$ will mirror <em>and</em> squash the object:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Mirror and shrink object</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// mirror and squash mesh to half width
+mesh.scale.x = -0.5;
+</code>
+  </pre>
+</section>
+
+<p>Values less than $-1$ will mirror <em>and</em> stretch the object:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Mirror and stretch object</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// mirror and stretch mesh to double height
+mesh.scale.y = -2;
+</code>
+  </pre>
+</section>
+
+<h4 id="uniform-scale-and-mirror">Uniform Scale and Mirror</h4>
+<p>To mirror an object while maintaining its proportions, use the same value for all three axes but make one of them negative. For example, to double an object&rsquo;s size and mirror on the $Y$-axis, use a scale value of $(2, -2, 2)$:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Uniform scale and mirror</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+mesh.scale.set(2, -2, 2);
+</code>
+  </pre>
+</section>
+
+<p>Or, to shrink the object to one-tenth size and mirror on the $X$-axis, use a scale value of $(-0.1,0.1,0.1)$:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Uniform scale and mirror</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+mesh.scale.set(-0.1, 0.1, 0.1);
+</code>
+  </pre>
+</section>
+
+<h3 id="cameras-and-lights-cannot-be-scaled">Cameras and Lights Cannot be Scaled</h3>
+<p>Not all objects can be scaled. For example, cameras and lights (except for <code>RectAreaLight</code>) don&rsquo;t have a size, so scaling them doesn&rsquo;t make sense. Changing <code>camera.scale</code> or <code>light.scale</code> will have no effect.</p>
+<h2 id="our-final-transformation-rotation">Our Final Transformation: Rotation</h2>
+<p>Rotation requires a little more care than translation or scaling. There are several reasons for this, but the main one is <strong>the order of rotation matters</strong>. If we translate or scale an object on the $X$-axis, $Y$-axis, and $Z$-axis, it doesn&rsquo;t matter which axis goes first. These three translations give the same result:</p>
+<ol>
+<li>Translate along $X$-axis, then along the $Y$-axis, then along the $Z$-axis.</li>
+<li>Translate along $Y$-axis, then along the $X$-axis, then along the $Z$-axis.</li>
+<li>Translate along $Z$-axis, then along the $X$-axis, then along the $Y$-axis.</li>
+</ol>
+<p>These three scale operations give the same result:</p>
+<ol>
+<li>Scale along $X$-axis, then along the $Y$-axis, then along the $Z$-axis.</li>
+<li>Scale along $Y$-axis, then along the $X$-axis, then along the $Z$-axis.</li>
+<li>Scale along $Z$-axis, then along the $X$-axis, then along the $Y$-axis.</li>
+</ol>
+<p>However, these three rotations <em>may</em> not give the same result:</p>
+<ol>
+<li>Rotate around $X$-axis, then around the $Y$-axis, then around the $Z$-axis.</li>
+<li>Rotate around $Y$-axis, then around the $X$-axis, then around the $Z$-axis.</li>
+<li>Rotate around $Z$-axis, then around the $X$-axis, then around the $Y$-axis.</li>
+</ol>
+<p>As a result, the humble <code>Vector3</code> class that we used for both <code>.position</code> and <code>.scale</code> is not sufficient for storing rotations data. Instead, three.js has not one, but <em>two</em> mathematical classes for storing rotation data. We&rsquo;ll look at the simpler of these here: <a href="https://en.wikipedia.org/wiki/Euler_angles" target="_blank" rel="noopener noreferrer">Euler Angles</a>. Fortunately, it&rsquo;s similar to the <code>Vector3</code> class.</p>
+<h3 id="representing-rotations-the-euler-class">Representing Rotations: the <code>Euler</code> class</h3>
+<p>Euler Angles are represented in three.js using the <a href="https://threejs.org/docs/#api/en/math/Euler" target="_blank" rel="noopener noreferrer"><code>Euler</code></a> class. As with <code>.position</code> and <code>.scale</code>, an <code>Euler</code> instance is automatically created and given default values when we create a new scene object.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">An object&rsquo;s rotation is stored as an <code>Euler</code> angle</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// when we create a mesh...
+const mesh = new Mesh();
+
+// ... internally, three.js creates a Euler for us:
+mesh.rotation = new Euler();
+</code>
+  </pre>
+</section>
+
+<p>As with <code>Vector3</code>, there are <code>.x</code>, <code>.y</code> and <code>.z</code> properties and a <code>.set</code> method:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The <code>Euler</code> class is similar to <code>Vector3</code></span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+mesh.rotation.x = 2;
+mesh.rotation.y = 2;
+mesh.rotation.z = 2;
+
+mesh.rotation.set(2, 2, 2);
+</code>
+  </pre>
+</section>
+
+<p>Once again, we can create <code>Euler</code> instances ourselves:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Creating a <code>Euler</code> instance</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import { Euler } from &#39;three&#39;;
+
+const euler = new Euler(1, 2, 3);
+</code>
+  </pre>
+</section>
+
+<p>Also like <code>Vector3</code>, we can omit the parameters to use default values, and again, the default is zero on all axes:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">The <code>Euler</code> class: default parameters</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const euler = new Euler();
+
+euler.x; // 0
+euler.y; // 0
+euler.z; // 0
+</code>
+  </pre>
+</section>
+
+<h4 id="euler-rotation-order">Euler Rotation Order</h4>
+<p>By default, three.js will perform rotations around the $X$-axis, then around the $Y$-axis, and finally around the $Z$-axis, in an object&rsquo;s local space. We can change this using the <a href="https://threejs.org/docs/#api/en/math/Euler.order" target="_blank" rel="noopener noreferrer"><code>Euler.order</code> property</a>. The default order is called &lsquo;XYZ&rsquo;, but &lsquo;YZX&rsquo;, &lsquo;ZXY&rsquo;, &lsquo;XZY&rsquo;, &lsquo;YXZ&rsquo; and &lsquo;ZYX&rsquo; are also possible.</p>
+<p>We won&rsquo;t get into rotation order further here. Usually, the only time you need to change the order is when dealing with rotation data from another app. Even then, this is usually taken care of by the three.js loaders. For now, if you like, you can simply think of <code>Euler</code> as a <code>Vector3</code>. Until you start to create animations or perform complex mathematical operations involving rotations, it&rsquo;s unlikely you&rsquo;ll run into any problems by doing so.</p>
+<h3 id="the-unit-of-rotation-is-radians">The Unit of Rotation is Radians</h3>
+<p>You may be familiar with expressing rotations using <strong>degrees</strong>. There are $360^{\circ}$ in a circle, $90^{\circ}$ in a right-angle, and so on. The <a href="/book/first-steps/first-scene/#field-of-view-fov">perspective camera&rsquo;s field of view</a>, which we encountered earlier, is specified in degrees.</p>
+<p>However, <strong>all other angles in three.js are specified using <a href="https://en.wikipedia.org/wiki/Radian" target="_blank" rel="noopener noreferrer"><em>radians</em></a> rather than <em>degrees</em></strong>. Instead of $360^{\circ}$ in a circle, there are $2\pi$ radians. Instead of  $90^{\circ}$ in a right-angle, there are $\frac{\pi}{2}$ radians. If you&rsquo;re comfortable using radians, great! As for the rest of us, we can use the <a href="https://threejs.org/docs/#api/en/math/MathUtils.degToRad" target="_blank" rel="noopener noreferrer"><code>.degToRad</code></a> utility to convert from degrees to radians.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Converting degrees to radians</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+import { MathUtils } from &#39;three&#39;;
+
+const rads = MathUtils.degToRad(90); // 1.57079... = π/2
+</code>
+  </pre>
+</section>
+
+<p>Here, we can see that $90^{\circ}$ is equal to $1.57079&hellip;$, or $\frac{\pi}{2}$ radians.</p>
+<h3 id="the-_other_-rotation-class-quaternions">The <em>Other</em> Rotation Class: Quaternions</h3>
+<p>We mentioned above that three.js has two classes for representing rotations. The second, which we&rsquo;ll mention only in passing here, is the <a href="https://threejs.org/docs/#api/en/math/Quaternion" target="_blank" rel="noopener noreferrer"><code>Quaternion</code> class</a>. Along with the <code>Euler</code>, a <code>Quaternion</code> is created for us and stored in the <code>.quaternion</code> property whenever we create a new scene object such as a mesh:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">An object&rsquo;s rotation is stored as an <code>Euler</code> angle</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+// when we create a mesh
+const mesh = new Mesh();
+
+// ... internally, three.js creates an Euler for us:
+mesh.rotation = new Euler();
+
+// .. AND a Quaternion:
+mesh.quaternion = new Quaternion();
+</code>
+  </pre>
+</section>
+
+<p>We can use <strong>Quaternions</strong> and <strong>Euler angles</strong> interchangeably. When we change <code>mesh.rotation</code>, the <code>mesh.quaternion</code> property is automatically updated, and vice-versa. This means we can use Euler angles when it suits us, and switch to Quaternions when it suits us.</p>
+<p>Euler angles have a couple of shortcomings that become apparent when creating animations or doing math involving rotations. In particular, we cannot add two Euler angles together (more famously, they also suffer from something called gimbal lock). Quaternions don&rsquo;t have these shortcomings. On the other hand, they are harder to use than Euler angles, so for now we&rsquo;ll stick with the simpler <code>Euler</code> class.</p>
+<p>For now, make a note of these two ways to rotate an object:</p>
+<ol>
+<li><strong>Using Euler angles, represented using the <code>Euler</code> class and stored in the <code>.rotation</code> property.</strong></li>
+<li><strong>Using Quaternions, represented using the <code>Quaternion</code> class and stored in the <code>.quaternion</code> property.</strong></li>
+</ol>
+<h3 id="important-things-to-know-about-rotating-objects">Important Things to Know About Rotating Objects</h3>
+<p>Despite the issues we highlighted in this section, rotating object is generally intuitive. Here are a couple of important things to take note of:</p>
+<ol>
+<li>Not all objects can be rotated. For example, <a href="/book/first-steps/physically-based-rendering/#introducing-the-directionallight">the <code>DirectionalLight</code> we introduced in the last chapter</a> cannot be rotated. The light shines <em>from</em> a position, <em>towards</em> a target, and the angle of the light is calculated from the target&rsquo;s position, not the <code>.rotation</code> property.</li>
+<li>Angles in three.js are specified using radians, not degrees. The only exception is the <code>PerspectiveCamera.fov</code> property which uses degrees to match real-world photography conventions.</li>
+</ol>
+<h2 id="transformation-matrices">Transformation Matrices</h2>
+<p>We&rsquo;ve covered a lot of ground in this chapter. We&rsquo;ve introduced Cartesian coordinate systems, world space and local space, the scene graph, translations, rotations, and scaling and the associated <code>.position</code>, <code>.rotation</code>, and <code>.scale</code> properties, and three mathematical classes used for storing transformations: <code>Vector3</code>, <code>Euler</code>, and <code>Quaternion</code>. Surely we couldn&rsquo;t cram anything else in?</p>
+<p>Well, just one more thing. We can&rsquo;t leave a chapter on transformations without discussing <a href="https://en.wikipedia.org/wiki/Transformation_matrix" target="_blank" rel="noopener noreferrer"><strong>transformation matrices</strong></a>. While vectors and Euler angles are (relatively) easy for us humans to work with, they are not efficient for computers to process. As we chase the elusive goal of sixty frames per second, we must walk a fine line between ease of use and efficiency. To this end, the translation, rotation, and scale of an object are combined into a single mathematical object called a matrix. Here&rsquo;s what the matrix for an object that has not been transformed looks like.</p>
+<section>
+$$
+\begin{pmatrix}
+   1 & 0 & 0 & 0 \\
+   0 & 1 & 0 & 0 \\
+   0 & 0 & 1 & 0 \\
+   0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+</section>
+<p>It has four rows and four columns, so it&rsquo;s a $4 \times 4$ matrix, and it&rsquo;s storing an object&rsquo;s complete transform which is why we refer to it as a <strong>transformation matrix</strong>. Once again, there is a three.js class to handle this type of mathematical object, called <a href="https://threejs.org/docs/#api/en/math/Matrix4" target="_blank" rel="noopener noreferrer"><code>Matrix4</code></a>. There&rsquo;s also a class for $3\times3$ matrices called <code>Matrix3</code>. When the matrix has all ones on the diagonal and zeros everywhere else like the one above, we call it the <strong>identity matrix</strong>, $I$.</p>
+<p>Matrices are much more efficient for your CPU and GPU to work with than the individual transforms, and represents a compromise that gives us the best of both worlds. We humans can use the simpler <code>.position</code>, <code>.rotation</code>, and <code>.scale</code>, properties, then, whenever we call <code>.render</code>,  the renderer will update each object&rsquo;s matrices and use them for internal calculations.</p>
+<p>We&rsquo;ll spend a bit of time here going into how transformation matrices work, but if you&rsquo;re allergic to math, it&rsquo;s absolutely fine to skip this section (for now). You don&rsquo;t need a deep understanding of how matrices work to use three.js. You can stick with using <code>.position</code>, <code>.rotation</code>, and <code>.scale</code> and let three.js handle the matrices. On the other hand, if you&rsquo;re a mathematical wizard, working directly with the transformation matrix opens up a whole new range of opportunities.</p>
+<h3 id="the-local-matrix">The Local Matrix</h3>
+<p>Every object has, in fact, not one, but two transformation matrices. The first of these is the <strong>local matrix</strong>, which holds the combined <code>.position</code>, <code>.rotation</code>, and <code>.scale</code> of an object. The local matrix is stored in the <a href="https://threejs.org/docs/#api/en/core/Object3D.matrix" target="_blank" rel="noopener noreferrer"><code>Object3D.matrix</code></a> property. Every object that inherits from <code>Object3D</code> has this property.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">When we create a mesh, a local transformation matrix is created automatically</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+// when we create a mesh
+const mesh = new Mesh();
+
+// ... internally, three.js creates a Matrix4 for us:
+mesh.matrix = new Matrix4();
+
+</code>
+  </pre>
+</section>
+
+<p>At this point, the matrix will look like the identity matrix above, with ones on the diagonal and zeros everywhere else. If we change the position of the object, and then force the matrix to update:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Changes to the transform of an object are reflected in the local matrix</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+mesh.position.x = 5;
+
+mesh.updateMatrix();
+
+</code>
+  </pre>
+</section>
+
+<p>&hellip; now, the local matrix of the mesh will look like this:</p>
+<section>
+$$
+\begin{pmatrix}
+  1 & 0 & 0 & 5 \\
+  0 & 1 & 0 & 0 \\
+  0 & 0 & 1 & 0 \\
+  0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+</section>
+<p>Normally, we don&rsquo;t need to call <code>.updateMatrix</code> manually, since the renderer will update the matrix of every object before it&rsquo;s rendered. Here, though, we want to see the change in the matrix immediately so we must force an update.</p>
+<p>If we change the position on all three axes and update the matrix again:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Changing the object&rsquo;s translation and then updating the matrix</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+mesh.position.x = 2;
+mesh.position.y = 4;
+mesh.position.z = 6;
+
+mesh.updateMatrix();
+
+</code>
+  </pre>
+</section>
+
+<p>&hellip; now we can see that translations are stored in the first three rows of the last column of the matrix.</p>
+<section>
+$$
+\begin{pmatrix}
+  1 & 0 & 0 & 2 \\
+  0 & 1 & 0 & 4 \\
+  0 & 0 & 1 & 6 \\
+  0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+</section>
+<p>Next, let&rsquo;s do the same for scale:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Changing the object&rsquo;s scale and then updating the matrix</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+mesh.scale.x = 5;
+mesh.scale.y = 7;
+mesh.scale.z = 9;
+
+mesh.updateMatrix();
+
+</code>
+  </pre>
+</section>
+
+<p>&hellip; and we&rsquo;ll see that the scale values are stored on the diagonals.</p>
+<section>
+$$
+\begin{pmatrix}
+  5 & 0 & 0 & 2 \\
+  0 & 7 & 0 & 4 \\
+  0 & 0 & 9 & 6 \\
+  0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+</section>
+<p>Great! That means we can write a formula for storing translation and scale in a transformation matrix. If we write the translation values as $T_{x}, T_{y}, T_{z}$, and the scale values as $S_{x}, S_{y}, S_{z}$:</p>
+
+
+<section class="highlight-wrapper">
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+mesh.position.x = Tx;
+mesh.position.y = Ty;
+mesh.position.z = Tz;
+
+mesh.scale.x = Sx;
+mesh.scale.y = Sy;
+mesh.scale.z = Sz;
+
+</code>
+  </pre>
+</section>
+
+<p>&hellip; now the transformation matrix looks like this:</p>
+<section>
+$$
+\begin{pmatrix}
+  S_{x} & 0 & 0 & T_{x} \\
+  0 & S_{y} & 0 & T_{y} \\
+  0 & 0 & S_{z} & T_{z} \\
+  0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+</section>
+<p>Finally, let&rsquo;s see how rotation is stored. First, let&rsquo;s reset the position and scale:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Reset the position and scale</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+mesh.position.set(0, 0, 0);
+mesh.scale.set(1, 1, 1);
+mesh.updateMatrix();
+
+</code>
+  </pre>
+</section>
+
+<p>Now the matrix will look like the identity matrix again, with ones on the diagonal and zeros everywhere else. Next, let&rsquo;s try a thirty degree rotation around the $X$-axis:</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Thirty degree rotation around the $X$-axis</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+mesh.rotation.x = MathUtils.degToRad(30);
+
+mesh.updateMatrix();
+
+</code>
+  </pre>
+</section>
+
+<p>&hellip; then the matrix will look like this:</p>
+<section>
+$$
+\begin{pmatrix}
+  1 & 0 & 0 & 0 \\
+  0 & 0.866\dots & 0.5\dots & 0 \\
+  0 & -0.5\dots & 0.866\dots & 0 \\
+  0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+</section>
+<p>Hmmm&hellip; weird. However, this makes more sense when we see the following equations:</p>
+<section>
+$$
+\begin{aligned}
+\cos(30) &= 0.866\dots \\
+\sin(30) &= 0.5
+\end{aligned}
+$$
+</section>
+<p>So, this matrix is actually:</p>
+<section>
+$$
+\text{X-Rotation} = \begin{pmatrix}
+  1 & 0 & 0 & 0 \\
+  0 & \cos(30) & \sin(30) & 0 \\
+  0 & -\sin(30) & \cos(30) & 0 \\
+  0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+</section>
+<p>Unfortunately, this is not nearly as intuitive as the transform and scale examples above. However, once again we use it to write a formula. If we write the rotation around the $X$-axis as $R_{x}$, here&rsquo;s the formula for rotation around the $Y$-axis:</p>
+<section>
+$$
+\text{X-Rotation} = \begin{pmatrix}
+  1 & 0 & 0 & 0 \\
+  0 & \cos(R_{x}) & \sin(R_{x}) & 0 \\
+  0 & -\sin(R_{x}) & \cos(R_{x}) & 0 \\
+  0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+</section>
+<p>Similarly, here&rsquo;s the formula for rotation around the $Y$-axis, $R_{y}$:</p>
+<section>
+$$
+\text{Y-Rotation} = \begin{pmatrix}
+  \cos(R_{y}) & 0 & \sin(R_{y}) & 0 \\
+  0 & 1 & 0 & 0 \\
+  -\sin(R_{y}) & 0 & \cos(R_{y}) & 0 \\
+  0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+</section>
+<p>And finally, rotation around the $Z$-axis, $R_{z}$:</p>
+<section>
+$$
+\text{Z-Rotation} = \begin{pmatrix}
+  \cos(R_{z}) & -\sin(R_{z}) & 0 & 0 \\
+  \sin(R_{z}) & \cos(R_{z}) & 0 & 0 \\
+  0 & 0 & 1 & 0 \\
+  0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+</section>
+<h3 id="the-world-matrix">The World Matrix</h3>
+<p>As we&rsquo;ve mentioned a few times, what&rsquo;s important to us is the final position of an object in world space, since that&rsquo;s what we see once the object is rendered. To help with calculating this, every object has a second transformation matrix, the <strong>world matrix</strong>, stored in  <a href="https://threejs.org/docs/#api/en/core/.matrixWorld" target="_blank" rel="noopener noreferrer"><code>Object3D.matrixWorld</code></a>. There&rsquo;s no difference, mathematically, between these two matrices. They&rsquo;re both $4 \times 4$ transformation matrices, and when we create a mesh or any other scene object, both the local and world matrices are created automatically.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">When we create a mesh, both local and world matrices are created automatically</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+// when we create a mesh
+const mesh = new Mesh();
+
+// ... internally, three.js creates the local matrix and the world matrix
+mesh.matrix = new Matrix4();
+mesh.matrixWorld = new Matrix4();
+
+</code>
+  </pre>
+</section>
+
+<p><strong>The world matrix stores the position of the object in world space</strong>. If the object is a direct child of the scene, these two matrices will be identical, but if the object resides somewhere further down the scene graph, the local and world matrices will most likely be different.</p>
+<p>To help us understand this, let&rsquo;s look at our <a href="#working-with-the-scene-graph">objects $A$ and $B$ from earlier</a> once again:</p>
+
+
+<section class="highlight-wrapper">
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+const scene = new Scene();
+const meshA = new Mesh();
+const meshB = new Mesh();
+
+// A starts at (0,0,0) in world space
+scene.add(meshA);
+
+// B starts at (0,0,0) in A&#39;s local space
+meshA.add(meshB);
+
+// move A relative to its parent the scene
+meshA.position.x = 5;
+
+// move B relative to it&#39;s parent A
+meshB.position.x = 3;
+
+meshA.updateMatrix();
+meshA.updateMatrixWorld();
+
+meshB.updateMatrix();
+meshB.updateMatrixWorld();
+
+</code>
+  </pre>
+</section>
+
+<p>Once again, we must force the matrices to update. Alternatively, you could call <code>.render</code> and the matrices of all objects in the scene will be automatically updated.</p>
+<p>If you recall from earlier, we calculated the final positions of $A$ and $B$ in world space and found that $A$ is at $(5, 0, 0)$, while $B$ ends up at $(8, 0, 0)$. Let&rsquo;s examine how this works for each object&rsquo;s local and world matrices. First up is $A$&rsquo;s local matrix.</p>
+<section>
+$$
+A_{local} = \begin{pmatrix}
+1 & 0 & 0 & 5 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+</section>
+<p>As we saw above, the position of an object on the $X$-axis is stored in the last column of the top row of its local matrix. Now, let&rsquo;s look at $A$&rsquo;s world matrix:</p>
+<section>
+$$
+A_{world} = \begin{pmatrix}
+1 & 0 & 0 & 5 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+</section>
+<p>Since $A$ is a direct child of the scene, the local and world matrices are identical. Now, let&rsquo;s take a look at $B$. First, the local matrix:</p>
+<section>
+$$
+B_{local} = \begin{pmatrix}
+1 & 0 & 0 & 3 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+</section>
+<p>And finally, here is $B$&rsquo;s world matrix:</p>
+<section>
+$$
+B_{world} = \begin{pmatrix}
+1 & 0 & 0 & 8 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+</section>
+<p>This time, the local and world matrices are different since $B$ is not a direct child of the scene.</p>
+<h3 id="working-with-matrices-directly">Working with Matrices Directly</h3>
+<p>Hopefully, this brief introduction has taken away some of the mystery of how matrices work. They are not as complicated as they look, rather, they are just a compact way of storing lots of numbers. However, keeping all those numbers in mind takes some practice, and doing calculations involving matrices by hand is tedious. Fortunately, three.js comes with many functions that allow us to work with matrices with ease. There are obvious functions like add, multiply, subtract, as well as functions to set and get the translation, rotation, or scale components of a matrix, and many more besides.</p>
+<p>Working with the matrix directly, rather than setting <code>.position</code>, <code>.rotation</code>, and <code>.scale</code> separately is almost never <em>required</em>, but it does allow for powerful manipulations of an object&rsquo;s transform. Think of it like a superpower that you&rsquo;ll unlock once you level up your three.js skills enough.</p>
+<p>When used together, all of the properties we&rsquo;ve encountered in this chapter - <code>.position</code>, <code>.rotation</code>, <code>.scale</code>, <code>.quaternion</code>, <code>.matrix</code>, and <code>.matrixWorld</code> - have tremendous expressive power, and enable you to create scenes like an artist with a paintbrush.</p>
+
+
+<section class="highlight-wrapper"><span class="caption">Every scene object has many properties for transformation</span>
+  
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+
+// when we create a mesh,
+// or any other object derived from Object3D
+// such as lights, camera, or even the scene itself
+const mesh = new Mesh();
+
+// ... internally, three.js creates
+// many different objects to help us transform the object
+mesh.position = new Vector3();
+mesh.scale = new Vector3();
+mesh.rotation = new Euler();
+
+mesh.quaternion = new Quaternion();
+mesh.matrix = new Matrix4();
+mesh.matrixWorld = new Matrix4();
+
+</code>
+  </pre>
+</section>
+
+<p>Learning how to use the <code>.position</code>, <code>.rotation</code>, and <code>.scale</code> is a fundamental skill that you need to work with three.js. However, learning to use the <code>.quaternion</code> and transformation matrices is an advanced skill that you don&rsquo;t need to master immediately.</p>
+<h2 id="challenges">Challenges</h2>
+<aside class="success">
+  
+    <h3 id="easy">Easy</h3>
+<ol>
+<li>
+<p>Open up the <em><strong>cube.js</strong></em> module and experiment with <code>cube.position</code>, <code>cube.rotation</code>, and <code>cube.scale</code>.</p>
+</li>
+<li>
+<p>Open up the <em><strong>lights.js</strong></em> module and experiment with <code>light.position</code>. Note how <code>light.rotation</code> and <code>light.scale</code> have no effect.</p>
+</li>
+<li>
+<p>Experiment with <code>camera.position</code> and <code>camera.rotation</code> in the <em><strong>camera.js</strong></em> module. Note how <code>camera.scale</code> has no effect.</p>
+</li>
+</ol>
+
+  
+</aside>
+<aside class="notice">
+  
+    <h3 id="medium">Medium</h3>
+<ol>
+<li>
+<p>Create a second mesh called <code>meshB</code>. Make it a different color or a different shape so you can recognize it. <a href="#nesting-coordinate-systems">Add this new mesh as a child of the first mesh</a>. Start with one axis - perhaps the $X$-axis - and adjust the position of each mesh. Try and guess where both meshes will end up when you do so. Notice how translations are <em>additive</em>. If you translate both meshes five units, the child will move a total of ten units.</p>
+</li>
+<li>
+<p>Now try setting the rotation of both meshes. Again, start by constraining yourself to a single axis. Once again, note that rotations are additive. If you rotate the parent $45^{\circ}$, and the child $45^{\circ}$, the final rotation of the child will be ninety degrees. Remember to use <code>MathUtils.degToRad</code> to convert degrees to radians.</p>
+</li>
+<li>
+<p>Finally, try setting the scale of both meshes. This time, note that scales are <em>multiplicative</em>. If you scale the parent mesh by two and the child by four, the child will grow to eight times its initial size.</p>
+</li>
+</ol>
+<p><em>Note: you can add the second mesh to the first mesh in <strong>cube.js</strong>:</em></p>
+<section class="highlight-wrapper"><span class="caption"><em><strong>cube.js</strong></em>: creating a second mesh</span>
+  <pre
+    style="background-color: #202020;"
+    class="line-numbers hide-line-numbers"
+    data-start="1"
+    data-line=""
+    data-line-offset="1"
+    >
+    <code class="highlight language-js match-braces">
+const cube = new Mesh(geometry, material);
+const cubeB = new Mesh(geometry, material);
+<p>cube.add(cubeB);
+</code>
+</pre></p>
+</section>
+
+  
+</aside>
+<aside class="warning">
+  
+    <h3 id="hard">Hard</h3>
+<ol>
+<li>If you&rsquo;re familiar with radians, try doing the above exercises without the <code>.degToRad</code> method. <a href="/book/appendix/javascript-reference/#the-math-object">You can access $\pi$ in JavaScript using <code>Math.PI</code></a>.</li>
+</ol>
+
+  
+</aside>
+
+            <div class="bottom-pagination">
+
+
+
+
+
+<a href="/book/first-steps/physically-based-rendering/" title="Physically Based Rendering and Lighting" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/responsive-design/" class="control-elem next" title="Making Our Scenes Responsive (and also Dealing with Jaggies)"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
+          </div>
+        </div>
+      </main><div id="ide-wrapper" class="panel animate disabled hide">
+  <nav id="ide-controls-top" class="control-bar fuzzy-background">
+    <input
+      type="checkbox"
+      id="toggle-complete"
+      class="ide-toggle simple-toggle"
+      title="Show completed code (your changes will be saved)"
+      disabled="true"
+    />
+    <input
+      type="checkbox"
+      id="toggle-filetree"
+      class="hidden-input ide-toggle"
+    />
+    <label
+      for="toggle-filetree"
+      class="control-elem"
+      title="Toggle Filetree"
+    >
+      <span class="off-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"/></svg></span>
+      <span class="on-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M572.694 292.093L500.27 416.248A63.997 63.997 0 0 1 444.989 448H45.025c-18.523 0-30.064-20.093-20.731-36.093l72.424-124.155A64 64 0 0 1 152 256h399.964c18.523 0 30.064 20.093 20.73 36.093zM152 224h328v-48c0-26.51-21.49-48-48-48H272l-64-64H48C21.49 64 0 85.49 0 112v278.046l69.077-118.418C86.214 242.25 117.989 224 152 224z"/></svg></span>
+    </label>
+    <button
+      type="button"
+      id="reset-active-file"
+      class="control-elem"
+      title="Reset Current File"
+      disabled
+    ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M64 468V44c0-6.6 5.4-12 12-12h48c6.6 0 12 5.4 12 12v176.4l195.5-181C352.1 22.3 384 36.6 384 64v384c0 27.4-31.9 41.7-52.5 24.6L136 292.7V468c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12z"/></svg></button>
+    <button
+      type="button"
+      id="reset-all-files"
+      class="control-elem"
+      title="Reset All Changes"
+      disabled
+    ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M11.5 280.6l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2zm256 0l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2z"/></svg></button>
+    <input
+      type="checkbox"
+      id="toggle-preview"
+      class="hidden-input ide-toggle"
+    />
+    <label
+      for="toggle-preview"
+      class="control-elem"
+      title="Toggle Preview"
+    >
+      <span class="on-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M624 416H381.54c-.74 19.81-14.71 32-32.74 32H288c-18.69 0-33.02-17.47-32.77-32H16c-8.8 0-16 7.2-16 16v16c0 35.2 28.8 64 64 64h512c35.2 0 64-28.8 64-64v-16c0-8.8-7.2-16-16-16zM576 48c0-26.4-21.6-48-48-48H112C85.6 0 64 21.6 64 48v336h512V48zm-64 272H128V64h384v256z"/></svg></span>
+      <span class="off-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm0 394c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V192h416v234z"/></svg></span>
+    </label>
+    <button
+      type="button"
+      id="new-window-preview"
+      class="control-elem hide"
+      title="Open Preview in New Window"
+    ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg></button>
+  </nav>
+  <div id="editor-panel" class="panel animate">
+    <section
+      id="filetree-panel"
+      class="filetree panel animate fuzzy-background"
+    >
+      <div class="file-control-bar-top control-bar">
+        <button
+          type="button"
+          id="create-file-button"
+          class="control-elem"
+          title="New File or Folder"
+        ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 160v48c0 4.4-3.6 8-8 8h-56v56c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8v-56h-56c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h56v-56c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v56h56c4.4 0 8 3.6 8 8z"/></svg></button>
+        <button
+          type="button"
+          id="delete-file-button"
+          class="control-elem"
+          title="Delete File"
+          disabled
+        ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"/></svg></button>
+      </div>
+      <div id="filetree"></div>
+      <div class="file-control-bar-bottom control-bar">
+        <button
+          type="button"
+          id="download-button"
+          class="control-elem"
+          title="Download as Zip"
+        ><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"/></svg></button>
+        <div class="import-style-select">
+          <span>Import Style</span>
+          <select
+            id="select-import-style"
+            class=""
+            title="Select Import Style"
+            disabled
+          >
+            <option value="npm" selected="selected">NPM (default)</option>
+            <option value="cdn">CDN</option>
+          </select>
+        </div>
+      </div>
+    </section>
+    <section id="editor" class="panel animate">
+      <div class="image-wrapper fuzzy-background">
+        <img
+          src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
+          alt="Selected Texture"
+          id="image-preview"
+        />
+      </div>
+    </section>
+  </div>
+  <div id="preview" class="panel animate">
+    <div id="preview-overlay"></div>
+    
+  </div>
+</div></div><div class="side-menu left-menu">
+  <div class="icons">
+    <input type="checkbox" id="invert-colors-toggle" class="hidden-input" />
+    <label
+      for="invert-colors-toggle"
+      class="control-elem"
+      title="Day/Night Theme"
+    >
+      <span class="day-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"/></svg></span>
+      <span class="night-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg></span>
+    </label>
+
+    <input type="checkbox" id="orientation-toggle" class="hidden-input" />
+    <label
+      for="orientation-toggle"
+      class="control-elem hide"
+      title="Orientation lock: auto/portrait/landscape"
+    >
+      <span class="auto-icon hide"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M440.65 12.57l4 82.77A247.16 247.16 0 0 0 255.83 8C134.73 8 33.91 94.92 12.29 209.82A12 12 0 0 0 24.09 224h49.05a12 12 0 0 0 11.67-9.26 175.91 175.91 0 0 1 317-56.94l-101.46-4.86a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12H500a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12h-47.37a12 12 0 0 0-11.98 12.57zM255.83 432a175.61 175.61 0 0 1-146-77.8l101.8 4.87a12 12 0 0 0 12.57-12v-47.4a12 12 0 0 0-12-12H12a12 12 0 0 0-12 12V500a12 12 0 0 0 12 12h47.35a12 12 0 0 0 12-12.6l-4.15-82.57A247.17 247.17 0 0 0 255.83 504c121.11 0 221.93-86.92 243.55-201.82a12 12 0 0 0-11.8-14.18h-49.05a12 12 0 0 0-11.67 9.26A175.86 175.86 0 0 1 255.83 432z"/></svg></span>
+      <span class="portrait-icon hide"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"/></svg></span>
+      <span class="landscape-icon"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"/></svg></span>
+    </label>
+  </div>
+
+  <nav class="table-of-contents">
+    <h2><a href="/book/">Table of Contents</a></h2>
+    <div id="main-toc"><ul>
+    <li class="section-head">
+      <span class="chapter">0:</span><a href="/book/introduction/" title="Welcome to Discover three.js!">Welcome to Discover three.js!</a></li>
+    <li class="">
+      <span class="chapter">0.1:</span><a href="/book/introduction/about-the-book/" title="How to Use This Book">How to Use This Book</a></li>
+    <li class="">
+      <span class="chapter">0.2:</span><a href="/book/introduction/prerequisites/" title="What Do You Need to Run a three.js App?">What Do You Need to Run a three.js App?</a></li>
+    <li class="">
+      <span class="chapter">0.3:</span><a href="/book/introduction/get-help/" title="Welcome to the Community: three.js Around the Web">Welcome to the Community: three.js Around the Web</a></li>
+    <li class="">
+      <span class="chapter">0.4:</span><a href="/book/introduction/github-repo/" title="three.js on GitHub - Where the Magic Happens">three.js on GitHub - Where the Magic Happens</a></li>
+    <li class="">
+      <span class="chapter">0.5:</span><a href="/book/introduction/get-threejs/" title="How to Include three.js in Your Projects">How to Include three.js in Your Projects</a></li>
+    <li class="">
+      <span class="chapter">0.7:</span><a href="/book/introduction/threejs-with-frameworks/" title="Using three.js with React, Vue.js, Angular, Svelte, TypeScript...">Using three.js with React, Vue.js, Angular, Svelte, TypeScript...</a></li>
+    <li class="section-head">
+      <span class="chapter">1:</span><a href="/book/first-steps/" title="Getting Started: Here&#39;s Where the Real Fun Begins!">Getting Started: Here&#39;s Where the Real Fun Begins!</a></li>
+    <li class="">
+      <span class="chapter">1.1:</span><a href="/book/first-steps/app-structure/" title="The Structure of a three.js App">The Structure of a three.js App</a></li>
+    <li class="">
+      <span class="chapter">1.2:</span><a href="/book/first-steps/first-scene/" title="Your First three.js Scene: Hello, Cube!">Your First three.js Scene: Hello, Cube!</a></li>
+    <li class="">
+      <span class="chapter">1.3:</span><a href="/book/first-steps/world-app/" title="Introducing the World App">Introducing the World App</a></li>
+    <li class="">
+      <span class="chapter">1.4:</span><a href="/book/first-steps/physically-based-rendering/" title="Physically Based Rendering and Lighting">Physically Based Rendering and Lighting</a></li>
+    <li class="">
+      <span class="chapter">1.5:</span><a href="/book/first-steps/transformations/" title="Transformations and Coordinate Systems">Transformations and Coordinate Systems</a></li>
+    <li class="">
+      <span class="chapter">1.6:</span><a href="/book/first-steps/responsive-design/" title="Making Our Scenes Responsive (and also Dealing with Jaggies)">Making Our Scenes Responsive (and also Dealing with Jaggies)</a></li>
+    <li class="">
+      <span class="chapter">1.7:</span><a href="/book/first-steps/animation-loop/" title="The Animation Loop">The Animation Loop</a></li>
+    <li class="">
+      <span class="chapter">1.8:</span><a href="/book/first-steps/textures-intro/" title="A Brief Introduction to Texture Mapping">A Brief Introduction to Texture Mapping</a></li>
+    <li class="">
+      <span class="chapter">1.9:</span><a href="/book/first-steps/camera-controls/" title="Extend three.js With a Camera Controls Plugin">Extend three.js With a Camera Controls Plugin</a></li>
+    <li class="">
+      <span class="chapter">1.10:</span><a href="/book/first-steps/ambient-lighting/" title="Ambient Lighting: Illumination from Every Direction">Ambient Lighting: Illumination from Every Direction</a></li>
+    <li class="">
+      <span class="chapter">1.11:</span><a href="/book/first-steps/organizing-with-group/" title="Organizing Your Scenes">Organizing Your Scenes</a></li>
+    <li class="">
+      <span class="chapter">1.12:</span><a href="/book/first-steps/built-in-geometries/" title="The Built-In Geometries">The Built-In Geometries</a></li>
+    <li class="">
+      <span class="chapter">1.13:</span><a href="/book/first-steps/load-models/" title="Load 3D Models in glTF Format">Load 3D Models in glTF Format</a></li>
+    <li class="">
+      <span class="chapter">1.14:</span><a href="/book/first-steps/animation-system/" title="The three.js Animation System">The three.js Animation System</a></li>
+    <li class="section-head">
+      <span class="chapter">A:</span><a href="/book/appendix/" title="Appendices">Appendices</a></li>
+    <li class="">
+      <span class="chapter">A.1:</span><a href="/book/appendix/html-and-css-reference/" title="HTML and CSS Used in This Book">HTML and CSS Used in This Book</a></li>
+    <li class="">
+      <span class="chapter">A.2:</span><a href="/book/appendix/javascript-reference/" title="JavaScript Reference">JavaScript Reference</a></li>
+    <li class="">
+      <span class="chapter">A.3:</span><a href="/book/appendix/dom-api-reference/" title="The Document Object Model and DOM API">The Document Object Model and DOM API</a></li>
+    <li class="">
+      <span class="chapter">A.4:</span><a href="/book/appendix/javascript-modules/" title="JavaScript Modules">JavaScript Modules</a></li>
+    <li class="">
+      <span class="chapter">A.5:</span><a href="/book/appendix/asynchronous-javascript/" title="Asynchronous JavaScript">Asynchronous JavaScript</a></li>
+    <li class="">
+      <span class="chapter">B.1:</span><a href="/book/appendix/threejs-versions/" title="Dealing with Different three.js Versions">Dealing with Different three.js Versions</a></li>
+    <li class="">
+      <span class="chapter">B.2:</span><a href="/tips-and-tricks/" title="The Big List of three.js Tips and Tricks!">The Big List of three.js Tips and Tricks!</a></li>
+</ul>
+</div>
+  </nav>
+</div>
+<nav class="side-menu right-menu">
+  <h2>
+    <a href="/">
+      <img
+        alt="Discover three.js logo"
+        width="100%"
+        src="/images/logo/banner_trans_512.png"
+      />
+    </a>
+  </h2><ul class="links" style="justify-content: left">
+  <li><a href="/book/">Table Of Contents</a></li>
+  <li style="margin: auto">
+    <a href="/#mailing-list-signup" class="internal-link"
+      >Stay up to date - sign up to the mailing list!</a
+    >
+  </li>
+</ul></nav><style>
+  @font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Open Sans Regular"), local("OpenSans-Regular"),
+      url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0b.woff2)
+        format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "Varela Round";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Varela Round Regular"), local("VarelaRound-Regular"),
+      url(https://fonts.gstatic.com/s/varelaround/v12/w8gdH283Tvk__Lua32TysjIfp8uP.woff2)
+        format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "Fira Code";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2)
+      format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style></body>
+</html>

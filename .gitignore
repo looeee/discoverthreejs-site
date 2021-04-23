@@ -6,5 +6,4 @@ resources/_gen/**/*
 static/examples/three
 
 hugo.exe
-
-public/
+./hugo
