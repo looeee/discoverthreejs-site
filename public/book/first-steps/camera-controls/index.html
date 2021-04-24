@@ -1,7 +1,11 @@
+
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
-    <title>Extend three.js With a Camera Controls Plugin | Discover three.js</title><meta charset="utf-8" />
+    <title>Extend three.js With a Camera Controls Plugin | Discover three.js</title>
+
+<meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 <meta name="HandheldFriendly" content="True" />
@@ -48,7 +52,9 @@
 
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="msapplication-TileColor" content="#00aba9" />
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619180747" /><script type="application/ld+json">
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619232246" />
+
+<script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "WebPage",
@@ -81,34 +87,36 @@
       }
     }
   }
-</script><link
+</script>
+
+<link
   rel="canonical"
   href="https://discoverthreejs.com/book/first-steps/camera-controls/"
 />
 
-<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619180747" />
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619232246" />
 
 <link
   rel="apple-touch-icon"
   sizes="180x180"
-  href="/apple-touch-icon.png?v=1619180747"
+  href="/apple-touch-icon.png?v=1619232246"
 />
 
 <link
   rel="icon"
   type="image/png"
   sizes="16x16"
-  href="/favicon-16x16.png?v=1619180747"
+  href="/favicon-16x16.png?v=1619232246"
 />
 <link
   rel="icon"
   type="image/png"
   sizes="32x32"
-  href="/favicon-32x32.png?v=1619180747"
+  href="/favicon-32x32.png?v=1619232246"
 />
 
-<link rel="manifest" href="/site.json?v=1619180747" />
-<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619180747" color="#5bbad5" />
+<link rel="manifest" href="/site.json?v=1619232246" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619232246" color="#5bbad5" />
 <style>
       .loading-page {
         display: none;
@@ -117,13 +125,15 @@
 
     
     
-    <link rel="stylesheet" href="/styles/chapter.css?v=1619180747">
+    <link rel="stylesheet" href="/styles/chapter.css?v=1619232246">
 
     <noscript>
       
       
-      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619180747">
-    </noscript>    
+      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619232246">
+    </noscript>
+
+  
     
     
     
@@ -142,7 +152,9 @@
 
     
 
-    <script type="module">
+    
+
+<script type="module">
   
   
 
@@ -191,7 +203,9 @@
     
   });
 </script></head>
-  <body class="loading-page"><nav class="top-nav">
+  <body class="loading-page">
+
+<nav class="top-nav">
   <div class="nav-background"></div>
 
   <div class="icon-group left">
@@ -220,13 +234,7 @@
     </label>
   </div>
 
-  <div class="icon-group center">
-
-
-
-
-
-<a href="/book/first-steps/textures-intro/" title="A Brief Introduction to Texture Mapping" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/ambient-lighting/" class="control-elem next" title="Ambient Lighting: Illumination from Every Direction"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
+  <div class="icon-group center"><a href="/book/first-steps/textures-intro/" title="A Brief Introduction to Texture Mapping" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/ambient-lighting/" class="control-elem next" title="Ambient Lighting: Illumination from Every Direction"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
   </div>
 
   <div class="icon-group right">
@@ -245,32 +253,60 @@
               <div class="chapter-info">Word Count:3049, reading time: ~15minutes</div>
             
             <h1 id="extend-threejs-with-a-camera-controls-plugin">Extend three.js With a Camera Controls Plugin</h1>
-<p>The three.js core is a powerful, lightweight, and focused <strong>rendering framework</strong>, with intentionally limited capabilities. It has everything you need to create and render physically correct scenes, however, it does not have everything you need to create, say, a game, or a product configurator. Even when building relatively simple apps, you will often find yourself needing functionality that&rsquo;s not in the core. When this happens, before you write any code yourself, check to see whether there&rsquo;s a plugin available. The three.js repo contains hundreds of extensions, in the <a href="https://github.com/mrdoob/three.js/tree/master/examples/jsm" target="_blank" rel="noopener noreferrer"><em><strong>examples/jsm</strong></em></a> folder. These are also included in <a href="https://www.npmjs.com/package/three" target="_blank" rel="noopener noreferrer">the NPM package</a>, for those of you using a package manager.</p>
-<p>There are also a huge number of plugins to be found scattered around the web. However, these are sometimes poorly maintained and may not work with the latest three.js version, so in this book, we&rsquo;ll restrict ourselves to using the official plugins from the repo. There, we&rsquo;ll find all kinds of plugins, and most of them are showcased in one of <a href="https://threejs.org/examples/" target="_blank" rel="noopener noreferrer">the examples</a>. These add all kinds of functionality, such as mirrored surfaces:</p>
+<p>The three.js core is a powerful, lightweight, and focused <strong>rendering framework</strong>, with intentionally limited capabilities. It has everything you need to create and render physically correct scenes, however, it does not have everything you need to create, say, a game, or a product configurator. Even when building relatively simple apps, you will often find yourself needing functionality that&rsquo;s not in the core. When this happens, before you write any code yourself, check to see whether there&rsquo;s a plugin available. The three.js repo contains hundreds of extensions, in the 
+
+<a href="https://github.com/mrdoob/three.js/tree/master/examples/jsm" target="_blank" rel="noopener noreferrer"><em><strong>examples/jsm</strong></em></a> folder. These are also included in 
+
+<a href="https://www.npmjs.com/package/three" target="_blank" rel="noopener noreferrer">the NPM package</a>, for those of you using a package manager.</p>
+<p>There are also a huge number of plugins to be found scattered around the web. However, these are sometimes poorly maintained and may not work with the latest three.js version, so in this book, we&rsquo;ll restrict ourselves to using the official plugins from the repo. There, we&rsquo;ll find all kinds of plugins, and most of them are showcased in one of 
+
+<a href="https://threejs.org/examples/" target="_blank" rel="noopener noreferrer">the examples</a>. These add all kinds of functionality, such as mirrored surfaces:</p>
 <figure class="">
-  <iframe title="three.js node materials mirror example" width="100%" height="500px" src="https://threejs.org/examples/webgl_mirror_nodes.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe></figure>
+  <noscript class="loading-lazy">
+    <iframe title="three.js node materials mirror example" width="100%" height="500" src="https://threejs.org/examples/webgl_mirror_nodes.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe>
+  </noscript></figure>
 <p>Or, how about a loader for the Lego LDraw format:</p>
 <figure class="">
-  <iframe title="three.js LDraw format example" width="100%" height="500px" src="https://threejs.org/examples/webgl_loader_ldraw.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe></figure>
+  <noscript class="loading-lazy">
+    <iframe title="three.js LDraw format example" width="100%" height="500" src="https://threejs.org/examples/webgl_loader_ldraw.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe>
+  </noscript></figure>
 <p>Here are a few more:</p>
 <ul>
-<li><a href="https://threejs.org/examples/?q=postprocessing#webgl_postprocessing_glitch" target="_blank" rel="noopener noreferrer">One of the many post-processing effects</a></li>
-<li><a href="https://threejs.org/examples/?q=loader#webgl_loader_fbx" target="_blank" rel="noopener noreferrer">A loader for the Autodesk FBX format</a></li>
-<li><a href="https://threejs.org/examples/?q=exporter#misc_exporter_gltf" target="_blank" rel="noopener noreferrer">An exporter for glTF format</a></li>
-<li><a href="https://threejs.org/examples/?q=ocean#webgl_shaders_ocean" target="_blank" rel="noopener noreferrer">Physically accurate ocean and sky</a></li>
+<li>
+
+<a href="https://threejs.org/examples/?q=postprocessing#webgl_postprocessing_glitch" target="_blank" rel="noopener noreferrer">One of the many post-processing effects</a></li>
+<li>
+
+<a href="https://threejs.org/examples/?q=loader#webgl_loader_fbx" target="_blank" rel="noopener noreferrer">A loader for the Autodesk FBX format</a></li>
+<li>
+
+<a href="https://threejs.org/examples/?q=exporter#misc_exporter_gltf" target="_blank" rel="noopener noreferrer">An exporter for glTF format</a></li>
+<li>
+
+<a href="https://threejs.org/examples/?q=ocean#webgl_shaders_ocean" target="_blank" rel="noopener noreferrer">Physically accurate ocean and sky</a></li>
 </ul>
 <p>Each extension is stored in a separate module in <em><strong>examples/jsm</strong></em>, and to use them, we simply import them into our app, much like any other three.js class.</p>
 <h2 id="our-first-plugin-orbitcontrols">Our First Plugin: <code>OrbitControls</code></h2>
-<p>One of the most popular extensions is <a href="https://threejs.org/docs/#examples/en/controls/OrbitControls" target="_blank" rel="noopener noreferrer"><code>OrbitControls</code></a>, a camera controls plugin which allows you to orbit, pan, and zoom the camera using touch, mouse, or keyboard. With these controls, we can view a scene from all angles, zoom in to check tiny details, or zoom out to get a birds-eye overview. Orbit controls allow us to control the camera in three ways:</p>
+<p>One of the most popular extensions is 
+
+<a href="https://threejs.org/docs/#examples/en/controls/OrbitControls" target="_blank" rel="noopener noreferrer"><code>OrbitControls</code></a>, a camera controls plugin which allows you to orbit, pan, and zoom the camera using touch, mouse, or keyboard. With these controls, we can view a scene from all angles, zoom in to check tiny details, or zoom out to get a birds-eye overview. Orbit controls allow us to control the camera in three ways:</p>
 <ol>
 <li><strong>Orbit around a fixed point, using the left mouse button or a single finger swipe.</strong></li>
 <li><strong>Pan the camera using the right mouse button, the arrow keys, or a two-finger swipe.</strong></li>
 <li><strong>Zoom the camera using the scroll wheel or a pinch gesture.</strong></li>
 </ol>
-<p>You can find the module containing <code>OrbitControls</code> on the three.js repo, in the <em><strong>examples/jsm/controls/</strong></em> folder, in a file called <em><strong><a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js" target="_blank" rel="noopener noreferrer">OrbitControls.js</a></strong></em>. There&rsquo;s also an <a href="https://threejs.org/examples/?q=controls#misc_controls_orbit" target="_blank" rel="noopener noreferrer">official example showcasing <code>OrbitControls</code></a>. For a quick reference of all the control&rsquo;s settings and features, head over to the <a href="https://threejs.org/docs/#examples/en/controls/OrbitControls" target="_blank" rel="noopener noreferrer"><code>OrbitControls</code> doc page</a>.</p>
+<p>You can find the module containing <code>OrbitControls</code> on the three.js repo, in the <em><strong>examples/jsm/controls/</strong></em> folder, in a file called <em><strong>
+
+<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js" target="_blank" rel="noopener noreferrer">OrbitControls.js</a></strong></em>. There&rsquo;s also an 
+
+<a href="https://threejs.org/examples/?q=controls#misc_controls_orbit" target="_blank" rel="noopener noreferrer">official example showcasing <code>OrbitControls</code></a>. For a quick reference of all the control&rsquo;s settings and features, head over to the 
+
+<a href="https://threejs.org/docs/#examples/en/controls/OrbitControls" target="_blank" rel="noopener noreferrer"><code>OrbitControls</code> doc page</a>.</p>
 <h3 id="importing-plugins">Importing Plugins</h3>
 <p>Since the plugins are part of the three.js repo and included in the NPM package, importing them works in much the same way as <a href="/book/first-steps/first-scene/#import-classes-from-threejs">importing classes from the three.js core</a>, except that each plugin is in a separate module. Refer back to <a href="/book/introduction/get-threejs/">0.5: How to Include three.js in Your Projects</a> for a reminder of how to include the three.js files in your app, or head over to <a href="/book/appendix/javascript-modules/">A.4: JavaScript Modules</a> for a deeper exploration of how JavaScript modules work.</p>
 <p>In the editor, we&rsquo;ve placed the <em><strong>OrbitControls.js</strong></em> file in the equivalent directory to the repo, under <em><strong>vendor/</strong></em>. Go ahead and locate the file now. Since the editor uses NPM style imports, we can import <code>OrbitControls</code> like this, from anywhere in our code like this:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption">Importing the <code>OrbitControls</code> extension using NPM style imports</span>
@@ -289,6 +325,8 @@ import { OrbitControls } from &#39;three/examples/jsm/controls/OrbitControls.js&
 </section>
 
 <p>Once again, if you’re working locally and not using a bundler, you’ll have to change the import path. For example, you can import from unpkg.com instead.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption">Importing the <code>OrbitControls</code> extension using relative imports</span>
@@ -313,6 +351,8 @@ import { OrbitControls } from &#39;https://unpkg.com/three@0.117.0/examples/jsm/
 <p>As usual, we&rsquo;ll create a new module in our app to handle setting up the controls. Since the controls operate on the camera, they will go in the <a href="/book/first-steps/world-app/#systems-and-components">systems category</a>. Open or create the module <em><strong>systems/controls.js</strong></em> to handle setting up the camera controls. This new module has the same structure as most of our other modules. First, import the <code>OrbitControls</code> class, then make a <code>createControls</code> function, and finally, export the function:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>systems/controls.js</strong></em>: initial setup</span>
   
   <pre
@@ -333,6 +373,8 @@ export { createControls };
 </section>
 
 <p>Back over in World, add the new function to the list of imports:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: import the controls module</span>
@@ -358,6 +400,8 @@ import { Loop } from &#39;./systems/Loop.js&#39;;
 </section>
 
 <p>Next, call the function and store the result in a variable called <code>controls</code>. While you&rsquo;re here, comment out the line adding <code>cube</code> to the <code>updatables</code> array. This will stop the cube from rotating and make the effect of the controls easier to see:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: stop the cube&rsquo;s animation</span>
@@ -394,9 +438,15 @@ import { Loop } from &#39;./systems/Loop.js&#39;;
 </section>
 
 <h3 id="initialize-the-controls">Initialize the Controls</h3>
-<p>If you check out the <a href="https://threejs.org/docs/#examples/en/controls/OrbitControls" target="_blank" rel="noopener noreferrer"><code>OrbitControls</code> docs page</a>, you&rsquo;ll see that the constructor takes two parameters: a <code>Camera</code>, and a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" target="_blank" rel="noopener noreferrer"><code>HTMLDOMElement</code></a>. We&rsquo;ll use our camera for the first parameter and the canvas, stored in <code>renderer.domElement</code>, for the second.</p>
+<p>If you check out the 
+
+<a href="https://threejs.org/docs/#examples/en/controls/OrbitControls" target="_blank" rel="noopener noreferrer"><code>OrbitControls</code> docs page</a>, you&rsquo;ll see that the constructor takes two parameters: a <code>Camera</code>, and a 
+
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" target="_blank" rel="noopener noreferrer"><code>HTMLDOMElement</code></a>. We&rsquo;ll use our camera for the first parameter and the canvas, stored in <code>renderer.domElement</code>, for the second.</p>
 <p>Internally, <code>OrbitControls</code> uses <code>addEventListener</code> to listen for user input. The controls will listen for events such as  <code>click</code>, <code>wheel</code>, <code>touchmove</code>, and <code>keydown</code>, amongst others, and use these to move the camera. We previously used this method to <a href="/book/first-steps/responsive-design/#listen-for-resize-events-on-the-browser-window">listen for the <code>resize</code> event</a> when we set up automatic resizing. There, we listened for the <code>resize</code> event on the entire <code>window</code>. Here, the controls will listen for user input on whatever element we pass in as the second parameter. The rest of the page will be unaffected. In other words, when we pass in the canvas, the controls will work when the mouse/touch is over the canvas, but the rest of the page will continue to work as normal.</p>
 <p>Pass the camera and canvas into the <code>createControls</code> function, then create the controls:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>controls.js</strong></em>: create the controls</span>
@@ -419,6 +469,8 @@ function createControls(camera, canvas) {
 </section>
 
 <p>Back over in the world module, pass in the <code>camera</code> and <code>renderer.domElement</code>:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: initialize the controls</span>
@@ -448,10 +500,14 @@ constructor(container) {
 </section>
 
 <p>With that, the controls should start to work. Take them for a spin!</p>
-<p>You&rsquo;ll immediately notice <a href="#a-glaring-problem">the cube is not illuminated from the back</a>. We&rsquo;ll explain why and how to fix this in the next chapter.</p>
+<p>You&rsquo;ll immediately notice 
+
+<a href="#a-glaring-problem">the cube is not illuminated from the back</a>. We&rsquo;ll explain why and how to fix this in the next chapter.</p>
 <h2 id="working-with-the-controls">Working with the Controls</h2>
 <h3 id="manually-set-the-target">Manually Set the Target</h3>
 <p>By default, the controls orbit around the center of the scene, point $(0,0,0)$. This is stored in the <code>controls.target</code> property, which is a <code>Vector3</code>. We can move this target to a new position:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption">Set the control&rsquo;s target</span>
@@ -472,6 +528,8 @@ controls.target.set(1,2,3);
 <p>We can also point the controls at an object by copying the object&rsquo;s position.</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: target an object</span>
   
   <pre
@@ -489,7 +547,11 @@ controls.target.copy(cube.position);
 
 <p>Whenever you pan the controls (using the right mouse button), the target will pan too. If you need a fixed target, you can disable panning using <code>controls.enablePan = false</code>.</p>
 <h3 id="enable-damping-for-added-realism">Enable Damping for Added Realism</h3>
-<p>As soon as the user stops interacting with the scene, the camera will come to an abrupt stop. Objects in the real world have inertia and never stop abruptly like this, so we can make the controls feel more realistic by enabling <a href="https://threejs.org/docs/index.html#examples/en/controls/OrbitControls.enableDamping" target="_blank" rel="noopener noreferrer">damping</a>.</p>
+<p>As soon as the user stops interacting with the scene, the camera will come to an abrupt stop. Objects in the real world have inertia and never stop abruptly like this, so we can make the controls feel more realistic by enabling 
+
+<a href="https://threejs.org/docs/index.html#examples/en/controls/OrbitControls.enableDamping" target="_blank" rel="noopener noreferrer">damping</a>.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>controls.js</strong></em>: enable damping</span>
@@ -508,9 +570,15 @@ controls.enableDamping = true;
 </section>
 
 <p>With damping enabled, the controls will slow to a stop over several frames which gives them a feeling of
-weight. You can adjust <a href="https://threejs.org/docs/#examples/en/controls/OrbitControls.dampingFactor" target="_blank" rel="noopener noreferrer">the <code>.dampingFactor</code></a> to control how fast the camera comes to a stop. However, for damping to work, we must call <code>controls.update</code> every frame in the animation loop. If we&rsquo;re <a href="#rendering-on-demand-with-orbitcontrols">rendering frames on demand</a> instead of using the loop, we cannot use damping.</p>
+weight. You can adjust 
+
+<a href="https://threejs.org/docs/#examples/en/controls/OrbitControls.dampingFactor" target="_blank" rel="noopener noreferrer">the <code>.dampingFactor</code></a> to control how fast the camera comes to a stop. However, for damping to work, we must call <code>controls.update</code> every frame in the animation loop. If we&rsquo;re 
+
+<a href="#rendering-on-demand-with-orbitcontrols">rendering frames on demand</a> instead of using the loop, we cannot use damping.</p>
 <h3 id="update-the-controls-in-the-animation-loop">Update the Controls in the Animation Loop</h3>
 <p>Whenever we need to update an object in the loop, we&rsquo;ll use the technique we devised when creating <a href="/book/first-steps/animation-loop/#create-the-animation">the cube&rsquo;s animation</a>. In other words, we&rsquo;ll give the controls a <code>.tick</code> method and then add them to the <code>loop.updatables</code> array. First, the <code>.tick</code> method:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>controls.js</strong></em>: add controls.tick</span>
@@ -540,6 +608,8 @@ weight. You can adjust <a href="https://threejs.org/docs/#examples/en/controls/O
 </section>
 
 <p>Here, <code>.tick</code> simply calls <code>controls.update</code>. Next, add the controls to the <code>updatables</code> array:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: add the controls to the updatables array</span>
@@ -587,6 +657,8 @@ weight. You can adjust <a href="https://threejs.org/docs/#examples/en/controls/O
 <p>To perform a camera cut, update the camera&rsquo;s transform as usual, and then call <code>controls.update</code>:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption">Manually adjust the camera transform while using <code>OrbitControls</code></span>
   
   <pre
@@ -615,6 +687,8 @@ controls.update();
 <p>If you want to smoothly animate the camera to a new position, you will probably need to transition the camera and the target at the same time, and the best place to do this is in the <code>controls.tick</code> method. However, you will need to disable the controls for the duration of the animation, otherwise, if the user attempts to move the camera before the animation has completed, you&rsquo;ll end up with the controls fighting against your animation, often with disastrous results.</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption">Disable the controls while animating the camera or target</span>
   
   <pre
@@ -633,7 +707,13 @@ controls.enabled = false;
 </section>
 
 <h3 id="save-and-restore-a-view-state">Save and Restore a View State</h3>
-<p>You can save the current view using <a href="https://threejs.org/docs/index.html#examples/en/controls/OrbitControls.saveState" target="_blank" rel="noopener noreferrer"><code>.saveState</code></a>, and later restore it using <a href="https://threejs.org/docs/index.html#examples/en/controls/OrbitControls.reset" target="_blank" rel="noopener noreferrer"><code>.reset</code></a>:</p>
+<p>You can save the current view using 
+
+<a href="https://threejs.org/docs/index.html#examples/en/controls/OrbitControls.saveState" target="_blank" rel="noopener noreferrer"><code>.saveState</code></a>, and later restore it using 
+
+<a href="https://threejs.org/docs/index.html#examples/en/controls/OrbitControls.reset" target="_blank" rel="noopener noreferrer"><code>.reset</code></a>:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>controls.js</strong></em>: save and restore state</span>
@@ -656,7 +736,11 @@ controls.reset();
 
 <p>If we call <code>.reset</code> without first calling <code>.saveState</code>, the camera will jump back to the position it was in when we created the controls.</p>
 <h3 id="disposing-of-the-controls">Disposing of the Controls</h3>
-<p>If you no longer need the controls, you can clean them up using <a href="https://threejs.org/docs/#examples/en/controls/OrbitControls.dispose" target="_blank" rel="noopener noreferrer">.dispose</a>, which will remove all event listeners created by the controls from the canvas.</p>
+<p>If you no longer need the controls, you can clean them up using 
+
+<a href="https://threejs.org/docs/#examples/en/controls/OrbitControls.dispose" target="_blank" rel="noopener noreferrer">.dispose</a>, which will remove all event listeners created by the controls from the canvas.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>controls.js</strong></em>: remove all event listeners from the canvas</span>
@@ -681,6 +765,8 @@ controls.dispose();
 <p>To use rendering on demand with the orbit control, you must render a frame whenever this event fires:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption">Rendering on demand with <code>OrbitControls</code></span>
   
   <pre
@@ -701,6 +787,8 @@ controls.addEventListener(&#39;change&#39;, () =&gt; {
 <p>To set this up inside <em><strong>World.js</strong></em>, you&rsquo;ll use <code>this.render</code>:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: Rendering on demand with <code>OrbitControls</code></span>
   
   <pre
@@ -719,6 +807,8 @@ controls.addEventListener(&#39;change&#39;, () =&gt; {
 </section>
 
 <p>Next, over in <em><strong>main.js</strong></em>, make sure we&rsquo;re no longer starting the loop. Instead, render the initial frame:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: render a single frame instead of starting the loop</span>
@@ -742,9 +832,15 @@ world.render();
 <p>If you make these changes in your app, you&rsquo;ll see that this results in a slight problem. When we render the initial frame in <em><strong>main.js</strong></em>, the texture has not yet loaded, so the cube will look black. If we were running the loop, this frame would almost instantly be replaced with a new one after the texture loads, so it might not even be noticeable that the cube was black for a few milliseconds. However, with rendering on demand, we are now only generating new frames when the user interacts with the scene and moves the camera. As soon as you move the controls, sure enough, a new frame will be created and the texture will show up.</p>
 <p>As a result, you also need to generate a new frame after the texture has loaded. We won&rsquo;t cover how to do that here, but hopefully, it highlights why rendering on demand is trickier than using the loop. You have to consider all situations where you need a new frame (for example, don&rsquo;t forget that you&rsquo;ll also need to <a href="/book/first-steps/responsive-design/#create-an-onresize-hook">render a frame on resize</a>).</p>
 <h2 id="orbitcontrols-configuration"><code>OrbitControls</code> Configuration</h2>
-<p>The controls have lots of options that allow us to adjust them to our needs. Most of these are <a href="https://threejs.org/docs/index.html#examples/en/controls/OrbitControls" target="_blank" rel="noopener noreferrer">well explained in the docs</a>, so we won&rsquo;t cover them exhaustively here. The following are some of the most important.</p>
+<p>The controls have lots of options that allow us to adjust them to our needs. Most of these are 
+
+<a href="https://threejs.org/docs/index.html#examples/en/controls/OrbitControls" target="_blank" rel="noopener noreferrer">well explained in the docs</a>, so we won&rsquo;t cover them exhaustively here. The following are some of the most important.</p>
 <h3 id="enable-or-disable-the-controls">Enable or Disable the Controls</h3>
-<p>We can <a href="https://threejs.org/docs/index.html#examples/en/controls/OrbitControls.enabled" target="_blank" rel="noopener noreferrer">enable or disable the controls</a> entirely:</p>
+<p>We can 
+
+<a href="https://threejs.org/docs/index.html#examples/en/controls/OrbitControls.enabled" target="_blank" rel="noopener noreferrer">enable or disable the controls</a> entirely:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>controls.js</strong></em>: enable or disable</span>
@@ -763,6 +859,8 @@ controls.enabled = false;
 </section>
 
 <p>Or, we can disable any of the three modes of control individually:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>controls.js</strong></em>: disable individual modes</span>
@@ -785,6 +883,8 @@ controls.enablePan = false;
 <p>By default, you can use the arrow keys to pan the camera. To disable this:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>controls.js</strong></em>: disable keyboard pan controls</span>
   
   <pre
@@ -801,7 +901,13 @@ controls.enableKeys = false;
 </section>
 
 <h3 id="auto-rotate">Auto Rotate</h3>
-<p><a href="https://threejs.org/docs/index.html#examples/en/controls/OrbitControls.autoRotate" target="_blank" rel="noopener noreferrer"><code>.autoRotate</code></a> will make the camera automatically rotate around the <code>.target</code>, and <a href="https://threejs.org/docs/#examples/en/controls/OrbitControls.autoRotateSpeed" target="_blank" rel="noopener noreferrer"><code>.autoRotateSpeed</code></a> controls how fast:</p>
+<p>
+
+<a href="https://threejs.org/docs/index.html#examples/en/controls/OrbitControls.autoRotate" target="_blank" rel="noopener noreferrer"><code>.autoRotate</code></a> will make the camera automatically rotate around the <code>.target</code>, and 
+
+<a href="https://threejs.org/docs/#examples/en/controls/OrbitControls.autoRotateSpeed" target="_blank" rel="noopener noreferrer"><code>.autoRotateSpeed</code></a> controls how fast:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>controls.js</strong></em>: enable auto-rotation</span>
@@ -825,6 +931,8 @@ controls.autoRotateSpeed = 1;
 <p>We can limit how far the controls will zoom in or out:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>controls.js</strong></em>: limit zoom</span>
   
   <pre
@@ -841,9 +949,15 @@ controls.maxDistance = 20;
   </pre>
 </section>
 
-<p>Make sure <code>minDistance</code> is not smaller than <a href="https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.near" target="_blank" rel="noopener noreferrer">the camera&rsquo;s near clipping plane</a> and <code>maxDistance</code> is not greater than <a href="https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.far" target="_blank" rel="noopener noreferrer">the camera&rsquo;s far clipping plane</a>. Also, <code>minDistance</code> must be smaller than <code>maxDistance</code>.</p>
+<p>Make sure <code>minDistance</code> is not smaller than 
+
+<a href="https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.near" target="_blank" rel="noopener noreferrer">the camera&rsquo;s near clipping plane</a> and <code>maxDistance</code> is not greater than 
+
+<a href="https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.far" target="_blank" rel="noopener noreferrer">the camera&rsquo;s far clipping plane</a>. Also, <code>minDistance</code> must be smaller than <code>maxDistance</code>.</p>
 <h3 id="limiting-rotation">Limiting Rotation</h3>
 <p>We can limit the control&rsquo;s rotation, both horizontally (azimuth angle):</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>controls.js</strong></em>: limit horizontal rotation</span>
@@ -863,6 +977,8 @@ controls.maxAzimuthAngle = Infinity; // default
 </section>
 
 <p>&hellip; and vertically (polar angle)</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>controls.js</strong></em>: limit vertical rotation</span>
@@ -886,32 +1002,41 @@ controls.maxPolarAngle = Math.PI; // default
 <p>As soon as we rotate the camera using our fancy new orbit controls, we&rsquo;ll see a glaring problem. The camera rotates, but the light is fixed and shines only from one direction. The rear faces of the cube receive no light at all!</p>
 <p>In the real world, light bounces and reflects off every surface, so the rear of the cube would be dimly lit. There&rsquo;s nothing in this simple scene aside from the cube, so there&rsquo;s nothing for the light to bounce off.  But, even if there was, performing these calculations is much too expensive for us to do in real-time. In the next chapter, we will look at a technique for overcoming this problem known as <strong>ambient lighting</strong>.</p>
 <h2 id="challenges">Challenges</h2>
+
+
 <aside class="success">
   
     <h3 id="easy">Easy</h3>
 <ol>
 <li>
-<p>Try adjusting the control&rsquo;s <a href="#limiting-zoom">minimum and maximum zoom levels</a>. What happens if you make these two values equal? Or make <code>minDistance</code> greater than <code>maxDistance</code>?</p>
+<p>Try adjusting the control&rsquo;s 
+<p><a href="#limiting-zoom">minimum and maximum zoom levels</a>. What happens if you make these two values equal? Or make <code>minDistance</code> greater than <code>maxDistance</code>?</p></p>
 </li>
 <li>
-<p>Enable <a href="#auto-rotate">auto-rotation</a> and then try adjusting the rotation speed.</p>
+<p>Enable 
+<p><a href="#auto-rotate">auto-rotation</a> and then try adjusting the rotation speed.</p></p>
 </li>
 <li>
-<p>Try <a href="#enable-or-disable-the-controls">disabling each of the three modes of control</a>, one at a time, and observe the results.</p>
+<p>Try 
+<p><a href="#enable-or-disable-the-controls">disabling each of the three modes of control</a>, one at a time, and observe the results.</p></p>
 </li>
 <li>
-<p><a href="#enable-damping-for-added-realism">Adjust the damping speed</a> (<code>.dampingFactor</code>) to get a feel for how damping works. Values greater than 0 and less than 1 work best.</p>
+<p>
+<p><a href="#enable-damping-for-added-realism">Adjust the damping speed</a> (<code>.dampingFactor</code>) to get a feel for how damping works. Values greater than 0 and less than 1 work best.</p></p>
 </li>
 </ol>
 
   
 </aside>
+
+
 <aside class="notice">
   
     <h3 id="medium">Medium</h3>
 <ol>
 <li>
-<p>Try adjusting the control&rsquo;s <a href="#limiting-rotation">horizontal and vertical rotation limits</a>. Remember, if you are working in degrees you must convert to radians. Look inside <em><strong>cube.js</strong></em> if you need a reminder of how that works.</p>
+<p>Try adjusting the control&rsquo;s 
+<p><a href="#limiting-rotation">horizontal and vertical rotation limits</a>. Remember, if you are working in degrees you must convert to radians. Look inside <em><strong>cube.js</strong></em> if you need a reminder of how that works.</p></p>
 </li>
 <li>
 <p>Add a button (or a click event listener) to the page, and whenever you click the button, move the camera and control&rsquo;s target to a new, random position. Try and constrain the movement so that the cube is always still somewhere on the screen.</p>
@@ -920,12 +1045,15 @@ controls.maxPolarAngle = Math.PI; // default
 
   
 </aside>
+
+
 <aside class="warning">
   
     <h3 id="hard">Hard</h3>
 <ol>
 <li>
-<p>Set up <a href="#rendering-on-demand-with-orbitcontrols">rendering on demand</a> while using the controls, including generating a new frame after the texture has loaded, and whenever the scene is resized.</p>
+<p>Set up 
+<p><a href="#rendering-on-demand-with-orbitcontrols">rendering on demand</a> while using the controls, including generating a new frame after the texture has loaded, and whenever the scene is resized.</p></p>
 </li>
 <li>
 <p>Can you make the camera and the control&rsquo;s target animate to a new position over a few seconds? Maybe add a button to the page, and when you click it, play the animation. See what happens when you animate just the camera, or just the target, or what happens when you don&rsquo;t disable the controls while animating. The best place to set up this animation is in the controls module.</p>
@@ -935,16 +1063,12 @@ controls.maxPolarAngle = Math.PI; // default
   
 </aside>
 
-            <div class="bottom-pagination">
-
-
-
-
-
-<a href="/book/first-steps/textures-intro/" title="A Brief Introduction to Texture Mapping" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/ambient-lighting/" class="control-elem next" title="Ambient Lighting: Illumination from Every Direction"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
+            <div class="bottom-pagination"><a href="/book/first-steps/textures-intro/" title="A Brief Introduction to Texture Mapping" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/ambient-lighting/" class="control-elem next" title="Ambient Lighting: Illumination from Every Direction"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
           </div>
         </div>
-      </main><div id="ide-wrapper" class="panel animate disabled hide">
+      </main>
+
+<div id="ide-wrapper" class="panel animate disabled hide">
   <nav id="ide-controls-top" class="control-bar fuzzy-background">
     <input
       type="checkbox"
@@ -1056,7 +1180,9 @@ controls.maxPolarAngle = Math.PI; // default
     <div id="preview-overlay"></div>
     
   </div>
-</div></div><div class="side-menu left-menu">
+</div></div>
+
+<div class="side-menu left-menu">
   <div class="icons">
     <input type="checkbox" id="invert-colors-toggle" class="hidden-input" />
     <label
@@ -1156,14 +1282,18 @@ controls.maxPolarAngle = Math.PI; // default
         src="/images/logo/banner_trans_512.png"
       />
     </a>
-  </h2><ul class="links" style="justify-content: left">
+  </h2>
+
+<ul class="links" style="justify-content: left">
   <li><a href="/book/">Table Of Contents</a></li>
   <li style="margin: auto">
     <a href="/#mailing-list-signup" class="internal-link"
       >Stay up to date - sign up to the mailing list!</a
     >
   </li>
-</ul></nav><style>
+</ul></nav>
+
+<style>
   @font-face {
     font-family: "Open Sans";
     font-style: normal;

@@ -1,7 +1,11 @@
+
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
-    <title>Physically Based Rendering and Lighting | Discover three.js</title><meta charset="utf-8" />
+    <title>Physically Based Rendering and Lighting | Discover three.js</title>
+
+<meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 <meta name="HandheldFriendly" content="True" />
@@ -48,7 +52,9 @@
 
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="msapplication-TileColor" content="#00aba9" />
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619180747" /><script type="application/ld+json">
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619232246" />
+
+<script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "WebPage",
@@ -81,34 +87,36 @@
       }
     }
   }
-</script><link
+</script>
+
+<link
   rel="canonical"
   href="https://discoverthreejs.com/book/first-steps/physically-based-rendering/"
 />
 
-<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619180747" />
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619232246" />
 
 <link
   rel="apple-touch-icon"
   sizes="180x180"
-  href="/apple-touch-icon.png?v=1619180747"
+  href="/apple-touch-icon.png?v=1619232246"
 />
 
 <link
   rel="icon"
   type="image/png"
   sizes="16x16"
-  href="/favicon-16x16.png?v=1619180747"
+  href="/favicon-16x16.png?v=1619232246"
 />
 <link
   rel="icon"
   type="image/png"
   sizes="32x32"
-  href="/favicon-32x32.png?v=1619180747"
+  href="/favicon-32x32.png?v=1619232246"
 />
 
-<link rel="manifest" href="/site.json?v=1619180747" />
-<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619180747" color="#5bbad5" />
+<link rel="manifest" href="/site.json?v=1619232246" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619232246" color="#5bbad5" />
 <style>
       .loading-page {
         display: none;
@@ -117,13 +125,15 @@
 
     
     
-    <link rel="stylesheet" href="/styles/chapter.css?v=1619180747">
+    <link rel="stylesheet" href="/styles/chapter.css?v=1619232246">
 
     <noscript>
       
       
-      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619180747">
-    </noscript>    
+      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619232246">
+    </noscript>
+
+  
     
     
     
@@ -142,7 +152,9 @@
 
     
 
-    <script type="module">
+    
+
+<script type="module">
   
   
 
@@ -191,7 +203,9 @@
     
   });
 </script></head>
-  <body class="loading-page"><nav class="top-nav">
+  <body class="loading-page">
+
+<nav class="top-nav">
   <div class="nav-background"></div>
 
   <div class="icon-group left">
@@ -220,13 +234,7 @@
     </label>
   </div>
 
-  <div class="icon-group center">
-
-
-
-
-
-<a href="/book/first-steps/world-app/" title="Introducing the World App" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/transformations/" class="control-elem next" title="Transformations and Coordinate Systems"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
+  <div class="icon-group center"><a href="/book/first-steps/world-app/" title="Introducing the World App" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/transformations/" class="control-elem next" title="Transformations and Coordinate Systems"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
   </div>
 
   <div class="icon-group right">
@@ -242,13 +250,19 @@
           <div class="content">
             <div class="update-banner">Discover three.js is now <a href="https://github.com/looeee/discoverthreejs-site" target="_blank" rel="noopener noreferrer">open source</a>!</div>
             
-              <div class="chapter-info">Word Count:3023, reading time: ~15minutes</div>
+              <div class="chapter-info">Word Count:3024, reading time: ~15minutes</div>
             
             <h1 id="physically-based-rendering-and-lighting">Physically Based Rendering and Lighting</h1>
-<p>Recently, <a href="https://en.wikipedia.org/wiki/Physically_based_rendering" target="_blank" rel="noopener noreferrer"><strong>physically based rendering</strong></a> (PBR) has become the industry-standard method of rendering both real-time and cinematic 3D scenes. As the name suggests, this rendering technique uses real-world physics to calculate the way surfaces react to light, taking the guesswork out of setting up materials and lighting in your scenes. PBR was created by Disney for their feature-length animations and is also used in modern game engines such as Unreal and Frostbite. Amazingly, the tiny (600kb when compressed) three.js core allows us to use the same physically correct rendering techniques as these industry-leading giants, and not only that, but we can run these even on low-power devices such as smartphones. Only a few years ago, this was cutting-edge tech that required huge banks of powerful computers, and now we can run this in a web browser, from anywhere.</p>
+<p>Recently, 
+
+<a href="https://en.wikipedia.org/wiki/Physically_based_rendering" target="_blank" rel="noopener noreferrer"><strong>physically based rendering</strong></a> (PBR) has become the industry-standard method of rendering both real-time and cinematic 3D scenes. As the name suggests, this rendering technique uses real-world physics to calculate the way surfaces react to light, taking the guesswork out of setting up materials and lighting in your scenes. PBR was created by Disney for their feature-length animations and is also used in modern game engines such as Unreal and Frostbite. Amazingly, the tiny (600kb when compressed) three.js core allows us to use the same physically correct rendering techniques as these industry-leading giants, and not only that, but we can run these even on low-power devices such as smartphones. Only a few years ago, this was cutting-edge tech that required huge banks of powerful computers, and now we can run this in a web browser, from anywhere.</p>
 <figure class="medium right">
-  <iframe title="Physically based rendering in three.js" width="100%" height="400px" src="https://threejs.org/examples/webgl_materials_standard.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe></figure>
-<p>Using PBR in three.js is as simple as switching the material we use and adding a light source. We&rsquo;ll introduce the most important three.js PBR material, the <code>MeshStandardMaterial</code>, below. We won&rsquo;t get into the technical details of physically based rendering in this book, but if you&rsquo;re interested in learning more, the brilliant, Academy Award winning book (yes, they give Oscars to books, apparently) <a href="http://www.pbr-book.org/" target="_blank" rel="noopener noreferrer">Physically Based Rendering: From Theory To Implementation</a> is completely free.</p>
+  <noscript class="loading-lazy">
+    <iframe title="Physically based rendering in three.js" width="100%" height="400" src="https://threejs.org/examples/webgl_materials_standard.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe>
+  </noscript></figure>
+<p>Using PBR in three.js is as simple as switching the material we use and adding a light source. We&rsquo;ll introduce the most important three.js PBR material, the <code>MeshStandardMaterial</code>, below. We won&rsquo;t get into the technical details of physically based rendering in this book, but if you&rsquo;re interested in learning more, the brilliant, Academy Award winning book (yes, they give Oscars to books, apparently) 
+
+<a href="http://www.pbr-book.org/" target="_blank" rel="noopener noreferrer">Physically Based Rendering: From Theory To Implementation</a> is completely free.</p>
 <h3 id="lighting-and-materials">Lighting and Materials</h3>
 <p>Lighting and materials are intrinsically linked in computer graphics rendering systems. We can&rsquo;t talk about one without the other, which is why, in this chapter, we&rsquo;re also introducing a new light: the <code>DirectionalLight</code>. This light type mimics rays from a faraway light source like the sun. We&rsquo;ll explore how lights and materials interact in more detail later in the book. To use PBR materials such as the <code>MeshStandardMaterial</code>, we must add a light to the scene. This makes sense - if there is no light, we cannot see. The <code>MeshBasicMaterial</code> we&rsquo;ve been using so far is not physically based and does not require a light.</p>
 <h3 id="day-to-night-with-the-flick-of-a-switch">Day to Night with the Flick of a Switch</h3>
@@ -257,7 +271,11 @@
 <p><strong>Well crafted physically based materials look great in all lighting conditions.</strong></p>
 <h2 id="enable-physically-correct-lighting">Enable Physically Correct Lighting</h2>
 <p>Before we add a light to our scene, we&rsquo;ll switch to using <strong>physically correct lighting intensity calculations</strong>. Physically correct <em>lighting</em> is not the same thing as physically based <em>rendering</em>, however, it makes sense to use both together to give us a complete physically accurate scene. <strong>Physically correct lighting</strong> means calculating <em>how light fades with distance from a light source</em> (attenuation) using real-world physics equations. This is fairly simple to calculate and you can find these equations in any physics textbook. On the other hand, <strong>physically based rendering</strong> involves calculating, in a physically correct manner, <em>how light reacts with surfaces</em>. These equations are much more complex, at least for any surface more complicated than a mirror. Fortunately, we don&rsquo;t have to understand them to use them!</p>
-<p>To turn on physically correct lighting, simply enable the renderer&rsquo;s <a href="https://threejs.org/docs/#api/en/renderers/WebGLRenderer.physicallyCorrectLights" target="_blank" rel="noopener noreferrer"><code>.physicallyCorrectLights</code></a> setting:</p>
+<p>To turn on physically correct lighting, simply enable the renderer&rsquo;s 
+
+<a href="https://threejs.org/docs/#api/en/renderers/WebGLRenderer.physicallyCorrectLights" target="_blank" rel="noopener noreferrer"><code>.physicallyCorrectLights</code></a> setting:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>renderer.js</strong></em>: enable physical correct lights</span>
@@ -306,7 +324,9 @@
 <li><strong>Direct lights</strong>, which simulate direct lighting.</li>
 <li><strong>Ambient lights</strong>, which are a cheap and <em>somewhat</em> believable way of faking indirect lighting.</li>
 </ol>
-<p>We can simulate direct lighting easily. Direct light rays come out of a light source and continue in a straight line until they hit an object, or not. However, indirect lighting is much harder to simulate since doing so requires calculating an infinite number of light rays bouncing forever from all the surfaces in the scene. There is no computer powerful enough to do that, and even if we limit ourselves to merely calculating a few thousand light rays, each making just a couple of bounces (<strong><a href="https://en.wikipedia.org/wiki/Ray_tracing_%28graphics%29" target="_blank" rel="noopener noreferrer">raytracing</a></strong>), it still generally takes too long to calculate in real-time. As a result, if we want realistic lighting in our scene, we need some way of faking indirect lighting. There are several techniques for doing this in three.js, of which ambient lights are one. Other techniques are image-based lighting (IBL), and light probes, as we&rsquo;ll see later in the book.</p>
+<p>We can simulate direct lighting easily. Direct light rays come out of a light source and continue in a straight line until they hit an object, or not. However, indirect lighting is much harder to simulate since doing so requires calculating an infinite number of light rays bouncing forever from all the surfaces in the scene. There is no computer powerful enough to do that, and even if we limit ourselves to merely calculating a few thousand light rays, each making just a couple of bounces (<strong>
+
+<a href="https://en.wikipedia.org/wiki/Ray_tracing_%28graphics%29" target="_blank" rel="noopener noreferrer">raytracing</a></strong>), it still generally takes too long to calculate in real-time. As a result, if we want realistic lighting in our scene, we need some way of faking indirect lighting. There are several techniques for doing this in three.js, of which ambient lights are one. Other techniques are image-based lighting (IBL), and light probes, as we&rsquo;ll see later in the book.</p>
 <h3 id="direct-lighting">Direct Lighting</h3>
 <p>In this chapter, we&rsquo;ll add the <code>DirectionalLight</code>, which simulates light from the sun or another very bright far away source. We&rsquo;ll come back to <a href="/book/first-steps/ambient-lighting/">ambient lighting</a> later in this section. There are a total of four direct light types available in the three.js core, each of which simulates a common real-world source of light:</p>
 <ul>
@@ -328,12 +348,25 @@
 <p>We can manually enable shadows, object by object, and light by light. However, shadows are expensive so we usually only enable shadows for one light or two lights, especially if our scene needs to work on mobile devices. Only direct light types can cast shadows, ambient lights cannot.</p>
 <h2 id="introducing-the-directionallight">Introducing the <code>DirectionalLight</code></h2>
 <figure class="medium left">
-  <img src="/images/first-steps/directional_light.svg" loading="lazy" alt="Light rays from a directional light" title="Light rays from a directional light"  />
+  <noscript class="loading-lazy">
+    <img
+      src="/images/first-steps/directional_light.svg"
+      loading="lazy"
+      alt="Light rays from a directional light"
+      title="Light rays from a directional light"
+      height="1"
+      width="1"
+      />
+  </noscript>
     <figcaption>Light rays from a directional light</figcaption></figure>
-<p>The <a href="https://threejs.org/docs/#api/lights/DirectionalLight" target="_blank" rel="noopener noreferrer"><code>DirectionalLight</code></a> is designed to mimic a distant source of light such as the sun. Light rays from a <code>DirectionalLight</code> don&rsquo;t fade with distance. <strong>All objects in the scene will be illuminated equally brightly no matter where they are placed - even behind the light</strong>.</p>
+<p>The 
+
+<a href="https://threejs.org/docs/#api/lights/DirectionalLight" target="_blank" rel="noopener noreferrer"><code>DirectionalLight</code></a> is designed to mimic a distant source of light such as the sun. Light rays from a <code>DirectionalLight</code> don&rsquo;t fade with distance. <strong>All objects in the scene will be illuminated equally brightly no matter where they are placed - even behind the light</strong>.</p>
 <p><strong>The light rays of a <code>DirectionalLight</code> are parallel and shine <em>from</em> a position and <em>towards</em> a target</strong>. By default, the target is placed at the center of our scene (the point $(0, 0, 0)$), so as we move the light around it will always shine towards the center.</p>
 <h3 id="add-a-directionallight-to-our-scene">Add a <code>DirectionalLight</code> to Our Scene</h3>
 <p>That&rsquo;s enough talk, let&rsquo;s add a <code>DirectionalLight</code> to our scene. Open or create the <em><strong>components/lights.js</strong></em> module, which will follow the same pattern as the other components in this folder. First, we&rsquo;ll import the <code>DirectionalLight</code> class, then we&rsquo;ll set up a <code>createLights</code> function, and finally, we&rsquo;ll export the function:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>lights.js</strong></em>: initial module structure</span>
@@ -360,7 +393,11 @@ export { createLights };
 </section>
 
 <h4 id="create-a-directionallight">Create a <code>DirectionalLight</code></h4>
-<p>The <a href="https://threejs.org/docs/#api/en/lights/DirectionalLight" target="_blank" rel="noopener noreferrer"><code>DirectionalLight</code></a> constructor takes two parameters, <strong>color</strong>, and <strong>intensity</strong>. Here, we create a pure white light with an intensity of 8:</p>
+<p>The 
+
+<a href="https://threejs.org/docs/#api/en/lights/DirectionalLight" target="_blank" rel="noopener noreferrer"><code>DirectionalLight</code></a> constructor takes two parameters, <strong>color</strong>, and <strong>intensity</strong>. Here, we create a pure white light with an intensity of 8:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>lights.js</strong></em>: create a <code>DirectionalLight</code></span>
@@ -383,10 +420,14 @@ function createLights() {
   </pre>
 </section>
 
-<p>All three.js lights have both color and intensity settings, inherited from <a href="https://threejs.org/docs/#api/en/lights/Light.intensity" target="_blank" rel="noopener noreferrer">the <code>Light</code> base class</a>.</p>
+<p>All three.js lights have both color and intensity settings, inherited from 
+
+<a href="https://threejs.org/docs/#api/en/lights/Light.intensity" target="_blank" rel="noopener noreferrer">the <code>Light</code> base class</a>.</p>
 <h4 id="position-the-light">Position the Light</h4>
 <p><strong>The <code>DirectionalLight</code> shines from <code>light.position</code>, to <code>light.target.position</code></strong>. As we mentioned above, the default position for both the light <em>and</em> the target is the center of our scene, $(0, 0, 0)$. This means the light is currently shining from $(0, 0, 0)$, towards $(0, 0, 0)$. This does work, but it doesn&rsquo;t look great. We can improve the appearance of the light by adjusting the <code>light.position</code>.
 We&rsquo;ll move it left, up, and towards us by setting the position to $(10, 10, 10)$.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>lights.js</strong></em>: Position the light</span>
@@ -421,6 +462,8 @@ export { createLights };
 <p>Over in <em><strong>World.js</strong></em>, import the new module:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: imports</span>
   
   <pre
@@ -442,6 +485,8 @@ import { Resizer } from &#39;./systems/Resizer.js&#39;;
 </section>
 
 <p>Then create a light and add it to the scene. Adding a light to the scene works just like <a href="/book/first-steps/first-scene/#add-the-mesh-to-the-scene">adding a mesh</a>:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: create a light and add it to the scene</span>
@@ -475,31 +520,45 @@ import { Resizer } from &#39;./systems/Resizer.js&#39;;
 <h2 id="switch-to-the-physically-based-meshstandardmaterial">Switch to the Physically Based <code>MeshStandardMaterial</code></h2>
 <p>Adding the light won&rsquo;t have any immediate effect since we&rsquo;re currently using a <code>MeshBasicMaterial</code>. As we mentioned earlier, this material ignores any lights in the scene. Here, we&rsquo;ll switch to a <code>MeshStandardMaterial</code>.</p>
 <h3 id="the-meshbasicmaterial">The <code>MeshBasicMaterial</code></h3>
-<p>As the name implies, <a href="https://threejs.org/docs/#api/en/materials/MeshBasicMaterial" target="_blank" rel="noopener noreferrer"><code>MeshBasicMaterial</code></a> is the most basic material available in three.js. It doesn&rsquo;t react to lights at all and the entire surface of a mesh is shaded with a single color. No shading based on viewing angle or distance is performed, so the object doesn&rsquo;t even look three dimensional. All we can see is a 2D outline.</p>
+<p>As the name implies, 
+
+<a href="https://threejs.org/docs/#api/en/materials/MeshBasicMaterial" target="_blank" rel="noopener noreferrer"><code>MeshBasicMaterial</code></a> is the most basic material available in three.js. It doesn&rsquo;t react to lights at all and the entire surface of a mesh is shaded with a single color. No shading based on viewing angle or distance is performed, so the object doesn&rsquo;t even look three dimensional. All we can see is a 2D outline.</p>
 <figure class="">
-  <iframe title="The MeshBasicMaterial in action" width="100%" height="500px" src="https://threejs.org/docs/scenes/material-browser.html#MeshBasicMaterial" importance="low" loading="lazy" sandbox="allow-scripts"></iframe><figcaption>The <code>MeshBasicMaterial</code> in action</figcaption></figure>
+  <noscript class="loading-lazy">
+    <iframe title="The MeshBasicMaterial in action" width="100%" height="500" src="https://threejs.org/docs/scenes/material-browser.html#MeshBasicMaterial" importance="low" loading="lazy" sandbox="allow-scripts"></iframe>
+  </noscript><figcaption>The <code>MeshBasicMaterial</code> in action</figcaption></figure>
 <p>In the controls above, the <code>Material</code> menu has parameters that all three.js materials share, while the <code>MeshBasicMaterial</code> menu has parameters that come from this material type. It&rsquo;s possible to improve the appearance of this material by adjusting the parameters, in particular by using textures, which we&rsquo;ll explore in <a href="/book/first-steps/textures-intro/">1.8: A Brief Introduction to Texture Mapping</a>. You can test the effect of the color map using the <code>map</code> parameter. Or, try setting the environment texture using the <code>envMap</code> parameter. Environment maps are an important form of <strong>image-based lighting</strong>. However, no matter how much we tweak these settings, we&rsquo;ll never reach the quality of a physically based material.</p>
 <h3 id="introducing-the-meshstandardmaterial">Introducing the <code>MeshStandardMaterial</code></h3>
-<p>In this chapter, we&rsquo;ll replace the basic material with a <a href="https://threejs.org/docs/#api/en/materials/MeshStandardMaterial" target="_blank" rel="noopener noreferrer"><code>MeshStandardMaterial</code></a>. This is a high-quality, general-purpose, physically-accurate material that reacts to light using real-world physics equations. As the name suggests, <code>MeshStandardMaterial</code> should be your go-to &ldquo;standard&rdquo; material for nearly all situations. With the addition of well-crafted textures, we can recreate nearly any common surface using the <code>MeshStandardMaterial</code>.</p>
+<p>In this chapter, we&rsquo;ll replace the basic material with a 
+
+<a href="https://threejs.org/docs/#api/en/materials/MeshStandardMaterial" target="_blank" rel="noopener noreferrer"><code>MeshStandardMaterial</code></a>. This is a high-quality, general-purpose, physically-accurate material that reacts to light using real-world physics equations. As the name suggests, <code>MeshStandardMaterial</code> should be your go-to &ldquo;standard&rdquo; material for nearly all situations. With the addition of well-crafted textures, we can recreate nearly any common surface using the <code>MeshStandardMaterial</code>.</p>
 <figure class="">
-  <iframe title="The MeshStandardMaterial in action" width="100%" height="500px" src="https://threejs.org/docs/scenes/material-browser.html#MeshStandardMaterial" importance="low" loading="lazy" sandbox="allow-scripts"></iframe><figcaption>The <code>MeshStandardMaterial</code> in action</figcaption></figure>
+  <noscript class="loading-lazy">
+    <iframe title="The MeshStandardMaterial in action" width="100%" height="500" src="https://threejs.org/docs/scenes/material-browser.html#MeshStandardMaterial" importance="low" loading="lazy" sandbox="allow-scripts"></iframe>
+  </noscript><figcaption>The <code>MeshStandardMaterial</code> in action</figcaption></figure>
 <p>If you look through the menus here, you&rsquo;ll see that three.js materials have a lot of settings! The controls in this scene only shows a few of the available <code>MeshStandardMaterial</code> parameters.</p>
 <h3 id="the-material-base-class">The Material Base Class</h3>
-<p>If you open the Material menu in both of the above scenes, you&rsquo;ll see that both materials have many of the same settings, such as transparent (whether the material is see-through), opacity (how see-through it is), visible (true/false to show/hide the material), and so on. The reason for this is that both materials, and indeed, <em>all</em> three.js materials, inherit from the <a href="https://threejs.org/docs/#api/en/materials/Material" target="_blank" rel="noopener noreferrer"><code>Material</code> base class</a>. You can&rsquo;t use <code>Material</code> directly. Instead, you must always use one of the derived classes like <code>MeshStandardMaterial</code> or <code>MeshBasicMaterial</code>.</p>
+<p>If you open the Material menu in both of the above scenes, you&rsquo;ll see that both materials have many of the same settings, such as transparent (whether the material is see-through), opacity (how see-through it is), visible (true/false to show/hide the material), and so on. The reason for this is that both materials, and indeed, <em>all</em> three.js materials, inherit from the 
+
+<a href="https://threejs.org/docs/#api/en/materials/Material" target="_blank" rel="noopener noreferrer"><code>Material</code> base class</a>. You can&rsquo;t use <code>Material</code> directly. Instead, you must always use one of the derived classes like <code>MeshStandardMaterial</code> or <code>MeshBasicMaterial</code>.</p>
+
+
 <aside class="success">
   
     <h2 id="lighting-and-depth">Lighting and Depth</h2>
 <p>Our eyes use subtle differences in shading across the surface of an object to determine depth. As a result, if we don&rsquo;t add some form of lighting to our scene, it will not look 3D. Lighting can be added using the direct or ambient light classes, or stored in textures as image-based lighting. Here, the left cube uses a <code>MeshStandardMaterial</code> illuminated by a <code>DirectionalLight</code>, while the right cube uses a <code>MeshBasicMaterial</code> (which ignores the light).</p>
-<figure id="scene-561237984" class="inline-scene loading-dots "></figure>
+<figure id="scene-567918234" class="inline-scene loading-dots "></figure>
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/compare-basic-standard.js";
-  init("#scene-561237984");
+  init("#scene-567918234");
 </script>
 
   
 </aside>
 <h3 id="switch-the-cubes-material">Switch the Cube&rsquo;s Material</h3>
 <p>Head over to <em><strong>cube.js</strong></em> and we&rsquo;ll switch to this new material. First, we need to import it:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>cube.js</strong></em>: imports</span>
@@ -517,6 +576,8 @@ import { Resizer } from &#39;./systems/Resizer.js&#39;;
 </section>
 
 <p>Then, update the <code>createCube</code> function and switch the old, boring, basic material to a fancy new standard material:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>cube.js</strong></em>: switch to a MeshStandardMaterial</span>
@@ -545,7 +606,11 @@ function createCube() {
 </section>
 
 <h3 id="change-the-materials-color">Change the Material&rsquo;s Color</h3>
-<p>We&rsquo;ll make one more change in this module, and set the material&rsquo;s color to purple. Setting the material parameters is slightly different from other classes like the box geometry since we need to use a <strong>specification object</strong> with <a href="https://exploringjs.com/impatient-js/ch_callables.html#named-parameters" target="_blank" rel="noopener noreferrer">named parameters</a>:</p>
+<p>We&rsquo;ll make one more change in this module, and set the material&rsquo;s color to purple. Setting the material parameters is slightly different from other classes like the box geometry since we need to use a <strong>specification object</strong> with 
+
+<a href="https://exploringjs.com/impatient-js/ch_callables.html#named-parameters" target="_blank" rel="noopener noreferrer">named parameters</a>:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption">Materials take a specification object</span>
@@ -568,6 +633,8 @@ const material = new MeshStandardMaterial(spec);
 </section>
 
 <p>To keep our code short and readable, we&rsquo;ll declare the specification object inline:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>cube.js</strong></em>: declare the spec object inline</span>
@@ -602,6 +669,8 @@ function createCube() {
 <p>As a final touch, let&rsquo;s rotate the cube so we are no longer looking at it head-on. Adjusting the rotation of an object works in much the same way as setting the position. Add the following line to the cube module:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>cube.js</strong></em>: rotate the cube</span>
   
   <pre
@@ -630,15 +699,27 @@ function createCube() {
 
 <p>Put any values you like in there for now. Now that we&rsquo;re no longer viewing the cube face on, it finally looks like a cube rather than a square.</p>
 <figure class="small right">
-  <img src="/images/first-steps/cube-medium.png" loading="lazy" alt="The rotated cube" title="The rotated cube"  /></figure>
+  <noscript class="loading-lazy">
+    <img
+      src="/images/first-steps/cube-medium.png"
+      loading="lazy"
+      alt="The rotated cube"
+      title="The rotated cube"
+      height="1"
+      width="1"
+      />
+  </noscript></figure>
 <p><strong>Rotation</strong> is the second method of moving objects around that we have encountered, along with setting the position (<strong>translation</strong>). The technical term for <em>moving objects around</em> is <strong>transformation</strong>, and the third method we&rsquo;ll use for transforming objects is <strong>scaling</strong>. <strong>Translation</strong>, <strong>rotation</strong>, and <strong>scaling</strong> (<strong>TRS</strong>) are the three fundamental transformations that we&rsquo;ll use for positioning objects in 3D space, and we&rsquo;ll examine each of these in detail in <a href="/book/first-steps/transformations/">the next chapter</a>.</p>
 <h2 id="challenges">Challenges</h2>
+
+
 <aside class="success">
   
     <h3 id="easy">Easy</h3>
 <ol>
 <li>
-<p>Try changing the color of the material. All the normal colors like <strong>red</strong>, <strong>green</strong>, or <strong>blue</strong> will work, along with many more exotic colors such as <strong>peachpuff</strong>, <strong>orchid</strong>, or <strong>papayawhip</strong>. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value" target="_blank" rel="noopener noreferrer">Here&rsquo;s a complete list of the CSS color names</a>.</p>
+<p>Try changing the color of the material. All the normal colors like <strong>red</strong>, <strong>green</strong>, or <strong>blue</strong> will work, along with many more exotic colors such as <strong>peachpuff</strong>, <strong>orchid</strong>, or <strong>papayawhip</strong>. 
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value" target="_blank" rel="noopener noreferrer">Here’s a complete list of the CSS color names</a>.</p></p>
 </li>
 <li>
 <p>Try changing the color of the light. Again, you can use any of the CSS color names. Watch how setting various light and material colors give the cube its final color.</p>
@@ -650,41 +731,46 @@ function createCube() {
 
   
 </aside>
+
+
 <aside class="notice">
   
     <h3 id="medium">Medium</h3>
 <ol>
 <li>
-<p>Test out the other direct light types: <a href="https://threejs.org/docs/#api/en/lights/PointLight" target="_blank" rel="noopener noreferrer"><code>PointLight</code></a>,  <a href="https://threejs.org/docs/#api/en/lights/SpotLight" target="_blank" rel="noopener noreferrer"><code>SpotLight</code></a>, and <a href="https://threejs.org/docs/#api/en/lights/RectAreaLight" target="_blank" rel="noopener noreferrer"><code>RectAreaLight</code></a>.</p>
+<p>Test out the other direct light types: 
+<p><a href="https://threejs.org/docs/#api/en/lights/PointLight" target="_blank" rel="noopener noreferrer"><code>PointLight</code></a>,</p>
+<p><a href="https://threejs.org/docs/#api/en/lights/SpotLight" target="_blank" rel="noopener noreferrer"><code>SpotLight</code></a>, and</p>
+<p><a href="https://threejs.org/docs/#api/en/lights/RectAreaLight" target="_blank" rel="noopener noreferrer"><code>RectAreaLight</code></a>.</p></p>
 </li>
 <li>
-<p><code>MeshBasicMaterial</code> and <code>MeshStandardMaterial</code> are not the only materials available. There are a total of eighteen materials in the three.js core, and any material with the word &ldquo;mesh&rdquo; in its name will work with our cube mesh. Test some of these out (hint: <a href="https://threejs.org" target="_blank" rel="noopener noreferrer">search the docs for &ldquo;material&rdquo;</a>).</p>
+<p><code>MeshBasicMaterial</code> and <code>MeshStandardMaterial</code> are not the only materials available. There are a total of eighteen materials in the three.js core, and any material with the word &ldquo;mesh&rdquo; in its name will work with our cube mesh. Test some of these out (hint: 
+<p><a href="https://threejs.org" target="_blank" rel="noopener noreferrer">search the docs for “material”</a>).</p></p>
 </li>
 </ol>
 <p><em>You need to import the other light and material classes before you can use them!</em></p>
 
   
 </aside>
+
+
 <aside class="warning">
   
     <h3 id="hard">Hard</h3>
 <ol>
-<li>Recreate the scene from <a href="#lighting-and-depth">Lighting and Depth</a>, minus the animation (hint: use two meshes and two materials).</li>
+<li>Recreate the scene from 
+<p><a href="#lighting-and-depth">Lighting and Depth</a>, minus the animation (hint: use two meshes and two materials).</li></p>
 </ol>
 
   
 </aside>
 
-            <div class="bottom-pagination">
-
-
-
-
-
-<a href="/book/first-steps/world-app/" title="Introducing the World App" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/transformations/" class="control-elem next" title="Transformations and Coordinate Systems"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
+            <div class="bottom-pagination"><a href="/book/first-steps/world-app/" title="Introducing the World App" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/transformations/" class="control-elem next" title="Transformations and Coordinate Systems"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
           </div>
         </div>
-      </main><div id="ide-wrapper" class="panel animate disabled hide">
+      </main>
+
+<div id="ide-wrapper" class="panel animate disabled hide">
   <nav id="ide-controls-top" class="control-bar fuzzy-background">
     <input
       type="checkbox"
@@ -796,7 +882,9 @@ function createCube() {
     <div id="preview-overlay"></div>
     
   </div>
-</div></div><div class="side-menu left-menu">
+</div></div>
+
+<div class="side-menu left-menu">
   <div class="icons">
     <input type="checkbox" id="invert-colors-toggle" class="hidden-input" />
     <label
@@ -896,14 +984,18 @@ function createCube() {
         src="/images/logo/banner_trans_512.png"
       />
     </a>
-  </h2><ul class="links" style="justify-content: left">
+  </h2>
+
+<ul class="links" style="justify-content: left">
   <li><a href="/book/">Table Of Contents</a></li>
   <li style="margin: auto">
     <a href="/#mailing-list-signup" class="internal-link"
       >Stay up to date - sign up to the mailing list!</a
     >
   </li>
-</ul></nav><style>
+</ul></nav>
+
+<style>
   @font-face {
     font-family: "Open Sans";
     font-style: normal;

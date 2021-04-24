@@ -1,7 +1,11 @@
+
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
-    <title>Your First three.js Scene: Hello, Cube! | Discover three.js</title><meta charset="utf-8" />
+    <title>Your First three.js Scene: Hello, Cube! | Discover three.js</title>
+
+<meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 <meta name="HandheldFriendly" content="True" />
@@ -48,7 +52,9 @@
 
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="msapplication-TileColor" content="#00aba9" />
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619180747" /><script type="application/ld+json">
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619232246" />
+
+<script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "WebPage",
@@ -81,34 +87,36 @@
       }
     }
   }
-</script><link
+</script>
+
+<link
   rel="canonical"
   href="https://discoverthreejs.com/book/first-steps/first-scene/"
 />
 
-<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619180747" />
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619232246" />
 
 <link
   rel="apple-touch-icon"
   sizes="180x180"
-  href="/apple-touch-icon.png?v=1619180747"
+  href="/apple-touch-icon.png?v=1619232246"
 />
 
 <link
   rel="icon"
   type="image/png"
   sizes="16x16"
-  href="/favicon-16x16.png?v=1619180747"
+  href="/favicon-16x16.png?v=1619232246"
 />
 <link
   rel="icon"
   type="image/png"
   sizes="32x32"
-  href="/favicon-32x32.png?v=1619180747"
+  href="/favicon-32x32.png?v=1619232246"
 />
 
-<link rel="manifest" href="/site.json?v=1619180747" />
-<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619180747" color="#5bbad5" />
+<link rel="manifest" href="/site.json?v=1619232246" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619232246" color="#5bbad5" />
 <style>
       .loading-page {
         display: none;
@@ -117,13 +125,15 @@
 
     
     
-    <link rel="stylesheet" href="/styles/chapter.css?v=1619180747">
+    <link rel="stylesheet" href="/styles/chapter.css?v=1619232246">
 
     <noscript>
       
       
-      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619180747">
-    </noscript>    
+      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619232246">
+    </noscript>
+
+  
     
     
     
@@ -142,7 +152,9 @@
 
     
 
-    <script type="module">
+    
+
+<script type="module">
   
   
 
@@ -191,7 +203,9 @@
     
   });
 </script></head>
-  <body class="loading-page"><nav class="top-nav">
+  <body class="loading-page">
+
+<nav class="top-nav">
   <div class="nav-background"></div>
 
   <div class="icon-group left">
@@ -220,13 +234,7 @@
     </label>
   </div>
 
-  <div class="icon-group center">
-
-
-
-
-
-<a href="/book/first-steps/app-structure/" title="The Structure of a three.js App" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/world-app/" class="control-elem next" title="Introducing the World App"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
+  <div class="icon-group center"><a href="/book/first-steps/app-structure/" title="The Structure of a three.js App" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/world-app/" class="control-elem next" title="Introducing the World App"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
   </div>
 
   <div class="icon-group right">
@@ -246,6 +254,8 @@
             
             <h1 id="your-first-threejs-scene-hello-cube">Your First three.js Scene: Hello, Cube!</h1>
 <p>In this chapter, we&rsquo;ll create the Hello World of three.js apps: a simple white cube. Since we&rsquo;ve already set up a simple webpage, as described in the last chapter, all we need to do is write a couple of lines of JavaScript in <em><strong>src/main.js</strong></em> and our app will spring to life. We&rsquo;ll introduce quite a bit of theory along the way, but the actual code is short. Below is what this file will look like by the end of the chapter. Not counting the import statement and comments, there are under twenty lines of code in total. That&rsquo;s all it takes to create a simple &ldquo;Hello Cube!&rdquo; three.js app.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: final result</span>
@@ -322,10 +332,23 @@ renderer.render(scene, camera);
 <p>Click the <input type="checkbox" class="simple-toggle" title="Find the real toggle!"> toggle on the top left of the editor to <a href="/book/introduction/about-the-book/#before-and-after-code-comparison">see this code in action</a>, or, if you prefer to <a href="/book/introduction/about-the-book/#working-on-your-own-machine">work locally</a>, you can click the <svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"/></svg> button to download a zip archive containing all the files from the editor. If any of the JavaScript here is unfamiliar to you, refer to <a href="/book/appendix/javascript-reference/">A.2: JavaScript Reference</a> and <a href="/book/appendix/dom-api-reference/">A.3: The Document Object Model and DOM API</a> in the appendices.</p>
 <h2 id="the-components-of-a-real-time-3d-app">The Components of a Real-Time 3D App</h2>
 <figure >
-  <img src="/images/first-steps/rendered_scene_canvas.svg" loading="lazy" alt="A basic scene" title="A basic scene"  /></figure>
+  <noscript class="loading-lazy">
+    <img
+      src="/images/first-steps/rendered_scene_canvas.svg"
+      loading="lazy"
+      alt="A basic scene"
+      title="A basic scene"
+      height="1"
+      width="1"
+      />
+  </noscript></figure>
 <p>Before we get started on the code, let&rsquo;s look at the basic components that make up every three.js app. First, there&rsquo;s the scene, camera, and renderer, which form the basic scaffolding of the application. Next, there&rsquo;s the HTML <a href="/book/first-steps/app-structure/#adding-a-three-js-scene-to-the-page"><code>&lt;canvas&gt;</code> element</a>, where we see the results. Last but not least, there&rsquo;s a visible object such as a mesh. With the exception of the canvas (which is specific to the browser), an equivalent to each of these components can be found in any 3D graphics system, making the knowledge you&rsquo;ll gain in these pages highly transferable.</p>
 <h3 id="the-scene-a-tiny-universe">The Scene: a Tiny Universe</h3>
-<p><strong>The scene is a holder for everything we can see</strong>. You can think of it as a &ldquo;tiny universe&rdquo; in which all your 3D objects live. The three.js class we use to create a scene is simply called <a href="https://threejs.org/docs/#api/en/scenes/Scene" target="_blank" rel="noopener noreferrer"><code>Scene</code></a>. The constructor takes no parameters.</p>
+<p><strong>The scene is a holder for everything we can see</strong>. You can think of it as a &ldquo;tiny universe&rdquo; in which all your 3D objects live. The three.js class we use to create a scene is simply called 
+
+<a href="https://threejs.org/docs/#api/en/scenes/Scene" target="_blank" rel="noopener noreferrer"><code>Scene</code></a>. The constructor takes no parameters.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption">Creating a <code>scene</code></span>
@@ -346,21 +369,58 @@ const scene = new Scene();
 </section>
 
 <figure class="small left">
-  <img src="/images/first-steps/coordinate_system_simple.svg" loading="lazy" alt="The world space coordinate system, defined by the Scene" title="The world space coordinate system, defined by the Scene"  />
+  <noscript class="loading-lazy">
+    <img
+      src="/images/first-steps/coordinate_system_simple.svg"
+      loading="lazy"
+      alt="The world space coordinate system, defined by the Scene"
+      title="The world space coordinate system, defined by the Scene"
+      height="1"
+      width="1"
+      />
+  </noscript>
     <figcaption>The world space coordinate system, defined by the Scene</figcaption></figure>
-<p>The <code>scene</code> defines a coordinate system called <strong>World Space</strong>, which is our main frame of reference when working with visible objects in three.js. World space is a <a href="https://mathinsight.org/cartesian_coordinates" target="_blank" rel="noopener noreferrer">3D Cartesian coordinate system</a>. We&rsquo;ll explore what that means and how to use world space in more detail in <a href="/book/first-steps/transformations/#coordinate-systems">1.5: Transformations and Coordinate Systems</a>.</p>
+<p>The <code>scene</code> defines a coordinate system called <strong>World Space</strong>, which is our main frame of reference when working with visible objects in three.js. World space is a 
+
+<a href="https://mathinsight.org/cartesian_coordinates" target="_blank" rel="noopener noreferrer">3D Cartesian coordinate system</a>. We&rsquo;ll explore what that means and how to use world space in more detail in <a href="/book/first-steps/transformations/#coordinate-systems">1.5: Transformations and Coordinate Systems</a>.</p>
 <p>The very center of the scene is the point $(0,0,0)$, also called the <strong>origin</strong> of the coordinate system. Whenever we create a new object and add it to our scene, it will be placed at the origin, and whenever we move it around, we do so within this coordinate system.</p>
 <figure class="small right">
-  <img src="/images/first-steps/scene_graph.svg" loading="lazy" alt="Objects added to the Scene live in the scene-graph, &lt;br&gt; a tree of visible objects" title="Objects added to the Scene live in the scene-graph, &lt;br&gt; a tree of visible objects"  />
+  <noscript class="loading-lazy">
+    <img
+      src="/images/first-steps/scene_graph.svg"
+      loading="lazy"
+      alt="Objects added to the Scene live in the scene-graph, &lt;br&gt; a tree of visible objects"
+      title="Objects added to the Scene live in the scene-graph, &lt;br&gt; a tree of visible objects"
+      height="1"
+      width="1"
+      />
+  </noscript>
     <figcaption>Objects added to the Scene live in the scene-graph, <br> a tree of visible objects</figcaption></figure>
-<p>When we add objects to the scene, they are placed into the <a href="http://what-when-how.com/advanced-methods-in-computer-graphics/scene-graphs-advanced-methods-in-computer-graphics-part-1/" target="_blank" rel="noopener noreferrer"><strong>scene graph</strong></a> which is a tree structure with the scene at the top.</p>
+<p>When we add objects to the scene, they are placed into the 
+
+<a href="http://what-when-how.com/advanced-methods-in-computer-graphics/scene-graphs-advanced-methods-in-computer-graphics-part-1/" target="_blank" rel="noopener noreferrer"><strong>scene graph</strong></a> which is a tree structure with the scene at the top.</p>
+
+
 <p style="clear:both; margin: 0; padding: 0; line-height: 0;">&nbsp</p>
 <figure class="small left">
-  <img src="/images/appendix/html-tree.svg" loading="lazy" alt="Elements on a HTML page also form a tree structure" title="Elements on a HTML page also form a tree structure"  />
+  <noscript class="loading-lazy">
+    <img
+      src="/images/appendix/html-tree.svg"
+      loading="lazy"
+      alt="Elements on a HTML page also form a tree structure"
+      title="Elements on a HTML page also form a tree structure"
+      height="1"
+      width="1"
+      />
+  </noscript>
     <figcaption>Elements on a HTML page also form a tree structure</figcaption></figure>
 <p>This is similar to the way elements on a HTML page are structured, except that the HTML page is 2D while the scene graph is 3D.</p>
 <h3 id="the-camera-a-telescope-pointed-at-the-tiny-universe">The Camera: a Telescope pointed at the Tiny Universe</h3>
-<p>The tiny universe of the scene is a realm of pure mathematics. To view the scene, we need to open a window into this realm and convert into something that makes sense to our human eyes, and that&rsquo;s where the camera comes in. There are several ways to convert the scene graphic into a human vision friendly format, using techniques called <strong>projections</strong>. The most important type of projection, for us, is <strong>perspective projection</strong>, which is designed to match the way our eyes see the world. To view the scene using perspective projection, we use the <a href="https://threejs.org/docs/#api/en/cameras/PerspectiveCamera" target="_blank" rel="noopener noreferrer"><code>PerspectiveCamera</code></a>. This type of camera is the 3D equivalent of a camera in the real world and uses many of the same concepts and terminology, such as the field of view and the aspect ratio. Unlike the <code>Scene</code>, the <code>PerspectiveCamera</code> constructor takes several parameters, which we&rsquo;ll explain in detail below.</p>
+<p>The tiny universe of the scene is a realm of pure mathematics. To view the scene, we need to open a window into this realm and convert into something that makes sense to our human eyes, and that&rsquo;s where the camera comes in. There are several ways to convert the scene graphic into a human vision friendly format, using techniques called <strong>projections</strong>. The most important type of projection, for us, is <strong>perspective projection</strong>, which is designed to match the way our eyes see the world. To view the scene using perspective projection, we use the 
+
+<a href="https://threejs.org/docs/#api/en/cameras/PerspectiveCamera" target="_blank" rel="noopener noreferrer"><code>PerspectiveCamera</code></a>. This type of camera is the 3D equivalent of a camera in the real world and uses many of the same concepts and terminology, such as the field of view and the aspect ratio. Unlike the <code>Scene</code>, the <code>PerspectiveCamera</code> constructor takes several parameters, which we&rsquo;ll explain in detail below.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption">Creating a <code>PerspectiveCamera</code></span>
@@ -385,12 +445,22 @@ const camera = new PerspectiveCamera(fov, aspect, near, far);
   </pre>
 </section>
 
-<p>Another important type of projection is <strong>orthographic projection</strong>, which we can access using the <a href="https://threejs.org/docs/#api/en/cameras/OrthographicCamera" target="_blank" rel="noopener noreferrer"><code>OrthographicCamera</code></a>. You might be familiar with this type of projection if you have ever studied engineering diagrams or blueprints, and it&rsquo;s useful for creating 2D scenes or user interfaces that overlay a 3D scene. In this book, we&rsquo;ll use HTML to create user interfaces and three.js to create 3D scenes, so we&rsquo;ll stick with the <code>PerspectiveCamera</code> for the most part.</p>
+<p>Another important type of projection is <strong>orthographic projection</strong>, which we can access using the 
+
+<a href="https://threejs.org/docs/#api/en/cameras/OrthographicCamera" target="_blank" rel="noopener noreferrer"><code>OrthographicCamera</code></a>. You might be familiar with this type of projection if you have ever studied engineering diagrams or blueprints, and it&rsquo;s useful for creating 2D scenes or user interfaces that overlay a 3D scene. In this book, we&rsquo;ll use HTML to create user interfaces and three.js to create 3D scenes, so we&rsquo;ll stick with the <code>PerspectiveCamera</code> for the most part.</p>
 <p>The following example shows the difference between these two cameras. The left side shows the scene rendered with an <code>OrthographicCamera</code> (Press O) or a <code>PerspectiveCamera</code> (press P), while the right side of the view shows a zoomed-out overview of the camera:</p>
 <figure class="">
-  <iframe title="The OrthographicCamera and PerspectiveCamera in action" width="100%" height="500px" src="https://threejs.org/examples/webgl_camera.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe><figcaption>The OrthographicCamera and PerspectiveCamera in action</figcaption></figure>
+  <noscript class="loading-lazy">
+    <iframe title="The OrthographicCamera and PerspectiveCamera in action" width="100%" height="500" src="https://threejs.org/examples/webgl_camera.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe>
+  </noscript><figcaption>The OrthographicCamera and PerspectiveCamera in action</figcaption></figure>
 <h3 id="the-renderer-an-artist-of-extraordinary-talent-and-speed">The Renderer: An Artist of Extraordinary Talent and Speed</h3>
-<p>If the scene is a tiny universe, and the camera is a telescope pointed at that universe, then the renderer is an artist who looks through the telescope and draws what they see onto a <code>&lt;canvas&gt;</code>, <em>incredibly fast</em>. We call this process <strong>rendering</strong>, and the resulting picture is a <strong>render</strong>. In this book, we will exclusively use the <a href="https://threejs.org/docs/#api/en/renderers/WebGLRenderer" target="_blank" rel="noopener noreferrer"><code>WebGLRenderer</code></a> which renders our scenes using <a href="https://en.wikipedia.org/wiki/WebGL" target="_blank" rel="noopener noreferrer"><strong>WebGL2</strong></a>, if it&rsquo;s available, and falls back to <strong>WebGL V1</strong> if it&rsquo;s not. The constructor for the renderer does take several parameters, however, if we leave them out default values will be used, which is fine for now.</p>
+<p>If the scene is a tiny universe, and the camera is a telescope pointed at that universe, then the renderer is an artist who looks through the telescope and draws what they see onto a <code>&lt;canvas&gt;</code>, <em>incredibly fast</em>. We call this process <strong>rendering</strong>, and the resulting picture is a <strong>render</strong>. In this book, we will exclusively use the 
+
+<a href="https://threejs.org/docs/#api/en/renderers/WebGLRenderer" target="_blank" rel="noopener noreferrer"><code>WebGLRenderer</code></a> which renders our scenes using 
+
+<a href="https://en.wikipedia.org/wiki/WebGL" target="_blank" rel="noopener noreferrer"><strong>WebGL2</strong></a>, if it&rsquo;s available, and falls back to <strong>WebGL V1</strong> if it&rsquo;s not. The constructor for the renderer does take several parameters, however, if we leave them out default values will be used, which is fine for now.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption">Creating a renderer with default parameters</span>
@@ -413,9 +483,22 @@ const renderer = new WebGLRenderer();
 <p>Together, <strong>the scene, camera, and renderer give us the basic scaffolding of a three.js application</strong>. However, none of them can be <em>seen</em>. In this chapter, we&rsquo;ll introduce a type of visible object called a <strong>mesh</strong>.</p>
 <h2 id="our-first-visible-object-mesh">Our First Visible Object: Mesh</h2>
 <figure class="medium left">
-  <img src="/images/first-steps/mesh_details.svg" loading="lazy" alt="A mesh contains of a geometry and a material" title="A mesh contains of a geometry and a material"  />
+  <noscript class="loading-lazy">
+    <img
+      src="/images/first-steps/mesh_details.svg"
+      loading="lazy"
+      alt="A mesh contains of a geometry and a material"
+      title="A mesh contains of a geometry and a material"
+      height="1"
+      width="1"
+      />
+  </noscript>
     <figcaption>A mesh contains of a geometry and a material</figcaption></figure>
-<p><strong><a href="https://threejs.org/docs/#api/en/objects/Mesh" target="_blank" rel="noopener noreferrer">Meshes</a> are the most common kind of visible object used in 3D computer graphics</strong>, and are used to display all kinds of 3D objects - cats and dogs and humans and trees and buildings and flowers and mountains can all be represented using a mesh. There are other kinds of visible objects, such as lines, and shapes, and sprites, and particles, and so on, and we&rsquo;ll see all of them in later sections, but we&rsquo;ll stick with meshes throughout these introductory chapters.</p>
+<p><strong>
+
+<a href="https://threejs.org/docs/#api/en/objects/Mesh" target="_blank" rel="noopener noreferrer">Meshes</a> are the most common kind of visible object used in 3D computer graphics</strong>, and are used to display all kinds of 3D objects - cats and dogs and humans and trees and buildings and flowers and mountains can all be represented using a mesh. There are other kinds of visible objects, such as lines, and shapes, and sprites, and particles, and so on, and we&rsquo;ll see all of them in later sections, but we&rsquo;ll stick with meshes throughout these introductory chapters.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption">Creating a mesh</span>
@@ -437,7 +520,13 @@ const mesh = new Mesh(geometry, material);
 
 <p>As you can see, the <code>Mesh</code> constructor takes two parameters: <strong>a geometry and a material</strong>. We will need to create both of these before can create the mesh.</p>
 <h3 id="the-geometry">The Geometry</h3>
-<p><strong>The geometry defines the shape of the mesh</strong>. We&rsquo;ll use a kind of geometry called a <a href="https://threejs.org/docs/#api/en/core/BufferGeometry" target="_blank" rel="noopener noreferrer"><code>BufferGeometry</code></a>. In this case, we want a box shape, so we&rsquo;ll use a <a href="https://threejs.org/docs/#api/en/geometries/BoxBufferGeometry" target="_blank" rel="noopener noreferrer"><code>BoxBufferGeometry</code></a>, which is one of several basic shapes provided in the three.js core.</p>
+<p><strong>The geometry defines the shape of the mesh</strong>. We&rsquo;ll use a kind of geometry called a 
+
+<a href="https://threejs.org/docs/#api/en/core/BufferGeometry" target="_blank" rel="noopener noreferrer"><code>BufferGeometry</code></a>. In this case, we want a box shape, so we&rsquo;ll use a 
+
+<a href="https://threejs.org/docs/#api/en/geometries/BoxBufferGeometry" target="_blank" rel="noopener noreferrer"><code>BoxBufferGeometry</code></a>, which is one of several basic shapes provided in the three.js core.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption">Creating a 2x2x2 box shaped geometry</span>
@@ -463,9 +552,15 @@ const geometry = new BoxBufferGeometry(length, width, depth);
 
 <p>The constructor takes up to six parameters, but here, we provide only the first three, which specify the length, width, and depth of the box. Defaults are provided for any parameters we omit. You can play with all six parameters in the scene below.</p>
 <figure class="">
-  <iframe title="The BoxBufferGeometry in action" width="100%" height="500px" src="https://threejs.org/docs/scenes/geometry-browser.html#BoxBufferGeometry" importance="low" loading="lazy" sandbox="allow-scripts"></iframe><figcaption>The <code>BoxBufferGeometry</code> in action</figcaption></figure>
+  <noscript class="loading-lazy">
+    <iframe title="The BoxBufferGeometry in action" width="100%" height="500" src="https://threejs.org/docs/scenes/geometry-browser.html#BoxBufferGeometry" importance="low" loading="lazy" sandbox="allow-scripts"></iframe>
+  </noscript><figcaption>The <code>BoxBufferGeometry</code> in action</figcaption></figure>
 <h3 id="the-material">The Material</h3>
-<p>While the geometry defines the shape, <strong>the material defines how the surface of the mesh looks</strong>. We&rsquo;ll use the <a href="https://threejs.org/docs/#api/en/materials/MeshBasicMaterial" target="_blank" rel="noopener noreferrer"><code>MeshBasicMaterial</code></a> in this chapter, which is the simplest kind of material available, and more importantly, doesn&rsquo;t require us to add any lights to the scene. For now, we will omit all parameters which means a default white material will be created.</p>
+<p>While the geometry defines the shape, <strong>the material defines how the surface of the mesh looks</strong>. We&rsquo;ll use the 
+
+<a href="https://threejs.org/docs/#api/en/materials/MeshBasicMaterial" target="_blank" rel="noopener noreferrer"><code>MeshBasicMaterial</code></a> in this chapter, which is the simplest kind of material available, and more importantly, doesn&rsquo;t require us to add any lights to the scene. For now, we will omit all parameters which means a default white material will be created.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption">Creating a basic material</span>
@@ -487,16 +582,30 @@ const material = new MeshBasicMaterial();
 
 <p>Many of the parameters are available for testing here. The <em>Material</em> menu has parameters that are common to all three.js materials, while the <em>MeshBasicMaterial</em> menu has parameters that belong to just this material.</p>
 <figure class="">
-  <iframe title="The MeshBasicMaterial in action" width="100%" height="500px" src="https://threejs.org/docs/scenes/material-browser.html#MeshBasicMaterial" importance="low" loading="lazy" sandbox="allow-scripts"></iframe><figcaption>The <code>MeshBasicMaterial</code> in action</figcaption></figure>
+  <noscript class="loading-lazy">
+    <iframe title="The MeshBasicMaterial in action" width="100%" height="500" src="https://threejs.org/docs/scenes/material-browser.html#MeshBasicMaterial" importance="low" loading="lazy" sandbox="allow-scripts"></iframe>
+  </noscript><figcaption>The <code>MeshBasicMaterial</code> in action</figcaption></figure>
 <h2 id="simple-steps">Our First three.js App</h2>
 <p>Now we are ready to write some code! We&rsquo;ve introduced all the components that will make up our simple app, so the next step is to figure out how they all fit together. We&rsquo;ll break process this into six steps. Every three.js app you create will require all six of these steps, although more complex apps will often require many more.</p>
 <ol>
-<li><strong><a href="#setup">Initial Setup</a></strong></li>
-<li><strong><a href="#create-scene">Create the Scene</a></strong></li>
-<li><strong><a href="#create-camera">Create the Camera</a></strong></li>
-<li><strong><a href="#create-visible">Create a Visible Object</a></strong></li>
-<li><strong><a href="#create-renderer">Create the Renderer</a></strong></li>
-<li><strong><a href="#render-scene">Render the Scene</a></strong></li>
+<li><strong>
+
+<a href="#setup">Initial Setup</a></strong></li>
+<li><strong>
+
+<a href="#create-scene">Create the Scene</a></strong></li>
+<li><strong>
+
+<a href="#create-camera">Create the Camera</a></strong></li>
+<li><strong>
+
+<a href="#create-visible">Create a Visible Object</a></strong></li>
+<li><strong>
+
+<a href="#create-renderer">Create the Renderer</a></strong></li>
+<li><strong>
+
+<a href="#render-scene">Render the Scene</a></strong></li>
 </ol>
 <h2 id="setup">1. Initial Setup</h2>
 <p>An important part of the initial setup is creating some kind of web page to host our scene, which we covered in the last chapter. Here, we&rsquo;ll focus exclusively on the JavaScript we need to write. First, we&rsquo;ll import the necessary classes from three.js, and then we&rsquo;ll obtain a reference to the <code>scene-container</code> element from the <em><strong>index.html</strong></em> file.</p>
@@ -515,6 +624,8 @@ const material = new MeshBasicMaterial();
 <li><code>Color</code></li>
 </ul>
 <p>We can import everything we need from the three.js core using a single <code>import</code> statement.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: importing the required three.js classes, NPM style</span>
@@ -540,6 +651,8 @@ const material = new MeshBasicMaterial();
 </section>
 
 <p>If you&rsquo;re working locally (and not using a bundler like Webpack), you&rsquo;ll have to change the import path. For example, you can import from unpkg.com instead.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>:  importing the required three.js classes from a CDN</span>
@@ -573,6 +686,8 @@ import {
 <p>Over in <em><strong>index.html</strong></em>, we created a <code>scene-container</code> element.</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>index.html</strong></em>: the container element</span>
   
   <pre
@@ -596,6 +711,8 @@ import {
 <p>The renderer will automatically create a <code>&lt;canvas&gt;</code> element for us, which we&rsquo;ll insert inside this container. By doing this, we can control the size and position of our scene by using CSS to set the size of the container (as we described in <a href="/book/first-steps/app-structure/#adding-a-three-js-scene-to-the-page">the last chapter</a>). First though, we need to access the container element in JavaScript, which we&rsquo;ll do using <a href="/book/appendix/dom-api-reference/#accessing-html-elements"><code>document.querySelector</code></a>.</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: get a reference to the scene container</span>
   
   <pre
@@ -613,8 +730,21 @@ const container = document.querySelector(&#39;#scene-container&#39;);
 
 <h2 id="create-scene">2. Create the Scene</h2>
 <figure class="small left">
-  <img src="/images/first-steps/scene_only.svg" loading="lazy" alt="The scene" title="The scene"  /></figure>
-<p>With the setup out of the way, we&rsquo;ll start by creating the scene, our very own tiny universe. We&rsquo;ll use the <a href="https://threejs.org/docs/#api/scenes/Scene" target="_blank" rel="noopener noreferrer"><code>Scene</code></a> constructor (with an uppercase &ldquo;S&rdquo;) to create a <code>scene</code> instance (with a lowercase &ldquo;s&rdquo;):</p>
+  <noscript class="loading-lazy">
+    <img
+      src="/images/first-steps/scene_only.svg"
+      loading="lazy"
+      alt="The scene"
+      title="The scene"
+      height="1"
+      width="1"
+      />
+  </noscript></figure>
+<p>With the setup out of the way, we&rsquo;ll start by creating the scene, our very own tiny universe. We&rsquo;ll use the 
+
+<a href="https://threejs.org/docs/#api/scenes/Scene" target="_blank" rel="noopener noreferrer"><code>Scene</code></a> constructor (with an uppercase &ldquo;S&rdquo;) to create a <code>scene</code> instance (with a lowercase &ldquo;s&rdquo;):</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: create the scene</span>
@@ -633,7 +763,11 @@ const scene = new Scene();
 </section>
 
 <h3 id="set-color">Set the Scene&rsquo;s Background Color</h3>
-<p>Next, we&rsquo;ll change the color of <a href="https://threejs.org/docs/#api/en/scenes/Scene.background" target="_blank" rel="noopener noreferrer">the scene&rsquo;s background</a> to sky blue. If we don&rsquo;t do this, the default color will be used, which is black. We&rsquo;ll use the <code>Color</code> class that we imported above, passing the string <code>'skyblue'</code> as a parameter to the constructor:</p>
+<p>Next, we&rsquo;ll change the color of 
+
+<a href="https://threejs.org/docs/#api/en/scenes/Scene.background" target="_blank" rel="noopener noreferrer">the scene&rsquo;s background</a> to sky blue. If we don&rsquo;t do this, the default color will be used, which is black. We&rsquo;ll use the <code>Color</code> class that we imported above, passing the string <code>'skyblue'</code> as a parameter to the constructor:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: set the scene&rsquo;s background color</span>
@@ -651,17 +785,32 @@ scene.background = new Color(&#39;skyblue&#39;);
   </pre>
 </section>
 
-<p><code>'skyblue'</code> is a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value" target="_blank" rel="noopener noreferrer">CSS color name</a>, and we can use any of the CSS colors here, giving us 140 named colors. You&rsquo;re not limited to just these few colors, of course. You can use any color your monitor can display, and there are several ways of specifying them, just as there are in CSS.</p>
+<p><code>'skyblue'</code> is a 
+
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value" target="_blank" rel="noopener noreferrer">CSS color name</a>, and we can use any of the CSS colors here, giving us 140 named colors. You&rsquo;re not limited to just these few colors, of course. You can use any color your monitor can display, and there are several ways of specifying them, just as there are in CSS.</p>
 <h2 id="create-camera">3. Create The Camera</h2>
 <figure class="small left">
-  <img src="/images/first-steps/camera.svg" loading="lazy" alt="The camera" title="The camera"  /></figure>
-<p>There are a couple of different cameras available in the three.js core, but as we discussed above, we will mostly use the <a href="https://threejs.org/docs/#api/cameras/PerspectiveCamera" target="_blank" rel="noopener noreferrer"><code>PerspectiveCamera</code></a> since it draws a view of the scene that looks similar to how our eyes see the real world. The <code>PerspectiveCamera</code> constructor takes four parameters:</p>
+  <noscript class="loading-lazy">
+    <img
+      src="/images/first-steps/camera.svg"
+      loading="lazy"
+      alt="The camera"
+      title="The camera"
+      height="1"
+      width="1"
+      />
+  </noscript></figure>
+<p>There are a couple of different cameras available in the three.js core, but as we discussed above, we will mostly use the 
+
+<a href="https://threejs.org/docs/#api/cameras/PerspectiveCamera" target="_blank" rel="noopener noreferrer"><code>PerspectiveCamera</code></a> since it draws a view of the scene that looks similar to how our eyes see the real world. The <code>PerspectiveCamera</code> constructor takes four parameters:</p>
 <ol>
 <li><code>fov</code>, or <strong>field of view</strong>: how wide the camera&rsquo;s view is, in degrees.</li>
 <li><code>aspect</code>, or <strong>aspect ratio</strong>: the ratio of the scene&rsquo;s width to its height.</li>
 <li><code>near</code>, or <strong>near clipping plane</strong>: anything closer to the camera than this will be invisible.</li>
 <li><code>far</code>, or <strong>far clipping plane</strong>: anything further away from the camera than this will be invisible.</li>
 </ol>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em></span>
@@ -684,14 +833,34 @@ const camera = new PerspectiveCamera(fov, aspect, near, far);
   </pre>
 </section>
 
-<p>Together, these four parameters are used to create a bounded region of space which we call a <a href="https://en.wikipedia.org/wiki/Viewing_frustum" target="_blank" rel="noopener noreferrer"><strong>viewing frustum</strong></a>.</p>
+<p>Together, these four parameters are used to create a bounded region of space which we call a 
+
+<a href="https://en.wikipedia.org/wiki/Viewing_frustum" target="_blank" rel="noopener noreferrer"><strong>viewing frustum</strong></a>.</p>
 <h3 id="viewing-frustum">The Camera&rsquo;s Viewing Frustum</h3>
 <figure class="small left">
-  <img src="/images/first-steps/frustum.png" loading="lazy" alt="A frustum" title="A frustum"  />
+  <noscript class="loading-lazy">
+    <img
+      src="/images/first-steps/frustum.png"
+      loading="lazy"
+      alt="A frustum"
+      title="A frustum"
+      height="1"
+      width="1"
+      />
+  </noscript>
     <figcaption>A frustum</figcaption></figure>
 <p><strong>If the <code>scene</code> is a tiny universe, stretching forever in all directions, the camera&rsquo;s viewing frustum is the part of it that we can <em>see</em></strong>. A <em>frustum</em> is a mathematical term meaning a four-sided rectangular pyramid with the top cut off. When we view the scene through a <code>PerspectiveCamera</code>, everything inside the frustum is visible, while everything outside it is not. In the following diagram, the area in between the <strong>Near Clipping Plane</strong> and the <strong>Far Clipping Plane</strong> is the camera&rsquo;s viewing frustum.</p>
 <figure >
-  <img src="/images/first-steps/perspective_frustum.svg" loading="lazy" alt="Perspective camera frustum" title="Perspective camera frustum"  /></figure>
+  <noscript class="loading-lazy">
+    <img
+      src="/images/first-steps/perspective_frustum.svg"
+      loading="lazy"
+      alt="Perspective camera frustum"
+      title="Perspective camera frustum"
+      height="1"
+      width="1"
+      />
+  </noscript></figure>
 <p>The four parameters we pass into the <code>PerspectiveCamera</code> constructor each create one aspect of the frustum:</p>
 <ol>
 <li>The <strong>field of view</strong> defines the angle at which the frustum expands. A small field of view will create a narrow frustum, and a wide field of view will create a wide frustum.</li>
@@ -702,6 +871,8 @@ const camera = new PerspectiveCamera(fov, aspect, near, far);
 <p>Any objects in your scene that are not inside the frustum won&rsquo;t be drawn by the renderer. If an object is partly inside and partly outside the frustum, the parts outside will be chopped off (<strong>clipped</strong>).</p>
 <h3 id="position-camera">Position the Camera</h3>
 <p>Every object we create is initially positioned at the center of our scene, the point $(0,0,0)$. This means our camera is currently positioned at $(0,0,0)$, and any objects we add to the scene will also be positioned at $(0,0,0)$, all jumbled together on top of each other. Placing the camera artistically is an important skill, however, for now, we&rsquo;ll simply move it back (<em>towards us</em>) to give us an overview of the scene.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: move the camera back on the Z-axis</span>
@@ -725,6 +896,8 @@ camera.position.set(0, 0, 10);
 <p>Setting the position of any object works the same way, whether it&rsquo;s a camera, a mesh, a light, or anything else. We can set all three components of the position at once, as we&rsquo;re doing here:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption">Set the X, Y, and Z axes together</span>
   
   <pre
@@ -741,6 +914,8 @@ camera.position.set(0, 0, 10);
 </section>
 
 <p>Or, we can set the X, Y, and Z components individually:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption">Set the three axes individually</span>
@@ -760,13 +935,30 @@ camera.position.z = 10;
   </pre>
 </section>
 
-<p>Both ways of setting the position give the same result. The position is stored in a <a href="https://threejs.org/docs/#api/en/math/Vector3" target="_blank" rel="noopener noreferrer"><code>Vector3</code></a>, a three.js class representing a 3D vector which we&rsquo;ll explore in more detail in <a href="/book/first-steps/transformations/">1.5: Transformations and Coordinate Systems</a>.</p>
+<p>Both ways of setting the position give the same result. The position is stored in a 
+
+<a href="https://threejs.org/docs/#api/en/math/Vector3" target="_blank" rel="noopener noreferrer"><code>Vector3</code></a>, a three.js class representing a 3D vector which we&rsquo;ll explore in more detail in <a href="/book/first-steps/transformations/">1.5: Transformations and Coordinate Systems</a>.</p>
 <h2 id="create-visible">4. Create a Visible Object</h2>
 <figure class="small left">
-  <img src="/images/first-steps/box.png" loading="lazy" alt="A visible object" title="A visible object"  /></figure>
-<p>We&rsquo;ve created a <code>camera</code> to see things with, and a <code>scene</code> to put them in. The next step is to create something we can see. Here, we&rsquo;ll create a simple box-shaped <a href="https://threejs.org/docs/#api/objects/Mesh" target="_blank" rel="noopener noreferrer"><code>Mesh</code></a>. As we mentioned above, the mesh has two sub-components which we need to create first: a geometry and a material.</p>
+  <noscript class="loading-lazy">
+    <img
+      src="/images/first-steps/box.png"
+      loading="lazy"
+      alt="A visible object"
+      title="A visible object"
+      height="1"
+      width="1"
+      />
+  </noscript></figure>
+<p>We&rsquo;ve created a <code>camera</code> to see things with, and a <code>scene</code> to put them in. The next step is to create something we can see. Here, we&rsquo;ll create a simple box-shaped 
+
+<a href="https://threejs.org/docs/#api/objects/Mesh" target="_blank" rel="noopener noreferrer"><code>Mesh</code></a>. As we mentioned above, the mesh has two sub-components which we need to create first: a geometry and a material.</p>
 <h3 id="create-geometry">Create a Geometry</h3>
-<p>The geometry of a mesh defines its shape. If we create a box-shaped geometry (as we do here), our mesh will be shaped like a box. If we create a sphere-shaped geometry, our mesh will be shaped like a sphere. If we create a cat-shaped geometry, our mesh will be shaped like a cat&hellip; you get the picture. Here, we create a cube using a <a href="https://threejs.org/docs/#api/geometries/BoxBufferGeometry" target="_blank" rel="noopener noreferrer"><code>BoxBufferGeometry</code></a>. The three parameters define the width, height, and depth of the box:</p>
+<p>The geometry of a mesh defines its shape. If we create a box-shaped geometry (as we do here), our mesh will be shaped like a box. If we create a sphere-shaped geometry, our mesh will be shaped like a sphere. If we create a cat-shaped geometry, our mesh will be shaped like a cat&hellip; you get the picture. Here, we create a cube using a 
+
+<a href="https://threejs.org/docs/#api/geometries/BoxBufferGeometry" target="_blank" rel="noopener noreferrer"><code>BoxBufferGeometry</code></a>. The three parameters define the width, height, and depth of the box:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: create a box geometry</span>
@@ -787,6 +979,8 @@ const geometry = new BoxBufferGeometry(2, 2, 2);
 <p>Most parameters have default values, so even though the docs say that <code>BoxBufferGeometry</code> should take six parameters, we can leave out most of them and three.js will fill in the blanks with the default values. <strong>We don&rsquo;t have to pass in <em>any</em> parameters</strong>.</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption">Creating a default box geometry</span>
   
   <pre
@@ -805,7 +999,11 @@ const geometry = new BoxBufferGeometry();
 <p>If we leave out all the parameters, we&rsquo;ll get a default box which is a $1 \times 1 \times 1$ cube. We want a bigger cube, so we&rsquo;re passing in the above parameters to create a $2 \times 2 \times 2$ box.</p>
 <h3 id="create-material">Create a Material</h3>
 <p>Materials define the surface properties of objects, or in other words, what an object <em>looks</em> like it is made from. <strong>Where the geometry tells us that the mesh is a box, or a car, or a cat, the material tells us that it&rsquo;s a metal box, or a stone car, or a red-painted cat</strong>.</p>
-<p>There are quite a few materials in three.js. Here, we&rsquo;ll create a <a href="https://threejs.org/docs/#api/en/materials/MeshBasicMaterial" target="_blank" rel="noopener noreferrer"><code>MeshBasicMaterial</code></a>, which is the simplest (and fastest) material type available. This material also ignores any lights in the scene and colors (<strong>shades</strong>) a mesh based on the material&rsquo;s color and other settings which is great since we haven&rsquo;t added any lights yet. We&rsquo;ll create the material without passing any parameters into the constructor, so we&rsquo;ll get a default white material.</p>
+<p>There are quite a few materials in three.js. Here, we&rsquo;ll create a 
+
+<a href="https://threejs.org/docs/#api/en/materials/MeshBasicMaterial" target="_blank" rel="noopener noreferrer"><code>MeshBasicMaterial</code></a>, which is the simplest (and fastest) material type available. This material also ignores any lights in the scene and colors (<strong>shades</strong>) a mesh based on the material&rsquo;s color and other settings which is great since we haven&rsquo;t added any lights yet. We&rsquo;ll create the material without passing any parameters into the constructor, so we&rsquo;ll get a default white material.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: create a default material</span>
@@ -823,6 +1021,8 @@ const material = new MeshBasicMaterial();
   </pre>
 </section>
 
+
+
 <aside class="notice">
   
     <h3 id="you-usually-need-a-light-to-see">You (Usually) Need a Light to See</h3>
@@ -833,8 +1033,19 @@ const material = new MeshBasicMaterial();
 </aside>
 <h3 id="create-mesh">Create the Mesh</h3>
 <figure class="large">
-  <img src="/images/first-steps/mesh_details.svg" loading="lazy" alt="A mesh consists of a geometry and a material" title="A mesh consists of a geometry and a material"  /></figure>
+  <noscript class="loading-lazy">
+    <img
+      src="/images/first-steps/mesh_details.svg"
+      loading="lazy"
+      alt="A mesh consists of a geometry and a material"
+      title="A mesh consists of a geometry and a material"
+      height="1"
+      width="1"
+      />
+  </noscript></figure>
 <p>Now that we have a geometry and a material, we can create our mesh, passing in both as parameters.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: create the mesh</span>
@@ -863,6 +1074,8 @@ const cube = new Mesh(geometry, material);
 <p>Once the <code>mesh</code> has been created, we need to add it to our scene.</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: add the mesh to the scene</span>
   
   <pre
@@ -881,8 +1094,21 @@ scene.add(cube);
 <p>Later, if we want to remove it, we can use <code>scene.remove(mesh)</code>. Once the mesh has been added to the scene, we call the mesh <em>a child</em> of the scene, and we call the scene <em>the parent</em> of the mesh.</p>
 <h2 id="create-the-renderer">5. Create the Renderer</h2>
 <figure class="medium right">
-  <img src="/images/first-steps/rendered_scene_canvas.svg" loading="lazy" alt="The rendered scene outputs to a canvas element" title="The rendered scene outputs to a canvas element"  /></figure>
-<p>The final component of our simple app is the renderer, which is responsible for drawing (<strong>rendering</strong>) the scene into the <code>&lt;canvas&gt;</code> element. We&rsquo;ll use the <a href="https://threejs.org/docs/#api/renderers/WebGLRenderer" target="_blank" rel="noopener noreferrer"><code>WebGLRenderer</code></a> here. There are some other renderers available as plugins, but the <code>WebGLRenderer</code> is by far the most powerful renderer available, and usually the only one you need. Let&rsquo;s go ahead and create a <code>WebGLRenderer</code> now, once again with default settings.</p>
+  <noscript class="loading-lazy">
+    <img
+      src="/images/first-steps/rendered_scene_canvas.svg"
+      loading="lazy"
+      alt="The rendered scene outputs to a canvas element"
+      title="The rendered scene outputs to a canvas element"
+      height="1"
+      width="1"
+      />
+  </noscript></figure>
+<p>The final component of our simple app is the renderer, which is responsible for drawing (<strong>rendering</strong>) the scene into the <code>&lt;canvas&gt;</code> element. We&rsquo;ll use the 
+
+<a href="https://threejs.org/docs/#api/renderers/WebGLRenderer" target="_blank" rel="noopener noreferrer"><code>WebGLRenderer</code></a> here. There are some other renderers available as plugins, but the <code>WebGLRenderer</code> is by far the most powerful renderer available, and usually the only one you need. Let&rsquo;s go ahead and create a <code>WebGLRenderer</code> now, once again with default settings.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: create the renderer</span>
@@ -904,6 +1130,8 @@ const renderer = new WebGLRenderer();
 <p>We are nearly there! Next, we need to tell renderer what size our scene is using the container&rsquo;s width and height.</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: set the renderer&rsquo;s size</span>
   
   <pre
@@ -920,6 +1148,8 @@ renderer.setSize(container.clientWidth, container.clientHeight);
 </section>
 
 <p>If you recall, we used CSS to make the container take up the full size of the browser window (as described in <a href="/book/first-steps/app-structure/#adding-a-three-js-scene-to-the-page">the last chapter</a>), so the scene will also take up the full window.</p>
+
+
 <aside class="notice">
   
     <p>We&rsquo;ve set the renderer&rsquo;s size to the container&rsquo;s width and height <em>as it is now</em>. If we resize the browser window, the window&rsquo;s width and height will change, but the size of our canvas will not change. We&rsquo;ll fix this in <a href="/book/first-steps/responsive-design/">1.6: Making Our Scenes Responsive (and also Dealing with Jaggies)</a>.</p>
@@ -927,6 +1157,8 @@ renderer.setSize(container.clientWidth, container.clientHeight);
 </aside>
 <h3 id="pixel-ratio">Set The Device Pixel Ratio</h3>
 <p>We also need to tell the renderer what the pixel ratio of the device&rsquo;s screen is. <strong>This is required to prevent blurring on HiDPI displays</strong> (also known as retina displays).</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: set the pixel ratio</span>
@@ -949,6 +1181,8 @@ renderer.setPixelRatio(window.devicePixelRatio);
 <p>The renderer will draw our scene from the viewpoint of the camera into a <code>&lt;canvas&gt;</code> element. This element has been automatically created for us and is stored in <code>renderer.domElement</code>, but before we can see it, we need to add it to the page. We&rsquo;ll do this using a <a href="/book/appendix/dom-api-reference/#adding-the-new-elements-to-our-page">built-in JavaScript method called <code>.append</code></a>:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: add the canvas to the page</span>
   
   <pre
@@ -965,6 +1199,8 @@ container.append(renderer.domElement);
 </section>
 
 <p>Now, if you open up the browser&rsquo;s development console (press F12) and inspect the HTML, you&rsquo;ll see something like this:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>index.html</strong></em></span>
@@ -991,9 +1227,20 @@ container.append(renderer.domElement);
 <p>This assumes a browser window size of $800 \times 600$, so what you see may look slightly different. Notice that <code>renderer.setSize</code> has also set the width, height, and style attributes on the canvas.</p>
 <h2 id="render-scene">6. Render the Scene</h2>
 <figure class="medium left">
-  <img src="/images/first-steps/rendered_scene.svg" loading="lazy" alt="A rendered scene" title="A rendered scene"  /></figure>
+  <noscript class="loading-lazy">
+    <img
+      src="/images/first-steps/rendered_scene.svg"
+      loading="lazy"
+      alt="A rendered scene"
+      title="A rendered scene"
+      height="1"
+      width="1"
+      />
+  </noscript></figure>
 <p style="clear:both"> </p>
 <p>With everything in place, all that remains to do is <strong>render the scene!</strong> Add the following and final line to your code:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: render the scene</span>
@@ -1014,16 +1261,12 @@ renderer.render(scene, camera);
 <p>With this single line, we&rsquo;re telling the renderer to create a still picture of the scene using the camera and output that picture into the <code>&lt;canvas&gt;</code> element. If everything is set up correctly, you&rsquo;ll see a white cube against a blue background. It&rsquo;s hard to see that it&rsquo;s a cube since we&rsquo;re looking directly at a single square face, but we&rsquo;ll fix that over the next few chapters.</p>
 <p>Well done! <strong>By completing this chapter, you&rsquo;ve taken the first giant leap in your career as a three.js developer</strong>. Our scene may not be that interesting yet, but we&rsquo;ve laid some important groundwork and covered some fundamental concepts of computer graphics that you&rsquo;ll use in every scene you build from now on, whether you are using three.js or any other 3D graphics system.</p>
 
-            <div class="bottom-pagination">
-
-
-
-
-
-<a href="/book/first-steps/app-structure/" title="The Structure of a three.js App" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/world-app/" class="control-elem next" title="Introducing the World App"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
+            <div class="bottom-pagination"><a href="/book/first-steps/app-structure/" title="The Structure of a three.js App" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/world-app/" class="control-elem next" title="Introducing the World App"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
           </div>
         </div>
-      </main><div id="ide-wrapper" class="panel animate disabled hide">
+      </main>
+
+<div id="ide-wrapper" class="panel animate disabled hide">
   <nav id="ide-controls-top" class="control-bar fuzzy-background">
     <input
       type="checkbox"
@@ -1135,7 +1378,9 @@ renderer.render(scene, camera);
     <div id="preview-overlay"></div>
     
   </div>
-</div></div><div class="side-menu left-menu">
+</div></div>
+
+<div class="side-menu left-menu">
   <div class="icons">
     <input type="checkbox" id="invert-colors-toggle" class="hidden-input" />
     <label
@@ -1235,14 +1480,18 @@ renderer.render(scene, camera);
         src="/images/logo/banner_trans_512.png"
       />
     </a>
-  </h2><ul class="links" style="justify-content: left">
+  </h2>
+
+<ul class="links" style="justify-content: left">
   <li><a href="/book/">Table Of Contents</a></li>
   <li style="margin: auto">
     <a href="/#mailing-list-signup" class="internal-link"
       >Stay up to date - sign up to the mailing list!</a
     >
   </li>
-</ul></nav><style>
+</ul></nav>
+
+<style>
   @font-face {
     font-family: "Open Sans";
     font-style: normal;

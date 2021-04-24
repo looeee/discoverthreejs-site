@@ -1,7 +1,11 @@
+
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
-    <title>The Animation Loop | Discover three.js</title><meta charset="utf-8" />
+    <title>The Animation Loop | Discover three.js</title>
+
+<meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 <meta name="HandheldFriendly" content="True" />
@@ -48,7 +52,9 @@
 
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="msapplication-TileColor" content="#00aba9" />
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619180747" /><script type="application/ld+json">
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619232246" />
+
+<script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "WebPage",
@@ -81,34 +87,36 @@
       }
     }
   }
-</script><link
+</script>
+
+<link
   rel="canonical"
   href="https://discoverthreejs.com/book/first-steps/animation-loop/"
 />
 
-<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619180747" />
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619232246" />
 
 <link
   rel="apple-touch-icon"
   sizes="180x180"
-  href="/apple-touch-icon.png?v=1619180747"
+  href="/apple-touch-icon.png?v=1619232246"
 />
 
 <link
   rel="icon"
   type="image/png"
   sizes="16x16"
-  href="/favicon-16x16.png?v=1619180747"
+  href="/favicon-16x16.png?v=1619232246"
 />
 <link
   rel="icon"
   type="image/png"
   sizes="32x32"
-  href="/favicon-32x32.png?v=1619180747"
+  href="/favicon-32x32.png?v=1619232246"
 />
 
-<link rel="manifest" href="/site.json?v=1619180747" />
-<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619180747" color="#5bbad5" />
+<link rel="manifest" href="/site.json?v=1619232246" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619232246" color="#5bbad5" />
 <style>
       .loading-page {
         display: none;
@@ -117,13 +125,15 @@
 
     
     
-    <link rel="stylesheet" href="/styles/chapter.css?v=1619180747">
+    <link rel="stylesheet" href="/styles/chapter.css?v=1619232246">
 
     <noscript>
       
       
-      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619180747">
-    </noscript>    
+      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619232246">
+    </noscript>
+
+  
     
     
     
@@ -142,7 +152,9 @@
 
     
 
-    <script type="module">
+    
+
+<script type="module">
   
   
 
@@ -191,7 +203,9 @@
     
   });
 </script></head>
-  <body class="loading-page"><nav class="top-nav">
+  <body class="loading-page">
+
+<nav class="top-nav">
   <div class="nav-background"></div>
 
   <div class="icon-group left">
@@ -220,13 +234,7 @@
     </label>
   </div>
 
-  <div class="icon-group center">
-
-
-
-
-
-<a href="/book/first-steps/responsive-design/" title="Making Our Scenes Responsive (and also Dealing with Jaggies)" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/textures-intro/" class="control-elem next" title="A Brief Introduction to Texture Mapping"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
+  <div class="icon-group center"><a href="/book/first-steps/responsive-design/" title="Making Our Scenes Responsive (and also Dealing with Jaggies)" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/textures-intro/" class="control-elem next" title="A Brief Introduction to Texture Mapping"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
   </div>
 
   <div class="icon-group right">
@@ -252,14 +260,18 @@
 
 
 
-<figure id="scene-413586297" class="inline-scene loading-dots small right"><figcaption>The output from a single call of<br>renderer.render</figcaption></figure>
+
+
+<figure id="scene-867549231" class="inline-scene loading-dots small right"><figcaption>The output from a single call of<br>renderer.render</figcaption></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/static-cube.js";
-  init("#scene-413586297");
+  init("#scene-867549231");
 </script>
 <p>Over the last couple of chapters, we&rsquo;ve made amazing progress with our app. We have lights, colors, physically correct rendering, anti-aliasing, automatic-resizing, we know how to move objects around in 3D space, and our code is clean, modular, and well-structured. But our scene is missing one vital ingredient: <strong>movement!</strong></p>
 <p>We&rsquo;re using the <code>renderer.render</code> method to draw the scene. This method takes a scene and a camera as input and outputs a single still image to the HTML <code>&lt;canvas&gt;</code> element. The output is the non-moving purple box you can see above.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: drawing a single frame with <code>renderer.render</code></span>
@@ -287,11 +299,13 @@
 
 
 
-<figure id="scene-295481673" class="inline-scene loading-dots small right"></figure>
+
+
+<figure id="scene-364871295" class="inline-scene loading-dots small right"></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/animation-loop.js";
-  init("#scene-295481673");
+  init("#scene-364871295");
 </script>
 <p>In this chapter, we&rsquo;ll add a simple rotation animation to the cube. Here&rsquo;s how we&rsquo;ll do it:</p>
 <ul>
@@ -317,12 +331,16 @@
 <li><strong>Update animations</strong></li>
 <li><strong>Render a frame</strong></li>
 </ol>
-<p>Even though three.js is not a game engine and we are calling our loop an <strong>animation loop</strong>, our goals are pretty similar. This means, instead of starting from scratch, we can borrow some tried and trusted ideas from game engine design. The loop we create in this chapter is very simple, but if you later find yourself needing a more complex one, perhaps to update animations and physics at a different rate than you render the scene, you can refer to a <a href="https://gameprogrammingpatterns.com/game-loop.html" target="_blank" rel="noopener noreferrer">book on game development</a> for more info.</p>
+<p>Even though three.js is not a game engine and we are calling our loop an <strong>animation loop</strong>, our goals are pretty similar. This means, instead of starting from scratch, we can borrow some tried and trusted ideas from game engine design. The loop we create in this chapter is very simple, but if you later find yourself needing a more complex one, perhaps to update animations and physics at a different rate than you render the scene, you can refer to a 
+
+<a href="https://gameprogrammingpatterns.com/game-loop.html" target="_blank" rel="noopener noreferrer">book on game development</a> for more info.</p>
 <p>Later, we&rsquo;ll make our scene interactive. Fortunately for us, handling user input in the browser is easy thanks to <a href="/book/appendix/dom-api-reference/#listening-for-events"><code>addEventListener</code></a>, so we don&rsquo;t need to handle this task in the loop. Also, we won&rsquo;t be doing any physics calculations for now (although several great physics libraries work with three.js), so we can skip the physics step. Rendering is already covered by <code>renderer.render</code>. That leaves us with two tasks in this chapter: set up the loop itself, and then create a system for updating animations.</p>
 <p>We&rsquo;ll set up the loop first to generate a stream of frames, and then we&rsquo;ll set up the animation system.</p>
 <h2 id="creating-an-animation-loop-with-threejs">Creating an Animation Loop with three.js</h2>
 <h3 id="the-_loopjs_-module">The <em><strong>Loop.js</strong></em> Module</h3>
 <p>Open (or create) the <em><strong>systems/Loop.js</strong></em> module and create a new <code>Loop</code> class inside. This class will handle all the looping logic and the animation system. You&rsquo;ll notice that we have imported <code>Clock</code>, which we&rsquo;ll use below to keep animations in sync. Next, since we&rsquo;ll use <code>renderer.render(scene, camera)</code> to generate frames, it&rsquo;s a fair bet we&rsquo;ll need the <code>camera</code>, <code>scene</code>, and <code>renderer</code> within the <code>Loop</code> class, so pass them to the constructor and save them as instance variables. Finally, create <code>.start</code> and <code>.stop</code> methods that we can later use to start/stop the loop.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>Loop.js</strong></em>: initial setup</span>
@@ -359,6 +377,8 @@ export { Loop }
 <p>Over in World, add this new class to the list of imports:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: import the <code>Loop</code> class</span>
   
   <pre
@@ -381,6 +401,8 @@ import { Loop } from &#39;./systems/Loop.js&#39;;
 </section>
 
 <p>Create the loop as a <a href="/book/first-steps/world-app/#set-up-the-camera-renderer-and-scene">module scoped variable</a> like the <code>camera</code>, <code>renderer</code>, and <code>scene</code>, since we don&rsquo;t want it to be accessible from outside the <code>World</code> class:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: create a <code>loop</code> instance</span>
@@ -417,6 +439,8 @@ class World {
 <p>Finally, add <code>.start</code> and <code>.stop</code> methods to <code>World</code>, which simply call their counterparts in <code>Loop</code>. This is how we&rsquo;ll provide access to the loop from within <em><strong>main.js</strong></em>:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: create the <code>.start</code> and <code>.stop</code> methods</span>
   
   <pre
@@ -445,6 +469,8 @@ class World {
 <p>Then, over in <em><strong>main.js</strong></em>, switch out <code>world.render</code>:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: render a single still frame</span>
   
   <pre
@@ -469,6 +495,8 @@ class World {
 </section>
 
 <p>&hellip; for <code>world.start</code>:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: start the animation loop</span>
@@ -496,7 +524,11 @@ class World {
 
 <p>The scene will go black when you do this, but don&rsquo;t worry. It&rsquo;ll spring back to life again in a few moments once we have finished creating the loop.</p>
 <h3 id="creating-the-loop-with-setanimationloop">Creating the Loop with <code>.setAnimationLoop</code></h3>
-<p>Now, everything is set up and we can create the loop. As we mentioned above, we don&rsquo;t need to worry about the technicalities of creating an animation loop since three.js provides a method that does everything for us: <a href="https://threejs.org/docs/#api/en/renderers/WebGLRenderer.setAnimationLoop" target="_blank" rel="noopener noreferrer"><code>WebGLRenderer.setAnimationLoop</code></a>.</p>
+<p>Now, everything is set up and we can create the loop. As we mentioned above, we don&rsquo;t need to worry about the technicalities of creating an animation loop since three.js provides a method that does everything for us: 
+
+<a href="https://threejs.org/docs/#api/en/renderers/WebGLRenderer.setAnimationLoop" target="_blank" rel="noopener noreferrer"><code>WebGLRenderer.setAnimationLoop</code></a>.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption">Creating a loop using <code>.setAnimationLoop</code></span>
@@ -524,6 +556,8 @@ renderer.setAnimationLoop(() =&gt; {
 <p>This will call <code>renderer.render</code> over and over to generate a stream of frames. We can cancel a running loop by passing <code>null</code> as the callback:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption">Stop a running loop</span>
   
   <pre
@@ -541,16 +575,22 @@ renderer.setAnimationLoop(null);
 </section>
 
 <p>Internally, the loop is created using <a href="/book/appendix/dom-api-reference/#drawing-animation-frames"><code>.requestAnimationFrame</code></a>. This built-in browser method intelligently schedules frames in sync with the refresh rate of your monitor and will smoothly reduce the frame rate if your hardware can&rsquo;t keep up. Since <code>.setAnimationLoop</code> was added fairly recently, older three.js examples and tutorials often use <code>.requestAnimationFrame</code> directly to set up the loop, and it&rsquo;s fairly simple to do it that way. However, with <code>.setAnimationLoop</code> there&rsquo;s a little extra magic to ensure the loop will work in virtual reality and augmented reality environments.</p>
+
+
 <aside class="success">
   
     <h3 id="virtual-reality-augmented-reality-and-the-animation-loop">Virtual Reality, Augmented Reality, and the Animation Loop</h3>
-<p><strong>Web Virtual Reality</strong> (<strong>WebVR</strong>) and <strong>Web Augmented Reality</strong> (<strong>WebAR</strong>) are combined into a unified API called the <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebXR_Device_API" target="_blank" rel="noopener noreferrer"><strong>WebXR Device API</strong></a>. Support for these APIs was added to three.js around the start of 2018. If you&rsquo;re fortunate enough to own a virtual reality device, check out the <a href="https://threejs.org/examples/?q=webxr" target="_blank" rel="noopener noreferrer">three.js VR examples here</a>.</p>
+<p><strong>Web Virtual Reality</strong> (<strong>WebVR</strong>) and <strong>Web Augmented Reality</strong> (<strong>WebAR</strong>) are combined into a unified API called the 
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebXR_Device_API" target="_blank" rel="noopener noreferrer"><strong>WebXR Device API</strong></a>. Support for these APIs was added to three.js around the start of 2018. If you’re fortunate enough to own a virtual reality device, check out the</p>
+<p><a href="https://threejs.org/examples/?q=webxr" target="_blank" rel="noopener noreferrer">three.js VR examples here</a>.</p></p>
 <p>At the time of writing this, in 2020, the WebXR API is relatively new and subject to change as development proceeds. By using <code>.setAnimationLoop</code>, we don&rsquo;t need to worry about any of these changes beyond keeping three.js up to date. Also, if you create a scene now and later decide to add VR capability, it will be easy to do so.</p>
 
   
 </aside>
 <h3 id="the-loopstart-and-loopstop-methods">The <code>Loop.start</code> and <code>Loop.stop</code> Methods</h3>
 <p>Now, we can create the loop. We&rsquo;ll do it in <code>Loop.start</code> using <code>.setAnimationLoop</code>:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>Loop.js</strong></em>: create the <code>.start</code> method</span>
@@ -574,6 +614,8 @@ renderer.setAnimationLoop(null);
 </section>
 
 <p>Next, create the counterpart <code>.stop</code> method, passing in <code>null</code> as the callback to stop the loop:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>Loop.js</strong></em>: create the <code>.stop</code> method</span>
@@ -632,6 +674,8 @@ renderer.setAnimationLoop(null);
 <p>First, let&rsquo;s tidy up. Now that the loop is running, whenever we resize the window a new frame will be produced on the next iteration of the loop. This is fast enough that you won&rsquo;t notice any delay so we don&rsquo;t need to manually redraw the scene on resizing anymore. Remove the <code>resizer.onResize</code> hook from World:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: remove the highlighted lines</span>
   
   <pre
@@ -681,6 +725,8 @@ constructor(container) {
 <p>To handle all of this, we need a function that <em>updates</em> all the animations, and this function should run once at the start of each frame. However, the word <em>update</em> is already used a lot throughout three.js, so we&rsquo;ll choose the word <em>tick</em> instead. Before we draw each frame, we&rsquo;ll make each animation <em>tick</em> forward one frame.  Add the <code>Loop.tick</code> method at the end of the <code>Loop</code> class, and then call it within the animation loop:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>Loop.js</strong></em>: create the <code>.tick</code> method</span>
   
   <pre
@@ -716,6 +762,8 @@ tick() {
 
 <h3 id="centralized-or-decentralized">Centralized or Decentralized?</h3>
 <p>When it comes to implementing this new <code>.tick</code> method, we have to make some design choices. One obvious solution is to create a complicated, centralized update function that controls all of the animated objects in our scene. It might look something like this:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption">A centralized animation system</span>
@@ -755,6 +803,8 @@ tick() {
 <p>Here&rsquo;s a better idea: we&rsquo;ll define the logic for updating each object <em>on the object itself</em>. Each object will expose that logic using a generic <code>.tick</code> method of its own. Now, the <code>Loop.tick</code> method will be simple. Each frame, we&rsquo;ll loop over a list of animated objects and tell each of them to <code>.tick</code> forward by one frame. It will look something like this:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption">A decentralized animation system</span>
   
   <pre
@@ -782,6 +832,8 @@ tick() {
 </section>
 
 <p>This is much better. Now, all the <code>Loop</code> class knows is that &lsquo;<em>animated objects have a <code>.tick</code> method</em>&rsquo;. These methods can be as complex or simple as needed for each object. For example, here&rsquo;s what a simple rotating powerup might look like:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption">Creating a rotating powerup with a <code>.tick</code> method</span>
@@ -820,6 +872,8 @@ function createPowerup() {
 <p>For this to work, we need a list of animated objects within the loop class. We&rsquo;ll use a simple array for this purpose, and we&rsquo;ll call this list <code>updatables</code>. Go ahead and create it now.</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>Loop.js</strong></em>: create a list to hold animated objects</span>
   
   <pre
@@ -840,6 +894,8 @@ function createPowerup() {
 </section>
 
 <p>Next, within <code>Loop.tick</code>, loop over this list and call <code>.tick</code> on any object within it.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>Loop.js</strong></em>: loop over animated objects and call their <code>.tick</code> method</span>
@@ -866,8 +922,12 @@ tick() {
 <p>Take careful note of the fact that <code>Loop.tick</code> will run every frame, which means it will run sixty times per second. It&rsquo;s important to keep the amount of work done here to a minimum, which means that each animated object&rsquo;s <code>.tick</code> method method must be as simple as possible.</p>
 <h3 id="the-cubetick-method">The <code>cube.tick</code> Method</h3>
 <p>Before we can add <code>cube</code> to the <code>updatables</code> list, it needs a <code>.tick</code> method, so go ahead and create one. This <code>.tick</code> method is where we&rsquo;ll define the logic for rotating the cube.</p>
-<p>Each type of animated object will have a different <code>.tick</code> method. In our <a href="#the-animation-system">apple picking game</a>, the heroine&rsquo;s tick method will check whether she is walking, running, jumping, or standing still, and then play a frame from one of those animations, while the apple tree&rsquo;s tick method will check the ripeness of the apples and rustle the leaves, and each of the evil bee&rsquo;s tick methods will check the position of the heroine then move the bee towards her a tiny bit. If she is close enough, the bee will attempt to sting her.</p>
+<p>Each type of animated object will have a different <code>.tick</code> method. In our 
+
+<a href="#the-animation-system">apple picking game</a>, the heroine&rsquo;s tick method will check whether she is walking, running, jumping, or standing still, and then play a frame from one of those animations, while the apple tree&rsquo;s tick method will check the ripeness of the apples and rustle the leaves, and each of the evil bee&rsquo;s tick methods will check the position of the heroine then move the bee towards her a tiny bit. If she is close enough, the bee will attempt to sting her.</p>
 <p>Here, we&rsquo;ll simply update the cube&rsquo;s rotation on the $X$, $Y$, <em>and</em> $Z$ axes by a tiny amount each frame. This will give it a random-looking tumble.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>cube.js</strong></em>: create the <code>.tick</code> method</span>
@@ -903,10 +963,14 @@ function createCube() {
   </pre>
 </section>
 
-<p><strong>Note</strong>: adding a property to an existing class at run-time like this is known as <a href="https://en.wikipedia.org/wiki/Monkey_patch" target="_blank" rel="noopener noreferrer"><em>monkey-patching</em></a> (here, we&rsquo;re adding <code>.tick</code> to an instance of <code>Mesh</code>). It&rsquo;s common practice, and in our simple app won&rsquo;t cause any problems. However, we shouldn&rsquo;t get into the habit of doing this carelessly since in certain situations it can cause performance issues. We&rsquo;ll only allow ourselves to do this here as the alternatives are more complex.</p>
+<p><strong>Note</strong>: adding a property to an existing class at run-time like this is known as 
+
+<a href="https://en.wikipedia.org/wiki/Monkey_patch" target="_blank" rel="noopener noreferrer"><em>monkey-patching</em></a> (here, we&rsquo;re adding <code>.tick</code> to an instance of <code>Mesh</code>). It&rsquo;s common practice, and in our simple app won&rsquo;t cause any problems. However, we shouldn&rsquo;t get into the habit of doing this carelessly since in certain situations it can cause performance issues. We&rsquo;ll only allow ourselves to do this here as the alternatives are more complex.</p>
 <p>0.01 is a value that gives a fairly slow rotation speed, and we discovered it by trial and error.  <a href="/book/first-steps/transformations/#the-unit-of-rotation-is-radians">Rotations in three.js are measured in radians</a> so internally this value is being interpreted as <em>0.01 radians</em>, which is roughly half a degree. So, we&rsquo;re rotating the cube by about half a degree on each axis every frame. At sixty frames a second, this means our cube will rotate $60 \times 0.5 = 30 ^{\circ}$ each second, or one full rotation around each of the $X$, $Y$ and $Z$ axes approximately every twelve seconds.</p>
 <h4 id="add-the-cube-to-loopupdatables">Add the <code>cube</code> to <code>Loop.updatables</code></h4>
 <p>Next, over in World, add the cube to the the <code>Loop.updatables</code> list.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>World.js</strong></em>: add the cube to <code>Loop.updatables</code></span>
@@ -948,7 +1012,11 @@ function createCube() {
 <p>That means, as we have currently set up the animation of our cube, it will rotate more slowly on an old, slow device, while on fancy new 240Hz gaming monitor it will go into hyper-speed. $240 = 4\times60$, meaning the cube will rotate at four times the desired speed!</p>
 <p>To prevent this, <strong>we need to decouple animation speed from frame rate</strong>. Here&rsquo;s how we&rsquo;ll do it: <strong>when we tell an object to <code>.tick</code> forward a frame, we&rsquo;ll scale the size of the movement by how long the previous frame took</strong>. This way, as the frame rate varies, we&rsquo;ll constantly adjust the size of each <code>.tick</code> so that the animation remains smooth. Our adjustments will always be one frame behind, but the frames are generated so quickly this won&rsquo;t be visible to the user. This way, animations will run at the same speed on all devices.</p>
 <h3 id="measuring-time-across-frames">Measuring Time Across Frames</h3>
-<p>This is where the <code>Clock</code> class comes in. We&rsquo;ll use <a href="https://threejs.org/docs/#api/en/core/Clock.getDelta" target="_blank" rel="noopener noreferrer"><code>Clock.getDelta</code></a> to measure how long the previous frame took.</p>
+<p>This is where the <code>Clock</code> class comes in. We&rsquo;ll use 
+
+<a href="https://threejs.org/docs/#api/en/core/Clock.getDelta" target="_blank" rel="noopener noreferrer"><code>Clock.getDelta</code></a> to measure how long the previous frame took.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption">The <code>Clock.getDelta</code> method</span>
@@ -971,6 +1039,8 @@ const delta = clock.getDelta();
 </section>
 
 <p><strong><code>.getDelta</code> tells us how much time has passed since the last time we called <code>.getDelta</code></strong>. If we call it once, and only once, at the start of each frame, it will tell us how long the previous frame took. <strong>Note: if you call it <code>.getDelta</code> more than once per frame, subsequent calls will measure close to zero.</strong> Only call <code>.getDelta</code> once at the very start of a frame!</p>
+
+
 <aside class="notice">
   
     <h4 id="delta">$Δ$ (Delta)</h4>
@@ -981,6 +1051,8 @@ const delta = clock.getDelta();
 </aside>
 <h3 id="create-a-clock">Create a <code>clock</code></h3>
 <p>Over in Loop, create a module scoped <code>clock</code> instance at the top of the file.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>Loop.js</strong></em>: create the <code>clock</code></span>
@@ -1005,6 +1077,8 @@ class Loop {
 <p>Next, we&rsquo;ll call <code>.getDelta</code> at the start of <code>Loop.tick</code>, saving the result in a variable called <code>delta</code> which we&rsquo;ll then pass into the <code>.tick</code> method of each animated object.</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>Loop.js</strong></em>: pass time deltas to animated objects</span>
   
   <pre
@@ -1025,6 +1099,8 @@ class Loop {
 </code>
   </pre>
 </section>
+
+
 
 <aside class="success">
   
@@ -1061,12 +1137,15 @@ The last frame rendered in $16.574999986914918$ milliseconds
 </code>
   </pre>
 </section>
-<p>Even with a powerful GPU and a scene as simple as this single cube, we won&rsquo;t achieve exactly sixty frames per second. Some frames render a little fast, and others render a little slow. This is normal. Part of the reason for this is that, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance/now#Reduced_time_precision" target="_blank" rel="noopener noreferrer">for security reasons</a> browsers add around a millisecond of jitter to the result of <code>.getDelta</code>.</p>
+<p>Even with a powerful GPU and a scene as simple as this single cube, we won&rsquo;t achieve exactly sixty frames per second. Some frames render a little fast, and others render a little slow. This is normal. Part of the reason for this is that, 
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance/now#Reduced_time_precision" target="_blank" rel="noopener noreferrer">for security reasons</a> browsers add around a millisecond of jitter to the result of <code>.getDelta</code>.</p></p>
 
   
 </aside>
 <h3 id="scale-the-cubes-rotation-by-delta">Scale the Cube&rsquo;s Rotation by <code>delta</code></h3>
 <p>Scaling movements by <code>delta</code> is easy. We simply decide how much we want to move an object in one second, and then multiply that value by <code>delta</code> within the objects <code>.tick</code> method. In  <code>cube.tick</code>, we found a value that resulted in the cube rotating approximately thirty degrees a second <em>at 60FPS</em>.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>cube.js</strong></em>: the unscaled tick method</span>
@@ -1094,6 +1173,8 @@ cube.tick = () =&gt; {
 <p>Now, we&rsquo;ll fix that so the cube rotates thirty degrees per second at <em>any</em> FPS. First, we need to convert thirty degrees to radians, and for that, we&rsquo;ll use <a href="/book/first-steps/transformations/#the-unit-of-rotation-is-radians"><code>MathUtils.degToRad</code></a> method (refer back to the transformations chapter if you need a reminder of how that works):</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption">Converting degrees to radians</span>
   
   <pre
@@ -1112,6 +1193,8 @@ const radiansPerSecond = MathUtils.degToRad(30);
 </section>
 
 <p>Next, we&rsquo;ll scale <code>radiansPerSecond</code> by <code>delta</code> each frame.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>cube.js</strong></em>: the updated tick method, now scaling by <code>delta</code></span>
@@ -1137,6 +1220,8 @@ cube.tick = (delta) =&gt; {
 </section>
 
 <p>Putting all that together, here&rsquo;s our final <em><strong>cube.js</strong></em> module:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>cube.js</strong></em>: final code</span>
@@ -1185,29 +1270,43 @@ function createCube() {
 
 
 
-<figure id="scene-514973286" class="inline-scene loading-dots small right"></figure>
+
+
+<figure id="scene-832961574" class="inline-scene loading-dots small right"></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/animation-loop-duplicate.js";
-  init("#scene-514973286");
+  init("#scene-832961574");
 </script>
 <p>Now, once again the cube will be rotating thirty degrees per second around each axis, but with an important difference: the animation will now play at the same speed no matter where we run it, whether on a VR rig running at 90FPS, or a ten-year-old smartphone that can barely crank out 10FPS, or some future system from the year 3000 that runs at a billion FPS. <strong>The frame rate may change, but the animation speed will not</strong>.</p>
 <p>With this change, <strong>we have successfully decoupled animation speed from frame rate.</strong></p>
 <h2 id="to-loop-or-not-to-loop">To Loop or Not to Loop</h2>
 <p>Now that we&rsquo;ve started the loop, <code>.render</code> is being called over and over, creating a steady stream of frames, and before we render each frame, we&rsquo;re rotating the cube by a tiny amount. As long as the frames are being generated with sufficient speed (around 12FPS or above), and the difference between successive frames is small enough, we&rsquo;ll perceive this as an animation.</p>
-<p>The animation loop will be the driving force of many apps. This loop, when combined with the idea of encapsulating the animation logic in each object&rsquo;s <code>.tick</code> method, is a powerful tool that we&rsquo;ll continue to explore and build on throughout the book. Later, we&rsquo;ll use the loop to drive behavior that is much more complex and interesting than our simple rotating cube, either <a href="https://threejs.org/examples/webgl_buffergeometry_instancing.html" target="_blank" rel="noopener noreferrer">created in our code</a> or <a href="https://threejs.org/examples/webgl_loader_fbx.html" target="_blank" rel="noopener noreferrer">loaded from an external application</a>.</p>
+<p>The animation loop will be the driving force of many apps. This loop, when combined with the idea of encapsulating the animation logic in each object&rsquo;s <code>.tick</code> method, is a powerful tool that we&rsquo;ll continue to explore and build on throughout the book. Later, we&rsquo;ll use the loop to drive behavior that is much more complex and interesting than our simple rotating cube, either 
+
+<a href="https://threejs.org/examples/webgl_buffergeometry_instancing.html" target="_blank" rel="noopener noreferrer">created in our code</a> or 
+
+<a href="https://threejs.org/examples/webgl_loader_fbx.html" target="_blank" rel="noopener noreferrer">loaded from an external application</a>.</p>
 <div class="fig-comparison">
   <figure class="">
-  <iframe title="An animation created in code" width="100%" height="500px" src="https://threejs.org/examples/webgl_buffergeometry_instancing.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe><figcaption>An animation created in code</figcaption></figure>
+  <noscript class="loading-lazy">
+    <iframe title="An animation created in code" width="100%" height="500" src="https://threejs.org/examples/webgl_buffergeometry_instancing.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe>
+  </noscript><figcaption>An animation created in code</figcaption></figure>
   <figure class="">
-  <iframe title="An animation created in an external application" width="100%" height="500px" src="https://threejs.org/examples/webgl_loader_fbx.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe><figcaption>An animation created in an external application</figcaption></figure>
+  <noscript class="loading-lazy">
+    <iframe title="An animation created in an external application" width="100%" height="500" src="https://threejs.org/examples/webgl_loader_fbx.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe>
+  </noscript><figcaption>An animation created in an external application</figcaption></figure>
 </div>
 <p>Animations like these are beautiful. However, they come at a cost, which will probably be obvious to you right now if you are viewing this on a low-powered device. As you chase the goal of sixty frames per second, you must work hard to keep the loop running fast. This is one place in your app where constant vigilance, profiling, and optimization is a necessity.</p>
 <p>Not all scenes have animation though. Some scenes update only occasionally, for example, only during user interaction. A common example of this is a product display app. Such apps are used to display a 3D product such as a shoe or milk bottle that the user can rotate or zoom to get a better look. In this type of scene, whenever the user is <em>not</em> interacting, the scene will remain unchanged between frames. Here&rsquo;s another example of a scene without an animation loop.</p>
 <figure class="">
-  <iframe title="No animation loop doesn&#39;t mean no movement!" width="100%" height="500px" src="https://threejs.org/examples/webgl_decals.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe><figcaption>No animation loop doesn&rsquo;t mean no movement!</figcaption></figure>
+  <noscript class="loading-lazy">
+    <iframe title="No animation loop doesn&#39;t mean no movement!" width="100%" height="500" src="https://threejs.org/examples/webgl_decals.html" importance="low" loading="lazy" sandbox="allow-scripts"></iframe>
+  </noscript><figcaption>No animation loop doesn&rsquo;t mean no movement!</figcaption></figure>
 <p>Running the loop for an app like this would be a waste. This will be especially noticeable on mobile devices, where the constant GPU and CPU churn of the loop will drain the battery. As a result, you should only use the loop when you need to.</p>
 <p><code>World.render</code> and <code>World.start</code> give us two ways of producing frames. For apps with constant animation, we&rsquo;ll use <code>.start</code> to run a loop, and for apps that update occasionally, we&rsquo;ll call <code>.render</code> whenever a new frame is needed. We&rsquo;ll refer to the second technique as <strong><em>rendering on demand</em></strong>.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.js</strong></em>: two ways of producing frames</span>
@@ -1234,6 +1333,8 @@ world.start();
 <p>Rendering on demand may reduce battery use, but on the other hand, using the loop is simpler. Instead of thinking about where and when you need to draw frames, you simply churn out a constant, steady supply, and for this reason, most of the examples in this book will use the loop. However, this is not an endorsement of the loop over rendering on demand. It&rsquo;s up to you to decide which method is appropriate for your app.</p>
 <p>Next up, we&rsquo;ll see how to make our materials more interesting using textures.</p>
 <h2 id="challenges">Challenges</h2>
+
+
 <aside class="success">
   
     <h3 id="easy">Easy</h3>
@@ -1248,6 +1349,8 @@ world.start();
 
   
 </aside>
+
+
 <aside class="notice">
   
     <h3 id="medium">Medium</h3>
@@ -1266,6 +1369,8 @@ world.start();
 
   
 </aside>
+
+
 <aside class="warning">
   
     <h3 id="hard">Hard</h3>
@@ -1282,16 +1387,12 @@ world.start();
   
 </aside>
 
-            <div class="bottom-pagination">
-
-
-
-
-
-<a href="/book/first-steps/responsive-design/" title="Making Our Scenes Responsive (and also Dealing with Jaggies)" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/textures-intro/" class="control-elem next" title="A Brief Introduction to Texture Mapping"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
+            <div class="bottom-pagination"><a href="/book/first-steps/responsive-design/" title="Making Our Scenes Responsive (and also Dealing with Jaggies)" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/textures-intro/" class="control-elem next" title="A Brief Introduction to Texture Mapping"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
           </div>
         </div>
-      </main><div id="ide-wrapper" class="panel animate disabled hide">
+      </main>
+
+<div id="ide-wrapper" class="panel animate disabled hide">
   <nav id="ide-controls-top" class="control-bar fuzzy-background">
     <input
       type="checkbox"
@@ -1403,7 +1504,9 @@ world.start();
     <div id="preview-overlay"></div>
     
   </div>
-</div></div><div class="side-menu left-menu">
+</div></div>
+
+<div class="side-menu left-menu">
   <div class="icons">
     <input type="checkbox" id="invert-colors-toggle" class="hidden-input" />
     <label
@@ -1503,14 +1606,18 @@ world.start();
         src="/images/logo/banner_trans_512.png"
       />
     </a>
-  </h2><ul class="links" style="justify-content: left">
+  </h2>
+
+<ul class="links" style="justify-content: left">
   <li><a href="/book/">Table Of Contents</a></li>
   <li style="margin: auto">
     <a href="/#mailing-list-signup" class="internal-link"
       >Stay up to date - sign up to the mailing list!</a
     >
   </li>
-</ul></nav><style>
+</ul></nav>
+
+<style>
   @font-face {
     font-family: "Open Sans";
     font-style: normal;

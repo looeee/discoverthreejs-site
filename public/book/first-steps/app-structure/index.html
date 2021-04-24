@@ -1,7 +1,11 @@
+
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
-    <title>The Structure of a three.js App | Discover three.js</title><meta charset="utf-8" />
+    <title>The Structure of a three.js App | Discover three.js</title>
+
+<meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 <meta name="HandheldFriendly" content="True" />
@@ -48,7 +52,9 @@
 
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="msapplication-TileColor" content="#00aba9" />
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619180747" /><script type="application/ld+json">
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619232246" />
+
+<script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "WebPage",
@@ -81,34 +87,36 @@
       }
     }
   }
-</script><link
+</script>
+
+<link
   rel="canonical"
   href="https://discoverthreejs.com/book/first-steps/app-structure/"
 />
 
-<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619180747" />
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619232246" />
 
 <link
   rel="apple-touch-icon"
   sizes="180x180"
-  href="/apple-touch-icon.png?v=1619180747"
+  href="/apple-touch-icon.png?v=1619232246"
 />
 
 <link
   rel="icon"
   type="image/png"
   sizes="16x16"
-  href="/favicon-16x16.png?v=1619180747"
+  href="/favicon-16x16.png?v=1619232246"
 />
 <link
   rel="icon"
   type="image/png"
   sizes="32x32"
-  href="/favicon-32x32.png?v=1619180747"
+  href="/favicon-32x32.png?v=1619232246"
 />
 
-<link rel="manifest" href="/site.json?v=1619180747" />
-<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619180747" color="#5bbad5" />
+<link rel="manifest" href="/site.json?v=1619232246" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619232246" color="#5bbad5" />
 <style>
       .loading-page {
         display: none;
@@ -117,13 +125,15 @@
 
     
     
-    <link rel="stylesheet" href="/styles/chapter.css?v=1619180747">
+    <link rel="stylesheet" href="/styles/chapter.css?v=1619232246">
 
     <noscript>
       
       
-      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619180747">
-    </noscript>    
+      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619232246">
+    </noscript>
+
+  
     
     
     
@@ -142,7 +152,9 @@
 
     
 
-    <script type="module">
+    
+
+<script type="module">
   
   
 
@@ -191,7 +203,9 @@
     
   });
 </script></head>
-  <body class="loading-page"><nav class="top-nav">
+  <body class="loading-page">
+
+<nav class="top-nav">
   <div class="nav-background"></div>
 
   <div class="icon-group left">
@@ -220,13 +234,7 @@
     </label>
   </div>
 
-  <div class="icon-group center">
-
-
-
-
-
-<a href="/book/first-steps/" title="Getting Started: Here&#39;s Where the Real Fun Begins!" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/first-scene/" class="control-elem next" title="Your First three.js Scene: Hello, Cube!"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
+  <div class="icon-group center"><a href="/book/first-steps/" title="Getting Started: Here&#39;s Where the Real Fun Begins!" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/first-scene/" class="control-elem next" title="Your First three.js Scene: Hello, Cube!"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></a>
   </div>
 
   <div class="icon-group right">
@@ -252,6 +260,8 @@
 </blockquote>
 <h2 id="_indexhtml_"><em><strong>index.html</strong></em></h2>
 <p><em><strong>index.html</strong></em> is the root file of our app. It&rsquo;s the only file we open directly in the browser, and all CSS and JavaScript files are loaded via references from this file.</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>index.html</strong></em>: the root of our web page</span>
@@ -296,6 +306,8 @@
 <p>Within the <code>&lt;head&gt;</code> section of <em><strong>index.html</strong></em>, one of the <code>&lt;link&gt;</code> elements references the <em><strong>styles/main.css</strong></em> file:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>index.html</strong></em>: Referencing <em><strong>main.css</strong></em></span>
   
   <pre
@@ -311,6 +323,8 @@
 </section>
 
 <p>&hellip; which contains some simple styles for controlling the appearance of our page:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>styles/main.css</strong></em></span>
@@ -367,6 +381,8 @@ h1 {
 <p>Back in <em><strong>index.html</strong></em>, just below the styles <code>&lt;link&gt;</code> is a <code>&lt;script&gt;</code> tag referencing the <code>src/main.js</code> file:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>index.html</strong></em>: Referencing <em><strong>main.js</strong></em></span>
   
   <pre
@@ -382,6 +398,8 @@ h1 {
 </section>
 
 <p>&hellip; which is currently empty:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>src/main.js</strong></em>: coming soon!</span>
@@ -405,6 +423,8 @@ h1 {
 <p>The next point of interest in <em><strong>index.html</strong></em> is the scene container element:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>index.html</strong></em>: The scene container</span>
   
   <pre
@@ -425,7 +445,11 @@ h1 {
   </pre>
 </section>
 
-<p>All three.js scenes are rendered inside a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas" target="_blank" rel="noopener noreferrer"><code>&lt;canvas&gt;</code></a> element. Once we have set up our app, three.js will create a canvas for us, and then we&rsquo;ll insert it inside the scene container:</p>
+<p>All three.js scenes are rendered inside a 
+
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas" target="_blank" rel="noopener noreferrer"><code>&lt;canvas&gt;</code></a> element. Once we have set up our app, three.js will create a canvas for us, and then we&rsquo;ll insert it inside the scene container:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>index.html</strong></em>: once our app is running we&rsquo;ll insert the three.js canvas into the scene container</span>
@@ -446,6 +470,8 @@ h1 {
 </section>
 
 <p>We can then control the position and size of our scene by styling the scene container element. If you turn your attention back to <em><strong>main.css</strong></em>, you&rsquo;ll see that we have already created some styles for this element. By setting the position, width, and height, we&rsquo;re telling the browser this element should take up the full window:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>main.css</strong></em>: styling the scene container</span>
@@ -486,6 +512,8 @@ h1 {
 <p>The <em><strong>vendor/three</strong></em> folder mirrors the structure of the GitHub repo, but for clarity, we&rsquo;ll include only the files needed in each chapter. To import these files within <em><strong>main.js</strong></em>, we&rsquo;ll use <em>NPM style imports</em>:</p>
 
 
+
+
 <section class="highlight-wrapper"><span class="caption"><em><strong>src/main.js</strong></em>: importing three.js files, NPM style</span>
   
   <pre
@@ -509,6 +537,8 @@ import { GLTFLoader } from &#39;three/examples/jsm/loaders/GLTFLoader.js&#39;;
 </section>
 
 <p>If you prefer to <a href="/book/introduction/about-the-book/#working-on-your-own-machine">work locally</a>, you can download the files from the editor as a zip archive using the <svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"/></svg> button. Within the zip file, any three.js imports will be converted to CDN imports from unpkg.com:</p>
+
+
 
 
 <section class="highlight-wrapper"><span class="caption"><em><strong>src/main.js</strong></em>: importing three.js files, CDN style</span>
@@ -542,26 +572,26 @@ import { GLTFLoader } from &#39;https://unpkg.com/three@0.117.0/examples/jsm/loa
 
 
 
-<figure id="scene-957413628" class="inline-scene loading-dots medium right round"></figure>
+
+
+<figure id="scene-596748213" class="inline-scene loading-dots medium right round"></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/flamingo-animated.js";
-  init("#scene-957413628");
+  init("#scene-596748213");
 </script>
 <p>Finally, there&rsquo;s the <em><strong>assets/</strong></em> folder. <strong>Anything used in our app that is not HTML, CSS, or JavaScript goes in here</strong>: textures, 3D models, fonts, sounds, and so on. Currently, there&rsquo;s one test texture that we&rsquo;ll use in <a href="/book/first-steps/textures-intro/">1.8: A Brief Introduction to Texture Mapping</a>, and one model of a flamingo that we&rsquo;ll use in <a href="/book/first-steps/load-models/">1.13: Load 3D Models in glTF Format</a>.</p>
+
+
 <p style="clear:both; margin: 0; padding: 0; line-height: 0;">&nbsp</p>
 <p>With that out of the way, it&rsquo;s time to get down to business! In the next chapter, we&rsquo;ll create our first simple three.js application.</p>
 
-            <div class="bottom-pagination">
-
-
-
-
-
-<a href="/book/first-steps/" title="Getting Started: Here&#39;s Where the Real Fun Begins!" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/first-scene/" class="control-elem next" title="Your First three.js Scene: Hello, Cube!"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
+            <div class="bottom-pagination"><a href="/book/first-steps/" title="Getting Started: Here&#39;s Where the Real Fun Begins!" class="control-elem previous"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg></a><a href="/book/first-steps/first-scene/" class="control-elem next" title="Your First three.js Scene: Hello, Cube!"><svg class="icon" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></a></div>
           </div>
         </div>
-      </main><div id="ide-wrapper" class="panel animate disabled hide">
+      </main>
+
+<div id="ide-wrapper" class="panel animate disabled hide">
   <nav id="ide-controls-top" class="control-bar fuzzy-background">
     <input
       type="checkbox"
@@ -673,7 +703,9 @@ import { GLTFLoader } from &#39;https://unpkg.com/three@0.117.0/examples/jsm/loa
     <div id="preview-overlay"></div>
     
   </div>
-</div></div><div class="side-menu left-menu">
+</div></div>
+
+<div class="side-menu left-menu">
   <div class="icons">
     <input type="checkbox" id="invert-colors-toggle" class="hidden-input" />
     <label
@@ -773,14 +805,18 @@ import { GLTFLoader } from &#39;https://unpkg.com/three@0.117.0/examples/jsm/loa
         src="/images/logo/banner_trans_512.png"
       />
     </a>
-  </h2><ul class="links" style="justify-content: left">
+  </h2>
+
+<ul class="links" style="justify-content: left">
   <li><a href="/book/">Table Of Contents</a></li>
   <li style="margin: auto">
     <a href="/#mailing-list-signup" class="internal-link"
       >Stay up to date - sign up to the mailing list!</a
     >
   </li>
-</ul></nav><style>
+</ul></nav>
+
+<style>
   @font-face {
     font-family: "Open Sans";
     font-style: normal;
