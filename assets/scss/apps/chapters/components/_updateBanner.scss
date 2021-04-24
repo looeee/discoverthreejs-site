@@ -6,4 +6,16 @@
   border: 1px solid #848484;
   text-align: center;
   font-weight: bold;
+  color: #212931;
+
+  a {
+    color: #9c0026;
+    &:visited {
+      color: #9c0026;
+    }
+    &:hover,
+    &:focus {
+      color: #ce0838;
+    }
+  }
 }

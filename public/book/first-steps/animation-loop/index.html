@@ -52,7 +52,7 @@
 
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="msapplication-TileColor" content="#00aba9" />
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619233172" />
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619238452" />
 
 <script type="application/ld+json">
   {
@@ -94,29 +94,29 @@
   href="https://discoverthreejs.com/book/first-steps/animation-loop/"
 />
 
-<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619233172" />
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619238452" />
 
 <link
   rel="apple-touch-icon"
   sizes="180x180"
-  href="/apple-touch-icon.png?v=1619233172"
+  href="/apple-touch-icon.png?v=1619238452"
 />
 
 <link
   rel="icon"
   type="image/png"
   sizes="16x16"
-  href="/favicon-16x16.png?v=1619233172"
+  href="/favicon-16x16.png?v=1619238452"
 />
 <link
   rel="icon"
   type="image/png"
   sizes="32x32"
-  href="/favicon-32x32.png?v=1619233172"
+  href="/favicon-32x32.png?v=1619238452"
 />
 
-<link rel="manifest" href="/site.json?v=1619233172" />
-<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619233172" color="#5bbad5" />
+<link rel="manifest" href="/site.json?v=1619238452" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619238452" color="#5bbad5" />
 <style>
       .loading-page {
         display: none;
@@ -125,12 +125,12 @@
 
     
     
-    <link rel="stylesheet" href="/styles/chapter.css?v=1619233172">
+    <link rel="stylesheet" href="/styles/chapter.css?v=1619238452">
 
     <noscript>
       
       
-      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619233172">
+      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619238452">
     </noscript>
 
   
@@ -262,11 +262,11 @@
 
 
 
-<figure id="scene-895647123" class="inline-scene loading-dots small right"><figcaption>The output from a single call of<br>renderer.render</figcaption></figure>
+<figure id="scene-378126495" class="inline-scene loading-dots small right"><figcaption>The output from a single call of<br>renderer.render</figcaption></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/static-cube.js";
-  init("#scene-895647123");
+  init("#scene-378126495");
 </script>
 <p>Over the last couple of chapters, we&rsquo;ve made amazing progress with our app. We have lights, colors, physically correct rendering, anti-aliasing, automatic-resizing, we know how to move objects around in 3D space, and our code is clean, modular, and well-structured. But our scene is missing one vital ingredient: <strong>movement!</strong></p>
 <p>We&rsquo;re using the <code>renderer.render</code> method to draw the scene. This method takes a scene and a camera as input and outputs a single still image to the HTML <code>&lt;canvas&gt;</code> element. The output is the non-moving purple box you can see above.</p>
@@ -301,11 +301,11 @@
 
 
 
-<figure id="scene-215837964" class="inline-scene loading-dots small right"></figure>
+<figure id="scene-673128954" class="inline-scene loading-dots small right"></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/animation-loop.js";
-  init("#scene-215837964");
+  init("#scene-673128954");
 </script>
 <p>In this chapter, we&rsquo;ll add a simple rotation animation to the cube. Here&rsquo;s how we&rsquo;ll do it:</p>
 <ul>
@@ -1272,11 +1272,11 @@ function createCube() {
 
 
 
-<figure id="scene-523764189" class="inline-scene loading-dots small right"></figure>
+<figure id="scene-352796814" class="inline-scene loading-dots small right"></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/animation-loop-duplicate.js";
-  init("#scene-523764189");
+  init("#scene-352796814");
 </script>
 <p>Now, once again the cube will be rotating thirty degrees per second around each axis, but with an important difference: the animation will now play at the same speed no matter where we run it, whether on a VR rig running at 90FPS, or a ten-year-old smartphone that can barely crank out 10FPS, or some future system from the year 3000 that runs at a billion FPS. <strong>The frame rate may change, but the animation speed will not</strong>.</p>
 <p>With this change, <strong>we have successfully decoupled animation speed from frame rate.</strong></p>
