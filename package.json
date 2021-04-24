@@ -6,9 +6,10 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run copy-three && .\\hugo serve --templateMetrics --templateMetricsHints --verbose",
-    "production": ".\\hugo --templateMetrics --templateMetricsHints --verbose",
-    "copy-three": "node scripts/copy-three.cjs"
+    "start": "npm run copy-three && cross-env NODE_ENV=dev npm run run-hugo",
+    "production": "npm run run-hugo",
+    "copy-three": "node scripts/copy-three.cjs",
+    "run-hugo": "node scripts/run-hugo.cjs"
   },
   "author": "Lewy Blue",
   "license": "MIT",
@@ -25,6 +26,7 @@
   "devDependencies": {
     "autoprefixer": "^10.2.5",
     "concurrently": "^6.0.0",
+    "cross-env": "^7.0.3",
     "esbuild": "^0.11.5",
     "fs-extra": "^9.1.0",
     "postcss": "^8.2.12",
