@@ -1,3 +1,14 @@
+{{/*
+  Inline three.js scene
+  Scenes are defined in static/examples/worlds/inline-scenes
+
+  TODO: inline scenes need to be cleaned up and have code style improved.
+
+  Optional caption can be added to a scene.
+
+  {{< inlineScene entry="first-steps/birds-animated.js" class="round" captions="Animated 3D birds a-flyin" >}}
+*/}}
+
 {{ $_hugo_config := `{ "version": 1 }` }}
 {{ $entry := (.Get "entry") }}
 {{ $id := delimit (shuffle (seq 1 9)) "" }}

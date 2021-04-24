@@ -1,10 +1,19 @@
-<!-- NOTE: hugo cannot paginate across sections -->
-<!-- so manual next/prev URL& title are added to front matter -->
-<!-- these are required on _index files -->
-<!-- nextXXX is required on last chapter in section -->
-<!-- prevXXX is required on first chapter in section -->
+{{/*
+Pagination used in the top nav and at the bottom of each chapter.
 
-<!-- Also, hugo next/prev are switched for some reason -->
+TODO: add accessible controls.
+
+NOTE: hugo cannot paginate across sections
+This means that front matter variables are needed to paginate between sections.
+For examples, in book/first-steps/_index.md:
+
+nextURL: "/book/first-steps/app-structure/"
+nextTitle: "The Structure of a three.js App"
+prevURL: "/book/introduction/threejs-with-frameworks/"
+prevTitle: "Using three.js with React, Vue.js, Angular, Svelte, TypeScript..."
+
+This is a little annoying but so far I couldn't figure out a better way.
+*/}}
 
 {{- if not (eq .Params.pagination false ) -}}
   {{- if .Params.prevURL -}}

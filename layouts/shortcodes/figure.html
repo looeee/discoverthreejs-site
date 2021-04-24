@@ -1,12 +1,38 @@
+{{/*
+  USAGE:
+  {{< figure src="app-logos/javascript.png" alt="JavaScript logo" lightbox="false" class="tiny left noborder" >}}
+
+  src must reference an image file in static/images
+  alt, caption, title (or all) can be given.
+  If just a caption is given it will be used for caption/alt/title.
+  If caption and alt are specified, alt will be used for both alt and title.
+
+  Caption is optional and will show a visible caption alongside the image
+
+  Width and height set the aspect ratio of the image. By default this will be 1:1, square.
+  This seems to work ok, I haven't noticed any jank. However, it can be overridden per image
+  by setting width or height when calling the shortcode
+*/}}
+
 {{- $src := .Get "src" -}}
 {{- $caption := .Get "caption" | default "" -}}
 {{- $alt := .Get "alt" | default $caption -}}
 {{- $title := .Get "title" | default $alt -}}
 {{- $class := .Get "class" | default "" -}}
-{{- $height := .Get "height" | default "" -}}
+{{- $height := .Get "height" | default "1" -}}
+{{- $width := .Get "width" | default "1" -}}
 
 <figure {{ if ne $class "" }}class="{{ $class }}"{{ end }}>
-  <img src="/images/{{$src}}" loading="lazy" alt="{{$alt}}" title="{{ $title }}" {{ if ne $height "" }}style="height: {{ $height }};"{{ end }} />
+  <noscript class="loading-lazy">
+    <img
+      src="/images/{{$src}}"
+      loading="lazy"
+      alt="{{$alt}}"
+      title="{{ $title }}"
+      height="{{ $height }}"
+      width="{{ $width }}"
+      />
+  </noscript>
   {{- if ne $caption "" }}
     <figcaption>
       {{- $caption | markdownify -}}

@@ -1,3 +1,5 @@
+TODO: this readme might be slightly out of date and needs to be double checked.
+
 # How to create a new example
 
 # Before and after comparison mode

@@ -1,3 +1,17 @@
+{{/*
+  Create a link to another place in the book.
+
+  TODO: I think it should be possible handle this more cleanly now that Hugo has added custom _markup templates.
+  See layouts/_default/_markup/render-link.html
+
+  USAGE:
+
+  If you create custom properties like {{< link path="/book/first-steps/animation-loop/#the-tick-method" title="the `.tick` method" >}} we're using to create animations, these will not be cloned.
+*/}}
+
+
+
+
 {{- $title := .Get "title" | default "" -}}
 
 {{- $path := strings.TrimRight "/" (.Get "path") -}}

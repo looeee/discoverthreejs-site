@@ -1,1 +1,8 @@
+{{/*
+  Customise links of the form [title](href) to include rel="noopener noreferrer"
+
+  TODO: check if this works correctly for inline link (within the book) and if so, remove the "link" shortcode
+
+*/}}
+
 <a href="{{ .Destination | safeURL }}"{{ with .Title}} title="{{ . }}"{{ end }}{{ if strings.HasPrefix .Destination "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .Text | safeHTML }}</a>

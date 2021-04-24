@@ -1,1 +1,8 @@
+{{/*
+  TODO - the icons are currently stored in the partials folder.
+  Figure out a way to reference them here.
+  A little tricky because partials can only be used in layouts and shortcodes
+  can only be used in markdown
+*/}}
+
 {{- partial ( printf "icons/%s.svg" (.Get 0) ) . -}}

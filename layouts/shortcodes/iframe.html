@@ -1,3 +1,9 @@
+{{/*
+  Iframes are used to include examples from threejs.org docs and examples
+  TODO: these should all be hosted locally to prevent upstream changes
+  causing breakage
+*/}}
+
 {{- $src := .Get "src" -}}
 {{- $height := .Get "height" | default "500" -}}
 {{- $title := .Get "title" | default "three.js scene" -}}
@@ -6,7 +12,9 @@
 {{- $class := .Get "class" | default "" -}}
 
 <figure class="{{ $class }}">
-  <iframe title="{{ $title }}" width="100%" height="{{ $height }}px" src="{{ $src }}" importance="low" loading="lazy" sandbox="allow-scripts"></iframe>
+  <noscript class="loading-lazy">
+    <iframe title="{{ $title }}" width="100%" height="{{ $height }}" src="{{ $src }}" importance="low" loading="lazy" sandbox="allow-scripts"></iframe>
+  </noscript>
   {{- if $caption -}}
   <figcaption>{{ $caption | markdownify }}</figcaption>
   {{- end -}}

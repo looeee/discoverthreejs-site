@@ -20,8 +20,7 @@ IDESwitchImportsAllow: false
 # JavaScript Modules
 
 {{% note %}}
-THIS CHAPTER IS COMPLETE
-exception: document dynamic import and import from node_modules
+document dynamic import and import from node_modules
 {{% /note %}}
 
 {{< figure src="app-logos/javascript.png" alt="JavaScript logo" lightbox="false" class="tiny left noborder" >}}

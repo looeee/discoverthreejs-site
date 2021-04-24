@@ -18,10 +18,6 @@ IDEActiveDocument: 'index.html'
 IDESwitchImportsAllow: false
 ---
 
-{{% note %}}
-COMPLETE!
-{{% /note %}}
-
 # HTML and CSS Used in This Book
 
 In recent years, the number of ways in which you can build a website has exploded. It seems like there are a million different libraries and frameworks, with names like React, Vue, Angular, Svelte, and related tools like Webpack, Parcel, Rollup, Browserify, Babel, SCSS. New ones are being created almost daily. These are amazing tools, and each solves the problem of building complex web applications in their own unique way. Nonetheless, the sheer amount and variety of tools and frameworks can seem overwhelming, and this is especially apparent when it comes to writing a book about web development. Webpack and Babel allow us to create beautifully structured projects and use cutting edge JavaScript syntax even before it's available in any browser. React, Svelte, and other frameworks are perfect for building large and complex applications. However, any tool, especially one complicated enough to build a website, comes at the price of added complexity. When learning something new, such as three.js, it's important to keep your mental overhead low and leave room for new information to filter into place.

@@ -1,3 +1,50 @@
+{{/*
+  Inline code block with line number, highlight lines, captions.
+  Can either read from a file in static/examples/ or highlight code
+  snippets inside the shortcode:
+
+1. INLINE CODE SNIPPET WITH LINE NUMBERS AND CAPTION
+{{< code lang="js" linenos="true" linenostart="1" caption="Most JavaScript statements are synchronous" >}}
+const x = 5; // executed first
+
+const y = 100; // executed second
+
+add(x, y); // executed third
+{{< /code >}}
+
+2. INLINE CODE WITHOUT LINE NUMBERS
+Note the ``` js - this will be ignored by Hugo but will allow your code editor to correctly highlight the code.
+
+{{< code lang="js" linenos="false" >}}
+``` js
+import {
+  Color
+} from './vendor/three/build/three.module.js';
+
+scene.background = new Color('red');
+```
+{{< /code >}}
+
+3. CODE READ FROM FILE WITH LINES 2 AND 4 HIGHLIGHTED
+
+{{< code file="worlds/first-steps/ambient-lighting/src/World/components/lights.final.js" from="1" to="5" lang="js" linenos="true" hl_lines="2 4"  caption="_**lights.js**_: import both ambient light classes" >}}{{< /code >}}
+
+Note that "static/examples" is prepended to the file path so the final file loaded is
+static/examples/worlds/first-steps/ambient-lighting/src/World/components/lights.final.js
+
+4. CODE SNIPPET WITH HEADER AND FOOTER
+
+{{< code lang="js" linenos="false" header="    ...." footer="    ...." >}}
+    scene.background = new Color('red');
+{{< /code >}}
+
+This will output:
+    ....
+    scene.background = new Color('red');
+    ....
+Note that white space is preserved.
+*/}}
+
 <!-- START: Get Options -->
 {{- $inner := .Inner | default "" -}}
 
@@ -18,7 +65,6 @@
 
 {{- $linenos := .Get "linenos" | default "true" -}}
 
-<!-- TODO-LOW replace linenostart with single "from" option -->
 {{- $linenostart := .Get "linenostart" | default 1 -}}
 
 <!-- END: Get Options -->

@@ -1,3 +1,5 @@
+{{/* */}}
+
 <script type="module">
   {{ $optionsChapterEarly := (dict "targetPath" "js/chapterEarly.js" "minify" true "target" "es2017" "format" "esm" ) }}
   {{ $chapterEarly := resources.Get "src/apps/chapterEarly/chapterEarly.js" | js.Build $optionsChapterEarly }}

@@ -1,3 +1,7 @@
+/*
+Runs automatically to keep the three.js version in static/examples/version in sync with node_modules/three
+*/
+
 "use strict";
 
 const fs = require("fs");

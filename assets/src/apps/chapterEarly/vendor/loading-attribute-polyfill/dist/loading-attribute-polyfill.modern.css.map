@@ -1,0 +1,1 @@
+{"version":3,"sources":["loading-attribute-polyfill.css"],"names":[],"mappings":"AAAA,mBACC,oBACD","file":"loading-attribute-polyfill.modern.css","sourcesContent":["img[data-lazy-src] {\n\twill-change: contents;\n}\n"]}

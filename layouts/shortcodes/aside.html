@@ -1,3 +1,11 @@
+{{/*
+Asides show up as a colored box. Most things (headings, figures, iframes etc.)
+can be placed inside a box and display well, but make sure to check the final result
+especially on mobile.
+class = notice/success/warning
+will give blue/green/red box
+*/}}
+
 {{ $_hugo_config := `{ "version": 1 }` }}
 {{- $class := .Get 0 | default "notice" -}}
 
