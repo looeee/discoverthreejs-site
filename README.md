@@ -23,7 +23,13 @@ Prerequisites: Node.js, [Hugo](https://github.com/gohugoio/hugo)
 4. Run `npm start`
 5. Go to `http://localhost:1313/` to view the site. You may need to make sure this port is open in your firewall.
 
-_Note: Hugo can also be installed with package managers such as chocolatey on Windows or Snap on Mac - this hasn't been tested with the current build setup._
+_Note: making the `npm start` script cross-platform is tricky since Hugo can either be installed either locally, or globally with a package manager like Chocolatey or Snap. Because of this, you may need to make minor changes to the `npm start` and `npm production` scripts inside package.json, replacing `.\\hugo` as follows:_
+
+* `.\\hugo`: current approach, works for local install on Windows
+* `./hugo`: required for local install in Mac or Linux
+* `hugo`: for global install on any platform
+
+If you have an idea of how to fix this, please share it [here](https://github.com/looeee/discoverthreejs-site/issues/11).
 
 ## Technical Details
 
