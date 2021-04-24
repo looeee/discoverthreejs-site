@@ -52,7 +52,7 @@
 
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="msapplication-TileColor" content="#00aba9" />
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619232246" />
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619233172" />
 
 <script type="application/ld+json">
   {
@@ -94,29 +94,29 @@
   href="https://discoverthreejs.com/book/first-steps/ambient-lighting/"
 />
 
-<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619232246" />
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619233172" />
 
 <link
   rel="apple-touch-icon"
   sizes="180x180"
-  href="/apple-touch-icon.png?v=1619232246"
+  href="/apple-touch-icon.png?v=1619233172"
 />
 
 <link
   rel="icon"
   type="image/png"
   sizes="16x16"
-  href="/favicon-16x16.png?v=1619232246"
+  href="/favicon-16x16.png?v=1619233172"
 />
 <link
   rel="icon"
   type="image/png"
   sizes="32x32"
-  href="/favicon-32x32.png?v=1619232246"
+  href="/favicon-32x32.png?v=1619233172"
 />
 
-<link rel="manifest" href="/site.json?v=1619232246" />
-<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619232246" color="#5bbad5" />
+<link rel="manifest" href="/site.json?v=1619233172" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619233172" color="#5bbad5" />
 <style>
       .loading-page {
         display: none;
@@ -125,12 +125,12 @@
 
     
     
-    <link rel="stylesheet" href="/styles/chapter.css?v=1619232246">
+    <link rel="stylesheet" href="/styles/chapter.css?v=1619233172">
 
     <noscript>
       
       
-      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619232246">
+      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619233172">
     </noscript>
 
   
@@ -262,11 +262,11 @@
 
 
 
-<figure id="scene-836952174" class="inline-scene loading-dots round small right"></figure>
+<figure id="scene-463825179" class="inline-scene loading-dots round small right"></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/illumination-problem.js";
-  init("#scene-836952174");
+  init("#scene-463825179");
 </script>
 <p>At the end of the last chapter, we discovered a rather glaring problem with our lighting setup. Our scene is illuminated using a single <code>DirectionalLight</code>, and although this type of light fills the entire scene with light rays, all the rays shine in a single direction. Faces of the cube in the direct path of the light are brightly illuminated. However, as soon as we rotate the camera to see another direction, we find that <strong>any faces of the cube that point away from the direction of the light rays don&rsquo;t receive any light at all!</strong></p>
 
@@ -468,11 +468,11 @@ function createLights() {
 
 
 
-<figure id="scene-246318957" class="inline-scene loading-dots "></figure>
+<figure id="scene-348921765" class="inline-scene loading-dots "></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/ambient-with-directional.js";
-  init("#scene-246318957");
+  init("#scene-348921765");
 </script>
 <p>However, the lighting on the rear faces of the cube looks rather dull. To make a setup based around <code>AmbientLight</code> and <code>DirectionalLight</code> look good, we would need to add multiple directional lights with varying direction and intensity. That runs into many of the same problems we described above for 
 
@@ -490,11 +490,11 @@ function createLights() {
 
 
 
-<figure id="scene-523784169" class="inline-scene loading-dots "></figure>
+<figure id="scene-267315948" class="inline-scene loading-dots "></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/ambient-basic-comparison.js";
-  init("#scene-523784169");
+  init("#scene-267315948");
 </script>
 <h2 id="the-hemispherelight">The <code>HemisphereLight</code></h2>
 <p>Light from a 
@@ -536,11 +536,11 @@ function createLights() {
 
 
 
-<figure id="scene-268349715" class="inline-scene loading-dots "></figure>
+<figure id="scene-764835912" class="inline-scene loading-dots "></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/hemisphere-only.js";
-  init("#scene-268349715");
+  init("#scene-764835912");
 </script>
 <p>However, since the <code>HemisphereLight</code> light does not shine from any particular direction, <strong>there are no shiny highlights (AKA <em>specular highlights</em>) in this scene</strong>. This is why we usually pair this type of light with at least one direct light. For outdoor scenes, try pairing the <code>HemisphereLight</code> with a single bright <code>DirectionalLight</code> representing the sun. For indoor scenes, you might use a <code>PointLight</code> to represent a lightbulb, or a <code>RectAreaLight</code> to simulate light coming through a bright window or from a strip light.</p>
 <p>Ambient lights, especially the <code>HemisphereLight</code>, give great results for low performance cost, making them suitable for use on low-power devices. However, scenes in the real world have shadows, reflections, and shiny highlights, none of which can be added using ambient lighting alone. This means ambient lighting is best used in a supporting role alongside other techniques such as direct lighting or IBL.</p>

@@ -4,7 +4,8 @@
 .CodeMirror-hscrollbar,
 .CodeMirror-vscrollbar,
 .lntd:last-child > pre,
-pre[class*='language-'] {
+pre[class*="language-"] {
+  will-change: scroll-position;
   scrollbar-width: thin;
   scrollbar-color: #90a4ae #666666;
 

@@ -45,6 +45,15 @@ figure {
     padding-bottom: 0.5rem;
   }
 
+  iframe,
+  img,
+  video,
+  a + img {
+    // use for lazy-loading
+    // TODO: required?
+    will-change: contents;
+  }
+
   &.tiny {
     width: auto;
     max-width: 10rem;

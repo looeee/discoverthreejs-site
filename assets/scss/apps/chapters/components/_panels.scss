@@ -1,6 +1,13 @@
 .panel {
   display: flex;
 
+  // TODO: testing these to see if they improve performance
+  // Seems likely that most browsers will just ignore these
+  // properties here
+  will-change: flex-basis;
+  will-change: width;
+  will-change: height;
+
   &.disabled {
     flex-basis: 0;
     display: none;

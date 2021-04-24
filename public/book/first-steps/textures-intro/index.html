@@ -52,7 +52,7 @@
 
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="msapplication-TileColor" content="#00aba9" />
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619232246" />
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619233172" />
 
 <script type="application/ld+json">
   {
@@ -94,29 +94,29 @@
   href="https://discoverthreejs.com/book/first-steps/textures-intro/"
 />
 
-<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619232246" />
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619233172" />
 
 <link
   rel="apple-touch-icon"
   sizes="180x180"
-  href="/apple-touch-icon.png?v=1619232246"
+  href="/apple-touch-icon.png?v=1619233172"
 />
 
 <link
   rel="icon"
   type="image/png"
   sizes="16x16"
-  href="/favicon-16x16.png?v=1619232246"
+  href="/favicon-16x16.png?v=1619233172"
 />
 <link
   rel="icon"
   type="image/png"
   sizes="32x32"
-  href="/favicon-32x32.png?v=1619232246"
+  href="/favicon-32x32.png?v=1619233172"
 />
 
-<link rel="manifest" href="/site.json?v=1619232246" />
-<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619232246" color="#5bbad5" />
+<link rel="manifest" href="/site.json?v=1619233172" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619233172" color="#5bbad5" />
 <style>
       .loading-page {
         display: none;
@@ -125,12 +125,12 @@
 
     
     
-    <link rel="stylesheet" href="/styles/chapter.css?v=1619232246">
+    <link rel="stylesheet" href="/styles/chapter.css?v=1619233172">
 
     <noscript>
       
       
-      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619232246">
+      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619233172">
     </noscript>
 
   
@@ -284,11 +284,11 @@ const mesh = new Mesh(geometry, material);
 
 
 
-<figure id="scene-271839654" class="inline-scene loading-dots small left"></figure>
+<figure id="scene-513476928" class="inline-scene loading-dots small left"></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/static-cube-no-texture.js";
-  init("#scene-271839654");
+  init("#scene-513476928");
 </script>
 <p>The geometry defines the mesh&rsquo;s shape, and the material defines various surface properties of the mesh, in particular, how it reacts to light. The geometry and the material, along with any light and shadows affecting the mesh, control the appearance of the mesh when we render the scene. Currently, our scene contains a single mesh with a shape defined by a <code>BoxBufferGeometry</code> and a surface defined by a <code>MeshStandardMaterial</code> with the color parameter set to purple. This is illuminated by a single <code>DirectionalLight</code>, and when we render the scene, the result is this simple purple box.</p>
 <figure class="noborder small right">
@@ -451,11 +451,11 @@ const mesh = new Mesh(geometry, material);
 
 
 
-<figure id="scene-129647385" class="inline-scene loading-dots "></figure>
+<figure id="scene-271638549" class="inline-scene loading-dots "></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/texture-map.js";
-  init("#scene-129647385");
+  init("#scene-271638549");
 </script>
 <p>Note that there is no mapping for the point $(0.5,0.5)$, the center of the texture. Only the corners of the texture are mapped, onto the eight corners of the cube, and the rest of the points are &ldquo;guessed&rdquo; from these. By contrast, a complex model like a face must have many more UV coordinates defined to map the parts of the texture representing the nose, ears, eyes, lips, and so on, to the correct points of the geometry.</p>
 <p>We&rsquo;ll come back to UV mapping later in the book, once we&rsquo;ve looked more deeply at how geometry works. Fortunately, we rarely need to set up UV mapping manually since all the three.js geometries, including the <code>BoxBufferGeometry</code>, have UV mapping built-in. We only need to load the texture and apply it to our material and everything will work.</p>
@@ -700,11 +700,11 @@ material.map = texture;
 
 
 
-<figure id="scene-659842731" class="inline-scene loading-dots "></figure>
+<figure id="scene-164793825" class="inline-scene loading-dots "></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/texture-map-duplicate.js";
-  init("#scene-659842731");
+  init("#scene-164793825");
 </script>
 <p>There are six copies of the texture, one for each face of the cube. Take special note of what happens at the corners.</p>
 <p>In the above scene, you can rotate the cube using the mouse or touch. Actually, it&rsquo;s the camera that moves, not the cube, since we have added a camera control plugin to this scene. This plugin allows you to pan, rotate, and zoom/dolly the camera to view the scene from any angle, which is great when we are setting up a scene and want to get a close look at everything. In the next chapter, we&rsquo;ll add this plugin to our app.</p>
