@@ -1,7 +1,7 @@
 node_modules/
 .vscode
 
-resources/_gen/**/*
+resources/
 
 static/examples/vendor/three
 
@@ -9,3 +9,5 @@ hugo.exe
 ./hugo
 
 desktop.ini
+
+public/

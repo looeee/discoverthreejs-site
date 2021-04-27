@@ -39,3 +39,4 @@ The book is built with Hugo, and this repo follows a fairly typical folder struc
 ## Notes
 
 * [Hugo Pipes](https://gohugo.io/hugo-pipes/) are used to build [SCSS](https://gohugo.io/hugo-pipes/scss-sass/) and [JS](https://gohugo.io/hugo-pipes/js/) assets. This means the Hugo extended version must be used.
+* Running `npm start` will take several seconds to bundle all the files so please be patient. However, once the server is running, updates should take just a few milliseconds.

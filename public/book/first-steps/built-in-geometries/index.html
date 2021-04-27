@@ -52,7 +52,7 @@
 
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="msapplication-TileColor" content="#00aba9" />
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619238452" />
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=1619498545" />
 
 <script type="application/ld+json">
   {
@@ -94,29 +94,29 @@
   href="https://discoverthreejs.com/book/first-steps/built-in-geometries/"
 />
 
-<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619238452" />
+<link rel="shortcut icon" type="image/png" href="/favicon.ico?v=1619498545" />
 
 <link
   rel="apple-touch-icon"
   sizes="180x180"
-  href="/apple-touch-icon.png?v=1619238452"
+  href="/apple-touch-icon.png?v=1619498545"
 />
 
 <link
   rel="icon"
   type="image/png"
   sizes="16x16"
-  href="/favicon-16x16.png?v=1619238452"
+  href="/favicon-16x16.png?v=1619498545"
 />
 <link
   rel="icon"
   type="image/png"
   sizes="32x32"
-  href="/favicon-32x32.png?v=1619238452"
+  href="/favicon-32x32.png?v=1619498545"
 />
 
-<link rel="manifest" href="/site.json?v=1619238452" />
-<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619238452" color="#5bbad5" />
+<link rel="manifest" href="/site.json?v=1619498545" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1619498545" color="#5bbad5" />
 <style>
       .loading-page {
         display: none;
@@ -125,12 +125,12 @@
 
     
     
-    <link rel="stylesheet" href="/styles/chapter.css?v=1619238452">
+    <link rel="stylesheet" href="/styles/chapter.css?v=1619498545">
 
     <noscript>
       
       
-      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619238452">
+      <link rel="stylesheet" href="/styles/noscript.min.css?v=1619498545">
     </noscript>
 
   
@@ -302,11 +302,11 @@
 
 
 
-<figure id="scene-392856714" class="inline-scene loading-dots round medium right"></figure>
+<figure id="scene-134759826" class="inline-scene loading-dots round medium right"></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/toy-train.js";
-  init("#scene-392856714");
+  init("#scene-134759826");
 </script>
 <p>In this chapter, we&rsquo;ll use the transformations we learned a few chapters ago (<a href="/book/first-steps/transformations/">translate, rotate, and scale</a>) to manipulate these geometries and build a simple toy train model. At the same time, we&rsquo;ll use this as an opportunity to explore ways of structuring scene components that are more complex than anything we have created so far. We&rsquo;ll also take a deeper look at using transformations, in particular rotation, which is the trickiest of the three transformations to use. We&rsquo;ll use just two of the geometries to build the toy train: a box geometry for the cabin, and a cylinder geometries for the wheels, nose, and chimney.</p>
 
@@ -336,11 +336,11 @@
 
 
 
-<figure id="scene-975643812" class="inline-scene loading-dots "><figcaption>Left: flat shading disabled. Right: flat shading enabled.</figcaption></figure>
+<figure id="scene-124935867" class="inline-scene loading-dots "><figcaption>Left: flat shading disabled. Right: flat shading enabled.</figcaption></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/flatshading.js";
-  init("#scene-975643812");
+  init("#scene-124935867");
 </script>
 <p>You can create a material with flat shading enabled by passing the parameter into the constructor:</p>
 
@@ -458,11 +458,11 @@ material.needsUpdate = true;
 
 
 
-<figure id="scene-547968231" class="inline-scene loading-dots small right"></figure>
+<figure id="scene-619375428" class="inline-scene loading-dots small right"></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/toy-train-rotated.js";
-  init("#scene-547968231");
+  init("#scene-619375428");
 </script>
 <p>Next, take a look at the train. The cabin is made from a box geometry, and everything else is made from cylinders. Even the chimney is a cylinder with a smaller radius at the bottom than at the top. The red nose is oriented along the $X$-axis, while the black wheels are orientated along the $Z$-axis. Finally, the chimney is oriented upwards along the $Y$-axis. When we say a cylinder is oriented <em>along an axis</em>, we mean the axis is parallel to a line drawn through the center of the cylinder.</p>
 <p>Before we proceed to move the pieces into position, remember, <strong>the direction of a positive rotation in three.js is anti-clockwise</strong>. This is probably the opposite to what your intuition expects, and it&rsquo;s also the opposite of CSS rotations, so make a special note of this:</p>
@@ -1472,11 +1472,11 @@ class Train extends Group {
 
 
 
-<figure id="scene-523976481" class="inline-scene loading-dots "></figure>
+<figure id="scene-134765928" class="inline-scene loading-dots "></figure>
 
 <script type="module">
   import init from "/examples/worlds/inline-scenes/first-steps/toy-train-autorotate.js";
-  init("#scene-523976481");
+  init("#scene-134765928");
 </script>
 <h3 id="spin-the-wheels">Spin the Wheels!</h3>
 <p>As a final touch, let&rsquo;s set the wheels spinning. Give the train a <code>.tick</code> method, following the same <a href="/book/first-steps/animation-loop/#the-cubetick-method">pattern we use for all animated objects</a>.</p>
