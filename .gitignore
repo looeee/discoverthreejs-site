@@ -3,7 +3,7 @@ node_modules/
 
 resources/_gen/**/*
 
-static/examples/three
+static/examples/vendor/three
 
 hugo.exe
 ./hugo
