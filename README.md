@@ -6,10 +6,11 @@ Pull requests are welcome, especially for:
 
 * Keeping the book up to date with new three.js releases.
 * Errata in the text or code examples.
-* Any other bugs, browsers, or CSS issues.
-* Search through the markdown folder for "TODO" if you're looking for inspiration ^_^
+* Any other bugs, browser or CSS issues.
 
-For larger contributions, please get in touch on lewy@discoverthreejs.com before making changes.
+Search through the markdown folder for "TODO" if you're looking for inspiration ^_^
+
+For larger contributions, please get in touch before making changes.
 
 ## Developer Guide
 
