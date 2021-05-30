@@ -31,7 +31,7 @@ Since the release of JavaScript version ES6 in 2015 and the switch to a yearly r
 
 The new "official JavaScript modules" are called [ES6 Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), and using them, we can break our app down into discrete components, and put each of these components into a separate file. Doing so leads to a huge improvement in code style and re-usability.
 
-As with our {{< link path="/book/appendix/javascript-reference/" title="previous chapter on JavaScript" >}}, we're won't attempt a complete description of ES6 modules here. We're only cover the bits you need to know to get through this book.
+As with our {{< link path="/book/appendix/javascript-reference/" title="previous chapter on JavaScript" >}}, we're won't attempt a complete description of ES6 modules here. We'll only cover the bits you need to know to get through this book.
 
 **When writing modular JavaScript, each file is a module**. So, we may refer to a module by its file name, for example, _**main.js**_, or simple as the _main_ module.
 
@@ -51,7 +51,7 @@ In other words, each module should do one thing only, and do that well, without 
 
 ES6 modules introduced two new keywords to JavaScript: [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) and [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export). These allow us to write code in one file, `export` it, and then `import` it for use in a different file.
 
-We'll illustrate this here by are exporting a variable called `x` from a file named _**export.js**_.
+We'll illustrate this here by exporting a variable called `x` from a file named _**export.js**_.
 
 {{< code lang="js" linenos="false" caption="export.js" >}}
 const x = 'hello!';
@@ -390,7 +390,7 @@ However, that's strictly old-school JavaScript. No `import` or `export` allowed.
 
 ## Dynamic Imports
 
-We'll finish up this chapter with a brief look at [**dynamic imports**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#Dynamic_Imports). So far in this chapter, we've used **static imports**, which means are evaluated at **load time**. By contrast, **dynamic imports** are evaluated at **run time**.
+We'll finish up this chapter with a brief look at [**dynamic imports**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#Dynamic_Imports). So far in this chapter, we've used **static imports**, meaning they are evaluated at **load time**. By contrast, **dynamic imports** are evaluated at **run time**.
 
 **Static imports use the `import` statement, while dynamic imports use the `import()` function.**
 
