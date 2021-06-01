@@ -2409,7 +2409,7 @@ const name = 'Peter';
 console.log(name); // => Peter
 {{< /code >}}
 
-As you can imagine, this can quickly become confusing, so we avoid using the same name in inner and outer scope. If you text editor or IDE has a linter, it should complain when you do this.
+As you can imagine, this can quickly become confusing, so we avoid using the same name in inner and outer scope. If your text editor or IDE has a linter, it should complain when you do this.
 
 There's a lot more to scope than we have covered here, as you will discover while working with JavaScript. However, this should be enough to get you started with the examples in this book.
 
@@ -2592,7 +2592,7 @@ scene.add(...objects);
 
 ### Combining Objects with Spread
 
-We can do something similar to combine two objects. A common use case is to overwrote default parameters with our custom parameters:
+We can do something similar to combine two objects. A common use case is to overwrite default parameters with our custom parameters:
 
 {{< code lang="js" linenos="false" caption="When combining an object with spread, the right side takes precedence" >}}
 const defaults = {
