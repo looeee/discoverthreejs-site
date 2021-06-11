@@ -36,7 +36,7 @@ membershipLevel: free
 
 # Organizing Your Scenes
 
-In every chapter so far, we've created examples using nothing but our trusty cube. Don't you think it's about time we moved on to some other shapes? Or even (gasp!) more than one object at the same time? Switching to a new geometry is easy since we can use any of the twenty of so geometries that come with the three.js core, as we'll see in the next chapter. However, once we start to add lots of objects to our scenes, we also need to think about how to organize and keep track of them, both within the 3D space of the scene and in our code.
+In every chapter so far, we've created examples using nothing but our trusty cube. Don't you think it's about time we moved on to some other shapes? Or even (gasp!) more than one object at the same time? Switching to a new geometry is easy since we can use any of the twenty or so geometries that come with the three.js core, as we'll see in the next chapter. However, once we start to add lots of objects to our scenes, we also need to think about how to organize and keep track of them, both within the 3D space of the scene and in our code.
 
 In this chapter, we'll introduce a new geometry called `SphereBufferGeometry`, and we'll use this to showcase some features we can use to keep our scenes and code organized: the `Group` class, which is used to organize objects within the {{< link path="/book/first-steps/transformations/#the-scene-graph" title="scene graph" >}}, and the `.clone` method, which you can use to create identical copies of an existing object in a single line of code.
 
