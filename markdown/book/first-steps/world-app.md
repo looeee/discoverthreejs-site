@@ -275,7 +275,7 @@ We want to interact with the World app using _only_ the interface we've designed
 
 **By hiding the implementation behind a simple interface, you make your app foolproof and simple to use. It does what's it's supposed to do, and _nothing else_.** By hiding the implementation, we are enforcing good coding style on the people using our code. The more of the implementation you make accessible, the more likely it will be used for complicated half-baked "fixes" that you have to deal with later.
 
-Replace the word _client_ with _you in six months_ and everything still holds. If you later need to make some quick to the app, you won't be tempted to do them in a hacky way if you can't access anything except for the simple interface. Instead, you'll have to open up the World app and fix things _properly_ (in theory at least).
+Replace the word _client_ with _you in six months_ and everything still holds. If you later need to make some quick changes to the app, you won't be tempted to do them in a hacky way if you can't access anything except for the simple interface. Instead, you'll have to open up the World app and fix things _properly_ (in theory at least).
 
 Of course, there will be times when you do legitimately want to expose the camera and other components to the outside world. However, hiding them should be the default. Guard your secrets well, and only expose them when you have a good reason for doing so.
 
