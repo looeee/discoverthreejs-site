@@ -953,7 +953,7 @@ $$
 $$
 </section>
 
-Unfortunately, this is not nearly as intuitive as the transform and scale examples above. However, once again we use it to write a formula. If we write the rotation around the $X$-axis as $R_{x}$, here's the formula for rotation around the $Y$-axis:
+Unfortunately, this is not nearly as intuitive as the transform and scale examples above. However, once again we use it to write a formula. If we write the rotation around the $X$-axis as $R_{x}$, here's the formula for rotation around the $X$-axis:
 
 <section>
 $$
