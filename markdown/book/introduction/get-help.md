@@ -47,7 +47,7 @@ If you need to file a bug report, please [read these guidelines](https://github.
 
 Twitter is a great place to find professional developers showcasing their three.js projects.
 
-Here's a couple of hashtags to search for: [#threejs](https://twitter.com/search?q=threejs), [#webgl](https://twitter.com/search?q=webgl), [#creativecoding](https://twitter.com/search?q=creativecoding), and here are some accounts to follow: [@threejs_org](https://twitter.com/threejs_org), [@mrdoob](https://twitter.com/mrdoob) (the creator of three.js), [@lewy_blue](https://twitter.com/lewy_blue) (your occasionally humble author).
+Here's a couple of hashtags to search for: [#threejs](https://twitter.com/search?q=threejs), [#webgl](https://twitter.com/search?q=webgl), [#creativecoding](https://twitter.com/search?q=creativecoding), and here are some accounts to follow: [@threejs](https://twitter.com/threejs), [@mrdoob](https://twitter.com/mrdoob) (the creator of three.js), [@lewy_blue](https://twitter.com/lewy_blue) (your occasionally humble author).
 
 ## Slack
 
