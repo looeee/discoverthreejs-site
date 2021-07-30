@@ -178,7 +178,7 @@ Our `scene` defines the world space coordinate system, and the center of the sys
 
 Remember a couple of chapters ago, {{< link path="/book/first-steps/first-scene/#the-scene" title="when we first introduced the `Scene` class" >}}, we called it a "tiny universe"? This tiny universe _is_ world space.
 
-{{< figure src="first-steps/world_space_scene_graph.svg" caption="Object added to the scene live within world space" class="medium right" lightbox="true" >}}
+{{< figure src="first-steps/world_space_scene_graph.svg" caption="Objects added to the scene live within world space" class="medium right" lightbox="true" >}}
 
 When we arrange objects within a scene - whether we are positioning furniture in a room, trees in a forest, or rampaging robots on a battlefield - what we see drawn on our screens is the position of each object in world space.
 
