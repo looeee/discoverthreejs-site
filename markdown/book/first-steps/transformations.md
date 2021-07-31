@@ -33,17 +33,17 @@ This chapter is an introduction to moving objects around in 3D space.
 
 Many things come together to make a beautiful 3D scene, such as lighting, materials, models, textures, camera settings, post-processing, particle effects, interactivity, and so on, but no matter what kind of scene we create, nothing is more important than the arrangement and movement of the pieces from which it is composed.
 
-To create architectural renderings, we must become architects and interior decorators. We must consider the proportions of buildings and the rooms inside them, and skillfully place the furniture and light fittings. In a nature scene, whether a close up of a single flower or a wide, sweeping mountain vista, we need to arrange the trees and rocks, or the leaves and petals, in a natural and convincing manner. Perhaps a hoard of [invading robots](https://threejs.org/examples/#webgl_animation_skinning_morph) will sweep across the landscape, eyes gleaming, arms and feet swinging as they march in unison, rockets blasting into the sky and creating huge explosions wherever they land - in which cases, we must become both a robot designer and a ballistics expert.
+To create architectural renderings, we must become architects and interior decorators. We must consider the proportions of buildings and the rooms inside them, and skillfully place the furniture and light fittings. In a nature scene, whether a close up of a single flower or a wide, sweeping mountain vista, we need to arrange the trees and rocks, or the leaves and petals, in a natural and convincing manner. Perhaps a hoard of [invading robots](https://threejs.org/examples/#webgl_animation_skinning_morph) will sweep across the landscape, eyes gleaming, arms and feet swinging as they march in unison, rockets blasting into the sky and creating huge explosions wherever they land - in which case we must become both robot designers and ballistics experts.
 
 Even [purely abstract scenes](https://threejs.org/examples/#webgl_interactive_buffergeometry) require an understanding of how to move objects around in 3D space.
 
 {{< iframe src="https://threejs.org/examples/webgl_buffergeometry_drawrange.html" height="500" title="An abstract scene from the three.js examples" caption="An abstract scene from the three.js examples<br>created by [Fernando Serrano](https://twitter.com/fernandojsg)" >}}
 
-Finally, we must also become a director and position the camera to artistically frame each shot. When creating a 3D scene, the only limit is your imagination - and the depth of your technical knowledge.
+Finally, we must also become directors and position the camera to artistically frame each shot. When creating a 3D scene, the only limit is your imagination - and the depth of your technical knowledge.
 
-Moving objects around in 3D space is a fundamental skill on your path of learning three.js. We'll break this skill down into two parts: first, we'll explore the coordinate system used to describe 3D space, and then we'll explore the mathematical operations called transformations that are used to move objects around within a coordinate system.
+Moving objects around in 3D space is a fundamental skill on your path of learning three.js. We'll break this skill down into two parts: first, we'll explore the coordinate system used to describe 3D space, and then we'll explore mathematical operations called transformations that are used to move objects around within a coordinate system.
 
-Along the way, we'll encounter several mathematical objects, such as **the scene graph**, a structure used to describe the hierarchy of objects that make up our scenes, **vectors**, which are used to describe positions in 3D space (and many other things), and no less than two ways of describing rotations: **Euler angles** and **Quaternions**. We'll finish up the chapter by introducing you to **transformation matrices**, which are used to store an object's complete transformation state.
+Along the way we'll encounter several mathematical objects, such as **the scene graph**, a structure used to describe the hierarchy of objects that make up our scenes, **vectors**, which are used to describe positions in 3D space (and many other things), and no less than two ways of describing rotations: **Euler angles** and **quaternions**. We'll finish up the chapter by introducing you to **transformation matrices**, which are used to store an object's complete transformation state.
 
 {{% aside success %}}
 
@@ -107,7 +107,7 @@ The `.add` method is also defined on `Object3D` and inherited by the scene class
 
 {{< figure src="first-steps/scene_graph.svg" caption="The scene graph" class="" lightbox="true" >}}
 
-When we add an object to another object, we call one object the parent and the other the child.
+When we add an object to another object, we call one object the **parent** and the other the **child**.
 
 {{< code lang="js" linenos="false" caption="Objects within the scene graph have a parent-child relationship" >}}
 parent.add(child);
@@ -148,7 +148,7 @@ scene.children[0]; // -> mesh
 scene.children[1]; // -> light
 {{< /code >}}
 
-There are more sophisticated ways to access a particular child, for example, the [`Object3d.getObjectByName`](https://threejs.org/docs/#api/en/core/Object3D.getObjectByName) method. However, directly accessing the children array is useful when you don't know the object's name, or it doesn't have a name.
+There are more sophisticated ways to access a particular child, for example, the [`Object3d.getObjectByName`](https://threejs.org/docs/#api/en/core/Object3D.getObjectByName) method. However, directly accessing the `.children` array is useful when you don't know the object's name, or it doesn't have a name.
 
 ## Coordinate Systems: World Space and Local Space
 
@@ -342,7 +342,7 @@ An object can only have one parent, so any previous parent of $B$ (in this case,
 
 The following statement still holds: **$B$ has been translated three units along the positive $X$-axis _within its parent's coordinate system_.** However, $B$'s parent is now the scene rather than $A$, so now we must recalculate the position of $B$ in world space rather than $A$'s local space, which will give us $(3, 0, 0)$.
 
-That's it for coordinate systems. Over the rest of the chapter, we'll take a deeper look at each of the three fundamental transformations: translation, translation, rotation, and scale.
+That's it for coordinate systems. In the rest of the chapter, we'll take a deeper look at each of the three fundamental transformations: translation, rotation, and scale.
 
 ## Our First Transformation: Translation
 
@@ -360,7 +360,7 @@ To fully describe an object's position, we need to store three pieces of informa
 
 We can write these three positions as an ordered list of numbers: $(x, y, z)$.
 
-Zero on all three axes is written $(0,0,0)$, and {{< link path="/book/first-steps/first-scene/#the-scene" title="as we mentioned previously, this point is known as **the origin**" >}}. **Every object starts at the origin within the coordinate system of its parent.**
+Zero on all three axes is written $(0,0,0)$, and {{< link path="/book/first-steps/first-scene/#the-scene" title="as we mentioned previously" >}}, this point is known as **the origin**. **Every object starts at the origin within the coordinate system of its parent.**
 
 A position one unit to the _right_ along the $X$-axis, two units _up_ along the $Y$-axis, and three units _out_ along the $Z$-axis is written $(1,2,3)$. A position two units _left_ along the $X$-axis, four units _down_ along the $Y$-axis, and eight units _in_ along the $Z$-axis is written $(-2,-4,-8)$.
 
@@ -370,7 +370,7 @@ A position one unit to the _right_ along the $X$-axis, two units _up_ along the 
 
 We can translate along the $X$, $Y$, and $Z$ axes one by one, or we can translate along all three axes at once using `position.set`. The final result in both cases will be the same.
 
-{{< code lang="js" linenos="false" caption="Two ways of translating and object" >}}
+{{< code lang="js" linenos="false" caption="Two ways of translating an object" >}}
 // translate one axis at a time
 mesh.position.x = 1;
 mesh.position.y = 2;
@@ -398,7 +398,7 @@ When we perform the translation `mesh.position.x = 2`, we move the object **two 
 
 {{< figure src="first-steps/coordinate_system.svg" caption="Directions within World Space" class="medium left" lightbox="true" >}}
 
-Above we mentioned moving an object left or right on the $X$-axis, up or down on the $Y$-axis, and in or out on the $Z$-axis. These directions are relative to your screen and assume that you have not rotated the camera. In that case, the following directions hold.
+Above we mentioned moving an object left or right on the $X$-axis, up or down on the $Y$-axis, and in or out on the $Z$-axis. These directions are relative to your screen and assume that you have not rotated the camera. In that case, the following directions hold:
 
 {{< clear >}}
 
@@ -422,7 +422,7 @@ But of course, you can rotate the camera in any direction, in which case these d
 
 ## Positions are stored in the `Vector3` Class
 
-three.js has a special class for representing 3D vectors called [`Vector3`](https://threejs.org/docs/#api/math/Vector3). This class has `.x`, `.y` and `.z` properties and methods like `.set` to help us manipulate them. Whenever we create any scene object, such as a `Mesh`, a `Vector3` is created automatically and stored in `.position`:
+Three.js has a special class for representing 3D vectors called [`Vector3`](https://threejs.org/docs/#api/math/Vector3). This class has `.x`, `.y` and `.z` properties and methods like `.set` to help us manipulate them. Whenever we create any scene object, such as a `Mesh`, a `Vector3` is created automatically and stored in `.position`:
 
 {{< code lang="js" linenos="false" caption="An object's translation is stored in a `Vector3`" >}}
 // when we create a mesh ...
