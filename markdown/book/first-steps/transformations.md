@@ -496,7 +496,7 @@ Scaling an object makes it larger or smaller, so long as we scale by the same am
 Like `.position`, `.scale` is stored in a `Vector3`, and the initial scale of an object is $(1,1,1)$:
 
 {{< code lang="js" linenos="false" caption="An object's scale is stored in a `Vector3`" >}}
-// when create a mesh...
+// when we create a mesh...
 const mesh = new Mesh();
 
 // ... internally, three.js creates a Vector3 for us:
@@ -512,19 +512,19 @@ Since `.scale` and `.position` are both stored in a `Vector3`, scaling an object
 When we scale all three axes by the same amount, the object will expand or shrink, but maintain its proportions. This is called **uniform scaling**. A scale of $(1,1,1)$, meaning 100% scale on the $X$-axis, $Y$-axis, and $Z$-axis, is the default value:
 
 {{< code lang="js" linenos="false" caption="Reset the object to its initial scale" >}}
-mesh.scale.set(1,1,1);
+mesh.scale.set(1, 1, 1);
 {{< /code >}}
 
 A scale of $(2,2,2)$ means 200% scale on the $X$-axis, $Y$-axis, and $Z$-axis. The object will grow to twice its initial size:
 
 {{< code lang="js" linenos="false" caption="Double the object's size" >}}
-mesh.scale.set(2,2,2);
+mesh.scale.set(2, 2, 2);
 {{< /code >}}
 
 A scale of $(0.5,0.5,0.5)$ means 50% scale on the $X$-axis, $Y$-axis, and $Z$-axis. The object will shrink to half its initial size:
 
 {{< code lang="js" linenos="false" caption="Shrink the object to half size" >}}
-mesh.scale.set(0.5,0.5,0.5);
+mesh.scale.set(0.5, 0.5, 0.5);
 {{< /code >}}
 
 {{% note %}}
@@ -539,7 +539,7 @@ If we scale individual axes the object will lose its proportions and become squa
 // double the initial width
 mesh.scale.x = 2;
 
-// half the initial width
+// halve the initial width
 mesh.scale.x = 0.5;
 {{< /code >}}
 
@@ -648,17 +648,17 @@ However, these three rotations _may_ not give the same result:
 2. Rotate around $Y$-axis, then around the $X$-axis, then around the $Z$-axis.
 3. Rotate around $Z$-axis, then around the $X$-axis, then around the $Y$-axis.
 
-As a result, the humble `Vector3` class that we used for both `.position` and `.scale` is not sufficient for storing rotations data. Instead, three.js has not one, but _two_ mathematical classes for storing rotation data. We'll look at the simpler of these here: [Euler Angles](https://en.wikipedia.org/wiki/Euler_angles). Fortunately, it's similar to the `Vector3` class.
+As a result, the humble `Vector3` class that we used for both `.position` and `.scale` is not sufficient for storing rotation data. Instead, three.js has not one, but _two_ mathematical classes for storing rotation data. We'll look at the simpler of these here: [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). Fortunately, it's similar to the `Vector3` class.
 
 ### Representing Rotations: the `Euler` class
 
-Euler Angles are represented in three.js using the [`Euler`](https://threejs.org/docs/#api/en/math/Euler) class. As with `.position` and `.scale`, an `Euler` instance is automatically created and given default values when we create a new scene object.
+Euler angles are represented in three.js using the [`Euler`](https://threejs.org/docs/#api/en/math/Euler) class. As with `.position` and `.scale`, an `Euler` instance is automatically created and given default values when we create a new scene object.
 
 {{< code lang="js" linenos="false" caption="An object's rotation is stored as an `Euler` angle" >}}
 // when we create a mesh...
 const mesh = new Mesh();
 
-// ... internally, three.js creates a Euler for us:
+// ... internally, three.js creates an Euler for us:
 mesh.rotation = new Euler();
 {{< /code >}}
 
@@ -674,7 +674,7 @@ mesh.rotation.set(2, 2, 2);
 
 Once again, we can create `Euler` instances ourselves:
 
-{{< code lang="js" linenos="false" caption="Creating a `Euler` instance" >}}
+{{< code lang="js" linenos="false" caption="Creating an `Euler` instance" >}}
 import { Euler } from 'three';
 
 const euler = new Euler(1, 2, 3);
@@ -737,14 +737,14 @@ mesh.rotation = new Euler();
 mesh.quaternion = new Quaternion();
 {{< /code >}}
 
-We can use **Quaternions** and **Euler angles** interchangeably. When we change `mesh.rotation`, the `mesh.quaternion` property is automatically updated, and vice-versa. This means we can use Euler angles when it suits us, and switch to Quaternions when it suits us.
+We can use **quaternions** and **Euler angles** interchangeably. When we change `mesh.rotation`, the `mesh.quaternion` property is automatically updated, and vice-versa. This means we can use Euler angles when it suits us, and switch to quaternions when it suits us.
 
 Euler angles have a couple of shortcomings that become apparent when creating animations or doing math involving rotations. In particular, we cannot add two Euler angles together (more famously, they also suffer from something called gimbal lock). Quaternions don't have these shortcomings. On the other hand, they are harder to use than Euler angles, so for now we'll stick with the simpler `Euler` class.
 
 For now, make a note of these two ways to rotate an object:
 
 1. **Using Euler angles, represented using the `Euler` class and stored in the `.rotation` property.**
-2. **Using Quaternions, represented using the `Quaternion` class and stored in the `.quaternion` property.**
+2. **Using quaternions, represented using the `Quaternion` class and stored in the `.quaternion` property.**
 
 ### Important Things to Know About Rotating Objects
 
@@ -755,13 +755,13 @@ TODO-LOW: if non-targeted DirectionalLight is ever added revisit
 {{% /note %}}
 
 1. Not all objects can be rotated. For example, {{< link path="/book/first-steps/physically-based-rendering/#introducing-the-directionallight" title="the `DirectionalLight` we introduced in the last chapter" >}} cannot be rotated. The light shines _from_ a position, _towards_ a target, and the angle of the light is calculated from the target's position, not the `.rotation` property.
-2. Angles in three.js are specified using radians, not degrees. The only exception is the `PerspectiveCamera.fov` property which uses degrees to match real-world photography conventions.
+2. Angles in three.js are specified using radians, not degrees. The only exception is the [`PerspectiveCamera.fov`](https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.fov) property which uses degrees to match real-world photography conventions.
 
 ## Transformation Matrices
 
 We've covered a lot of ground in this chapter. We've introduced Cartesian coordinate systems, world space and local space, the scene graph, translations, rotations, and scaling and the associated `.position`, `.rotation`, and `.scale` properties, and three mathematical classes used for storing transformations: `Vector3`, `Euler`, and `Quaternion`. Surely we couldn't cram anything else in?
 
-Well, just one more thing. We can't leave a chapter on transformations without discussing [**transformation matrices**](https://en.wikipedia.org/wiki/Transformation_matrix). While vectors and Euler angles are (relatively) easy for us humans to work with, they are not efficient for computers to process. As we chase the elusive goal of sixty frames per second, we must walk a fine line between ease of use and efficiency. To this end, the translation, rotation, and scale of an object are combined into a single mathematical object called a matrix. Here's what the matrix for an object that has not been transformed looks like.
+Well, just one more thing. We can't end a chapter on transformations without discussing [**transformation matrices**](https://en.wikipedia.org/wiki/Transformation_matrix). While vectors and Euler angles are (relatively) easy for us humans to work with, they are not efficient for computers to process. As we chase the elusive goal of sixty frames per second, we must walk a fine line between ease of use and efficiency. To this end, the translation, rotation, and scale of an object are combined into a single mathematical object called a matrix. Here's what the matrix for an object that has not been transformed looks like.
 
 <section>
 $$
@@ -1026,7 +1026,7 @@ meshA.add(meshB);
 // move A relative to its parent the scene
 meshA.position.x = 5;
 
-// move B relative to it's parent A
+// move B relative to its parent A
 meshB.position.x = 3;
 
 meshA.updateMatrix();
@@ -1100,7 +1100,7 @@ This time, the local and world matrices are different since $B$ is not a direct 
 
 ### Working with Matrices Directly
 
-Hopefully, this brief introduction has taken away some of the mystery of how matrices work. They are not as complicated as they look, rather, they are just a compact way of storing lots of numbers. However, keeping all those numbers in mind takes some practice, and doing calculations involving matrices by hand is tedious. Fortunately, three.js comes with many functions that allow us to work with matrices with ease. There are obvious functions like add, multiply, subtract, as well as functions to set and get the translation, rotation, or scale components of a matrix, and many more besides.
+Hopefully, this brief introduction has taken away some of the mystery of how matrices work. They are not as complicated as they look, rather, they are just a compact way of storing lots of numbers. However, keeping all those numbers in mind takes some practice, and doing calculations involving matrices by hand is tedious. Fortunately, three.js comes with many functions that allow us to work with matrices with ease. There are obvious functions like add, multiply, subtract, as well as functions to set and get the translation, rotation, or scale components of a matrix, and many others.
 
 Working with the matrix directly, rather than setting `.position`, `.rotation`, and `.scale` separately is almost never _required_, but it does allow for powerful manipulations of an object's transform. Think of it like a superpower that you'll unlock once you level up your three.js skills enough.
 
