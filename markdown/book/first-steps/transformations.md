@@ -43,7 +43,7 @@ Finally, we must also become directors and position the camera to artistically f
 
 Moving objects around in 3D space is a fundamental skill on your path of learning three.js. We'll break this skill down into two parts: first, we'll explore the coordinate system used to describe 3D space, and then we'll explore mathematical operations called transformations that are used to move objects around within a coordinate system.
 
-Along the way we'll encounter several mathematical objects, such as **the scene graph**, a structure used to describe the hierarchy of objects that make up our scenes, **vectors**, which are used to describe positions in 3D space (and many other things), and no less than two ways of describing rotations: **Euler angles** and **quaternions**. We'll finish up the chapter by introducing you to **transformation matrices**, which are used to store an object's complete transformation state.
+Along the way, we'll encounter several mathematical objects, such as **the scene graph**, a structure used to describe the hierarchy of objects that make up our scenes, **vectors**, which are used to describe positions in 3D space (and many other things), and no less than two ways of describing rotations: **Euler angles** and **quaternions**. We'll finish up the chapter by introducing you to **transformation matrices**, which are used to store an object's complete transformation state.
 
 {{% aside success %}}
 
