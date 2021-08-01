@@ -33,17 +33,17 @@ This chapter is an introduction to moving objects around in 3D space.
 
 Many things come together to make a beautiful 3D scene, such as lighting, materials, models, textures, camera settings, post-processing, particle effects, interactivity, and so on, but no matter what kind of scene we create, nothing is more important than the arrangement and movement of the pieces from which it is composed.
 
-To create architectural renderings, we must become architects and interior decorators. We must consider the proportions of buildings and the rooms inside them, and skillfully place the furniture and light fittings. In a nature scene, whether a close up of a single flower or a wide, sweeping mountain vista, we need to arrange the trees and rocks, or the leaves and petals, in a natural and convincing manner. Perhaps a hoard of [invading robots](https://threejs.org/examples/#webgl_animation_skinning_morph) will sweep across the landscape, eyes gleaming, arms and feet swinging as they march in unison, rockets blasting into the sky and creating huge explosions wherever they land - in which cases, we must become both a robot designer and a ballistics expert.
+To create architectural renderings, we must become architects and interior decorators. We must consider the proportions of buildings and the rooms inside them, and skillfully place the furniture and light fittings. In a nature scene, whether a close up of a single flower or a wide, sweeping mountain vista, we need to arrange the trees and rocks, or the leaves and petals, in a natural and convincing manner. Perhaps a hoard of [invading robots](https://threejs.org/examples/#webgl_animation_skinning_morph) will sweep across the landscape, eyes gleaming, arms and feet swinging as they march in unison, rockets blasting into the sky and creating huge explosions wherever they land - in which case we must become both robot designers and ballistics experts.
 
 Even [purely abstract scenes](https://threejs.org/examples/#webgl_interactive_buffergeometry) require an understanding of how to move objects around in 3D space.
 
 {{< iframe src="https://threejs.org/examples/webgl_buffergeometry_drawrange.html" height="500" title="An abstract scene from the three.js examples" caption="An abstract scene from the three.js examples<br>created by [Fernando Serrano](https://twitter.com/fernandojsg)" >}}
 
-Finally, we must also become a director and position the camera to artistically frame each shot. When creating a 3D scene, the only limit is your imagination - and the depth of your technical knowledge.
+Finally, we must also become directors and position the camera to artistically frame each shot. When creating a 3D scene, the only limit is your imagination - and the depth of your technical knowledge.
 
-Moving objects around in 3D space is a fundamental skill on your path of learning three.js. We'll break this skill down into two parts: first, we'll explore the coordinate system used to describe 3D space, and then we'll explore the mathematical operations called transformations that are used to move objects around within a coordinate system.
+Moving objects around in 3D space is a fundamental skill on your path of learning three.js. We'll break this skill down into two parts: first, we'll explore the coordinate system used to describe 3D space, and then we'll explore mathematical operations called transformations that are used to move objects around within a coordinate system.
 
-Along the way, we'll encounter several mathematical objects, such as **the scene graph**, a structure used to describe the hierarchy of objects that make up our scenes, **vectors**, which are used to describe positions in 3D space (and many other things), and no less than two ways of describing rotations: **Euler angles** and **Quaternions**. We'll finish up the chapter by introducing you to **transformation matrices**, which are used to store an object's complete transformation state.
+Along the way, we'll encounter several mathematical objects, such as **the scene graph**, a structure used to describe the hierarchy of objects that make up our scenes, **vectors**, which are used to describe positions in 3D space (and many other things), and no less than two ways of describing rotations: **Euler angles** and **quaternions**. We'll finish up the chapter by introducing you to **transformation matrices**, which are used to store an object's complete transformation state.
 
 {{% aside success %}}
 
@@ -107,7 +107,7 @@ The `.add` method is also defined on `Object3D` and inherited by the scene class
 
 {{< figure src="first-steps/scene_graph.svg" caption="The scene graph" class="" lightbox="true" >}}
 
-When we add an object to another object, we call one object the parent and the other the child.
+When we add an object to another object, we call one object the **parent** and the other the **child**.
 
 {{< code lang="js" linenos="false" caption="Objects within the scene graph have a parent-child relationship" >}}
 parent.add(child);
@@ -148,7 +148,7 @@ scene.children[0]; // -> mesh
 scene.children[1]; // -> light
 {{< /code >}}
 
-There are more sophisticated ways to access a particular child, for example, the [`Object3d.getObjectByName`](https://threejs.org/docs/#api/en/core/Object3D.getObjectByName) method. However, directly accessing the children array is useful when you don't know the object's name, or it doesn't have a name.
+There are more sophisticated ways to access a particular child, for example, the [`Object3d.getObjectByName`](https://threejs.org/docs/#api/en/core/Object3D.getObjectByName) method. However, directly accessing the `.children` array is useful when you don't know the object's name, or it doesn't have a name.
 
 ## Coordinate Systems: World Space and Local Space
 
@@ -178,7 +178,7 @@ Our `scene` defines the world space coordinate system, and the center of the sys
 
 Remember a couple of chapters ago, {{< link path="/book/first-steps/first-scene/#the-scene" title="when we first introduced the `Scene` class" >}}, we called it a "tiny universe"? This tiny universe _is_ world space.
 
-{{< figure src="first-steps/world_space_scene_graph.svg" caption="Object added to the scene live within world space" class="medium right" lightbox="true" >}}
+{{< figure src="first-steps/world_space_scene_graph.svg" caption="Objects added to the scene live within world space" class="medium right" lightbox="true" >}}
 
 When we arrange objects within a scene - whether we are positioning furniture in a room, trees in a forest, or rampaging robots on a battlefield - what we see drawn on our screens is the position of each object in world space.
 
@@ -342,7 +342,7 @@ An object can only have one parent, so any previous parent of $B$ (in this case,
 
 The following statement still holds: **$B$ has been translated three units along the positive $X$-axis _within its parent's coordinate system_.** However, $B$'s parent is now the scene rather than $A$, so now we must recalculate the position of $B$ in world space rather than $A$'s local space, which will give us $(3, 0, 0)$.
 
-That's it for coordinate systems. Over the rest of the chapter, we'll take a deeper look at each of the three fundamental transformations: translation, translation, rotation, and scale.
+That's it for coordinate systems. In the rest of the chapter, we'll take a deeper look at each of the three fundamental transformations: translation, rotation, and scale.
 
 ## Our First Transformation: Translation
 
@@ -360,7 +360,7 @@ To fully describe an object's position, we need to store three pieces of informa
 
 We can write these three positions as an ordered list of numbers: $(x, y, z)$.
 
-Zero on all three axes is written $(0,0,0)$, and {{< link path="/book/first-steps/first-scene/#the-scene" title="as we mentioned previously, this point is known as **the origin**" >}}. **Every object starts at the origin within the coordinate system of its parent.**
+Zero on all three axes is written $(0,0,0)$, and {{< link path="/book/first-steps/first-scene/#the-scene" title="as we mentioned previously" >}}, this point is known as **the origin**. **Every object starts at the origin within the coordinate system of its parent.**
 
 A position one unit to the _right_ along the $X$-axis, two units _up_ along the $Y$-axis, and three units _out_ along the $Z$-axis is written $(1,2,3)$. A position two units _left_ along the $X$-axis, four units _down_ along the $Y$-axis, and eight units _in_ along the $Z$-axis is written $(-2,-4,-8)$.
 
@@ -370,7 +370,7 @@ A position one unit to the _right_ along the $X$-axis, two units _up_ along the 
 
 We can translate along the $X$, $Y$, and $Z$ axes one by one, or we can translate along all three axes at once using `position.set`. The final result in both cases will be the same.
 
-{{< code lang="js" linenos="false" caption="Two ways of translating and object" >}}
+{{< code lang="js" linenos="false" caption="Two ways of translating an object" >}}
 // translate one axis at a time
 mesh.position.x = 1;
 mesh.position.y = 2;
@@ -398,7 +398,7 @@ When we perform the translation `mesh.position.x = 2`, we move the object **two 
 
 {{< figure src="first-steps/coordinate_system.svg" caption="Directions within World Space" class="medium left" lightbox="true" >}}
 
-Above we mentioned moving an object left or right on the $X$-axis, up or down on the $Y$-axis, and in or out on the $Z$-axis. These directions are relative to your screen and assume that you have not rotated the camera. In that case, the following directions hold.
+Above we mentioned moving an object left or right on the $X$-axis, up or down on the $Y$-axis, and in or out on the $Z$-axis. These directions are relative to your screen and assume that you have not rotated the camera. In that case, the following directions hold:
 
 {{< clear >}}
 
@@ -422,7 +422,7 @@ But of course, you can rotate the camera in any direction, in which case these d
 
 ## Positions are stored in the `Vector3` Class
 
-three.js has a special class for representing 3D vectors called [`Vector3`](https://threejs.org/docs/#api/math/Vector3). This class has `.x`, `.y` and `.z` properties and methods like `.set` to help us manipulate them. Whenever we create any scene object, such as a `Mesh`, a `Vector3` is created automatically and stored in `.position`:
+Three.js has a special class for representing 3D vectors called [`Vector3`](https://threejs.org/docs/#api/math/Vector3). This class has `.x`, `.y` and `.z` properties and methods like `.set` to help us manipulate them. Whenever we create any scene object, such as a `Mesh`, a `Vector3` is created automatically and stored in `.position`:
 
 {{< code lang="js" linenos="false" caption="An object's translation is stored in a `Vector3`" >}}
 // when we create a mesh ...
@@ -496,7 +496,7 @@ Scaling an object makes it larger or smaller, so long as we scale by the same am
 Like `.position`, `.scale` is stored in a `Vector3`, and the initial scale of an object is $(1,1,1)$:
 
 {{< code lang="js" linenos="false" caption="An object's scale is stored in a `Vector3`" >}}
-// when create a mesh...
+// when we create a mesh...
 const mesh = new Mesh();
 
 // ... internally, three.js creates a Vector3 for us:
@@ -512,19 +512,19 @@ Since `.scale` and `.position` are both stored in a `Vector3`, scaling an object
 When we scale all three axes by the same amount, the object will expand or shrink, but maintain its proportions. This is called **uniform scaling**. A scale of $(1,1,1)$, meaning 100% scale on the $X$-axis, $Y$-axis, and $Z$-axis, is the default value:
 
 {{< code lang="js" linenos="false" caption="Reset the object to its initial scale" >}}
-mesh.scale.set(1,1,1);
+mesh.scale.set(1, 1, 1);
 {{< /code >}}
 
 A scale of $(2,2,2)$ means 200% scale on the $X$-axis, $Y$-axis, and $Z$-axis. The object will grow to twice its initial size:
 
 {{< code lang="js" linenos="false" caption="Double the object's size" >}}
-mesh.scale.set(2,2,2);
+mesh.scale.set(2, 2, 2);
 {{< /code >}}
 
 A scale of $(0.5,0.5,0.5)$ means 50% scale on the $X$-axis, $Y$-axis, and $Z$-axis. The object will shrink to half its initial size:
 
 {{< code lang="js" linenos="false" caption="Shrink the object to half size" >}}
-mesh.scale.set(0.5,0.5,0.5);
+mesh.scale.set(0.5, 0.5, 0.5);
 {{< /code >}}
 
 {{% note %}}
@@ -539,7 +539,7 @@ If we scale individual axes the object will lose its proportions and become squa
 // double the initial width
 mesh.scale.x = 2;
 
-// half the initial width
+// halve the initial width
 mesh.scale.x = 0.5;
 {{< /code >}}
 
@@ -648,17 +648,17 @@ However, these three rotations _may_ not give the same result:
 2. Rotate around $Y$-axis, then around the $X$-axis, then around the $Z$-axis.
 3. Rotate around $Z$-axis, then around the $X$-axis, then around the $Y$-axis.
 
-As a result, the humble `Vector3` class that we used for both `.position` and `.scale` is not sufficient for storing rotations data. Instead, three.js has not one, but _two_ mathematical classes for storing rotation data. We'll look at the simpler of these here: [Euler Angles](https://en.wikipedia.org/wiki/Euler_angles). Fortunately, it's similar to the `Vector3` class.
+As a result, the humble `Vector3` class that we used for both `.position` and `.scale` is not sufficient for storing rotation data. Instead, three.js has not one, but _two_ mathematical classes for storing rotation data. We'll look at the simpler of these here: [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). Fortunately, it's similar to the `Vector3` class.
 
 ### Representing Rotations: the `Euler` class
 
-Euler Angles are represented in three.js using the [`Euler`](https://threejs.org/docs/#api/en/math/Euler) class. As with `.position` and `.scale`, an `Euler` instance is automatically created and given default values when we create a new scene object.
+Euler angles are represented in three.js using the [`Euler`](https://threejs.org/docs/#api/en/math/Euler) class. As with `.position` and `.scale`, an `Euler` instance is automatically created and given default values when we create a new scene object.
 
 {{< code lang="js" linenos="false" caption="An object's rotation is stored as an `Euler` angle" >}}
 // when we create a mesh...
 const mesh = new Mesh();
 
-// ... internally, three.js creates a Euler for us:
+// ... internally, three.js creates an Euler for us:
 mesh.rotation = new Euler();
 {{< /code >}}
 
@@ -674,7 +674,7 @@ mesh.rotation.set(2, 2, 2);
 
 Once again, we can create `Euler` instances ourselves:
 
-{{< code lang="js" linenos="false" caption="Creating a `Euler` instance" >}}
+{{< code lang="js" linenos="false" caption="Creating an `Euler` instance" >}}
 import { Euler } from 'three';
 
 const euler = new Euler(1, 2, 3);
@@ -737,14 +737,14 @@ mesh.rotation = new Euler();
 mesh.quaternion = new Quaternion();
 {{< /code >}}
 
-We can use **Quaternions** and **Euler angles** interchangeably. When we change `mesh.rotation`, the `mesh.quaternion` property is automatically updated, and vice-versa. This means we can use Euler angles when it suits us, and switch to Quaternions when it suits us.
+We can use **quaternions** and **Euler angles** interchangeably. When we change `mesh.rotation`, the `mesh.quaternion` property is automatically updated, and vice-versa. This means we can use Euler angles when it suits us, and switch to quaternions when it suits us.
 
 Euler angles have a couple of shortcomings that become apparent when creating animations or doing math involving rotations. In particular, we cannot add two Euler angles together (more famously, they also suffer from something called gimbal lock). Quaternions don't have these shortcomings. On the other hand, they are harder to use than Euler angles, so for now we'll stick with the simpler `Euler` class.
 
 For now, make a note of these two ways to rotate an object:
 
 1. **Using Euler angles, represented using the `Euler` class and stored in the `.rotation` property.**
-2. **Using Quaternions, represented using the `Quaternion` class and stored in the `.quaternion` property.**
+2. **Using quaternions, represented using the `Quaternion` class and stored in the `.quaternion` property.**
 
 ### Important Things to Know About Rotating Objects
 
@@ -755,13 +755,13 @@ TODO-LOW: if non-targeted DirectionalLight is ever added revisit
 {{% /note %}}
 
 1. Not all objects can be rotated. For example, {{< link path="/book/first-steps/physically-based-rendering/#introducing-the-directionallight" title="the `DirectionalLight` we introduced in the last chapter" >}} cannot be rotated. The light shines _from_ a position, _towards_ a target, and the angle of the light is calculated from the target's position, not the `.rotation` property.
-2. Angles in three.js are specified using radians, not degrees. The only exception is the `PerspectiveCamera.fov` property which uses degrees to match real-world photography conventions.
+2. Angles in three.js are specified using radians, not degrees. The only exception is the [`PerspectiveCamera.fov`](https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.fov) property which uses degrees to match real-world photography conventions.
 
 ## Transformation Matrices
 
 We've covered a lot of ground in this chapter. We've introduced Cartesian coordinate systems, world space and local space, the scene graph, translations, rotations, and scaling and the associated `.position`, `.rotation`, and `.scale` properties, and three mathematical classes used for storing transformations: `Vector3`, `Euler`, and `Quaternion`. Surely we couldn't cram anything else in?
 
-Well, just one more thing. We can't leave a chapter on transformations without discussing [**transformation matrices**](https://en.wikipedia.org/wiki/Transformation_matrix). While vectors and Euler angles are (relatively) easy for us humans to work with, they are not efficient for computers to process. As we chase the elusive goal of sixty frames per second, we must walk a fine line between ease of use and efficiency. To this end, the translation, rotation, and scale of an object are combined into a single mathematical object called a matrix. Here's what the matrix for an object that has not been transformed looks like.
+Well, just one more thing. We can't end a chapter on transformations without discussing [**transformation matrices**](https://en.wikipedia.org/wiki/Transformation_matrix). While vectors and Euler angles are (relatively) easy for us humans to work with, they are not efficient for computers to process. As we chase the elusive goal of sixty frames per second, we must walk a fine line between ease of use and efficiency. To this end, the translation, rotation, and scale of an object are combined into a single mathematical object called a matrix. Here's what the matrix for an object that has not been transformed looks like.
 
 <section>
 $$
@@ -1026,7 +1026,7 @@ meshA.add(meshB);
 // move A relative to its parent the scene
 meshA.position.x = 5;
 
-// move B relative to it's parent A
+// move B relative to its parent A
 meshB.position.x = 3;
 
 meshA.updateMatrix();
@@ -1100,7 +1100,7 @@ This time, the local and world matrices are different since $B$ is not a direct 
 
 ### Working with Matrices Directly
 
-Hopefully, this brief introduction has taken away some of the mystery of how matrices work. They are not as complicated as they look, rather, they are just a compact way of storing lots of numbers. However, keeping all those numbers in mind takes some practice, and doing calculations involving matrices by hand is tedious. Fortunately, three.js comes with many functions that allow us to work with matrices with ease. There are obvious functions like add, multiply, subtract, as well as functions to set and get the translation, rotation, or scale components of a matrix, and many more besides.
+Hopefully, this brief introduction has taken away some of the mystery of how matrices work. They are not as complicated as they look, rather, they are just a compact way of storing lots of numbers. However, keeping all those numbers in mind takes some practice, and doing calculations involving matrices by hand is tedious. Fortunately, three.js comes with many functions that allow us to work with matrices with ease. There are obvious functions like add, multiply, subtract, as well as functions to set and get the translation, rotation, or scale components of a matrix, and many others.
 
 Working with the matrix directly, rather than setting `.position`, `.rotation`, and `.scale` separately is almost never _required_, but it does allow for powerful manipulations of an object's transform. Think of it like a superpower that you'll unlock once you level up your three.js skills enough.
 
