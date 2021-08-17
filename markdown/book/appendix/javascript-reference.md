@@ -989,7 +989,7 @@ a %= 5; // a = a % 5 (modulo)
 
 ## Logical Operators: AND, OR, NOT
 
-There are three [logical operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators) in JavaScript: AND, OR and NOT, which are defined using `&&`, `||` and `!`, respectively. AND (`$$`) and OR (`||`) are binary operators while NOT (`!`) is a unary operator.
+There are three [logical operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators) in JavaScript: AND, OR and NOT, which are defined using `&&`, `||` and `!`, respectively. AND (`&&`) and OR (`||`) are binary operators while NOT (`!`) is a unary operator.
 
 We will often use these to compare Boolean values (`true` and `false`):
 
