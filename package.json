@@ -21,7 +21,7 @@
     "loading-attribute-polyfill": "^2.0.0",
     "optiscroll": "^3.2.1",
     "select": "^1.1.2",
-    "three": "^0.127.0"
+    "three": "^0.132.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
