@@ -112,20 +112,20 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 {{< /code >}}
 
-If you prefer to {{< link path="/book/introduction/about-the-book/#working-on-your-own-machine" title="work locally" >}}, you can download the files from the editor as a zip archive using the {{< icon "solid/download" >}} button. Within the zip file, any three.js imports will be converted to CDN imports from unpkg.com:
+If you prefer to {{< link path="/book/introduction/about-the-book/#working-on-your-own-machine" title="work locally" >}}, you can download the files from the editor as a zip archive using the {{< icon "solid/download" >}} button. Within the zip file, any three.js imports will be converted to CDN imports from skypack.dev:
 
 {{< code lang="js" linenos="false" caption="_**src/main.js**_: importing three.js files, CDN style" >}}
-import {
-Camera,
-Group,
-Scene,
-} from 'https://unpkg.com/three@0.132.2/build/three.module.js?module';
 
-import { OrbitControls } from 'https://unpkg.com/three@0.132.2/examples/jsm/controls/OrbitControls.js?module';
-import { GLTFLoader } from 'https://unpkg.com/three@0.132.2/examples/jsm/loaders/GLTFLoader.js?module';
+```js
+import { Camera, Group, Scene } from "https://cdn.skypack.dev/three@0.132.2";
+
+import { OrbitControls } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js?module";
+import { GLTFLoader } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/loaders/GLTFLoader.js?module";
+```
+
 {{< /code >}}
 
-Refer back to {{< link path="/book/introduction/get-threejs/" title="" >}} for more details (and note the `?module` parameter which is specific to unpkg.com and tell it to send over the files as modules).
+Refer back to {{< link path="/book/introduction/get-threejs/" title="" >}} for more details.
 
 ## {{< icon "solid/folder-open" >}} The _**assets**_ Folder
 

@@ -74,10 +74,10 @@ In the editor, we've placed the _**OrbitControls.js**_ file in the equivalent di
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 {{< /code >}}
 
-Once again, if you’re working locally and not using a bundler, you’ll have to change the import path. For example, you can import from unpkg.com instead (as always when using unpkg.com make sure to include `?module` at the end of the URL).
+Once again, if you’re working locally and not using a bundler, you’ll have to change the import path. For example, you can import from skypack.dev instead.
 
 {{< code lang="js" linenos="false" caption="Importing the `OrbitControls` extension using relative imports" >}}
-import { OrbitControls } from 'https://unpkg.com/three@0.132.2/examples/jsm/controls/OrbitControls.js?module';
+import { OrbitControls } from 'https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js?module';
 {{< /code >}}
 
 > Important note: Make sure you import plugins from _**examples/jsm/**_ and not legacy plugins from _**examples/js/**_!

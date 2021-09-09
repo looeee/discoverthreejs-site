@@ -197,7 +197,7 @@ We can import everything we need from the three.js core using a single `import` 
 
 {{< code from="1" to="9" file="worlds/first-steps/first-scene/src/main.final.js" caption="_**main.js**_: importing the required three.js classes, NPM style" >}}{{< /code >}}
 
-If you're working locally (and not using a bundler like Webpack), you'll have to change the import path. For example, you can import from unpkg.com instead.
+If you're working locally (and not using a bundler like Webpack), you'll have to change the import path. For example, you can import from skypack.dev instead.
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="_**main.js**_:  importing the required three.js classes from a CDN" >}}
 
@@ -210,7 +210,7 @@ import {
   PerspectiveCamera,
   Scene,
   WebGLRenderer,
-} from "https://unpkg.com/three@0.132.2/build/three.module.js";
+} from "https://cdn.skypack.dev/three@0.132.2";
 ```
 
 {{< /code >}}

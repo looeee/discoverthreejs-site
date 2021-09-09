@@ -148,17 +148,15 @@ console.log(x); // -> hello!
 
 You can also import from other websites like a CDN by specifying the full web address of the module.
 
-We use this style in {{< link path="book/introduction/get-threejs/#approach-2-link-to-the-files-from-a-cdn" title="" >}} when we show you how to import three.js from a CDN (content delivery network).
+We use this style in {{< link path="book/introduction/get-threejs/#approach-2-link-to-the-files-from-a-cdn" title="" >}} where we show you how to import three.js from a CDN (content delivery network).
 
 {{< code lang="js" linenos="false" caption="Importing modules from another website" >}}
 
 ```js
-import { Camera } from "https://unpkg.com/three@0.132.2/build/three.module.js?module";
+import { Camera } from "https://cdn.skypack.dev/three@0.132.2";
 ```
 
 {{< /code >}}
-
-Note the `?module` at the end - this is specific to unpkg.com and instructs the site to send the file as a module. Not all CDNs will support this, however another one that does is [skypack.dev](https://www.skypack.dev/).
 
 For the rest of this chapter, to keep things simple, we'll stick with relative paths. For more info on how URLs work on the web, refer to [a quick primer on URLs and paths](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Creating_hyperlinks#A_quick_primer_on_URLs_and_paths) on MDN.
 
@@ -199,7 +197,7 @@ For now, remember that if you see an import that's not a relative import or a we
 ```js
 import { Camera } from "./node_modules/three/build/three.module.js";
 
-import { Camera } from "https://unpkg.com/three@0.132.2/build/three.module.js?module";
+import { Camera } from "https://cdn.skypack.dev/three@0.132.2";
 
 import { x } from "./exported/export.js";
 

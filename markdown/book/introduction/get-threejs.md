@@ -140,19 +140,25 @@ If you're new to web development, you'll probably find this method the easiest. 
 
 ### 2: Link to the files from a CDN {#use-a-cdn}
 
-A second approach is to link the files from a CDN (Content Delivery Network), which is a remote site dedicated to hosting files so you can use them in a web page without downloading them first. There are lots of CDNs around, and we'll use [unpkg.com](https://unpkg.com/browse/three@0.132.2/) to demonstrate. You can find the core _**three.module.js**_ file here:
+A second approach is to link the files from a CDN (Content Delivery Network), which is a remote site dedicated to hosting files so you can use them in a web page without downloading them first. There are lots of CDNs around, however, many of them don't support loading modules. One that does is [skypack.dev](https://www.skypack.dev/view/three) which allows you to load any published NPM package. You can find the core _**three.module.js**_ file here:
 
-- https://unpkg.com/three@0.132.2/build/three.module.js
+- https://cdn.skypack.dev/three@0.132.2
 
-Notice that the folder structure once again matches the repo, so you can find _**OrbitControls.js**_ here:
+Note taht we're specifying the version. You can also leave out the version which will always return the latest version
 
-- https://unpkg.com/three@0.132.2/examples/jsm/controls/OrbitControls.js
+- https://cdn.skypack.dev/three
 
-To find a file from the repo, take the URL from GitHub (such as _**examples/jsm/controls/OrbitControls.js**_) and prepend _**{{< t.inline >}}https://unpkg.com/three@0.{version}.0{{< /t.inline >}}**_, where _{version}_ is the current release of three.js.
+However, doing this means that a new release of three.js might break your app while you're not looking so it's a good idea to alway lock down the version.
 
-At the time of writing, the latest version is r119, but by the time you read this, it will probably be higher, as a new version is released every month. It's not necessary to always use the latest version, however, it _is necessary_ to use the same version for the main build file _and_ any extensions you use.
+When it comes to loading plugins, you can reference them using the structure of the repo, so you'll find _**OrbitControls.js**_ here:
 
-Importing the files from a CDN works the same way as importing them from your local file system, except that now we are loading the files from unpkg.com instead of from our hard drive:
+- https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js
+
+To find a file from the repo, take the URL from GitHub (such as _**examples/jsm/controls/OrbitControls.js**_) and prepend _**{{< t.inline >}}https://cdn.skypack.dev/0.{version}.0{{< /t.inline >}}**_, where _{version}_ is the release of three.js that you're using.
+
+At the time of writing, the latest version is r132, and the final `.2` in `0.132.2` means there have been some hotfixes applied to the release after publising it to NPM. A new version is released every month. It's not necessary to use the latest version, but it _is necessary_ to use the same version for the main build file _and_ any extensions you use.
+
+Importing the files from a CDN works the same way as importing them from your local file system, except that now we are loading the files from skypack.dev instead of from our hard drive:
 
 {{< code lang="js" linenos="false" caption="_**main.js**_: importing three.js files from a CDN" >}}
 
@@ -161,9 +167,9 @@ import {
   Camera,
   Material,
   Texture,
-} from "https://unpkg.com/three@0.132.2/build/three.module.js";
+} from "https://cdn.skypack.dev/three@0.132.2";
 
-import { OrbitControls } from "https://unpkg.com/three@0.132.2/examples/jsm/controls/OrbitControls.js";
+import { OrbitControls } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js";
 ```
 
 {{< /code >}}
@@ -214,4 +220,4 @@ There are many bundlers available, such as Rollup, Webpack, ESBuild, and Parcel,
 
 In the examples throughout this book, we'll use NPM style imports since these are both the shortest way of writing the import statements, and the style you are most likely to encounter in a professional setting.
 
-In most chapters, in the editor, you can switch between NPM and CDN imports (using _**unpkg.com**_). However, if you download the code from the editor, the downloaded code will use CDN imports. This means you can use the downloaded code immediately on your local computer without the trouble of setting up a bundler or installing NPM packages. You will, however, need to {{< link path="/book/introduction/about-the-book/#code-examples" title="set up a local development server" >}}.
+In most chapters, in the editor, you can switch between NPM and CDN imports (using _**skypack.dev**_). However, if you download the code from the editor, the downloaded code will use CDN imports. This means you can use the downloaded code immediately on your local computer without the trouble of setting up a bundler or installing NPM packages. You will, however, need to {{< link path="/book/introduction/about-the-book/#code-examples" title="set up a local development server" >}}.
