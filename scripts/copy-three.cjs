@@ -26,13 +26,13 @@ function getVersion(p) {
 }
 
 const vNodeFolder = getVersion(originPath);
-const vExamplesFolder = getVersion(targetPath);
 
 console.info(`Copying three.js V${vNodeFolder} to examples folder...`);
 
 const isExist = fsExistsSync(targetPath);
 
 if (isExist) {
+  const vExamplesFolder = getVersion(targetPath);
   if (!(vNodeFolder === vExamplesFolder)) {
     fse.removeSync(targetPath);
     fse.copySync(originPath, targetPath);
