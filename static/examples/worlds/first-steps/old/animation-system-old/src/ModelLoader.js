@@ -1,6 +1,5 @@
-import { AnimationMixer } from '../vendor/three/build/three.module.js';
-
-import { GLTFLoader } from '../vendor/three/examples/jsm/loaders/GLTFLoader.js';
+import { AnimationMixer } from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 class ModelLoader {
   constructor(scene) {
@@ -13,7 +12,7 @@ class ModelLoader {
     const action = mixer.clipAction(clip);
     action.play();
 
-    model.userData.update = delta => mixer.update(delta);
+    model.userData.update = (delta) => mixer.update(delta);
   }
 
   // Called when a glTF file has finished loading
@@ -36,9 +35,9 @@ class ModelLoader {
   load(url, position) {
     this.loader.load(
       url,
-      gltf => this.onLoad(gltf, position),
+      (gltf) => this.onLoad(gltf, position),
       null,
-      this.onError,
+      this.onError
     );
   }
 }

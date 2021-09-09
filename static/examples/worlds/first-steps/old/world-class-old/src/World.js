@@ -6,7 +6,7 @@ import {
   PerspectiveCamera,
   Scene,
   WebGLRenderer,
-} from '../vendor/three/build/three.module.js';
+} from "three";
 
 class World {
   constructor(container) {
@@ -24,7 +24,7 @@ class World {
       //aspect ratio
       this.container.clientWidth / this.container.clientHeight,
       0.1, // near clipping plane
-      100, // far clipping plane
+      100 // far clipping plane
     );
 
     // move the camera back so that we can view the scene
@@ -51,7 +51,7 @@ class World {
 
     this.renderer.setSize(
       this.container.clientWidth,
-      this.container.clientHeight,
+      this.container.clientHeight
     );
 
     this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -64,7 +64,7 @@ class World {
     // create a Scene
     this.scene = new Scene();
 
-    this.scene.background = new Color('skyblue');
+    this.scene.background = new Color("skyblue");
   }
 
   start() {

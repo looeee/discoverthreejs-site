@@ -7,11 +7,9 @@ import {
   Scene,
   Vector3,
   WebGLRenderer,
-} from '../vendor/three/build/three.module.js';
-
-import { OrbitControls } from '../vendor/three/examples/jsm/controls/OrbitControls.js';
-
-import { ModelLoader } from './ModelLoader.js';
+} from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { ModelLoader } from "./ModelLoader.js";
 
 class World {
   constructor(container) {
@@ -34,7 +32,7 @@ class World {
       35,
       this.container.clientWidth / this.container.clientHeight,
       0.1,
-      100,
+      100
     );
 
     this.camera.position.set(-1.5, 1.5, 6.5);
@@ -47,12 +45,12 @@ class World {
 
   createLights() {
     const ambientLight = new HemisphereLight(
-      'white', // bright sky color
-      'darkslategrey', // dim ground color
-      8, // intensity
+      "white", // bright sky color
+      "darkslategrey", // dim ground color
+      8 // intensity
     );
 
-    const mainLight = new DirectionalLight('white', 3);
+    const mainLight = new DirectionalLight("white", 3);
     mainLight.position.set(10, 10, 10);
 
     this.scene.add(ambientLight, mainLight);
@@ -64,19 +62,19 @@ class World {
     // Each model is loaded asynchronously,
     // so don't make any assumption about
     // which one will finish loading first
-    modelLoader.load('/assets/models/Parrot.glb').then(gltfData => {
+    modelLoader.load("/assets/models/Parrot.glb").then((gltfData) => {
       const model = gltfData.scene.children[0];
       model.position.set(0, 0, 2.5);
       this.scene.add(model);
     });
 
-    modelLoader.load('/assets/models/Flamingo.glb').then(gltfData => {
+    modelLoader.load("/assets/models/Flamingo.glb").then((gltfData) => {
       const model = gltfData.scene.children[0];
       model.position.set(7.5, 0, -10);
       this.scene.add(model);
     });
 
-    modelLoader.load('/assets/models/Stork.glb').then(gltfData => {
+    modelLoader.load("/assets/models/Stork.glb").then((gltfData) => {
       const model = gltfData.scene.children[0];
       model.position.set(0, -2.5, -10);
       this.scene.add(model);
@@ -93,7 +91,7 @@ class World {
 
   createScene() {
     this.scene = new Scene();
-    this.scene.background = new Color('skyblue');
+    this.scene.background = new Color("skyblue");
   }
 
   handleResize() {
@@ -106,7 +104,7 @@ class World {
 
       this.renderer.setSize(
         this.container.clientWidth,
-        this.container.clientHeight,
+        this.container.clientHeight
       );
 
       this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -114,7 +112,7 @@ class World {
 
     onResize();
 
-    window.addEventListener('resize', onResize);
+    window.addEventListener("resize", onResize);
   }
 
   update() {

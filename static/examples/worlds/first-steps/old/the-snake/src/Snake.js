@@ -1,9 +1,4 @@
-import {
-  SphereBufferGeometry,
-  Group,
-  Mesh,
-  MeshStandardMaterial,
-} from '../vendor/three/build/three.module.js';
+import { Group, Mesh, MeshStandardMaterial, SphereBufferGeometry } from "three";
 
 class Snake {
   constructor() {
@@ -31,7 +26,7 @@ class Snake {
       roughness: 0.9,
     });
     const eyes = new MeshStandardMaterial({
-      color: 'darkslategrey',
+      color: "darkslategrey",
       flatShading: true,
     });
 
@@ -42,10 +37,7 @@ class Snake {
   }
 
   createMeshes() {
-    const protoSphere = new Mesh(
-      this.geometries.sphere,
-      this.materials.main,
-    );
+    const protoSphere = new Mesh(this.geometries.sphere, this.materials.main);
 
     //     this.group.add(protoSphere);
     const stepR = (2 * Math.PI) / 100;

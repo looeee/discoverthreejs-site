@@ -1,4 +1,4 @@
-import { GLTFLoader } from '../vendor/three/examples/jsm/loaders/GLTFLoader.js';
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 class ModelLoader {
   constructor() {
@@ -7,12 +7,7 @@ class ModelLoader {
 
   load(url) {
     return new Promise((resolve, reject) => {
-      this.loader.load(
-        url,
-        gltfData => resolve(gltfData),
-        null,
-        reject,
-      );
+      this.loader.load(url, (gltfData) => resolve(gltfData), null, reject);
     });
   }
 }

@@ -1,4 +1,4 @@
-import { GLTFLoader } from '../vendor/three/examples/jsm/loaders/GLTFLoader.js';
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 class ModelLoader {
   constructor(scene) {
@@ -27,9 +27,9 @@ class ModelLoader {
   load(url, position) {
     this.loader.load(
       url,
-      gltfData => this.onLoad(gltfData, position),
+      (gltfData) => this.onLoad(gltfData, position),
       this.onProgress,
-      this.onError,
+      this.onError
     );
   }
 }

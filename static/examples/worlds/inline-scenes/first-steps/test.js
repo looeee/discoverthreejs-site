@@ -10,10 +10,9 @@ import {
   sRGBEncoding,
   TextureLoader,
   WebGLRenderer,
-} from "../../../vendor/three/build/three.module.js";
-
-import { GLTFLoader } from "../../../vendor/three/examples/jsm/loaders/GLTFLoader.js";
-import { OrbitControls } from "../../../vendor/three/examples/jsm/controls/OrbitControls.js";
+} from "https://cdn.skypack.dev/three@0.132.2";
+import { OrbitControls } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js";
+import { GLTFLoader } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/loaders/GLTFLoader.js";
 
 // these need to be accessed inside more than one function so we'll declare them first
 let container;

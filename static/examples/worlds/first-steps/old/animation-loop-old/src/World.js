@@ -8,7 +8,7 @@ import {
   PerspectiveCamera,
   Scene,
   WebGLRenderer,
-} from '../vendor/three/build/three.module.js';
+} from "three";
 
 class World {
   constructor(container) {
@@ -31,14 +31,14 @@ class World {
       //aspect ratio
       this.container.clientWidth / this.container.clientHeight,
       0.1, // near clipping plane
-      100, // far clipping plane
+      100 // far clipping plane
     );
 
     this.camera.position.set(0, 0, 10);
   }
 
   createLights() {
-    const light = new DirectionalLight('white', 15);
+    const light = new DirectionalLight("white", 15);
 
     light.position.set(10, 10, 10);
 
@@ -47,7 +47,7 @@ class World {
 
   createMeshes() {
     const geometry = new BoxBufferGeometry(2, 2, 2);
-    const material = new MeshStandardMaterial({ color: 'purple' });
+    const material = new MeshStandardMaterial({ color: "purple" });
 
     // convert the mesh into a member variable so that we can access
     // outside this function
@@ -67,7 +67,7 @@ class World {
 
   createScene() {
     this.scene = new Scene();
-    this.scene.background = new Color('skyblue');
+    this.scene.background = new Color("skyblue");
   }
 
   handleResize() {
@@ -84,7 +84,7 @@ class World {
       // update the size of the renderer AND the canvas
       this.renderer.setSize(
         this.container.clientWidth,
-        this.container.clientHeight,
+        this.container.clientHeight
       );
 
       this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -93,16 +93,14 @@ class World {
     // call the function once to setup initial sizes
     onResize();
 
-    window.addEventListener('resize', onResize);
+    window.addEventListener("resize", onResize);
   }
 
   update() {
     // only call the getDelta function once per frame!
     const delta = this.clock.getDelta();
 
-    console.log(
-      `The last frame rendered in ${delta * 1000} milliseconds`,
-    );
+    console.log(`The last frame rendered in ${delta * 1000} milliseconds`);
 
     // increase the mesh's rotation each frame
     this.mesh.rotation.z += delta / 2;

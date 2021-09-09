@@ -1,9 +1,9 @@
 import {
-  SphereBufferGeometry,
   Group,
   Mesh,
   MeshStandardMaterial,
-} from '../../../../vendor/three/build/three.module.js';
+  SphereBufferGeometry,
+} from "https://cdn.skypack.dev/three@0.132.2";
 
 class Snake {
   constructor() {
@@ -26,7 +26,7 @@ class Snake {
 
   createMaterials() {
     const main = new MeshStandardMaterial({
-      color: 'indigo',
+      color: "indigo",
     });
 
     this.materials = {
@@ -35,10 +35,7 @@ class Snake {
   }
 
   createMeshes() {
-    const protoSphere = new Mesh(
-      this.geometries.sphere,
-      this.materials.main,
-    );
+    const protoSphere = new Mesh(this.geometries.sphere, this.materials.main);
 
     this.group.add(protoSphere);
 

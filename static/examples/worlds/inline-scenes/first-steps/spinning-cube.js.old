@@ -7,7 +7,7 @@ import {
   PerspectiveCamera,
   Scene,
   WebGLRenderer,
-} from '../../../vendor/three/build/three.module.js';
+} from 'https://cdn.skypack.dev/three@0.132.2';
 
 // these need to be accessed inside more than one function so we'll declare them first
 let container;

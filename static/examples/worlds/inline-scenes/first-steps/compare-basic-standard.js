@@ -8,9 +8,8 @@ import {
   PerspectiveCamera,
   Scene,
   WebGLRenderer,
-} from '../../../vendor/three/build/three.module.js';
-
-import { OrbitControls } from '../../../vendor/three/examples/jsm/controls/OrbitControls.js';
+} from "https://cdn.skypack.dev/three@0.132.2";
+import { OrbitControls } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js";
 
 // these need to be accessed inside more than one function so we'll declare them first
 let container;
@@ -114,7 +113,7 @@ export default function init(containerID) {
   // add the automatically created <canvas> element to the page
   container.appendChild(renderer.domElement);
 
-  window.addEventListener('resize', onWindowResize);
+  window.addEventListener("resize", onWindowResize);
 
   animate();
 }

@@ -7,7 +7,7 @@ import {
   PerspectiveCamera,
   Scene,
   WebGLRenderer,
-} from '../vendor/three/build/three.module.js';
+} from "three";
 
 class World {
   constructor(container) {
@@ -26,7 +26,7 @@ class World {
       //aspect ratio
       this.container.clientWidth / this.container.clientHeight,
       0.1, // near clipping plane
-      100, // far clipping plane
+      100 // far clipping plane
     );
 
     // move the camera back so that we can view the scene
@@ -35,7 +35,7 @@ class World {
 
   createLights() {
     // Create a directional light
-    const light = new DirectionalLight('white', 8);
+    const light = new DirectionalLight("white", 8);
 
     // move the light back and up a bit
     light.position.set(10, 10, 10);
@@ -47,7 +47,7 @@ class World {
   createMeshes() {
     const geometry = new BoxBufferGeometry(2, 2, 2);
 
-    const material = new MeshStandardMaterial({ color: 'purple' });
+    const material = new MeshStandardMaterial({ color: "purple" });
 
     const mesh = new Mesh(geometry, material);
 
@@ -63,7 +63,7 @@ class World {
 
     this.renderer.setSize(
       this.container.clientWidth,
-      this.container.clientHeight,
+      this.container.clientHeight
     );
 
     this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -74,7 +74,7 @@ class World {
   createScene() {
     this.scene = new Scene();
 
-    this.scene.background = new Color('skyblue');
+    this.scene.background = new Color("skyblue");
   }
 
   start() {

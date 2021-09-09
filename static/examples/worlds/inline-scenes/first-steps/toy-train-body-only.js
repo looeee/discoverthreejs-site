@@ -3,16 +3,15 @@ import {
   Color,
   CylinderBufferGeometry,
   DirectionalLight,
-  HemisphereLight,
   Group,
+  HemisphereLight,
   Mesh,
   MeshStandardMaterial,
   PerspectiveCamera,
   Scene,
   WebGLRenderer,
-} from '../../../vendor/three/build/three.module.js';
-
-import { OrbitControls } from '../../../vendor/three/examples/jsm/controls/OrbitControls.js';
+} from "https://cdn.skypack.dev/three@0.132.2";
+import { OrbitControls } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js";
 
 // these need to be accessed inside more than one function so we'll declare them first
 let container;
@@ -26,7 +25,7 @@ function createCamera() {
     35,
     container.clientWidth / container.clientHeight,
     0.1,
-    100,
+    100
   );
   camera.position.set(-5, 3, 6);
 }
@@ -39,12 +38,12 @@ function createControls() {
 
 function createLights() {
   const ambientLight = new HemisphereLight(
-    'white', // bright sky color
-    'darkslategrey', // dim ground color
-    3, // intensity
+    "white", // bright sky color
+    "darkslategrey", // dim ground color
+    3 // intensity
   );
 
-  const mainLight = new DirectionalLight('white', 2);
+  const mainLight = new DirectionalLight("white", 2);
   mainLight.position.set(10, 10, 10);
 
   scene.add(ambientLight, mainLight);
@@ -56,7 +55,7 @@ function createMeshes() {
   scene.add(train);
 
   const body = new MeshStandardMaterial({
-    color: 'firebrick',
+    color: "firebrick",
     flatShading: true,
   });
 
@@ -117,5 +116,5 @@ export default function init(containerID) {
     render();
   });
 
-  window.addEventListener('resize', onWindowResize);
+  window.addEventListener("resize", onWindowResize);
 }

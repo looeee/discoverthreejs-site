@@ -4,7 +4,7 @@ import {
   Group,
   Mesh,
   MeshStandardMaterial,
-} from '../../../../vendor/three/build/three.module.js';
+} from "https://cdn.skypack.dev/three@0.132.2";
 
 class Train {
   constructor() {
@@ -38,12 +38,12 @@ class Train {
 
   createMaterials() {
     const body = new MeshStandardMaterial({
-      color: 'firebrick',
+      color: "firebrick",
       flatShading: true,
     });
 
     const detail = new MeshStandardMaterial({
-      color: 'darkslategray',
+      color: "darkslategray",
       flatShading: true,
     });
 
@@ -54,25 +54,19 @@ class Train {
   }
 
   createMeshes() {
-    const cabin = new Mesh(
-      this.geometries.cabin,
-      this.materials.body,
-    );
+    const cabin = new Mesh(this.geometries.cabin, this.materials.body);
     cabin.position.set(1.5, 0.4, 0);
 
     const nose = new Mesh(this.geometries.nose, this.materials.body);
     nose.position.x = -1;
     nose.rotation.z = Math.PI / 2;
 
-    const chimney = new Mesh(
-      this.geometries.chimney,
-      this.materials.detail,
-    );
+    const chimney = new Mesh(this.geometries.chimney, this.materials.detail);
     chimney.position.set(-2, 0.9, 0);
 
     const smallWheelRear = new Mesh(
       this.geometries.wheel,
-      this.materials.detail,
+      this.materials.detail
     );
     smallWheelRear.position.y = -0.5;
     smallWheelRear.rotation.x = Math.PI / 2;
@@ -94,7 +88,7 @@ class Train {
       smallWheelRear,
       smallWheelCenter,
       smallWheelFront,
-      bigWheel,
+      bigWheel
     );
   }
 }

@@ -8,9 +8,8 @@ import {
   PerspectiveCamera,
   Scene,
   WebGLRenderer,
-} from '../../../../vendor/three/build/three.module.js';
-
-import { OrbitControls } from '../../../../vendor/three/examples/jsm/controls/OrbitControls.js';
+} from "https://cdn.skypack.dev/three@0.132.2";
+import { OrbitControls } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js";
 
 // these need to be accessed inside more than one function so we'll declare them first
 let container;
@@ -31,7 +30,7 @@ function createCamera() {
     35, // FOV
     container.clientWidth / container.clientHeight, // aspect
     0.1, // near clipping plane
-    100, // far clipping plane
+    100 // far clipping plane
   );
 
   camera.position.set(0, 0, 7);
@@ -56,9 +55,9 @@ function createMeshes() {
   const geometry = new BoxBufferGeometry(1.5, 1.5, 1.5);
 
   // create a purple Standard material
-  const materialA = new MeshStandardMaterial({ color: 'purple' });
+  const materialA = new MeshStandardMaterial({ color: "purple" });
 
-  const materialB = new MeshBasicMaterial({ color: 'purple' });
+  const materialB = new MeshBasicMaterial({ color: "purple" });
 
   // create a Mesh containing the geometry and material
   meshA = new Mesh(geometry, materialA);
@@ -128,5 +127,5 @@ export default function init(containerID) {
     render();
   });
 
-  window.addEventListener('resize', onWindowResize);
+  window.addEventListener("resize", onWindowResize);
 }

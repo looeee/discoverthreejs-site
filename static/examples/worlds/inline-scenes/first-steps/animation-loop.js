@@ -1,14 +1,14 @@
 import {
   BoxBufferGeometry,
-  Color,
   Clock,
-  PerspectiveCamera,
+  Color,
   DirectionalLight,
   Mesh,
   MeshStandardMaterial,
+  PerspectiveCamera,
   Scene,
   WebGLRenderer,
-} from '../../../vendor/three/build/three.module.js';
+} from "https://cdn.skypack.dev/three@0.132.2";
 
 // these need to be accessed inside more than one function so we'll declare them first
 let container;
@@ -100,7 +100,7 @@ export default function init(containerID) {
   // add the automatically created <canvas> element to the page
   container.appendChild(renderer.domElement);
 
-  window.addEventListener('resize', onWindowResize);
+  window.addEventListener("resize", onWindowResize);
 
   animate();
 }

@@ -8,9 +8,8 @@ import {
   Scene,
   TextureLoader,
   WebGLRenderer,
-} from "../../../vendor/three/build/three.module.js";
-
-import { OrbitControls } from "../../../vendor/three/examples/jsm/controls/OrbitControls.js";
+} from "https://cdn.skypack.dev/three@0.132.2";
+import { OrbitControls } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js";
 
 let container;
 let camera;
