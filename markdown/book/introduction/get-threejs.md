@@ -1,27 +1,26 @@
 ---
-title: 'How to Include three.js in Your Projects'
+title: "How to Include three.js in Your Projects"
 description: "The first step in building a three.js app is importing the three.js files. There are three main ways to do this: download the files, use the NPM package, or import from a CDN."
 date: 2018-04-02
 weight: 6
-chapter: '0.5'
+chapter: "0.5"
 available: true
 showIDE: true
-IDEFiles: [
-  'worlds/introduction/get-threejs/src/main.start.js',
-  'worlds/introduction/get-threejs/src/main.final.js',
-  'styles/main.css',
-  'vendor/three/build/three.module.js',
-  'vendor/three/examples/jsm/controls/OrbitControls.js',
-  'worlds/introduction/get-threejs/index.html',
-]
+IDEFiles:
+  [
+    "worlds/introduction/get-threejs/src/main.start.js",
+    "worlds/introduction/get-threejs/src/main.final.js",
+    "styles/main.css",
+    "vendor/three/build/three.module.js",
+    "vendor/three/examples/jsm/controls/OrbitControls.js",
+    "worlds/introduction/get-threejs/index.html",
+  ]
 IDEComparisonMode: true
-IDEClosedFolders: ['styles']
-IDEStripDirectory: 'worlds/introduction/get-threejs/'
-IDEActiveDocument: 'src/main.js'
+IDEClosedFolders: ["styles"]
+IDEStripDirectory: "worlds/introduction/get-threejs/"
+IDEActiveDocument: "src/main.js"
 IDESwitchImportsAllow: false
 ---
-
-
 
 # How to Include three.js in Your Projects
 
@@ -31,25 +30,27 @@ There are several ways to include three.js in your JavaScript application, some 
 
 In addition to the core file, we'll often add {{< link path="/book/introduction/github-repo/#examples-folder" title="plugins" >}} such as {{< link path="book/first-steps/camera-controls/" title="camera controls" >}} or post-processing. You can find plugins in the [_**examples/jsm**_](https://github.com/mrdoob/three.js/tree/master/examples/jsm/) folder on the repo, and including them works in much the same way as for the core file. For the rest of this chapter, we'll use the `OrbitControls` plugin (a popular camera controls plugin) for demonstration, which you can find on the repo here:
 
-* [_**examples/jsm/controls/OrbitControls.js**_](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js)
+- [_**examples/jsm/controls/OrbitControls.js**_](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js)
 
 Open up the editor on this page by clicking the {{< icon "solid/columns" >}} icon, and you'll see that we have included these two files inside the _**vendor/**_ folder:
 
-* The core is in _**vendor/three/build/three.module.js**_
-* `OrbitControls` is in _**vendor/three/examples/jsm/controls/OrbitControls.js**_.
+- The core is in _**vendor/three/build/three.module.js**_
+- `OrbitControls` is in _**vendor/three/examples/jsm/controls/OrbitControls.js**_.
 
 We have also set up a very simple web page consisting of these three files:
 
-* _**index.html**_
-* _**src/main.js**_
-* _**styles/main.css**_
+- _**index.html**_
+- _**src/main.js**_
+- _**styles/main.css**_
 
 Check out _**index.html**_ now, and you'll see that we have referenced _**main.js**_ in the `<head>` section:
 
 {{< code lang="js" linenos="true" linenostart="14" hl_lines="" caption="_**index.html**_: referencing the main JavaScript file" >}}
-``` js
+
+```js
 <script type="module" src="./src/main.js"></script>
 ```
+
 {{< /code >}}
 
 Take special notice of `type="module"`, which we're using to tell the browser the linked file is a JavaScript module. If anything in _**index.html**_ is unfamiliar to you, check out {{< link path="/book/appendix/html-and-css-reference/" title="" >}}. If using JavaScript modules is new to you, or you need a refresher, check out {{< link path="/book/appendix/javascript-modules/" title="" >}}.
@@ -67,18 +68,20 @@ The three.js core contains hundreds of classes such as cameras, materials, geome
 The simplest approach is to {{< link path="book/appendix/javascript-modules/#using-namespaces-with-named-imports" title="import _everything_" >}} from the three.js core into _**main.js**_ under the `THREE` namespace:
 
 {{< code lang="js" linenos="false" caption="_**main.js**_: import the entire three.js core" >}}
-import * as THREE from './vendor/three/build/three.module.js';
+import \* as THREE from './vendor/three/build/three.module.js';
 {{< /code >}}
 
 Then we can use any element of the core by referencing them under the `THREE` namespace:
 
 {{< code lang="js" linenos="false" caption="_**main.js**_: accessing classes from the core under the `THREE` namespace" >}}
-``` js
-THREE.PerspectiveCamera
-THREE.MeshStandardMaterial
-THREE.Texture
+
+```js
+THREE.PerspectiveCamera;
+THREE.MeshStandardMaterial;
+THREE.Texture;
 // ... and hundreds more
 ```
+
 {{< /code >}}
 
 #### Import Individual Components from the Core
@@ -86,23 +89,27 @@ THREE.Texture
 However, in this book we'll prefer to import only the classes that we need in any given module:
 
 {{< code lang="js" linenos="false" caption="_**main.js**_: importing class as we need them" >}}
-``` js
+
+```js
 import {
   PerspectiveCamera,
   MeshStandardMaterial,
   WebGLRenderer,
-} from './vendor/three/build/three.module.js';
+} from "./vendor/three/build/three.module.js";
 ```
+
 {{< /code >}}
 
 Now instead of hundreds of properties being imported, there are only the three that we need:
 
 {{< code lang="js" linenos="false" caption="_**main.js**_: accessing individually imported classes" >}}
-``` js
-PerspectiveCamera
-MeshStandardMaterial
-WebGLRenderer
+
+```js
+PerspectiveCamera;
+MeshStandardMaterial;
+WebGLRenderer;
 ```
+
 {{< /code >}}
 
 Doing this forces us to think more carefully about the classes we're using in a given module, which means we're more likely to follow best practices and keep our modules small and focused. We can also avoid using the `THREE` namespace this way.
@@ -112,9 +119,11 @@ Doing this forces us to think more carefully about the classes we're using in a 
 The _**OrbitControls.js**_ module contains a single export, the `OrbitControls` class. Importing this works the same way as importing classes from the core:
 
 {{< code lang="js" linenos="false" caption="_**main.js**_: import `OrbitControls`" >}}
-``` js
-import { OrbitControls } from './vendor/three/examples/jsm/controls/OrbitControls.js';
+
+```js
+import { OrbitControls } from "./vendor/three/examples/jsm/controls/OrbitControls.js";
 ```
+
 {{< /code >}}
 
 Now the `OrbitControls` class is available within _**main.js**_. With both the core files and a camera controls plugin, we are ready to start building our app.
@@ -131,13 +140,13 @@ If you're new to web development, you'll probably find this method the easiest. 
 
 ### 2: Link to the files from a CDN {#use-a-cdn}
 
-A second approach is to link the files from a CDN (Content Delivery Network), which is a remote site dedicated to hosting files so you can use them in a web page without downloading them first. There are lots of CDNs around, and we'll use [unpkg.com](https://unpkg.com/browse/three@0.119.0/) to demonstrate. You can find the core _**three.module.js**_ file here:
+A second approach is to link the files from a CDN (Content Delivery Network), which is a remote site dedicated to hosting files so you can use them in a web page without downloading them first. There are lots of CDNs around, and we'll use [unpkg.com](https://unpkg.com/browse/three@0.132.2/) to demonstrate. You can find the core _**three.module.js**_ file here:
 
-- https://unpkg.com/three@0.119.0/build/three.module.js
+- https://unpkg.com/three@0.132.2/build/three.module.js
 
 Notice that the folder structure once again matches the repo, so you can find _**OrbitControls.js**_ here:
 
-- https://unpkg.com/three@0.119.0/examples/jsm/controls/OrbitControls.js
+- https://unpkg.com/three@0.132.2/examples/jsm/controls/OrbitControls.js
 
 To find a file from the repo, take the URL from GitHub (such as _**examples/jsm/controls/OrbitControls.js**_) and prepend _**{{< t.inline >}}https://unpkg.com/three@0.{version}.0{{< /t.inline >}}**_, where _{version}_ is the current release of three.js.
 
@@ -146,15 +155,17 @@ At the time of writing, the latest version is r119, but by the time you read thi
 Importing the files from a CDN works the same way as importing them from your local file system, except that now we are loading the files from unpkg.com instead of from our hard drive:
 
 {{< code lang="js" linenos="false" caption="_**main.js**_: importing three.js files from a CDN" >}}
-``` js
+
+```js
 import {
   Camera,
   Material,
   Texture,
-} from 'https://unpkg.com/three@0.119.0/build/three.module.js'
+} from "https://unpkg.com/three@0.132.2/build/three.module.js";
 
-import { OrbitControls } from 'https://unpkg.com/three@0.119.0/examples/jsm/controls/OrbitControls.js'
+import { OrbitControls } from "https://unpkg.com/three@0.132.2/examples/jsm/controls/OrbitControls.js";
 ```
+
 {{< /code >}}
 
 ### 3: Install three.js as an NPM package {#package-manager}
@@ -175,9 +186,9 @@ Once again, importing the files works the same way, except that now we can repla
 
 {{< code lang="js" linenos="false" caption="_**main.js**_: importing class from the three.js core using the NPM package" >}}
 import {
-  Camera,
-  Material,
-  Texture,
+Camera,
+Material,
+Texture,
 } from 'three';
 {{< /code >}}
 
@@ -185,9 +196,9 @@ When you do this, your bundler will automatically resolve `three` to the main ex
 
 {{< code lang="js" linenos="false" caption="_**main.js**_: directly referencing the core file from the _three_ package" >}}
 import {
-  Camera,
-  Material,
-  Texture,
+Camera,
+Material,
+Texture,
 } from 'three/build/three.module.js';
 {{< /code >}}
 

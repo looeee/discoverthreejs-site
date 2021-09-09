@@ -3,28 +3,27 @@ title: "The Structure of a three.js App"
 description: "To showcase our three.js scenes, we need a web page. Here, we create a basic page using HTML and CSS. However, we'll structure our three.js app so you can just as easily integrate it with a framework such as React or Vue instead of this simple page."
 date: 2018-04-02
 weight: 101
-chapter: '1.1'
+chapter: "1.1"
 available: true
 showIDE: true
-IDEFiles: [
-  'assets/models/Flamingo.glb',
-  'assets/textures/uv-test-bw.png',
-  'worlds/first-steps/app-structure/src/main.js',
-  'styles/main.css',
-  'vendor/three/build/three.module.js',
-  'vendor/three/examples/jsm/loaders/GLTFLoader.js',
-  'vendor/three/examples/jsm/controls/OrbitControls.js',
-  'worlds/first-steps/app-structure/index.html',
-]
-IDEClosedFolders: ['assets', 'vendor']
-IDEStripDirectory: 'worlds/first-steps/app-structure/'
-IDEActiveDocument: 'index.html'
+IDEFiles:
+  [
+    "assets/models/Flamingo.glb",
+    "assets/textures/uv-test-bw.png",
+    "worlds/first-steps/app-structure/src/main.js",
+    "styles/main.css",
+    "vendor/three/build/three.module.js",
+    "vendor/three/examples/jsm/loaders/GLTFLoader.js",
+    "vendor/three/examples/jsm/controls/OrbitControls.js",
+    "worlds/first-steps/app-structure/index.html",
+  ]
+IDEClosedFolders: ["assets", "vendor"]
+IDEStripDirectory: "worlds/first-steps/app-structure/"
+IDEActiveDocument: "index.html"
 IDESwitchImportsAllow: false
 prevURL: "/book/first-steps/"
 prevTitle: "Getting Started: Here's Where the Real Fun Begins!"
 ---
-
-
 
 # The Structure of a three.js App
 
@@ -33,7 +32,6 @@ Before we can build a three.js app, we need to create a web page. We briefly dis
 We'll create this basic web page out of just two files: _**index.html**_, and _**styles/main.css**_. That's it. Open up the editor by pressing the {{< icon "solid/columns" >}} button now and take a look at both of these files now.
 
 > If anything from this chapter is unfamiliar to you, refer to {{< link path="/book/appendix/html-and-css-reference" title="" >}} where we take a deeper look at the construction of a simple web page.
-
 
 ## _**index.html**_
 
@@ -77,6 +75,7 @@ The next point of interest in _**index.html**_ is the scene container element:
 All three.js scenes are rendered inside a [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element. Once we have set up our app, three.js will create a canvas for us, and then we'll insert it inside the scene container:
 
 {{< code lang="html" linenos="false" caption="_**index.html**_: once our app is running we'll insert the three.js canvas into the scene container" >}}
+
 <div id="scene-container">
   <canvas></canvas>
 </div>
@@ -96,17 +95,17 @@ Turn your attention to the file tree in the editor. There are two folders we hav
 
 The _**vendor/**_ folder is where we put JavaScript files that _other people_ have written. For most of the examples in this book, that means files from the three.js library, downloaded from the {{< link path="/book/introduction/github-repo/" title="three.js GitHub repo" >}}. In this book, we'll use just three files from the library:
 
-* _**vendor/three/build/three.module.js**_: the main three.js file.
-* _**vendor/three/examples/jsm/controls/OrbitControls.js**_: a camera control plugin that we'll introduce in {{< link path="/book/first-steps/camera-controls/" title="Ch 1.9" >}}.
-* _**vendor/three/examples/jsm/loaders/GLTFLoader.js**_: a loader for 3D models that we'll introduce in {{< link path="/book/first-steps/load-models/" title="Ch 1.13" >}}.
+- _**vendor/three/build/three.module.js**_: the main three.js file.
+- _**vendor/three/examples/jsm/controls/OrbitControls.js**_: a camera control plugin that we'll introduce in {{< link path="/book/first-steps/camera-controls/" title="Ch 1.9" >}}.
+- _**vendor/three/examples/jsm/loaders/GLTFLoader.js**_: a loader for 3D models that we'll introduce in {{< link path="/book/first-steps/load-models/" title="Ch 1.13" >}}.
 
 The _**vendor/three**_ folder mirrors the structure of the GitHub repo, but for clarity, we'll include only the files needed in each chapter. To import these files within _**main.js**_, we'll use _NPM style imports_:
 
 {{< code lang="js" linenos="false" caption="_**src/main.js**_: importing three.js files, NPM style" >}}
 import {
-  Camera,
-  Group,
-  Scene,
+Camera,
+Group,
+Scene,
 } from 'three';
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -117,16 +116,16 @@ If you prefer to {{< link path="/book/introduction/about-the-book/#working-on-yo
 
 {{< code lang="js" linenos="false" caption="_**src/main.js**_: importing three.js files, CDN style" >}}
 import {
-  Camera,
-  Group,
-  Scene,
-} from 'https://unpkg.com/three@0.117.0/build/three.module.js';
+Camera,
+Group,
+Scene,
+} from 'https://unpkg.com/three@0.132.2/build/three.module.js?module';
 
-import { OrbitControls } from 'https://unpkg.com/three@0.117.0/examples/jsm/controls/OrbitControls.js';
-import { GLTFLoader } from 'https://unpkg.com/three@0.117.0/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'https://unpkg.com/three@0.132.2/examples/jsm/controls/OrbitControls.js?module';
+import { GLTFLoader } from 'https://unpkg.com/three@0.132.2/examples/jsm/loaders/GLTFLoader.js?module';
 {{< /code >}}
 
-Refer back to {{< link path="/book/introduction/get-threejs/" title="" >}} for more details.
+Refer back to {{< link path="/book/introduction/get-threejs/" title="" >}} for more details (and note the `?module` parameter which is specific to unpkg.com and tell it to send over the files as modules).
 
 ## {{< icon "solid/folder-open" >}} The _**assets**_ Folder
 

@@ -6,33 +6,32 @@ weight: 109
 chapter: "1.9"
 available: true
 showIDE: true
-IDEFiles: [
-  "assets/textures/uv-test-bw.png",
-  "assets/textures/uv-test-col.png",
-  "worlds/first-steps/camera-controls/src/World/components/camera.js",
-  "worlds/first-steps/camera-controls/src/World/components/cube.js",
-  "worlds/first-steps/camera-controls/src/World/components/lights.js",
-  "worlds/first-steps/camera-controls/src/World/components/scene.js",
-  "worlds/first-steps/camera-controls/src/World/systems/renderer.js",
-  "worlds/first-steps/camera-controls/src/World/systems/Resizer.js",
-  "worlds/first-steps/camera-controls/src/World/systems/controls.start.js",
-  "worlds/first-steps/camera-controls/src/World/systems/controls.final.js",
-  "worlds/first-steps/camera-controls/src/World/systems/Loop.js",
-  "worlds/first-steps/camera-controls/src/World/World.start.js",
-  "worlds/first-steps/camera-controls/src/World/World.final.js",
-  "worlds/first-steps/camera-controls/src/main.js",
-  "styles/main.css",
-  "vendor/three/build/three.module.js",
-  "vendor/three/examples/jsm/controls/OrbitControls.js",
-  "worlds/first-steps/camera-controls/index.html",
-]
+IDEFiles:
+  [
+    "assets/textures/uv-test-bw.png",
+    "assets/textures/uv-test-col.png",
+    "worlds/first-steps/camera-controls/src/World/components/camera.js",
+    "worlds/first-steps/camera-controls/src/World/components/cube.js",
+    "worlds/first-steps/camera-controls/src/World/components/lights.js",
+    "worlds/first-steps/camera-controls/src/World/components/scene.js",
+    "worlds/first-steps/camera-controls/src/World/systems/renderer.js",
+    "worlds/first-steps/camera-controls/src/World/systems/Resizer.js",
+    "worlds/first-steps/camera-controls/src/World/systems/controls.start.js",
+    "worlds/first-steps/camera-controls/src/World/systems/controls.final.js",
+    "worlds/first-steps/camera-controls/src/World/systems/Loop.js",
+    "worlds/first-steps/camera-controls/src/World/World.start.js",
+    "worlds/first-steps/camera-controls/src/World/World.final.js",
+    "worlds/first-steps/camera-controls/src/main.js",
+    "styles/main.css",
+    "vendor/three/build/three.module.js",
+    "vendor/three/examples/jsm/controls/OrbitControls.js",
+    "worlds/first-steps/camera-controls/index.html",
+  ]
 IDEComparisonMode: true
-IDEClosedFolders: ['assets', 'components', 'styles', 'vendor']
-IDEStripDirectory: 'worlds/first-steps/camera-controls/'
-IDEActiveDocument: 'src/World/systems/controls.js'
+IDEClosedFolders: ["assets", "components", "styles", "vendor"]
+IDEStripDirectory: "worlds/first-steps/camera-controls/"
+IDEActiveDocument: "src/World/systems/controls.js"
 ---
-
-
 
 # Extend three.js With a Camera Controls Plugin
 
@@ -48,10 +47,10 @@ Or, how about a loader for the Lego LDraw format:
 
 Here are a few more:
 
-* [One of the many post-processing effects](https://threejs.org/examples/?q=postprocessing#webgl_postprocessing_glitch)
-* [A loader for the Autodesk FBX format](https://threejs.org/examples/?q=loader#webgl_loader_fbx)
-* [An exporter for glTF format](https://threejs.org/examples/?q=exporter#misc_exporter_gltf)
-* [Physically accurate ocean and sky](https://threejs.org/examples/?q=ocean#webgl_shaders_ocean)
+- [One of the many post-processing effects](https://threejs.org/examples/?q=postprocessing#webgl_postprocessing_glitch)
+- [A loader for the Autodesk FBX format](https://threejs.org/examples/?q=loader#webgl_loader_fbx)
+- [An exporter for glTF format](https://threejs.org/examples/?q=exporter#misc_exporter_gltf)
+- [Physically accurate ocean and sky](https://threejs.org/examples/?q=ocean#webgl_shaders_ocean)
 
 Each extension is stored in a separate module in _**examples/jsm**_, and to use them, we simply import them into our app, much like any other three.js class.
 
@@ -75,10 +74,10 @@ In the editor, we've placed the _**OrbitControls.js**_ file in the equivalent di
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 {{< /code >}}
 
-Once again, if you’re working locally and not using a bundler, you’ll have to change the import path. For example, you can import from unpkg.com instead.
+Once again, if you’re working locally and not using a bundler, you’ll have to change the import path. For example, you can import from unpkg.com instead (as always when using unpkg.com make sure to include `?module` at the end of the URL).
 
 {{< code lang="js" linenos="false" caption="Importing the `OrbitControls` extension using relative imports" >}}
-import { OrbitControls } from 'https://unpkg.com/three@0.117.0/examples/jsm/controls/OrbitControls.js';
+import { OrbitControls } from 'https://unpkg.com/three@0.132.2/examples/jsm/controls/OrbitControls.js?module';
 {{< /code >}}
 
 > Important note: Make sure you import plugins from _**examples/jsm/**_ and not legacy plugins from _**examples/js/**_!
@@ -102,7 +101,8 @@ Back over in World, add the new function to the list of imports:
 Next, call the function and store the result in a variable called `controls`. While you're here, comment out the line adding `cube` to the `updatables` array. This will stop the cube from rotating and make the effect of the controls easier to see:
 
 {{< code lang="js" linenos="true" linenostart="17" hl_lines="22 27 28" caption="_**World.js**_: stop the cube's animation" >}}
-``` js
+
+```js
   constructor() {
     camera = createCamera();
     scene = createScene();
@@ -121,30 +121,30 @@ Next, call the function and store the result in a variable called `controls`. Wh
     this.canvas = renderer.domElement;
   }
 ```
+
 {{< /code >}}
 
 ### Initialize the Controls
 
 If you check out the [`OrbitControls` docs page](https://threejs.org/docs/#examples/en/controls/OrbitControls), you'll see that the constructor takes two parameters: a `Camera`, and a [`HTMLDOMElement`](https://developer.mozilla.org/en-US/docs/Web/API/Element). We'll use our camera for the first parameter and the canvas, stored in `renderer.domElement`, for the second.
 
-Internally, `OrbitControls` uses `addEventListener` to listen for user input. The controls will listen for events such as  `click`, `wheel`, `touchmove`, and `keydown`, amongst others, and use these to move the camera. We previously used this method to {{< link path="/book/first-steps/responsive-design/#listen-for-resize-events-on-the-browser-window" title="listen for the `resize` event" >}} when we set up automatic resizing. There, we listened for the `resize` event on the entire `window`. Here, the controls will listen for user input on whatever element we pass in as the second parameter. The rest of the page will be unaffected. In other words, when we pass in the canvas, the controls will work when the mouse/touch is over the canvas, but the rest of the page will continue to work as normal.
+Internally, `OrbitControls` uses `addEventListener` to listen for user input. The controls will listen for events such as `click`, `wheel`, `touchmove`, and `keydown`, amongst others, and use these to move the camera. We previously used this method to {{< link path="/book/first-steps/responsive-design/#listen-for-resize-events-on-the-browser-window" title="listen for the `resize` event" >}} when we set up automatic resizing. There, we listened for the `resize` event on the entire `window`. Here, the controls will listen for user input on whatever element we pass in as the second parameter. The rest of the page will be unaffected. In other words, when we pass in the canvas, the controls will work when the mouse/touch is over the canvas, but the rest of the page will continue to work as normal.
 
 Pass the camera and canvas into the `createControls` function, then create the controls:
 
 {{< code lang="js" linenos="true" linenostart="3" caption="_**controls.js**_: create the controls" >}}
 function createControls(camera, canvas) {
-  const controls = new OrbitControls(camera, canvas);
+const controls = new OrbitControls(camera, canvas);
 
-  return controls;
+return controls;
 }
 {{< /code >}}
-
-
 
 Back over in the world module, pass in the `camera` and `renderer.domElement`:
 
 {{< code lang="js" linenos="" linenostart="18" hl_lines="24" caption="_**World.js**_: initialize the controls" >}}
-``` js
+
+```js
 constructor(container) {
   camera = createCamera();
   scene = createScene();
@@ -156,6 +156,7 @@ constructor(container) {
   // ...
 }
 ```
+
 {{< /code >}}
 
 With that, the controls should start to work. Take them for a spin!
@@ -244,9 +245,11 @@ One important thing to note here: when you move the camera, the `controls.target
 If you want to smoothly animate the camera to a new position, you will probably need to transition the camera and the target at the same time, and the best place to do this is in the `controls.tick` method. However, you will need to disable the controls for the duration of the animation, otherwise, if the user attempts to move the camera before the animation has completed, you'll end up with the controls fighting against your animation, often with disastrous results.
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Disable the controls while animating the camera or target" >}}
-``` js
+
+```js
 controls.enabled = false;
 ```
+
 {{< /code >}}
 
 ### Save and Restore a View State
@@ -282,7 +285,7 @@ To use rendering on demand with the orbit control, you must render a frame whene
 
 {{< code lang="js" linenos="false" caption="Rendering on demand with `OrbitControls`" >}}
 controls.addEventListener('change', () => {
-  renderer.render(scene, camera);
+renderer.render(scene, camera);
 });
 {{< /code >}}
 
@@ -290,17 +293,19 @@ To set this up inside _**World.js**_, you'll use `this.render`:
 
 {{< code lang="js" linenos="false" caption="_**World.js**_: Rendering on demand with `OrbitControls`" >}}
 controls.addEventListener('change', () => {
-  this.render();
+this.render();
 });
 {{< /code >}}
 
 Next, over in _**main.js**_, make sure we're no longer starting the loop. Instead, render the initial frame:
 
 {{< code lang="js" linenos="" linenostart="10" hl_lines="" caption="_**main.js**_: render a single frame instead of starting the loop" >}}
-``` js
+
+```js
 // render the inital frame
 world.render();
 ```
+
 {{< /code >}}
 
 If you make these changes in your app, you'll see that this results in a slight problem. When we render the initial frame in _**main.js**_, the texture has not yet loaded, so the cube will look black. If we were running the loop, this frame would almost instantly be replaced with a new one after the texture loads, so it might not even be noticeable that the cube was black for a few milliseconds. However, with rendering on demand, we are now only generating new frames when the user interacts with the scene and moves the camera. As soon as you move the controls, sure enough, a new frame will be created and the texture will show up.
@@ -381,11 +386,12 @@ Remember, {{< link path="/book/first-steps/transformations/#the-unit-of-rotation
 
 As soon as we rotate the camera using our fancy new orbit controls, we'll see a glaring problem. The camera rotates, but the light is fixed and shines only from one direction. The rear faces of the cube receive no light at all!
 
-In the real world, light bounces and reflects off every surface, so the rear of the cube would be dimly lit. There's nothing in this simple scene aside from the cube, so there's nothing for the light to bounce off.  But, even if there was, performing these calculations is much too expensive for us to do in real-time. In the next chapter, we will look at a technique for overcoming this problem known as **ambient lighting**.
+In the real world, light bounces and reflects off every surface, so the rear of the cube would be dimly lit. There's nothing in this simple scene aside from the cube, so there's nothing for the light to bounce off. But, even if there was, performing these calculations is much too expensive for us to do in real-time. In the next chapter, we will look at a technique for overcoming this problem known as **ambient lighting**.
 
 ## Challenges
 
 {{% aside success %}}
+
 ### Easy
 
 1. Try adjusting the control's [minimum and maximum zoom levels](#limiting-zoom). What happens if you make these two values equal? Or make `minDistance` greater than `maxDistance`?
@@ -399,6 +405,7 @@ In the real world, light bounces and reflects off every surface, so the rear of 
 {{% /aside %}}
 
 {{% aside %}}
+
 ### Medium
 
 1. Try adjusting the control's [horizontal and vertical rotation limits](#limiting-rotation). Remember, if you are working in degrees you must convert to radians. Look inside _**cube.js**_ if you need a reminder of how that works.
@@ -408,6 +415,7 @@ In the real world, light bounces and reflects off every surface, so the rear of 
 {{% /aside %}}
 
 {{% aside warning %}}
+
 ### Hard
 
 1. Set up [rendering on demand](#rendering-on-demand-with-orbitcontrols) while using the controls, including generating a new frame after the texture has loaded, and whenever the scene is resized.

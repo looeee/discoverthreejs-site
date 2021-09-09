@@ -210,7 +210,7 @@ import {
   PerspectiveCamera,
   Scene,
   WebGLRenderer,
-} from "https://unpkg.com/three@0.117.0/build/three.module.js";
+} from "https://unpkg.com/three@0.132.2/build/three.module.js";
 ```
 
 {{< /code >}}
