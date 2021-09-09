@@ -1,8 +1,6 @@
-import { setupNav } from "./modules/layout/nav.js";
-
-// import {setupLightboxes} from './modules/layout/setupLightboxes.js';
-import { smoothInternalLinks } from "./modules/layout/smoothInternalLinks.js";
 import { moveAnchorIntoView } from "./modules/layout/moveAnchorIntoView.js";
+import { setupNav } from "./modules/layout/nav.js";
+import { smoothInternalLinks } from "./modules/layout/smoothInternalLinks.js";
 
 export function setup(spec = {}) {
   window.addEventListener("load", () => {

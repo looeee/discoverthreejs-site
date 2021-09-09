@@ -5,11 +5,9 @@ import {
   Scene,
   sRGBEncoding,
   WebGLRenderer,
-} from 'three';
-
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-
-import Stats from './stats.js';
+} from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import Stats from "./stats.js";
 
 // private variable that user can access via app.isRunning
 let _isRunning = false;
@@ -54,7 +52,7 @@ export class App {
   constructor(spec) {
     this.spec = spec || {};
 
-    this.initContainer(spec.container || '#scene-container'); // default ID if none provided
+    this.initContainer(spec.container || "#scene-container"); // default ID if none provided
 
     this.scene = new Scene();
     this.clock = new Clock();
@@ -73,14 +71,12 @@ export class App {
 
   // container can either be a string or DOM element
   initContainer(container) {
-    if (typeof container === 'string')
+    if (typeof container === "string")
       this.container = document.querySelector(container);
     else this.container = container;
 
     if (!this.container)
-      console.error(
-        `Couldn't find the container element: ${container}`,
-      );
+      console.error(`Couldn't find the container element: ${container}`);
   }
 
   init() {
@@ -90,7 +86,7 @@ export class App {
 
     this.initStats();
 
-    window.addEventListener('resize', () => this.onWindowResize());
+    window.addEventListener("resize", () => this.onWindowResize());
   }
 
   initCamera() {
@@ -111,7 +107,7 @@ export class App {
       this.spec.camera.fov,
       this.container.clientWidth / this.container.clientHeight,
       this.spec.camera.near,
-      this.spec.camera.far,
+      this.spec.camera.far
     );
   }
 
@@ -130,7 +126,7 @@ export class App {
 
     // if the controls script was loaded, we'll set them up
     if (
-      typeof OrbitControls === 'function' &&
+      typeof OrbitControls === "function" &&
       this.spec.controls.setupOrbitControls
     )
       this.controls = new OrbitControls(this.camera, this.container);
@@ -150,7 +146,7 @@ export class App {
       ...{
         alpha: false,
         antialias: true,
-        powerPreference: 'high-performance',
+        powerPreference: "high-performance",
         stencil: false,
         maxPixelRatio: Infinity,
         toneMapping: ACESFilmicToneMapping,
@@ -169,23 +165,25 @@ export class App {
 
     this.renderer.setSize(
       this.container.clientWidth,
-      this.container.clientHeight,
+      this.container.clientHeight
     );
     this.renderer.setPixelRatio(
-      Math.min(
-        window.devicePixelRatio,
-        this.spec.renderer.maxPixelRatio,
-      ),
+      Math.min(window.devicePixelRatio, this.spec.renderer.maxPixelRatio)
     );
 
     this.renderer.toneMapping = this.spec.renderer.toneMapping;
     this.renderer.outputEncoding = this.spec.renderer.outputEncoding;
 
-    this.renderer.physicallyCorrectLights = this.spec.renderer.physicallyCorrectLights;
+    this.renderer.physicallyCorrectLights =
+      this.spec.renderer.physicallyCorrectLights;
 
     // to avoid page pulling
-    this.renderer.domElement.addEventListener('touchstart', (e) =>
-      e.preventDefault(),
+    this.renderer.domElement.addEventListener(
+      "touchstart",
+      (e) => {
+        e.preventDefault();
+      },
+      { passive: true }
     );
 
     this.container.appendChild(this.renderer.domElement);
@@ -198,11 +196,7 @@ export class App {
   update() {
     const delta = this.clock.getDelta();
 
-    if (
-      this.spec.controls.autoUpdate &&
-      this.controls &&
-      this.controls.update
-    )
+    if (this.spec.controls.autoUpdate && this.controls && this.controls.update)
       this.controls.update(delta);
 
     // step through the scene and call custom onUpdate functions on any object
@@ -247,13 +241,10 @@ export class App {
 
     this.renderer.setSize(
       this.container.clientWidth,
-      this.container.clientHeight,
+      this.container.clientHeight
     );
     this.renderer.setPixelRatio(
-      Math.min(
-        window.devicePixelRatio,
-        this.spec.renderer.maxPixelRatio,
-      ),
+      Math.min(window.devicePixelRatio, this.spec.renderer.maxPixelRatio)
     );
 
     // render an extra frame to prevent jank
@@ -265,9 +256,9 @@ export class App {
   initStats() {
     if (!this.spec.showStats) return;
 
-    if (typeof Stats === 'undefined') {
+    if (typeof Stats === "undefined") {
       console.warn(
-        'The stats.js script is required to show the stats overlay. Please make sure that it has been loaded correctly, or set app.spec.stats to false.',
+        "The stats.js script is required to show the stats overlay. Please make sure that it has been loaded correctly, or set app.spec.stats to false."
       );
       return;
     }
