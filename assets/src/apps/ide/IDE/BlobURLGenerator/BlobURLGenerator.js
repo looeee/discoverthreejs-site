@@ -1,7 +1,8 @@
+import { REVISION } from "three/src/constants.js";
 import { getSiteURL } from "../utils/getSiteURL.js";
+import { cleanURL } from "./utils/cleanURL.js";
 import { getRegexMatches } from "./utils/getRegexMatches.js";
 import { importURLConverter } from "./utils/importURLConverter.js";
-import { cleanURL } from "./utils/cleanURL.js";
 
 class BlobURLGenerator {
   constructor(files, assetsLocation, entry) {
@@ -74,7 +75,7 @@ class BlobURLGenerator {
     const importURLs = getRegexMatches(text, /\b\s*from\s*['"](.*?)['"]/g, 1);
 
     const convertedURLs = importURLs.map((url) => {
-      if (!url.includes("three")) {
+      if (!url.includes("from 'three")) {
         return importURLConverter(url, currentURL);
       }
     });
@@ -97,12 +98,8 @@ class BlobURLGenerator {
 
   replaceVendorURLs(text) {
     let newText = text.replace(
-      /from 'three'/gi,
-      `from '${getSiteURL()}/examples/vendor/three/build/three.module.js'`
-    );
-    newText = newText.replace(
       /from 'three/gi,
-      `from '${getSiteURL()}/examples/vendor/three`
+      `from 'https://cdn.skypack.dev/three@0.${REVISION}.2`
     );
     return newText;
   }

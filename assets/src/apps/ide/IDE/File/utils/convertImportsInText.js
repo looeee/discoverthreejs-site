@@ -2,13 +2,13 @@
 
 // import { Camera } from 'three';
 // import { Camera } from '../../../vendor/three/build/three.module.js'; // Hard! How many  ../../?
-// import { Camera } from 'https://unpkg.com/three@0.116.0/build/three.module.js';
+// import { Camera } from 'https://cdn.skypack.dev/three@0.116.0';
 
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 // import { OrbitControls } from '../../../vendor/three/examples/jsm/controls/OrbitControls.js';
-// import { OrbitControls } from 'https://unpkg.com/three@0.116.0/examples/jsm/controls/OrbitControls.js';
+// import { OrbitControls } from 'https://cdn.skypack.dev/three@0.116.0/examples/jsm/controls/OrbitControls.js';
 
-import { REVISION } from 'three/src/constants.js';
+import { REVISION } from "three/src/constants.js";
 
 function convertImportsInText(text, oldStyle, newStyle) {
   if (!text) return;
@@ -22,13 +22,13 @@ function convertImportsInText(text, oldStyle, newStyle) {
   // const relativeExampleImport =
   //   "from '../../../vendor/three/examples";
 
-  const cdnBuildImport = `from 'https://unpkg.com/three@0.${REVISION}.0/build/three.module.js'`;
-  const cdnExampleImport = `from 'https://unpkg.com/three@0.${REVISION}.0/examples`;
+  const cdnBuildImport = `from 'https://cdn.skypack.dev/three@0.${REVISION}.2'`;
+  const cdnExampleImport = `from 'https://cdn.skypack.dev/three@0.${REVISION}.2/examples`;
 
   let newBuildURl = npmBuildImport;
   let newExampleURl = npmExampleImport;
 
-  if (newStyle === 'cdn') {
+  if (newStyle === "cdn") {
     newBuildURl = cdnBuildImport;
     newExampleURl = cdnExampleImport;
   }
@@ -38,14 +38,14 @@ function convertImportsInText(text, oldStyle, newStyle) {
   // }
 
   switch (oldStyle) {
-    case 'npm':
+    case "npm":
       convertedText = convertedText.replace(
-        new RegExp(npmBuildImport, 'g'),
-        newBuildURl,
+        new RegExp(npmBuildImport, "g"),
+        newBuildURl
       );
       convertedText = convertedText.replace(
-        new RegExp(npmExampleImport, 'g'),
-        newExampleURl,
+        new RegExp(npmExampleImport, "g"),
+        newExampleURl
       );
       break;
     // case 'relative':
@@ -58,14 +58,14 @@ function convertImportsInText(text, oldStyle, newStyle) {
     //     newExampleURl,
     //   );
     //   break;
-    case 'cdn':
+    case "cdn":
       convertedText = convertedText.replace(
-        new RegExp(cdnBuildImport, 'g'),
-        newBuildURl,
+        new RegExp(cdnBuildImport, "g"),
+        newBuildURl
       );
       convertedText = convertedText.replace(
-        new RegExp(cdnExampleImport, 'g'),
-        newExampleURl,
+        new RegExp(cdnExampleImport, "g"),
+        newExampleURl
       );
       break;
     default:
