@@ -6,39 +6,38 @@ weight: 112
 chapter: "1.12"
 available: true
 showIDE: true
-IDEFiles: [
-  "worlds/first-steps/built-in-geometries/src/World/components/Train/geometries.start.js",
-  "worlds/first-steps/built-in-geometries/src/World/components/Train/geometries.final.js",
-  "worlds/first-steps/built-in-geometries/src/World/components/Train/materials.start.js",
-  "worlds/first-steps/built-in-geometries/src/World/components/Train/materials.final.js",
-  "worlds/first-steps/built-in-geometries/src/World/components/Train/meshes.start.js",
-  "worlds/first-steps/built-in-geometries/src/World/components/Train/meshes.final.js",
-  "worlds/first-steps/built-in-geometries/src/World/components/Train/Train.start.js",
-  "worlds/first-steps/built-in-geometries/src/World/components/Train/Train.final.js",
-  "worlds/first-steps/built-in-geometries/src/World/components/camera.js",
-  "worlds/first-steps/built-in-geometries/src/World/components/helpers.js",
-  "worlds/first-steps/built-in-geometries/src/World/components/lights.js",
-  "worlds/first-steps/built-in-geometries/src/World/components/scene.js",
-  "worlds/first-steps/built-in-geometries/src/World/systems/controls.js",
-  "worlds/first-steps/built-in-geometries/src/World/systems/renderer.js",
-  "worlds/first-steps/built-in-geometries/src/World/systems/Resizer.js",
-  "worlds/first-steps/built-in-geometries/src/World/systems/Loop.js",
-  "worlds/first-steps/built-in-geometries/src/World/World.start.js",
-  "worlds/first-steps/built-in-geometries/src/World/World.final.js",
-  "worlds/first-steps/built-in-geometries/src/main.js",
-  "styles/main.css",
-  "vendor/three/build/three.module.js",
-  "vendor/three/examples/jsm/controls/OrbitControls.js",
-  "worlds/first-steps/built-in-geometries/index.html"
-]
+IDEFiles:
+  [
+    "worlds/first-steps/built-in-geometries/src/World/components/Train/geometries.start.js",
+    "worlds/first-steps/built-in-geometries/src/World/components/Train/geometries.final.js",
+    "worlds/first-steps/built-in-geometries/src/World/components/Train/materials.start.js",
+    "worlds/first-steps/built-in-geometries/src/World/components/Train/materials.final.js",
+    "worlds/first-steps/built-in-geometries/src/World/components/Train/meshes.start.js",
+    "worlds/first-steps/built-in-geometries/src/World/components/Train/meshes.final.js",
+    "worlds/first-steps/built-in-geometries/src/World/components/Train/Train.start.js",
+    "worlds/first-steps/built-in-geometries/src/World/components/Train/Train.final.js",
+    "worlds/first-steps/built-in-geometries/src/World/components/camera.js",
+    "worlds/first-steps/built-in-geometries/src/World/components/helpers.js",
+    "worlds/first-steps/built-in-geometries/src/World/components/lights.js",
+    "worlds/first-steps/built-in-geometries/src/World/components/scene.js",
+    "worlds/first-steps/built-in-geometries/src/World/systems/controls.js",
+    "worlds/first-steps/built-in-geometries/src/World/systems/renderer.js",
+    "worlds/first-steps/built-in-geometries/src/World/systems/Resizer.js",
+    "worlds/first-steps/built-in-geometries/src/World/systems/Loop.js",
+    "worlds/first-steps/built-in-geometries/src/World/World.start.js",
+    "worlds/first-steps/built-in-geometries/src/World/World.final.js",
+    "worlds/first-steps/built-in-geometries/src/main.js",
+    "styles/main.css",
+    "vendor/three/build/three.module.js",
+    "vendor/three/examples/jsm/controls/OrbitControls.js",
+    "worlds/first-steps/built-in-geometries/index.html",
+  ]
 IDEComparisonMode: true
-IDEClosedFolders: ['systems', 'styles', 'vendor']
-IDEStripDirectory: 'worlds/first-steps/built-in-geometries/'
-IDEActiveDocument: 'src/World/components/Train/Train.js'
+IDEClosedFolders: ["systems", "styles", "vendor"]
+IDEStripDirectory: "worlds/first-steps/built-in-geometries/"
+IDEActiveDocument: "src/World/components/Train/Train.js"
 membershipLevel: free
 ---
-
-
 
 # Getting Creative with The Built-In Geometries
 
@@ -63,6 +62,7 @@ The built-in geometries range from the mundane:
 In this chapter, we'll use the transformations we learned a few chapters ago ({{< link path="/book/first-steps/transformations.md" title="translate, rotate, and scale" >}}) to manipulate these geometries and build a simple toy train model. At the same time, we'll use this as an opportunity to explore ways of structuring scene components that are more complex than anything we have created so far. We'll also take a deeper look at using transformations, in particular rotation, which is the trickiest of the three transformations to use. We'll use just two of the geometries to build the toy train: a box geometry for the cabin, and a cylinder geometries for the wheels, nose, and chimney.
 
 {{% aside success %}}
+
 ### `Geometry` and `BufferGeometry`
 
 Technically speaking, the geometries we will create are "buffer" geometries, which means that their data is stored in flat arrays called _**buffers**_. `BoxBufferGeometry` is an extension of the [`BufferGeometry`](https://threejs.org/docs/#api/en/core/BufferGeometry) class. This is a newer and faster way of representing geometries, compared to the old `Geometry` class. Until three.js r125, both `Geometry` and `BufferGeometry` were included in the three.js core, but as of three.js r126, `Geometry` has been removed. It's still available in the examples folder, but you'll have to include it manually if you want to use it.
@@ -89,8 +89,8 @@ You can create a material with flat shading enabled by passing the parameter int
 
 {{< code lang="js" linenos="false" caption="Create a red flat-shaded `MeshStandardMaterial`" >}}
 const material = new MeshStandardMaterial({
-  color: 'red',
-  flatShading: true,
+color: 'red',
+flatShading: true,
 });
 {{< /code >}}
 
@@ -98,8 +98,8 @@ You can also set the `material.flatShading` property after creating the material
 
 {{< code lang="js" linenos="false" caption="Once the material has compiled, set the `.needsUpdate` flag when changing certain properties" >}}
 const material = new MeshStandardMaterial({
-  color: 'red',
-  flatShading: false, // default
+color: 'red',
+flatShading: false, // default
 });
 
 material.flatShading = true;
@@ -114,7 +114,7 @@ TODO-LINK: add link to material needs update section
 
 This is the first time we've used a [`CylinderBufferGeometry`](https://threejs.org/docs/#api/en/geometries/CylinderBufferGeometry), so let's take a moment to examine it now.
 
-{{< iframe src="https://threejs.org/docs/scenes/geometry-browser.html#CylinderBufferGeometry" height="500" title="The CylinderBufferGeometry in action" caption="The CylinderBufferGeometry in action" >}}
+{{< iframe src="https://threejs.org/docs/scenes/geometry-browser.html#CylinderGeometry" height="500" title="The CylinderBufferGeometry in action" caption="The CylinderBufferGeometry in action" >}}
 
 The first three parameters define the shape and size of the cylinder:
 
@@ -235,10 +235,10 @@ On the other hand, this structure won't be the best for every possible component
 
 In the editor, we have deleted the _**meshGroup.js**_ module from the previous chapter and replaced it with a new _**components/Train/**_ folder. If you're working on your own machine, go ahead and do that now. Inside this folder, there are four modules:
 
-* _**components/Train/geometries.js**_
-* _**components/Train/materials.js**_
-* _**components/Train/meshes.js**_
-* _**components/Train/Train.js**_
+- _**components/Train/geometries.js**_
+- _**components/Train/materials.js**_
+- _**components/Train/meshes.js**_
+- _**components/Train/Train.js**_
 
 ### Initial Structure of _**geometries.js**_, _**materials.js**_, and _**meshes.js**_
 
@@ -269,8 +269,8 @@ import { createGeometries } from './geometries.js';
 import { createMaterials } from './materials.js';
 
 function createMeshes() {
-  const geometries = createGeometries();
-  const materials = createMaterials();
+const geometries = createGeometries();
+const materials = createMaterials();
 }
 
 export { createMeshes }
@@ -284,9 +284,9 @@ Next, the `Train` class. Here, we'll do something new and {{< link path="/book/a
 import { Group } from 'three';
 
 class Train extends Group {
-  constructor() {
-    super();
-  }
+constructor() {
+super();
+}
 }
 
 export { Train }
@@ -308,13 +308,14 @@ We can also access add objects to the train from within the class itself, using 
 
 {{< code lang="js" linenos="false" caption="By extending `Group`, we can add a mesh to the train in the constructor" >}}
 class Train extends Group {
-  constructor() {
-    super();
+constructor() {
+super();
 
     const mesh = new Mesh(...);
 
     this.add(mesh);
-  }
+
+}
 }
 {{< /code >}}
 
@@ -323,12 +324,13 @@ class Train extends Group {
 Using this knowledge, we can finish setting up the `Train` class. First, import the `createMeshes` function, then call it and store the result in a member variable, `this.meshes`. At the very end of this chapter, we'll add some animation to the wheels, which means we need to access the meshes from outside the constructor, hence the use of a member variable here.
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="3 4 5 11" caption="_**Train.js**_: import and create the meshes" >}}
-``` js
-import { Group } from 'three';
 
-import { createGeometries } from './geometries.js';
-import { createMaterials } from './materials.js';
-import { createMeshes } from './meshes.js';
+```js
+import { Group } from "three";
+
+import { createGeometries } from "./geometries.js";
+import { createMaterials } from "./materials.js";
+import { createMeshes } from "./meshes.js";
 
 class Train extends Group {
   constructor() {
@@ -340,9 +342,8 @@ class Train extends Group {
 
 export { Train };
 ```
+
 {{< /code >}}
-
-
 
 ### _**World.js**_ Setup
 
@@ -353,7 +354,8 @@ Over in World, import the `Train` class. If you're working with code from the la
 Next, create an instance of the train and add it to the scene.
 
 {{< code lang="js" linenos="" linenostart="21" hl_lines="30 32" caption="_**World.js**_: create an instance of the train and add it to the scene" >}}
-``` js
+
+```js
 constructor(container) {
   camera = createCamera();
   renderer = createRenderer();
@@ -372,6 +374,7 @@ constructor(container) {
   scene.add(createAxesHelper(), createGridHelper());
 }
 ```
+
 {{< /code >}}
 
 ### Other Changes
@@ -397,15 +400,17 @@ We'll use just two types of geometry for every part of the train: a box geometry
 First up, the box-shaped cabin. A single `BoxBufferGeometry` will suffice here. Create one with the following parameters:
 
 | Length | Width  | Height |
-| ------ | ------ | ------ |
-| $2$    | $2.25$ | $1.5$  |  |
+| ------ | ------ | ------ | --- |
+| $2$    | $2.25$ | $1.5$  |     |
 
 {{< code lang="js" linenos="" linenostart="3" hl_lines="4" caption="_**geometries.js**_: create the cabin geometry" >}}
-``` js
+
+```js
 function createGeometries() {
   const cabin = new BoxBufferGeometry(2, 2.25, 1.5);
 }
 ```
+
 {{< /code >}}
 
 Different values for the length, width, and height will give us a rectangular box, unlike the cube we have used in previous chapters.
@@ -421,13 +426,15 @@ Next, create the first `CylinderBufferGeometry` for the nose, using these parame
 `radiusTop` and `radiusBottom` are equal, so we'll get a cylinder. A value of $12$ for the `radialSegments`, when combined with `Material.flatShading`, will make the cylinder look like it has been roughly carved.
 
 {{< code lang="js" linenos="" linenostart="3" hl_lines="6" caption="_**geometries.js**_: create the nose geometry" >}}
-``` js
+
+```js
 function createGeometries() {
   const cabin = new BoxBufferGeometry(2, 2.25, 1.5);
 
   const nose = new CylinderBufferGeometry(0.75, 0.75, 3, 12);
 }
 ```
+
 {{< /code >}}
 
 #### The Wheels Geometry
@@ -441,7 +448,8 @@ We can reuse a single `CylinderBufferGeometry` for all four wheels, even the lar
 The higher value of 16 for `radialSegments` will make the wheels look more rounded. We're creating the geometry at the correct size for the three smaller wheels, so, later, we'll have to increase the scale of the larger rear wheel.
 
 {{< code lang="js" linenos="" linenostart="3" hl_lines="9" caption="_**geometries.js**_: create the wheel geometry" >}}
-``` js
+
+```js
 function createGeometries() {
   const cabin = new BoxBufferGeometry(2, 2.25, 1.5);
 
@@ -451,6 +459,7 @@ function createGeometries() {
   const wheel = new CylinderBufferGeometry(0.4, 0.4, 1.75, 16);
 }
 ```
+
 {{< /code >}}
 
 #### The Chimney Geometry
@@ -462,7 +471,8 @@ Finally, the chimney. It's a cone, not a cylinder, but as discussed above, if we
 | $0.3$      | $0.1$         | $0.5$  | default value   |
 
 {{< code lang="js" linenos="" linenostart="3" hl_lines="12" caption="_**geometries.js**_: create the chimney geometry" >}}
-``` js
+
+```js
 function createGeometries() {
   const cabin = new BoxBufferGeometry(2, 2.25, 1.5);
 
@@ -475,6 +485,7 @@ function createGeometries() {
   const chimney = new CylinderBufferGeometry(0.3, 0.1, 0.5);
 }
 ```
+
 {{< /code >}}
 
 #### Final Geometries Module
@@ -492,7 +503,8 @@ All that remains is to create the meshes. First, we'll create the cabin, nose, a
 {{< link path="/book/first-steps/first-scene/#our-first-visible-object-mesh" title="Create the cabin and chimney meshes as usual" >}}, using the body material for the cabin and the detail material for the chimney, then move each mesh into position.
 
 {{< code lang="js" linenos="" linenostart="6" hl_lines="10 11 13 14" caption="_**meshes.js**_: create the cabin and chimney" >}}
-``` js
+
+```js
 function createMeshes() {
   const geometries = createGeometries();
   const materials = createMaterials();
@@ -504,6 +516,7 @@ function createMeshes() {
   chimney.position.set(-2, 1.9, 0);
 }
 ```
+
 {{< /code >}}
 
 The values entered for the positions are the result of some trial and error. However, with practice, you'll find that positioning objects becomes more intuitive and faster. As we mentioned above, there's no need to rotate the chimney, as it's already oriented correctly when we create it.
@@ -513,7 +526,8 @@ The values entered for the positions are the result of some trial and error. How
 Next up is the big red nose. Create the mesh as normal, using `geometries.nose` and `materials.body`. This time [we need to rotate](#working-with-rotations) as well as position the mesh:
 
 {{< code lang="js" linenos="" linenostart="6" hl_lines="16-18" caption="_**meshes.js**_: create the nose" >}}
-``` js
+
+```js
 function createMeshes() {
   const geometries = createGeometries();
   const materials = createMaterials();
@@ -529,6 +543,7 @@ function createMeshes() {
   nose.rotation.z = Math.PI / 2;
 }
 ```
+
 {{< /code >}}
 
 This completes the red body of the train, along with the chimney.
@@ -538,7 +553,8 @@ This completes the red body of the train, along with the chimney.
 Now, the wheels. We'll create the `smallWheelRear` first and then clone it to create the rest, just as we did with our {{< link path="book/first-steps/organizing-with-group/#create-the-prototype-mesh" title="`protoSphere` from the previous chapter" >}}. Create the `smallWheelRear` mesh, and then **translate it down half a unit on the $Y$-axis** to position it under the train. Then, [rotate it to lie along the $X$-axis](#working-with-rotations).
 
 {{< code lang="js" linenos="" linenostart="6" hl_lines="20-22" caption="_**meshes.js**_: create the first wheel" >}}
-``` js
+
+```js
 function createMeshes() {
   const geometries = createGeometries();
   const materials = createMaterials();
@@ -558,6 +574,7 @@ function createMeshes() {
   smallWheelRear.rotation.x = Math.PI / 2;
 }
 ```
+
 {{< /code >}}
 
 When we clone this wheel to create the rest of the wheels, the **cloned meshes will inherit the transformations from the prototype**. This means the cloned wheels will start correctly rotated and positioned at the bottom of the train, and we just need to space them out along the $X$-axis.
@@ -567,7 +584,8 @@ When we clone this wheel to create the rest of the wheels, the **cloned meshes w
 Clone the proto-wheel to create the other two small wheels, then move each into position along the $X$-axis:
 
 {{< code lang="js" linenos="" linenostart="6" hl_lines="24 25 27 28" caption="_**meshes.js**_: create the other small wheels" >}}
-``` js
+
+```js
 function createMeshes() {
   const geometries = createGeometries();
   const materials = createMaterials();
@@ -593,6 +611,7 @@ function createMeshes() {
   smallWheelFront.position.x = -2;
 }
 ```
+
 {{< /code >}}
 
 #### Create The Large Rear Wheel
@@ -600,7 +619,8 @@ function createMeshes() {
 The final piece of our train is the large rear wheel. Once again, clone the small wheel, then move it into position at the back of the train. This time, we also need to scale it to make it larger:
 
 {{< code lang="js" linenos="" linenostart="6" hl_lines="30-32" caption="_**meshes.js**_: create the large rear wheel" >}}
-``` js
+
+```js
 function createMeshes() {
   const geometries = createGeometries();
   const materials = createMaterials();
@@ -630,6 +650,7 @@ function createMeshes() {
   bigWheel.scale.set(2, 1.25, 2);
 }
 ```
+
 {{< /code >}}
 
 By scaling, we have doubled the diameter of the big wheel and increased its length by 1.25. But how did we work out which axes to scale on?
@@ -649,7 +670,8 @@ Putting that all together, here's the final `.createMeshes` module. Once again, 
 Next, we'll add the meshes to the Train. We'll do this in the train's constructor.
 
 {{< code lang="js" linenos="" linenostart="7" hl_lines="13-21" caption="_**Train.js**_: add the meshes to the Train group" >}}
-``` js
+
+```js
 class Train extends Group {
   constructor() {
     super();
@@ -663,11 +685,12 @@ class Train extends Group {
       this.meshes.smallWheelRear,
       this.meshes.smallWheelCenter,
       this.meshes.smallWheelFront,
-      this.meshes.bigWheel,
+      this.meshes.bigWheel
     );
   }
 }
 ```
+
 {{< /code >}}
 
 With that, the train should appear in your scene.
@@ -679,7 +702,8 @@ With that, the train should appear in your scene.
 As a final touch, let's set the wheels spinning. Give the train a `.tick` method, following the same {{< link path="/book/first-steps/animation-loop/#the-cubetick-method" title="pattern we use for all animated objects" >}}.
 
 {{< code lang="js" linenos="" linenostart="7" hl_lines="12" caption="_**Train.js**_: create an empty tick method" >}}
-``` js
+
+```js
 class Train extends Group {
   constructor() {
     // ... lines skipped for clarity
@@ -688,6 +712,7 @@ class Train extends Group {
   tick(delta) {}
 }
 ```
+
 {{< /code >}}
 
 Next, over in World, add the train to the updatables array.
@@ -719,6 +744,7 @@ To create truly amazing models, we need to use an external program designed for 
 ## Challenges
 
 {{% aside success %}}
+
 ### Easy
 
 1. What's better than a toy train? How about _two_ toy trains? You can `.clone` the entire train after creating it. Do that now, and then adjust the `.position` of the second train. Don't forget to add it to the scene!
@@ -730,6 +756,7 @@ _Both of these tasks should be done in **World.js**._
 {{% /aside %}}
 
 {{% aside %}}
+
 ### Medium
 
 1. Can you create a window in the cabin? There's no way to cut holes in the geometries (without using an external library), so you'll have to rebuild the cabin out of several box geometries. One way to do it is to create a large box for the floor, then another large box for the roof, and finally, four small boxes (or cylinders) for the pillars, around the edges of the roof.
@@ -741,6 +768,7 @@ _Both of these tasks should be done in **World.js**._
 {{% /aside %}}
 
 {{% aside warning %}}
+
 ### Hard
 
 1. What else can you do to improve this scene? How about some bubbles of smoke coming out of the train's chimney (use `SphereBufferGeometry` to create the bubbles). What about some clouds in the sky? How about _animating_ the smoke and clouds?

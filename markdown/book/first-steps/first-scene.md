@@ -20,8 +20,6 @@ IDEActiveDocument: 'index.html'
 IDEActiveDocument: 'src/main.js'
 ---
 
-
-
 # Your First three.js Scene: Hello, Cube!
 
 In this chapter, we'll create the Hello World of three.js apps: a simple white cube. Since we've already set up a simple webpage, as described in the last chapter, all we need to do is write a couple of lines of JavaScript in _**src/main.js**_ and our app will spring to life. We'll introduce quite a bit of theory along the way, but the actual code is short. Below is what this file will look like by the end of the chapter. Not counting the import statement and comments, there are under twenty lines of code in total. That's all it takes to create a simple "Hello Cube!" three.js app.
@@ -33,7 +31,7 @@ Click the <input type="checkbox" class="simple-toggle" title="Find the real togg
 ## The Components of a Real-Time 3D App
 
 {{% note %}}
-  TODO-DIAGRAM: This graph is confusing - Annie Chen
+TODO-DIAGRAM: This graph is confusing - Annie Chen
 {{% /note %}}
 
 {{< figure src="first-steps/rendered_scene_canvas.svg" alt="A basic scene" lightbox="true" >}}
@@ -147,9 +145,9 @@ const depth = 2;
 const geometry = new BoxBufferGeometry(length, width, depth);
 {{< /code >}}
 
- The constructor takes up to six parameters, but here, we provide only the first three, which specify the length, width, and depth of the box. Defaults are provided for any parameters we omit. You can play with all six parameters in the scene below.
+The constructor takes up to six parameters, but here, we provide only the first three, which specify the length, width, and depth of the box. Defaults are provided for any parameters we omit. You can play with all six parameters in the scene below.
 
-{{< iframe src="https://threejs.org/docs/scenes/geometry-browser.html#BoxBufferGeometry" height="500" title="The BoxBufferGeometry in action" caption="The `BoxBufferGeometry` in action" >}}
+{{< iframe src="https://threejs.org/docs/scenes/geometry-browser.html#BoxGeometry" height="500" title="The BoxBufferGeometry in action" caption="The `BoxBufferGeometry` in action" >}}
 
 ### The Material
 
@@ -202,7 +200,8 @@ We can import everything we need from the three.js core using a single `import` 
 If you're working locally (and not using a bundler like Webpack), you'll have to change the import path. For example, you can import from unpkg.com instead.
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="_**main.js**_:  importing the required three.js classes from a CDN" >}}
-``` js
+
+```js
 import {
   BoxBufferGeometry,
   Color,
@@ -211,9 +210,9 @@ import {
   PerspectiveCamera,
   Scene,
   WebGLRenderer,
-} from 'https://unpkg.com/three@0.117.0/build/three.module.js';
-
+} from "https://unpkg.com/three@0.117.0/build/three.module.js";
 ```
+
 {{< /code >}}
 
 Refer back to {{< link path="/book/introduction/get-threejs/#imports-in-the-inline-code-editor" title="" >}} if you need a reminder on how importing three.js classes works, or jump over to {{< link path="/book/appendix/javascript-modules/" title="" >}} if you want a refresher on JavaScript modules.
@@ -415,6 +414,7 @@ The renderer will draw our scene from the viewpoint of the camera into a `<canva
 Now, if you open up the browser's development console (press F12) and inspect the HTML, you'll see something like this:
 
 {{< code lang="html" linenos="false" caption="_**index.html**_" >}}
+
 <div id="scene-container">
   <canvas
     width="800"

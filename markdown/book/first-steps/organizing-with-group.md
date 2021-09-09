@@ -6,33 +6,31 @@ weight: 111
 chapter: "1.11"
 available: true
 showIDE: true
-IDEFiles: [
-  "worlds/first-steps/organizing-with-group/src/World/components/camera.js",
-  "worlds/first-steps/organizing-with-group/src/World/components/lights.js",
-  "worlds/first-steps/organizing-with-group/src/World/components/meshGroup.start.js",
-  "worlds/first-steps/organizing-with-group/src/World/components/meshGroup.final.js",
-  "worlds/first-steps/organizing-with-group/src/World/components/scene.js",
-  "worlds/first-steps/organizing-with-group/src/World/systems/controls.js",
-  "worlds/first-steps/organizing-with-group/src/World/systems/renderer.js",
-  "worlds/first-steps/organizing-with-group/src/World/systems/Resizer.js",
-  "worlds/first-steps/organizing-with-group/src/World/systems/Loop.js",
-  "worlds/first-steps/organizing-with-group/src/World/World.start.js",
-  "worlds/first-steps/organizing-with-group/src/World/World.final.js",
-  "worlds/first-steps/organizing-with-group/src/main.js",
-  "styles/main.css",
-  "vendor/three/build/three.module.js",
-  "vendor/three/examples/jsm/controls/OrbitControls.js",
-  "worlds/first-steps/organizing-with-group/index.html",
-]
+IDEFiles:
+  [
+    "worlds/first-steps/organizing-with-group/src/World/components/camera.js",
+    "worlds/first-steps/organizing-with-group/src/World/components/lights.js",
+    "worlds/first-steps/organizing-with-group/src/World/components/meshGroup.start.js",
+    "worlds/first-steps/organizing-with-group/src/World/components/meshGroup.final.js",
+    "worlds/first-steps/organizing-with-group/src/World/components/scene.js",
+    "worlds/first-steps/organizing-with-group/src/World/systems/controls.js",
+    "worlds/first-steps/organizing-with-group/src/World/systems/renderer.js",
+    "worlds/first-steps/organizing-with-group/src/World/systems/Resizer.js",
+    "worlds/first-steps/organizing-with-group/src/World/systems/Loop.js",
+    "worlds/first-steps/organizing-with-group/src/World/World.start.js",
+    "worlds/first-steps/organizing-with-group/src/World/World.final.js",
+    "worlds/first-steps/organizing-with-group/src/main.js",
+    "styles/main.css",
+    "vendor/three/build/three.module.js",
+    "vendor/three/examples/jsm/controls/OrbitControls.js",
+    "worlds/first-steps/organizing-with-group/index.html",
+  ]
 IDEComparisonMode: true
-IDEClosedFolders: ['systems', 'styles', 'vendor']
-IDEStripDirectory: 'worlds/first-steps/organizing-with-group/'
-IDEActiveDocument: 'src/World/components/meshGroup.js'
+IDEClosedFolders: ["systems", "styles", "vendor"]
+IDEStripDirectory: "worlds/first-steps/organizing-with-group/"
+IDEActiveDocument: "src/World/components/meshGroup.js"
 membershipLevel: free
 ---
-
-
-
 
 # Organizing Your Scenes
 
@@ -42,20 +40,26 @@ In this chapter, we'll introduce a new geometry called `SphereBufferGeometry`, a
 
 ## Introducing `SphereBufferGeometry`
 
-{{< iframe src="https://threejs.org/docs/scenes/geometry-browser.html#SphereBufferGeometry" height="500" title="The SphereBufferGeometry in action" caption="The `SphereBufferGeometry` in action" >}}
+{{< iframe src="https://threejs.org/docs/scenes/geometry-browser.html#SphereGeometry" height="500" title="The SphereBufferGeometry in action" caption="The `SphereBufferGeometry` in action" >}}
 
-The [`SphereBufferGeometry`](https://threejs.org/docs/#api/en/geometries/SphereBufferGeometry)  geometry constructor takes up to seven parameters, all optional. We'll focus on the first three here:
+The [`SphereBufferGeometry`](https://threejs.org/docs/#api/en/geometries/SphereBufferGeometry) geometry constructor takes up to seven parameters, all optional. We'll focus on the first three here:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Creating a `SphereBufferGeometry`" >}}
-``` js
-import { SphereBufferGeometry } from 'three';
+
+```js
+import { SphereBufferGeometry } from "three";
 
 const radius = 0.25;
 const widthSegments = 16;
 const heightSegments = 16;
 
-const geometry = new SphereBufferGeometry(radius, widthSegments, heightSegments);
+const geometry = new SphereBufferGeometry(
+  radius,
+  widthSegments,
+  heightSegments
+);
 ```
+
 {{< /code >}}
 
 The radius defines how big the sphere will be. More interesting are the next two parameters, which specify how much detail the geometry has around its width (equator) and height, respectively. The {{< link path="/book/first-steps/first-scene/#the-geometry" title="`BoxBufferGeometry` has similar parameters" >}}, however, they are less important as they don't change the shape of the box. The reason for this that all geometries are made out of triangles - you can see these outlined on the sphere in the scene above. To create a curved surface like a sphere we need to use lots of very tiny triangles.
@@ -67,7 +71,8 @@ Try experimenting with different values for `widthSegments` and `heightSegments`
 In a few moments, we'll create twenty-one sphere-shaped meshes and add them to our scene, arranged in a circle around the center. We could, of course, add each sphere to the scene one by one (in the following examples we've skipped setting the spheres' positions for brevity).
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Adding lots of sphere to the scene, one by one" >}}
-``` js
+
+```js
 const sphere1 = new Mesh(geometry, material);
 const sphere2 = new Mesh(geometry, material);
 const sphere3 = new Mesh(geometry, material);
@@ -82,17 +87,20 @@ scene.add(sphere3);
 scene.add(sphere20);
 scene.add(sphere21);
 ```
+
 {{< /code >}}
 
 Kind of tedious, don't you think? This is the perfect time to use a loop:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Creating many spheres in a loop" >}}
-``` js
+
+```js
 for (let i = 0; i < 21; i++) {
   const sphere = new Mesh(geometry, material);
   scene.add(sphere);
 }
 ```
+
 {{< /code >}}
 
 That's better. We've gone from over forty lines of code to just four. However, we have to think about
@@ -121,7 +129,7 @@ Like the `Scene` constructor, the `Group` constructor doesn't take any parameter
 
 {{< code lang="js" linenos="false" caption="Importing and creating a `Group`" >}}
 import {
-  Group,
+Group,
 } from 'three.module.js';
 
 const group = new Group();
@@ -152,7 +160,8 @@ TODO-DIAGRAM: add diagrams for each block of code describing how to use a group
 Getting back to our spheres, we'll create the spheres in a loop like before, but now we'll add them to a group, and then we'll add the group to the scene.
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Adding the spheres to a group instead of the scene allows us to manipulate them as a unit" >}}
-``` js
+
+```js
 const scene = new Scene();
 const group = new Group();
 scene.add(group);
@@ -162,6 +171,7 @@ for (let i = 0; i < 21; i++) {
   group.add(sphere);
 }
 ```
+
 {{< /code >}}
 
 {{< iframe src="https://threejs.org/examples/webgl_loader_collada_kinematics.html" height="500" title="A `group` in action" caption="A `Group` in action" class="medium right" >}}
@@ -224,11 +234,13 @@ clonedMesh.material.color.set('blue');
 However, you can give a clone an entirely new material, and the original will not be affected.
 
 {{< code lang="js" linenos="false" hl_lines="" caption="You can break the connection by giving clones a new material or geometry" >}}
-``` js
-clonedMesh.material = new MeshStandardMaterial({ color: 'indigo' });
+
+```js
+clonedMesh.material = new MeshStandardMaterial({ color: "indigo" });
 
 // mesh.material -> still red
 ```
+
 {{< /code >}}
 
 ### Custom Properties like `.tick` are Not Cloned
@@ -243,11 +255,11 @@ First, set up the imports. These are mostly the same as the previous chapter, ex
 
 {{< code lang="js" linenos="" caption="_**meshGroup.js**_: initial structure" >}}
 import {
-  SphereBufferGeometry,
-  Group,
-  MathUtils,
-  Mesh,
-  MeshStandardMaterial,
+SphereBufferGeometry,
+Group,
+MathUtils,
+Mesh,
+MeshStandardMaterial,
 } from 'three';
 
 function createMeshGroup() {}
@@ -257,17 +269,17 @@ export { createMeshGroup };
 
 ### Create the `Group`
 
-Inside the  function, create a new group, and then give it a `.tick` method:
+Inside the function, create a new group, and then give it a `.tick` method:
 
 {{< code lang="js" linenos="" linenostart="9" hl_lines="12-16" caption="_**meshGroup.js**_: create a group" >}}
 function createMeshGroup() {
-  // a group holds other objects
-  // but cannot be seen itself
-  const group = new Group();
+// a group holds other objects
+// but cannot be seen itself
+const group = new Group();
 
-  group.tick = (delta) => {};
+group.tick = (delta) => {};
 
-  return group;
+return group;
 }
 
 export { createMeshGroup };
@@ -299,7 +311,7 @@ Next, create a `MeshStandardMaterial`. Nothing new here, except this time we'll 
 
 {{< code lang="js" linenos="true" linenostart="16" caption="_**meshGroup.js**_: create a MeshStandardMaterial" >}}
 const material = new MeshStandardMaterial({
-  color: 'indigo',
+color: 'indigo',
 });
 {{< /code >}}
 
@@ -316,25 +328,25 @@ We'll `.clone` this mesh to create the rest of the meshes, hence the name `.prot
 
 {{< code lang="js" linenos="" linenostart="9" caption="_**meshGroup.js**_: current progress" >}}
 function createMeshGroup() {
-  // a group holds other objects
-  // but cannot be seen itself
-  const group = new Group();
+// a group holds other objects
+// but cannot be seen itself
+const group = new Group();
 
-  const geometry = new SphereBufferGeometry(0.25, 16, 16);
+const geometry = new SphereBufferGeometry(0.25, 16, 16);
 
-  const material = new MeshStandardMaterial({
-    color: 'indigo',
-  });;
+const material = new MeshStandardMaterial({
+color: 'indigo',
+});;
 
-  // create one prototype sphere
-  const protoSphere = new Mesh(geometry, material);
+// create one prototype sphere
+const protoSphere = new Mesh(geometry, material);
 
-  // add the sphere to the group
-  group.add(protoSphere);
+// add the sphere to the group
+group.add(protoSphere);
 
-  group.tick = (delta) => {};
+group.tick = (delta) => {};
 
-  return group;
+return group;
 }
 {{< /code >}}
 
@@ -351,17 +363,18 @@ This sub-heading wins the prize for most likely to be a line of dialogue in a ch
 With our prototype mesh set up, we'll clone it to create the other meshes.
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Clone the `protoSphere`" >}}
-``` js
+
+```js
 const clonedSphere = protoSphere.clone();
 ```
-{{< /code >}}
 
+{{< /code >}}
 
 We'll use a {{< link path="/book/appendix/javascript-reference/#for-loop" title="**for loop**" >}} to create twenty new spheres, adding each to the group as we create them. Normally, to loop twenty times, we would do this:
 
 {{< code lang="js" linenos="false" caption="A basic for loop that runs twenty times" >}}
 for (let i = 0; i < 20; i++) {
-  console.log('Hello twenty times!');
+console.log('Hello twenty times!');
 }
 {{< /code >}}
 
@@ -369,7 +382,7 @@ However, in a moment, we'll arrange the cloned spheres in a circle using some tr
 
 {{< code lang="js" linenos="false" caption="A for loop that runs twenty times with `i` values between zero and one" >}}
 for (let i = 0; i < 1; i += 0.05) {
-  console.log('Hello twenty times!');
+console.log('Hello twenty times!');
 }
 {{< /code >}}
 
@@ -386,9 +399,9 @@ group.add(protoSphere);
 // create twenty clones of the protoSphere
 // and add each to the group
 for (let i = 0; i < 1; i += 0.05) {
-  const sphere = protoSphere.clone();
+const sphere = protoSphere.clone();
 
-  group.add(sphere);
+group.add(sphere);
 }
 
 ...
@@ -410,8 +423,8 @@ $$
 If we input values of $i$ between zero and one, we'll get points spread around the circumference of the circle. We can easily rewrite these function in JavaScript {{< link path="/book/appendix/javascript-reference/#the-math-object" title="using the built-in `Math` class" >}}:
 
 {{< code lang="js" linenos="false" caption="Equations for points on a circle" >}}
-const x = Math.cos(2 * Math.PI * i);
-const y = Math.sin(2 * Math.PI * i);
+const x = Math.cos(2 _ Math.PI _ i);
+const y = Math.sin(2 _ Math.PI _ i);
 {{< /code >}}
 
 {{% note %}}
@@ -422,13 +435,13 @@ Next, move the equations into your for loop (now can you see why we wanted value
 
 {{< code lang="js" linenos="true" linenostart="27" hl_lines="31 32" caption="_**meshGroup.js**_: position the cloned meshes around a circle" >}}
 for (let i = 0; i < 1; i += 0.05) {
-  const sphere = protoSphere.clone();
+const sphere = protoSphere.clone();
 
-  // position the spheres on around a circle
-  sphere.position.x = Math.cos(2 * Math.PI * i);
-  sphere.position.y = Math.sin(2 * Math.PI * i);
+// position the spheres on around a circle
+sphere.position.x = Math.cos(2 _ Math.PI _ i);
+sphere.position.y = Math.sin(2 _ Math.PI _ i);
 
-  this.group.add(sphere);
+this.group.add(sphere);
 }
 {{< /code >}}
 
@@ -471,21 +484,21 @@ Finally, we have a scene that we can play with. You can get interesting results 
 {{% note %}}
 TODO-LOW: the example scene in the editor looks better with 101 spheres than 20
 Try these:
-  const geometry = new SphereBufferGeometry(0.25, 2, 8);
+const geometry = new SphereBufferGeometry(0.25, 2, 8);
 
-  const material = new MeshStandardMaterial({
-    color: 'indigo',
-    flatShading: true
-  });
+const material = new MeshStandardMaterial({
+color: 'indigo',
+flatShading: true
+});
 
-  const protoSphere = new Mesh(geometry, material);
+const protoSphere = new Mesh(geometry, material);
 
-  // add the sphere to the group
-  group.add(protoSphere);
+// add the sphere to the group
+group.add(protoSphere);
 
-  // create 20 clones of the protoSphere
-  // and add each to the group
-  for (let i = 0; i < 1; i += 0.01) {
+// create 20 clones of the protoSphere
+// and add each to the group
+for (let i = 0; i < 1; i += 0.01) {
 
 {{% /note %}}
 
@@ -494,9 +507,9 @@ What happens if you change 0.05 to 0.001? How small can that value be before you
 Or, how about changing the $z$ positions in the loop as well as $x$ and $y$?
 
 {{< code lang="js" linenos="true" linenostart="31" caption="_**meshGroup.js**_: change sphere's z position" >}}
-sphere.position.x = Math.cos(2 * Math.PI * i);
-sphere.position.y = Math.sin(2 * Math.PI * i);
-sphere.position.z = -i * 5;
+sphere.position.x = Math.cos(2 _ Math.PI _ i);
+sphere.position.y = Math.sin(2 _ Math.PI _ i);
+sphere.position.z = -i \* 5;
 {{< /code >}}
 
 {{< inlineScene entry="first-steps/snake.js" class="round" >}}
@@ -510,6 +523,7 @@ You'll have to adjust the camera as well to get this exact view. That sounds lik
 ## Challenges
 
 {{% aside success %}}
+
 ### Easy
 
 1. Increase and decrease the number of spheres by changing the value 0.05 in the loop. Try to calculate how many spheres you want before you make the change, rather than entering random numbers.
@@ -521,6 +535,7 @@ You'll have to adjust the camera as well to get this exact view. That sounds lik
 {{% /aside %}}
 
 {{% aside %}}
+
 ### Medium
 
 1. Inside the `group.tick` method, we are subtracting the rotation each frame: `.rotation.z -= ...`. This results in _clockwise_ rotation. Switch to `+=`, and notice how the rotation changes to _anti-clockwise_. If you add rotation, the movement will be anti-clockwise. If you subtract rotation, the movement will be clockwise. **Positive rotation in three.js is anti-clockwise**.
@@ -530,6 +545,7 @@ You'll have to adjust the camera as well to get this exact view. That sounds lik
 {{% /aside %}}
 
 {{% aside warning %}}
+
 ### Hard
 
 1. You guessed it! Can you make the scene in the editor exactly match the scene above?
