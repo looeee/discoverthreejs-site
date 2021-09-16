@@ -144,7 +144,7 @@ A second approach is to link the files from a CDN (Content Delivery Network), wh
 
 - https://cdn.skypack.dev/three@0.132.2
 
-Note taht we're specifying the version. You can also leave out the version which will always return the latest version
+Note that we're specifying the version. You can also leave out the version which will always return the latest version
 
 - https://cdn.skypack.dev/three
 
