@@ -3,10 +3,10 @@ export function moveAnchorIntoView() {
   if (window.location.hash.length > 0) {
     const target = document.querySelector(window.location.hash);
 
-    window.scrollTo({
+    document.querySelector(".wrapper").scrollTo({
       top: target.offsetTop - 100,
       left: 0,
-      behavior: 'auto',
+      behavior: "auto",
     });
   }
 }

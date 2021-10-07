@@ -1,4 +1,3 @@
-import { moveAnchorIntoView } from "./modules/layout/moveAnchorIntoView.js";
 import { setupNav } from "./modules/layout/nav.js";
 import { smoothInternalLinks } from "./modules/layout/smoothInternalLinks.js";
 
@@ -10,10 +9,19 @@ export function setup(spec = {}) {
       header.classList.add("fade-in");
     }
 
-    moveAnchorIntoView();
     setupNav(spec.navCloseElem, spec.navCloseTriggers);
 
-    // setupLightboxes();
     smoothInternalLinks();
+
+    // document
+    //   .querySelector("#introDownButton")
+    //   .addEventListener("click", (e) => {
+    //     document.querySelector(".wrapper").scrollTo({
+    //       top: document.querySelector("main").offsetTop - 100,
+    //       left: 0,
+    //       behavior: "smooth",
+    //     });
+    //     e.preventDefault();
+    //   });
   });
 }

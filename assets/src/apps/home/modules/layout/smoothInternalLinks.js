@@ -1,23 +1,25 @@
 export function smoothInternalLinks() {
+  const wrapper = document.querySelector(".wrapper");
   const internalLinks = document.querySelectorAll("a[href^='#']");
 
-  internalLinks.forEach(link => {
-    const id = '#' + link.href.split('#')[1];
+  internalLinks.forEach((link) => {
+    const id = "#" + link.href.split("#")[1];
 
-    if (!id.includes('lightbox')) {
-      const target = document.querySelector(id);
+    const target = document.querySelector(id);
+    const rect = target.getBoundingClientRect();
 
-      if (target) {
-        link.addEventListener('click', e => {
-          e.preventDefault();
+    if (target) {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
 
-          window.scrollTo({
-            top: target.offsetTop - 100,
-            left: 0,
-            behavior: 'smooth',
-          });
+        const rect = target.getBoundingClientRect();
+
+        wrapper.scrollTo({
+          top: rect.top + wrapper.scrollTop,
+          left: 0,
+          behavior: "smooth",
         });
-      }
+      });
     }
   });
 }
