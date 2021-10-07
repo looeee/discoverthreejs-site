@@ -259,7 +259,7 @@ Every example in this book will use the same `<head>` section:
 
 First, there's the `<title>`. This contains some text that will appear in the tab on your browser. Next, the two `<meta>` elements ensure that our page looks the same no matter what browser or device we display it on:
 
-- The [Viewport meta tag](https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag) only applies to mobile devices, which render the page in a virtual viewport:
+- The [Viewport meta tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag) only applies to mobile devices, which render the page in a virtual viewport:
   - `width=device-width`: render the page at the same width as the device.
   - `initial-scale=1`: set the initial scale to 1.
 - The `<meta charset>` tag tells the browser how to decode the HTML document itself.
