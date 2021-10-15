@@ -34,7 +34,7 @@ The new "official JavaScript modules" are called [ES6 Modules](https://developer
 
 As with our {{< link path="/book/appendix/javascript-reference/" title="previous chapter on JavaScript" >}}, we're won't attempt a complete description of ES6 modules here. We'll only cover the bits you need to know to get through this book.
 
-**When writing modular JavaScript, each file is a module**. So, we may refer to a module by its file name, for example, _**main.js**_, or simple as the _main_ module.
+**When writing modular JavaScript, each file is a module**. So, we may refer to a module by its file name, for example, _**main.js**_, or simply as the _main_ module.
 
 ## Modules in Other Environments
 

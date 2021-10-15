@@ -1861,7 +1861,7 @@ class Cat {
 }
 {{< /code >}}
 
-By _implicit_, we mean that you don't _see_ this code. All the magic happens somewhere out of sight, deep with the browser's JavaScript engine.
+By _implicit_, we mean that you don't _see_ this code. All the magic happens somewhere out of sight, deep within the browser's JavaScript engine.
 
 ### Returning Values from the Constructor
 
@@ -1884,7 +1884,7 @@ class Cat {
 
 ### Custom Return Values in Class Constructors
 
-Sometimes, you may find it useful is to return something other than the class instance from a class. In that case, you can add a custom `return` statement to the end of the constructor.
+Sometimes, you may find it useful to return something other than the class instance from a class. In that case, you can add a custom `return` statement to the end of the constructor.
 
 Here's a contrived example, where we return an object with name and age properties from the cat class:
 
@@ -1945,7 +1945,7 @@ moggy.meow();
 
 ### Chaining Methods
 
-Often, you'll need to create a class and then run several of it's methods to set it up. For example, here's a frog class with some methods to set up it's stats:
+Often, you'll need to create a class and then run several of its methods to set it up. For example, here's a frog class with some methods to set up its stats:
 
 {{< code lang="js" linenos="false" caption="A simple frog class" >}}
 ``` js
@@ -1976,7 +1976,7 @@ class Froggy {
 ```
 {{< /code >}}
 
-The stats are given default values in the constructor, and the methods allow us to customise them. Of course, for a simple class like this we could pass all the custom values into the constructor, but in real code that's not always possible or desireable. Now let's see what we have to do to customise all of the frog's stats:
+The stats are given default values in the constructor, and the methods allow us to customise them. Of course, for a simple class like this we could pass all the custom values into the constructor, but in real code that's not always possible or desirable. Now let's see what we have to do to customise all of the frog's stats:
 
 {{< code lang="js" linenos="false" caption="Customising our frog" >}}
 ``` js
@@ -1989,7 +1989,7 @@ froggy.setJumpHeight('10');
 ```
 {{< /code >}}
 
-We can improve this slightly by using **method chaining**. To do this, we will return `this` at the end of each method. Remember that the `constructor` implicity returns `this` already.
+We can improve this slightly by using **method chaining**. To do this, we will return `this` at the end of each method. Remember that the `constructor` implicitly returns `this` already.
 
 {{< code lang="js" linenos="false" hl_lines="11,16,21,26" caption="To use method chaining, each method must return 'this'" >}}
 ``` js
