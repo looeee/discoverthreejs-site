@@ -19,7 +19,7 @@ hideWordCount: true
 
 {{< inlineScene entry="first-steps/birds-animated.js" class="round" >}}
 
-**Welcome to Dicover three.js!**
+**Welcome to Discover three.js!**
 
 This book is a **complete introductory tutorial series** designed to get you up to speed with three.js quickly while also giving you a thorough grounding in the technical language and concepts you'll need to go deeper in your own explorations of three.js and computer graphics.
 

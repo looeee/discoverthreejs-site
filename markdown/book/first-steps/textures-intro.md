@@ -127,7 +127,7 @@ TODO-LINK: add link to textures section
 
 ## Creating Textures
 
-There are many ways of preparing images for use as textures, but the easiest is to take a photograph of an object. For example, if you take a photo of a brick wall and assign it to a material's color slot, you'll see a decent likeness of a 3D wall in your scene. We can improve this by creating by using the original image to create additional textures for other material properties like bumps or roughness. Check out this set of textures on [freepbr.com](https://freepbr.com/materials/worn-out-old-brick-wall-pbr-material/) for an example (choose the Unreal Engine version for use with three.js, and note that _albedo_ is another term for _color_). We'll explore using a set of textures like this to create photorealistic materials later in the book.
+There are many ways of preparing images for use as textures, but the easiest is to take a photograph of an object. For example, if you take a photo of a brick wall and assign it to a material's color slot, you'll see a decent likeness of a 3D wall in your scene. We can improve this by using the original image to create additional textures for other material properties like bumps or roughness. Check out this set of textures on [freepbr.com](https://freepbr.com/materials/worn-out-old-brick-wall-pbr-material/) for an example (choose the Unreal Engine version for use with three.js, and note that _albedo_ is another term for _color_). We'll explore using a set of textures like this to create photorealistic materials later in the book.
 
 {{% note %}}
 TODO-LINK: add link to page using a texture set like this

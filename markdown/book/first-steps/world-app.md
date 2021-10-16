@@ -43,7 +43,7 @@ The HTML and CSS files will remain unchanged, it's only the JavaScript we need t
 
 ### Modular Software Design
 
-When writing modular JavaScript, each file is a module. So, we may refer to a module by its file name, for example, _**main.js**_, or simple as the _main_ module. An important part of modular software design is choosing the structure and names of your modules. Open up the inline code editor and you'll see that all the files required for this chapter have already been created, although they're all empty to begin with. If you like, hit the comparison toggle to view the completed code, otherwise, try completing the modules yourself while you read.
+When writing modular JavaScript, each file is a module. So, we may refer to a module by its file name, for example, _**main.js**_, or simply as the _main_ module. An important part of modular software design is choosing the structure and names of your modules. Open up the inline code editor and you'll see that all the files required for this chapter have already been created, although they're all empty to begin with. If you like, hit the comparison toggle to view the completed code, otherwise, try completing the modules yourself while you read.
 
 _There's an entire chapter of the appendices dedicated to {{< link path="/book/appendix/javascript-modules/" title="JavaScript modules" >}}. If this subject is new to you, now would be a good time to check it out._
 
@@ -404,7 +404,7 @@ caption="_**World.js**_: complete code" >}}{{< /code >}}
 
 Whew! That was some refactor! If you're used to structuring your code using modules, this chapter was probably a breeze. On the other hand, if this was all new to you, it can take some time to get used to the idea of splitting up an application like this. Hopefully, by going through this step by step, you now have a clearer understanding of why we would choose to do this.
 
-Our application is now ready for liftoff. Over the next few chapters, we'll add lighting, movement, user controls, animation, and even some shapes that are a little more interesting that our humble square. Are you ready?
+Our application is now ready for liftoff. Over the next few chapters, we'll add lighting, movement, user controls, animation, and even some shapes that are a little more interesting than our humble square. Are you ready?
 
 ## Challenges
 
