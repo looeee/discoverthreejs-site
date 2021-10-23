@@ -202,7 +202,7 @@ const values = [0, 0, 0, 2, 2, 2, 0, 0, 0];
 const positionKF = new VectorKeyframeTrack('.position', times, values);
 
 // just one track for now
-const tracks = [track];
+const tracks = [positionKF];
 
 // use -1 to automatically calculate
 // the length from the array of tracks
