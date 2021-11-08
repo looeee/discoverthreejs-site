@@ -161,7 +161,7 @@ const array = [1, 2, 3, 4];
 
 array.forEach(callbackTest); // => 'Callback executed' (four times, synchronously)
 
-setTimeout(testCallback, 3000); // => 'Callback executed' (after 3000ms, asynchronously)
+setTimeout(callbackTest, 3000); // => 'Callback executed' (after 3000ms, asynchronously)
 {{< /code >}}
 
 What's the difference? Without going into much detail, the synchronous callback function is executed immediately and blocks the main thread. This can cause your application to freeze if it takes a long time to complete. By comparison, the asynchronous callback function is put onto something called a task queue which does not block the main thread. However, the callback must wait for its turn in the queue before being executed.
