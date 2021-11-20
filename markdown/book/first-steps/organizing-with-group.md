@@ -324,7 +324,7 @@ const protoSphere = new Mesh(geometry, material);
 group.add(protoSphere);
 {{< /code >}}
 
-We'll `.clone` this mesh to create the rest of the meshes, hence the name `.protoSphere`. Putting all that together, here's the `createMeshGroup` function so far:
+We'll `.clone` this mesh to create the rest of the meshes, hence the name `protoSphere`. Putting all that together, here's the `createMeshGroup` function so far:
 
 {{< code lang="js" linenos="" linenostart="9" caption="_**meshGroup.js**_: current progress" >}}
 function createMeshGroup() {
@@ -423,8 +423,8 @@ $$
 If we input values of $i$ between zero and one, we'll get points spread around the circumference of the circle. We can easily rewrite these function in JavaScript {{< link path="/book/appendix/javascript-reference/#the-math-object" title="using the built-in `Math` class" >}}:
 
 {{< code lang="js" linenos="false" caption="Equations for points on a circle" >}}
-const x = Math.cos(2 _ Math.PI _ i);
-const y = Math.sin(2 _ Math.PI _ i);
+const x = Math.cos(2 * Math.PI * i);
+const y = Math.sin(2 * Math.PI * i);
 {{< /code >}}
 
 {{% note %}}
@@ -438,8 +438,8 @@ for (let i = 0; i < 1; i += 0.05) {
 const sphere = protoSphere.clone();
 
 // position the spheres on around a circle
-sphere.position.x = Math.cos(2 _ Math.PI _ i);
-sphere.position.y = Math.sin(2 _ Math.PI _ i);
+sphere.position.x = Math.cos(2 * Math.PI * i);
+sphere.position.y = Math.sin(2 * Math.PI * i);
 
 this.group.add(sphere);
 }
@@ -507,9 +507,9 @@ What happens if you change 0.05 to 0.001? How small can that value be before you
 Or, how about changing the $z$ positions in the loop as well as $x$ and $y$?
 
 {{< code lang="js" linenos="true" linenostart="31" caption="_**meshGroup.js**_: change sphere's z position" >}}
-sphere.position.x = Math.cos(2 _ Math.PI _ i);
-sphere.position.y = Math.sin(2 _ Math.PI _ i);
-sphere.position.z = -i \* 5;
+sphere.position.x = Math.cos(2 * Math.PI * i);
+sphere.position.y = Math.sin(2 * Math.PI * i);
+sphere.position.z = -i * 5;
 {{< /code >}}
 
 {{< inlineScene entry="first-steps/snake.js" class="round" >}}
