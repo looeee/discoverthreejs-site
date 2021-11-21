@@ -45,7 +45,7 @@ Throughout this section, we'll frequently refer to _old-school_ and _modern_ Jav
 
 ## JavaScript Modules and the Entry Point
 
-All the JavaScript we write will go inside files with `.js` extensions. Rather than put everything into one file, we'll split out code into many small modules, a topic to which we devote {{< link path="/book/appendix/javascript-modules/" title="an entire chapter" >}} since modules are part of modern JavaScript and may be unfamiliar to many people.
+All the JavaScript we write will go inside files with `.js` extensions. Rather than put everything into one file, we'll split our code into many small modules, a topic to which we devote {{< link path="/book/appendix/javascript-modules/" title="an entire chapter" >}} since modules are part of modern JavaScript and may be unfamiliar to many people.
 
 Once we've split up our application in this manner, we'll have one main JavaScript file that references and coordinates the other JavaScript modules. This main file is called the **entry point** of our application, and we will name it _**main.js**_ (it's also common to call this _**index.js**_ or _**app.js**_).
 
@@ -684,7 +684,7 @@ function changeXImpure() {
   x = 10;
 }
 
-changeXImpure(x); // now x = 10
+changeXImpure(); // now x = 10
 {{< /code >}}
 
 When we change data from outside the function, we call the function _impure_. In most cases, you should avoid doing this as it makes your code harder to read.
@@ -698,7 +698,7 @@ function changeXPure() {
   return 10;
 }
 
-x = changeXPure(x); // now x = 10
+x = changeXPure(); // now x = 10
 {{< /code >}}
 
 **Functional programming** is a programming style that requires you to only use pure functions. In this book, we'll take a pragmatic approach. We'll aim to write pure functions but if it seems like we're jumping through hoops to do so, we'll allow a couple of impure functions to slip in.
