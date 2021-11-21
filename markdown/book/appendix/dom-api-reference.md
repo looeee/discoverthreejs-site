@@ -309,7 +309,7 @@ There are other ways of getting information about an element's dimensions, such 
 
 ## Creating New Elements
 
-There are many to create new HTML elements, but we'll stick to `document.createElement`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement) to do this:
+There are many ways to create new HTML elements, but we'll stick to [`document.createElement`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement) to do this:
 
 {{< code lang="js" linenos="false" caption="Creating a new sub-heading element" >}}
 const headingElem = document.createElement('h2');
