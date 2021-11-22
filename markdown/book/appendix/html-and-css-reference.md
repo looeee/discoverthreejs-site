@@ -432,13 +432,13 @@ Within our CSS file, we want to make sure that the `<body>` element takes up the
 
 In most browsers, the body element has a default `margin` of 8 pixels. This means there will be an empty gap of 8 pixels on all sides of the screen, and these will show up as white lines around the edges of our full-screen three.js scene. We don't want this, so we'll override the default and set the margin to zero:
 
-{{< code lang="css" linenos="false" >}}
+{{< code lang="css" linenos="false" caption="Set the body margin to zero">}}
 margin: 0;
 {{< /code >}}
 
 Next, we want to hide the scroll bars since our scene has no off-screen content:
 
-{{< code lang="css" linenos="false" caption="Set the body margin to zero" >}}
+{{< code lang="css" linenos="false" caption="Hide scroll bars" >}}
 overflow: hidden;
 {{< /code >}}
 
