@@ -304,7 +304,7 @@ train.add(mesh);
 scene.add(train);
 {{< /code >}}
 
-We can also access add objects to the train from within the class itself, using `this.add`:
+We can also add objects to the train from within the class itself, using `this.add`:
 
 {{< code lang="js" linenos="false" caption="By extending `Group`, we can add a mesh to the train in the constructor" >}}
 class Train extends Group {
@@ -400,8 +400,8 @@ We'll use just two types of geometry for every part of the train: a box geometry
 First up, the box-shaped cabin. A single `BoxBufferGeometry` will suffice here. Create one with the following parameters:
 
 | Length | Width  | Height |
-| ------ | ------ | ------ | --- |
-| $2$    | $2.25$ | $1.5$  |     |
+| ------ | ------ | ------ | 
+| $2$    | $2.25$ | $1.5$  |
 
 {{< code lang="js" linenos="" linenostart="3" hl_lines="4" caption="_**geometries.js**_: create the cabin geometry" >}}
 
@@ -661,7 +661,7 @@ Look at the initial position of a newly created `CylinderBufferGeometry` once ag
 
 #### Final Meshes Module
 
-Putting that all together, here's the final `.createMeshes` module. Once again, we have returned an object containing all the meshes for use in the Train module.
+Putting that all together, here's the final meshes module. Once again, we have returned an object containing all the meshes for use in the Train module.
 
 {{< code file="worlds/first-steps/built-in-geometries/src/World/components/Train/meshes.final.js" from="1" to="45" hl_lines="34-42" lang="js" linenos="true" caption="_**meshes.js**_: complete code" >}}{{< /code >}}
 
