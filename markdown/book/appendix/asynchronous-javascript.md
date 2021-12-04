@@ -423,7 +423,7 @@ promise
   .then((result) => {
     console.log(result); // => 'Promise succeeded'
   })
-  .catch((err) => {
+  .catch((error) => {
     console.error(error); // => 'Promise failed'
   });
 {{< /code >}}
