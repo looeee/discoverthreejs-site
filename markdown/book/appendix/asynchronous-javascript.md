@@ -54,7 +54,7 @@ Using [`.loadAsync`](https://threejs.org/docs/#api/en/loaders/Loader.loadAsync) 
 const modelData = loader.loadAsync('yourModel.file');
 {{< /code >}}
 
-However, the information here is not specific to three.js so we won't remove the chapter. If you want to skip ahead to the info you absolutely need to use this book, skip to the section on[*async functions**](#async-await). Otherwise, read on.
+However, the information here is not specific to three.js so we won't remove the chapter. If you want to skip ahead to the info you absolutely need to use this book, skip to the section on [**async functions**](#async-await). Otherwise, read on.
 {{% /aside %}}
 
 Let's look at what happens when we try to load a model synchronously.
@@ -75,7 +75,7 @@ In the above example, the JavaScript engine will reach `loadModel(...)` and then
 
 Clearly, synchronous code is not suitable for loading things over a network (or anywhere else, for that matter).
 
-Whenever we need to load something, whether it's an image, a video, the response from a form a user has submitted, or a 3D model, we'll switch to an [asynchronous](https://developer.mozilla.org/en-US/docs/Glossary/Asynchronous) code style. There three main ways to perform **asynchronous operations** using JavaScript, and we'll look at each of them in turn here, from the old-school **asynchronous callbacks**, to modern **Promises**, and finally, cutting edge **async functions**.
+Whenever we need to load something, whether it's an image, a video, the response from a form a user has submitted, or a 3D model, we'll switch to an [asynchronous](https://developer.mozilla.org/en-US/docs/Glossary/Asynchronous) code style. There are three main ways to perform **asynchronous operations** using JavaScript, and we'll look at each of them in turn here, from the old-school **asynchronous callbacks**, to modern **Promises**, and finally, cutting edge **async functions**.
 
 In this chapter, we'll explore **callback functions**, **Promises**, and **async functions**. While doing so, we'll create imaginary `loadModel` functions in each of the three styles, although in place of displaying an actual 3D model we'll simply log a message to the console.
 
@@ -202,7 +202,7 @@ const onComplete = (result) => {
 asynchronousCallbackOperation(onComplete);
 {{< /code >}}
 
-Next, we'll take this and turn it into a fake `loadModelUsingCallback` function. Along with the name change, the function now takes an `url` argument, and we have renamed the callback to `onLoad`.
+Next, we'll take this and turn it into a fake `loadModelUsingCallback` function. Along with the name change, the function now takes an `url` argument, and we are using an arrow function as the callback.
 
 {{< code from="1" to="11" file="worlds/appendix/asynchronous-javascript/src/1-asynchronous-callback.js" lang="js" linenos="true" caption="1-asynchronous-callback.js" >}}{{< /code >}}
 
@@ -423,7 +423,7 @@ promise
   .then((result) => {
     console.log(result); // => 'Promise succeeded'
   })
-  .catch((err) => {
+  .catch((error) => {
     console.error(error); // => 'Promise failed'
   });
 {{< /code >}}
