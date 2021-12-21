@@ -41,3 +41,13 @@ The book is built with Hugo, and this repo follows a fairly typical folder struc
 
 * [Hugo Pipes](https://gohugo.io/hugo-pipes/) are used to build [SCSS](https://gohugo.io/hugo-pipes/scss-sass/) and [JS](https://gohugo.io/hugo-pipes/js/) assets. This means the Hugo extended version must be used.
 * Running `npm start` will take several seconds to bundle all the files so please be patient. However, once the server is running, updates should take just a few milliseconds.
+
+## LICENSE
+
+### Code License
+
+All code in this repo (including code sample in the text and any source code in the `/assets` folder) is covered by the [MIT license](https://opensource.org/licenses/MIT). You are free to use it however you like, including in commercial applications. This does not cover any included third party libraries which have their own license. 
+
+### Text License
+
+Text from the book may not be reproduced without permission outside of this repo and the website discoverthreejs.com. You are free to fork the repo to make changes to the text but you are not allowed to host the text on another site (such as your own blog or tutorial site). 
