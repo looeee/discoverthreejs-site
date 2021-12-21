@@ -26,7 +26,7 @@ Prerequisites: Node.js, [Hugo](https://github.com/gohugoio/hugo)
 
 ## Technical Details
 
-The book is built with Hugo, and this repo follows a fairly typical folder structure for a Hugo project, although the `content/` folder has been renamed to `markdown/`.
+The book is built with Hugo, and this repo follows a fairly typical folder structure for a Hugo project, although the `content/` folder has been renamed to `markdown/`. If you want to make changes, refer to [the Hugo docs](https://gohugo.io/documentation/). 
 
 ### Important folders
 
