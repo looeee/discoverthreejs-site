@@ -10,7 +10,7 @@ Pull requests are welcome, especially for:
 
 Search through the markdown folder for "TODO" if you're looking for inspiration ^_^
 
-For larger contributions, please get in touch before making changes.
+For larger contributions, please get in touch before making changes - you can open a discussion or issue on this repo. 
 
 ## Developer Guide
 
