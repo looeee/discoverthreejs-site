@@ -1,0 +1,45 @@
+baseURL: "https://discoverthreejs.com/"
+
+languages:
+  en:
+    languageName: English
+    weight: 1
+  zh:
+    languageName: 中文
+    weight: 2
+
+publishDir: public
+contentDir: markdown
+
+disableKinds:
+  - tags
+  - taxonomy
+  - taxonomyTerm
+  - category
+  - RSS
+  - robotsTXT
+enableRobotsTXT: false
+summaryLength: 240
+logFile: logs.txt
+
+enableInlineShortcodes: true
+pygmentsCodeFences: true
+pygmentsOptions: ""
+pygmentsStyle: monokai
+pygmentsUseClasses: true
+linenos: "true"
+
+markup:
+  goldmark:
+    renderer:
+      hardWraps: false
+      unsafe: true
+      xhtml: false
+      paginate: 10
+      paginatePath: test
+      disableHugoGeneratorInject: true
+
+sitemap:
+  changefreq: monthly
+  filename: sitemap.xml
+  priority: 0.5
