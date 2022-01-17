@@ -4,11 +4,11 @@ node_modules
 desktop.ini
 
 ### Hugo stuff ###
-resources/
+resources
 hugo.exe
 hugo
 .hugo_build.lock
-public/
+public
 
 static/examples/vendor/three
 
