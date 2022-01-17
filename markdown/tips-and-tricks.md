@@ -1,9 +1,9 @@
 ---
 title: "The Big List of three.js Tips and Tricks!"
 date: 2018-01-01
-description: "Here lie hundreds of tips, tricks, and suggestions for best practices while building a high performance three.js application."
+description: "Lots of tips, tricks, and suggestions for best practices while building a high performance three.js application."
 weight: 9999
-chapter: 'B.2'
+chapter: "B.2"
 available: true
 excludeFromTOC: false
 hideWordCount: true
@@ -26,7 +26,7 @@ Most of the info here is not specific to three.js, or even WebGL, but will work 
 
 Happy Coding!
 
-## Beginner Friendly Tips, or *Help! Why Can't I See Anything?* {#basic}
+## Beginner Friendly Tips, or _Help! Why Can't I See Anything?_ {#basic}
 
 You've followed a couple of basic tutorials and everything worked out fine. Now you're creating an app of your own and you've set everything up _exactly_ as the tutorial says. But you just can't see anything! WTH??
 
@@ -38,17 +38,16 @@ But you already did that, right?
 
 ### 2. Set the background color to something other than black {#background-color-check}
 
-
 Staring at a black canvas? It's hard to tell whether something is happening or not if all you can see is black. Try setting the background color to red:
 
 {{< code lang="js" linenos="false" >}}
-``` js
-import {
-  Color
-} from './vendor/three/build/three.module.js';
 
-scene.background = new Color('red');
+```js
+import { Color } from "./vendor/three/build/three.module.js";
+
+scene.background = new Color("red");
 ```
+
 {{< /code >}}
 
 If you get a red canvas, then at least your `renderer.render` calls are working, and you can move on to figuring out what else is wrong.
@@ -62,13 +61,13 @@ Just as in the real world, most materials in three.js need light to be seen.
 One material that doesn't require light to be visible is the [`MeshBasicMaterial`](https://threejs.org/docs/#api/en/materials/MeshBasicMaterial). If you are having trouble getting objects to show up, you can temporarily override all the materials in your scene with `MeshBasicMaterial`. If the objects magically appear when you do this, then your problem is a lack of light.
 
 {{< code lang="js" linenos="false" >}}
-``` js
-import {
-  MeshBasicMaterial
-} from './vendor/three/build/three.module.js';
 
-scene.overrideMaterial = new MeshBasicMaterial({color: 'green'});
+```js
+import { MeshBasicMaterial } from "./vendor/three/build/three.module.js";
+
+scene.overrideMaterial = new MeshBasicMaterial({ color: "green" });
 ```
+
 {{< /code >}}
 
 ### 5. Is your object within the camera's viewing frustum? {#frustum-check}
@@ -76,10 +75,12 @@ scene.overrideMaterial = new MeshBasicMaterial({color: 'green'});
 If your object is not inside the [viewing frustum](/book/first-steps/first-scene/#viewing-frustum), it will get clipped. Try making your far clipping plane really big:
 
 {{< code lang="js" linenos="false" >}}
-``` js
+
+```js
 camera.far = 100000;
 camera.updateProjectionMatrix();
 ```
+
 {{< /code >}}
 
 Remember this is just for testing though! The camera's frustum is measured in meters, and you should make it as small as possible for best performance. Once your scene is set up and working correctly, reduce the size of your frustum as much as possible.
@@ -89,9 +90,11 @@ Remember this is just for testing though! The camera's frustum is measured in me
 By default, everything gets created at the point $(0,0,0)$, AKA the **origin**. Make sure you have moved your camera back so that you can see your scene!
 
 {{< code lang="js" linenos="false" >}}
-``` js
+
+```js
 camera.position.z = 10;
 ```
+
 {{< /code >}}
 
 ### 7. Think carefully about the scale of your scene {#scale-check}
@@ -112,9 +115,9 @@ three.js is uses SI units everywhere. If you also use SI units, you will find th
 
 ### SI Units
 
-* Distance is measured in **meters** (1 three.js unit = 1 meter).
-* Time is measured in seconds.
-* Light is measured in SI light units, [Candela](http://www.si-units-explained.info/luminosity/) (cd), Lumen (lm), and Lux (lx) (as long as you turn on `renderer.physicallyCorrectLights`, at least).
+- Distance is measured in **meters** (1 three.js unit = 1 meter).
+- Time is measured in seconds.
+- Light is measured in SI light units, [Candela](http://www.si-units-explained.info/luminosity/) (cd), Lumen (lm), and Lux (lx) (as long as you turn on `renderer.physicallyCorrectLights`, at least).
 
 If you are creating things on a truly epic scale (space simulations and things like that), either use a scaling factor or switch to using a [logarithmic depth buffer](http://threejs.org/examples/#webgl_camera_logarithmicdepthbuffer).
 
@@ -123,41 +126,47 @@ If you are creating things on a truly epic scale (space simulations and things l
 For (nearly) accurate colors, use these settings for the renderer:
 
 {{< code lang="js" linenos="false" >}}
-``` js
+
+```js
 renderer.gammaFactor = 2.2;
 renderer.outputEncoding = THREE.sRGBEncoding;
 ```
+
 {{< /code >}}
 
 For colors do this:
 
 {{< code lang="js" linenos="false" >}}
-``` js
+
+```js
 const color = new Color(0x800080);
 color.convertSRGBToLinear();
 ```
+
 {{< /code >}}
 
 Or, in the more common case of using a color in a material:
 
 {{< code lang="js" linenos="false" >}}
-``` js
-const material = new MeshBasicMaterial({ color:0x800080});
+
+```js
+const material = new MeshBasicMaterial({ color: 0x800080 });
 material.color.convertSRGBToLinear();
 ```
+
 {{< /code >}}
 
 Finally, to get (nearly) correct colors in your textures, **you need to set the texture encoding for the color, environment, and emissive maps _only_**:
 
 {{< code lang="js" linenos="false" >}}
-``` js
-import {
-  sRGBEncoding
-} from './vendor/three/build/three.module.js';
 
-const colorMap = new TextureLoader().load('colorMap.jpg');
+```js
+import { sRGBEncoding } from "./vendor/three/build/three.module.js";
+
+const colorMap = new TextureLoader().load("colorMap.jpg");
 colorMap.encoding = sRGBEncoding;
 ```
+
 {{< /code >}}
 
 All other texture types should remain in linear color space. This is the default, so you don't need to change the encoding for any textures other than color, environment, and emissive maps.
@@ -202,9 +211,11 @@ Many people who work with three.js prefer [**Mr.doob's Code Style™**](https://
 7. If your scene is static and uses `OrbitControls`, you can listen for the control's `change` event. This way you can render the scene only when the camera moves:
 
 {{< code lang="js" linenos="false" >}}
-``` js
-OrbitControls.addEventListener( 'change', () => renderer.render( scene, camera ) );
+
+```js
+OrbitControls.addEventListener("change", () => renderer.render(scene, camera));
 ```
+
 {{< /code >}}
 
 You won't get a higher frame rate from the last two, but what you will get is less fans switching on, and less battery drain on mobile devices.
@@ -266,7 +277,7 @@ Removing something from your scene?
 
 First of all, **consider not doing that**, especially if you will add it back again later. You can hide objects temporarily using `object.visible = false` (works for lights too), or `material.opacity = 0`. You can set `light.intensity = 0` to disable a light without causing shaders to recompile.
 
-If you do need to remove things from your scene *permanently*, read this article first: [How to dispose of objects](https://threejs.org/docs/#manual/en/introduction/How-to-dispose-of-objects).
+If you do need to remove things from your scene _permanently_, read this article first: [How to dispose of objects](https://threejs.org/docs/#manual/en/introduction/How-to-dispose-of-objects).
 
 ## Updating Objects in Your Scene?
 
@@ -276,7 +287,7 @@ Read this article: [How to update things](https://threejs.org/docs/#manual/en/in
 
 1. Set `object.matrixAutoUpdate = false` for static or rarely moving objects and manually call `object.updateMatrix()` whenever their position/rotation/quaternion/scale are updated.
 2. **Transparent objects are slow.** Use as few transparent objects as possible in your scenes.
-3. use [`alphatest`](https://threejs.org/docs/#api/en/materials/Material.alphaTest)  instead of standard transparency if possible, it's faster.
+3. use [`alphatest`](https://threejs.org/docs/#api/en/materials/Material.alphaTest) instead of standard transparency if possible, it's faster.
 4. When testing the performance of your apps, one of the first things you'll need to do is check whether it is CPU bound, or GPU bound. Replace all materials with basic material using `scene.overrideMaterial` (see beginners tips and the start of the page). If performance increases, then your app is GPU bound. If performance doesn't increase, your app is CPU bound.
 5. When performance testing on a fast machine, you'll probably be getting the maximum frame rate of 60FPS. Run chrome using `open -a "Google Chrome" --args --disable-gpu-vsync` for an unlimited frame rate.
 6. Modern mobile devices have high pixel ratios as high as 5 - consider limiting the max pixel ratio to 2 or 3 on these devices. At the expense of some very slight blurring of your scene you will gain a considerable performance increase.
@@ -294,14 +305,14 @@ Read this article: [How to update things](https://threejs.org/docs/#manual/en/in
 
 The Unity and Unreal docs also have pages with lots of performance suggestions, most of which are equally relevant for three.js. Read over these as well:
 
-* [Optimizing graphics performance (Unity)](https://docs.unity3d.com/Manual/OptimizingGraphicsPerformance.html)
-* [Performance Guidelines for Artists and Designers (Unreal)](https://docs.unrealengine.com/en-us/Engine/Performance/Guidelines)
+- [Optimizing graphics performance (Unity)](https://docs.unity3d.com/Manual/OptimizingGraphicsPerformance.html)
+- [Performance Guidelines for Artists and Designers (Unreal)](https://docs.unrealengine.com/en-us/Engine/Performance/Guidelines)
 
 WebGL Insights has lots of tips collected from throughout the book. It's more technical, but worth reading too, especially if you are writing your own shaders.
 
-* [WebGL Insights Tips](http://webglinsights.github.io/tips.html)
+- [WebGL Insights Tips](http://webglinsights.github.io/tips.html)
 
 ## References
 
-* [@jackrugile and @mrdoob on Twitter](https://mobile.twitter.com/jackrugile/status/966440290885156864)
-* [A-Painter performance optimizations](https://blog.mozvr.com/a-painter-performance-optimizations)
+- [@jackrugile and @mrdoob on Twitter](https://mobile.twitter.com/jackrugile/status/966440290885156864)
+- [A-Painter performance optimizations](https://blog.mozvr.com/a-painter-performance-optimizations)
