@@ -1,5 +1,5 @@
 import { REVISION } from "three/src/constants.js";
-import { getSiteURL } from "../utils/getSiteURL.js";
+// import { getSiteURL } from "../utils/getSiteURL.js";
 import { cleanURL } from "./utils/cleanURL.js";
 import { getRegexMatches } from "./utils/getRegexMatches.js";
 import { importURLConverter } from "./utils/importURLConverter.js";
@@ -99,7 +99,7 @@ class BlobURLGenerator {
   replaceVendorURLs(text) {
     let newText = text.replace(
       /from 'three/gi,
-      `from 'https://cdn.skypack.dev/three@0.${REVISION}.2`
+      `from 'https://cdn.skypack.dev/three@0.${REVISION}.0`
     );
     return newText;
   }
