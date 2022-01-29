@@ -14,7 +14,7 @@ prevURL: "/book/appendix/threejs-versions/"
 prevTitle: "Dealing with Different three.js Versions"
 ---
 
-# Threejs 技巧和窍门大清单！
+# Three.js 技巧和窍门大清单！
 
 大家好！ 在写这本书时候，我一直在收集大量的技巧、窍门、注意事项和陷阱。 此页内容涵盖了我目前找到的所有内容。
 
