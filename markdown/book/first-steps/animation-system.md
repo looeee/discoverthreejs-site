@@ -165,7 +165,7 @@ import { VectorKeyframeTrack } from 'three';
 const times = [0, 3, 6];
 const values = [0, 0, 0, 2, 2, 2, 0, 0, 0 ];
 
-const positionKF = new VectorKeyframeTrack('.material.opacity', times, values);
+const positionKF = new VectorKeyframeTrack('.position', times, values);
 ```
 {{< /code >}}
 
