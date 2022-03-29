@@ -336,10 +336,10 @@ controls.enableZoom = false;
 controls.enablePan = false;
 {{< /code >}}
 
-By default, you can use the arrow keys to pan the camera. To disable this:
+You can optionally listen for key events and use the arrow keys to pan the camera:
 
-{{< code lang="js" linenos="false" caption="_**controls.js**_: disable keyboard pan controls" >}}
-controls.enableKeys = false;
+{{< code lang="js" linenos="false" caption="_**controls.js**_: enable arrow keys" >}}
+controls.listenToKeyEvents(window);
 {{< /code >}}
 
 ### Auto Rotate
