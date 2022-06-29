@@ -287,7 +287,7 @@ Most languages have private class fields for this purpose, and they are coming s
 
 We can create something similar to private variables by declaring the variables in {{< link path="/book/appendix/javascript-reference/#scope-and-closures" title="module scope" >}}:
 
-{{< code from="0" to="18" file="worlds/first-steps/world-app/src/World/World.final.js" lang="js" linenos="true" hl_lines="10-12 15-17" caption="_**World.js**_: create the camera, renderer, and scene as module scoped variables" footer="  }" >}}{{< /code >}}
+{{< code from="0" to="18" file="worlds/first-steps/world-app/src/World/World.final.js" lang="js" linenos="true" hl_lines="10-12 16-18" caption="_**World.js**_: create the camera, renderer, and scene as module scoped variables" footer="  }" >}}{{< /code >}}
 
 This way, we can access `camera`, `renderer`, and `scene` from anywhere in the World module, but _not_ from _**main.js**_. Just what we want.
 
