@@ -363,7 +363,7 @@ Now that we have a geometry and a material, we can create our mesh, passing in b
 
 {{< code file="worlds/first-steps/first-scene/src/main.final.js" from="32" to="39" lang="js" linenos="true" caption="_**main.js**_: create the mesh" >}}{{< /code >}}
 
-Later, we can access the geometry and material at any time using `mesh.geometry` and `mesh.material`.
+Later, we can access the geometry and material at any time using `_mesh_.geometry` and `_mesh_.material`.
 
 ### Add the Mesh to the Scene
 
@@ -371,7 +371,7 @@ Once the `mesh` has been created, we need to add it to our scene.
 
 {{< code file="worlds/first-steps/first-scene/src/main.final.js" from="41" to="42" lang="js" linenos="true" caption="_**main.js**_: add the mesh to the scene" >}}{{< /code >}}
 
-Later, if we want to remove it, we can use `scene.remove(mesh)`. Once the mesh has been added to the scene, we call the mesh _a child_ of the scene, and we call the scene _the parent_ of the mesh.
+Later, if we want to remove it, we can use `scene.remove(_mesh_)`. Once the mesh has been added to the scene, we call the mesh _a child_ of the scene, and we call the scene _the parent_ of the mesh.
 
 ## 5. Create the Renderer {#create-the-renderer}
 
