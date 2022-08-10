@@ -280,7 +280,7 @@ Together, these four parameters are used to create a bounded region of space whi
 
 The four parameters we pass into the `PerspectiveCamera` constructor each create one aspect of the frustum:
 
-1. The **field of view** defines the angle at which the frustum expands. A small field of view will create a narrow frustum, and a wide field of view will create a wide frustum.
+1. The **field of view** defines the angle at which the frustum expands. A small field of view will create a narrow frustum, and a large field of view will create a wide frustum.
 2. The **aspect ratio** matches the frustum to the scene container element. When we set this to the container's width divided by its height, we ensure the rectangular base of the frustum can be expanded to fit perfectly into the container. If we get this value wrong the scene will look stretched and blurred.
 3. The **near clipping Plane** defines the small end of the frustum (the point closest to the camera).
 4. The **far clipping Plane** defines the large end of the frustum (the point furthest from the camera).
