@@ -59,7 +59,7 @@ From here on, we'll refer to this folder and its contents as **_the World app_**
 
 Currently, our three.js scene is relatively simple. To set it up, once again we need to follow the six-step program {{< link path="/book/first-steps/first-scene/#simple-steps" title="outlined in the last chapter" >}}:
 
-1. Initial Setup
+1. {{< link path="book/first-steps/first-scene/#setup" title="Initial Setup" >}}
 2. {{< link path="book/first-steps/first-scene/#create-scene" title="Create the scene" >}}
 3. {{< link path="book/first-steps/first-scene/#create-camera" title="Create a camera" >}}
 4. {{< link path="book/first-steps/first-scene/#create-visible" title="Create the cube and add it to the scene" >}}
