@@ -794,7 +794,7 @@ mesh.matrix = new Matrix4();
 ```
 {{< /code >}}
 
-At this point, the matrix will look like the identity matrix above, with ones on the diagonal and zeros everywhere else. If we change the position of the object, and then force the matrix to update:
+At this point, the matrix will look like the identity matrix above, with ones on the main diagonal and zeros everywhere else. If we change the position of the object, and then force the matrix to update:
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="Changes to the transform of an object are reflected in the local matrix" >}}
 ``` js
