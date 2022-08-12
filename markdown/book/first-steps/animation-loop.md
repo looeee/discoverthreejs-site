@@ -418,7 +418,7 @@ function createCube() {
 
 **Note**: adding a property to an existing class at run-time like this is known as [_monkey-patching_](https://en.wikipedia.org/wiki/Monkey_patch) (here, we're adding `.tick` to an instance of `Mesh`). It's common practice, and in our simple app won't cause any problems. However, we shouldn't get into the habit of doing this carelessly since in certain situations it can cause performance issues. We'll only allow ourselves to do this here as the alternatives are more complex.
 
-0.01 is a value that gives a fairly slow rotation speed, and we discovered it by trial and error.  {{< link path="/book/first-steps/transformations/#the-unit-of-rotation-is-radians" title="Rotations in three.js are measured in radians" >}} so internally this value is being interpreted as _0.01 radians_, which is roughly half a degree. So, we're rotating the cube by about half a degree on each axis every frame. At sixty frames a second, this means our cube will rotate $60 \times 0.5 = 30 ^{\circ}$ each second, or one full rotation around each of the $X$, $Y$ and $Z$ axes approximately every twelve seconds.
+0.01 is a value that gives a fairly slow rotation speed, and we discovered it by trial and error.  {{< link path="/book/first-steps/transformations/#the-unit-of-rotation-is-radians" title="Rotations in three.js are measured in radians" >}} so internally this value is being interpreted as _0.01 radians_, which is roughly half a degree. So, we're rotating the cube by about half a degree on each axis every frame. At sixty frames per second, this means our cube will rotate $60 \times 0.5 = 30 ^{\circ}$ each second, or one full rotation around each of the $X$, $Y$ and $Z$ axes approximately every twelve seconds.
 
 #### Add the `cube` to `Loop.updatables`
 
@@ -430,7 +430,7 @@ Right away, the cube should start rotating.
 
 ## Timing in the Animation System
 
-Look at this sentence again: _**at sixty frames a second**, this means our cube will rotate $60 \times 0.5 = 30 ^{\circ}$ each second, or one full rotation around each of the $X$, $Y$ and $Z$ axes approximately every twelve seconds_. But, what if our app is _not_ running at sixty frames a second? If it's running at slower than 60FPS the animation will run slowly, while if it runs faster, the animation will run faster. In other words, the speed of our animation depends on the device it's being viewed on. Not good. To understand how to fix this, we need to take a deeper look at what we mean by the word _frame_.
+Look at this sentence again: _**at sixty frames per second**, this means our cube will rotate $60 \times 0.5 = 30 ^{\circ}$ each second, or one full rotation around each of the $X$, $Y$ and $Z$ axes approximately every twelve seconds_. But, what if our app is _not_ running at sixty frames per second? If it's running at slower than 60FPS the animation will run slowly, while if it runs faster, the animation will run faster. In other words, the speed of our animation depends on the device it's being viewed on. Not good. To understand how to fix this, we need to take a deeper look at what we mean by the word _frame_.
 
 ### Fixed and Dynamic Frames
 
