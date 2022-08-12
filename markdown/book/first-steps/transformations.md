@@ -856,7 +856,7 @@ mesh.updateMatrix();
 ```
 {{< /code >}}
 
-... and we'll see that the scale values are stored on the diagonals.
+... and we'll see that the scale values are stored on the main diagonal.
 
 <section>
 $$
@@ -906,7 +906,7 @@ mesh.updateMatrix();
 ```
 {{< /code >}}
 
-Now the matrix will look like the identity matrix again, with ones on the diagonal and zeros everywhere else. Next, let's try a thirty degree rotation around the $X$-axis:
+Now the matrix will look like the identity matrix again, with ones on the main diagonal and zeros everywhere else. Next, let's try a thirty degree rotation around the $X$-axis:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Thirty degree rotation around the $X$-axis" >}}
 ``` js
