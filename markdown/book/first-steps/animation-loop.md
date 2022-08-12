@@ -500,7 +500,7 @@ Even with a powerful GPU and a scene as simple as this single cube, we won't ach
 
 ### Scale the Cube's Rotation by `delta`
 
-Scaling movements by `delta` is easy. We simply decide how much we want to move an object in one second, and then multiply that value by `delta` within the objects `.tick` method. In  `cube.tick`, we found a value that resulted in the cube rotating approximately thirty degrees a second _at 60FPS_.
+Scaling movements by `delta` is easy. We simply decide how much we want to move an object in one second, and then multiply that value by `delta` within the objects `.tick` method. In  `cube.tick`, we found a value that resulted in the cube rotating approximately thirty degrees per second _at 60FPS_.
 
 {{< code lang="js" linenos="" linenostart="18" hl_lines="" caption="_**cube.js**_: the unscaled tick method" >}}
 ``` js
