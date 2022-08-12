@@ -774,7 +774,7 @@ $$
 $$
 </section>
 
-It has four rows and four columns, so it's a $4 \times 4$ matrix, and it's storing an object's complete transform which is why we refer to it as a **transformation matrix**. Once again, there is a three.js class to handle this type of mathematical object, called [`Matrix4`](https://threejs.org/docs/#api/en/math/Matrix4). There's also a class for $3\times3$ matrices called `Matrix3`. When the matrix has all ones on the diagonal and zeros everywhere else like the one above, we call it the **identity matrix**, $I$.
+It has four rows and four columns, so it's a $4 \times 4$ matrix, and it's storing an object's complete transform which is why we refer to it as a **transformation matrix**. Once again, there is a three.js class to handle this type of mathematical object, called [`Matrix4`](https://threejs.org/docs/#api/en/math/Matrix4). There's also a class for $3\times3$ matrices called `Matrix3`. When the matrix has all ones on the [main diagonal](https://en.wikipedia.org/wiki/Main_diagonal) and zeros everywhere else like the one above, we call it the [**identity matrix**, $I$](https://en.wikipedia.org/wiki/Identity_matrix).
 
 Matrices are much more efficient for your CPU and GPU to work with than the individual transforms, and represents a compromise that gives us the best of both worlds. We humans can use the simpler `.position`, `.rotation`, and `.scale`, properties, then, whenever we call `.render`,  the renderer will update each object's matrices and use them for internal calculations.
 
