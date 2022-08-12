@@ -430,7 +430,7 @@ Right away, the cube should start rotating.
 
 ## Timing in the Animation System
 
-Look at this sentence again: _**at sixty frames per second**, this means our cube will rotate $60 \times 0.5 = 30 ^{\circ}$ each second, or one full rotation around each of the $X$, $Y$ and $Z$ axes approximately every twelve seconds_. But, what if our app is _not_ running at sixty frames per second? If it's running at slower than 60FPS the animation will run slowly, while if it runs faster, the animation will run faster. In other words, the speed of our animation depends on the device it's being viewed on. Not good. To understand how to fix this, we need to take a deeper look at what we mean by the word _frame_.
+Look at this sentence again: _**at sixty frames per second**, this means our cube will rotate $60 \times 0.5 = 30 ^{\circ}$ each second, or one full rotation around each of the $X$, $Y$ and $Z$ axes approximately every twelve seconds_. But, what if our app is _not_ running at sixty frames per second? If it runs slower than 60FPS, the animation will run slower, and if it runs faster, the animation will run faster. In other words, the speed of our animation depends on the device it's being viewed on. Not good. To understand how to fix this, we need to take a deeper look at what we mean by the word _frame_.
 
 ### Fixed and Dynamic Frames
 
