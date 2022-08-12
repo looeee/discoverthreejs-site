@@ -324,7 +324,7 @@ tick() {
 
 Well, you get the picture. This might be ok if we have just a couple of animated objects in our scene, but it's not going to scale well. With fifty or a hundred animated objects, it's going to be downright ugly. It also breaks all kinds of software design principles, since now the `Loop` class has to have a deep understanding of how each animated object works.
 
-Here's a better idea: we'll define the logic for updating each object _on the object itself_. Each object will expose that logic using a generic `.tick` method of its own. Now, the `Loop.tick` method will be simple. Each frame, we'll loop over a list of animated objects and tell each of them to `.tick` forward by one frame. It will look something like this:
+Here's a better idea: we'll define the logic for updating each object _on the object itself_. Each object will expose that logic using a generic `.tick` method of its own. Now, the `Loop.tick` method will be simple. On each frame, we'll loop over a list of animated objects and tell each of them to `.tick` forward by one frame. It will look something like this:
 
 {{< code lang="js" linenostart="23" linenos="false" hl_lines="" caption="A decentralized animation system" >}}
 
