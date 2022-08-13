@@ -385,7 +385,7 @@ Note that we have also made some minor adjustments to the camera position in _**
 
 At this point, we have finished creating the structure of our new scene component. All that remains is to set up the materials, geometries, and meshes. These don't have to take the form of a train. You can use this structure as a template to create any shape you can dream of.
 
-We'll create two materials for the train: a dark grey material for the chimney and wheels, and a reddish material for the body. We'll use {{< link path="/book/first-steps/physically-based-rendering/#introducing-the-meshstandardmaterial" title="`MeshStandardMaterial`" >}} with [`.flatShading`](#the-material-flatshading-property) enabled for both. Other than `.flatShading`, there's nothing new here. Here's the complete materials module:
+We'll create two materials for the train: a dark gray material for the chimney and wheels, and a reddish material for the body. We'll use {{< link path="/book/first-steps/physically-based-rendering/#introducing-the-meshstandardmaterial" title="`MeshStandardMaterial`" >}} with [`.flatShading`](#the-material-flatshading-property) enabled for both. Other than `.flatShading`, there's nothing new here. Here's the complete materials module:
 
 {{< code file="worlds/first-steps/built-in-geometries/src/World/components/Train/materials.final.js" from="1" to="17" lang="js" linenos="true" caption="_**materials.js**_: complete code" >}}{{< /code >}}
 
