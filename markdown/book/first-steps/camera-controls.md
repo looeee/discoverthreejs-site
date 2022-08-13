@@ -39,7 +39,7 @@ The three.js core is a powerful, lightweight, and focused **rendering framework*
 
 There are also a huge number of plugins to be found scattered around the web. However, these are sometimes poorly maintained and may not work with the latest three.js version, so in this book, we'll restrict ourselves to using the official plugins from the repo. There, we'll find all kinds of plugins, and most of them are showcased in one of [the examples](https://threejs.org/examples/). These add all kinds of functionality, such as mirrored surfaces:
 
-{{< iframe src="https://threejs.org/examples/webgl_mirror_nodes.html" title="three.js node materials mirror example" height="500" >}}
+{{< iframe src="https://threejs.org/examples/webgl_mirror.html" title="three.js node materials mirror example" height="500" >}}
 
 Or, how about a loader for the Lego LDraw format:
 
