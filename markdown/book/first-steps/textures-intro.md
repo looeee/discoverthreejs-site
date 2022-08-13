@@ -322,7 +322,7 @@ In the above scene, you can rotate the cube using the mouse or touch. Actually, 
 
 3. Try switching the cube for some other shapes. [Search the docs](https://threejs.org/docs/) for "BufferGeometry" to see all the available geometries. Note how the texture gets mapped onto different shapes.
 
-4. [Open up the `MeshStandardMaterial` doc page](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial). This material has a total of eleven texture maps slots, each of which has the work _map_ in their name. Can you find all of them?
+4. [Open up the `MeshStandardMaterial` doc page](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial). This material has a total of eleven texture maps slots, each of which has the word _map_ in their name. Can you find all of them?
 
 {{% /aside %}}
 
