@@ -131,7 +131,7 @@ Like the direct lights, ambient lights inherit from [the base `Light` class](htt
 
 Ambient lights affect all objects in the scene. **As a result, there's no need to add more than one ambient light to your scene.** Unlike the direct lights (except for `RectAreaLight`), ambient lights cannot cast shadows.
 
-As usual, to use either of these light classes, you must first import them. Import both classes within the lights module now. We'll spend the rest of this chapter experiment with them.
+As usual, to use either of these light classes, you must first import them. Import both classes within the lights module now. We'll spend the rest of this chapter experimenting with them.
 
 {{< code file="worlds/first-steps/ambient-lighting/src/World/components/lights.final.js" from="1" to="5" lang="js" linenos="true" hl_lines="2 4"  caption="_**lights.js**_: import both ambient light classes" >}}{{< /code >}}
 
