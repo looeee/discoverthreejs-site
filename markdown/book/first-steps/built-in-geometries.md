@@ -284,9 +284,9 @@ Next, the `Train` class. Here, we'll do something new and {{< link path="/book/a
 import { Group } from 'three';
 
 class Train extends Group {
-constructor() {
-super();
-}
+  constructor() {
+    super();
+  }
 }
 
 export { Train }
@@ -308,14 +308,14 @@ We can also add objects to the train from within the class itself, using `this.a
 
 {{< code lang="js" linenos="false" caption="By extending `Group`, we can add a mesh to the train in the constructor" >}}
 class Train extends Group {
-constructor() {
-super();
+  constructor() {
+    super();
 
     const mesh = new Mesh(...);
 
     this.add(mesh);
 
-}
+  }
 }
 {{< /code >}}
 
