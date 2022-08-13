@@ -183,7 +183,7 @@ Let's consider the large red nose first. We want the nose to lie along the $X$-a
 
 {{< figure src="first-steps/wheel_initial_rotation.svg" caption="Wheel geometry's initial rotation" class="large noborder" lightbox="true" caption="Initial orientation of the wheels" class="medium left" >}}
 
-That account for the nose. What about the wheels? Once again, the cylinder we'll create for the wheels begins its life pointing upwards along the $Y$-axis.
+That accounts for the nose. What about the wheels? Once again, the cylinder we'll create for the wheels begins its life pointing upwards along the $Y$-axis.
 
 {{< clear >}}
 
