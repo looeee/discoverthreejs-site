@@ -245,7 +245,7 @@ const moveBlinkClip = new AnimationClip('move-n-blink', -1, [
 ```
 {{< /code >}}
 
-This animation clip will work with any object that has a `.position` property and also a material with an `.opacity` property. In other words, it should work with a mesh. It will make a mesh move while blinking in an out. Once again, we have given the clip a memorable name. Later, we might have lots of separate clips, and we can blend and mix them together. Giving each a unique name will make this easier for us. This time, note that the position track has three keyframes, while the opacity track has seven keyframes. Also, the length of each track is the same. This is not required, but the animation will look better if the lengths of the tracks match.
+This animation clip will work with any object that has a `.position` property and also a material with an `.opacity` property. In other words, it should work with a mesh. It will make a mesh move while blinking in and out. Once again, we have given the clip a memorable name. Later, we might have lots of separate clips, and we can blend and mix them together. Giving each a unique name will make this easier for us. This time, note that the position track has three keyframes, while the opacity track has seven keyframes. Also, the length of each track is the same. This is not required, but the animation will look better if the lengths of the tracks match.
 
 ## The Animation System: Playback and Control
 
