@@ -212,7 +212,7 @@ const clip = new AnimationClip('slowmove', length, tracks);
 ```
 {{< /code >}}
 
-Since we've set the length to -1, the tracks will be used to calculate the length, in this case, six seconds. We've given the clip a descriptive name, to make using it later easier.
+Since we've set the length to -1, the tracks will be used to calculate the length, in this case, six seconds. We've given the clip a descriptive name, slowmove, to make using it later easier.
 
 The `AnimationClip` is _still_ not attached to any particular object. We'll have to wait for the `AnimationAction` below for that. We can use this simple clip we have created with any object that has a `.position` property. However, as clips become more complex and contain more tracks, they start to become more deeply tied to a particular object. For example, you can't use the dancing clip with one of the birds we loaded, since those don't have the same internal structure as the human figure. However, you can use the clip with any other humanoid figure that has **the same internal structure**. Since this model was downloaded from mixamo.com, the dancing clip should work with other characters from mixamo.com, but it's unlikely to work with just any humanoid model you download.
 
