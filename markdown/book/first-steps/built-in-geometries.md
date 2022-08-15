@@ -183,7 +183,7 @@ Let's consider the large red nose first. We want the nose to lie along the $X$-a
 
 {{< figure src="first-steps/wheel_initial_rotation.svg" caption="Wheel geometry's initial rotation" class="large noborder" lightbox="true" caption="Initial orientation of the wheels" class="medium left" >}}
 
-That account for the nose. What about the wheels? Once again, the cylinder we'll create for the wheels begins its life pointing upwards along the $Y$-axis.
+That accounts for the nose. What about the wheels? Once again, the cylinder we'll create for the wheels begins its life pointing upwards along the $Y$-axis.
 
 {{< clear >}}
 
@@ -284,9 +284,9 @@ Next, the `Train` class. Here, we'll do something new and {{< link path="/book/a
 import { Group } from 'three';
 
 class Train extends Group {
-constructor() {
-super();
-}
+  constructor() {
+    super();
+  }
 }
 
 export { Train }
@@ -308,14 +308,14 @@ We can also add objects to the train from within the class itself, using `this.a
 
 {{< code lang="js" linenos="false" caption="By extending `Group`, we can add a mesh to the train in the constructor" >}}
 class Train extends Group {
-constructor() {
-super();
+  constructor() {
+    super();
 
     const mesh = new Mesh(...);
 
     this.add(mesh);
 
-}
+  }
 }
 {{< /code >}}
 
@@ -385,7 +385,7 @@ Note that we have also made some minor adjustments to the camera position in _**
 
 At this point, we have finished creating the structure of our new scene component. All that remains is to set up the materials, geometries, and meshes. These don't have to take the form of a train. You can use this structure as a template to create any shape you can dream of.
 
-We'll create two materials for the train: a dark grey material for the chimney and wheels, and a reddish material for the body. We'll use {{< link path="/book/first-steps/physically-based-rendering/#introducing-the-meshstandardmaterial" title="`MeshStandardMaterial`" >}} with [`.flatShading`](#the-material-flatshading-property) enabled for both. Other than `.flatShading`, there's nothing new here. Here's the complete materials module:
+We'll create two materials for the train: a dark gray material for the chimney and wheels, and a reddish material for the body. We'll use {{< link path="/book/first-steps/physically-based-rendering/#introducing-the-meshstandardmaterial" title="`MeshStandardMaterial`" >}} with [`.flatShading`](#the-material-flatshading-property) enabled for both. Other than `.flatShading`, there's nothing new here. Here's the complete materials module:
 
 {{< code file="worlds/first-steps/built-in-geometries/src/World/components/Train/materials.final.js" from="1" to="17" lang="js" linenos="true" caption="_**materials.js**_: complete code" >}}{{< /code >}}
 
