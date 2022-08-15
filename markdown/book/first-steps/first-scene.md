@@ -165,7 +165,7 @@ Many of the parameters are available for testing here. The _Material_ menu has p
 
 ## Our First three.js App {#simple-steps}
 
-Now we are ready to write some code! We've introduced all the components that will make up our simple app, so the next step is to figure out how they all fit together. We'll break process this into six steps. Every three.js app you create will require all six of these steps, although more complex apps will often require many more.
+Now we are ready to write some code! We've introduced all the components that will make up our simple app, so the next step is to figure out how they all fit together. We'll break this process down into six steps. Every three.js app you create will require all six of these steps, although more complex apps will often require many more.
 
 1. **[Initial Setup](#setup)**
 2. **[Create the Scene](#create-scene)**
