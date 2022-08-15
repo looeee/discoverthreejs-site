@@ -739,7 +739,7 @@ mesh.quaternion = new Quaternion();
 
 We can use **quaternions** and **Euler angles** interchangeably. When we change `mesh.rotation`, the `mesh.quaternion` property is automatically updated, and vice-versa. This means we can use Euler angles when it suits us, and switch to quaternions when it suits us.
 
-Euler angles have a couple of shortcomings that become apparent when creating animations or doing math involving rotations. In particular, we cannot add two Euler angles together (more famously, they also suffer from something called gimbal lock). Quaternions don't have these shortcomings. On the other hand, they are harder to use than Euler angles, so for now we'll stick with the simpler `Euler` class.
+Euler angles have a couple of shortcomings that become apparent when creating animations or doing math involving rotations. In particular, we cannot add two Euler angles together (more famously, they also suffer from something called [gimbal lock](https://en.wikipedia.org/wiki/Gimbal_lock)). Quaternions don't have these shortcomings. On the other hand, they are harder to use than Euler angles, so for now we'll stick with the simpler `Euler` class.
 
 For now, make a note of these two ways to rotate an object:
 
