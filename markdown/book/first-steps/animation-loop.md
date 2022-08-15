@@ -61,7 +61,7 @@ In this chapter, we'll add a simple rotation animation to the cube. Here's how w
 
 We'll also introduce the three.js `Clock` in this chapter, a simple stopwatch class that we can use to keep animations in sync. We'll be dealing with time values less than one second throughout this chapter, so we'll use milliseconds (ms), which are thousandths of a second.
 
-Once we've set up the loop, our goal is to generate a steady stream of frames at a rate of sixty frames a second (60FPS), which means we need to call `.render` approximately once every sixteen milliseconds. In other words, we need to ensure that all of the processing we do in a frame takes less than 16ms (this is sometimes referred to as a **frame budget**). That means we need to update animations, perform any other tasks that need to be calculated across frames (such as physics), _and_ render the frame, in less than sixteen milliseconds on the lowest spec hardware that we intend to support. Over the rest of this chapter, as we set up the loop and create a simple rotating animation for the cube, we'll discuss how best to achieve this.
+Once we've set up the loop, our goal is to generate a steady stream of frames at a rate of sixty frames per second (60FPS), which means we need to call `.render` approximately once every sixteen milliseconds. In other words, we need to ensure that all of the processing we do in a frame takes less than 16ms (this is sometimes referred to as a **frame budget**). That means we need to update animations, perform any other tasks that need to be calculated across frames (such as physics), _and_ render the frame, in less than sixteen milliseconds on the lowest spec hardware that we intend to support. Over the rest of this chapter, as we set up the loop and create a simple rotating animation for the cube, we'll discuss how best to achieve this.
 
 ## Similarities with the Game Loop
 
@@ -324,7 +324,7 @@ tick() {
 
 Well, you get the picture. This might be ok if we have just a couple of animated objects in our scene, but it's not going to scale well. With fifty or a hundred animated objects, it's going to be downright ugly. It also breaks all kinds of software design principles, since now the `Loop` class has to have a deep understanding of how each animated object works.
 
-Here's a better idea: we'll define the logic for updating each object _on the object itself_. Each object will expose that logic using a generic `.tick` method of its own. Now, the `Loop.tick` method will be simple. Each frame, we'll loop over a list of animated objects and tell each of them to `.tick` forward by one frame. It will look something like this:
+Here's a better idea: we'll define the logic for updating each object _on the object itself_. Each object will expose that logic using a generic `.tick` method of its own. Now, the `Loop.tick` method will be simple. On each frame, we'll loop over a list of animated objects and tell each of them to `.tick` forward by one frame. It will look something like this:
 
 {{< code lang="js" linenostart="23" linenos="false" hl_lines="" caption="A decentralized animation system" >}}
 
@@ -418,7 +418,7 @@ function createCube() {
 
 **Note**: adding a property to an existing class at run-time like this is known as [_monkey-patching_](https://en.wikipedia.org/wiki/Monkey_patch) (here, we're adding `.tick` to an instance of `Mesh`). It's common practice, and in our simple app won't cause any problems. However, we shouldn't get into the habit of doing this carelessly since in certain situations it can cause performance issues. We'll only allow ourselves to do this here as the alternatives are more complex.
 
-0.01 is a value that gives a fairly slow rotation speed, and we discovered it by trial and error.  {{< link path="/book/first-steps/transformations/#the-unit-of-rotation-is-radians" title="Rotations in three.js are measured in radians" >}} so internally this value is being interpreted as _0.01 radians_, which is roughly half a degree. So, we're rotating the cube by about half a degree on each axis every frame. At sixty frames a second, this means our cube will rotate $60 \times 0.5 = 30 ^{\circ}$ each second, or one full rotation around each of the $X$, $Y$ and $Z$ axes approximately every twelve seconds.
+0.01 is a value that gives a fairly slow rotation speed, and we discovered it by trial and error.  {{< link path="/book/first-steps/transformations/#the-unit-of-rotation-is-radians" title="Rotations in three.js are measured in radians" >}} so internally this value is being interpreted as _0.01 radians_, which is roughly half a degree. So, we're rotating the cube by about half a degree on each axis every frame. At sixty frames per second, this means our cube will rotate $60 \times 0.5 = 30 ^{\circ}$ each second, or one full rotation around each of the $X$, $Y$ and $Z$ axes approximately every twelve seconds.
 
 #### Add the `cube` to `Loop.updatables`
 
@@ -430,7 +430,7 @@ Right away, the cube should start rotating.
 
 ## Timing in the Animation System
 
-Look at this sentence again: _**at sixty frames a second**, this means our cube will rotate $60 \times 0.5 = 30 ^{\circ}$ each second, or one full rotation around each of the $X$, $Y$ and $Z$ axes approximately every twelve seconds_. But, what if our app is _not_ running at sixty frames a second? If it's running at slower than 60FPS the animation will run slowly, while if it runs faster, the animation will run faster. In other words, the speed of our animation depends on the device it's being viewed on. Not good. To understand how to fix this, we need to take a deeper look at what we mean by the word _frame_.
+Look at this sentence again: _**at sixty frames per second**, this means our cube will rotate $60 \times 0.5 = 30 ^{\circ}$ each second, or one full rotation around each of the $X$, $Y$ and $Z$ axes approximately every twelve seconds_. But, what if our app is _not_ running at sixty frames per second? If it runs slower than 60FPS, the animation will run slower, and if it runs faster, the animation will run faster. In other words, the speed of our animation depends on the device it's being viewed on. Not good. To understand how to fix this, we need to take a deeper look at what we mean by the word _frame_.
 
 ### Fixed and Dynamic Frames
 
@@ -438,9 +438,9 @@ There's an important distinction between the kind of frames we are talking about
 
 However, **our animation loop doesn't generate frames at a fixed rate**. The loop will attempt to render frames at the hardware-defined refresh rate of your screen (behind the scenes the browser is using `.requestAnimationFrame` to do this). At the time of writing, most screens have a 60Hz refresh rate, but this value can be as high as 240Hz on new screens, while in VR it will be at least 90Hz. This means, on a 60Hz screen, the **target frame rate** is 60FPS, on a 90Hz screen, the target frame rate is 90FPS, and so on.
 
-However, we might not succeed in generating frames that quickly. If the device your app is running on is not be powerful enough to reach the target frame rate, the animation loop will run more slowly. Even on fast hardware, your app will have to share computing resources with other applications, and there may not always be enough to go around. In each of these cases, the animation loop will generate frames at a lower rate, and this rate may fluctuate from one moment to the next depending on many factors. This is called a **_variable frame rate_**.
+However, we might not succeed in generating frames that quickly. If the device your app is running on is not be powerful enough to reach the target frame rate, the animation loop will run slower. Even on fast hardware, your app will have to share computing resources with other applications, and there may not always be enough to go around. In each of these cases, the animation loop will generate frames at a lower rate, and this rate may fluctuate from one moment to the next depending on many factors. This is called a **_variable frame rate_**.
 
-That means, as we have currently set up the animation of our cube, it will rotate more slowly on an old, slow device, while on fancy new 240Hz gaming monitor it will go into hyper-speed. $240 = 4\times60$, meaning the cube will rotate at four times the desired speed!
+That means, as we have currently set up the animation of our cube, it will rotate slower on an old, slow device, while on fancy new 240Hz gaming monitor it will go into hyper-speed. $240 = 4\times60$, meaning the cube will rotate at four times the desired speed!
 
 To prevent this, **we need to decouple animation speed from frame rate**. Here's how we'll do it: **when we tell an object to `.tick` forward a frame, we'll scale the size of the movement by how long the previous frame took**. This way, as the frame rate varies, we'll constantly adjust the size of each `.tick` so that the animation remains smooth. Our adjustments will always be one frame behind, but the frames are generated so quickly this won't be visible to the user. This way, animations will run at the same speed on all devices.
 
@@ -500,7 +500,7 @@ Even with a powerful GPU and a scene as simple as this single cube, we won't ach
 
 ### Scale the Cube's Rotation by `delta`
 
-Scaling movements by `delta` is easy. We simply decide how much we want to move an object in one second, and then multiply that value by `delta` within the objects `.tick` method. In  `cube.tick`, we found a value that resulted in the cube rotating approximately thirty degrees a second _at 60FPS_.
+Scaling movements by `delta` is easy. We simply decide how much we want to move an object in one second, and then multiply that value by `delta` within the objects `.tick` method. In  `cube.tick`, we found a value that resulted in the cube rotating approximately thirty degrees per second _at 60FPS_.
 
 {{< code lang="js" linenos="" linenostart="18" hl_lines="" caption="_**cube.js**_: the unscaled tick method" >}}
 ``` js
