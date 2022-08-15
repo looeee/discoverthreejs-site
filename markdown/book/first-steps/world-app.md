@@ -317,7 +317,7 @@ Next, we'll set up `World.render` so that we can see the results. Once again the
 
 {{< figure src="first-steps/world_app_unsized_background.png" caption="The canvas is the red rectangle" lightbox="true" class="medium right" >}}
 
-Once you do this, if everything is set up correctly, your scene will be drawn into the canvas. However, the cavnas doesn't take up the full size of the container since we haven't completed the `Resizer` yet. Instead, it has been created at the default size for a `<canvas>` element, which is $300 \times 150$ pixels (in Chrome, at least).
+Once you do this, if everything is set up correctly, your scene will be drawn into the canvas. However, the canvas doesn't take up the full size of the container since we haven't completed the `Resizer` yet. Instead, it has been created at the default size for a `<canvas>` element, which is $300 \times 150$ pixels (in Chrome, at least).
 
 This won't be obvious since we've set the container background to the same color as the scene's background - they are both "skyblue". However, try temporarily making the canvas "red" and this will become obvious.
 
