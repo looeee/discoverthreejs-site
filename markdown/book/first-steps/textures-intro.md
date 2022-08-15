@@ -280,7 +280,7 @@ Once loading has finished, the `TextureLoader` will insert the correct image aut
 
 Previously, we set the material's color using the [`.color`](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial.color) property. Here, we will assign the `texture` to the [`material.map`](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial.map) property, which describes how the color varies over the object's surface. `.map` _should_ be named `.colorMap`, however, since it's used so often this is shortened for convenience.
 
-**Usually, we set _either_ `.color` or `.map`, but not both**. If we do set both the colors in the texture will be _multiplied_ by the `.color` property. For example, if we keep the purple color, this black and white texture will gain a purple tint. A common use case here is to set the color to a shade of gray to darken the texture. Since white is the default color, setting `.color` to white will not affect on the texture. As a result, it's not possible to use the `.color` to lighten the texture, you can only darken it.
+**Usually, we set _either_ `.color` or `.map`, but not both**. If we do set both, the colors in the texture will be _multiplied_ by the `.color` property. For example, if we keep the purple color, this black and white texture will gain a purple tint. A common use case here is to set the color to a shade of gray to darken the texture. Since white is the default color, setting `.color` to white will not have affect on the texture. As a result, it's not possible to use `.color` to lighten the texture. You can only darken it.
 
 Like the color parameter, we can either pass the texture into the material's constructor:
 
@@ -322,7 +322,7 @@ In the above scene, you can rotate the cube using the mouse or touch. Actually, 
 
 3. Try switching the cube for some other shapes. [Search the docs](https://threejs.org/docs/) for "BufferGeometry" to see all the available geometries. Note how the texture gets mapped onto different shapes.
 
-4. [Open up the `MeshStandardMaterial` doc page](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial). This material has a total of eleven texture maps slots, each of which has the work _map_ in their name. Can you find all of them?
+4. [Open up the `MeshStandardMaterial` doc page](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial). This material has a total of eleven texture maps slots, each of which has the word _map_ in their name. Can you find all of them?
 
 {{% /aside %}}
 
