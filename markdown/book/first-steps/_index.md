@@ -1,34 +1,34 @@
 ---
-title: "入门：真正的乐趣从这里开始！"
-description: "从零到three.js英雄！ 本节是一个独立的（免费的！）教程系列，旨在让您尽快掌握three.js！ 从一个空白画布开始，我们将逐渐完善它，直到我们拥有一个完全成熟的、专业品质的three.js应用程序。"
+title: "Getting Started: Here's Where the Real Fun Begins!"
+description: "From zero to three.js hero! This section is a standalone (and free!) tutorial series designed to get you up to speed with three.js ASAP! Starting with a blank canvas, we'll gradually add to it until we have a fully fledged, professional-quality three.js app."
 date: 2018-04-02
 sectionHead: true
 weight: 100
 chapter: '1'
 available: true
 nextURL: "/book/first-steps/app-structure/"
-nextTitle: "Three.js应用的结构"
+nextTitle: "The Structure of a three.js App"
 prevURL: "/book/introduction/threejs-with-frameworks/"
-prevTitle: "将three.js与React、Vue.js、Angular、Svelte、TypeScript等一起使用"
+prevTitle: "Using three.js with React, Vue.js, Angular, Svelte, TypeScript..."
 hideWordCount: true
 ---
 
 
 
-# 入门：真正的乐趣从这里开始！
+# Getting Started: Here's Where the Real Fun Begins!
 
 {{< inlineScene entry="first-steps/birds-animated.js" class="round" >}}
 
-**欢迎来到 Discoverthree.js！**
+**Welcome to Discover three.js!**
 
-本书是一个**完整的介绍性教程系列**，旨在让您快速掌握three.js，同时为您提供更深入地探索three.js和计算机图形学所需的技术语言和概念。
+This book is a **complete introductory tutorial series** designed to get you up to speed with three.js quickly while also giving you a thorough grounding in the technical language and concepts you'll need to go deeper in your own explorations of three.js and computer graphics.
 
 {{< inlineScene entry="first-steps/animation-loop.js" class="small right round" >}}
 
-像所有伟大的艺术家一样，我们将从一个空白开始`<canvas>`，在接下来的章节中，我们将逐渐完善它，直到我们创建了一个小而强大的three.js应用程序，其中包含灯光、纹理、材质和相机控制。在本节的最后几章中，我们将向您展示如何加载像上面场景中的鸟一样的3D模型，甚至使用如何使用three.js动画系统。
+Like all great artists, we'll start with a blank `<canvas>`, and over the following chapters, we'll gradually add to it until we've created a small but powerful three.js application featuring lights, textures, materials, and camera controls. In the last couple of chapters of this section, we'll show you how to load 3D models like the birds in the scene above and even use how to use the three.js animation system.
 
-我们将在本节中介绍许多新概念、理论和术语，的确有很多内容，但请不要担心。我们的目标是快速向您介绍一个全新的信息世界，然后我们将在后面的章节中详细的介绍这些。在这里，我们将介绍足够详细的概念，让您在不牺牲任何技术准确性的情况下开始思考和使用它们。一旦你熟悉了基础知识，本书后面的章节将填补缺失的细节。
+We'll introduce lots of new concepts, theory, and jargon in this section, but don't worry if it's a lot to take in. Our goal here is to quickly introduce a whole new world of information to you, then we'll come back to everything in later sections. Here, we'll introduce concepts with just enough detail to allow you to start thinking about them and using them, without sacrificing any technical accuracy. Once you're comfortable with the basics, later chapters in the book will fill in the missing details.
 
-如果您是从Web开发人员的背景来到three.js，或者即使您在这里开始您的整个软件开发生涯，您会发现这一点尤其重要。**使用three.js意味着在计算机图形和Web开发的交叉领域工作**，无论您的背景是什么，您都可能至少会遇到一些新概念。在浏览器中显示3D图形将许多不同的领域联系在一起。我们需要使用HTML、CSS、JavaScript、一点数学知识、大量计算机图形，当然还有three.js API。值得庆幸的是，three.js出色地完成了隐藏所有这些复杂性的工作，直到您需要它为止。为了保持简洁，JavaScript和浏览器API的技术细节已降级到{{< link path="/book/appendix" title="附录" >}}中所以我们可以在正文中专注于three.js和计算机图形。每当我们遇到新的JavaScript功能或浏览器功能时，我们都会将您引导至附录中的相关部分。
+You'll find this especially important if you're coming to three.js from a background as a web developer, or even if you're starting your entire software development career here. **Working with three.js means working at the intersection of computer graphics and web development**, and no matter what your background is, you're likely to come across at least a few concepts that are new to you. Displaying 3D graphics in the browser ties together a lot of different fields. We'll need to use HTML, CSS, JavaScript, a little bit of math, lots of computer graphics, and, of course, the three.js API. Thankfully three.js does an amazing job of hiding all this complexity from you until you need it. To keep things clean, technical details of JavaScript and the browser API have been relegated to the {{< link path="/book/appendix" title="appendices" >}} so we can focus on three.js and computer graphics in the main text. Whenever we encounter a new feature JavaScript or browser feature we'll direct you to the relevant section in the appendix.
 
-让我们直接开始吧。很快你就会使用听起来很疯狂的东西，比如_四元数quaternions_、_变换矩阵transformation matrices_和_缓冲几何buffer geometries_，这些你可能从未见过。
+Let's dive straight in. Soon you'll be using crazy sounding things like _quaternions_, _transformation matrices_, and _buffer geometries_ with barely a second glance.
