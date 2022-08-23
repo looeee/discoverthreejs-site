@@ -89,15 +89,15 @@ world.render();
 
 应该隐藏与 _实现_ 世界应用程序不相关的所有内容。在 _**main.js**_ 中，我们应该无法访问场景、相机、渲染器或立方体。如果我们以后需要添加额外的功能，我们将通过扩展接口来实现，而 _不是_ 通过向外界公开three.js函数来实现。
 
-Note that we're passing in a container to the World constructor, which will be our scene container once again. Within World, we'll append the canvas to this container, {{< link path="book/first-steps/first-scene/#add-canvas" title="just as we did in the last chapter" >}}.
+请注意，我们将一个容器传递给World构造函数，它将再次成为我们的场景容器。在World中，我们将把画布附加到这个容器中，{{< link path="book/first-steps/first-scene/#add-canvas" title="就像我们在上一章中所做的那样" >}}。
 
-_Before reading through the next section, check out the appendices for {{< link path="/book/appendix/javascript-reference/#classes" title="a refresher on JavaScript classes" >}}, if you need one._
+_在阅读下一部分之前，如果需要，请查看附录以{{< link path="/book/appendix/javascript-reference/#classes" title="复习JavaScript类" >}}_。
 
-## The `World` Class
+## `World`类
 
-Now, we can go ahead and start to build the `World` class. We'll need a `constructor` method to handle setup (create the scene, renderer, cube, and camera, set the scene's size, and add the canvas element to the container), and a `render` method to render the scene. Open or create the _**src/World/World.js**_ module, and inside, create the World class with both of these methods. At the bottom of the file, export the class so we can use it from _**main.js**_.
+现在，我们可以继续并开始构建`World`类。我们需要一个`constructor`方法来处理设置（创建场景、渲染器、立方体和相机，设置场景的大小，并将画布元素添加到容器中），以及一个`render`方法来渲染场景。打开或创建 _**src/World/World.js**_ 模块，创建World类，并在其中添加这两个方法。在文件的底部，导出类，以便我们可以从 _**main.js**_ 中使用它。
 
-{{< code lang="js" linenos="false" caption="_**World.js**_: initial setup" >}}
+{{< code lang="js" linenos="false" caption="_**World.js**_: 初始设置" >}}
 class World {
   // 1. Create an instance of the World app
   constructor(container) {}
@@ -109,13 +109,13 @@ class World {
 export { World };
 {{< /code >}}
 
-With this, our interface is complete. Everything else is implementation. Although this interface doesn't yet _do_ anything, it's already _usable_. In other words, we can go ahead and fully set up _**main.js**_, calling these functions in the appropriate places. Later, once we fill in the details, the app will magically start to work. This is a common approach to creating interfaces. First, decide how it should look and create stubs for each part of the interface, _then_ worry about the details.
+至此，我们的接口就完成了。其他一切都是实现。虽然这个接口还没有 _做_ 任何事情，但它已经 _可以使用了_ 。换句话说，我们可以继续完全设置 _**main.js**_，在适当的地方调用这些函数。稍后，一旦我们填写详细信息，该应用程序将神奇地开始工作。这是创建接口的常用方法。首先，决定它的外观并为接口的每个部分创建存根，_然后_ 关注细节。
 
-## Set Up _**main.js**_
+## 设置 _**main.js**_
 
-Inside _**main.js**_, which should currently be empty, we'll start by importing the new World class, then we'll create a main function and immediately call it to start the app:
+在 _**main.js**_ 中，现在应该是空的，我们将首先导入新的World类，然后我们将创建一个main函数并立即调用它来启动应用程序：
 
-{{< code lang="js" linenos="true" caption="_**main.js**_: initial setup" >}}
+{{< code lang="js" linenos="true" caption="_**main.js**_: 初始设置" >}}
 import { World } from './World/World.js';
 
 // create the main function
@@ -127,34 +127,34 @@ function main() {
 main();
 {{< /code >}}
 
-### Set up the World App
+### 设置World应用程序
 
-Next, we'll perform our two-step World app setup. First, just like in the last chapter, we need a reference to the container. Then we'll create a `new World`, and finally, with everything set up, we can call `world.render` to draw the scene.
+接下来，我们将执行两步World应用程序设置。首先，就像上一章一样，我们需要一个对容器的引用。然后我们将创建一个`new World`，最后，一切都设置好了，我们可以调用`world.render`来绘制场景。
 
-{{< code from="3" to="12" file="worlds/first-steps/world-app/src/main.final.js" lang="js" linenos="true" caption="_**main.js**_: create a whole new World">}}{{< /code >}}
+{{< code from="3" to="12" file="worlds/first-steps/world-app/src/main.final.js" lang="js" linenos="true" caption="_**main.js**_: 创建一个全新的世界">}}{{< /code >}}
 
-With this, the _**main.js**_ module is complete. Later, when we fill in the details of the World app, our scene will spring to life.
+至此，_**main.js**_ 模块就完成了。稍后，当我们填写World应用程序的详细信息时，我们的场景就会栩栩如生。
 
-## World App Implementation
+## World应用程序实现
 
-Of course, building the interface was the easy part. Now we have to make it work. Fortunately, from here on it's mostly a matter of copying code over from the previous chapter. Take a look at the setup tasks again.
+当然，构建接口是很容易的部分。现在我们必须让它工作。幸运的是，从这里开始，主要是从前一章复制代码。再次查看这些我们设置的任务。
 
-1. ~~Initial Setup~~
-2. {{< link path="book/first-steps/first-scene/#create-scene" title="Create the scene" >}}
-3. {{< link path="book/first-steps/first-scene/#create-camera" title="Create a camera" >}}
-4. {{< link path="book/first-steps/first-scene/#create-visible" title="Create the cube and add it to the scene" >}}
-5. {{< link path="book/first-steps/first-scene/#create-the-renderer" title="Create the renderer" >}}
-6. {{< link path="book/first-steps/first-scene/#render-scene" title="Render the scene" >}}
+1. ~~初始设置~~
+2. {{< link path="book/first-steps/first-scene/#create-scene" title="创建场景" >}}
+3. {{< link path="book/first-steps/first-scene/#create-camera" title="创建相机" >}}
+4. {{< link path="book/first-steps/first-scene/#create-visible" title="创建立方体并将其添加到场景中" >}}
+5. {{< link path="book/first-steps/first-scene/#create-the-renderer" title="创建渲染器" >}}
+6. {{< link path="book/first-steps/first-scene/#render-scene" title="渲染场景" >}}
 
-Number one is done and dusted. That leaves the final five. However, we'll create an additional task that will go in between steps five and six:
+第一个完成并划掉。剩下的是后面五个。但是，我们将创建一个附加任务，该任务将在步骤5和6之间进行：
 
-* Set the size of the scene.
+* 设置场景的大小。
 
-We'll create a new module for each of the remaining tasks. For now, these modules will be very simple, but as the app grows in size they can become more complex. Splitting them up like this means the complexity will never become overwhelming, and the World class will remain manageable rather than spiraling into a thousand line class of doom.
+我们将为每个剩余的任务创建一个新模块。目前，这些模块将非常简单，但随着应用程序规模的扩大，它们可能会变得更加复杂。像这样将它们拆分意味着复杂性永远不会变得不堪重负，World类将保持可控，而不是螺旋式上升到千行级的厄运。
 
-We'll divide these modules into two categories: **components**, and **systems**. Components are anything that can be placed into the scene, like the cube, the camera, and the scene itself, while systems are things that operate on components or other systems. Here, that's the renderer and the sizing function, which we'll call a `Resizer`. Later you might want to add additional categories like **utilities**, **stores**, and so on.
+我们将这些模块分为两类：组件**components**和系统**systems**。组件是可以放置到场景中的任何东西，例如立方体、相机和场景本身，而系统是在组件或其他系统上运行的东西。在这里，是渲染器和大小调整函数，我们将其称为`Resizer`. 稍后您可能想要添加其他类别，例如实用程序**utilities**、商店**stores**等。
 
-This gives us the following new modules:
+这为我们提供了以下新模块：
 
 * _**components/camera.js**_
 * _**components/cube.js**_
@@ -162,9 +162,9 @@ This gives us the following new modules:
 * _**systems/renderer.js**_
 * _**systems/Resizer.js**_
 
-If you're working locally, create these files now, otherwise, locate them in the editor. The `Resizer` gets a capital `R` because it will be a class. The other four modules will each contain a function following this basic pattern:
+如果您在本地工作，请立即创建这些文件，否则，请在编辑器中找到它们。`Resizer`有一个大写的`R`因为它将是一个类。其他四个模块每个都包含一个遵循这个基本模式的函数：
 
-{{< code lang="js" linenos="false" caption="The basic pattern for most of our new modules" >}}
+{{< code lang="js" linenos="false" caption="我们大多数新模块的基本模式" >}}
 import { Item } from 'three';
 
 function createItem() {
@@ -176,53 +176,53 @@ function createItem() {
 export { createItem }
 {{< /code >}}
 
-...where `createItem` is replaced by `createCamera`, `createCube`, `createRenderer`, or `createScene`. If the code in any of these modules is unclear to you, refer back to the previous chapter where we explain it in detail.
+…其中`createItem`替换为`createCamera`, `createCube`, `createRenderer`, 或`createScene`。如果您不清楚这些模块中的任何代码，请返回上一章详细解释。
 
-### Systems: the Renderer Module
+### Systems: Renderer模块
 
-First up is {{< link path="/book/first-steps/first-scene/#create-the-renderer" title="the renderer system" >}}:
+首先是{{< link path="/book/first-steps/first-scene/#create-the-renderer" title="渲染器系统" >}}:
 
 {{< code file="worlds/first-steps/world-app/src/World/systems/renderer.final.js" lang="js" linenos="true" hl_lines="4"
 caption="_**systems/renderer.js**_" >}}{{< /code >}}
 
-Later, we'll tune some settings on the renderer to improve the quality of our renderings, but for now, a basic renderer with default settings is just fine.
+稍后，我们将调整渲染器的一些设置以提高渲染质量，但现在，具有默认设置的基本渲染器就可以了。
 
-### Components: The Scene Module
+### Components: Scene模块
 
-Next up, the scene component:
+接下来，场景组件：
 
 {{< code file="worlds/first-steps/world-app/src/World/components/scene.final.js" lang="js" linenos="true" hl_lines="4 6"
 caption="_**components/scene.js**_" >}}{{< /code >}}
 
-Here, we've created an instance of the `Scene` class, and then used a `Color` to set the background to `skyblue`, exactly as we did {{< link path="/book/first-steps/first-scene/#create-scene" title="in the last chapter" >}}.
+在这里，我们创建了`Scene`该类的一个实例，然后使用`Color`将背景设置为`skyblue`，就像我们{{< link path="/book/first-steps/first-scene/#create-scene" title="在上一章中" >}}所做的那样。
 
-### Components: The Camera Module
+### Components: Camera模块
 
-Third is {{< link path="/book/first-steps/first-scene/#create-camera" title="the camera component" >}}:
+第三个是{{< link path="/book/first-steps/first-scene/#create-camera" title="相机组件" >}}:
 
 {{< code file="worlds/first-steps/world-app/src/World/components/camera.final.js" lang="js" linenos="true" hl_lines="4-9 11,12"
 caption="_**components/camera.js**_" >}}{{< /code >}}
 
-This is _almost_ the same code we used to set up the camera in the last chapter, except this time we're using a dummy value of `1` for the aspect ratio since that relies on the dimensions of the `container`. We want to avoid passing things around unnecessarily, so we'll defer setting the aspect until we create the `Resizer` system below.
+这与我们在上一章中用于设置相机的代码 _几乎_ 相同，只是这次我们使用了一个虚拟值`1`作为纵横比，因为它依赖于`container`的尺寸。我们想避免不必要地传递东西，所以我们将推迟设置纵横比，直到后面我们创建`Resizer`系统。
 
-One other difference: in the last chapter, we declared each of the camera's four parameters as variables, then passed them into the constructor. Here, we've switched to declaring them inline to save some space. Compare this code to the previous chapter to see the difference.
+另一个区别：在上一章中，我们将相机的四个参数中的每一个都声明为变量，然后将它们传递给构造函数。在这里，我们切换到将它们声明为内联以节省一些空间。将此代码与上一章进行比较以查看差异。
 
-{{< code from="20" to="26" file="worlds/first-steps/first-scene/src/main.final.js" lang="js" linenos="true" hl_lines="" caption="Ch 1.2: Your First three.js Scene: creating the camera" header="" footer="" >}}{{< /code >}}
+{{< code from="20" to="26" file="worlds/first-steps/first-scene/src/main.final.js" lang="js" linenos="true" hl_lines="" caption="Ch 1.2: 你的第一个three.js场景：创建相机" header="" footer="" >}}{{< /code >}}
 
-### Components: The Cube Module
+### Components: Cube模块
 
-Fourth is the cube component, which comprises creating {{< link path="/book/first-steps/first-scene/#create-geometry" title="a geometry" >}}, {{< link path="/book/first-steps/first-scene/#create-material" title="a material" >}}, and then {{< link path="/book/first-steps/first-scene/#create-mesh" title="a mesh" >}}. Once again, the highlighted lines here are identical to the code from the last chapter.
+第四个是立方体组件，它包括创建{{< link path="/book/first-steps/first-scene/#create-geometry" title="几何体" >}}、{{< link path="/book/first-steps/first-scene/#create-material" title="材质" >}}和{{< link path="/book/first-steps/first-scene/#create-mesh" title="网格" >}}。再次提醒，这里突出显示的行与上一章的代码相同。
 
 {{< code file="worlds/first-steps/world-app/src/World/components/cube.final.js" lang="js" linenos="true" hl_lines="4,5,7,8,10,11"
 caption="_**components/cube.js**_" >}}{{< /code >}}
 
-Later, we might add visible objects that are much more complicated than this simple cube, in which case we'll split them up into sub-modules. For example, the playable character in a game is likely to be a complex component with many separate pieces, so we'll put that into _**components/mainCharacter/**_, and inside there we'll have sub-modules such as _**mainCharacter/geometry.js**_,  _**mainCharacter/materials.js**_, _**mainCharacter/animations.js**_, and so on.
+稍后，我们可能会添加比这个简单立方体复杂得多的可见对象，在这种情况下，我们会将它们拆分为子模块。例如，游戏中的可玩角色可能是一个包含许多独立部分的复杂组件，因此我们将其放入 _**components/mainCharacter/**_ 中，其中我们将有诸如 _**mainCharacter/geometry.js**_、 _**mainCharacter/materials.js**_、_**mainCharacter/animations.js**_ 等之类的子模块。
 
-### Systems: the Resizer Module
+### Systems: Resizer模块
 
-Finally, we'll create a stub for the `Resizer` module. This one is a little different than the others since it's a class rather than a function (note that the file name starts with a capital _**R**_ to denote that it's a class):
+最后，我们将为`Resizer`模块创建一个存根。这个与其他的有点不同，因为它是一个类而不是一个函数（请注意，文件名以大写 _**R**_ 开头表示它是一个类）：
 
-{{< code lang="js" linenos="" linenostart="0" hl_lines="" caption="_**systems/Resizer.js**_: initial setup" >}}
+{{< code lang="js" linenos="" linenostart="0" hl_lines="" caption="_**systems/Resizer.js**_: 初始设置" >}}
 ``` js
 class Resizer {
   constructor() {}
@@ -232,20 +232,20 @@ export { Resizer };
 ```
 {{< /code >}}
 
-We'll complete this class below.
+我们将在下面完成这门课。
 
-## Set Up the `World` Class
+## 设置`World`类
 
-With that, most of our components and systems are ready and we can fill in the details of the World class. First, import the five modules we just created at the top of _**World.js**_:
+有了这个，我们的大部分组件`components`和系统`systems`都准备好了，我们可以填写`World`类的详细信息。首先，导入我们刚刚在 _**World.js**_ 上面创建的五个模块：
 
 {{< code from="1" to="6" file="worlds/first-steps/world-app/src/World/World.final.js" lang="js" linenos="true"
-caption="_**World.js**_: imports" >}}{{< /code >}}
+caption="_**World.js**_: 模块导入" >}}{{< /code >}}
 
-### Set Up the Camera, Renderer, and Scene
+### 设置相机、渲染器和场景
 
-Next, we'll set up the camera, scene, and renderer, which all need to be created in the constructor, then accessed in the `World.render` method. Usually, this means we would save them as class member variables: `this.camera`, `this.scene`, and `this.renderer`:
+接下来，我们将设置相机、场景和渲染器，它们都需要在构造函数中创建，然后在`World.render`方法中访问。通常，这意味着我们会将它们保存为类成员变量：`this.camera`、`this.scene`和`this.renderer`：
 
-{{< code lang="js" linenos="false" caption="Class member variables are accessible from outside the class" >}}
+{{< code lang="js" linenos="false" caption="类成员变量可从类外部访问" >}}
 ``` js
 class World {
   constructor() {
@@ -256,9 +256,9 @@ class World {
 ```
 {{< /code >}}
 
-However, member variables are accessible within _**main.js**_, which we _don't_ want.
+但是，成员变量可以在 _**main.js**_ 中访问，这是我们 _**不想**_ 要的。
 
-{{< code lang="js" linenos="false" caption="_**main.js**_: not what we want" >}}
+{{< code lang="js" linenos="false" caption="_**main.js**_: 不是我们想要的" >}}
 ``` js
 const world = new World();
 
@@ -269,35 +269,35 @@ console.log(world.scene);
 ```
 {{< /code >}}
 
-### Guard your Secrets Well
+### 好好保护你的秘密
 
-We want to interact with the World app using _only_ the interface we've designed, and we want everything else to be hidden. Why? Imagine you have worked long and hard to create a beautiful, well structured three.js application, and you pass it on to your client for them to integrate into a larger application. They don't know anything about three.js, but they are competent developers, so when they need to change something they start to hack around and figure out that they can access the camera and renderer. They open up the three.js docs and after five minutes of reading, change some settings. These are likely to break some other parts of the app, so they make more changes, and more changes, and eventually... chaos. Which _you_ will be called in to fix.
+我们希望 _仅_ 使用我们设计的接口与World应用程序进行交互，并且我们希望隐藏其他所有内容。为什么？想象一下，您长期努力地创建了一个美观、结构良好的three.js应用程序，然后您将其传递给您的客户端，以便他们集成到一个更大的应用程序中。他们对three.js一无所知，但他们是称职的开发人员，因此当他们需要更改某些内容时，他们开始翻找代码，并最终弄清楚他们可以访问相机和渲染器。他们打开了three.js文档，在阅读了五分钟后，更改了一些设置。这些可能会破坏应用程序的其他一些部分，因此它们会进行更多更改，更多更改，最终……混乱。_您_ 将被要求修复。
 
-**By hiding the implementation behind a simple interface, you make your app foolproof and simple to use. It does what's it's supposed to do, and _nothing else_.** By hiding the implementation, we are enforcing good coding style on the people using our code. The more of the implementation you make accessible, the more likely it will be used for complicated half-baked "fixes" that you have to deal with later.
+**通过将实现隐藏在一个简单的接口后面，您可以使您的应用程序万无一失且易于使用。它只做它应该做的，_没有别的_。** 通过隐藏实现，我们对使用我们代码的人实施了良好的编码风格。您可以访问的实现越多，它就越有可能成为您以后必须处理的复杂的半生不熟的“修复”。
 
-Replace the word _client_ with _you in six months_ and everything still holds. If you later need to make some quick changes to the app, you won't be tempted to do them in a hacky way if you can't access anything except for the simple interface. Instead, you'll have to open up the World app and fix things _properly_ (in theory at least).
+六个月后用 _你_ 替换 _客户_ 这个词，一切仍然有效。如果您以后需要对应用程序进行一些快速更改，如果您除了简单的接口之外无法访问任何东西，您就不会想以一种hacky的方式进行更改。相反，您必须打开World应用程序并 _正确_ 修复问题（至少在理论上）。
 
-Of course, there will be times when you do legitimately want to expose the camera and other components to the outside world. However, hiding them should be the default. Guard your secrets well, and only expose them when you have a good reason for doing so.
+当然，有时您确实想将相机和其他组件暴露给外界。但是，隐藏它们应该是默认设置。保护好你的秘密，只有在你有充分理由这样做时才公开它们。
 
-### But How?
+### 但是该怎么做呢？
 
-Most languages have private class fields for this purpose, and they are coming soon to JavaScript too. Unfortunately, at the time of writing this chapter, [support is not good](https://caniuse.com/#search=private%20class%20fields), so for now we must look for an alternative.
+大多数语言都有私有类字段让你可以这么做，并且它们也将很快出现在JavaScript中。不幸的是，在撰写本章时，[支持并不好](https://caniuse.com/#search=private%20class%20fields)，所以现在我们必须寻找替代方案。
 
-#### Module Scoped Variables
+#### 模块作用域变量
 
-We can create something similar to private variables by declaring the variables in {{< link path="/book/appendix/javascript-reference/#scope-and-closures" title="module scope" >}}:
+我们可以通过在{{< link path="/book/appendix/javascript-reference/#scope-and-closures" title="模块作用域内" >}}声明变量来创建类似于私有变量的东西：
 
-{{< code from="0" to="18" file="worlds/first-steps/world-app/src/World/World.final.js" lang="js" linenos="true" hl_lines="10-12 16-18" caption="_**World.js**_: create the camera, renderer, and scene as module scoped variables" footer="  }" >}}{{< /code >}}
+{{< code from="0" to="18" file="worlds/first-steps/world-app/src/World/World.final.js" lang="js" linenos="true" hl_lines="10-12 16-18" caption="_**World.js**_: 将相机、渲染器和场景创建为模块作用域变量" footer="  }" >}}{{< /code >}}
 
-This way, we can access `camera`, `renderer`, and `scene` from anywhere in the World module, but _not_ from _**main.js**_. Just what we want.
+这样，我们可以从World模块中的任何位置访问`camera`和`renderer`，但 _不能_ 从 _**main.js**_ 访问。这正是我们想要的。
 
-**Important note**: this solution will not work if we create _two_ instances of the `World` class, since the module scoped variables will be shared between both instances, so the second instance will overwrite the variables of the first. However, we only ever intend to create one world at a time, so we'll accept this limitation.
+**重要说明**：如果我们创建`World`类的 _两个_ 实例，此解决方案将不起作用，因为模块作用域变量将在两个实例之间共享，因此第二个实例将覆盖第一个实例的变量。然而，我们只打算一次创建一个世界，所以我们会接受这个限制。
 
-### Add the Canvas to the Container
+### 将画布添加到容器中
 
-With that, most our of setup is complete. We now have a camera, scene, and renderer. {{< link path="book/first-steps/first-scene/#add-canvas" title="If you recall from the last chapter" >}}, when we create the renderer a `<canvas>` element is also created and stored in `renderer.domElement`. The next step is to add this to the container.
+这样，我们的大部分设置就完成了。我们现在有了相机、场景和渲染器。{{< link path="book/first-steps/first-scene/#add-canvas" title="如果您还记得上一章" >}}，当我们创建渲染器时，`<canvas>`元素也会被创建并存储在`renderer.domElement`中。 下一步是将其添加到容器中。
 
-{{< code lang="js" linenos="" linenostart="14" hl_lines="19" caption="_**World.js**_: append the canvas to the container" >}}
+{{< code lang="js" linenos="" linenostart="14" hl_lines="19" caption="_**World.js**_: 将画布附加到容器" >}}
 ``` js
 class World {
   constructor(container) {
@@ -309,39 +309,39 @@ class World {
 ```
 {{< /code >}}
 
-### Render the Scene
+### 渲染场景
 
-Next, we'll set up `World.render` so that we can see the results. Once again the code is the same as {{< link path="book/first-steps/first-scene/#render-scene" title="the last chapter" >}}.
+接下来，我们将设置`World.render`以便我们可以看到结果。代码再次与{{< link path="book/first-steps/first-scene/#render-scene" title="上一章" >}}相同。
 
-{{< code from="28" to="31" file="worlds/first-steps/world-app/src/World/World.final.js" lang="js" linenos="true" hl_lines="30" caption="_**World.js**_: complete the render method" >}}{{< /code >}}
+{{< code from="28" to="31" file="worlds/first-steps/world-app/src/World/World.final.js" lang="js" linenos="true" hl_lines="30" caption="_**World.js**_: 完成渲染方法" >}}{{< /code >}}
 
-{{< figure src="first-steps/world_app_unsized_background.png" caption="The canvas is the red rectangle" lightbox="true" class="medium right" >}}
+{{< figure src="first-steps/world_app_unsized_background.png" caption="画布是红色矩形" lightbox="true" class="medium right" >}}
 
-Once you do this, if everything is set up correctly, your scene will be drawn into the canvas. However, the canvas doesn't take up the full size of the container since we haven't completed the `Resizer` yet. Instead, it has been created at the default size for a `<canvas>` element, which is $300 \times 150$ pixels (in Chrome, at least).
+完成此操作后，如果一切设置正确，您的场景将被绘制到画布中。然而，cavnas并没有占据容器的全部大小，因为我们还没有完成`Resizer`。相反，它是以`<canvas>`元素的默认大小创建的，即$300 \times 150$像素（至少在 Chrome 中）。
 
-This won't be obvious since we've set the container background to the same color as the scene's background - they are both "skyblue". However, try temporarily making the canvas "red" and this will become obvious.
+这不会很明显，因为我们已经将容器背景设置为与场景背景相同的颜色——它们都是“天蓝色”。但是，尝试暂时将画布设置为“红色”，这将变得很明显。
 
-{{< code lang="js" linenos="" linenostart="6" hl_lines="" caption="_**scene.js**_: temporarily make the canvas red to show that it doesn't take up the full container yet" >}}
+{{< code lang="js" linenos="" linenostart="6" hl_lines="" caption="_**scene.js**_: 暂时将画布设为红色以表明它还没有占据整个容器" >}}
 ``` js
 scene.background = new Color('red');
 ```
 {{< /code >}}
 
-We'll fix this in a few moments, but first, let's add the cube to the scene.
+我们稍后会解决这个问题，但首先，让我们将立方体添加到场景中。
 
-### Create the Cube
+### 创建立方体
 
-The cube doesn't need to be a module scope variable since it's only used in the constructor, so call `createCube`, save the result in a normal variable called `cube`, then add it to the scene.
+立方体不需要是模块作用域变量，因为它只在构造函数中使用，所以调用`createCube`，将结果保存在一个名为`cube`的普通变量中，然后将其添加到场景中。
 
-{{< code from="15" to="23" file="worlds/first-steps/world-app/src/World/World.final.js" lang="js" linenos="true" hl_lines="21 23" caption="_**World.js**_: Create the cube and add it to the scene" footer="  }" >}}{{< /code >}}
+{{< code from="15" to="23" file="worlds/first-steps/world-app/src/World/World.final.js" lang="js" linenos="true" hl_lines="21 23" caption="_**World.js**_: 创建立方体并将其添加到场景中" footer="  }" >}}{{< /code >}}
 
-Now, the white square will appear against the blue background. Still sized at $300 \times 150$ pixels though.
+现在，白色方块将出现在蓝色背景上。仍然大小为$300 \times 150$像素虽然。
 
-## Systems: the Resizer Module
+## Systems: Resizer模块
 
-All that remains is to set up the `Resizer` class. Gathering up all the code we used to set the scene's size from the last chapter, here's what we get:
+剩下的就是设置`Resizer`类。收集上一章中我们用来设置场景大小的所有代码，我们得到以下内容：
 
-{{< code lang="js" linenos="false" caption="Everything we need to do in the `Resizer` class" >}}
+{{< code lang="js" linenos="false" caption="`Resizer`类中我们所需要做的" >}}
 ```js
 // Set the camera's aspect ratio to match the container's proportions
 camera.aspect = container.clientWidth / container.clientHeight;
@@ -354,19 +354,19 @@ renderer.setPixelRatio(window.devicePixelRatio);
 ```
 {{< /code >}}
 
-Here, we'll move these lines into the `Resizer` class. Why a class (and why _Re_-sizer)? Later, this class will have more work to do, for example, in {{< link path="book/first-steps/responsive-design/" title="" >}}, we'll set up automatic resizing whenever the browser window changes size. Creating it as a class gives us more scope to add functionality later without refactoring.
+在这里，我们将把这些行移到`Resizer`类中。为什么是一个类（为什么是 _Re_-sizer）？稍后，这个类会有更多的工作要做，例如，在{{< link path="book/first-steps/responsive-design/" title="1.6：让我们的场景具有响应性（以及处理锯齿）" >}}中，我们将在浏览器窗口改变大小时设置自动调整大小。将它创建为一个类为我们提供了更多的空间，可以在以后添加功能而无需重构。
 
-Looking through the above lines, we can see that `Resizer` needs the container, the camera, and the renderer (`devicePixelRatio` is on {{< link path="book/appendix/javascript-reference/#global-scope" title="the global scope" >}}, which means it's available everywhere). Over in World, make sure `Resizer` is in the list of imports:
+通过以上几行，我们可以看到`Resizer`需要容器、相机和渲染器（`devicePixelRatio`在{{< link path="book/appendix/javascript-reference/#global-scope" title="全局作用域内" >}}，这意味着它无处不在）。在World中，确保`Resizer`在导入列表中：
 
-{{< code from="0" to="6" file="worlds/first-steps/world-app/src/World/World.final.js" lang="js" linenos="true" hl_lines="6" caption="_**World.js**_: imports" >}}{{< /code >}}
+{{< code from="0" to="6" file="worlds/first-steps/world-app/src/World/World.final.js" lang="js" linenos="true" hl_lines="6" caption="_**World.js**_: 模块导入" >}}{{< /code >}}
 
-... and then create a `resizer` instance in the constructor:
+…然后在构造函数中创建一个`resizer`实例：
 
-{{< code from="15" to="26" file="worlds/first-steps/world-app/src/World/World.final.js" lang="js" linenos="true" hl_lines="25" caption="_**World.js**_: create the resizer" >}}{{< /code >}}
+{{< code from="15" to="26" file="worlds/first-steps/world-app/src/World/World.final.js" lang="js" linenos="true" hl_lines="25" caption="_**World.js**_: 创建resizer" >}}{{< /code >}}
 
-Next, copy the lines of code we gathered up the last chapter into the constructor, and also update the method's signature to include the container, camera, and renderer.
+接下来，将我们在上一章收集的代码行复制到构造函数中，并更新方法的签名以包括容器、相机和渲染器。
 
-{{< code lang="js" linenos="" linenostart="0" hl_lines="2 4 7 10" caption="_**Resizer.js**_: nearly complete!" >}}
+{{< code lang="js" linenos="" linenostart="0" hl_lines="2 4 7 10" caption="_**Resizer.js**_: 几乎完成！" >}}
 ``` js
 class Resizer {
   constructor(container, camera, renderer) {
@@ -383,52 +383,52 @@ class Resizer {
 ```
 {{< /code >}}
 
-{{< figure src="first-steps/perspective_frustum.svg" alt="Perspective camera frustum" class="medium right" lightbox="true" >}}
+{{< figure src="first-steps/perspective_frustum.svg" alt="透视相机平截头体" class="medium right" lightbox="true" >}}
 
-This is nearly complete, although there's still one thing we need to do. If you recall from the last chapter, the camera uses the aspect ratio along with the field of view and the near and far clipping planes to calculate its {{< link path="/book/first-steps/first-scene/#viewing-frustum" title="viewing frustum" >}}. **The frustum is not automatically recalculated, so when we change any of these settings, stored in `camera.aspect`, `camera.fov`, `camera.near`, and `camera.far`, we also need to update the frustum.**
+这几乎完成了，尽管我们还需要做一件事。如果你回想一下上一章，相机使用纵横比以及视野以及近远裁剪平面来计算它的{{< link path="/book/first-steps/first-scene/#viewing-frustum" title="视锥" >}}。**平截头体不会自动重新计算，因此当我们更改存储在`camera.aspect`、`camera.fov`、`camera.near`和`camera.far`中的任何这些设置时，我们还需要更新平截头体。**
 
-The camera stores its frustum in a mathematical object called a [**projection matrix**](https://threejs.org/docs/#api/en/cameras/Camera.projectionMatrix), and, to update this, we need to call the camera's [`.updateProjectionMatrix`](https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.updateProjectionMatrix) method. Adding this line gives us the final `Resizer` class:
+相机将其平截头体存储在称为[**投影矩阵**](https://threejs.org/docs/#api/en/cameras/Camera.projectionMatrix)的数学对象中，为了更新它，我们需要调用相机的[`.updateProjectionMatrix`](https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.updateProjectionMatrix)方法。添加这一行为我们提供了完成Resizer类的最后一行：
 
-{{< code from="1" to="15" file="worlds/first-steps/world-app/src/World/systems/Resizer.final.js" lang="js" linenos="true" hl_lines="7" caption="_**Resizer.js**_: complete!" >}}{{< /code >}}
+{{< code from="1" to="15" file="worlds/first-steps/world-app/src/World/systems/Resizer.final.js" lang="js" linenos="true" hl_lines="7" caption="_**Resizer.js**_: 完成！" >}}{{< /code >}}
 
-{{< figure src="first-steps/world_app_fullsized.png" caption="Fullsize at last!" lightbox="true" class="medium right" >}}
+{{< figure src="first-steps/world_app_fullsized.png" caption="终于全尺寸了！" lightbox="true" class="medium right" >}}
 
-With that, our refactor is complete, and the scene will expand to take up the full size of the window.
+这样，我们的重构就完成了，场景将扩大到占据整个窗口的大小。
 
-### The Final `World` Class
+### 最终的`World`类
 
-With everything in place, here's our complete code for the _**World.js**_ module. As you can see, this class coordinates the setup of our 3D scene while offloading the complexity onto separate modules.
+一切就绪后，这是 _**World.js**_ 模块的完整代码。如您所见，此类协调着我们的3D场景的设置，同时将复杂性转移到单独的模块上。
 
 {{< code from="1" to="47" file="worlds/first-steps/world-app/src/World/World.final.js" lang="js" linenos="true"
-caption="_**World.js**_: complete code" >}}{{< /code >}}
+caption="_**World.js**_: 完整代码" >}}{{< /code >}}
 
-Whew! That was some refactor! If you're used to structuring your code using modules, this chapter was probably a breeze. On the other hand, if this was all new to you, it can take some time to get used to the idea of splitting up an application like this. Hopefully, by going through this step by step, you now have a clearer understanding of why we would choose to do this.
+哇！就是这些重构！如果你习惯于使用模块来构建你的代码，那么这一章可能会轻而易举。另一方面，如果这对您来说是全新的，那么可能需要一些时间来适应拆分这样的应用程序的想法。希望通过一步一步的完成，您现在可以更清楚地了解我们为什么选择这样做。
 
-Our application is now ready for liftoff. Over the next few chapters, we'll add lighting, movement, user controls, animation, and even some shapes that are a little more interesting than our humble square. Are you ready?
+我们的应用程序现在可以启动了。在接下来的几章中，我们将添加光照、移动、用户控件、动画，甚至是一些比我们简陋的正方形更有趣的形状。你准备好了吗？
 
-## Challenges
+## 挑战
 
 {{% aside success %}}
-#### Easy
+#### 简单
 
-1. Change the color of the scene background. You can enter any standard color name such as red, green, purple, and so on, as well as some unusual names like aquamarine or coral. How many of the 140 CSS color names can you guess?
+1. 更改场景背景的颜色。您可以输入任何标准颜色名称，例如红色、绿色、紫色等，以及一些不常见的名称，例如海蓝宝石或珊瑚色。你能猜出140个CSS颜色名称中的多少个？
 
 {{% /aside %}}
 
 {{% aside %}}
-#### Medium
+#### 中等
 
-1. Change the cube to some other shapes like a rectangle, sphere, triangle, or torus. (Hint: [search the docs](https://threejs.org/docs) for "BufferGeometry".)
+1. 将立方体更改为其他形状，例如矩形、球体、三角形或圆环。（提示：[在文档中搜索](https://threejs.org/docs)“BufferGeometry”。）
 
-2. Add a second cube and move it around using `mesh.position.set(x, y, z)` (you'll either need to figure out some way of returning two cubes from the `createCube` function, or add a second module like _**cube2.js**_).
+2. 添加第二个立方体并使用`mesh.position.set(x, y, z)`移动它（您需要找出从`createCube`函数返回两个多维数据集的某种方法，或者添加第二个模块，如 _**cube2.js**_）。
 
 {{% /aside %}}
 
 {{% aside warning %}}
-#### Hard
+#### 困难
 
-_This is a challenge for people who are already familiar with building websites. If you are new to web development, it's OK to skip this one._
+_对于已经熟悉构建网站的人来说，这是一个挑战。如果您是Web开发的新手，可以跳过这个。_
 
-1. Add a button to the HTML page, and delay rendering the scene until the button has been clicked. Do this _without_ making any changes to the World app. Instead, create the button in _**index.html**_ and set it up in _**main.js**_.
+1. 向HTML页面添加一个按钮，并延迟渲染场景，直到单击该按钮。_无需_ 对World应用程序进行任何更改即可执行此操作。相反，在 _**index.html**_ 中创建按钮并在 _**main.js**_ 中设置它。
 
 {{% /aside %}}
