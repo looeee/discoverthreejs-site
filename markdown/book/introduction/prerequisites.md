@@ -1,13 +1,11 @@
 ---
-title: 'What Do You Need to Run a three.js App?'
+title: "What Do You Need to Run a three.js App?"
 description: "Let's start with the basics: what do you need to build a three.js application? And what do your users need to be able to run it? The answers are simple: a text editor to write code, a browser to run it, and that's all."
 date: 2018-04-02
 weight: 3
-chapter: '0.2'
+chapter: "0.2"
 available: true
 ---
-
-
 
 # What Do You Need to Run a three.js App?
 
@@ -19,7 +17,7 @@ First of all, you need a computer, but it doesn't need to be fast, fancy, or hav
 
 ## A three.js Developer
 
-This means you! Welcome to the club! As a three.js developer, you need to know some basic HTML and CSS, and some slightly less basic JavaScript. However, you don't need to be an expert in any of these things. If you are new to web development, don't worry because we'll cover everything you need to know as we go along, and in more depth in the {{< link path="/book/appendix" title="Appendices" >}}.
+This means you! Welcome to the club! As a three.js developer, you need to know some basic HTML and CSS, and some slightly less basic JavaScript. However, you don't need to be an expert in any of these things. If you are new to web development, don't worry because we'll cover everything you need to know as we go along, and in more depth in the {{< link path="/book/appendix/" title="Appendices" >}}.
 
 ## A Text Editor
 
