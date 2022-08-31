@@ -313,7 +313,7 @@ camera.position.y = 0;
 camera.position.z = 10;
 {{< /code >}}
 
-两种设置位置的方式都会给出相同的结果。位置存储在一个[`Vector3`](https://threejs.org/docs/#api/en/math/Vector3)，一个表示 3D 向量的 three.js 类中，我们将在{{< link path="/book/first-steps/transformations/" title="1.5：变换和坐标系中" >}}更详细地探讨它。
+两种设置位置的方式都会给出相同的结果。位置存储在一个[`Vector3`](https://threejs.org/docs/#api/en/math/Vector3)，一个表示 3D 向量的 three.js 类中，我们将在[1.5：变换和坐标系中]({{< relref "/book/first-steps/transformations" >}} "1.5：变换和坐标系中")更详细地探讨它。
 
 ## 4.创建一个可见对象 {#create-visible}
 
@@ -353,7 +353,7 @@ TODO-DIAGRAM: add examples of stone cars etc. Great for visual learners. (Annie-
 
 如果我们现在使用除`MeshBasicMaterial`之外的几乎任何其他材质类型，我们将无法看到任何东西，因为场景完全处于黑暗中。**就像在现实世界中一样，我们通常需要光线才能看到场景中的事物**。`MeshBasicMaterial`是该规则的一个例外。
 
-对于 three.js 的新手来说，这是一个常见的混淆点，所以如果您看不到任何东西，请确保您已经在场景中添加了一些灯光，或者暂时将所有材质切换为`MeshBasicMaterial`. 我们将在{{< link path="/book/first-steps/physically-based-rendering/" title="1.4：基于物理的渲染和照明" >}}中为场景添加一些灯光。
+对于 three.js 的新手来说，这是一个常见的混淆点，所以如果您看不到任何东西，请确保您已经在场景中添加了一些灯光，或者暂时将所有材质切换为`MeshBasicMaterial`. 我们将在[1.4：基于物理的渲染和照明]({{< relref "/book/first-steps/physically-based-rendering" >}} "1.4：基于物理的渲染和照明")中为场景添加一些灯光。
 {{% /aside %}}
 
 ### 创建网格 {#create-mesh}
@@ -392,7 +392,7 @@ TODO-LOW: update if WebGPURenderer becomes default
 
 {{< code file="worlds/first-steps/first-scene/src/main.final.js" from="47" to="48" lang="js" linenos="true" caption="_**main.js**_: 设置渲染器的大小" >}}{{< /code >}}
 
-如果你还记得，我们使用 CSS 使容器占据了整个浏览器窗口的大小（如{{< link path="/book/first-steps/app-structure/#adding-a-three-js-scene-to-the-page" title="上一章" >}}所述），因此场景也将占据整个窗口。
+如果你还记得，我们使用 CSS 使容器占据了整个浏览器窗口的大小（如[上一章]({{< relref "/book/first-steps/app-structure#adding-a-three-js-scene-to-the-page" >}} "上一章")所述），因此场景也将占据整个窗口。
 
 {{% aside notice %}}
 我们已经将渲染器的大小设置为容器的宽度和高度，_就像现在一样_。如果我们调整浏览器窗口的大小，窗口的宽度和高度会改变，但画布的大小不会改变。我们将在{{< link path="/book/first-steps/responsive-design" title="1.6：让我们的场景具有响应性（以及处理 Jaggies）" >}}中解决这个问题。
@@ -404,11 +404,11 @@ TODO-LOW: update if WebGPURenderer becomes default
 
 {{< code file="worlds/first-steps/first-scene/src/main.final.js" from="50" to="51" lang="js" linenos="true" caption="_**main.js**_: 设置像素比例" >}}{{< /code >}}
 
-我们不会在这里讨论技术细节，但你不能忘记设置它，否则你的场景在你测试它的笔记本电脑上可能看起来很棒，但在带有视网膜显示器的移动设备上会模糊。与往常一样，{{< link path="/book/appendix/dom-api-reference/#the-virtual-viewport" title="附录有更多细节" >}}。
+我们不会在这里讨论技术细节，但你不能忘记设置它，否则你的场景在你测试它的笔记本电脑上可能看起来很棒，但在带有视网膜显示器的移动设备上会模糊。与往常一样，[附录有更多细节]({{< relref "/book/appendix/dom-api-reference#the-virtual-viewport" >}} "附录有更多细节")。
 
 ### 将`<canvas>`元素添加到我们的页面 {#add-canvas}
 
-渲染器将 ​​ 从相机的角度将我们的场景绘制到一个`<canvas>`元素中去。这个元素已经为我们自动创建并存储在`renderer.domElement`中，但是在我们看到它之前，我们需要将它添加到页面中。我们将使用一个{{< link path="/book/appendix/dom-api-reference/#adding-the-new-elements-to-our-page" title="名为`.append`的内置JavaScript方法" >}}来做到这一点：
+渲染器将 ​​ 从相机的角度将我们的场景绘制到一个`<canvas>`元素中去。这个元素已经为我们自动创建并存储在`renderer.domElement`中，但是在我们看到它之前，我们需要将它添加到页面中。我们将使用一个[名为`.append`的内置 JavaScript 方法]({{< relref "/book/appendix/dom-api-reference#adding-the-new-elements-to-our-page" >}} "名为`.append`的内置 JavaScript 方法")来做到这一点：
 
 {{< code file="worlds/first-steps/first-scene/src/main.final.js" from="53" to="54" lang="js" linenos="true" caption="_**main.js**_: 将画布添加到页面" >}}{{< /code >}}
 
