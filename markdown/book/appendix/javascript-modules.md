@@ -437,7 +437,7 @@ import { FBXLoader } from "./vendor/three/examples/jsm/loaders/FBXLoader.js";
 
 {{< /code >}}
 
-As we'll see in the next chapter, `.then` means that `import()` returns a {{< link path="/book/appendix/asynchronous-javascript/#promises" title="Promise" >}}. Even better, we can use {{< link path="/book/appendix/asynchronous-javascript/#async-await" title="the `await` keyword" >}}, which we'll also cover in the next chapter:
+As we'll see in the next chapter, `.then` means that `import()` returns a [Promise]({{< relref "/book/appendix/asynchronous-javascript#promises" >}} "Promise"). Even better, we can use [the `await` keyword]({{< relref "/book/appendix/asynchronous-javascript#async-await" >}} "the `await` keyword"), which we'll also cover in the next chapter:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Dynamically importing the FBXLoader at run time using async/await" >}}
 

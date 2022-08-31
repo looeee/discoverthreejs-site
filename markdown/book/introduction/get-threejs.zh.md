@@ -28,7 +28,7 @@ IDESwitchImportsAllow: false
 
 - [_**three.module.js**_](https://github.com/mrdoob/three.js/tree/master/build)
 
-除了核心文件，我们经常会添加一些{{< link path="/book/introduction/github-repo/#examples-folder" title="插件" >}}，比如{{< link path="book/first-steps/camera-controls/" title="相机控制" >}}或后期处理。您可以在仓库的[_**examples/jsm**_](https://github.com/mrdoob/three.js/tree/master/examples/jsm/)文件夹中找到插件 ，并且包含他们与核心文件大致相同的工作方式。在本章的其余部分，我们将使用该`OrbitControls`插件（一种流行的相机控制插件）进行演示，您可以在此处的 repo 中找到该插件：
+除了核心文件，我们经常会添加一些 [插件]({{< relref "/book/introduction/github-repo#examples-folder" >}} "插件")，比如 [相机控制]({{< relref "book/first-steps/camera-controls" >}} "相机控制") 或后期处理。您可以在仓库的[_**examples/jsm**_](https://github.com/mrdoob/three.js/tree/master/examples/jsm/)文件夹中找到插件 ，并且包含他们与核心文件大致相同的工作方式。在本章的其余部分，我们将使用该`OrbitControls`插件（一种流行的相机控制插件）进行演示，您可以在此处的 repo 中找到该插件：
 
 - [_**examples/jsm/controls/OrbitControls.js**_](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js)
 
@@ -65,7 +65,7 @@ three.js 核心包含相机、材质、几何、纹理、灯光、阴影、动�
 
 #### 导入整个 three.js 核心文件
 
-最简单的方法是将 three.js 核心中的{{< link path="book/appendix/javascript-modules/#using-namespaces-with-named-imports" title="所有内容导入" >}}**main.js**的 THREE 命名空间下：
+最简单的方法是将 three.js 核心中的 [所有内容导入]({{< relref "book/appendix/javascript-modules#using-namespaces-with-named-imports" >}} "所有内容导入") **main.js**的 THREE 命名空间下：
 
 {{< code lang="js" linenos="false" caption="_**main.js**_: 导入整个three.js核心文件" >}}
 import \* as THREE from './vendor/three/build/three.module.js';
@@ -220,4 +220,4 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 在本书的示例中，我们将使用 NPM 模式导入，因为它们既是编写导入语句的最短方式，也是您在专业环境中最有可能遇到的模式。
 
-在大多数章节中，在编辑器中，您可以在 NPM 和 CDN 导入之间切换（使用**_skypack.dev_**）。但是，如果您从编辑器下载代码，下载的代码将使用 CDN 导入。这意味着您可以立即在本地计算机上使用下载的代码，而无需设置打包程序或安装 NPM 包。但是，您需要{{< link path="/book/introduction/about-the-book/#code-examples" title="设置本地开发服务器" >}}。
+在大多数章节中，在编辑器中，您可以在 NPM 和 CDN 导入之间切换（使用**_skypack.dev_**）。但是，如果您从编辑器下载代码，下载的代码将使用 CDN 导入。这意味着您可以立即在本地计算机上使用下载的代码，而无需设置打包程序或安装 NPM 包。但是，您需要 [设置本地开发服务器]({{< relref "/book/introduction/about-the-book#code-examples" >}} "设置本地开发服务器")。
