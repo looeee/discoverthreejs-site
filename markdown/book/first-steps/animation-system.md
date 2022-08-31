@@ -45,7 +45,7 @@ In the previous chapter, we introduced the glTF model format and showed you how 
 
 {{< inlineScene entry="first-steps/birds-animated-small.js" id="scene-A" class="round right medium" >}}
 
-These models were loaded from the {{< link path="/book/first-steps/load-models/#types-of-gltf-files" title="binary glTF files" >}} [**_parrot.glb_**](https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Parrot.glb), [**_flamingo.glb_**](https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Flamingo.glb), and [**_stork.glb_**](https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Stork.glb). Alongside the bird models, each of these files also contains an animation clip of the bird flying.
+These models were loaded from the [binary glTF files]({{< relref "/book/first-steps/load-models#types-of-gltf-files" >}} "binary glTF files") [**_parrot.glb_**](https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Parrot.glb), [**_flamingo.glb_**](https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Flamingo.glb), and [**_stork.glb_**](https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Stork.glb). Alongside the bird models, each of these files also contains an animation clip of the bird flying.
 
 In this final chapter of the introductory section, we will introduce the three.js animation system and show you how to attach these animation clips to the bird models so that they can take flight.
 

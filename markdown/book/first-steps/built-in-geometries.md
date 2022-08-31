@@ -41,7 +41,7 @@ membershipLevel: free
 
 # Getting Creative with The Built-In Geometries
 
-The three.js core includes a large selection of basic geometric shapes. We've already seen two of these: {{< link path="/book/first-steps/first-scene/#the-geometry" title="our trusty `BoxBufferGeometry`" >}}, and the `SphereBufferGeometry` we introduced in the last chapter. There are many other shapes besides these two, from basic cylinders and circles to exotic dodecahedrons. You can use these geometries like an infinite box of stretchy, squishy Lego to build nearly anything your imagination can come up with.
+The three.js core includes a large selection of basic geometric shapes. We've already seen two of these: [our trusty `BoxBufferGeometry`]({{< relref "/book/first-steps/first-scene#the-geometry" >}} "our trusty `BoxBufferGeometry`"), and the `SphereBufferGeometry` we introduced in the last chapter. There are many other shapes besides these two, from basic cylinders and circles to exotic dodecahedrons. You can use these geometries like an infinite box of stretchy, squishy Lego to build nearly anything your imagination can come up with.
 
 The built-in geometries range from the mundane:
 
@@ -75,7 +75,7 @@ However, unless you have a good reason and know what you are doing, **you should
 
 We'll also introduce a new material property in this chapter. [`Material.flatShading` ](https://threejs.org/docs/#api/en/materials/Material.flatShading) is defined in the base `Material` class, which means it's available for every kind of material. By default, it's set to false.
 
-{{< link path="/book/first-steps/organizing-with-group/#introducing-spherebuffergeometry" title="As we mentioned in the previous chapter" >}}, all geometries are made out of triangles. **The only shapes you can draw using WebGL are points, lines, and triangles**, and all other shapes are made from these. However, **`Mesh` objects are made exclusively from triangles**, never points or lines. When they are part of a mesh, these triangles are referred to as **faces**. To create smooth curves, the triangles need to be very tiny. However, to reduce the number of triangles needed faces next to each other are usually blended in lighting calculations. We'll explain how this works in more detail once we get around to explaining what _**normals**_ are later in the book.
+[As we mentioned in the previous chapter]({{< relref "/book/first-steps/organizing-with-group#introducing-spherebuffergeometry" >}} "As we mentioned in the previous chapter"), all geometries are made out of triangles. **The only shapes you can draw using WebGL are points, lines, and triangles**, and all other shapes are made from these. However, **`Mesh` objects are made exclusively from triangles**, never points or lines. When they are part of a mesh, these triangles are referred to as **faces**. To create smooth curves, the triangles need to be very tiny. However, to reduce the number of triangles needed faces next to each other are usually blended in lighting calculations. We'll explain how this works in more detail once we get around to explaining what _**normals**_ are later in the book.
 
 {{% note %}}
 TODO-LINK: add link to normals explanation
@@ -155,9 +155,9 @@ TODO-LINK: link to helpers section
 
 {{< figure src="first-steps/coordinate_system.svg" caption="The World Space Coordinate System" class="medium left" lightbox="true" >}}
 
-To build the train, we'll create several shapes and then transform (translate, rotate, and scale) them into position. Although we covered the technical details of 3D transformations a few chapters ago, putting the theory into practice takes some work. Translating and scaling objects usually works as you expect, as long as you keep the coordinate system firmly in mind. On the other hand, {{< link path="/book/first-steps/transformations/#our-final-transformation-rotation" title="working with rotations" >}} can be tricky. Here, we'll take a few moments to examine the rotation operations we'll need to build the train.
+To build the train, we'll create several shapes and then transform (translate, rotate, and scale) them into position. Although we covered the technical details of 3D transformations a few chapters ago, putting the theory into practice takes some work. Translating and scaling objects usually works as you expect, as long as you keep the coordinate system firmly in mind. On the other hand, [working with rotations]({{< relref "/book/first-steps/transformations#our-final-transformation-rotation" >}} "working with rotations") can be tricky. Here, we'll take a few moments to examine the rotation operations we'll need to build the train.
 
-Look at the {{< link path="/book/first-steps/transformations/#coordinate-systems-world-space-and-local-space" title="world space coordinate system" >}} above. The origin, $(0,0,0)$, is at the very center of your scene. Keep this diagram in mind while working with transformations throughout this chapter. Also, note how the colors in the diagram match the colors of the axes helper in the editor: RGB for XYZ.
+Look at the [world space coordinate system]({{< relref "/book/first-steps/transformations#coordinate-systems-world-space-and-local-space" >}} "world space coordinate system") above. The origin, $(0,0,0)$, is at the very center of your scene. Keep this diagram in mind while working with transformations throughout this chapter. Also, note how the colors in the diagram match the colors of the axes helper in the editor: RGB for XYZ.
 
 {{< clear >}}
 
@@ -200,7 +200,7 @@ TODO-DIAGRAM: seems kind of sad there is no chimney diagram
 (comment from a reader)
 {{% /note %}}
 
-When working with rotations, often, we'll use the[ three.js helper function `.degToRad`](https://threejs.org/docs/#api/en/math/MathUtils.degToRad) to {{< link path="/book/first-steps/animation-loop/#scale-the-cubes-rotation-by-delta" title="convert from degrees to radians" >}}. However, many degree values are easy to write as radians since $180^{\circ} = \pi$ radians, so simple division will give us a range of other radian values, in particular, $90^{\circ} = \frac{\pi}{2}$ and $45^{\circ} = \frac{\pi}{4}$.
+When working with rotations, often, we'll use the[ three.js helper function `.degToRad`](https://threejs.org/docs/#api/en/math/MathUtils.degToRad) to [convert from degrees to radians]({{< relref "/book/first-steps/animation-loop#scale-the-cubes-rotation-by-delta" >}} "convert from degrees to radians"). However, many degree values are easy to write as radians since $180^{\circ} = \pi$ radians, so simple division will give us a range of other radian values, in particular, $90^{\circ} = \frac{\pi}{2}$ and $45^{\circ} = \frac{\pi}{4}$.
 
 {{< code lang="js" linenos="false" caption="Various clockwise and anti-clockwise rotations" >}}
 // 90 degrees anti-clockwise around the X-axis
@@ -226,7 +226,7 @@ mesh.rotation.y = Math.PI / 4;
 
 With all that talk of rotations under our belts, hopefully, it will be easy to build the train, so let's get started. We'll also use this simple model as an opportunity to build a template for future, more complex scene components. To that end, we'll create separate modules for geometries, materials, and meshes, and then create a `Train` class to coordinate the other modules and provide a minimal interface for use within `World`.
 
-If this sounds familiar to you, it's because this is a microcosm of how we set up {{< link path="/book/first-steps/world-app/#the-world-app" title="the World app" >}}. There are two reasons for this:
+If this sounds familiar to you, it's because this is a microcosm of how we set up [the World app]({{< relref "/book/first-steps/world-app#the-world-app" >}} "the World app"). There are two reasons for this:
 
 1. **Familiarity**: The more similar individual sections of our code are, the less we have to think when switching focus.
 2. **Reusability**: Just as we want to be able to hand the _**World/**_ folder over to another developer with a single paragraph of instructions on how to use it, we want to be able to copy the _**Train/**_ component between our apps with zero effort.
@@ -242,7 +242,7 @@ In the editor, we have deleted the _**meshGroup.js**_ module from the previous c
 
 ### Initial Structure of _**geometries.js**_, _**materials.js**_, and _**meshes.js**_
 
-The first two modules follow a similar format to all the other {{< link path="/book/first-steps/world-app/#systems-and-components" title="components and systems" >}} we've created so far.
+The first two modules follow a similar format to all the other [components and systems]({{< relref "/book/first-steps/world-app#systems-and-components" >}} "components and systems") we've created so far.
 
 {{< code lang="js" linenos="" caption="_**Train/geometries.js**_: initial structure" >}}
 import { BoxBufferGeometry, CylinderBufferGeometry } from 'three';
@@ -278,7 +278,7 @@ export { createMeshes }
 
 ### The `Train` Class Extends `Group`
 
-Next, the `Train` class. Here, we'll do something new and {{< link path="/book/appendix/javascript-reference/#class-inheritance-and-the-extends-keyword" title="_extend_ the `Group` class" >}}:
+Next, the `Train` class. Here, we'll do something new and [_extend_ the `Group` class]({{< relref "/book/appendix/javascript-reference#class-inheritance-and-the-extends-keyword" >}} "_extend_ the `Group` class"):
 
 {{< code lang="js" linenos="" caption="_**Train.js**_: extend the group class" >}}
 import { Group } from 'three';
@@ -379,13 +379,13 @@ constructor(container) {
 
 ### Other Changes
 
-Note that we have also made some minor adjustments to the camera position in _**camera.js**_, slightly moved the {{< link path="/book/first-steps/camera-controls/#manually-set-the-target" title="`controls.target`" >}} in _**controls.js**_ to better frame the train, as well as reducing the intensity of both lights in _**lights.js**_.
+Note that we have also made some minor adjustments to the camera position in _**camera.js**_, slightly moved the [`controls.target`]({{< relref "/book/first-steps/camera-controls#manually-set-the-target" >}} "`controls.target`") in _**controls.js**_ to better frame the train, as well as reducing the intensity of both lights in _**lights.js**_.
 
 ### Create the Materials
 
 At this point, we have finished creating the structure of our new scene component. All that remains is to set up the materials, geometries, and meshes. These don't have to take the form of a train. You can use this structure as a template to create any shape you can dream of.
 
-We'll create two materials for the train: a dark gray material for the chimney and wheels, and a reddish material for the body. We'll use {{< link path="/book/first-steps/physically-based-rendering/#introducing-the-meshstandardmaterial" title="`MeshStandardMaterial`" >}} with [`.flatShading`](#the-material-flatshading-property) enabled for both. Other than `.flatShading`, there's nothing new here. Here's the complete materials module:
+We'll create two materials for the train: a dark gray material for the chimney and wheels, and a reddish material for the body. We'll use [`MeshStandardMaterial`]({{< relref "/book/first-steps/physically-based-rendering#introducing-the-meshstandardmaterial" >}} "`MeshStandardMaterial`") with [`.flatShading`](#the-material-flatshading-property) enabled for both. Other than `.flatShading`, there's nothing new here. Here's the complete materials module:
 
 {{< code file="worlds/first-steps/built-in-geometries/src/World/components/Train/materials.final.js" from="1" to="17" lang="js" linenos="true" caption="_**materials.js**_: complete code" >}}{{< /code >}}
 
@@ -496,11 +496,11 @@ Finally, return all of the geometries as an object at the end of the function. P
 
 ### Create the Meshes
 
-All that remains is to create the meshes. First, we'll create the cabin, nose, and chimney individually, then {{< link path="/book/first-steps/organizing-with-group/#clone-the-protosphere" title="we'll create one wheel and `.clone` it" >}} to create the other three.
+All that remains is to create the meshes. First, we'll create the cabin, nose, and chimney individually, then [we'll create one wheel and `.clone` it]({{< relref "/book/first-steps/organizing-with-group#clone-the-protosphere" >}} "we'll create one wheel and `.clone` it") to create the other three.
 
 #### The Cabin and Chimney Meshes
 
-{{< link path="/book/first-steps/first-scene/#our-first-visible-object-mesh" title="Create the cabin and chimney meshes as usual" >}}, using the body material for the cabin and the detail material for the chimney, then move each mesh into position.
+[Create the cabin and chimney meshes as usual]({{< relref "/book/first-steps/first-scene#our-first-visible-object-mesh" >}} "Create the cabin and chimney meshes as usual"), using the body material for the cabin and the detail material for the chimney, then move each mesh into position.
 
 {{< code lang="js" linenos="" linenostart="6" hl_lines="10 11 13 14" caption="_**meshes.js**_: create the cabin and chimney" >}}
 
@@ -550,7 +550,7 @@ This completes the red body of the train, along with the chimney.
 
 #### Create the Prototype Wheel
 
-Now, the wheels. We'll create the `smallWheelRear` first and then clone it to create the rest, just as we did with our {{< link path="book/first-steps/organizing-with-group/#create-the-prototype-mesh" title="`protoSphere` from the previous chapter" >}}. Create the `smallWheelRear` mesh, and then **translate it down half a unit on the $Y$-axis** to position it under the train. Then, [rotate it to lie along the $X$-axis](#working-with-rotations).
+Now, the wheels. We'll create the `smallWheelRear` first and then clone it to create the rest, just as we did with our [`protoSphere` from the previous chapter]({{< relref "book/first-steps/organizing-with-group#create-the-prototype-mesh" >}} "`protoSphere` from the previous chapter"). Create the `smallWheelRear` mesh, and then **translate it down half a unit on the $Y$-axis** to position it under the train. Then, [rotate it to lie along the $X$-axis](#working-with-rotations).
 
 {{< code lang="js" linenos="" linenostart="6" hl_lines="20-22" caption="_**meshes.js**_: create the first wheel" >}}
 
@@ -699,7 +699,7 @@ With that, the train should appear in your scene.
 
 ### Spin the Wheels!
 
-As a final touch, let's set the wheels spinning. Give the train a `.tick` method, following the same {{< link path="/book/first-steps/animation-loop/#the-cubetick-method" title="pattern we use for all animated objects" >}}.
+As a final touch, let's set the wheels spinning. Give the train a `.tick` method, following the same [pattern we use for all animated objects]({{< relref "/book/first-steps/animation-loop#the-cubetick-method" >}} "pattern we use for all animated objects").
 
 {{< code lang="js" linenos="" linenostart="7" hl_lines="12" caption="_**Train.js**_: create an empty tick method" >}}
 
@@ -749,7 +749,7 @@ To create truly amazing models, we need to use an external program designed for 
 
 1. What's better than a toy train? How about _two_ toy trains? You can `.clone` the entire train after creating it. Do that now, and then adjust the `.position` of the second train. Don't forget to add it to the scene!
 
-2. What's better than two toy trains? {{< link path="/book/first-steps/organizing-with-group/#clone-the-protosphere" title="Create a whole bunch of trains in a loop" >}}. Within the loop, make sure to move each new train so they are not all stacked on top of each other, and then add each to the scene. See how many interesting ways you can position the cloned trains.
+2. What's better than two toy trains? [Create a whole bunch of trains in a loop]({{< relref "/book/first-steps/organizing-with-group#clone-the-protosphere" >}} "Create a whole bunch of trains in a loop"). Within the loop, make sure to move each new train so they are not all stacked on top of each other, and then add each to the scene. See how many interesting ways you can position the cloned trains.
 
 _Both of these tasks should be done in **World.js**._
 
