@@ -212,7 +212,7 @@ One other difference: in the last chapter, we declared each of the camera's four
 
 ### Components: The Cube Module
 
-Fourth is the cube component, which comprises creating {{< link path="/book/first-steps/first-scene/#create-geometry" title="a geometry" >}}, {{< link path="/book/first-steps/first-scene/#create-material" title="a material" >}}, and then {{< link path="/book/first-steps/first-scene/#create-mesh" title="a mesh" >}}. Once again, the highlighted lines here are identical to the code from the last chapter.
+Fourth is the cube component, which comprises creating [a geometry]({{< relref "/book/first-steps/first-scene#create-geometry" >}} "a geometry"), [a material]({{< relref "/book/first-steps/first-scene#create-material" >}} "a material"), and then [a mesh]({{< relref "/book/first-steps/first-scene#create-mesh" >}} "a mesh"). Once again, the highlighted lines here are identical to the code from the last chapter.
 
 {{< code file="worlds/first-steps/world-app/src/World/components/cube.final.js" lang="js" linenos="true" hl_lines="4,5,7,8,10,11"
 caption="_**components/cube.js**_" >}}{{< /code >}}
@@ -292,7 +292,7 @@ Most languages have private class fields for this purpose, and they are coming s
 
 #### Module Scoped Variables
 
-We can create something similar to private variables by declaring the variables in {{< link path="/book/appendix/javascript-reference/#scope-and-closures" title="module scope" >}}:
+We can create something similar to private variables by declaring the variables in [module scope]({{< relref "/book/appendix/javascript-reference#scope-and-closures" >}} "module scope"):
 
 {{< code from="0" to="18" file="worlds/first-steps/world-app/src/World/World.final.js" lang="js" linenos="true" hl_lines="10-12 16-18" caption="_**World.js**_: create the camera, renderer, and scene as module scoped variables" footer="  }" >}}{{< /code >}}
 
