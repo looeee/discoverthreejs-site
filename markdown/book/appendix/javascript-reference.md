@@ -46,17 +46,17 @@ Modern JavaScript is also referred to as _ESNext_. All the syntax from old-schoo
 
 ## JavaScript Modules and the Entry Point
 
-All the JavaScript we write will go inside files with `.js` extensions. Rather than put everything into one file, we'll split our code into many small modules, a topic to which we devote {{< link path="/book/appendix/javascript-modules/" title="an entire chapter" >}} since modules are part of modern JavaScript and may be unfamiliar to many people.
+All the JavaScript we write will go inside files with `.js` extensions. Rather than put everything into one file, we'll split our code into many small modules, a topic to which we devote [an entire chapter]({{< relref "/book/appendix/javascript-modules" >}} "an entire chapter") since modules are part of modern JavaScript and may be unfamiliar to many people.
 
 Once we've split up our application in this manner, we'll have one main JavaScript file that references and coordinates the other JavaScript modules. This main file is called the **entry point** of our application, and we will name it _**main.js**_ (it's also common to call this _**index.js**_ or _**app.js**_).
 
 ## Referencing JavaScript Modules from HTML
 
-Next, we need to connect _**main.js**_ to our minimal HTML page so that it will run when the page loads. We touched on this {{< link path="/book/appendix/html-and-css-reference/#the-src-attribute" title="in the previous chapter" >}}.
+Next, we need to connect _**main.js**_ to our minimal HTML page so that it will run when the page loads. We touched on this [in the previous chapter]({{< relref "/book/appendix/html-and-css-reference#the-src-attribute" >}} "in the previous chapter").
 
 Here, we have placed the _**main.js**_ file in a folder called _**src/**_ right next to the _**index.html**_ file.
 
-To load this file, we'll add a `<script>` element with a `src` attribute to {{< link path="/book/appendix/html-and-css-reference/#the-head-element" title="the head section" >}} of _**index.html**_. The `src` attribute will reference _**main.js**_.
+To load this file, we'll add a `<script>` element with a `src` attribute to [the head section]({{< relref "/book/appendix/html-and-css-reference#the-head-element" >}} "the head section") of _**index.html**_. The `src` attribute will reference _**main.js**_.
 
 Open up the inline code editor on this page to see this in action.
 
@@ -96,7 +96,7 @@ However, to the browser, there's no difference between code written inline or in
 
 ## The Developer Console
 
-Yet another place you can run JavaScript code is the {{< link path="book/appendix/dom-api-reference/#the-browser-developer-console" title="browser console" >}}. Press F12 to open it now, if you're reading this from a device with a keyboard.
+Yet another place you can run JavaScript code is the [browser console]({{< relref "book/appendix/dom-api-reference#the-browser-developer-console" >}} "browser console"). Press F12 to open it now, if you're reading this from a device with a keyboard.
 
 The console provides a handy scratchpad for testing out ideas while you work on a website. If you like, you can open the console now and test out the code in this chapter while you read.
 
@@ -2211,7 +2211,7 @@ However, when we are in global scope, we can't access module scope, and when we 
 
 Closely related to scope is the **execution context** or simply **context**. Context, in simple terms, refers to the value of the `this` keyword, while scope is related to variable resolution and access. We'll explore `this` in detail below.
 
-Unlike scope, the execution context _can_ change at run time. For example, a function may be called at multiple points in your code and each time will have a different execution context and hence a different value of `this`, while the scope will be the same each time. We'll examine {{< link path="book/appendix/javascript-reference/#execution-context-and-the-this-keyword" title="execution context and `this`" >}} in more detail below.
+Unlike scope, the execution context _can_ change at run time. For example, a function may be called at multiple points in your code and each time will have a different execution context and hence a different value of `this`, while the scope will be the same each time. We'll examine [execution context and `this`]({{< relref "book/appendix/javascript-reference#execution-context-and-the-this-keyword" >}} "execution context and `this`") in more detail below.
 
 ### Global Scope
 

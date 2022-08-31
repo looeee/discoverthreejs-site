@@ -84,7 +84,7 @@ Adding more and more direct lights to your scene will quickly kill you framerate
 
 ### No Lights at All!
 
-Another lighting technique is to avoid using lights completely. Some materials, such as the `MeshBasicMaterial`, don't need lights to be seen. You can get nice results using a `MeshBasicMaterial` and appropriate {{< link path="/book/first-steps/textures-intro/" title="textures" >}}.
+Another lighting technique is to avoid using lights completely. Some materials, such as the `MeshBasicMaterial`, don't need lights to be seen. You can get nice results using a `MeshBasicMaterial` and appropriate [textures]({{< relref "/book/first-steps/textures-intro" >}} "textures").
 
 {{< iframe src="https://threejs.org/docs/scenes/material-browser.html#MeshBasicMaterial" height="500" title="The MeshBasicMaterial in action" caption="The MeshBasicMaterial in action" >}}
 
@@ -228,7 +228,7 @@ Throughout the book, we'll explore many lighting solutions. Many of these give b
 
 3. What about more ambient lights? Or an `AmbientLight` and a `HemisphereLight` at the same time? What effect does this have on the scene?
 
-_Remember: light from the `DirectionalLight` shines {{< link path="/book/first-steps/physically-based-rendering/#introducing-the-directionallight" title="from `light.position` to `light.target.position`" >}} by default. If you adjust the light's position, it will continue to point at the same spot, but now the rays will come in at a different angle._
+_Remember: light from the `DirectionalLight` shines [from `light.position` to `light.target.position`]({{< relref "/book/first-steps/physically-based-rendering#introducing-the-directionallight" >}} "from `light.position` to `light.target.position`") by default. If you adjust the light's position, it will continue to point at the same spot, but now the rays will come in at a different angle._
 
 {{% /aside %}}
 
@@ -238,7 +238,7 @@ _Remember: light from the `DirectionalLight` shines {{< link path="/book/first-s
 
 1. Another solution to our problem from the start of the chapter is to add a light as a child of the camera. That way, when the camera moves, the light moves too. You can think of this as being like a camera with a torch strapped to the side. Using this approach, we can light the scene using a single `DirectionalLight` or `SpotLight`. Try this out. First, remove the `ambientLight`, then add the camera to the scene, and finally, add the `mainLight` to the camera.
 
-_Note: when you add the light to the camera instead of the scene, you are {{< link path="/book/first-steps/transformations/#moving-an-object-between-coordinate-systems" title="attaching it to the camera's local space" >}}. You may have to adjust the light's position for best results._
+_Note: when you add the light to the camera instead of the scene, you are [attaching it to the camera's local space]({{< relref "/book/first-steps/transformations#moving-an-object-between-coordinate-systems" >}} "attaching it to the camera's local space"). You may have to adjust the light's position for best results._
 
 {{% /aside %}}
 

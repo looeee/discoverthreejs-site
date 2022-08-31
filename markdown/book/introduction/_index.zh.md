@@ -21,7 +21,7 @@ hideWordCount: true
 
 使用 three.js，您不再需要花哨的游戏 PC 或控制台来显示逼真的 3D 图形。您甚至不需要下载特殊的应用程序。现在每个人都可以使用智能手机和网络浏览器体验令人惊叹的 3D 应用程序，这要归功于这个令人惊叹的 three.js 库和围绕它的充满活力的社区。
 
-本书完整介绍了将 Web 用作 3D 图形平台。在接下来的章节中，我们将向您介绍 three.js、WebGL 和计算机图形学的概念，同时演示如何将它们组合成一个可在现代浏览器上运行的专业品质的 Web 应用程序。如果您不熟悉构建 Web 应用程序，请参阅 {{< link path="/book/appendix/" title="附录" >}}. 我们为您提供了从{{< link path="/book/appendix/html-and-css-reference/" title="HTML, CSS" >}}, 和 {{< link path="/book/appendix/javascript-reference/" title="JavaScript" >}} 参考章节到关于 {{< link path="/book/appendix/javascript-modules/" title="模块" >}} and {{< link path="/book/appendix/asynchronous-javascript/" title="异步编码模式" >}}的更高级章节的所有内容。
+本书完整介绍了将 Web 用作 3D 图形平台。在接下来的章节中，我们将向您介绍 three.js、WebGL 和计算机图形学的概念，同时演示如何将它们组合成一个可在现代浏览器上运行的专业品质的 Web 应用程序。如果您不熟悉构建 Web 应用程序，请参阅 [附录]({{< relref "/book/appendix" >}} "附录"). 我们为您提供了从[HTML, CSS]({{< relref "/book/appendix/html-and-css-reference" >}} "HTML, CSS"), 和 [JavaScript]({{< relref "/book/appendix/javascript-reference" >}} "JavaScript") 参考章节到关于 [模块]({{< relref "/book/appendix/javascript-modules" >}} "模块") and [异步编码模式]({{< relref "/book/appendix/asynchronous-javascript" >}} "异步编码模式")的更高级章节的所有内容。
 
 {{% note %}}
 The [three.js 首页](https://threejs.org/)收录了使用 three.js 创建的前沿作品。 [Virtual Art Sessions](https://virtualart.chromeexperiments.com/artists/andrea-blasich/sessions/bull/) 和[paperplanes.world](https://paperplanes.world/)是个人最喜欢的几个作品，当然，three.js 专注于 3D，但同时它也是一个功能强大的 2D 框架。
