@@ -28,7 +28,7 @@ There are several ways to include three.js in your JavaScript application, some 
 
 - [_**three.module.js**_](https://github.com/mrdoob/three.js/tree/master/build)
 
-In addition to the core file, we'll often add {{< link path="/book/introduction/github-repo/#examples-folder" title="plugins" >}} such as {{< link path="book/first-steps/camera-controls/" title="camera controls" >}} or post-processing. You can find plugins in the [_**examples/jsm**_](https://github.com/mrdoob/three.js/tree/master/examples/jsm/) folder on the repo, and including them works in much the same way as for the core file. For the rest of this chapter, we'll use the `OrbitControls` plugin (a popular camera controls plugin) for demonstration, which you can find on the repo here:
+In addition to the core file, we'll often add [plugins]({{< relref "/book/introduction/github-repo#examples-folder" >}} "plugins") such as [camera controls]({{< relref "book/first-steps/camera-controls" >}} "camera controls") or post-processing. You can find plugins in the [_**examples/jsm**_](https://github.com/mrdoob/three.js/tree/master/examples/jsm/) folder on the repo, and including them works in much the same way as for the core file. For the rest of this chapter, we'll use the `OrbitControls` plugin (a popular camera controls plugin) for demonstration, which you can find on the repo here:
 
 - [_**examples/jsm/controls/OrbitControls.js**_](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js)
 
@@ -65,7 +65,7 @@ The three.js core contains hundreds of classes such as cameras, materials, geome
 
 #### Import the Entire three.js Core
 
-The simplest approach is to {{< link path="book/appendix/javascript-modules/#using-namespaces-with-named-imports" title="import _everything_" >}} from the three.js core into _**main.js**_ under the `THREE` namespace:
+The simplest approach is to [import _everything_]({{< relref "book/appendix/javascript-modules#using-namespaces-with-named-imports" >}} "import _everything_") from the three.js core into _**main.js**_ under the `THREE` namespace:
 
 {{< code lang="js" linenos="false" caption="_**main.js**_: import the entire three.js core" >}}
 import \* as THREE from './vendor/three/build/three.module.js';
@@ -220,4 +220,4 @@ There are many bundlers available, such as Rollup, Webpack, ESBuild, and Parcel,
 
 In the examples throughout this book, we'll use NPM style imports since these are both the shortest way of writing the import statements, and the style you are most likely to encounter in a professional setting.
 
-In most chapters, in the editor, you can switch between NPM and CDN imports (using _**skypack.dev**_). However, if you download the code from the editor, the downloaded code will use CDN imports. This means you can use the downloaded code immediately on your local computer without the trouble of setting up a bundler or installing NPM packages. You will, however, need to {{< link path="/book/introduction/about-the-book/#code-examples" title="set up a local development server" >}}.
+In most chapters, in the editor, you can switch between NPM and CDN imports (using _**skypack.dev**_). However, if you download the code from the editor, the downloaded code will use CDN imports. This means you can use the downloaded code immediately on your local computer without the trouble of setting up a bundler or installing NPM packages. You will, however, need to [set up a local development server]({{< relref "/book/introduction/about-the-book#code-examples" >}} "set up a local development server").
