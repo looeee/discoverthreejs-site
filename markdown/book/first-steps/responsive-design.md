@@ -6,35 +6,34 @@ weight: 106
 chapter: "1.6"
 available: true
 showIDE: true
-IDEFiles: [
-  "worlds/first-steps/responsive-design/src/World/components/camera.js",
-  "worlds/first-steps/responsive-design/src/World/components/cube.js",
-  "worlds/first-steps/responsive-design/src/World/components/lights.js",
-  "worlds/first-steps/responsive-design/src/World/components/scene.js",
-  "worlds/first-steps/responsive-design/src/World/systems/renderer.start.js",
-  "worlds/first-steps/responsive-design/src/World/systems/renderer.final.js",
-  "worlds/first-steps/responsive-design/src/World/systems/Resizer.start.js",
-  "worlds/first-steps/responsive-design/src/World/systems/Resizer.final.js",
-  "worlds/first-steps/responsive-design/src/World/World.start.js",
-  "worlds/first-steps/responsive-design/src/World/World.final.js",
-  "worlds/first-steps/responsive-design/src/main. js",
-  "styles/main.css",
-  "vendor/three/build/three.module.js",
-  "worlds/first-steps/responsive-design/index.html",
-]
+IDEFiles:
+  [
+    "worlds/first-steps/responsive-design/src/World/components/camera.js",
+    "worlds/first-steps/responsive-design/src/World/components/cube.js",
+    "worlds/first-steps/responsive-design/src/World/components/lights.js",
+    "worlds/first-steps/responsive-design/src/World/components/scene.js",
+    "worlds/first-steps/responsive-design/src/World/systems/renderer.start.js",
+    "worlds/first-steps/responsive-design/src/World/systems/renderer.final.js",
+    "worlds/first-steps/responsive-design/src/World/systems/Resizer.start.js",
+    "worlds/first-steps/responsive-design/src/World/systems/Resizer.final.js",
+    "worlds/first-steps/responsive-design/src/World/World.start.js",
+    "worlds/first-steps/responsive-design/src/World/World.final.js",
+    "worlds/first-steps/responsive-design/src/main. js",
+    "styles/main.css",
+    "vendor/three/build/three.module.js",
+    "worlds/first-steps/responsive-design/index.html",
+  ]
 IDEComparisonMode: true
-IDEClosedFolders: ['components', 'styles', 'vendor']
-IDEStripDirectory: 'worlds/first-steps/responsive-design/'
-IDEActiveDocument: 'src/World/systems/Resizer.js'
+IDEClosedFolders: ["components", "styles", "vendor"]
+IDEStripDirectory: "worlds/first-steps/responsive-design/"
+IDEActiveDocument: "src/World/systems/Resizer.js"
 ---
-
-
 
 # Making Our Scenes Responsive (and also Dealing with Jaggies)
 
 Welcome back! The last chapter was a long one, stuffed full of mathematical and computer graphics theory. Here, we'll slow things down a little and look at the current state of our app.
 
-Since we created {{< link path="/book/first-steps/world-app/" title=" the World app" >}} a couple of chapters ago, our code is well structured and ready to be expanded as we add features over the coming chapters. Next, we switched to {{< link path="/book/first-steps/physically-based-rendering/" title="physically correct lighting and rendering" >}} and explained how we'll (nearly always) build our scenes using meters for measurement. Our brains are tuned to appreciate physically correct lighting and colors, so when we set up our scenes this way a lot of the hard work of making them look great is done for us. This applies even to scenes with a cartoony or abstract look.
+Since we created [ the World app]({{< relref "/book/first-steps/world-app" >}} " the World app") a couple of chapters ago, our code is well structured and ready to be expanded as we add features over the coming chapters. Next, we switched to [physically correct lighting and rendering]({{< relref "/book/first-steps/physically-based-rendering" >}} "physically correct lighting and rendering") and explained how we'll (nearly always) build our scenes using meters for measurement. Our brains are tuned to appreciate physically correct lighting and colors, so when we set up our scenes this way a lot of the hard work of making them look great is done for us. This applies even to scenes with a cartoony or abstract look.
 
 In the last chapter, we explored the coordinate systems and mathematical operations called transformations that are used to move objects around in 3D space. Over the next couple of chapters, we'll use everything we have learned so far and start to create scenes that are more interesting than a single cube.
 
@@ -66,7 +65,7 @@ It turns out that drawing straight lines using square pixels is hard unless the 
 
 ### Enable Anti-Aliasing
 
-We can turn on anti-aliasing by passing a single new parameter into the `WebGLRenderer` constructor.  As with {{< link path="/book/first-steps/physically-based-rendering/#change-the-material-s-color" title="the `MeshStandardMaterial`" >}}, the `WebGLRenderer` constructor takes a specification object with named parameters. Here, we will set the `antialias` parameter to `true`:
+We can turn on anti-aliasing by passing a single new parameter into the `WebGLRenderer` constructor. As with [the `MeshStandardMaterial`]({{< relref "/book/first-steps/physically-based-rendering#change-the-material-s-color" >}} "the `MeshStandardMaterial`"), the `WebGLRenderer` constructor takes a specification object with named parameters. Here, we will set the `antialias` parameter to `true`:
 
 {{< code file="worlds/first-steps/responsive-design/src/World/systems/renderer.final.js" from="3" to="9" lang="js" linenos="true" hl_lines="4" caption="_**renderer.js**_: Enable antialiasing" >}}{{< /code >}}
 
@@ -90,7 +89,7 @@ TODO-LINK: add link to FXAA/SMAA
 
 ## Seamlessly Handling Browser Window Size Changes {#seamless-resize}
 
-Currently, our app cannot handle a user doing something as simple as rotating their phone or resizing their browser. **We need to handle resizing gracefully, in an automatic manner that's invisible to our users**, and which involves a minimum of effort on our part. Unlike anti-aliasing, there's no magic setting to fix this. However, we already have a `Resizer` class, so here, we'll extend this to reset the size whenever the window changes size. After all, that's why we called this class a {{< link path="/book/first-steps/world-app/#systems-the-resizer-module-1" title="Re-sizer" >}} in the first place.
+Currently, our app cannot handle a user doing something as simple as rotating their phone or resizing their browser. **We need to handle resizing gracefully, in an automatic manner that's invisible to our users**, and which involves a minimum of effort on our part. Unlike anti-aliasing, there's no magic setting to fix this. However, we already have a `Resizer` class, so here, we'll extend this to reset the size whenever the window changes size. After all, that's why we called this class a [Re-sizer]({{< relref "/book/first-steps/world-app#systems-the-resizer-module-1" >}} "Re-sizer") in the first place.
 
 ### Listen for `resize` Events on the Browser Window
 
@@ -102,9 +101,9 @@ Later, we'll use event listeners to add interactivity to our scenes. Here, we wa
 TODO-LINK: add link to interactivity chapter
 {{% /note %}}
 
-_If you are unfamiliar with event listeners, check out the {{< link path="/book/appendix/dom-api-reference/#listening-for-events" title="DOM API reference" >}} in the appendices for more info._
+_If you are unfamiliar with event listeners, check out the [DOM API reference]({{< relref "/book/appendix/dom-api-reference#listening-for-events" >}} "DOM API reference") in the appendices for more info._
 
-We can listen for most events, like `click`, or `scroll`, on any HTML element. However, the `resize` event listener must be attached to {{< link path="book/appendix/dom-api-reference/#global-object" title="the global `window` object" >}}. There is another way of listening for resize events which works with any element: the [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver/ResizeObserver). However, it's quite new and at the time of writing this chapter isn't yet widely supported. Besides, it's a little more work to set up, so we'll stick with the tried and trusted `resize` event for now.
+We can listen for most events, like `click`, or `scroll`, on any HTML element. However, the `resize` event listener must be attached to [the global `window` object]({{< relref "book/appendix/dom-api-reference#global-object" >}} "the global `window` object"). There is another way of listening for resize events which works with any element: the [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver/ResizeObserver). However, it's quite new and at the time of writing this chapter isn't yet widely supported. Besides, it's a little more work to set up, so we'll stick with the tried and trusted `resize` event for now.
 
 ### Test `addEventListener` in the Browser Console
 
@@ -112,7 +111,7 @@ Before we set up automatic resizing in our app, we'll use the browser console to
 
 {{< code lang="js" linenos="false" caption="Paste this code into your browser console then resize the page" >}}
 function onResize() {
-  console.log('You resized the browser window!');
+console.log('You resized the browser window!');
 }
 
 window.addEventListener('resize', onResize);
@@ -130,10 +129,11 @@ If you find this function growing in size, you might consider using a throttling
 
 ### Extend the Resizer Class
 
-Now that we've confirmed everything works as expected, we'll go ahead and extend the `Resizer` class to automatically handle resizing. That means we need to call the sizing code in two situations: first, on load, to set the initial size, and then again whenever the size changes.  So, let's move that code into a separate function, and then call it once when our scene loads:
+Now that we've confirmed everything works as expected, we'll go ahead and extend the `Resizer` class to automatically handle resizing. That means we need to call the sizing code in two situations: first, on load, to set the initial size, and then again whenever the size changes. So, let's move that code into a separate function, and then call it once when our scene loads:
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="1-7 12" caption="_**Resizer.js**_: move the sizing code into a setSize function and call it on load" >}}
-``` js
+
+```js
 const setSize = (container, camera, renderer) => {
   camera.aspect = container.clientWidth / container.clientHeight;
   camera.updateProjectionMatrix();
@@ -151,24 +151,27 @@ class Resizer {
 
 export { Resizer };
 ```
+
 {{< /code >}}
 
 Great. Now, let's add an event listener and call `setSize` again whenever the event fires.
 
 {{< code lang="js" linenos="" linenostart="9" hl_lines="14-17" caption="_**Resizer.js**_: set up the event listener" >}}
-``` js
+
+```js
 class Resizer {
   constructor(container, camera, renderer) {
     // set initial size
     setSize(container, camera, renderer);
 
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       // set the size again if a resize occurs
       setSize(container, camera, renderer);
     });
   }
 }
 ```
+
 {{< /code >}}
 
 {{< figure src="first-steps/cube-stretched.png" caption="Cube abuse!" lightbox="true" class="medium left" >}}
@@ -183,11 +186,11 @@ The camera, renderer, and `<canvas>` element are all being resized correctly. Ho
 
 ### Create an `onResize` Hook
 
-This means we need to generate a new frame every time the resize event fires. To do this, we need to call `World.render` right after `setSize`, inside the event listener in the `Resizer` class. However,  we'd rather not pass the entire World class into Resizer. Instead, we'll create a `Resizer.onResize` hook. This enables us to perform some custom behavior whenever a resize happens.
+This means we need to generate a new frame every time the resize event fires. To do this, we need to call `World.render` right after `setSize`, inside the event listener in the `Resizer` class. However, we'd rather not pass the entire World class into Resizer. Instead, we'll create a `Resizer.onResize` hook. This enables us to perform some custom behavior whenever a resize happens.
 
 {{< code from="9" to="23" file="worlds/first-steps/responsive-design/src/World/systems/Resizer.final.js" lang="js" linenos="true" hl_lines="18 22" caption="_**Resizer.js**_: an empty onResize method for custom resizing behavior" header="" footer="" >}}{{< /code >}}
 
-`.onResize` is an {{< link path="book/appendix/javascript-reference/#empty-functions" title="empty method" >}} that we can customize from outside the `Resizer` class.
+`.onResize` is an [empty method]({{< relref "book/appendix/javascript-reference#empty-functions" >}} "empty method") that we can customize from outside the `Resizer` class.
 
 ### Customize `Resizer.onResize` in World
 
@@ -202,6 +205,7 @@ Now that automatic resizing and antialiasing are working, our app looks much mor
 ## Challenges
 
 {{% aside success %}}
+
 ### Easy
 
 1. Enable and disable AA and compare the difference.
@@ -215,12 +219,14 @@ Now that automatic resizing and antialiasing are working, our app looks much mor
 {{% /aside %}}
 
 {{% aside %}}
+
 ### Medium
 
 1. Disable antialiasing. Now, zoom in on the cube to get a better view of the aliasing artifact. Don't use your browser's zoom function. Instead, try these methods:
-    * Enlarge the cube using `cube.scale`.
-    * Bring the cube closer to you using `cube.position.z`.
-    * Bring the camera closer to the cube using `camera.position.z` <br><br>
+
+   - Enlarge the cube using `cube.scale`.
+   - Bring the cube closer to you using `cube.position.z`.
+   - Bring the camera closer to the cube using `camera.position.z` <br><br>
 
 2. Still with AA disabled, use `camera.position.x` (horizontal movement) and `camera.position.y` (vertical movement) to zoom in on the right-hand corner of the cube.
 
@@ -231,6 +237,7 @@ _Note how aliasing artifacts (jaggies) change as you move the cube around or zoo
 {{% /aside %}}
 
 {{% aside warning %}}
+
 ### Hard
 
 1. Instead of using the container to size the scene, try entering some numbers manually. For example, create a scene that is 64 pixels wide and high, or 256 pixels wide and high. You might want to change the scene's background color here to see this more easily.
