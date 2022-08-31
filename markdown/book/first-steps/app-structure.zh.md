@@ -27,7 +27,7 @@ prevTitle: "入门：真正的乐趣从这里开始！"
 
 # Three.js 应用的结构
 
-在我们构建一个 three.js 应用程序之前，我们需要创建一个网页。我们在简介中简要讨论了我们将如何做到这一点（{{< link path="/book/introduction/get-threejs/" title="Ch 0.5" >}}和{{< link path="/book/introduction/threejs-with-frameworks/" title="Ch 0.6" >}}），但现在让我们更深入地了解一下。正如我们在上一章中提到的，我们的目标是尽可能创建最基本、最简单、最平淡无奇的网页，而无需对使用 three.js 的真实 Web 应用程序的外观做出任何假设。通过这样做，我们确保我们编写的代码可以适应任何地方，而无需太多努力。
+在我们构建一个 three.js 应用程序之前，我们需要创建一个网页。我们在简介中简要讨论了我们将如何做到这一点（[Ch 0.5]({{< relref "/book/introduction/get-threejs" >}} "Ch 0.5")和[Ch 0.6]({{< relref "/book/introduction/threejs-with-frameworks" >}} "Ch 0.6")），但现在让我们更深入地了解一下。正如我们在上一章中提到的，我们的目标是尽可能创建最基本、最简单、最平淡无奇的网页，而无需对使用 three.js 的真实 Web 应用程序的外观做出任何假设。通过这样做，我们确保我们编写的代码可以适应任何地方，而无需太多努力。
 
 我们将只用两个文件创建这个基本网页：**_index.html_**和**_styles/main.css_**。就是这样。现在按下{{< icon "solid/columns" >}}按钮打开编辑器并查看这两个文件。
 
@@ -49,7 +49,7 @@ _**index.html**_ 是我们应用程序的根文件。它是我们在浏览器中
 
 {{< code file="styles/main.css" linenos="false" lang="css" caption="_**styles/main.css**_">}}{{< /code >}}
 
-稍后我们将仔细查看样式`#scene-container`，而该文件的其余部分将在 {{< link path="/book/appendix/html-and-css-reference/#main-css" title="附录" >}} 中更详细地解释。
+稍后我们将仔细查看样式`#scene-container`，而该文件的其余部分将在 [附录]({{< relref "/book/appendix/html-and-css-reference#main-css" >}} "附录") 中更详细地解释。
 
 ## _**src/main.js**_: JavaScript 入口点
 
@@ -62,7 +62,7 @@ _**index.html**_ 是我们应用程序的根文件。它是我们在浏览器中
 {{< code file="worlds/first-steps/app-structure/src/main.js" lang="js" linenos=""
 caption="_**src/main.js**_: 即将推出！" >}}{{< /code >}}
 
-_**main.js**_ 是我们的 JavaScript 应用程序的入口点，我们将在下一章中填充它。该`type="module"`属性告诉浏览器我们正在编写 JavaScript 模块。如果这对您来说是新的，请转到{{< link path="/book/appendix/javascript-modules/" title="A.4：JavaScript 模块" >}}，其中包含您需要了解的有关 JavaScript 模块的所有信息，以遵循本书中的代码。
+_**main.js**_ 是我们的 JavaScript 应用程序的入口点，我们将在下一章中填充它。该`type="module"`属性告诉浏览器我们正在编写 JavaScript 模块。如果这对您来说是新的，请转到[A.4：JavaScript 模块]({{< relref "/book/appendix/javascript-modules" >}} "A.4：JavaScript 模块")，其中包含您需要了解的有关 JavaScript 模块的所有信息，以遵循本书中的代码。
 
 `module`属性还有另一个优点：浏览器将自动 _推迟_ 运行此文件，直到 HTML 被解析。这将防止由于在浏览器读取之前尝试访问 HTML 元素而导致的错误（浏览器从上到下读取 HTML）。
 
@@ -93,11 +93,11 @@ _**main.js**_ 是我们的 JavaScript 应用程序的入口点，我们将在下
 
 ### {{< icon "solid/folder-open" >}} _**vendor/**_ 文件夹
 
-_**vendor/**_ 文件夹是我们放置 _其他人_ 编写的 JavaScript 文件的地方。对于本书中的大多数示例，这意味着来自 three.js 库的文件，从{{< link path="/book/introduction/github-repo/" title="three.js GitHub仓库" >}}下载。在本书中，我们将只使用库中的三个文件：
+_**vendor/**_ 文件夹是我们放置 _其他人_ 编写的 JavaScript 文件的地方。对于本书中的大多数示例，这意味着来自 three.js 库的文件，从[three.js GitHub 仓库]({{< relref "/book/introduction/github-repo" >}} "three.js GitHub 仓库")下载。在本书中，我们将只使用库中的三个文件：
 
 - _**vendor/three/build/three.module.js**_: 主 three.js 文件.
-- _**vendor/three/examples/jsm/controls/OrbitControls.js**_: 我们将在{{< link path="/book/first-steps/camera-controls/" title="Ch 1.9" >}}中介绍的相机控制插件。
-- _**vendor/three/examples/jsm/loaders/GLTFLoader.js**_: 我们将在{{< link path="/book/first-steps/load-models/" title="Ch 1.13" >}}中介绍的 3D 模型加载器。
+- _**vendor/three/examples/jsm/controls/OrbitControls.js**_: 我们将在[Ch 1.9]({{< relref "/book/first-steps/camera-controls" >}} "Ch 1.9")中介绍的相机控制插件。
+- _**vendor/three/examples/jsm/loaders/GLTFLoader.js**_: 我们将在[Ch 1.13]({{< relref "/book/first-steps/load-models" >}} "Ch 1.13")中介绍的 3D 模型加载器。
 
 _**vendor/three**_ 文件夹反映了 GitHub 仓库的结构，但为了清楚起见，我们将仅包含每章所需的文件。我们将使用 NPM 的方式导入这些文件到 _**main.js**_ 中：
 
@@ -112,7 +112,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 {{< /code >}}
 
-如果您喜欢在{{< link path="/book/introduction/about-the-book/#working-on-your-own-machine" title="本地工作" >}}，您可以使用{{< icon "solid/download" >}}按钮从编辑器下载 zip 打包文件。在 zip 文件中，任何 three.js 导入都将转换为来自 skypack.dev 的 CDN 导入：
+如果您喜欢在[本地工作]({{< relref "/book/introduction/about-the-book#working-on-your-own-machine" >}} "本地工作")，您可以使用{{< icon "solid/download" >}}按钮从编辑器下载 zip 打包文件。在 zip 文件中，任何 three.js 导入都将转换为来自 skypack.dev 的 CDN 导入：
 
 {{< code lang="js" linenos="false" caption="_**src/main.js**_: 通过CDN方式引入的three.js文件" >}}
 
@@ -125,13 +125,13 @@ import { GLTFLoader } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/l
 
 {{< /code >}}
 
-请参阅{{< link path="/book/introduction/get-threejs/" title="0.5：如何在您的项目中包含three.js" >}}以了解更多详细信息。
+请参阅[0.5：如何在您的项目中包含 three.js]({{< relref "/book/introduction/get-threejs" >}} "0.5：如何在您的项目中包含 three.js")以了解更多详细信息。
 
 ## {{< icon "solid/folder-open" >}} _**assets**_ 文件夹
 
 {{< inlineScene entry="first-steps/flamingo-animated.js" class="medium right round" >}}
 
-最后是 _**assets/**_ 文件夹。**我们的应用程序中使用的任何非 HTML、CSS 或 JavaScript 的东西都在这里**：纹理、3D 模型、字体、声音等等。目前，我们将在{{< link path="/book/first-steps/textures-intro/" title="1.8 中使用一个测试纹理：纹理映射简介" >}}，以及我们将在{{< link path="/book/first-steps/load-models/" title="1.13 中使用的一个火烈鸟模型：以glTF格式加载3D模型" >}}。
+最后是 _**assets/**_ 文件夹。**我们的应用程序中使用的任何非 HTML、CSS 或 JavaScript 的东西都在这里**：纹理、3D 模型、字体、声音等等。目前，我们将在[1.8 中使用一个测试纹理：纹理映射简介]({{< relref "/book/first-steps/textures-intro" >}} "1.8 中使用一个测试纹理：纹理映射简介")，以及我们将在[1.13 中使用的一个火烈鸟模型：以 glTF 格式加载 3D 模型]({{< relref "/book/first-steps/load-models" >}} "1.13 中使用的一个火烈鸟模型：以 glTF 格式加载 3D 模型")。
 
 {{% note %}}
 TODO-LOW: apply test texture to the flamingo in this scene

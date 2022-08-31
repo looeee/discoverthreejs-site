@@ -27,7 +27,7 @@ prevTitle: "Getting Started: Here's Where the Real Fun Begins!"
 
 # The Structure of a three.js App
 
-Before we can build a three.js app, we need to create a web page. We briefly discussed how we're going to do that in the introduction ({{< link path="/book/introduction/get-threejs/" title="Ch 0.5" >}} and {{< link path="/book/introduction/threejs-with-frameworks/" title="Ch 0.6" >}}), but let's take a deeper look now. As we mentioned in the last chapter, our goal here is to create the most basic, simple, unexciting webpage possible, without making any assumptions about what a real-world web application that uses three.js might look like. By doing this, we ensure the code we write can be adapted to work anywhere without too much effort.
+Before we can build a three.js app, we need to create a web page. We briefly discussed how we're going to do that in the introduction ([Ch 0.5]({{< relref "/book/introduction/get-threejs" >}} "Ch 0.5") and [Ch 0.6]({{< relref "/book/introduction/threejs-with-frameworks" >}} "Ch 0.6")), but let's take a deeper look now. As we mentioned in the last chapter, our goal here is to create the most basic, simple, unexciting webpage possible, without making any assumptions about what a real-world web application that uses three.js might look like. By doing this, we ensure the code we write can be adapted to work anywhere without too much effort.
 
 We'll create this basic web page out of just two files: _**index.html**_, and _**styles/main.css**_. That's it. Open up the editor by pressing the {{< icon "solid/columns" >}} button now and take a look at both of these files now.
 
@@ -49,7 +49,7 @@ Within the `<head>` section of _**index.html**_, one of the `<link>` elements re
 
 {{< code file="styles/main.css" linenos="false" lang="css" caption="_**styles/main.css**_">}}{{< /code >}}
 
-We'll take a closer look at the styles for the `#scene-container` in a moment, while the rest of this file is explained in more detail {{< link path="/book/appendix/html-and-css-reference/#main-css" title="in the appendices" >}}.
+We'll take a closer look at the styles for the `#scene-container` in a moment, while the rest of this file is explained in more detail [in the appendices]({{< relref "/book/appendix/html-and-css-reference#main-css" >}} "in the appendices").
 
 ## _**src/main.js**_: the JavaScript Entry Point
 
@@ -93,11 +93,11 @@ Turn your attention to the file tree in the editor. There are two folders we hav
 
 ### {{< icon "solid/folder-open" >}} The _**vendor/**_ Folder
 
-The _**vendor/**_ folder is where we put JavaScript files that _other people_ have written. For most of the examples in this book, that means files from the three.js library, downloaded from the {{< link path="/book/introduction/github-repo/" title="three.js GitHub repo" >}}. In this book, we'll use just three files from the library:
+The _**vendor/**_ folder is where we put JavaScript files that _other people_ have written. For most of the examples in this book, that means files from the three.js library, downloaded from the [three.js GitHub repo]({{< relref "/book/introduction/github-repo" >}} "three.js GitHub repo"). In this book, we'll use just three files from the library:
 
 - _**vendor/three/build/three.module.js**_: the main three.js file.
-- _**vendor/three/examples/jsm/controls/OrbitControls.js**_: a camera control plugin that we'll introduce in {{< link path="/book/first-steps/camera-controls/" title="Ch 1.9" >}}.
-- _**vendor/three/examples/jsm/loaders/GLTFLoader.js**_: a loader for 3D models that we'll introduce in {{< link path="/book/first-steps/load-models/" title="Ch 1.13" >}}.
+- _**vendor/three/examples/jsm/controls/OrbitControls.js**_: a camera control plugin that we'll introduce in [Ch 1.9]({{< relref "/book/first-steps/camera-controls" >}} "Ch 1.9").
+- _**vendor/three/examples/jsm/loaders/GLTFLoader.js**_: a loader for 3D models that we'll introduce in [Ch 1.13]({{< relref "/book/first-steps/load-models" >}} "Ch 1.13").
 
 The _**vendor/three**_ folder mirrors the structure of the GitHub repo, but for clarity, we'll include only the files needed in each chapter. To import these files within _**main.js**_, we'll use _NPM style imports_:
 
@@ -112,7 +112,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 {{< /code >}}
 
-If you prefer to {{< link path="/book/introduction/about-the-book/#working-on-your-own-machine" title="work locally" >}}, you can download the files from the editor as a zip archive using the {{< icon "solid/download" >}} button. Within the zip file, any three.js imports will be converted to CDN imports from skypack.dev:
+If you prefer to [work locally]({{< relref "/book/introduction/about-the-book#working-on-your-own-machine" >}} "work locally"), you can download the files from the editor as a zip archive using the {{< icon "solid/download" >}} button. Within the zip file, any three.js imports will be converted to CDN imports from skypack.dev:
 
 {{< code lang="js" linenos="false" caption="_**src/main.js**_: importing three.js files, CDN style" >}}
 
