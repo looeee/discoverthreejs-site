@@ -402,7 +402,7 @@ Inside the _**components/birds/birds.js**_ module, we currently log the raw data
 console.log('Squaaawk!', parrotData);
 {{< /code >}}
 
-Open the browser console and take a look now. {{< link path="/book/first-steps/load-models/#returned-gltf-data" title="We described this data in detail" >}} in the previous chapter, so check back there if you need a refresher. The data contains two elements of interest: a bird-shaped mesh that we extracted in the last chapter, and an animation clip of the bird flying. In the last chapter, {{< link path="/book/first-steps/load-models/#extract-the-mesh-from-the-loaded-data" title="we located the mesh in `gltf.scene`" >}}. Here, we'll extract the animation clip and attach it to the mesh to make the bird take flight. You'll find the animation clip in the `gltfData.animations` array:
+Open the browser console and take a look now. [We described this data in detail]({{< relref "/book/first-steps/load-models#returned-gltf-data" >}} "We described this data in detail") in the previous chapter, so check back there if you need a refresher. The data contains two elements of interest: a bird-shaped mesh that we extracted in the last chapter, and an animation clip of the bird flying. In the last chapter, [we located the mesh in `gltf.scene`]({{< relref "/book/first-steps/load-models#extract-the-mesh-from-the-loaded-data" >}} "we located the mesh in `gltf.scene`"). Here, we'll extract the animation clip and attach it to the mesh to make the bird take flight. You'll find the animation clip in the `gltfData.animations` array:
 
 {{< code lang="js" hl_lines="2" linenos="false" caption="Locate the animation clip in the loaded data" >}}
 {
