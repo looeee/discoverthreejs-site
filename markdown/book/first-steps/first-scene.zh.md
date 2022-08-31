@@ -26,7 +26,7 @@ IDEActiveDocument: 'src/main.js'
 
 {{< code file="worlds/first-steps/first-scene/src/main.final.js" linenos="" caption="_**main.js**_: 最终结果" >}}{{< /code >}}
 
-点击在编辑器左上角的<input type="checkbox" class="simple-toggle" title="Find the real toggle!">切换按钮以{{< link path="/book/introduction/about-the-book/#before-and-after-code-comparison" title="查看此代码的运行情况" >}}，或者，如果您更喜欢在{{< link path="/book/introduction/about-the-book/#working-on-your-own-machine" title="本地工作" >}}，您可以单击{{< icon "solid/download" >}}按钮下载包含编辑器中所有文件的 zip 存档。如果您不熟悉此处的 JavaScript，请参阅附录中的{{< link path="/book/appendix/javascript-reference" title="A.2：JavaScript参考" >}}和{{< link path="/book/appendix/dom-api-reference" title="A.3：文档对象模型和DOM API" >}}。
+点击在编辑器左上角的<input type="checkbox" class="simple-toggle" title="Find the real toggle!">切换按钮以[查看此代码的运行情况]({{< relref "/book/introduction/about-the-book#before-and-after-code-comparison" >}} "查看此代码的运行情况")，或者，如果您更喜欢在 [本地工作]({{< relref "/book/introduction/about-the-book#working-on-your-own-machine" >}} "本地工作")，您可以单击{{< icon "solid/download" >}}按钮下载包含编辑器中所有文件的 zip 存档。如果您不熟悉此处的 JavaScript，请参阅附录中的 {{< link path="/book/appendix/javascript-reference" title="A.2：JavaScript参考" >}}和 {{< link path="/book/appendix/dom-api-reference" title="A.3：文档对象模型和DOM API" >}}。
 
 ## 实时 3D 应用程序组件
 
@@ -36,7 +36,7 @@ TODO-DIAGRAM: This graph is confusing - Annie Chen
 
 {{< figure src="first-steps/rendered_scene_canvas.svg" alt="A basic scene" lightbox="true" >}}
 
-在开始编写代码之前，让我们先看看构成每个 three.js 应用程序的基本组件。首先是场景、相机和渲染器，它们构成了应用程序的基本脚手架。接下来是 HTML{{< link path="/book/first-steps/app-structure/#adding-a-three-js-scene-to-the-page" title="`<canvas>`元素" >}}，我们可以在其中看到结果。最后但并非最不重要的一点是，有一个可见的对象，例如网格。除了画布 canvas（特定于浏览器）之外，在任何 3D 图形系统中都可以找到与这些组件中的每一个等效的组件，从而使您在这些页面中获得的知识具有高度可转移性。
+在开始编写代码之前，让我们先看看构成每个 three.js 应用程序的基本组件。首先是场景、相机和渲染器，它们构成了应用程序的基本脚手架。接下来是 HTML[`<canvas>`元素]({{< relref "/book/first-steps/app-structure#adding-a-three-js-scene-to-the-page" >}} "`<canvas>`元素")，我们可以在其中看到结果。最后但并非最不重要的一点是，有一个可见的对象，例如网格。除了画布 canvas（特定于浏览器）之外，在任何 3D 图形系统中都可以找到与这些组件中的每一个等效的组件，从而使您在这些页面中获得的知识具有高度可转移性。
 
 ### 场景：小宇宙
 
@@ -54,7 +54,7 @@ const scene = new Scene();
 TODO-LOW: replace all coordinate diagrams with a 3D coordinate systems
 {{% /note %}}
 
-场景`scene`定义了一个名为**World Space（世界空间）**的坐标系，它是我们在 three.js 中处理可见对象时的主要参考框架。世界空间是一个[3D 笛卡尔坐标系](https://mathinsight.org/cartesian_coordinates)。我们将在{{< link path="/book/first-steps/transformations/#coordinate-systems" title="1.5：变换和坐标系中" >}}更详细地探讨这个怎么理解以及如何使用世界空间。
+场景`scene`定义了一个名为**World Space（世界空间）**的坐标系，它是我们在 three.js 中处理可见对象时的主要参考框架。世界空间是一个[3D 笛卡尔坐标系](https://mathinsight.org/cartesian_coordinates)。我们将在[1.5：变换和坐标系中]({{< relref "/book/first-steps/transformations#coordinate-systems" >}} "1.5：变换和坐标系中")更详细地探讨这个怎么理解以及如何使用世界空间。
 
 场景的中心是点$(0,0,0)$，也称为坐标系的**原点**。每当我们创建一个新对象并将其添加到我们的场景中时，它将被放置在原点，并且每当我们移动它时，我们说的都是在这个坐标系中移动它。
 
@@ -215,7 +215,7 @@ import {
 
 {{< /code >}}
 
-如果您需要有关导入 three.js 类的工作原理的提示，请参考{{< link path="/book/introduction/get-threejs/#imports-in-the-inline-code-editor" title="0.5：如何在您的项目中包含three.js" >}} ，或者如果您想复习 JavaScript 模块，请跳至 [A.4：JavaScript 模块]({{< relref "/book/appendix/javascript-modules" >}} "A.4：JavaScript 模块")。
+如果您需要有关导入 three.js 类的工作原理的提示，请参考[0.5：如何在您的项目中包含 three.js]({{< relref "/book/introduction/get-threejs#imports-in-the-inline-code-editor" >}} "0.5：如何在您的项目中包含 three.js") ，或者如果您想复习 JavaScript 模块，请跳至 [A.4：JavaScript 模块]({{< relref "/book/appendix/javascript-modules" >}} "A.4：JavaScript 模块")。
 
 ### JavaScript 中访问 HTML 的`scene-container`元素
 
@@ -224,7 +224,7 @@ import {
 {{< code from="17" to="23" hl_lines="20 21 22" file="worlds/first-steps/first-scene/index.html" lang="html" caption="_**index.html**_: 容器元素" >}}{{< /code >}}
 
 渲染器会自动为我们创建一个`<canvas>`元素，我们将把它插入到这个容器中。通过这样做，我们可以通过使用 CSS 设置容器的大小来控制场景的大小和位置（如[上一章]({{< relref "/book/first-steps/app-structure#adding-a-three-js-scene-to-the-page" >}} "上一章")所述）。首先，我们需要在 JavaScript 中访问容器元素，我们将使用
-{{< link path="/book/appendix/dom-api-reference/#accessing-html-elements" title="`document.querySelector`" >}}。
+[`document.querySelector`]({{< relref "/book/appendix/dom-api-reference#accessing-html-elements" >}} "`document.querySelector`")。
 
 {{< code from="11" to="12" file="worlds/first-steps/first-scene/src/main.final.js" caption="_**main.js**_: 获取对场景容器的引用" >}}{{< /code >}}
 
