@@ -86,7 +86,7 @@ For physically correct lighting to be accurate, you need to build physically siz
 
 > $ 1 \text{ unit} = 1 \text{ meter}$
 
-If you bring in models built by another artist that are measured in feet, inches, centimeters, or furlongs, you should re-scale them to meters. {{< link path="/book/first-steps/transformations/" title="We'll show you how to scale objects in the next chapter" >}}.
+If you bring in models built by another artist that are measured in feet, inches, centimeters, or furlongs, you should re-scale them to meters. [We'll show you how to scale objects in the next chapter]({{< relref "/book/first-steps/transformations" >}} "We'll show you how to scale objects in the next chapter").
 
 ## Lighting in three.js
 
@@ -112,7 +112,7 @@ TODO-LINK: add links to lighting chapters
 
 ### Direct Lighting
 
-In this chapter, we'll add the `DirectionalLight`, which simulates light from the sun or another very bright far away source. We'll come back to {{< link path="/book/first-steps/ambient-lighting/" title="ambient lighting" >}} later in this section. There are a total of four direct light types available in the three.js core, each of which simulates a common real-world source of light:
+In this chapter, we'll add the `DirectionalLight`, which simulates light from the sun or another very bright far away source. We'll come back to [ambient lighting]({{< relref "/book/first-steps/ambient-lighting" >}} "ambient lighting") later in this section. There are a total of four direct light types available in the three.js core, each of which simulates a common real-world source of light:
 
 - **`DirectionalLight` => Sunlight**
 
@@ -191,7 +191,7 @@ Over in _**World.js**_, import the new module:
 
 {{< code file="worlds/first-steps/physically-based-rendering/src/World/World.final.js" hl_lines="3" from="1" to="7" lang="js" linenos="true" caption="_**World.js**_: imports" footer="..." >}}{{< /code >}}
 
-Then create a light and add it to the scene. Adding a light to the scene works just like {{< link path="/book/first-steps/first-scene/#add-the-mesh-to-the-scene" title="adding a mesh" >}}:
+Then create a light and add it to the scene. Adding a light to the scene works just like [adding a mesh]({{< relref "/book/first-steps/first-scene#add-the-mesh-to-the-scene" >}} "adding a mesh"):
 
 {{< code file="worlds/first-steps/physically-based-rendering/src/World/World.final.js" hl_lines="21 23" from="13" to="26" lang="js" linenos="true" caption="_**World.js**_: create a light and add it to the scene" >}}{{< /code >}}
 
@@ -294,7 +294,7 @@ function createCube() {
 
 {{< /code >}}
 
-When we {{< link path="book/first-steps/first-scene/#set-color" title="set the scene's background color" >}}, we used a CSS color name, and we've done the same here.
+When we [set the scene's background color]({{< relref "book/first-steps/first-scene#set-color" >}} "set the scene's background color"), we used a CSS color name, and we've done the same here.
 
 ## Rotate the Cube
 
@@ -306,7 +306,7 @@ Put any values you like in there for now. Now that we're no longer viewing the c
 
 {{< figure src="first-steps/cube-medium.png" alt="The rotated cube" lightbox="true" class="small right" >}}
 
-**Rotation** is the second method of moving objects around that we have encountered, along with setting the position (**translation**). The technical term for _moving objects around_ is **transformation**, and the third method we'll use for transforming objects is **scaling**. **Translation**, **rotation**, and **scaling** (**TRS**) are the three fundamental transformations that we'll use for positioning objects in 3D space, and we'll examine each of these in detail in {{< link path="/book/first-steps/transformations/" title="the next chapter" >}}.
+**Rotation** is the second method of moving objects around that we have encountered, along with setting the position (**translation**). The technical term for _moving objects around_ is **transformation**, and the third method we'll use for transforming objects is **scaling**. **Translation**, **rotation**, and **scaling** (**TRS**) are the three fundamental transformations that we'll use for positioning objects in 3D space, and we'll examine each of these in detail in [the next chapter]({{< relref "/book/first-steps/transformations" >}} "the next chapter").
 
 ## Challenges
 
