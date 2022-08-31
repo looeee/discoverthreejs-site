@@ -478,7 +478,7 @@ Still in `setupModel`, add a `.tick` method to the model:
 
 {{< code file="worlds/first-steps/animation-system/src/World/components/birds/setupModel.final.js" from="3" to="14" lang="js" linenos="true" hl_lines="11" caption="_**setupModel.js**_: create the .tick method">}}{{< /code >}}
 
-Inside this method, we're calling [`mixer.update`](https://threejs.org/docs/#api/en/animation/AnimationMixer.update) each frame, passing in `delta`, which is {{< link path="/book/first-steps/animation-loop/#timing-in-the-update-loop" title="the amount of time the previous frame took to render" >}}. The mixer uses `delta` to keep the animation in sync even when the frame rate fluctuates. Again, refer back to {{< link path="/book/first-steps/animation-loop/" title="Ch 1.7" >}} for a more detailed discussion.
+Inside this method, we're calling [`mixer.update`](https://threejs.org/docs/#api/en/animation/AnimationMixer.update) each frame, passing in `delta`, which is [the amount of time the previous frame took to render]({{< relref "/book/first-steps/animation-loop#timing-in-the-update-loop" >}} "the amount of time the previous frame took to render"). The mixer uses `delta` to keep the animation in sync even when the frame rate fluctuates. Again, refer back to [Ch 1.7]({{< relref "/book/first-steps/animation-loop" >}} "Ch 1.7") for a more detailed discussion.
 
 ### Add the Birds to `updatables`
 
