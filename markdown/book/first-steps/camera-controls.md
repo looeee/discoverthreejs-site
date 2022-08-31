@@ -128,7 +128,7 @@ Next, call the function and store the result in a variable called `controls`. Wh
 
 If you check out the [`OrbitControls` docs page](https://threejs.org/docs/#examples/en/controls/OrbitControls), you'll see that the constructor takes two parameters: a `Camera`, and a [`HTMLDOMElement`](https://developer.mozilla.org/en-US/docs/Web/API/Element). We'll use our camera for the first parameter and the canvas, stored in `renderer.domElement`, for the second.
 
-Internally, `OrbitControls` uses `addEventListener` to listen for user input. The controls will listen for events such as `click`, `wheel`, `touchmove`, and `keydown`, amongst others, and use these to move the camera. We previously used this method to {{< link path="/book/first-steps/responsive-design/#listen-for-resize-events-on-the-browser-window" title="listen for the `resize` event" >}} when we set up automatic resizing. There, we listened for the `resize` event on the entire `window`. Here, the controls will listen for user input on whatever element we pass in as the second parameter. The rest of the page will be unaffected. In other words, when we pass in the canvas, the controls will work when the mouse/touch is over the canvas, but the rest of the page will continue to work as normal.
+Internally, `OrbitControls` uses `addEventListener` to listen for user input. The controls will listen for events such as `click`, `wheel`, `touchmove`, and `keydown`, amongst others, and use these to move the camera. We previously used this method to [listen for the `resize` event]({{< relref "/book/first-steps/responsive-design#listen-for-resize-events-on-the-browser-window" >}} "listen for the `resize` event") when we set up automatic resizing. There, we listened for the `resize` event on the entire `window`. Here, the controls will listen for user input on whatever element we pass in as the second parameter. The rest of the page will be unaffected. In other words, when we pass in the canvas, the controls will work when the mouse/touch is over the canvas, but the rest of the page will continue to work as normal.
 
 Pass the camera and canvas into the `createControls` function, then create the controls:
 
@@ -202,7 +202,7 @@ weight. You can adjust [the `.dampingFactor`](https://threejs.org/docs/#examples
 
 ### Update the Controls in the Animation Loop
 
-Whenever we need to update an object in the loop, we'll use the technique we devised when creating {{< link path="/book/first-steps/animation-loop/#create-the-animation" title="the cube's animation" >}}. In other words, we'll give the controls a `.tick` method and then add them to the `loop.updatables` array. First, the `.tick` method:
+Whenever we need to update an object in the loop, we'll use the technique we devised when creating [the cube's animation]({{< relref "/book/first-steps/animation-loop#create-the-animation" >}} "the cube's animation"). In other words, we'll give the controls a `.tick` method and then add them to the `loop.updatables` array. First, the `.tick` method:
 
 {{< code file="worlds/first-steps/camera-controls/src/World/systems/controls.final.js" from="3" to="15" lang="js" linenos="true" hl_lines="12" caption="_**controls.js**_: add controls.tick" >}}{{< /code >}}
 
@@ -210,7 +210,7 @@ Here, `.tick` simply calls `controls.update`. Next, add the controls to the `upd
 
 {{< code file="worlds/first-steps/camera-controls/src/World/World.final.js" from="18" to="37" lang="js" linenos="true" hl_lines="29" caption="_**World.js**_: add the controls to the updatables array" >}}{{< /code >}}
 
-Now, `controls.tick` will be called once per frame in {{< link path="/book/first-steps/animation-loop/#the-update-loop" title="the update loop" >}}, and damping will work. Test it out. Can you see the difference?
+Now, `controls.tick` will be called once per frame in [the update loop]({{< relref "/book/first-steps/animation-loop#the-update-loop" >}} "the update loop"), and damping will work. Test it out. Can you see the difference?
 
 ### Working With the Camera While Using `OrbitControls`
 
@@ -275,11 +275,11 @@ controls.dispose();
 
 ## Rendering on Demand with `OrbitControls`
 
-A couple of chapters ago we set up the {{< link path="/book/first-steps/animation-loop/" title="animation loop" >}}, a powerful tool that allows us to create beautiful animations with ease. On the other hand, as we discussed at the end of that chapter, {{< link path="/book/first-steps/animation-loop/#to-loop-or-not-to-loop" title="the loop does have some downsides" >}}, such as increased battery use on mobile devices. As a result, sometime we'll choose to render frames **on demand** instead of generating a constant stream of frames using the loop.
+A couple of chapters ago we set up the [animation loop]({{< relref "/book/first-steps/animation-loop" >}} "animation loop"), a powerful tool that allows us to create beautiful animations with ease. On the other hand, as we discussed at the end of that chapter, [the loop does have some downsides]({{< relref "/book/first-steps/animation-loop#to-loop-or-not-to-loop" >}} "the loop does have some downsides"), such as increased battery use on mobile devices. As a result, sometime we'll choose to render frames **on demand** instead of generating a constant stream of frames using the loop.
 
 Now that our app has orbit controls, whenever the user interacts with your scene, the controls will move the camera to a new position, and when this occurs you must draw a new frame, otherwise, you won't be able to see that the camera has moved. If you're using the animation loop, that's not a problem. However, if we're rendering on demand we'll have to figure something else out.
 
-Fortunately, `OrbitControls` provides an easy way to generate new frames whenever the camera moves. The controls have a custom event called `change` which we can listen for using {{< link path="/book/appendix/dom-api-reference/#listening-for-events" title="`addEventListener`" >}}. This event will fire whenever a user interaction causes the controls to move the camera.
+Fortunately, `OrbitControls` provides an easy way to generate new frames whenever the camera moves. The controls have a custom event called `change` which we can listen for using [`addEventListener`]({{< relref "/book/appendix/dom-api-reference#listening-for-events" >}} "`addEventListener`"). This event will fire whenever a user interaction causes the controls to move the camera.
 
 To use rendering on demand with the orbit control, you must render a frame whenever this event fires:
 
@@ -314,7 +314,7 @@ If you make these changes in your app, you'll see that this results in a slight 
 TODO-LOW: add inline scene demonstrating the above
 {{% /note %}}
 
-As a result, you also need to generate a new frame after the texture has loaded. We won't cover how to do that here, but hopefully, it highlights why rendering on demand is trickier than using the loop. You have to consider all situations where you need a new frame (for example, don't forget that you'll also need to {{< link path="/book/first-steps/responsive-design/#create-an-onresize-hook" title="render a frame on resize" >}}).
+As a result, you also need to generate a new frame after the texture has loaded. We won't cover how to do that here, but hopefully, it highlights why rendering on demand is trickier than using the loop. You have to consider all situations where you need a new frame (for example, don't forget that you'll also need to [render a frame on resize]({{< relref "/book/first-steps/responsive-design#create-an-onresize-hook" >}} "render a frame on resize")).
 
 ## `OrbitControls` Configuration
 
@@ -380,7 +380,7 @@ controls.minPolarAngle = 0; // default
 controls.maxPolarAngle = Math.PI; // default
 {{< /code >}}
 
-Remember, {{< link path="/book/first-steps/transformations/#the-unit-of-rotation-is-radians" title="rotations are specified using radians" >}}, not degrees, and $\pi$ radians is equal to $180^{\circ}$.
+Remember, [rotations are specified using radians]({{< relref "/book/first-steps/transformations#the-unit-of-rotation-is-radians" >}} "rotations are specified using radians"), not degrees, and $\pi$ radians is equal to $180^{\circ}$.
 
 ## A Glaring Problem!
 
