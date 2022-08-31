@@ -44,7 +44,7 @@ The HTML and CSS files will remain unchanged, it's only the JavaScript we need t
 
 When writing modular JavaScript, each file is a module. So, we may refer to a module by its file name, for example, _**main.js**_, or simply as the _main_ module. An important part of modular software design is choosing the structure and names of your modules. Open up the inline code editor and you'll see that all the files required for this chapter have already been created, although they're all empty to begin with. If you like, hit the comparison toggle to view the completed code, otherwise, try completing the modules yourself while you read.
 
-_There's an entire chapter of the appendices dedicated to {{< link path="/book/appendix/javascript-modules/" title="JavaScript modules" >}}. If this subject is new to you, now would be a good time to check it out._
+_There's an entire chapter of the appendices dedicated to [JavaScript modules]({{< relref "/book/appendix/javascript-modules" >}} "JavaScript modules"). If this subject is new to you, now would be a good time to check it out._
 
 ## The Web Page and the World App
 
@@ -56,14 +56,14 @@ From here on, we'll refer to this folder and its contents as **_the World app_**
 
 ## The World App
 
-Currently, our three.js scene is relatively simple. To set it up, once again we need to follow the six-step program {{< link path="/book/first-steps/first-scene/#simple-steps" title="outlined in the last chapter" >}}:
+Currently, our three.js scene is relatively simple. To set it up, once again we need to follow the six-step program [outlined in the last chapter]({{< relref "/book/first-steps/first-scene#simple-steps" >}} "outlined in the last chapter"):
 
 1. Initial Setup
-2. {{< link path="book/first-steps/first-scene/#create-scene" title="Create the scene" >}}
-3. {{< link path="book/first-steps/first-scene/#create-camera" title="Create a camera" >}}
-4. {{< link path="book/first-steps/first-scene/#create-visible" title="Create the cube and add it to the scene" >}}
-5. {{< link path="book/first-steps/first-scene/#create-the-renderer" title="Create the renderer" >}}
-6. {{< link path="book/first-steps/first-scene/#render-scene" title="Render the scene" >}}
+2. [Create the scene]({{< relref "book/first-steps/first-scene#create-scene" >}} "Create the scene")
+3. [Create a camera]({{< relref "book/first-steps/first-scene#create-camera" >}} "Create a camera")
+4. [Create the cube and add it to the scene]({{< relref "book/first-steps/first-scene#create-visible" >}} "Create the cube and add it to the scene")
+5. [Create the renderer]({{< relref "book/first-steps/first-scene#create-the-renderer" >}} "Create the renderer")
+6. [Render the scene]({{< relref "book/first-steps/first-scene#render-scene" >}} "Render the scene")
 
 However, _using_ the World app should look like this:
 
@@ -90,9 +90,9 @@ world.render();
 
 Everything else about the _implementation_ of the World app should be hidden. From within _**main.js**_, we should not be able to access the scene, camera, renderer, or cube. If we later need to add additional functionality, we'll do so by expanding the interface, _not_ by exposing three.js functions to the outside world.
 
-Note that we're passing in a container to the World constructor, which will be our scene container once again. Within World, we'll append the canvas to this container, {{< link path="book/first-steps/first-scene/#add-canvas" title="just as we did in the last chapter" >}}.
+Note that we're passing in a container to the World constructor, which will be our scene container once again. Within World, we'll append the canvas to this container, [just as we did in the last chapter]({{< relref "book/first-steps/first-scene#add-canvas" >}} "just as we did in the last chapter").
 
-_Before reading through the next section, check out the appendices for {{< link path="/book/appendix/javascript-reference/#classes" title="a refresher on JavaScript classes" >}}, if you need one._
+_Before reading through the next section, check out the appendices for [a refresher on JavaScript classes]({{< relref "/book/appendix/javascript-reference#classes" >}} "a refresher on JavaScript classes"), if you need one._
 
 ## The `World` Class
 
@@ -141,11 +141,11 @@ With this, the _**main.js**_ module is complete. Later, when we fill in the deta
 Of course, building the interface was the easy part. Now we have to make it work. Fortunately, from here on it's mostly a matter of copying code over from the previous chapter. Take a look at the setup tasks again.
 
 1. ~~Initial Setup~~
-2. {{< link path="book/first-steps/first-scene/#create-scene" title="Create the scene" >}}
-3. {{< link path="book/first-steps/first-scene/#create-camera" title="Create a camera" >}}
-4. {{< link path="book/first-steps/first-scene/#create-visible" title="Create the cube and add it to the scene" >}}
-5. {{< link path="book/first-steps/first-scene/#create-the-renderer" title="Create the renderer" >}}
-6. {{< link path="book/first-steps/first-scene/#render-scene" title="Render the scene" >}}
+2. [Create the scene]({{< relref "book/first-steps/first-scene#create-scene" >}} "Create the scene")
+3. [Create a camera]({{< relref "book/first-steps/first-scene#create-camera" >}} "Create a camera")
+4. [Create the cube and add it to the scene]({{< relref "book/first-steps/first-scene#create-visible" >}} "Create the cube and add it to the scene")
+5. [Create the renderer]({{< relref "book/first-steps/first-scene#create-the-renderer" >}} "Create the renderer")
+6. [Render the scene]({{< relref "book/first-steps/first-scene#render-scene" >}} "Render the scene")
 
 Number one is done and dusted. That leaves the final five. However, we'll create an additional task that will go in between steps five and six:
 
@@ -181,7 +181,7 @@ export { createItem }
 
 ### Systems: the Renderer Module
 
-First up is {{< link path="/book/first-steps/first-scene/#create-the-renderer" title="the renderer system" >}}:
+First up is [the renderer system]({{< relref "/book/first-steps/first-scene#create-the-renderer" >}} "the renderer system"):
 
 {{< code file="worlds/first-steps/world-app/src/World/systems/renderer.final.js" lang="js" linenos="true" hl_lines="4"
 caption="_**systems/renderer.js**_" >}}{{< /code >}}
@@ -195,11 +195,11 @@ Next up, the scene component:
 {{< code file="worlds/first-steps/world-app/src/World/components/scene.final.js" lang="js" linenos="true" hl_lines="4 6"
 caption="_**components/scene.js**_" >}}{{< /code >}}
 
-Here, we've created an instance of the `Scene` class, and then used a `Color` to set the background to `skyblue`, exactly as we did {{< link path="/book/first-steps/first-scene/#create-scene" title="in the last chapter" >}}.
+Here, we've created an instance of the `Scene` class, and then used a `Color` to set the background to `skyblue`, exactly as we did [in the last chapter]({{< relref "/book/first-steps/first-scene#create-scene" >}} "in the last chapter").
 
 ### Components: The Camera Module
 
-Third is {{< link path="/book/first-steps/first-scene/#create-camera" title="the camera component" >}}:
+Third is [the camera component]({{< relref "/book/first-steps/first-scene#create-camera" >}} "the camera component"):
 
 {{< code file="worlds/first-steps/world-app/src/World/components/camera.final.js" lang="js" linenos="true" hl_lines="4-9 11,12"
 caption="_**components/camera.js**_" >}}{{< /code >}}
@@ -302,7 +302,7 @@ This way, we can access `camera`, `renderer`, and `scene` from anywhere in the W
 
 ### Add the Canvas to the Container
 
-With that, most our of setup is complete. We now have a camera, scene, and renderer. {{< link path="book/first-steps/first-scene/#add-canvas" title="If you recall from the last chapter" >}}, when we create the renderer a `<canvas>` element is also created and stored in `renderer.domElement`. The next step is to add this to the container.
+With that, most our of setup is complete. We now have a camera, scene, and renderer. [If you recall from the last chapter]({{< relref "book/first-steps/first-scene#add-canvas" >}} "If you recall from the last chapter"), when we create the renderer a `<canvas>` element is also created and stored in `renderer.domElement`. The next step is to add this to the container.
 
 {{< code lang="js" linenos="" linenostart="14" hl_lines="19" caption="_**World.js**_: append the canvas to the container" >}}
 
@@ -320,7 +320,7 @@ class World {
 
 ### Render the Scene
 
-Next, we'll set up `World.render` so that we can see the results. Once again the code is the same as {{< link path="book/first-steps/first-scene/#render-scene" title="the last chapter" >}}.
+Next, we'll set up `World.render` so that we can see the results. Once again the code is the same as [the last chapter]({{< relref "book/first-steps/first-scene#render-scene" >}} "the last chapter").
 
 {{< code from="28" to="31" file="worlds/first-steps/world-app/src/World/World.final.js" lang="js" linenos="true" hl_lines="30" caption="_**World.js**_: complete the render method" >}}{{< /code >}}
 
@@ -369,7 +369,7 @@ renderer.setPixelRatio(window.devicePixelRatio);
 
 Here, we'll move these lines into the `Resizer` class. Why a class (and why _Re_-sizer)? Later, this class will have more work to do: in the [Responsive Design]({{< relref "book/first-steps/responsive-design" >}} "Responsive Design") chapter, we'll set up automatic resizing whenever the browser window changes size. Creating it as a class gives us more scope to add functionality later without refactoring.
 
-Looking through the above lines, we can see that `Resizer` needs the container, the camera, and the renderer (`devicePixelRatio` is on {{< link path="book/appendix/javascript-reference/#global-scope" title="the global scope" >}}, which means it's available everywhere). Over in World, make sure `Resizer` is in the list of imports:
+Looking through the above lines, we can see that `Resizer` needs the container, the camera, and the renderer (`devicePixelRatio` is on [the global scope]({{< relref "book/appendix/javascript-reference#global-scope" >}} "the global scope"), which means it's available everywhere). Over in World, make sure `Resizer` is in the list of imports:
 
 {{< code from="0" to="6" file="worlds/first-steps/world-app/src/World/World.final.js" lang="js" linenos="true" hl_lines="6" caption="_**World.js**_: imports" >}}{{< /code >}}
 
@@ -400,7 +400,7 @@ class Resizer {
 
 {{< figure src="first-steps/perspective_frustum.svg" alt="Perspective camera frustum" class="medium right" lightbox="true" >}}
 
-This is nearly complete, although there's still one thing we need to do. If you recall from the last chapter, the camera uses the aspect ratio along with the field of view and the near and far clipping planes to calculate its {{< link path="/book/first-steps/first-scene/#viewing-frustum" title="viewing frustum" >}}. **The frustum is not automatically recalculated, so when we change any of these settings, stored in `camera.aspect`, `camera.fov`, `camera.near`, and `camera.far`, we also need to update the frustum.**
+This is nearly complete, although there's still one thing we need to do. If you recall from the last chapter, the camera uses the aspect ratio along with the field of view and the near and far clipping planes to calculate its [viewing frustum]({{< relref "/book/first-steps/first-scene#viewing-frustum" >}} "viewing frustum"). **The frustum is not automatically recalculated, so when we change any of these settings, stored in `camera.aspect`, `camera.fov`, `camera.near`, and `camera.far`, we also need to update the frustum.**
 
 The camera stores its frustum in a mathematical object called a [**projection matrix**](https://threejs.org/docs/#api/en/cameras/Camera.projectionMatrix), and, to update this, we need to call the camera's [`.updateProjectionMatrix`](https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.updateProjectionMatrix) method. Adding this line gives us the final `Resizer` class:
 
