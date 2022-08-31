@@ -91,7 +91,7 @@ These three keyframes each describe the value of some property at a specific tim
 | **Boolean**    | Animate any Boolean property. This is less commonly used because there are no values between true and false so the animation will jump         | [MeshStandardMaterial.wireframe](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial.wireframe)<br> [DirectionalLight.castShadow](https://threejs.org/docs/#api/en/lights/DirectionalLight.castShadow)                                                                                                                                        |
 | **String**     | Animate any property that is a string                                                                                                          | Not commonly used                                                                                                                                                                                                                                                                                                                                         |
 
-Notably missing from this list are {{< link path="/book/first-steps/transformations/#representing-rotations-the-euler-class" title="Euler angles" >}}, which, if you recall from our chapter on transformations, are similar to vectors and are used to store rotations in [`Object3D.rotation`](https://threejs.org/docs/#api/en/core/Object3D.rotation). To animate rotations, you must use [`Object3D.quaternion`](https://threejs.org/docs/#api/en/core/Object3D.quaternion). As we mentioned back in the chapter on transformations, quaternions are a bit harder to work with than Euler angles, so, to avoid becoming bamboozled, we'll ignore rotations and focus on position and scale for now.
+Notably missing from this list are [Euler angles]({{< relref "/book/first-steps/transformations#representing-rotations-the-euler-class" >}} "Euler angles"), which, if you recall from our chapter on transformations, are similar to vectors and are used to store rotations in [`Object3D.rotation`](https://threejs.org/docs/#api/en/core/Object3D.rotation). To animate rotations, you must use [`Object3D.quaternion`](https://threejs.org/docs/#api/en/core/Object3D.quaternion). As we mentioned back in the chapter on transformations, quaternions are a bit harder to work with than Euler angles, so, to avoid becoming bamboozled, we'll ignore rotations and focus on position and scale for now.
 
 To create an animation, we need at least two keyframes. The simplest possible example is two number keyframes, say, animating a material's opacity (how transparent/see-through it is):
 
@@ -114,7 +114,7 @@ mesh.material.opacity = 0.5;
 2. **At 3 seconds `.position` is $(5,5,0)$.**
 3. **At 6 seconds `.position` is $(0,0,0)$.**
 
-When we animate a mesh with these keyframes, it will start at the center of the scene, then it will {{< link path="/book/first-steps/transformations/#directions-in-world-space" title="move to the top right" >}} over three seconds before reversing direction and moving back to the center, again taking three seconds to do so. The total animation will take six seconds (and you can choose whether to loop it or end there).
+When we animate a mesh with these keyframes, it will start at the center of the scene, then it will [move to the top right]({{< relref "/book/first-steps/transformations#directions-in-world-space" >}} "move to the top right") over three seconds before reversing direction and moving back to the center, again taking three seconds to do so. The total animation will take six seconds (and you can choose whether to loop it or end there).
 
 ### 2. `KeyframeTrack` {#keyframetrack}
 
@@ -365,7 +365,7 @@ mixer.update(delta);
 
 {{< /code >}}
 
-As usual, we'll do this by giving each animated object a {{< link path="/book/first-steps/animation-loop/#the-tick-method" title="`.tick` method" >}}. Here, `.tick` will call the mixer's update method.
+As usual, we'll do this by giving each animated object a [`.tick` method]({{< relref "/book/first-steps/animation-loop#the-tick-method" >}} "`.tick` method"). Here, `.tick` will call the mixer's update method.
 
 {{< code lang="js" linenos="false" caption="Use the animated object's `.tick` method to update the mixer" >}}
 const mixer = new AnimationMixer(mesh);
@@ -375,11 +375,11 @@ mesh.tick = (delta) => mixer.update(delta);
 updatables.push(mesh);
 {{< /code >}}
 
-This is similar to {{< link path="/book/first-steps/camera-controls/#update-the-controls-in-the-animation-loop" title="the orbit control's `.tick` method" >}} from a few chapters ago.
+This is similar to [the orbit control's `.tick` method]({{< relref "/book/first-steps/camera-controls#update-the-controls-in-the-animation-loop" >}} "the orbit control's `.tick` method") from a few chapters ago.
 
 ## Play the Animation Clips from _**Parrot.glb**_, _**Flamingo.glb**_, and _**Stork.glb**_
 
-Now that we have seen how to create a very simple if somewhat boring animation clip that moves an object across the scene while fading it in and out, let's turn our attention to the more interesting clips that we have loaded alongside our three bird models. Each of the three files, _**Parrot.glb**_, _**Flamingo.glb**_, and _**Stork.glb**_, contain both a model and an animation clip of that model flying. These models are not that different from the {{< link path="/book/first-steps/first-scene/#our-first-visible-object-mesh" title="simple cube mesh" >}} we've used in several previous chapters. Each bird is a single `Mesh`, with a `geometry` and a `material`, although the geometry has a feature called [**morph targets**](https://en.wikipedia.org/wiki/Morph_target_animation) (AKA **blend shapes**). Morph targets allow us to define two (or more) different shapes for a single geometry. Here, there is one shape with the wings up and one with the wings down. The flying clip animates between these two shapes to make it look like the bird's wings are flapping.
+Now that we have seen how to create a very simple if somewhat boring animation clip that moves an object across the scene while fading it in and out, let's turn our attention to the more interesting clips that we have loaded alongside our three bird models. Each of the three files, _**Parrot.glb**_, _**Flamingo.glb**_, and _**Stork.glb**_, contain both a model and an animation clip of that model flying. These models are not that different from the [simple cube mesh]({{< relref "/book/first-steps/first-scene#our-first-visible-object-mesh" >}} "simple cube mesh") we've used in several previous chapters. Each bird is a single `Mesh`, with a `geometry` and a `material`, although the geometry has a feature called [**morph targets**](https://en.wikipedia.org/wiki/Morph_target_animation) (AKA **blend shapes**). Morph targets allow us to define two (or more) different shapes for a single geometry. Here, there is one shape with the wings up and one with the wings down. The flying clip animates between these two shapes to make it look like the bird's wings are flapping.
 
 {{% note %}}
 TODO-LINK: link to morph targets
@@ -387,12 +387,12 @@ TODO-LINK: link to morph targets
 
 Let's put everything we have learned so far into action. Here's what we need to do to play the animation clips that come with each bird:
 
-1. Locate the flying clip from the {{< link path="/book/first-steps/load-models/#returned-gltf-data" title="data loaded from each glTF file" >}}.
+1. Locate the flying clip from the [data loaded from each glTF file]({{< relref "/book/first-steps/load-models#returned-gltf-data" >}} "data loaded from each glTF file").
 2. Create an `AnimationMixer` to control each bird model.
 3. Create an `AnimationAction` to connect the clip to the mixer.
-4. Add a {{< link path="/book/first-steps/animation-loop/#the-tick-method" title="`.tick` method to each bird" >}} and update the bird's mixer every frame.
+4. Add a [`.tick` method to each bird]({{< relref "/book/first-steps/animation-loop#the-tick-method" >}} "`.tick` method to each bird") and update the bird's mixer every frame.
 
-Nearly everything can be done in a couple of lines within _**birds/setupModel.js**_. Over in World, we need to add the birds to {{< link path="/book/first-steps/animation-loop/#the-updatables-array" title="the `updatables` array" >}} so that the animations will be updated in the loop.
+Nearly everything can be done in a couple of lines within _**birds/setupModel.js**_. Over in World, we need to add the birds to [the `updatables` array]({{< relref "/book/first-steps/animation-loop#the-updatables-array" >}} "the `updatables` array") so that the animations will be updated in the loop.
 
 ### Where to Find the Loaded Animation Clips
 
