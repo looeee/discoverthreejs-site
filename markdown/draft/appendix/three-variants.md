@@ -62,7 +62,7 @@ Perhaps **the most important new feature added in the ES6 release was the abilit
 
 Since the introduction of modules, we can easily break our app into small, modular components, which is a huge improvement in code style.
 
-If you are not familiar with ES6 modules, now would be a good time to look over {{< link path="/book/appendix/javascript-modules" title="" >}} in the appendix.
+If you are not familiar with ES6 modules, now would be a good time to look over the [Modules Reference]({{< relref "/book/appendix/javascript-modules" >}} "Modules Reference") in the appendix.
 
 {{% /aside %}}
 
@@ -120,7 +120,7 @@ To do this, we need to add a type attribute to the script tag:
 
 {{< /code >}}
 
-Refer to {{< link path="/book/appendix/javascript-modules" title="" >}} in the appendix for more details on how browser modules work.
+Refer to the [Modules Reference]({{< relref "/book/appendix/javascript-modules" >}} "Modules Reference") in the appendix for more details on how browser modules work.
 
 ## How to Use the Module Based Variant: _**three.module.js**_
 

@@ -26,15 +26,9 @@ In this chapter, we'll create the Hello World of three.js apps: a simple white c
 
 {{< code file="worlds/first-steps/first-scene/src/main.final.js" linenos="" caption="_**main.js**_: final result" >}}{{< /code >}}
 
-Click the <input type="checkbox" class="simple-toggle" title="Find the real toggle!"> toggle on the top left of the editor to [see this code in action]({{< relref "/book/introduction/about-the-book#before-and-after-code-comparison" >}} "see this code in action"), or, if you prefer to [work locally]({{< relref "/book/introduction/about-the-book#working-on-your-own-machine" >}} "work locally"), you can click the {{< icon "solid/download" >}} button to download a zip archive containing all the files from the editor. If any of the JavaScript here is unfamiliar to you, refer to
-
-{{< link path="/book/appendix/javascript-reference" title="the JavaScript reference" >}} and {{< link path="/book/appendix/dom-api-reference" title="the DOM API refence" >}} in the appendices.
+Click the <input type="checkbox" class="simple-toggle" title="Find the real toggle!"> toggle on the top left of the editor to [see this code in action]({{< relref "/book/introduction/about-the-book#before-and-after-code-comparison" >}} "see this code in action"), or, if you prefer to [work locally]({{< relref "/book/introduction/about-the-book#working-on-your-own-machine" >}} "work locally"), you can click the {{< icon "solid/download" >}} button to download a zip archive containing all the files from the editor. If any of the JavaScript here is unfamiliar to you, refer to [the JavaScript reference]({{< relref "/book/appendix/javascript-reference" >}} "the JavaScript reference") and [the DOM API refence]({{< relref "/book/appendix/dom-api-reference" >}} "the DOM API refence") in the appendices.
 
 ## The Components of a Real-Time 3D App
-
-{{% note %}}
-TODO-DIAGRAM: This graph is confusing - Annie Chen
-{{% /note %}}
 
 {{< figure src="first-steps/rendered_scene_canvas.svg" alt="A basic scene" lightbox="true" >}}
 
@@ -396,7 +390,7 @@ We are nearly there! Next, we need to tell renderer what size our scene is using
 If you recall, we used CSS to make the container take up the full size of the browser window (as described in [the last chapter]({{< relref "/book/first-steps/app-structure#adding-a-three-js-scene-to-the-page" >}} "the last chapter")), so the scene will also take up the full window.
 
 {{% aside notice %}}
-We've set the renderer's size to the container's width and height _as it is now_. If we resize the browser window, the window's width and height will change, but the size of our canvas will not change. We'll fix this in the chapter on {{< link path="/book/first-steps/responsive-design" title="Responsive Design" >}}.
+We've set the renderer's size to the container's width and height _as it is now_. If we resize the browser window, the window's width and height will change, but the size of our canvas will not change. We'll fix this in the chapter on [Responsive Design]({{< relref "/book/first-steps/responsive-design" >}} "Responsive Design").
 {{% /aside %}}
 
 ### Set The Device Pixel Ratio {#pixel-ratio}

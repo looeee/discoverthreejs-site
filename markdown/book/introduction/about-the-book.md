@@ -64,7 +64,7 @@ It's not possible to build real-world applications like this without making opin
 We'll start small and before you know it we will have worked our way up to a complete application.
 {{% /note %}}
 
-In this Introduction, we cover everything you need to know _before_ you start. {{< link path="/book/first-steps/_index.md" title="The main chapters" >}} cover everything you need to get a basic 3D scene running in a web browser, including how to create objects, lights, cameras, camera controls, and how to organize and move objects around in your scenes. We'll finish by taking a look at how to load complex animated models created in an external program.
+In this Introduction, we cover everything you need to know _before_ you start. [The main chapters]({{< relref "/book/first-steps/" >}} "The main chapters") cover everything you need to get a basic 3D scene running in a web browser, including how to create objects, lights, cameras, camera controls, and how to organize and move objects around in your scenes. We'll finish by taking a look at how to load complex animated models created in an external program.
 
 ## Prior Knowledge
 

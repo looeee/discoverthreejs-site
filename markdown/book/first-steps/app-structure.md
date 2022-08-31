@@ -31,7 +31,7 @@ Before we can build a three.js app, we need to create a web page. We briefly dis
 
 We'll create this basic web page out of just two files: _**index.html**_, and _**styles/main.css**_. That's it. Open up the editor by pressing the {{< icon "solid/columns" >}} button now and take a look at both of these files now.
 
-> If anything from this chapter is unfamiliar to you, refer to {{< link path="/book/appendix/html-and-css-reference" title="" >}} where we take a deeper look at the construction of a simple web page.
+> If anything from this chapter is unfamiliar to you, refer to [the HTML and CSS Reference]({{< relref "/book/appendix/html-and-css-reference" >}} "the HTML and CSS Reference") where we take a deeper look at the construction of a simple web page.
 
 ## _**index.html**_
 

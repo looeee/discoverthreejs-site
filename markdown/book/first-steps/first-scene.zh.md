@@ -26,7 +26,7 @@ IDEActiveDocument: 'src/main.js'
 
 {{< code file="worlds/first-steps/first-scene/src/main.final.js" linenos="" caption="_**main.js**_: 最终结果" >}}{{< /code >}}
 
-点击在编辑器左上角的<input type="checkbox" class="simple-toggle" title="Find the real toggle!">切换按钮以[查看此代码的运行情况]({{< relref "/book/introduction/about-the-book#before-and-after-code-comparison" >}} "查看此代码的运行情况")，或者，如果您更喜欢在 [本地工作]({{< relref "/book/introduction/about-the-book#working-on-your-own-machine" >}} "本地工作")，您可以单击{{< icon "solid/download" >}}按钮下载包含编辑器中所有文件的 zip 存档。如果您不熟悉此处的 JavaScript，请参阅附录中的 {{< link path="/book/appendix/javascript-reference" title="A.2：JavaScript参考" >}}和 {{< link path="/book/appendix/dom-api-reference" title="A.3：文档对象模型和DOM API" >}}。
+点击在编辑器左上角的<input type="checkbox" class="simple-toggle" title="Find the real toggle!">切换按钮以[查看此代码的运行情况]({{< relref "/book/introduction/about-the-book#before-and-after-code-comparison" >}} "查看此代码的运行情况")，或者，如果您更喜欢在 [本地工作]({{< relref "/book/introduction/about-the-book#working-on-your-own-machine" >}} "本地工作")，您可以单击{{< icon "solid/download" >}}按钮下载包含编辑器中所有文件的 zip 存档。如果您不熟悉此处的 JavaScript，请参阅附录中的 [A.2：JavaScript 参考]({{< relref "/book/appendix/javascript-reference" >}} "A.2：JavaScript 参考") 和 [A.3：文档对象模型和 DOM API]({{< relref "/book/appendix/dom-api-reference" >}} "A.3：文档对象模型和 DOM API")。
 
 ## 实时 3D 应用程序组件
 
@@ -395,7 +395,7 @@ TODO-LOW: update if WebGPURenderer becomes default
 如果你还记得，我们使用 CSS 使容器占据了整个浏览器窗口的大小（如[上一章]({{< relref "/book/first-steps/app-structure#adding-a-three-js-scene-to-the-page" >}} "上一章")所述），因此场景也将占据整个窗口。
 
 {{% aside notice %}}
-我们已经将渲染器的大小设置为容器的宽度和高度，_就像现在一样_。如果我们调整浏览器窗口的大小，窗口的宽度和高度会改变，但画布的大小不会改变。我们将在{{< link path="/book/first-steps/responsive-design" title="1.6：让我们的场景具有响应性（以及处理 Jaggies）" >}}中解决这个问题。
+我们已经将渲染器的大小设置为容器的宽度和高度，_就像现在一样_。如果我们调整浏览器窗口的大小，窗口的宽度和高度会改变，但画布的大小不会改变。我们将在 [1.6：让我们的场景具有响应性（以及处理 Jaggies）]({{< relref "/book/first-steps/responsive-design" >}} "1.6：让我们的场景具有响应性（以及处理 Jaggies") 中解决这个问题。
 {{% /aside %}}
 
 ### 设置设备像素比（DPR） {#pixel-ratio}

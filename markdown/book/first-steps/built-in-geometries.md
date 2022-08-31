@@ -59,7 +59,7 @@ The built-in geometries range from the mundane:
 
 {{< inlineScene entry="first-steps/toy-train.js" class="round medium right" >}}
 
-In this chapter, we'll use the transformations we learned a few chapters ago ({{< link path="/book/first-steps/transformations.md" title="translate, rotate, and scale" >}}) to manipulate these geometries and build a simple toy train model. At the same time, we'll use this as an opportunity to explore ways of structuring scene components that are more complex than anything we have created so far. We'll also take a deeper look at using transformations, in particular rotation, which is the trickiest of the three transformations to use. We'll use just two of the geometries to build the toy train: a box geometry for the cabin, and a cylinder geometries for the wheels, nose, and chimney.
+In this chapter, we'll use the transformations we learned a few chapters ago ([translate, rotate, and scale]({{< relref "/book/first-steps/transformations" >}} "translate, rotate, and scale")) to manipulate these geometries and build a simple toy train model. At the same time, we'll use this as an opportunity to explore ways of structuring scene components that are more complex than anything we have created so far. We'll also take a deeper look at using transformations, in particular rotation, which is the trickiest of the three transformations to use. We'll use just two of the geometries to build the toy train: a box geometry for the cabin, and a cylinder geometries for the wheels, nose, and chimney.
 
 {{% aside success %}}
 

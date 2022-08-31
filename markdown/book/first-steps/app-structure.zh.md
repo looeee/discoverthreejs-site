@@ -31,7 +31,7 @@ prevTitle: "入门：真正的乐趣从这里开始！"
 
 我们将只用两个文件创建这个基本网页：**_index.html_**和**_styles/main.css_**。就是这样。现在按下{{< icon "solid/columns" >}}按钮打开编辑器并查看这两个文件。
 
-> 如果您对本章的任何内容不熟悉，请参阅{{< link path="/book/appendix/html-and-css-reference" title="A.1：本书中使用的 HTML 和 CSS" >}}，在那里我们介绍了如何深入了解简单网页的构建。
+> 如果您对本章的任何内容不熟悉，请参阅 [A.1：本书中使用的 HTML 和 CSS]({{< relref "/book/appendix/html-and-css-reference" >}} "A.1：本书中使用的 HTML 和 CSS")，在那里我们介绍了如何深入了解简单网页的构建。
 
 ## _**index.html**_
 
