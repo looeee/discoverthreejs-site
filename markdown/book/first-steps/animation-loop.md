@@ -6,31 +6,30 @@ weight: 107
 chapter: "1.7"
 available: true
 showIDE: true
-IDEFiles: [
-  "worlds/first-steps/animation-loop/src/World/components/camera.js",
-  "worlds/first-steps/animation-loop/src/World/components/cube.start.js",
-  "worlds/first-steps/animation-loop/src/World/components/cube.final.js",
-  "worlds/first-steps/animation-loop/src/World/components/lights.js",
-  "worlds/first-steps/animation-loop/src/World/components/scene.js",
-  "worlds/first-steps/animation-loop/src/World/systems/renderer.js",
-  "worlds/first-steps/animation-loop/src/World/systems/Resizer.js",
-  "worlds/first-steps/animation-loop/src/World/systems/Loop.start.js",
-  "worlds/first-steps/animation-loop/src/World/systems/Loop.final.js",
-  "worlds/first-steps/animation-loop/src/World/World.start.js",
-  "worlds/first-steps/animation-loop/src/World/World.final.js",
-  "worlds/first-steps/animation-loop/src/main.start.js",
-  "worlds/first-steps/animation-loop/src/main.final.js",
-  "styles/main.css",
-  "vendor/three/build/three.module.js",
-  "worlds/first-steps/animation-loop/index.html",
-]
+IDEFiles:
+  [
+    "worlds/first-steps/animation-loop/src/World/components/camera.js",
+    "worlds/first-steps/animation-loop/src/World/components/cube.start.js",
+    "worlds/first-steps/animation-loop/src/World/components/cube.final.js",
+    "worlds/first-steps/animation-loop/src/World/components/lights.js",
+    "worlds/first-steps/animation-loop/src/World/components/scene.js",
+    "worlds/first-steps/animation-loop/src/World/systems/renderer.js",
+    "worlds/first-steps/animation-loop/src/World/systems/Resizer.js",
+    "worlds/first-steps/animation-loop/src/World/systems/Loop.start.js",
+    "worlds/first-steps/animation-loop/src/World/systems/Loop.final.js",
+    "worlds/first-steps/animation-loop/src/World/World.start.js",
+    "worlds/first-steps/animation-loop/src/World/World.final.js",
+    "worlds/first-steps/animation-loop/src/main.start.js",
+    "worlds/first-steps/animation-loop/src/main.final.js",
+    "styles/main.css",
+    "vendor/three/build/three.module.js",
+    "worlds/first-steps/animation-loop/index.html",
+  ]
 IDEComparisonMode: true
-IDEClosedFolders: ['styles', 'vendor']
-IDEStripDirectory: 'worlds/first-steps/animation-loop/'
-IDEActiveDocument: 'src/World/systems/Loop.js'
+IDEClosedFolders: ["styles", "vendor"]
+IDEStripDirectory: "worlds/first-steps/animation-loop/"
+IDEActiveDocument: "src/World/systems/Loop.js"
 ---
-
-
 
 # The Animation Loop
 
@@ -46,16 +45,16 @@ We're using the `renderer.render` method to draw the scene. This method takes a 
 
 In this chapter, we'll add a simple rotation animation to the cube. Here's how we'll do it:
 
-* **call `renderer.render(...)`**
-* **wait until it's time to draw the next frame**
-* **rotate the cube a tiny amount**
-* **call `renderer.render(...)`**
-* **wait until it's time to draw the next frame**
-* **rotate the cube a tiny amount**
-* **call `renderer.render(...)`**
-* **wait until it's time to draw the next frame**
-* **rotate the cube a tiny amount**
-* ...
+- **call `renderer.render(...)`**
+- **wait until it's time to draw the next frame**
+- **rotate the cube a tiny amount**
+- **call `renderer.render(...)`**
+- **wait until it's time to draw the next frame**
+- **rotate the cube a tiny amount**
+- **call `renderer.render(...)`**
+- **wait until it's time to draw the next frame**
+- **rotate the cube a tiny amount**
+- ...
 
 ... and so on in an endless loop called an **animation loop**. Setting up this loop is simple since three.js does all the hard work for us via the `renderer.setAnimationLoop` method.
 
@@ -74,7 +73,7 @@ Most game engines use the concept of a **game loop** that runs once per frame an
 
 Even though three.js is not a game engine and we are calling our loop an **animation loop**, our goals are pretty similar. This means, instead of starting from scratch, we can borrow some tried and trusted ideas from game engine design. The loop we create in this chapter is very simple, but if you later find yourself needing a more complex one, perhaps to update animations and physics at a different rate than you render the scene, you can refer to a [book on game development](https://gameprogrammingpatterns.com/game-loop.html) for more info.
 
-Later, we'll make our scene interactive. Fortunately for us, handling user input in the browser is easy thanks to {{< link path="book/appendix/dom-api-reference/#listening-for-events" title="`addEventListener`" >}}, so we don't need to handle this task in the loop. Also, we won't be doing any physics calculations for now (although several great physics libraries work with three.js), so we can skip the physics step. Rendering is already covered by `renderer.render`. That leaves us with two tasks in this chapter: set up the loop itself, and then create a system for updating animations.
+Later, we'll make our scene interactive. Fortunately for us, handling user input in the browser is easy thanks to [`addEventListener`]({{< relref "book/appendix/dom-api-reference#listening-for-events" >}} "`addEventListener`"), so we don't need to handle this task in the loop. Also, we won't be doing any physics calculations for now (although several great physics libraries work with three.js), so we can skip the physics step. Rendering is already covered by `renderer.render`. That leaves us with two tasks in this chapter: set up the loop itself, and then create a system for updating animations.
 
 We'll set up the loop first to generate a stream of frames, and then we'll set up the animation system.
 
@@ -85,8 +84,9 @@ We'll set up the loop first to generate a stream of frames, and then we'll set u
 Open (or create) the _**systems/Loop.js**_ module and create a new `Loop` class inside. This class will handle all the looping logic and the animation system. You'll notice that we have imported `Clock`, which we'll use below to keep animations in sync. Next, since we'll use `renderer.render(scene, camera)` to generate frames, it's a fair bet we'll need the `camera`, `scene`, and `renderer` within the `Loop` class, so pass them to the constructor and save them as instance variables. Finally, create `.start` and `.stop` methods that we can later use to start/stop the loop.
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="_**Loop.js**_: initial setup" >}}
-``` js
-import { Clock } from 'three';
+
+```js
+import { Clock } from "three";
 
 class Loop {
   constructor(camera, scene, renderer) {
@@ -100,18 +100,20 @@ class Loop {
   stop() {}
 }
 
-export { Loop }
+export { Loop };
 ```
+
 {{< /code >}}
 
 Over in World, add this new class to the list of imports:
 
 {{< code file="worlds/first-steps/animation-loop/src/World/World.final.js" from="1" to="8" lang="js" linenos="true" hl_lines="8" caption="_**World.js**_: import the `Loop` class" >}}{{< /code >}}
 
-Create the loop as a {{< link path="book/first-steps/world-app/#set-up-the-camera-renderer-and-scene" title="module scoped variable" >}} like the `camera`, `renderer`, and `scene`, since we don't want it to be accessible from outside the `World` class:
+Create the loop as a [module scoped variable]({{< relref "book/first-steps/world-app#set-up-the-camera-renderer-and-scene" >}} "module scoped variable") like the `camera`, `renderer`, and `scene`, since we don't want it to be accessible from outside the `World` class:
 
 {{< code lang="js" linenos="" linenostart="10" hl_lines="13 20" caption="_**World.js**_: create a `loop` instance" >}}
-``` js
+
+```js
 let camera;
 let renderer;
 let scene;
@@ -128,6 +130,7 @@ class World {
     ...
   }
 ```
+
 {{< /code >}}
 
 Finally, add `.start` and `.stop` methods to `World`, which simply call their counterparts in `Loop`. This is how we'll provide access to the loop from within _**main.js**_:
@@ -155,7 +158,7 @@ const renderer = new WebGLRenderer();
 
 // start the loop
 renderer.setAnimationLoop(() => {
-  renderer.render(scene, camera);
+renderer.render(scene, camera);
 });
 {{< /code >}}
 
@@ -166,7 +169,7 @@ This will call `renderer.render` over and over to generate a stream of frames. W
 renderer.setAnimationLoop(null);
 {{< /code >}}
 
-Internally, the loop is created using {{< link path="/book/appendix/dom-api-reference/#drawing-animation-frames" title="`.requestAnimationFrame`" >}}. This built-in browser method intelligently schedules frames in sync with the refresh rate of your monitor and will smoothly reduce the frame rate if your hardware can't keep up. Since `.setAnimationLoop` was added fairly recently, older three.js examples and tutorials often use `.requestAnimationFrame` directly to set up the loop, and it's fairly simple to do it that way. However, with `.setAnimationLoop` there's a little extra magic to ensure the loop will work in virtual reality and augmented reality environments.
+Internally, the loop is created using [`.requestAnimationFrame`]({{< relref "/book/appendix/dom-api-reference#drawing-animation-frames" >}} "`.requestAnimationFrame`"). This built-in browser method intelligently schedules frames in sync with the refresh rate of your monitor and will smoothly reduce the frame rate if your hardware can't keep up. Since `.setAnimationLoop` was added fairly recently, older three.js examples and tutorials often use `.requestAnimationFrame` directly to set up the loop, and it's fairly simple to do it that way. However, with `.setAnimationLoop` there's a little extra magic to ensure the loop will work in virtual reality and augmented reality environments.
 
 {{% note %}}
 TODO-LOW: possible move discussion of Hz and framerates here, or otherwise link to later in the chapter
@@ -195,46 +198,47 @@ Next, create the counterpart `.stop` method, passing in `null` as the callback t
 
 As soon as you make these changes, your app will start to pump out frames at a rate of around sixty per second (or possibly higher, depending on the refresh rate of your monitor). However, you won't _see_ any difference. Nothing is moving yet, so we are simply drawing the same frame over and over. Our loop now looks like this:
 
-* **call `renderer.render(...)`**
-* **wait until it's time to draw the next frame**
-* **call `renderer.render(...)`**
-* **wait until it's time to draw the next frame**
-* **call `renderer.render(...)`**
-* **wait until it's time to draw the next frame**
-* ...
+- **call `renderer.render(...)`**
+- **wait until it's time to draw the next frame**
+- **call `renderer.render(...)`**
+- **wait until it's time to draw the next frame**
+- **call `renderer.render(...)`**
+- **wait until it's time to draw the next frame**
+- ...
 
 If you compare that to the loop we described at the start of the chapter, you'll see we are missing a vital step:
 
-* **call `renderer.render(...)`**
-* **wait until it's time to draw the next frame**
-* **rotate the cube a tiny amount**
-* **call `renderer.render(...)`**
-* **wait until it's time to draw the next frame**
-* **rotate the cube a tiny amount**
-* **call `renderer.render(...)`**
-* **wait until it's time to draw the next frame**
-* **rotate the cube a tiny amount**
-* ...
+- **call `renderer.render(...)`**
+- **wait until it's time to draw the next frame**
+- **rotate the cube a tiny amount**
+- **call `renderer.render(...)`**
+- **wait until it's time to draw the next frame**
+- **rotate the cube a tiny amount**
+- **call `renderer.render(...)`**
+- **wait until it's time to draw the next frame**
+- **rotate the cube a tiny amount**
+- ...
 
 We need some way to adjust the cube's rotation right before we render each frame, and we need to do so in a way that works for any kind of animated object, not just a rotating cube. More generally, our loop should look like this:
 
-* **call `renderer.render(...)`**
-* **wait until it's time to draw the next frame**
-* **move animations forward one frame**
-* **call `renderer.render(...)`**
-* **wait until it's time to draw the next frame**
-* **move animations forward one frame**
-* **call `renderer.render(...)`**
-* **wait until it's time to draw the next frame**
-* **move animations forward one frame**
-* ...
+- **call `renderer.render(...)`**
+- **wait until it's time to draw the next frame**
+- **move animations forward one frame**
+- **call `renderer.render(...)`**
+- **wait until it's time to draw the next frame**
+- **move animations forward one frame**
+- **call `renderer.render(...)`**
+- **wait until it's time to draw the next frame**
+- **move animations forward one frame**
+- ...
 
 ### Remove the `onResize` Hook
 
 First, let's tidy up. Now that the loop is running, whenever we resize the window a new frame will be produced on the next iteration of the loop. This is fast enough that you won't notice any delay so we don't need to manually redraw the scene on resizing anymore. Remove the `resizer.onResize` hook from World:
 
 {{< code lang="js" linenos="" linenostart="17" hl_lines="31-33" caption="_**World.js**_: remove the highlighted lines" >}}
-``` js
+
+```js
 constructor(container) {
   camera = createCamera();
   scene = createScene();
@@ -254,6 +258,7 @@ constructor(container) {
   };
 }
 ```
+
 {{< /code >}}
 
 Now, try resizing the scene and notice that it works smoothly. This shows us that the loop is running correctly.
@@ -262,20 +267,21 @@ Now, try resizing the scene and notice that it works smoothly. This shows us tha
 
 Consider a simple game where you explore a map and pick apples. Here are some animated objects you might add to this game:
 
-* The heroine, who has various animations like walk/run/jump/climb/pick.
-* Trees with apples. The apples grow over time, and the leaves blow in the wind.
-* Some scary bees that will try to chase you from the garden.
-* An interesting environment with objects like water, wind, leaves, and rocks.
-* Power-ups in the form of rotating cubes that hover above the ground.
+- The heroine, who has various animations like walk/run/jump/climb/pick.
+- Trees with apples. The apples grow over time, and the leaves blow in the wind.
+- Some scary bees that will try to chase you from the garden.
+- An interesting environment with objects like water, wind, leaves, and rocks.
+- Power-ups in the form of rotating cubes that hover above the ground.
 
 ... and so on. Each time the loop runs, we want to update all of these animations by moving them forward one frame. Just before we render each frame, we'll make the heroine step forward a tiny bit, we'll make each bee move towards her, we'll make the leaves move, the apples grow, and the powerups rotate, each by a tiny, tiny amount that is almost too small for the eye to see but over time creates a smooth animation.
 
 ### The `Loop.tick` Method
 
-To handle all of this, we need a function that _updates_ all the animations, and this function should run once at the start of each frame. However, the word _update_ is already used a lot throughout three.js, so we'll choose the word _tick_ instead. Before we draw each frame, we'll make each animation _tick_ forward one frame.  Add the `Loop.tick` method at the end of the `Loop` class, and then call it within the animation loop:
+To handle all of this, we need a function that _updates_ all the animations, and this function should run once at the start of each frame. However, the word _update_ is already used a lot throughout three.js, so we'll choose the word _tick_ instead. Before we draw each frame, we'll make each animation _tick_ forward one frame. Add the `Loop.tick` method at the end of the `Loop` class, and then call it within the animation loop:
 
 {{< code lang="js" linenos="" linenostart="13" hl_lines="16 27-29" caption="_**Loop.js**_: create the `.tick` method" >}}
-``` js
+
+```js
 start() {
   this.renderer.setAnimationLoop(() => {
     // tell every animated object to tick forward one frame
@@ -294,6 +300,7 @@ tick() {
   // Code to update animations will go here
 }
 ```
+
 {{< /code >}}
 
 ### Centralized or Decentralized?
@@ -301,7 +308,8 @@ tick() {
 When it comes to implementing this new `.tick` method, we have to make some design choices. One obvious solution is to create a complicated, centralized update function that controls all of the animated objects in our scene. It might look something like this:
 
 {{< code lang="js" linenostart="27" linenos="false" hl_lines="" caption="A centralized animation system" >}}
-``` js
+
+```js
 tick() {
   if(controls.state.run) {
     character.runAnimation.nextFrame();
@@ -320,6 +328,7 @@ tick() {
   // ... and so on
 }
 ```
+
 {{< /code >}}
 
 Well, you get the picture. This might be ok if we have just a couple of animated objects in our scene, but it's not going to scale well. With fifty or a hundred animated objects, it's going to be downright ugly. It also breaks all kinds of software design principles, since now the `Loop` class has to have a deep understanding of how each animated object works.
@@ -328,7 +337,7 @@ Here's a better idea: we'll define the logic for updating each object _on the ob
 
 {{< code lang="js" linenostart="23" linenos="false" hl_lines="" caption="A decentralized animation system" >}}
 
-``` js
+```js
 // somewhere in the Loop class:
 this.updatables = [character, beeA, beeB, beeC, powerupA, powerupB, powerupC, leafA, ... ]
 ...
@@ -339,27 +348,29 @@ tick() {
   }
 }
 ```
+
 {{< /code >}}
 
 This is much better. Now, all the `Loop` class knows is that '_animated objects have a `.tick` method_'. These methods can be as complex or simple as needed for each object. For example, here's what a simple rotating powerup might look like:
 
 {{< code lang="js" linenos="false" linenostart="1" hl_lines="" caption="Creating a rotating powerup with a `.tick` method" >}}
-``` js
+
+```js
 function createPowerup() {
   const geometry = new BoxBufferGeometry(2, 2, 2);
-  const material = new MeshStandardMaterial({ color: 'purple' });
+  const material = new MeshStandardMaterial({ color: "purple" });
   const powerup = new Mesh(geometry, material);
 
   // this method will be called once per frame
   powerup.tick = () => {
     // increase the powerup's rotation each frame
     powerup.rotation.z += 0.05;
-
   };
 
   return powerup;
 }
 ```
+
 {{< /code >}}
 
 If you compare this to _**components/cube.js**_, you'll see this is quite similar. We just need to add a `cube.tick` method.
@@ -375,13 +386,15 @@ For this to work, we need a list of animated objects within the loop class. We'l
 Next, within `Loop.tick`, loop over this list and call `.tick` on any object within it.
 
 {{< code lang="js" linenos="" linenostart="27" hl_lines="" caption="_**Loop.js**_: loop over animated objects and call their `.tick` method" >}}
-``` js
+
+```js
 tick() {
   for (const object of this.updatables) {
     object.tick();
   }
 }
 ```
+
 {{< /code >}}
 
 Take careful note of the fact that `Loop.tick` will run every frame, which means it will run sixty times per second. It's important to keep the amount of work done here to a minimum, which means that each animated object's `.tick` method must be as simple as possible.
@@ -395,10 +408,11 @@ Each type of animated object will have a different `.tick` method. In our [apple
 Here, we'll simply update the cube's rotation on the $X$, $Y$, _and_ $Z$ axes by a tiny amount each frame. This will give it a random-looking tumble.
 
 {{< code lang="js" linenos="" linenostart="8" hl_lines="16-21" caption="_**cube.js**_: create the `.tick` method" >}}
-``` js
+
+```js
 function createCube() {
   const geometry = new BoxBufferGeometry(2, 2, 2);
-  const material = new MeshStandardMaterial({ color: 'purple' });
+  const material = new MeshStandardMaterial({ color: "purple" });
   const cube = new Mesh(geometry, material);
 
   cube.rotation.set(-0.5, -0.1, 0.8);
@@ -414,11 +428,12 @@ function createCube() {
   return cube;
 }
 ```
+
 {{< /code >}}
 
 **Note**: adding a property to an existing class at run-time like this is known as [_monkey-patching_](https://en.wikipedia.org/wiki/Monkey_patch) (here, we're adding `.tick` to an instance of `Mesh`). It's common practice, and in our simple app won't cause any problems. However, we shouldn't get into the habit of doing this carelessly since in certain situations it can cause performance issues. We'll only allow ourselves to do this here as the alternatives are more complex.
 
-0.01 is a value that gives a fairly slow rotation speed, and we discovered it by trial and error.  {{< link path="/book/first-steps/transformations/#the-unit-of-rotation-is-radians" title="Rotations in three.js are measured in radians" >}} so internally this value is being interpreted as _0.01 radians_, which is roughly half a degree. So, we're rotating the cube by about half a degree on each axis every frame. At sixty frames per second, this means our cube will rotate $60 \times 0.5 = 30 ^{\circ}$ each second, or one full rotation around each of the $X$, $Y$ and $Z$ axes approximately every twelve seconds.
+0.01 is a value that gives a fairly slow rotation speed, and we discovered it by trial and error. [Rotations in three.js are measured in radians]({{< relref "/book/first-steps/transformations#the-unit-of-rotation-is-radians" >}} "Rotations in three.js are measured in radians") so internally this value is being interpreted as _0.01 radians_, which is roughly half a degree. So, we're rotating the cube by about half a degree on each axis every frame. At sixty frames per second, this means our cube will rotate $60 \times 0.5 = 30 ^{\circ}$ each second, or one full rotation around each of the $X$, $Y$ and $Z$ axes approximately every twelve seconds.
 
 #### Add the `cube` to `Loop.updatables`
 
@@ -459,6 +474,7 @@ const delta = clock.getDelta();
 **`.getDelta` tells us how much time has passed since the last time we called `.getDelta`**. If we call it once, and only once, at the start of each frame, it will tell us how long the previous frame took. **Note: if you call it `.getDelta` more than once per frame, subsequent calls will measure close to zero.** Only call `.getDelta` once at the very start of a frame!
 
 {{% aside %}}
+
 #### $Δ$ (Delta) {#delta}
 
 Delta is a Greek letter, uppercase $Δ$, lowercase $δ$.
@@ -479,6 +495,7 @@ Next, we'll call `.getDelta` at the start of `Loop.tick`, saving the result in a
 {{< code file="worlds/first-steps/animation-loop/src/World/systems/Loop.final.js" from="27" to="38" skip_lines="31 32 33 34" lang="js" linenos="true" hl_lines="29 32" caption="_**Loop.js**_: pass time deltas to animated objects" >}}{{< /code >}}
 
 {{% aside success %}}
+
 ### Frame Rates Are Never Perfectly Steady
 
 In the inline code editor, we've added a log statement:
@@ -500,10 +517,11 @@ Even with a powerful GPU and a scene as simple as this single cube, we won't ach
 
 ### Scale the Cube's Rotation by `delta`
 
-Scaling movements by `delta` is easy. We simply decide how much we want to move an object in one second, and then multiply that value by `delta` within the objects `.tick` method. In  `cube.tick`, we found a value that resulted in the cube rotating approximately thirty degrees per second _at 60FPS_.
+Scaling movements by `delta` is easy. We simply decide how much we want to move an object in one second, and then multiply that value by `delta` within the objects `.tick` method. In `cube.tick`, we found a value that resulted in the cube rotating approximately thirty degrees per second _at 60FPS_.
 
 {{< code lang="js" linenos="" linenostart="18" hl_lines="" caption="_**cube.js**_: the unscaled tick method" >}}
-``` js
+
+```js
 cube.tick = () => {
   // increase the cube's rotation each frame
   cube.rotation.z += 0.01;
@@ -511,9 +529,10 @@ cube.tick = () => {
   cube.rotation.y += 0.01;
 };
 ```
+
 {{< /code >}}
 
-Now, we'll fix that so the cube rotates thirty degrees per second at _any_ FPS. First, we need to convert thirty degrees to radians, and for that, we'll use {{< link path="/book/first-steps/transformations/#the-unit-of-rotation-is-radians" title="`MathUtils.degToRad`" >}} method (refer back to the transformations chapter if you need a reminder of how that works):
+Now, we'll fix that so the cube rotates thirty degrees per second at _any_ FPS. First, we need to convert thirty degrees to radians, and for that, we'll use [`MathUtils.degToRad`]({{< relref "/book/first-steps/transformations#the-unit-of-rotation-is-radians" >}} "`MathUtils.degToRad`") method (refer back to the transformations chapter if you need a reminder of how that works):
 
 {{< code lang="js" linenos="false" caption="Converting degrees to radians" >}}
 import { MathUtils } from 'three';
@@ -524,7 +543,8 @@ const radiansPerSecond = MathUtils.degToRad(30);
 Next, we'll scale `radiansPerSecond` by `delta` each frame.
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="_**cube.js**_: the updated tick method, now scaling by `delta`" >}}
-``` js
+
+```js
 cube.tick = (delta) => {
   // increase the cube's rotation each frame
   cube.rotation.z += radiansPerSecond * delta;
@@ -532,6 +552,7 @@ cube.tick = (delta) => {
   cube.rotation.y += radiansPerSecond * delta;
 };
 ```
+
 {{< /code >}}
 
 Putting all that together, here's our final _**cube.js**_ module:
@@ -583,6 +604,7 @@ Next up, we'll see how to make our materials more interesting using textures.
 ## Challenges
 
 {{% aside success %}}
+
 ### Easy
 
 1. Play with the animation speed. Make the cube perform one rotation every hundred seconds, then one rotation every single second.
@@ -592,6 +614,7 @@ Next up, we'll see how to make our materials more interesting using textures.
 {{% /aside %}}
 
 {{% aside %}}
+
 ### Medium
 
 1. Add a `.tick` method to the camera, then make it zoom out slowly. Try zooming out at around one meter per second.
@@ -605,9 +628,10 @@ Don't forget to add the camera and light to the `updatables` list! To zoom out, 
 {{% /aside %}}
 
 {{% aside warning %}}
+
 ### Hard
 
-Rotation is an easy property to animate since rotations go round in circles. When we reach $360^\circ$ on any axis, we come back to where we started. This means we can infinitely increase the rotation and the result is a nice looking animation. If we do the same with position, or scaling, the object being animated will quickly vanish from our screens. However, we can create cyclical animations of other properties using {{< link path="/book/appendix/javascript-reference/#the-modulo-operator" title="the modulo operator `%`" >}}.
+Rotation is an easy property to animate since rotations go round in circles. When we reach $360^\circ$ on any axis, we come back to where we started. This means we can infinitely increase the rotation and the result is a nice looking animation. If we do the same with position, or scaling, the object being animated will quickly vanish from our screens. However, we can create cyclical animations of other properties using [the modulo operator `%`]({{< relref "/book/appendix/javascript-reference#the-modulo-operator" >}} "the modulo operator `%`").
 
 1. Animate the `.position` of the cube, camera, or light, using the modulo operator. Make the camera zoom out by ten meters repeatedly. Make the cube animate from the left to the right of the screen over and over again.
 

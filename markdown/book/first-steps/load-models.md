@@ -6,44 +6,43 @@ weight: 113
 chapter: "1.13"
 available: true
 showIDE: true
-IDEFiles: [
-  "assets/models/Flamingo.glb",
-  "assets/models/Parrot.glb",
-  "assets/models/Stork.glb",
-  "worlds/first-steps/load-models/src/World/components/birds/birds.start.js",
-  "worlds/first-steps/load-models/src/World/components/birds/birds.final.js",
-  "worlds/first-steps/load-models/src/World/components/birds/setupModel.start.js",
-  "worlds/first-steps/load-models/src/World/components/birds/setupModel.final.js",
-  "worlds/first-steps/load-models/src/World/components/camera.js",
-  "worlds/first-steps/load-models/src/World/components/lights.js",
-  "worlds/first-steps/load-models/src/World/components/scene.js",
-  "worlds/first-steps/load-models/src/World/systems/controls.js",
-  "worlds/first-steps/load-models/src/World/systems/renderer.js",
-  "worlds/first-steps/load-models/src/World/systems/Resizer.js",
-  "worlds/first-steps/load-models/src/World/systems/Loop.js",
-  "worlds/first-steps/load-models/src/World/World.start.js",
-  "worlds/first-steps/load-models/src/World/World.final.js",
-  "worlds/first-steps/load-models/src/main.start.js",
-  "worlds/first-steps/load-models/src/main.final.js",
-  "styles/main.css",
-  "vendor/three/build/three.module.js",
-  "vendor/three/examples/jsm/controls/OrbitControls.js",
-  "vendor/three/examples/jsm/loaders/GLTFLoader.js",
-  "worlds/first-steps/load-models/index.html",
-]
+IDEFiles:
+  [
+    "assets/models/Flamingo.glb",
+    "assets/models/Parrot.glb",
+    "assets/models/Stork.glb",
+    "worlds/first-steps/load-models/src/World/components/birds/birds.start.js",
+    "worlds/first-steps/load-models/src/World/components/birds/birds.final.js",
+    "worlds/first-steps/load-models/src/World/components/birds/setupModel.start.js",
+    "worlds/first-steps/load-models/src/World/components/birds/setupModel.final.js",
+    "worlds/first-steps/load-models/src/World/components/camera.js",
+    "worlds/first-steps/load-models/src/World/components/lights.js",
+    "worlds/first-steps/load-models/src/World/components/scene.js",
+    "worlds/first-steps/load-models/src/World/systems/controls.js",
+    "worlds/first-steps/load-models/src/World/systems/renderer.js",
+    "worlds/first-steps/load-models/src/World/systems/Resizer.js",
+    "worlds/first-steps/load-models/src/World/systems/Loop.js",
+    "worlds/first-steps/load-models/src/World/World.start.js",
+    "worlds/first-steps/load-models/src/World/World.final.js",
+    "worlds/first-steps/load-models/src/main.start.js",
+    "worlds/first-steps/load-models/src/main.final.js",
+    "styles/main.css",
+    "vendor/three/build/three.module.js",
+    "vendor/three/examples/jsm/controls/OrbitControls.js",
+    "vendor/three/examples/jsm/loaders/GLTFLoader.js",
+    "worlds/first-steps/load-models/index.html",
+  ]
 IDEComparisonMode: true
-IDEClosedFolders: ['systems', 'styles', 'vendor']
-IDEStripDirectory: 'worlds/first-steps/load-models/'
-IDEActiveDocument: 'src/World/components/birds/birds.js'
+IDEClosedFolders: ["systems", "styles", "vendor"]
+IDEStripDirectory: "worlds/first-steps/load-models/"
+IDEActiveDocument: "src/World/components/birds/birds.js"
 ---
-
-
 
 # Load 3D Models in glTF Format
 
 {{< inlineScene entry="first-steps/birds-animated.js" class="round" >}}
 
-In the last chapter, we created a simple toy train model using some of the built-in three.js geometries, and it quickly became clear that it would be hard to build anything complex or organic using just these. To create beautiful 3D models, a sophisticated [modeling program](https://en.wikipedia.org/wiki/3D_modeling) is required. You can use three.js to build any kind of 3D application, however, building a modeling app from scratch would be a huge amount of work. A much simpler solution is to use an existing program and export your work for use in three.js...  or, cheat, and download any of the millions of amazing models and other scene assets that are available for free in many places around the web.
+In the last chapter, we created a simple toy train model using some of the built-in three.js geometries, and it quickly became clear that it would be hard to build anything complex or organic using just these. To create beautiful 3D models, a sophisticated [modeling program](https://en.wikipedia.org/wiki/3D_modeling) is required. You can use three.js to build any kind of 3D application, however, building a modeling app from scratch would be a huge amount of work. A much simpler solution is to use an existing program and export your work for use in three.js... or, cheat, and download any of the millions of amazing models and other scene assets that are available for free in many places around the web.
 
 In this chapter, we'll show you how to load some models that were created in [Blender](https://www.blender.org/), an open-source 3D graphics application that can be used for modeling, scene building, material creation, animation authoring, and more. Once you have created a model in Blender, you can export your work using a 3D format such as glTF, then use the [`GLTFLoader` plugin](https://threejs.org/docs/#examples/en/loaders/GLTFLoader) to bring the model into three.js.
 
@@ -69,9 +68,8 @@ glTF files can contain models, animations, geometries, materials, lights, camera
 
 glTF files come in standard and binary form. These have different extensions:
 
-* **Standard _.gltf_ files are uncompressed and may come with an extra _.bin_ data file.**
-* **Binary _.glb_ files include all data in one single file.**
-
+- **Standard _.gltf_ files are uncompressed and may come with an extra _.bin_ data file.**
+- **Binary _.glb_ files include all data in one single file.**
 
 Both standard and binary glTF files may contain textures embedded in the file or may reference external textures. Since binary _**.glb**_ files are considerably smaller, it's best to use this type. On the other hand, uncompressed _**.gltf**_ are easily readable in a text editor, so they may be useful for debugging purposes.
 
@@ -81,7 +79,7 @@ There are lots of [free glTF models available on the three.js repo](https://gith
 
 You can find these three files in the editor, in the _**assets/models/**_ folder. In this chapter, we'll load **_Parrot.glb_**, **_Flamingo.glb_**, and **_Stork.glb_** and then add the bird-shaped meshes each file contains to our scene. In the next chapter, we'll show you how to play the flying animation that is included with each bird.
 
-If you're working locally rather than using the inline code editor, {{< link path="/book/introduction/prerequisites/#a-web-server" title="you'll need to set up a webserver" >}}. Otherwise, due to browser security restrictions, you won't be able to load these files from your hard drive.
+If you're working locally rather than using the inline code editor, [you'll need to set up a webserver]({{< relref "/book/introduction/prerequisites#a-web-server" >}} "you'll need to set up a webserver"). Otherwise, due to browser security restrictions, you won't be able to load these files from your hard drive.
 
 {{% aside  %}}
 
@@ -89,13 +87,13 @@ If you're working locally rather than using the inline code editor, {{< link pat
 
 Whenever we load a model over the internet, we need to do so in a manner that ensures our app continues to run smoothly while the model is loading, and which can also gracefully handle failure if there is a network error. There are several ways to solve this problem using JavaScript, and there's an entire chapter of the appendices dedicated to this subject.
 
-In this chapter, we'll use **async functions** to load the models, and we're going to assume that you have at least some familiarity with these. If these are new to you, or you need a refresher, head over to {{< link path="/book/appendix/asynchronous-javascript/" title="" >}}.
+In this chapter, we'll use **async functions** to load the models, and we're going to assume that you have at least some familiarity with these. If these are new to you, or you need a refresher, head over to the [Asynchronous JavaScript]({{< relref "/book/appendix/asynchronous-javascript" >}} "Asynchronous JavaScript").
 
 {{% /aside %}}
 
 ## The `GLTFLoader` Plugin {#gltf-loader}
 
-To load glTF files, first, you need to add [the `GLTFLoader` plugin](https://threejs.org/docs/#examples/en/loaders/GLTFLoader) to your app. This works the same way as adding the {{< link path="/book/first-steps/camera-controls/#importing-plugins" title="`OrbitControls` plugin" >}}. You can find the loader in [_**examples/jsm/loaders/GLTFLoader.js**_](https://github.com/mrdoob/three.js/blob/dev/examples/jsm/loaders/GLTFLoader.js) on the repo, and we have also included this file in the editor. Go ahead and locate the file now.
+To load glTF files, first, you need to add [the `GLTFLoader` plugin](https://threejs.org/docs/#examples/en/loaders/GLTFLoader) to your app. This works the same way as adding the [`OrbitControls` plugin]({{< relref "/book/first-steps/camera-controls#importing-plugins" >}} "`OrbitControls` plugin"). You can find the loader in [_**examples/jsm/loaders/GLTFLoader.js**_](https://github.com/mrdoob/three.js/blob/dev/examples/jsm/loaders/GLTFLoader.js) on the repo, and we have also included this file in the editor. Go ahead and locate the file now.
 
 Importing and creating an instance of the loader works like this:
 
@@ -109,7 +107,7 @@ You can use one instance of the loader to load any number of glTF files.
 
 ### The `.load` and `.loadAsync` Methods
 
-All three.js loaders have two methods for loading files: the old callback-based [`.load`](https://threejs.org/docs/#examples/en/loaders/GLTFLoader.load) method, and the newer Promise based `.loadAsync` method. Again, refer to chapter {{< link path="/book/appendix/asynchronous-javascript/" title="A.5" >}} where we cover the difference between these two approaches in detail. Promises allow us to use async functions, which in turn results in much cleaner code, so throughout this book, we will always use `.loadAsync`.
+All three.js loaders have two methods for loading files: the old callback-based [`.load`](https://threejs.org/docs/#examples/en/loaders/GLTFLoader.load) method, and the newer Promise based `.loadAsync` method. Again, refer to chapter [A.5]({{< relref "/book/appendix/asynchronous-javascript" >}} "A.5") where we cover the difference between these two approaches in detail. Promises allow us to use async functions, which in turn results in much cleaner code, so throughout this book, we will always use `.loadAsync`.
 
 {{< code lang="js" linenos="false" caption="`GLTFLoader.loadAsync`" >}}
 const loader = new GLTFLoader();
@@ -123,13 +121,13 @@ The `await` keyword means "wait here until the model has loaded". If you have pr
 
 {{< code lang="js" linenos="false" caption="You can only use `await` inside an `async` function" >}}
 async function loadingSuccess() {
-  // inside an async function: OK!
-  await loader.loadAsync('yourModel.glb');
+// inside an async function: OK!
+await loader.loadAsync('yourModel.glb');
 }
 
 function loadingFail() {
-  // not inside an async function: ERROR!
-  await loader.loadAsync('yourModel.glb');
+// not inside an async function: ERROR!
+await loader.loadAsync('yourModel.glb');
 }
 {{< /code >}}
 
@@ -137,22 +135,23 @@ Another issue is that we cannot mark a constructor as async. A common solution t
 
 {{< code lang="js" linenos="false" caption="The constructor of a class cannot be `async`" >}}
 class Foobazzer {
-  constructor() {
-    // constructor cannot be async: ERROR!
-    await loader.loadAsync('yourModel.glb');
-  }
+constructor() {
+// constructor cannot be async: ERROR!
+await loader.loadAsync('yourModel.glb');
+}
 
-  async init() {
-    // inside an async function: OK!
-    await loader.loadAsync('yourModel.glb')
-  }
+async init() {
+// inside an async function: OK!
+await loader.loadAsync('yourModel.glb')
+}
 }
 {{< /code >}}
 
 This way, the constructor can handle the synchronous setup of the class, as usual, and then the init method will take over for asynchronous setup. We will use this approach, so we need to create a new `World.init` method.
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="We will create a new `World.init` method to handle asynchronous setup" >}}
-``` js
+
+```js
 class World {
   constructor() {
     // synchronous setup here
@@ -165,6 +164,7 @@ class World {
   }
 }
 ```
+
 {{< /code >}}
 
 Go ahead and add an empty `.init` method to World now, and make sure you mark it `async`. Splitting the setup into synchronous and asynchronous stages like this gives us full control over the setup of our app. In the synchronous stage, we will create everything that doesn't rely on loaded assets, and in the asynchronous stage, we'll create everything that does.
@@ -178,7 +178,6 @@ Over in _**main.js**_, first, we must also mark the main function as async. This
 Now we can call both stages of setting up the World app. First, the synchronous constructor, as usual, then the new `.init` method to handle asynchronous tasks.
 
 {{< code file="worlds/first-steps/load-models/src/main.final.js" from="3" to="15" lang="js" linenos="true" hl_lines="8 11" caption="_**main.js**_: call both synchronous and asynchronous stages of World setup" >}}{{< /code >}}
-
 
 ### Catch Errors
 
@@ -202,13 +201,13 @@ Now everything is set up and we can go ahead and load our first model. Open (or 
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 async function loadBirds() {
-  const loader = new GLTFLoader();
+const loader = new GLTFLoader();
 }
 
 export { loadBirds };
 {{< /code >}}
 
-The structure of this new module should be familiar to you since it's the same as nearly {{< link path="/book/first-steps/world-app/#systems-and-components" title="every other component we have created so far" >}}. The only difference is the `async` keyword.
+The structure of this new module should be familiar to you since it's the same as nearly [every other component we have created so far]({{< relref "/book/first-steps/world-app#systems-and-components" >}} "every other component we have created so far"). The only difference is the `async` keyword.
 
 Over in World, update the list of imports:
 
@@ -220,11 +219,11 @@ Now, we're ready to load the _**Parrot.glb**_ file using `.loadAsync`. Once you 
 
 {{< code lang="js" linenos="" linenostart="3" caption="_**birds.js**_: load the Parrot" >}}
 async function loadBirds() {
-  const loader = new GLTFLoader();
+const loader = new GLTFLoader();
 
-  const parrotData = await loader.loadAsync('/assets/models/Parrot.glb');
+const parrotData = await loader.loadAsync('/assets/models/Parrot.glb');
 
-  console.log('Squaaawk!', parrotData);
+console.log('Squaaawk!', parrotData);
 }
 {{< /code >}}
 
@@ -232,7 +231,7 @@ Next, call the `loadBirds` in `World.init`:
 
 {{< code lang="js" linenos="" linenostart="36" caption="_**World.js**_: load the birds!" >}}
 async init() {
-  await loadBirds();
+await loadBirds();
 }
 {{< /code >}}
 
@@ -242,14 +241,14 @@ We need to take a deeper look at the data we have just loaded before we can add 
 
 {{< code lang="js" linenos="false" caption="Data return by the `GLTFLoader`" >}}
 {
-  animations: [AnimationClip]
-  asset: {generator: "Khronos Blender glTF 2.0 I/O", version: "2.0"}
-  cameras: []
-  parser: GLTFParser {json: {…}, extensions: {…}, options: {…}, cache: {…}, primitiveCache: {…}, …}
-  scene: Scene {uuid: "1CF93318-696B-4411-B672-4C12C46DF7E1", name: "Scene", type: "Scene", parent: null, children: Array(0), …}
-  scenes: [Scene]
-  userData: {}
-  __proto__: Object
+animations: [AnimationClip]
+asset: {generator: "Khronos Blender glTF 2.0 I/O", version: "2.0"}
+cameras: []
+parser: GLTFParser {json: {…}, extensions: {…}, options: {…}, cache: {…}, primitiveCache: {…}, …}
+scene: Scene {uuid: "1CF93318-696B-4411-B672-4C12C46DF7E1", name: "Scene", type: "Scene", parent: null, children: Array(0), …}
+scenes: [Scene]
+userData: {}
+**proto**: Object
 }
 {{< /code >}}
 
@@ -257,13 +256,13 @@ We need to take a deeper look at the data we have just loaded before we can add 
 TODO-LOW: convert list to table without header
 {{% /note %}}
 
-* **`gltfData.animations`** is an array of animation clips. Here, there's a flying animation. We'll make use of this {{< link path="/book/first-steps/animation-system/" title="in the next chapter" >}}.
-* **`gltfData.assets`** contains metadata showing this glTF file was created using the [Blender](https://www.blender.org/) exporter.
-* **`gltfData.cameras`** is an array of cameras. This file doesn't contain any cameras, so the array is empty.
-* **`gltfData.parser`** contains technical details about the `GLTFLoader`.
-* **`gltfData.scene`** is a {{< link path="/book/first-steps/organizing-with-group/#hello-group" title="`Group`" >}} containing any meshes from the file. **This is where we'll find the parrot model.**
-* **`gltfData.scenes`**: The glTF format supports storing multiple scenes in a single file. In practice, this feature is rarely used.
-* **`gltfData.userData`** may contain additional non-standard data.
+- **`gltfData.animations`** is an array of animation clips. Here, there's a flying animation. We'll make use of this [in the next chapter]({{< relref "/book/first-steps/animation-system" >}} "in the next chapter").
+- **`gltfData.assets`** contains metadata showing this glTF file was created using the [Blender](https://www.blender.org/) exporter.
+- **`gltfData.cameras`** is an array of cameras. This file doesn't contain any cameras, so the array is empty.
+- **`gltfData.parser`** contains technical details about the `GLTFLoader`.
+- **`gltfData.scene`** is a [`Group`]({{< relref "/book/first-steps/organizing-with-group#hello-group" >}} "`Group`") containing any meshes from the file. **This is where we'll find the parrot model.**
+- **`gltfData.scenes`**: The glTF format supports storing multiple scenes in a single file. In practice, this feature is rarely used.
+- **`gltfData.userData`** may contain additional non-standard data.
 
 _`__proto__` is a standard property that every JavaScript object has, you can ignore that._
 
@@ -291,15 +290,15 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { setupModel } from './setupModel.js';
 
 async function loadBirds() {
-  const loader = new GLTFLoader();
+const loader = new GLTFLoader();
 
-  const parrotData = await loader.loadAsync('/assets/models/Parrot.glb');
+const parrotData = await loader.loadAsync('/assets/models/Parrot.glb');
 
-  console.log('Squaaawk!', parrotData);
+console.log('Squaaawk!', parrotData);
 
-  const parrot = setupModel(parrotData);
+const parrot = setupModel(parrotData);
 
-  return { parrot }
+return { parrot }
 }
 {{< /code >}}
 
@@ -307,7 +306,7 @@ async function loadBirds() {
 
 At this point, we have the unprocessed loaded data within the `setupModel` function. The next step is to extract the model, and then do any processing to prepare it for use. The amount of work we need to do here depends on the model, and what we want to do with it. Here, all we need to do is extract the mesh, but in the next chapter, we'll have a bit more work to do as we connect the animation clip to the mesh.
 
-Look at the loaded data in the console again, and expand the `gltfData.scene`. This a {{< link path="/book/first-steps/organizing-with-group/#hello-group" title="`Group`" >}}, and any meshes that are in the file will be {{< link path="/book/first-steps/transformations/#the-scene-graph" title="children of the group" >}}. These can be accessed using the {{< link path="/book/first-steps/transformations/#accessing-a-scene-objects-children" title="`group.children`" >}} array. If you look inside there, you'll see that `glTF.scene.children` has only one object inside it, so that must be our parrot model.
+Look at the loaded data in the console again, and expand the `gltfData.scene`. This a [`Group`]({{< relref "/book/first-steps/organizing-with-group#hello-group" >}} "`Group`"), and any meshes that are in the file will be [children of the group]({{< relref "/book/first-steps/transformations#the-scene-graph" >}} "children of the group"). These can be accessed using the [`group.children`]({{< relref "/book/first-steps/transformations#accessing-a-scene-objects-children" >}} "`group.children`") array. If you look inside there, you'll see that `glTF.scene.children` has only one object inside it, so that must be our parrot model.
 
 Using this knowledge, we can finish the `setupModel` function:
 
@@ -322,16 +321,17 @@ _Note B: you could also just add the `gltf.scene` to your scene since it's a gro
 Over in World, `loadBirds` now returns the parrot mesh and you can add it to the scene:
 
 {{< code lang="js" linenos="" hl_lines="35 37" linenostart="34" caption="_**World.js**_: add the mesh to the scene" >}}
-  async init() {
-    const { parrot } = await loadBirds();
+async init() {
+const { parrot } = await loadBirds();
 
     scene.add(parrot);
-  }
+
+}
 {{< /code >}}
 
 ## Load the Other Two Birds
 
-You can use a single instance of the `GLTFLoader` to load any number of files. When performing multiple asynchronous operations with async functions, you should (in most cases) use `Promise.all`. We go into the reason for this in more detail {{< link path="/book/appendix/asynchronous-javascript/#loading-multiple-files-with-async-functions-first-attempt" title="in the appendix" >}}, but here's the short version.
+You can use a single instance of the `GLTFLoader` to load any number of files. When performing multiple asynchronous operations with async functions, you should (in most cases) use `Promise.all`. We go into the reason for this in more detail [in the appendix]({{< relref "/book/appendix/asynchronous-javascript#loading-multiple-files-with-async-functions-first-attempt" >}} "in the appendix"), but here's the short version.
 
 First, here's the obvious way of loading the other two files:
 
@@ -351,38 +351,40 @@ There's a problem with this approach. [As we stated above](#set-up-main-js-and-w
 Instead, we want all three files to load at the same time, and the simplest way of doing this is to use `Promise.all`.
 
 {{< code lang="js" linenos="" linenostart="8" hl_lines="" caption="_**birds.js**_: load the other two file using `Promise.all`" >}}
-``` js
+
+```js
 const [parrotData, flamingoData, storkData] = await Promise.all([
-  loader.loadAsync('/assets/models/Parrot.glb'),
-  loader.loadAsync('/assets/models/Flamingo.glb'),
-  loader.loadAsync('/assets/models/Stork.glb'),
+  loader.loadAsync("/assets/models/Parrot.glb"),
+  loader.loadAsync("/assets/models/Flamingo.glb"),
+  loader.loadAsync("/assets/models/Stork.glb"),
 ]);
 ```
+
 {{< /code >}}
 
 Then we can process each file's loaded data using the `setupModel` function. Once we do that, here's our (nearly complete) `loadModels` function:
 
 {{< code lang="js" linenos="" hl_lines="8-12 17-18 22 23" linenostart="5" caption="_**birds.js**_: load and then process multiple glTF files" >}}
 async function loadBirds() {
-  const loader = new GLTFLoader();
+const loader = new GLTFLoader();
 
-  const [parrotData, flamingoData, storkData] = await Promise.all([
-    loader.loadAsync('/assets/models/Parrot.glb'),
-    loader.loadAsync('/assets/models/Flamingo.glb'),
-    loader.loadAsync('/assets/models/Stork.glb'),
-  ]);
+const [parrotData, flamingoData, storkData] = await Promise.all([
+loader.loadAsync('/assets/models/Parrot.glb'),
+loader.loadAsync('/assets/models/Flamingo.glb'),
+loader.loadAsync('/assets/models/Stork.glb'),
+]);
 
-  console.log('Squaaawk!', parrotData);
+console.log('Squaaawk!', parrotData);
 
-  const parrot = setupModel(parrotData);
-  const flamingo = setupModel(flamingoData);
-  const stork = setupModel(storkData);
+const parrot = setupModel(parrotData);
+const flamingo = setupModel(flamingoData);
+const stork = setupModel(storkData);
 
-  return {
-    parrot,
-    flamingo,
-    stork,
-  };
+return {
+parrot,
+flamingo,
+stork,
+};
 }
 {{< /code >}}
 
@@ -390,9 +392,9 @@ Over in World, you now have all three models. Add them to your scene:
 
 {{< code lang="js" linenos="" linenostart="36" caption="_**World.js**_: add the second two birds to the scene" >}}
 async init() {
-  const { parrot, flamingo, stork } = await loadBirds();
+const { parrot, flamingo, stork } = await loadBirds();
 
-  scene.add(parrot, flamingo, stork);
+scene.add(parrot, flamingo, stork);
 }
 {{< /code >}}
 
@@ -416,7 +418,7 @@ The _**birds.js**_ module is now complete. Here's the final code:
 
 ### Center the Camera on the Parrot
 
-The very last thing we'll do is {{< link path="/book/first-steps/camera-controls/#manually-set-the-target" title="adjust the `OrbitControls` target" >}}. Currently, this is in its default position, the center of the scene. Now that we have moved the birds into formation, this ends up being somewhere around the tail of the parrot. It would look better if the camera focused on the center of the bird rather than its tail. We can easily set this up by copying the `parrot.position` into `controls.target`. However, to do so, we need to access `controls` within `.init`, so first, let's convert it to a module-scoped variable.
+The very last thing we'll do is [adjust the `OrbitControls` target]({{< relref "/book/first-steps/camera-controls#manually-set-the-target" >}} "adjust the `OrbitControls` target"). Currently, this is in its default position, the center of the scene. Now that we have moved the birds into formation, this ends up being somewhere around the tail of the parrot. It would look better if the camera focused on the center of the bird rather than its tail. We can easily set this up by copying the `parrot.position` into `controls.target`. However, to do so, we need to access `controls` within `.init`, so first, let's convert it to a module-scoped variable.
 
 {{< code from="11" to="15" file="worlds/first-steps/load-models/src/World/World.final.js" lang="js" linenos="true" hl_lines="12" caption="_**World.js**_: make `controls` a module scoped variable" >}}{{< /code >}}
 
@@ -433,6 +435,7 @@ Next up, we'll introduce the three.js animation system and show you how to play 
 ## Challenges
 
 {{% aside success %}}
+
 ### Easy
 
 1. Look at that parrot hogging the limelight! Switch around the bird's positions to give the stork and the flamingo each a turn in leading the flock.
@@ -442,13 +445,15 @@ Next up, we'll introduce the three.js animation system and show you how to play 
 {{% /aside %}}
 
 {{% aside %}}
+
 ### Medium
 
-1. Add a `<button>` element with the text _Switch Focus_. Whenever you click this button, the camera should focus on the next bird. You can implement this however you like, but, if you want to do it in keeping with our work so far, you should set up the buttons inside _**main.js**_ and then {{< link path="/book/first-steps/world-app/#the-world-interface" title="expand the World class interface" >}} with a method to move focus onto the next bird. You can call this method `World.focusNext` or something similar.
+1. Add a `<button>` element with the text _Switch Focus_. Whenever you click this button, the camera should focus on the next bird. You can implement this however you like, but, if you want to do it in keeping with our work so far, you should set up the buttons inside _**main.js**_ and then [expand the World class interface]({{< relref "/book/first-steps/world-app#the-world-interface" >}} "expand the World class interface") with a method to move focus onto the next bird. You can call this method `World.focusNext` or something similar.
 
 {{% /aside %}}
 
 {{% aside warning %}}
+
 ### Hard
 
 1. Once you have implemented the button above, you'll have three camera views, one for each bird. Add a fourth view which is a zoomed-out overview of the scene that allows you to see all three birds. For this fourth view, you may need to adjust the `camera.position` as well as the `controls.target`.

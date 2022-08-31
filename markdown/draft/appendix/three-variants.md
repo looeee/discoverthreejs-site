@@ -1,16 +1,16 @@
 ---
-title: 'How to Choose the Correct three.js Core Variant'
+title: "How to Choose the Correct three.js Core Variant"
 description: "There are three variants of the core three.js code, and two versions of each plugin. We'll take a look at how to choose the one you need here."
 date: 2018-04-02
 weight: 9
-chapter: '0.8'
+chapter: "0.8"
 available: true
 draft: true
 ---
 
 # How to Choose the Correct three.js Core Variant
 
-As we saw in {{< link path="//book/introduction/get-threejs/" title="" >}}, the three.js core comes in three versions, each contained in a single file. You can find these in the _**build/**_ folder [in the repo](https://github.com/mrdoob/three.js/tree/master/build):
+As we saw in [earlier]({{< relref "//book/introduction/get-threejs" >}} "earlier"), the three.js core comes in three versions, each contained in a single file. You can find these in the _**build/**_ folder [in the repo](https://github.com/mrdoob/three.js/tree/master/build):
 
 - _**three.js**_
 - _**three.min.js**_
@@ -33,8 +33,8 @@ In short, _**three.module.js**_ is the modern version of three.js, while _**thre
 
 To put it in more technical terms:
 
-* _**three.module.js**_ is an ES6 module.
-* _**three.js**_ and _**three.min.js**_ are ES5 legacy files.
+- _**three.module.js**_ is an ES6 module.
+- _**three.js**_ and _**three.min.js**_ are ES5 legacy files.
 
 To understand what this means, we need to learn some history of JavaScript, what the terms ES5 and ES6 means, and what JavaScript modules are.
 
@@ -60,9 +60,9 @@ Note that the naming conventions are a bit confused, and in particular the terms
 
 Perhaps **the most important new feature added in the ES6 release was the ability to split our code up into small modules** (hence the name _three.**module**.js_). In old-style JavaScript we would have to write everything in one huge file, sometimes thousands of lines long, or use a non-standard solution such as [browserify](http://browserify.org/).
 
-Since the introduction of modules, we can  easily break our app into small, modular components, which is a huge improvement in code style.
+Since the introduction of modules, we can easily break our app into small, modular components, which is a huge improvement in code style.
 
-If you are not familiar with ES6 modules, now would be a good time to look over {{< link path="/book/appendix/javascript-modules" title="" >}} in the appendix.
+If you are not familiar with ES6 modules, now would be a good time to look over the [Modules Reference]({{< relref "/book/appendix/javascript-modules" >}} "Modules Reference") in the appendix.
 
 {{% /aside %}}
 
@@ -86,7 +86,7 @@ Fortunately, in these cases, we can get the best of both worlds. **We can write 
 
 This automatic conversion is split into two parts:
 
-####  1. Bundle the Modules into a Single Script
+#### 1. Bundle the Modules into a Single Script
 
 First, we need to **_bundle_ the separate modules that make up our code into a single script**. Tools that perform this step are called **bundlers**. The most popular of these are [Webpack](https://webpack.js.org/), [Parcel](https://parceljs.org/) and [rollup.js](https://rollupjs.org/guide/en/).
 
@@ -113,19 +113,21 @@ Closely related to JavaScript modules is the concept of **browser modules**. The
 To do this, we need to add a type attribute to the script tag:
 
 {{< code lang="html" linenos="false" hl_lines="" >}}
+
 <script type="module">
   // here, we can use ES6 modules directly without bundling
 </script>
+
 {{< /code >}}
 
-Refer to {{< link path="/book/appendix/javascript-modules" title="" >}} in the appendix for more details on how browser modules work.
+Refer to the [Modules Reference]({{< relref "/book/appendix/javascript-modules" >}} "Modules Reference") in the appendix for more details on how browser modules work.
 
 ## How to Use the Module Based Variant: _**three.module.js**_
 
 _**three.module.js**_ is a **JavaScript Module**. This means that we use it with the [`import` keyword](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import), either by importing the entire core under the `THREE` _namespace_:
 
 {{< code lang="js" linenos="false" hl_lines="" >}}
-import * as THREE from './build/three.module.js';
+import \* as THREE from './build/three.module.js';
 
 // later
 const geometry = new THREE.BoxBufferGeometry();
@@ -135,8 +137,8 @@ const geometry = new THREE.BoxBufferGeometry();
 
 {{< code lang="js" linenos="false" hl_lines="" >}}
 import {
-  BoxBufferGeometry,
-  CylinderBufferGeometry,
+BoxBufferGeometry,
+CylinderBufferGeometry,
 } from './build/three.module.js';
 
 // later
@@ -153,11 +155,12 @@ const controls = new OrbitControls();
 
 Note that we are including the `.js` part of the file name when using `import`. **This is required for browser modules to work**.
 
-## How to Use the Old-School Variants:  _**three.js**_ and _**three.min.js**_
+## How to Use the Old-School Variants: _**three.js**_ and _**three.min.js**_
 
 For historical purposes, here is how to use the legacy _**three.js**_ and _**three.min.js**_ files. These files must be included via a `<script>` tag in your HTML file:
 
 {{< code lang="html" linenos="false" hl_lines="" >}}
+
 <!-- The three.js core -->
 <script src="build/three.js"></script>
 
@@ -166,6 +169,7 @@ For historical purposes, here is how to use the legacy _**three.js**_ and _**thr
 
 <!-- main.js contains our app -->
 <script src="src/main.js"></script>
+
 {{< /code >}}
 
 Once you've included the script correctly, the `THREE` namespace will be _globally available_ in all JavaScript scripts loaded _after_ the _**three.js**_ script:

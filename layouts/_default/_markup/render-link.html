@@ -1,8 +1,15 @@
 {{/*
   Customise links of the form [title](href) to include rel="noopener noreferrer"
 
-  TODO: check if this works correctly for inline link (within the book) and if so, remove the "link" shortcode
+  TODO: replace the "link" shortcode with refs - find and replace regex:
 
+  ^\{\{< link path="(.*?)" title="(.*?)" >\}\}
+
+  [$2]({{< relref "$1" >}}, "$2")
+
+  However all links need to be checked because the path="" format is not exactly the same
+
+  TODO: if no .Title set title="{{ .Text }}""
 */}}
 
 <a href="{{ .Destination | safeURL }}"{{ with .Title}} title="{{ . }}"{{ end }}{{ if strings.HasPrefix .Destination "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .Text | safeHTML }}</a>

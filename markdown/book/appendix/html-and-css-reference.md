@@ -1,20 +1,18 @@
 ---
-title: 'HTML and CSS Used in This Book'
+title: "HTML and CSS Used in This Book"
 description: "Here, we look more deeply at the HTML and CSS we used to create a simple web page for showcasing our three.js scenes. Even if you are new to web development, you should be able to get up to speed quickly."
 date: 2019-01-01
 weight: 9901
-chapter: 'A.1'
+chapter: "A.1"
 available: true
 prevURL: "/book/appendix/"
 prevTitle: "Appendices"
 showIDE: true
-IDEFiles: [
-  'styles/main.css',
-  'worlds/appendix/html-and-css-reference/index.html',
-]
+IDEFiles:
+  ["styles/main.css", "worlds/appendix/html-and-css-reference/index.html"]
 IDEClosedFolders: []
-IDEStripDirectory: 'worlds/appendix/html-and-css-reference/'
-IDEActiveDocument: 'index.html'
+IDEStripDirectory: "worlds/appendix/html-and-css-reference/"
+IDEActiveDocument: "index.html"
 IDESwitchImportsAllow: false
 ---
 
@@ -47,6 +45,7 @@ The building blocks of HTML are **elements**, **tags**, and **attributes**.
 The terms [**element**](https://developer.mozilla.org/en-US/docs/Glossary/Element) and **node** are used interchangeably and refer to a complete section of an HTML document. Here are some common examples:
 
 {{< code lang="html" linenos="false" caption="Some common HTML elements" >}}
+
 <h1>A heading element</h1>
 
 <p>A paragraph element.</p>
@@ -63,12 +62,14 @@ Some elements cannot be seen directly. For example, the `<html>`, `<head>`, and 
 Another very common element is `<div>`, which is used to mark an area of the page. `<div>` is the basic container element of HTML, and the average website is likely to have hundreds of these.
 
 {{< code lang="html" linenos="false" caption="div elements define a section of the page" >}}
+
 <div></div>
 {{< /code >}}
 
 HTML documents are created by nesting elements inside each other.
 
 {{< code lang="html" linenos="false" caption="Elements can be nested" >}}
+
 <div>
   <h1>A heading element</h1>
 </div>
@@ -87,6 +88,7 @@ The `<p>` element has a further `<a>` (anchor) element nested inside it. Anchor 
 With just the above elements, we can create a basic HTML document.
 
 {{< code lang="html" linenos="false" caption="A minimal HTML document" >}}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -135,7 +137,6 @@ The two most common attributes are [`id`](https://developer.mozilla.org/en-US/do
 
 Here is a button with an ID:
 
-
 {{< code lang="html" linenos="false" caption="A button with an ID attribute" >}}
 <button id="close-button">Click here to close!</button>
 {{< /code >}}
@@ -143,6 +144,7 @@ Here is a button with an ID:
 Here, we can use the `close-button` ID within our CSS file to change the appearance of the button, and within JavaScript, we might add a function to control what happens when the button is clicked.
 
 {{< code lang="html" linenos="false" caption="Two elements with the same class attribute" >}}
+
 <h1 class="notice">A heading you want to stand out.</h1>
 
 <p class="notice">Some text you want to stand out.</p>
@@ -155,6 +157,7 @@ Classes are not unique. You can have any number of elements with a `.notice` cla
 As well as connecting CSS styling to an element using IDs and classes, you can use the `style` attribute to attach inline styles directly to an element. For example, here we have set the text color for a single paragraph element to `skyblue`:
 
 {{< code lang="html" linenos="false" caption="An inline style declaration" >}}
+
 <p style="color: skyblue;">This text will be red.</p>
 {{< /code >}}
 
@@ -173,6 +176,7 @@ Anchor elements can lead to external sites, other pages on the same site, or eve
 Another common use case for the `href` attribute is to connect a CSS files using the [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) element.
 
 {{< code lang="html" linenos="false" caption="A link element referencing the main stylesheet" >}}
+
 <link href="/styles/main.css" rel="stylesheet">
 {{< /code >}}
 
@@ -191,7 +195,9 @@ Similar to the `href` attribute, the `src` attribute points to a resource in ano
 More importantly for us in this book, we can also use the `src` attribute to link to JavaScript files using the [`<script>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script):
 
 {{< code lang="html" linenos="false" caption="A script element referencing a JavaScript file" >}}
+
 <script src="main.js"></script>
+
 {{< /code >}}
 
 #### The `module` Attribute
@@ -199,7 +205,9 @@ More importantly for us in this book, we can also use the `src` attribute to lin
 We'll be writing our JavaScript using ES6 modules in this book (more on those in the following chapter), so we need to add one more attribute to our script tag:
 
 {{< code lang="html" linenos="false" caption="A script element referencing a JavaScript module" >}}
+
 <script type="module" src="main.js"></script>
+
 {{< /code >}}
 
 Now the browser knows we are using JavaScript modules and it can interpret the `main.js` file correctly.
@@ -209,6 +217,7 @@ Now the browser knows we are using JavaScript modules and it can interpret the `
 Every webpage starts with these two elements. These simply inform any interested parties (such as a web browser) that this is an HTML document.
 
 {{< code lang="html" linenos="false" caption="Defining an HTML document" >}}
+
 <!DOCTYPE html>
 <html>
   <!-- You page goes here -->
@@ -222,6 +231,7 @@ Incidentally, here's how you write a comment in HTML: `<!-- You page goes here -
 Inside the `<html>` element, there are two sub-elements called `<head>` and `<body>`.
 
 {{< code lang="html" linenos="false" caption="The head element contains metadata and the body contains the content" >}}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -238,6 +248,7 @@ The `<head>` element is the place where we put metadata. This can include instru
 Every example in this book will use the same `<head>` section:
 
 {{< code lang="html" linenos="false" caption="The head section of our minimal web page" >}}
+
 <head>
   <title>Discoverthreejs.com</title>
 
@@ -280,6 +291,7 @@ The `<body>` element (mostly) contains things that we want to see in the browser
 Here, we have created a heading and a paragraph.
 
 {{< code lang="html" linenos="false" caption="The body element containing a title and some text" >}}
+
 <body>
   <h1>
     Rock, Shake, Rattle and Roll!
@@ -334,11 +346,11 @@ First, we can set styles for an element such as `<p>`, `<h1>` or `<div>`, in whi
 
 {{< code lang="css" linenos="false" caption="Style for paragraphs and the largest heading size" >}}
 p {
-  color: red;
+color: red;
 }
 
 h1 {
-  color: blue;
+color: blue;
 }
 {{< /code >}}
 
@@ -347,6 +359,7 @@ h1 {
 Next, we can define CSS classes that correspond to the HTML `class` attribute we described above. Suppose we have some paragraphs of text in our HTML file, some of which have a `notice` class applied:
 
 {{< code lang="html" linenos="false" caption="Styling all paragraphs with the 'notice' class" >}}
+
 <p class="notice">Some text that you want to stand out.</p>
 
 <p>Some normal text.</p>
@@ -360,13 +373,14 @@ Here, we'll make the text red once again:
 
 {{< code lang="css" linenos="false" caption="Set text color of all elements with the 'notice' class" >}}
 .notice {
-  color: red
+color: red
 }
 {{< /code >}}
 
 But this time, only the first and third paragraphs will become red, while the middle one will remain black. We can add the notice class to any element, not just `<p>`. Here, the first `<h2>` element will also have red text:
 
 {{< code lang="html" linenos="false" caption="You can use a class with any type of element" >}}
+
 <h2 class="notice">A very important heading</h2>
 
 <h2>A heading of normal import</h2>
@@ -386,7 +400,7 @@ This time, just to be different, let's give our close button a red border:
 
 {{< code lang="css" linenos="false" caption="Define styles for the 'close-button' ID" >}}
 #close-button {
-  border: 1px solid red;
+border: 1px solid red;
 }
 {{< /code >}}
 
@@ -397,6 +411,7 @@ Now, we are ready to fill in the details of our _**index.html**_ and _**styles/m
 ### _**index.html**_
 
 {{< code lang="html" linenos="false" caption="Our index.html file" >}}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -409,6 +424,7 @@ Now, we are ready to fill in the details of our _**index.html**_ and _**styles/m
     <link href="./styles/main.css" rel="stylesheet" type="text/css">
 
     <script type="module" src="./src/main.js"></script>
+
   </head>
   <body>
     <h1>Discoverthreejs.com - HTML and CSS Used in This Book</h1>
@@ -416,13 +432,14 @@ Now, we are ready to fill in the details of our _**index.html**_ and _**styles/m
     <div id="scene-container">
       <!-- Our <canvas> will be inserted here -->
     </div>
+
   </body>
 </html>
 {{< /code >}}
 
 Take a look at the `<div id="scene-container">`. We will use three.js to automatically create a `<canvas>` element, and then we'll use JavaScript to insert it with this `<div>`. Most of the examples in this book will take up the whole page, so we will use some CSS to make this element the correct size.
 
-### _**main.css**_
+### _**main.css**_ {#main-css}
 
 Within our CSS file, we want to make sure that the `<body>` element takes up the whole screen, that the `<div id="scene-container">` element fills the whole body, and that the `<h1>` heading gets drawn on top of the `<canvas>` and not underneath it. Aside from that, we'll to set the `color` of our heading text, and center it near the top of the screen... and that's about it. Here's what we need to put inside the _**main.css**_ style sheet to achieve all that:
 

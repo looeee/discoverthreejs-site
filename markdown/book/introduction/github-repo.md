@@ -1,13 +1,11 @@
 ---
-title: 'three.js on GitHub - Where the Magic Happens'
+title: "three.js on GitHub - Where the Magic Happens"
 description: "three.js is build by a passionate group of open-source developers on the three.js GitHub repo. Everything officially related to the three.js project is kept here, and there's LOADS of free stuff too."
 date: 2018-04-02
 weight: 5
-chapter: '0.4'
+chapter: "0.4"
 available: true
 ---
-
-
 
 # three.js on GitHub - Where the Magic Happens {#github}
 
@@ -25,7 +23,7 @@ The [_**build/**_ folder](https://github.com/mrdoob/three.js/tree/dev/build) is 
 
 **This is the only file you need to run a basic three.js app.**
 
-_**.module**_ in the filename tells us that this is a {{< link path="/book/appendix/javascript-modules/" title="JavaScript module" >}}. In this folder, there are also two legacy versions of the three.js core that you can use if you want to support outdated browsers that can't use modules:
+_**.module**_ in the filename tells us that this is a [JavaScript module]({{< relref "/book/appendix/javascript-modules" >}} "JavaScript module"). In this folder, there are also two legacy versions of the three.js core that you can use if you want to support outdated browsers that can't use modules:
 
 - _**build/three.js**_
 - _**build/three.min.js**_

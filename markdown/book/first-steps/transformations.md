@@ -6,26 +6,25 @@ weight: 105
 chapter: "1.5"
 available: true
 showIDE: true
-IDEFiles:   [
-  "worlds/first-steps/transformations/src/World/components/camera.js",
-  "worlds/first-steps/transformations/src/World/components/cube.js",
-  "worlds/first-steps/transformations/src/World/components/lights.js",
-  "worlds/first-steps/transformations/src/World/components/scene.js",
-  "worlds/first-steps/transformations/src/World/systems/renderer.js",
-  "worlds/first-steps/transformations/src/World/systems/Resizer.js",
-  "worlds/first-steps/transformations/src/World/World.js",
-  "worlds/first-steps/transformations/src/main.js",
-  "styles/main.css",
-  "vendor/three/build/three.module.js",
-  "worlds/first-steps/transformations/index.html",
-]
-IDEClosedFolders: ['systems', 'styles', 'vendor']
-IDEStripDirectory: 'worlds/first-steps/transformations/'
-IDEActiveDocument: 'src/World/components/cube.js'
+IDEFiles:
+  [
+    "worlds/first-steps/transformations/src/World/components/camera.js",
+    "worlds/first-steps/transformations/src/World/components/cube.js",
+    "worlds/first-steps/transformations/src/World/components/lights.js",
+    "worlds/first-steps/transformations/src/World/components/scene.js",
+    "worlds/first-steps/transformations/src/World/systems/renderer.js",
+    "worlds/first-steps/transformations/src/World/systems/Resizer.js",
+    "worlds/first-steps/transformations/src/World/World.js",
+    "worlds/first-steps/transformations/src/main.js",
+    "styles/main.css",
+    "vendor/three/build/three.module.js",
+    "worlds/first-steps/transformations/index.html",
+  ]
+IDEClosedFolders: ["systems", "styles", "vendor"]
+IDEStripDirectory: "worlds/first-steps/transformations/"
+IDEActiveDocument: "src/World/components/cube.js"
 membershipLevel: free
 ---
-
-
 
 # Transformations, Coordinate Systems, and the Scene Graph
 
@@ -61,19 +60,19 @@ On the other hand, if all this talk of mathematics sounds daunting, or if you fi
 
 **Whenever we move objects around in 3D space, we do so using mathematical operations called _transformations_**. We've already seen two kinds of transformation: **translation**, stored in an object's [`.position`](https://threejs.org/docs/#api/en/core/Object3D.position) property, and **rotation**, stored in the [`.rotation`](https://threejs.org/docs/#api/en/core/Object3D.rotation) property. Along with **scaling**, stored in the [`.scale`](https://threejs.org/docs/#api/en/core/Object3D.scale) property, these make up the three fundamental transformations that we'll use to move objects around in our scenes. We'll sometimes refer to transform, rotate, and scale using their initials, **TRS**.
 
-Every object we can add to the scene using `scene.add` has these properties, including meshes, lights, and cameras, while materials and geometries do not. We previously used `.position` to {{< link path="/book/first-steps/first-scene/#position-camera" title="set the position of our camera" >}}:
+Every object we can add to the scene using `scene.add` has these properties, including meshes, lights, and cameras, while materials and geometries do not. We previously used `.position` to [set the position of our camera]({{< relref "/book/first-steps/first-scene#position-camera" >}} "set the position of our camera"):
 
 {{< code lang="js" linenos="false" caption="Our First Scene: _**main.js**_" >}}
 camera.position.set(0, 0, 10);
 {{< /code >}}
 
-... and also to {{< link path="/book/first-steps/physically-based-rendering/#position-the-light" title="set the position of the directional light" >}}:
-
+... and also to [set the position of the directional light]({{< relref "/book/first-steps/physically-based-rendering#position-the-light" >}} "set the position of the directional light"):
+[set the position of the directional light]({{< relref "/book/first-steps/physically-based-rendering#position-the-light" >}} "set the position of the directional light")
 {{< code lang="js" linenos="false" caption="Physically Based Rendering: _**lights.js**_" >}}
 light.position.set(10, 10, 10);
 {{< /code >}}
 
-In the last chapter {{< link path="/book/first-steps/physically-based-rendering/#rotate-the-cube" title="we used `.rotation` to get a better view of our cube" >}}:
+In the last chapter [we used `.rotation` to get a better view of our cube]({{< relref "/book/first-steps/physically-based-rendering#rotate-the-cube" >}} "we used `.rotation` to get a better view of our cube"):
 
 {{< code lang="js" linenos="false" caption="Physically Based Rendering: _**cube.js**_" >}}
 cube.rotation.set(-0.5, -0.1, 0.8);
@@ -89,18 +88,20 @@ Using the word **transformation** in this way might seem strange to you. In comm
 
 ## The `Object3D` Base Class
 
-Rather than redefining the `.position`, `.rotation`, and `.scale` properties many times for each type of object, these properties are defined once on the [`Object3D`](https://threejs.org/docs/#api/en/core/Object3D) base class, then all the other classes that can be added to the scene {{< link path="/book/appendix/javascript-reference/#class-inheritance-and-the-extends-keyword" title="derive from this base class" >}}. That includes things like meshes, cameras, lights, points, lines, helpers, and even the scene itself. We'll informally refer to classes derived from `Object3D` as _scene objects_.
+Rather than redefining the `.position`, `.rotation`, and `.scale` properties many times for each type of object, these properties are defined once on the [`Object3D`](https://threejs.org/docs/#api/en/core/Object3D) base class, then all the other classes that can be added to the scene [derive from this base class]({{< relref "/book/appendix/javascript-reference#class-inheritance-and-the-extends-keyword" >}} "derive from this base class"). That includes things like meshes, cameras, lights, points, lines, helpers, and even the scene itself. We'll informally refer to classes derived from `Object3D` as _scene objects_.
 
 `Object3D` has many properties and methods besides these three, inherited by every scene object. This means positioning and setting up a camera or a mesh works in much the same way as setting up a light or the scene. Additional properties are then added to scene objects as needed, so lights get color and intensity settings, the scene gets a background color, meshes get a material and geometry, and so on.
 
 ## The Scene Graph
 
-Recall how we {{< link path="/book/first-steps/first-scene/#add-the-mesh-to-the-scene" title="add the mesh to scene" >}}:
+Recall how we [add the mesh to scene]({{< relref "/book/first-steps/first-scene#add-the-mesh-to-the-scene" >}} "add the mesh to scene"):
 
 {{< code lang="js" linenos="false" hl_lines="" caption="The `scene.add` method" >}}
-``` js
+
+```js
 scene.add(mesh);
 ```
+
 {{< /code >}}
 
 The `.add` method is also defined on `Object3D` and inherited by the scene class, just like `.position`, `.rotation`, and `.scale`. All other derived classes inherit this method too, giving us `light.add`, `mesh.add`, `camera.add` and so on. This means we can add objects to each other to create a tree structure with the scene at the top. This tree structure is known as the **scene graph**.
@@ -120,9 +121,11 @@ The scene is the top-level parent. The scene in the figure above has three child
 When we render the scene:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Render a frame" >}}
-``` js
+
+```js
 renderer.render(scene, camera);
 ```
+
 {{< /code >}}
 
 ... the renderer walks through the scene graph, starting with the scene, and uses the position, rotation, and scale of each object relative to its parent to figure out where to draw it.
@@ -176,7 +179,7 @@ We'll encounter several 2D and 3D coordinate systems while using three.js. Here,
 
 Our `scene` defines the world space coordinate system, and the center of the system is the point where the `X`, `Y` and, `Z` axes meet.
 
-Remember a couple of chapters ago, {{< link path="/book/first-steps/first-scene/#the-scene" title="when we first introduced the `Scene` class" >}}, we called it a "tiny universe"? This tiny universe _is_ world space.
+Remember a couple of chapters ago, [when we first introduced the `Scene` class]({{< relref "/book/first-steps/first-scene#the-scene" >}} "when we first introduced the `Scene` class"), we called it a "tiny universe"? This tiny universe _is_ world space.
 
 {{< figure src="first-steps/world_space_scene_graph.svg" caption="Objects added to the scene live within world space" class="medium right" lightbox="true" >}}
 
@@ -325,7 +328,6 @@ meshA.position.x = 5;
 meshB.position.x = 3;
 {{< /code >}}
 
-
 Calculating $A$'s position is easy since it's a direct child of the scene. We moved $A$ five units to the right along the $X$-axis, so its final position is $x=5, y=0, z = 0$, or $(5, 0, 0)$.
 
 When we move $A$, its local coordinate system moves with it, and we must take that into account when calculating the world space position of $B$. Since, $B$ is a child of $A$, this means it now starts at $(5, 0, 0)$ relative to world space. Next, we moved $B$ three units along the $X$-axis relative to $A$, so the final position of $B$ on the $X$-axis is $5 + 3 = 8$. This gives us the final position of $B$ in world space: $(8, 0, 0)$.
@@ -360,7 +362,7 @@ To fully describe an object's position, we need to store three pieces of informa
 
 We can write these three positions as an ordered list of numbers: $(x, y, z)$.
 
-Zero on all three axes is written $(0,0,0)$, and {{< link path="/book/first-steps/first-scene/#the-scene" title="as we mentioned previously" >}}, this point is known as **the origin**. **Every object starts at the origin within the coordinate system of its parent.**
+Zero on all three axes is written $(0,0,0)$, and [as we mentioned previously]({{< relref "/book/first-steps/first-scene#the-scene" >}} "as we mentioned previously"), this point is known as **the origin**. **Every object starts at the origin within the coordinate system of its parent.**
 
 A position one unit to the _right_ along the $X$-axis, two units _up_ along the $Y$-axis, and three units _out_ along the $Z$-axis is written $(1,2,3)$. A position two units _left_ along the $X$-axis, four units _down_ along the $Y$-axis, and eight units _in_ along the $Z$-axis is written $(-2,-4,-8)$.
 
@@ -392,7 +394,7 @@ TODO-DIAGRAM: add diagram of vector moving 0,0,0 -> 1,2,3
 
 ### The Unit of Translation is Meters
 
-When we perform the translation `mesh.position.x = 2`, we move the object **two three.js units to the right** along the $X$-axis, and {{< link path="/book/first-steps/physically-based-rendering/#create-physically-sized-scenes" title="as we mentioned previously" >}}, we'll always take one three.js unit to be equal to one meter.
+When we perform the translation `mesh.position.x = 2`, we move the object **two three.js units to the right** along the $X$-axis, and [as we mentioned previously]({{< relref "/book/first-steps/physically-based-rendering#create-physically-sized-scenes" >}} "as we mentioned previously"), we'll always take one three.js unit to be equal to one meter.
 
 ### Directions in World Space
 
@@ -402,21 +404,21 @@ Above we mentioned moving an object left or right on the $X$-axis, up or down on
 
 {{< clear >}}
 
-* The positive $X$-axis points to the _right_ of your screen.
-* The positive $Y$-axis points _up_, towards the top of your screen.
-* The positive $Z$-axis points _out_ of the screen towards you.
+- The positive $X$-axis points to the _right_ of your screen.
+- The positive $Y$-axis points _up_, towards the top of your screen.
+- The positive $Z$-axis points _out_ of the screen towards you.
 
 Then, when you move an object:
 
-* A positive translation on the $X$-axis moves the object to the _right_ on your screen.
-* A positive translation on the $Y$-axis moves the object _up_ towards the top of your screen.
-* A positive translation on the $Z$-axis moves the object _out_ towards you.
+- A positive translation on the $X$-axis moves the object to the _right_ on your screen.
+- A positive translation on the $Y$-axis moves the object _up_ towards the top of your screen.
+- A positive translation on the $Z$-axis moves the object _out_ towards you.
 
 When we put a minus sign into the translation, we reverse those directions:
 
-* A negative translation on the $X$-axis moves the object to the _left_ on your screen.
-* A negative translation on the $Y$-axis moves the object _down_ towards the bottom of your screen.
-* A negative translation on the $Z$-axis moves the object _in_, away from you.
+- A negative translation on the $X$-axis moves the object to the _left_ on your screen.
+- A negative translation on the $Y$-axis moves the object _down_ towards the bottom of your screen.
+- A negative translation on the $Z$-axis moves the object _in_, away from you.
 
 But of course, you can rotate the camera in any direction, in which case these directions will no longer hold. After all, what you see on your screen is the viewpoint of the camera. However, it's useful to be able to describe directions in world space using "normal" language, so we'll treat this camera position as the default view and continue to describe directions using this terminology, no matter where the camera happens to be.
 
@@ -483,7 +485,7 @@ Vectors can represent all kinds of things, not just translations. Any data that 
 2. **A length and direction within a coordinate system**.
 3. A list of numbers with no deeper mathematical meaning.
 
-Category two is the mathematical definition of a vector, and translation falls into this category.  Categories one and three are not technically vectors. However, it's useful to reuse the code within the vector classes so we'll turn a blind eye to this.
+Category two is the mathematical definition of a vector, and translation falls into this category. Categories one and three are not technically vectors. However, it's useful to reuse the code within the vector classes so we'll turn a blind eye to this.
 
 ## Our Second Transformation: Scaling
 
@@ -706,9 +708,9 @@ We won't get into rotation order further here. Usually, the only time you need t
 TODO-DIAGRAM: add degrees and radian diagram
 {{% /note %}}
 
-You may be familiar with expressing rotations using **degrees**. There are $360^{\circ}$ in a circle, $90^{\circ}$ in a right-angle, and so on. The {{< link path="/book/first-steps/first-scene/#field-of-view-fov" title="perspective camera's field of view" >}}, which we encountered earlier, is specified in degrees.
+You may be familiar with expressing rotations using **degrees**. There are $360^{\circ}$ in a circle, $90^{\circ}$ in a right-angle, and so on. The [perspective camera's field of view]({{< relref "/book/first-steps/first-scene#field-of-view-fov" >}} "perspective camera's field of view"), which we encountered earlier, is specified in degrees.
 
-However, **all other angles in three.js are specified using [_radians_](https://en.wikipedia.org/wiki/Radian) rather than _degrees_**. Instead of $360^{\circ}$ in a circle, there are $2\pi$ radians. Instead of  $90^{\circ}$ in a right-angle, there are $\frac{\pi}{2}$ radians. If you're comfortable using radians, great! As for the rest of us, we can use the [`.degToRad`](https://threejs.org/docs/#api/en/math/MathUtils.degToRad) utility to convert from degrees to radians.
+However, **all other angles in three.js are specified using [_radians_](https://en.wikipedia.org/wiki/Radian) rather than _degrees_**. Instead of $360^{\circ}$ in a circle, there are $2\pi$ radians. Instead of $90^{\circ}$ in a right-angle, there are $\frac{\pi}{2}$ radians. If you're comfortable using radians, great! As for the rest of us, we can use the [`.degToRad`](https://threejs.org/docs/#api/en/math/MathUtils.degToRad) utility to convert from degrees to radians.
 
 {{< code lang="js" linenos="false" caption="Converting degrees to radians" >}}
 import { MathUtils } from 'three';
@@ -754,7 +756,7 @@ Despite the issues we highlighted in this section, rotating object is generally 
 TODO-LOW: if non-targeted DirectionalLight is ever added revisit
 {{% /note %}}
 
-1. Not all objects can be rotated. For example, {{< link path="/book/first-steps/physically-based-rendering/#introducing-the-directionallight" title="the `DirectionalLight` we introduced in the last chapter" >}} cannot be rotated. The light shines _from_ a position, _towards_ a target, and the angle of the light is calculated from the target's position, not the `.rotation` property.
+1. Not all objects can be rotated. For example, [the `DirectionalLight` we introduced in the last chapter]({{< relref "/book/first-steps/physically-based-rendering#introducing-the-directionallight" >}} "the `DirectionalLight` we introduced in the last chapter") cannot be rotated. The light shines _from_ a position, _towards_ a target, and the angle of the light is calculated from the target's position, not the `.rotation` property.
 2. Angles in three.js are specified using radians, not degrees. The only exception is the [`PerspectiveCamera.fov`](https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.fov) property which uses degrees to match real-world photography conventions.
 
 ## Transformation Matrices
@@ -776,7 +778,7 @@ $$
 
 It has four rows and four columns, so it's a $4 \times 4$ matrix, and it's storing an object's complete transform which is why we refer to it as a **transformation matrix**. Once again, there is a three.js class to handle this type of mathematical object, called [`Matrix4`](https://threejs.org/docs/#api/en/math/Matrix4). There's also a class for $3\times3$ matrices called `Matrix3`. When the matrix has all ones on the [main diagonal](https://en.wikipedia.org/wiki/Main_diagonal) and zeros everywhere else like the one above, we call it the [**identity matrix**, $I$](https://en.wikipedia.org/wiki/Identity_matrix).
 
-Matrices are much more efficient for your CPU and GPU to work with than the individual transforms, and represents a compromise that gives us the best of both worlds. We humans can use the simpler `.position`, `.rotation`, and `.scale`, properties, then, whenever we call `.render`,  the renderer will update each object's matrices and use them for internal calculations.
+Matrices are much more efficient for your CPU and GPU to work with than the individual transforms, and represents a compromise that gives us the best of both worlds. We humans can use the simpler `.position`, `.rotation`, and `.scale`, properties, then, whenever we call `.render`, the renderer will update each object's matrices and use them for internal calculations.
 
 We'll spend a bit of time here going into how transformation matrices work, but if you're allergic to math, it's absolutely fine to skip this section (for now). You don't need a deep understanding of how matrices work to use three.js. You can stick with using `.position`, `.rotation`, and `.scale` and let three.js handle the matrices. On the other hand, if you're a mathematical wizard, working directly with the transformation matrix opens up a whole new range of opportunities.
 
@@ -785,23 +787,27 @@ We'll spend a bit of time here going into how transformation matrices work, but 
 Every object has, in fact, not one, but two transformation matrices. The first of these is the **local matrix**, which holds the combined `.position`, `.rotation`, and `.scale` of an object. The local matrix is stored in the [`Object3D.matrix`](https://threejs.org/docs/#api/en/core/Object3D.matrix) property. Every object that inherits from `Object3D` has this property.
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="When we create a mesh, a local transformation matrix is created automatically" >}}
-``` js
+
+```js
 // when we create a mesh
 const mesh = new Mesh();
 
 // ... internally, three.js creates a Matrix4 for us:
 mesh.matrix = new Matrix4();
 ```
+
 {{< /code >}}
 
 At this point, the matrix will look like the identity matrix above, with ones on the main diagonal and zeros everywhere else. If we change the position of the object, and then force the matrix to update:
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="Changes to the transform of an object are reflected in the local matrix" >}}
-``` js
+
+```js
 mesh.position.x = 5;
 
 mesh.updateMatrix();
 ```
+
 {{< /code >}}
 
 ... now, the local matrix of the mesh will look like this:
@@ -822,13 +828,15 @@ Normally, we don't need to call `.updateMatrix` manually, since the renderer wil
 If we change the position on all three axes and update the matrix again:
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="Changing the object's translation and then updating the matrix" >}}
-``` js
+
+```js
 mesh.position.x = 2;
 mesh.position.y = 4;
 mesh.position.z = 6;
 
 mesh.updateMatrix();
 ```
+
 {{< /code >}}
 
 ... now we can see that translations are stored in the first three rows of the last column of the matrix.
@@ -847,13 +855,15 @@ $$
 Next, let's do the same for scale:
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="Changing the object's scale and then updating the matrix" >}}
-``` js
+
+```js
 mesh.scale.x = 5;
 mesh.scale.y = 7;
 mesh.scale.z = 9;
 
 mesh.updateMatrix();
 ```
+
 {{< /code >}}
 
 ... and we'll see that the scale values are stored on the main diagonal.
@@ -872,7 +882,8 @@ $$
 Great! That means we can write a formula for storing translation and scale in a transformation matrix. If we write the translation values as $T_{x}, T_{y}, T_{z}$, and the scale values as $S_{x}, S_{y}, S_{z}$:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="" >}}
-``` js
+
+```js
 mesh.position.x = Tx;
 mesh.position.y = Ty;
 mesh.position.z = Tz;
@@ -881,6 +892,7 @@ mesh.scale.x = Sx;
 mesh.scale.y = Sy;
 mesh.scale.z = Sz;
 ```
+
 {{< /code >}}
 
 ... now the transformation matrix looks like this:
@@ -899,21 +911,25 @@ $$
 Finally, let's see how rotation is stored. First, let's reset the position and scale:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Reset the position and scale" >}}
-``` js
+
+```js
 mesh.position.set(0, 0, 0);
 mesh.scale.set(1, 1, 1);
 mesh.updateMatrix();
 ```
+
 {{< /code >}}
 
 Now the matrix will look like the identity matrix again, with ones on the main diagonal and zeros everywhere else. Next, let's try a thirty degree rotation around the $X$-axis:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Thirty degree rotation around the $X$-axis" >}}
-``` js
+
+```js
 mesh.rotation.x = MathUtils.degToRad(30);
 
 mesh.updateMatrix();
 ```
+
 {{< /code >}}
 
 ... then the matrix will look like this:
@@ -994,10 +1010,11 @@ $$
 
 ### The World Matrix
 
-As we've mentioned a few times, what's important to us is the final position of an object in world space, since that's what we see once the object is rendered. To help with calculating this, every object has a second transformation matrix, the **world matrix**, stored in  [`Object3D.matrixWorld`](https://threejs.org/docs/#api/en/core/.matrixWorld). There's no difference, mathematically, between these two matrices. They're both $4 \times 4$ transformation matrices, and when we create a mesh or any other scene object, both the local and world matrices are created automatically.
+As we've mentioned a few times, what's important to us is the final position of an object in world space, since that's what we see once the object is rendered. To help with calculating this, every object has a second transformation matrix, the **world matrix**, stored in [`Object3D.matrixWorld`](https://threejs.org/docs/#api/en/core/.matrixWorld). There's no difference, mathematically, between these two matrices. They're both $4 \times 4$ transformation matrices, and when we create a mesh or any other scene object, both the local and world matrices are created automatically.
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="When we create a mesh, both local and world matrices are created automatically" >}}
-``` js
+
+```js
 // when we create a mesh
 const mesh = new Mesh();
 
@@ -1005,6 +1022,7 @@ const mesh = new Mesh();
 mesh.matrix = new Matrix4();
 mesh.matrixWorld = new Matrix4();
 ```
+
 {{< /code >}}
 
 **The world matrix stores the position of the object in world space**. If the object is a direct child of the scene, these two matrices will be identical, but if the object resides somewhere further down the scene graph, the local and world matrices will most likely be different.
@@ -1012,7 +1030,8 @@ mesh.matrixWorld = new Matrix4();
 To help us understand this, let's look at our [objects $A$ and $B$ from earlier](#working-with-the-scene-graph) once again:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="" >}}
-``` js
+
+```js
 const scene = new Scene();
 const meshA = new Mesh();
 const meshB = new Mesh();
@@ -1035,6 +1054,7 @@ meshA.updateMatrixWorld();
 meshB.updateMatrix();
 meshB.updateMatrixWorld();
 ```
+
 {{< /code >}}
 
 {{% note %}}
@@ -1107,7 +1127,8 @@ Working with the matrix directly, rather than setting `.position`, `.rotation`, 
 When used together, all of the properties we've encountered in this chapter - `.position`, `.rotation`, `.scale`, `.quaternion`, `.matrix`, and `.matrixWorld` - have tremendous expressive power, and enable you to create scenes like an artist with a paintbrush.
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="Every scene object has many properties for transformation" >}}
-``` js
+
+```js
 // when we create a mesh,
 // or any other object derived from Object3D
 // such as lights, camera, or even the scene itself
@@ -1123,6 +1144,7 @@ mesh.quaternion = new Quaternion();
 mesh.matrix = new Matrix4();
 mesh.matrixWorld = new Matrix4();
 ```
+
 {{< /code >}}
 
 Learning how to use the `.position`, `.rotation`, and `.scale` is a fundamental skill that you need to work with three.js. However, learning to use the `.quaternion` and transformation matrices is an advanced skill that you don't need to master immediately.
@@ -1170,6 +1192,6 @@ TODO-LOW: code block above has messed up indentation
 
 ### Hard
 
-1. If you're familiar with radians, try doing the above exercises without the `.degToRad` method. {{< link path="/book/appendix/javascript-reference/#the-math-object" title="You can access $\pi$ in JavaScript using `Math.PI`" >}}.
+1. If you're familiar with radians, try doing the above exercises without the `.degToRad` method. [You can access $\pi$ in JavaScript using `Math.PI`]({{< relref "/book/appendix/javascript-reference#the-math-object" >}} "You can access $\pi$ in JavaScript using `Math.PI`").
 
 {{% /aside %}}

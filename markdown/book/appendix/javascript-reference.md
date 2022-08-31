@@ -1,18 +1,19 @@
 ---
-title: 'JavaScript Reference'
-description: 'To create three.js applications, you need to know some JavaScript. This chapter is a reference for all the parts of the language we use throughout this book.'
+title: "JavaScript Reference"
+description: "To create three.js applications, you need to know some JavaScript. This chapter is a reference for all the parts of the language we use throughout this book."
 date: 2019-01-01
 weight: 9902
-chapter: 'A.2'
+chapter: "A.2"
 available: true
 showIDE: true
-IDEFiles: [
-  'worlds/appendix/javascript-reference/src/main.js',
-  'worlds/appendix/javascript-reference/index.html',
-]
+IDEFiles:
+  [
+    "worlds/appendix/javascript-reference/src/main.js",
+    "worlds/appendix/javascript-reference/index.html",
+  ]
 IDEClosedFolders: []
-IDEStripDirectory: 'worlds/appendix/javascript-reference/'
-IDEActiveDocument: 'src/main.js'
+IDEStripDirectory: "worlds/appendix/javascript-reference/"
+IDEActiveDocument: "src/main.js"
 IDESwitchImportsAllow: false
 ---
 
@@ -26,10 +27,10 @@ Over the next four chapters, we'll cover _everything_ you need to know about Jav
 
 These chapters are for you:
 
-* If you have never used JavaScript before.
-* If you are familiar with older versions of JavaScript and you're wondering what these fancy new modules and arrow functions are all about.
-* If you're making the switch from another language like Python or Java.
-* If you're already familiar with JavaScript but you want a refresher on the parts we'll be using throughout the book.
+- If you have never used JavaScript before.
+- If you are familiar with older versions of JavaScript and you're wondering what these fancy new modules and arrow functions are all about.
+- If you're making the switch from another language like Python or Java.
+- If you're already familiar with JavaScript but you want a refresher on the parts we'll be using throughout the book.
 
 These chapters are intended to be a lighting quick introduction to bring you up to speed so you can proceed with this book, no matter your background. If you do want to go deeper on any topic, the excellent and in-depth tutorials on the [Mozilla Developer Network (MDN)](https://developer.mozilla.org/en-US/docs/Web) are a good place to start.
 
@@ -41,26 +42,28 @@ This chapter is not a complete JavaScript reference. The JavaScript used in this
 
 Throughout this section, we'll frequently refer to _old-school_ and _modern_ JavaScript. Here, _modern_ means any features added to JavaScript in version ES6 (released in 2015) or later. _Old-school_ refers to any syntax that existed prior to that, from versions ES1 through ES5. The reason for this distinction is that when using a feature of modern JavaScript, you have to take care to ensure it has been implemented by browsers, although fortunately this is becoming less and less of an issue as browser vendors catch up with the spec.
 
- Modern JavaScript is also referred to as _ESNext_. All the syntax from old-school JavaScript still works, so we can consider ESNext to be a superset of old-school JavaScript.
+Modern JavaScript is also referred to as _ESNext_. All the syntax from old-school JavaScript still works, so we can consider ESNext to be a superset of old-school JavaScript.
 
 ## JavaScript Modules and the Entry Point
 
-All the JavaScript we write will go inside files with `.js` extensions. Rather than put everything into one file, we'll split our code into many small modules, a topic to which we devote {{< link path="/book/appendix/javascript-modules/" title="an entire chapter" >}} since modules are part of modern JavaScript and may be unfamiliar to many people.
+All the JavaScript we write will go inside files with `.js` extensions. Rather than put everything into one file, we'll split our code into many small modules, a topic to which we devote [an entire chapter]({{< relref "/book/appendix/javascript-modules" >}} "an entire chapter") since modules are part of modern JavaScript and may be unfamiliar to many people.
 
 Once we've split up our application in this manner, we'll have one main JavaScript file that references and coordinates the other JavaScript modules. This main file is called the **entry point** of our application, and we will name it _**main.js**_ (it's also common to call this _**index.js**_ or _**app.js**_).
 
 ## Referencing JavaScript Modules from HTML
 
-Next, we need to connect _**main.js**_ to our minimal HTML page so that it will run when the page loads. We touched on this {{< link path="/book/appendix/html-and-css-reference/#the-src-attribute" title="in the previous chapter" >}}.
+Next, we need to connect _**main.js**_ to our minimal HTML page so that it will run when the page loads. We touched on this [in the previous chapter]({{< relref "/book/appendix/html-and-css-reference#the-src-attribute" >}} "in the previous chapter").
 
 Here, we have placed the _**main.js**_ file in a folder called _**src/**_ right next to the _**index.html**_ file.
 
-To load this file, we'll add a `<script>` element with a `src` attribute to {{< link path="/book/appendix/html-and-css-reference/#the-head-element" title="the head section" >}} of _**index.html**_. The `src` attribute will reference _**main.js**_.
+To load this file, we'll add a `<script>` element with a `src` attribute to [the head section]({{< relref "/book/appendix/html-and-css-reference#the-head-element" >}} "the head section") of _**index.html**_. The `src` attribute will reference _**main.js**_.
 
 Open up the inline code editor on this page to see this in action.
 
 {{< code lang="html" linenos="false" caption="Referencing main.js from index.html" >}}
+
 <script type="module" src="./src/main.js"></script>
+
 {{< /code >}}
 
 This file also has a `type="module"` attribute to let the browser know that we're splitting our code up into modules.
@@ -70,17 +73,21 @@ This file also has a `type="module"` attribute to let the browser know that we'r
 You can also write JavaScript directly in HTML like this:
 
 {{< code lang="html" linenos="false" caption="An inline script element that contains old-school JavaScript" >}}
+
 <script>
   console.log('Welcome to JavaScript!');
 </script>
+
 {{< /code >}}
 
 Inline scripts can also have the `type="module"` attribute:
 
 {{< code lang="html" linenos="false" caption="An inline script element that contains modern JavaScript" >}}
+
 <script type="module">
   console.log('Welcome to JavaScript Modules!');
 </script>
+
 {{< /code >}}
 
 We'll never write inline code in this book. It's cleaner to keep your JavaScript in a separate file.
@@ -89,7 +96,7 @@ However, to the browser, there's no difference between code written inline or in
 
 ## The Developer Console
 
-Yet another place you can run JavaScript code is the {{< link path="book/appendix/dom-api-reference/#the-browser-developer-console" title="browser console" >}}. Press F12 to open it now, if you're reading this from a device with a keyboard.
+Yet another place you can run JavaScript code is the [browser console]({{< relref "book/appendix/dom-api-reference#the-browser-developer-console" >}} "browser console"). Press F12 to open it now, if you're reading this from a device with a keyboard.
 
 The console provides a handy scratchpad for testing out ideas while you work on a website. If you like, you can open the console now and test out the code in this chapter while you read.
 
@@ -105,18 +112,18 @@ Single line comments in JavaScript start with a double forward slash: `//`
 We can also write multi-line comments, starting with `/*` and ending with `*/`.
 
 {{< code lang="js" linenos="false" >}}
-/*
+/\*
 
- This is a multi-line comment.
+This is a multi-line comment.
 
- Everything inside here gets ignored
+Everything inside here gets ignored
 
-*/
+\*/
 {{< /code >}}
 
 ## Keywords
 
-In general, you can name things whatever you like when writing JavaScript. You can even use emojis or hieroglyphs. However, some keywords are reserved. These are used to access functionality of the language, for example  `var`, `let`, `const`, `function`, `Object`, `String`, `Number`, `class`, `this`, and so on. We'll encounter many of them throughout this chapter.
+In general, you can name things whatever you like when writing JavaScript. You can even use emojis or hieroglyphs. However, some keywords are reserved. These are used to access functionality of the language, for example `var`, `let`, `const`, `function`, `Object`, `String`, `Number`, `class`, `this`, and so on. We'll encounter many of them throughout this chapter.
 
 ## Operators
 
@@ -175,7 +182,7 @@ const x = 5; // x must always equal 5 within the current scope
 Attempting to change it later will cause an error:
 
 {{< code lang="js" linenos="false" caption="Variables defined using const cannot be changed" >}}
-x = 6; //  Error! Can't update constant variable!
+x = 6; // Error! Can't update constant variable!
 {{< /code >}}
 
 ### `let`
@@ -256,7 +263,7 @@ For example, $12.9 \times 2.3 = 29.67$, right?
 Not according to floating-point arithmetic!
 
 {{< code lang="js" linenos="false" caption="If you check the console, you won't see the result you expect!" >}}
-const result = 12.9 * 2.3;
+const result = 12.9 \* 2.3;
 
 console.log(result); // -> 29.669999999999998
 {{< /code >}}
@@ -304,13 +311,7 @@ const b = 'I\'m a bumblebee';
 A new way of creating strings became available in ESNext JavaScript, known as [**template literals**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) or **template strings**. These are defined using _backticks_ rather than quotes, and allow us to do a few extra things. For example, template strings can span multiple lines:
 
 {{< code lang="js" linenos="false" caption="A template string spanning multiple lines" >}}
-const x = `
-  A multi-line string like this
-  would've been much harder to
-  write in JavaScript up until
-  a couple of years ago
-  ^_^
-`;
+const x = ` A multi-line string like this would've been much harder to write in JavaScript up until a couple of years ago ^_^`;
 {{< /code >}}
 
 We can also use template strings to include variables and calculation in our strings, by placing them inside `${}`.
@@ -320,7 +321,6 @@ const val = 5;
 
 const string = `The value is ${val}`;
 {{< /code >}}
-
 
 This makes combining and adding strings together much simpler. To display the result of adding two numbers in old-school JavaScript we'd have to do all of this:
 
@@ -369,8 +369,8 @@ The `object` we created above is not very interesting, since it doesn't contain 
 
 {{< code lang="js" linenos="false" >}}
 const newObject = {
-  x: 5,
-  y: 'hello',
+x: 5,
+y: 'hello',
 };
 {{< /code >}}
 
@@ -384,8 +384,8 @@ However, we don't need to put quotes around the property names, as we usually do
 
 {{< code lang="js" linenos="false" caption="An object containing some data" >}}
 const myObject = {
-  'x': 5,
-  'y': 'hello',
+'x': 5,
+'y': 'hello',
 };
 {{< /code >}}
 
@@ -393,8 +393,8 @@ Also, if you want to add certain characters like spaces or `-` to your property 
 
 {{< code lang="js" linenos="false" >}}
 const myObject = {
-  x: 5,
-  hello-kitty: 'meow',
+x: 5,
+hello-kitty: 'meow',
 };
 
 // Uncaught SyntaxError: Unexpected token '-'
@@ -404,8 +404,8 @@ If we wrap `hello-kitty` in quotes, we can use it as a property name:
 
 {{< code lang="js" linenos="false" >}}
 const myObject = {
-  x: 5,
-  'hello-kitty': 'meow',
+x: 5,
+'hello-kitty': 'meow',
 };
 {{< /code >}}
 
@@ -413,12 +413,12 @@ We can store functions and arrays in objects:
 
 {{< code lang="js" linenos="false" >}}
 const myObject = {
-  x: 5,
-  y: 'hello',
-  variousNoises: ['meow', 'woof', 'grrr', 'arg'],
-  printMeow: function() {
-    console.log('meow-meow')
-  }
+x: 5,
+y: 'hello',
+variousNoises: ['meow', 'woof', 'grrr', 'arg'],
+printMeow: function() {
+console.log('meow-meow')
+}
 };
 {{< /code >}}
 
@@ -451,7 +451,7 @@ Bracket notation is used when you need to use a variable to access the data:
 
 {{< code lang="js" linenos="false" >}}
 const cats = {
-  fineFeline: 'bengal',
+fineFeline: 'bengal',
 };
 
 const x = 'fine';
@@ -486,7 +486,7 @@ Here, we add a key/value pair to an object using dot notation:
 
 {{< code lang="js" linenos="false" >}}
 const cats = {
-  fineFeline: 'bengal',
+fineFeline: 'bengal',
 };
 
 // add a new key/value pair
@@ -499,7 +499,7 @@ cats.fineFeline = 'maineCoon';
 Note that, even though we defined the `cats` variable using `const`, we can still change data _inside_ the object. However, we cannot assign a completely new value to `cats`:
 
 {{< code lang="js" linenos="" >}}
-cats = 6; //  Error! Can't update constant variable!
+cats = 6; // Error! Can't update constant variable!
 {{< /code >}}
 
 ### The `delete` Operator
@@ -545,7 +545,6 @@ const x = myArray['0']; // x now holds the string 'hello'
 
 Sure enough, array indices are strings. When we access an array using a number, for example `myArray[0]`, the quotes are added automatically for us.
 
-
 Arrays have several methods to help with accessing or modifying the data they contain. Check out the [Arrays page on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) for a complete list.
 
 We'll use `Array.push` quite a bit to add new items to the end of the array:
@@ -580,7 +579,7 @@ Functions are defined using the `function` keyword and look like this:
 
 {{< code lang="js" linenos="false" >}}
 function () {
-  // do some stuff here
+// do some stuff here
 }
 {{< /code >}}
 
@@ -592,7 +591,7 @@ Often it will be useful for us to give our functions a name so that we can pass 
 
 {{< code lang="js" linenos="false" caption="We can save functions in variable" >}}
 const functionSavedInVariable = function() {
-  // do some stuff
+// do some stuff
 };
 {{< /code >}}
 
@@ -600,7 +599,7 @@ Second, we can directly name the function:
 
 {{< code lang="js" linenos="false" caption="We can give functions names" >}}
 function namedFunction() {
-  // do some stuff
+// do some stuff
 }
 {{< /code >}}
 
@@ -631,7 +630,7 @@ Function can take _parameters_:
 
 {{< code lang="js" linenos="false" caption="To pass data into a function we define it with parameters" >}}
 function add(a, b) {
-  const sum = a + b;
+const sum = a + b;
 }
 {{< /code >}}
 
@@ -649,7 +648,7 @@ The `add()` function above is not very useful. It does add two things together, 
 
 {{< code lang="js" linenos="false" caption="To get data from a function we use the return keyword" >}}
 function add(a, b) {
-  return a + b;
+return a + b;
 }
 
 const x = add(1, 2); // x = 3
@@ -659,9 +658,9 @@ A function will immediately exit when it encounters the `return` keyword and not
 
 {{< code lang="js" linenos="false" caption="The function will exit when it encounters a return statement" >}}
 function useless(a, b) {
-  return;
+return;
 
-  const sum = a + b; // your program will never reach this line.
+const sum = a + b; // your program will never reach this line.
 }
 {{< /code >}}
 
@@ -681,7 +680,7 @@ Another way of getting data out of a function is to change the value of a variab
 let x = 5;
 
 function changeXImpure() {
-  x = 10;
+x = 10;
 }
 
 changeXImpure(); // now x = 10
@@ -695,7 +694,7 @@ Usually, it's easy to convert an impure function into a pure function.
 let x = 5;
 
 function changeXPure() {
-  return 10;
+return 10;
 }
 
 x = changeXPure(); // now x = 10
@@ -711,7 +710,7 @@ Take a look at the `add` function again.
 
 {{< code lang="js" linenos="false" caption="The add function" >}}
 function add(a, b) {
-  return a + b;
+return a + b;
 }
 {{< /code >}}
 
@@ -742,7 +741,7 @@ We can even add an object and a string:
 
 {{< code lang="js" linenos="false" caption="Calling the add function with two strings" >}}
 const x = {
-  a: 'kitty',
+a: 'kitty',
 };
 
 const y = 'goodbye';
@@ -767,7 +766,7 @@ Just like arrays, functions are also objects. This means that [everything we wro
 
 {{< code lang="js" linenos="false" caption="Functions are objects so we can add new properties to them" >}}
 function add(a, b) {
-  return a + b;
+return a + b;
 }
 
 add.details = 'Adds the two arguments together';
@@ -793,7 +792,7 @@ Let's create a subtract function to complement our add function above, written i
 
 {{< code lang="js" linenos="false" caption="A simple arrow function that subtracts the two arguments" >}}
 const subtract = (a, b) => {
-  return a - b;
+return a - b;
 };
 {{< /code >}}
 
@@ -809,7 +808,7 @@ Let's compare that to our `add` function again to show the difference:
 
 {{< code lang="js" linenos="false" caption="Arrow and normal functions are invoked in the same way" >}}
 function add(a, b) {
-  return a + b;
+return a + b;
 }
 
 const subtract = (a, b) => a - b;
@@ -849,13 +848,13 @@ const sub = 5 - 3; // binary subtraction
 
 const div = 10 / 2; // binary division
 
-const mult = 5 * 20; // binary  multiplication
+const mult = 5 \* 20; // binary multiplication
 {{< /code >}}
 
 These are all **binary operators**, which means that they work with two operands. In the **binary operation** $1+2$:
 
-* $+$ is the **operator**
-* 1 and 2 are the **operands**
+- $+$ is the **operator**
+- 1 and 2 are the **operands**
 
 #### The Modulo Operator
 
@@ -875,11 +874,11 @@ The final binary operator is the _exponentiation_, or _to the power of_, operato
 {{< code lang="js" linenos="false" caption="The exponentiation operator" >}}
 const a = 2;
 
-const b = a ** 2; // b = 2 * 2;
+const b = a \*_ 2; // b = 2 _ 2;
 
-const c = a ** 3; // c = 2 * 2 * 2;
+const c = a \*_ 3; // c = 2 _ 2 \* 2;
 
-const d = a ** 4; // d = 2 * 2 * 2 * 2
+const d = a \*_ 4; // d = 2 _ 2 _ 2 _ 2
 {{< /code >}}
 
 ### Unary Operators
@@ -980,7 +979,7 @@ a -= 5; // a = a - 5 (subtraction)
 
 a /= 5; // a = a / 5 (division)
 
-a *= 5; // a = a * 5 (multiplication)
+a _= 5; // a = a _ 5 (multiplication)
 
 a **= 5; // a = a ** 5 (exponentiation)
 
@@ -1168,9 +1167,9 @@ Every string that is not a number or the empty string will be converted to [`NaN
 The empty string (`''`) is a special case and will be converted to `0`:
 
 {{< code lang="js" linenos="false" caption="The empty string is converted to zero for comparisons" >}}
-'' <  2; // true
+'' < 2; // true
 
-"" >  1; // false
+"" > 1; // false
 
 `` == 0 // true
 
@@ -1189,20 +1188,21 @@ Often, you will need to check what type of data a variable contains, such as str
 
 `typeof` is the simpler of these, and you can use it to check primitive data types:
 
-* `Undefined` (but not `Null`)
-* Boolean
-* Numbers
-* BigInt
-* Strings
-* Symbols
-* Functions
+- `Undefined` (but not `Null`)
+- Boolean
+- Numbers
+- BigInt
+- Strings
+- Symbols
+- Functions
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Some examples of using typeof" >}}
-``` js
-const aString = 'hello';
+
+```js
+const aString = "hello";
 const aNumber = 2;
 const aBoolean = true;
-const aFunction = function(){}
+const aFunction = function () {};
 const anArrowFunction = () => {};
 
 typeof aString; // 'string'
@@ -1211,14 +1211,16 @@ typeof aBoolean; // 'boolean'
 typeof aFunction; // 'function'
 typeof anArrowFunction; // 'function'
 ```
+
 {{< /code >}}
 
 Using `typeof`, you can easily check whether two variables contain the same primitive data type:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Comparing primitives with typeof" >}}
-``` js
-const hello = 'hello';
-const goodbye = 'goodbye';
+
+```js
+const hello = "hello";
+const goodbye = "goodbye";
 
 const eleven = 11;
 const twelve = 12;
@@ -1233,22 +1235,25 @@ typeof hello === typeof goodbye; // true
 // so they don't have the same type
 typeof eleven === typeof goodbye; // false
 ```
+
 {{< /code >}}
 
 So far so good. However, if you use `typeof` with anything that's not in that short list of primitive data types, the result will be simply `'object'`.
 
 {{< code lang="js" linenos="false" hl_lines="" caption="For non-primitive data types, typeof always returns 'object'" >}}
-``` js
-class ClassyMcClassFace {};
+
+```js
+class ClassyMcClassFace {}
 
 const aClassInstance = new ClassyMcClassFace();
-const anArray = [1,2,3];
+const anArray = [1, 2, 3];
 const anObject = { a: 5 };
 
 typeof aClassInstance; // 'object'
 typeof anArray; // 'object'
 typeof anObject; // 'object'
 ```
+
 {{< /code >}}
 
 As we have mentioned several times throughout this chapter, everything that is not a primitive data type in JavaScript is an object, so this answer is correct. However, it's not very useful and it means we can't use `typeof` for comparing custom objects and classes.
@@ -1256,28 +1261,32 @@ As we have mentioned several times throughout this chapter, everything that is n
 For these we'll turn to `instanceof`.
 
 {{< code lang="js" linenos="false" hl_lines="" caption="instanceof can be used to check the type of objects, arrays, and classes" >}}
-``` js
+
+```js
 const aClassInstance = new ClassyMcClassFace();
-const anArray = [1,2,3];
+const anArray = [1, 2, 3];
 const anObject = { a: 5 };
 
 aClassInstance instanceof ClassyMcClassFace; // true
 anArray instanceof Array; // true
 anObject instanceof Object; // true
 ```
+
 {{< /code >}}
 
 Comparisons using `instanceof` are a little more verbose than `typeof`:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Comparing data types using instanceof" >}}
-``` js
+
+```js
 const a = new ClassyMcClassFace();
 const b = new ClassyMcClassFace();
 
-(a instanceof ClassMcClassFace) && (b instanceof ClassMcClassFace); // true
-([1,2,3] instanceof Array) && ([3,4,5] instanceof Array); // true
-({a: 5} instanceof Array) && ([3,4,5] instanceof Array); // false
+a instanceof ClassMcClassFace && b instanceof ClassMcClassFace; // true
+[1, 2, 3] instanceof Array && [3, 4, 5] instanceof Array; // true
+({ a: 5 } instanceof Array && [3, 4, 5] instanceof Array); // false
 ```
+
 {{< /code >}}
 
 There's quite a bit more to `instanceof` since it works by checking the object's prototype. We're avoiding the discussion of prototypes in this chapter, so we'll cut this section short here. As usual, [the relevant MDN page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof) has a lot more details.
@@ -1292,9 +1301,9 @@ The basic element of control flow is the humble [**block**](https://developer.mo
 
 {{< code lang="js" linenos="false" caption="The humble block statement" >}}
 {
-  const a = 5;
-  const b = 6;
-  const c = a + b;
+const a = 5;
+const b = 6;
+const c = a + b;
 }
 {{< /code >}}
 
@@ -1308,14 +1317,14 @@ We use comparison operators to create the branches in an if...else statement.
 
 {{< code lang="js" linenos="false" caption="An if..else statement controlling a loading bar" >}}
 if (percentLoaded <= 70) {
-  const barColor = 'blue';
-  updateLoadingBar(percentLoaded, barColor);
+const barColor = 'blue';
+updateLoadingBar(percentLoaded, barColor);
 } else if (percentLoaded < 100) {
-  const barColor = 'red';
-  updateLoadingBar(percentLoaded, barColor);
+const barColor = 'red';
+updateLoadingBar(percentLoaded, barColor);
 } else {
-  hideLoadingBar();
-  startAnimation();
+hideLoadingBar();
+startAnimation();
 }
 {{< /code >}}
 
@@ -1325,8 +1334,8 @@ Each branch in this if...else statement is wrapped in block statement.
 
 {{< code lang="js" linenos="false" caption="Each branch in the if..else statement is wrapped in a block" >}}
 {
-  const barColor = 'blue';
-  updateLoadingBar(percentLoaded, barColor);
+const barColor = 'blue';
+updateLoadingBar(percentLoaded, barColor);
 }
 {{< /code >}}
 
@@ -1339,9 +1348,9 @@ let modelLoadedOK = false;
 // and set modelLoadedOK = true on success
 
 if (modelLoadedOK === true) {
-  drawScene();
+drawScene();
 } else {
-  displayErrorMessage();
+displayErrorMessage();
 }
 {{< /code >}}
 
@@ -1349,9 +1358,9 @@ Since there is only one line of code in each branch of this example, you could l
 
 {{< code lang="js" linenos="false" caption="Block statements are optional" >}}
 if (modelLoadedOK === true)
-  drawScene();
+drawScene();
 else
-  displayErrorMessage();
+displayErrorMessage();
 {{< /code >}}
 
 However, it is considered best practice to always include the block statements since that makes your code more readable.
@@ -1368,7 +1377,7 @@ Take another look at the line where we checked whether the model has loaded abov
 
 {{< code lang="js" linenos="false" hl_lines="1" >}}
 if (modelLoadedOK === true) {
-  drawScene();
+drawScene();
 }
 {{< /code >}}
 
@@ -1376,7 +1385,7 @@ We can shorten this by omitting the `=== true`:
 
 {{< code lang="js" linenos="false" hl_lines="1" >}}
 if (modelLoadedOK) {
-  drawScene();
+drawScene();
 }
 {{< /code >}}
 
@@ -1390,9 +1399,9 @@ Since `modelLoadedOK` is already a Boolean, that's not a big deal. However, we c
 const model = loadModel();
 
 if (model) {
-  drawScene();
+drawScene();
 } else {
-  displayErrorMessage();
+displayErrorMessage();
 }
 {{< /code >}}
 
@@ -1408,13 +1417,13 @@ When a value is interpreted as false, we say that it is **falsy**.
 
 Nearly everything is interpreted as truthy in a Boolean context. Here's a complete list of falsy values in JavaScript:
 
-* The Boolean `false`
-* The number `0` or `0-`
-* The empty string "", '', or ``
-* `null`
-* `undefined`
-* Not a Number: `NaN`
-* `BigInt` zero: `0n`
+- The Boolean `false`
+- The number `0` or `0-`
+- The empty string "", '', or ``
+- `null`
+- `undefined`
+- Not a Number: `NaN`
+- `BigInt` zero: `0n`
 
 And that's it - everything else is truthy.
 
@@ -1430,7 +1439,7 @@ We can perform an operation multiple times using a **for loop**, which looks lik
 
 {{< code lang="js" linenos="false" caption="A for loop" >}}
 for (let i = 0; i < 5; i++) {
-  console.log(i);
+console.log(i);
 }
 {{< /code >}}
 
@@ -1440,16 +1449,16 @@ The rest of the loop is made up of an initialization statement, a condition, a f
 
 {{< code lang="js" linenos="false" caption="The technical definition of a for loop" >}}
 for ([initialization]; [condition]; [final-expression]) {
-  [statement]
+[statement]
 }
 {{< /code >}}
 
 Everything in square brackets is optional. The `{}` is also optional, but, as with the`if...else statement, we'll always include it. Matching up the values in the square brackets to our example above, we have:
 
-* [initialization]: `let i = 0`
-* [condition]: `i < 5`
-* [final-expression]: `1++`
-* [statement]: `console.log(i);`
+- [initialization]: `let i = 0`
+- [condition]: `i < 5`
+- [final-expression]: `1++`
+- [statement]: `console.log(i);`
 
 Here's another simple example that adds the number 1 to `total` repeatedly until the loop ends after five thousand iterations.
 
@@ -1457,7 +1466,7 @@ Here's another simple example that adds the number 1 to `total` repeatedly until
 let total = 0;
 
 for (let i = 0; i < 5000; i++) {
-  total = total + 1;
+total = total + 1;
 }
 
 console.log(total);
@@ -1472,7 +1481,7 @@ for..of loops can be used to loop over the values of any [**iterable object**](h
 
 {{< code lang="js" linenos="false" >}}
 for (const value of iterable) {
-  console.log(value);
+console.log(value);
 }
 {{< /code >}}
 
@@ -1484,7 +1493,7 @@ Of course, that means arrays themselves are iterable objects. We can loop over a
 const arr = [1, 2, 3, 4];
 
 for (const value of arr) {
-  console.log(value)
+console.log(value)
 }
 {{< /code >}}
 
@@ -1497,7 +1506,7 @@ const arr = [1, 2, 3, 4];
 
 let sum = 0;
 for (const value of arr) {
-  sum += value;
+sum += value;
 }
 // now sum = 10
 {{< /code >}}
@@ -1512,9 +1521,9 @@ A notable exception from the list of iterable objects is [`Object`](#objects):
 
 {{< code lang="js" linenos="false" caption="An Object containing some numbers" >}}
 const catWeights = {
-  ginger: 1,
-  gemima: 3,
-  geronimo: 30,
+ginger: 1,
+gemima: 3,
+geronimo: 30,
 };
 {{< /code >}}
 
@@ -1526,9 +1535,9 @@ First up is [Object.values()](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 {{< code lang="js" linenos="false" caption="Object.values returns an array containing the object's values" >}}
 const catWeights = {
-  ginger: 1,
-  gemima: 3,
-  geronimo: 30,
+ginger: 1,
+gemima: 3,
+geronimo: 30,
 };
 
 const weightValues = Object.values(catWeights);
@@ -1541,7 +1550,7 @@ Now we can iterate over the `weightValues` array using for..of as usual:
 {{< code lang="js" linenos="false" >}}
 let sum = 0;
 for (const value of weightValues) {
-  sum += value;
+sum += value;
 }
 // now sum = 34
 {{< /code >}}
@@ -1550,14 +1559,14 @@ We will usually write this more concisely by placing the call to `Object.values`
 
 {{< code lang="js" linenos="false" caption="A for...of loop with an inline call to Object.values" >}}
 const catWeights = {
-  ginger: 1,
-  gemima: 3,
-  geronimo: 30,
+ginger: 1,
+gemima: 3,
+geronimo: 30,
 };
 
 let sum = 0;
 for (const value of Object.values(catWeights)) {
-  sum += value;
+sum += value;
 }
 // now sum = 34
 {{< /code >}}
@@ -1568,9 +1577,9 @@ for (const value of Object.values(catWeights)) {
 
 {{< code lang="js" linenos="false" caption="Object.keys returns an array containing the object's keys" >}}
 const catWeights = {
-  ginger: 1,
-  gemima: 3,
-  geronimo: 30,
+ginger: 1,
+gemima: 3,
+geronimo: 30,
 };
 
 const catNames = Object.keys(catWeights);
@@ -1584,9 +1593,9 @@ Finally, [`Object.entries`](https://developer.mozilla.org/en-US/docs/Web/JavaScr
 
 {{< code lang="js" linenos="false" caption="Object.entries  returns an array containing the object [key, value] pairs" >}}
 const catWeights = {
-  ginger: 1,
-  gemima: 3,
-  geronimo: 30,
+ginger: 1,
+gemima: 3,
+geronimo: 30,
 };
 
 const catEntries = Object.entries(catWeights);
@@ -1605,7 +1614,7 @@ const arr = [1, 2, 3, 4];
 
 let sum = 0;
 arr.forEach((value) => {
-  sum += value;
+sum += value;
 });
 // now sum = 10
 {{< /code >}}
@@ -1614,7 +1623,7 @@ This takes a function as the argument, and we can perform operations on the arra
 
 {{< code lang="js" linenos="false" caption="The arrow function we are passing into Array.forEach above" >}}
 (value) => {
-  sum += value;
+sum += value;
 });
 {{< /code >}}
 
@@ -1622,23 +1631,23 @@ We can use `Object.values` with `Array.forEach` to loop over an object's values,
 
 {{< code lang="js" linenos="false" >}}
 const catWeights = {
-  ginger: 1,
-  gemima: 3,
-  geronimo: 30,
+ginger: 1,
+gemima: 3,
+geronimo: 30,
 };
 
 let sum = 0;
 Object.values(catWeights).forEach((weight) => {
-  sum += weight;
+sum += weight;
 })
 // now sum = 34
 {{< /code >}}
 
 There are several related array methods that can be used for iterating over an array's values:
 
-* [`Array.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
-* [`Array.filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
-* [`Array.reduce`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+- [`Array.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+- [`Array.filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+- [`Array.reduce`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 
 Appropriate use of these functions can result in beautiful, concise code. In this book, we are more interested in clarity and simplicity, so we'll avoid using them. We'll even avoid using `Array.forEach` and stick exclusively with for loops and for...of loops.
 
@@ -1651,7 +1660,7 @@ const arr = [1, 2, 3, 4];
 
 let sum = 0;
 arr.forEach((value) => {
-  sum += value;
+sum += value;
 });
 // now sum = 10
 {{< /code >}}
@@ -1665,15 +1674,15 @@ let sum = 0;
 
 // The callback function
 const total = (value) => {
-  sum += value;
+sum += value;
 };
 
 arr.forEach(total);
 {{< /code >}}
 
-Now you can see that we're passing in the function called `total` as an argument to `Array.forEach()`. There's nothing special about the `total` function. It's a  normal JavaScript arr function. It's only when used in this manner that we refer to it as a callback function.
+Now you can see that we're passing in the function called `total` as an argument to `Array.forEach()`. There's nothing special about the `total` function. It's a normal JavaScript arr function. It's only when used in this manner that we refer to it as a callback function.
 
-We will use callback functions a lot while writing JavaScript code. We'll cover them in more detail in {{< link path="/book/appendix/asynchronous-javascript/" title="" >}}.
+We will use callback functions a lot while writing JavaScript code. We'll cover them in more detail in the chapter on [Asynchronous JavaScript]({{< relref "/book/appendix/asynchronous-javascript" >}} "Asynchronous JavaScript").
 
 ## Recursion {#recursion}
 
@@ -1685,35 +1694,35 @@ Here's a function that prints the string `'Hello'` to the browser's console one 
 let count = 0;
 
 const printHello = () => {
-  console.log('Hello', count);
+console.log('Hello', count);
 
-  count++;
+count++;
 
-  // recursion simply means that a function calls itself
-  if (count < 100) printHello();
+// recursion simply means that a function calls itself
+if (count < 100) printHello();
 };
 {{< /code >}}
 
 Whenever you write recursive functions, it's important to include a final case to end the recursion. Here, that's `if (count < 100)`.
 
-If we leave that out, we'll end up with a function that keeps on printing hello  until the JavaScript engine eventually kills it with an error message.
+If we leave that out, we'll end up with a function that keeps on printing hello until the JavaScript engine eventually kills it with an error message.
 
 {{< code lang="js" linenos="false" caption="A recursive function without a final case will cause an error" >}}
 let count = 0;
 
 const printHello = () => {
-  console.log('Hello', count);
+console.log('Hello', count);
 
-  count++;
+count++;
 
-  // recursion simply means that a function calls itself
-  printHello();
+// recursion simply means that a function calls itself
+printHello();
 };
 
 printHello();
 {{< /code >}}
 
-We'll use recursion to set up an animation loop in {{< link path="book/first-steps/animation-loop/" title="" >}}.
+We'll used recursion to [generate a stream of frames]({{< relref "book/first-steps/animation-loop" >}} "generate a stream of frames") when we add animation to our app.
 
 ## Classes and the `new` Keyword
 
@@ -1735,10 +1744,10 @@ Similarly, we can create a Cat [**`Class`**](https://developer.mozilla.org/en-US
 
 {{< code lang="js" linenos="false" caption="A simple Cat class" >}}
 class Cat {
-  constructor(name, age) {
-    this.name = name;
-    this.age = age;
-  }
+constructor(name, age) {
+this.name = name;
+this.age = age;
+}
 }
 {{< /code >}}
 
@@ -1805,14 +1814,14 @@ When we create a function inside a class, we refer to it as a method. Let's add 
 
 {{< code lang="js" linenos="false" caption="Create the Cat.meow method" >}}
 class Cat {
-  constructor(name, age) {
-    this.name = name;
-    this.age = age;
-  }
+constructor(name, age) {
+this.name = name;
+this.age = age;
+}
 
-  meow() {
-    console.log('meow-meow');
-  }
+meow() {
+console.log('meow-meow');
+}
 }
 {{< /code >}}
 
@@ -1842,9 +1851,9 @@ The constructor is optional and we can create a class without a constructor if w
 
 {{< code lang="js" linenos="false" caption="A class without a constructor" >}}
 class Cat {
-  meow() {
-    console.log('meow-meow');
-  }
+meow() {
+console.log('meow-meow');
+}
 }
 {{< /code >}}
 
@@ -1852,12 +1861,12 @@ If we leave out the constructor then JavaScript _implicitly_ adds one for us, so
 
 {{< code lang="js" linenos="false" caption="If we omit the constructor, an empty one is implicitly created for us" >}}
 class Cat {
-  // no need to type this line, JS does it for you
-  constructor() {}
+// no need to type this line, JS does it for you
+constructor() {}
 
-  meow() {
-    console.log('meow-meow');
-  }
+meow() {
+console.log('meow-meow');
+}
 }
 {{< /code >}}
 
@@ -1870,13 +1879,14 @@ JavaScript implicitly adds the line `return this` at the bottom of the function:
 
 {{< code lang="js" linenos="false" caption="The default constructor return is implicit" >}}
 class Cat {
-  constructor(name, age) {
-    this.name = name;
-    this.age = age;
+constructor(name, age) {
+this.name = name;
+this.age = age;
 
     // JavaScript adds this line implicitly for us
     return this;
-  }
+
+}
 }
 {{< /code >}}
 
@@ -1890,17 +1900,17 @@ Here's a contrived example, where we return an object with name and age properti
 
 {{< code lang="js" linenos="false" caption="A custom constructor return" >}}
 class Cat {
-  constructor(name, age) {
-    return {
-      name,
-      age
-    };
-  }
+constructor(name, age) {
+return {
+name,
+age
+};
+}
 
-  // Now there's no way to run this method
-  meow() {
-    console.log('meow-meow');
-  }
+// Now there's no way to run this method
+meow() {
+console.log('meow-meow');
+}
 }
 {{< /code >}}
 
@@ -1921,9 +1931,9 @@ Sometimes, you may want to use a class method without going to the trouble of cr
 
 {{< code lang="js" linenos="false" caption="A class that simply meows" >}}
 class Meower {
-  static meow() {
-    console.log('meow-meow');
-  }
+static meow() {
+console.log('meow-meow');
+}
 }
 {{< /code >}}
 
@@ -1948,11 +1958,12 @@ moggy.meow();
 Often, you'll need to create a class and then run several of its methods to set it up. For example, here's a frog class with some methods to set up its stats:
 
 {{< code lang="js" linenos="false" caption="A simple frog class" >}}
-``` js
+
+```js
 class Froggy {
   constructor() {
-    this.type = 'common';
-    this.color = 'green';
+    this.type = "common";
+    this.color = "green";
     this.jumpHeight = 5;
     this.ribbitDB = 40;
   }
@@ -1974,29 +1985,33 @@ class Froggy {
   }
 }
 ```
+
 {{< /code >}}
 
 The stats are given default values in the constructor, and the methods allow us to customise them. Of course, for a simple class like this we could pass all the custom values into the constructor, but in real code that's not always possible or desirable. Now let's see what we have to do to customise all of the frog's stats:
 
 {{< code lang="js" linenos="false" caption="Customising our frog" >}}
-``` js
+
+```js
 const froggy = new Froggy();
 
-froggy.setType('tomato');
-froggy.setColor('red');
-froggy.setRibbitStrength('10');
-froggy.setJumpHeight('10');
+froggy.setType("tomato");
+froggy.setColor("red");
+froggy.setRibbitStrength("10");
+froggy.setJumpHeight("10");
 ```
+
 {{< /code >}}
 
 We can improve this slightly by using **method chaining**. To do this, we will return `this` at the end of each method. Remember that the `constructor` implicitly returns `this` already.
 
 {{< code lang="js" linenos="false" hl_lines="11,16,21,26" caption="To use method chaining, each method must return 'this'" >}}
-``` js
+
+```js
 class Froggy {
   constructor() {
-    this.type = 'common';
-    this.color = 'green';
+    this.type = "common";
+    this.color = "green";
     this.jumpHeight = 5;
     this.ribbitDB = 40;
   }
@@ -2022,18 +2037,21 @@ class Froggy {
   }
 }
 ```
+
 {{< /code >}}
 
 Now we can set up our froggy using method chaining
 
 {{< code lang="js" linenos="false" caption="Customising our frog using method chaining" >}}
-``` js
+
+```js
 const froggy = new Froggy()
-	.setType('tomato')
-	.setColor('red')
-	.setRibbitStrength('10')
-  .setJumpHeight('10');
+  .setType("tomato")
+  .setColor("red")
+  .setRibbitStrength("10")
+  .setJumpHeight("10");
 ```
+
 {{< /code >}}
 
 ### Class Inheritance and the `extends` Keyword
@@ -2048,17 +2066,17 @@ Here's our `Animal` base class:
 
 {{< code lang="js" linenos="false" caption="An Animal class" >}}
 class Animal {
-  constructor(age) {
-    this.age = age;
-  }
+constructor(age) {
+this.age = age;
+}
 
-  growOlder() {
-    this.age++;
-  }
+growOlder() {
+this.age++;
+}
 
-  reproduce() {
-    // implementation of this function is left to your imagination
-  }
+reproduce() {
+// implementation of this function is left to your imagination
+}
 }
 {{< /code >}}
 
@@ -2068,15 +2086,16 @@ Next, we'll use the `extends` keyword to create a child class called `Cat`:
 
 {{< code lang="js" linenos="false" caption="Extending the Animal class to create a Cat class" >}}
 class Cat extends Animal {
-  constructor(name, age) {
-    super(age);
+constructor(name, age) {
+super(age);
 
     this.name = name;
-  }
 
-  meow() {
-    console.log('meow-meow');
-  }
+}
+
+meow() {
+console.log('meow-meow');
+}
 }
 {{< /code >}}
 
@@ -2104,23 +2123,24 @@ This gives us three options for the constructor in a child class:
 // Option 1: Animal.constructor will run
 // then Cat.constructor will run
 class Cat extends Animal {
-  constructor(name, age) {
-    super(age);
+constructor(name, age) {
+super(age);
 
     this.name = name;
-  }
+
+}
 }
 
 // Option 2: Only Cat.constructor will run
 class Cat extends Animal {
-  constructor(name, age) {
-    this.name = name;
-  }
+constructor(name, age) {
+this.name = name;
+}
 }
 
 // Option 3: Only Animal.constructor will run
 class Cat extends Animal {
-  // no constructor method here
+// no constructor method here
 }
 {{< /code >}}
 
@@ -2191,7 +2211,7 @@ However, when we are in global scope, we can't access module scope, and when we 
 
 Closely related to scope is the **execution context** or simply **context**. Context, in simple terms, refers to the value of the `this` keyword, while scope is related to variable resolution and access. We'll explore `this` in detail below.
 
-Unlike scope, the execution context _can_ change at run time. For example, a function may be called at multiple points in your code and each time will have a different execution context and hence a different value of `this`, while the scope will be the same each time. We'll examine {{< link path="book/appendix/javascript-reference/#execution-context-and-the-this-keyword" title="execution context and `this`" >}} in more detail below.
+Unlike scope, the execution context _can_ change at run time. For example, a function may be called at multiple points in your code and each time will have a different execution context and hence a different value of `this`, while the scope will be the same each time. We'll examine [execution context and `this`]({{< relref "book/appendix/javascript-reference#execution-context-and-the-this-keyword" >}} "execution context and `this`") in more detail below.
 
 ### Global Scope
 
@@ -2201,13 +2221,13 @@ In the browser, global scope is a top-level object called `window`. You can add 
 
 {{< code lang="js" linenos="false" caption="The browser's global scope" >}}
 window.myInfo = {
-  name: 'Lewy',
+name: 'Lewy',
 };
 {{< /code >}}
 
 Now we can access `window.myInfo` from anywhere in any JavaScript file that is part of our application.
 
-We'll explore global scope further in {{< link path="book/appendix/dom-api-reference/#global-object" title="" >}}.
+We'll explore global scope further in the [DOM API]({{< relref "book/appendix/dom-api-reference#global-object" >}} "DOM API Reference") chapter.
 
 ### Module Scope
 
@@ -2217,25 +2237,25 @@ When writing [modular JavaScript](#javascript-modules-and-the-entry-point), as w
 const name = 'Lewy';
 
 class Printer {
-  static printName() {
-    console.log(name);
-  }
+static printName() {
+console.log(name);
+}
 }
 
 Printer.printName(); // => 'Lewy'
 {{< /code >}}
 
-We'll explore module scope further in the {{< link path="book/appendix/javascript-modules/" title="" >}}.
+We'll explore module scope further in the [Modules Reference]({{< relref "book/appendix/javascript-modules" >}} "Modules Reference") chapter.
 
 ### Block Scope
 
-Blocks ([defined using `{}`](#block-statements)) create a scope.  Here, we define a variable name within a block, and later when we attempt to log it to the console from outside, it's not available.
+Blocks ([defined using `{}`](#block-statements)) create a scope. Here, we define a variable name within a block, and later when we attempt to log it to the console from outside, it's not available.
 
 {{< code lang="js" linenos="false" caption="Block scope" >}}
 {
-  // within the block scope
-  const name = 'Lewy';
-  console.log(`Printing name inside block scope: ${name}`); // => 'Lewy'
+// within the block scope
+const name = 'Lewy';
+console.log(`Printing name inside block scope: ${name}`); // => 'Lewy'
 }
 
 // outside the block scope
@@ -2246,8 +2266,8 @@ As we mentioned earlier, it's not that common to see a bare block statement like
 
 {{< code lang="js" linenos="false" caption="Blocks are usually paired with things like loops or if...else statements" >}}
 for(let i = 0; i < 3; i++){
-  const name = 'Lewy';
-  console.log(`Printing name inside block scope: ${name}`); // => 'Lewy' 'Lewy' 'Lewy'
+const name = 'Lewy';
+console.log(`Printing name inside block scope: ${name}`); // => 'Lewy' 'Lewy' 'Lewy'
 }
 
 console.log(`Printing name outside block scope: ${name}`); // => undefined
@@ -2259,8 +2279,8 @@ Function scope is so important that it gets a special name: [**closures**](https
 
 {{< code lang="js" linenos="false" caption="The local scope of a function is called a closure" >}}
 function createName() {
-  const name = 'Harry';
-  console.log(`Printing name inside closure: ${name}`); // => 'Harry'
+const name = 'Harry';
+console.log(`Printing name inside closure: ${name}`); // => 'Harry'
 }
 
 console.log(`Printing name outside closure: ${name}`); // => undefined
@@ -2300,7 +2320,7 @@ window.y = 'hello';
 const x = 5;
 
 {
-  const z = {};
+const z = {};
 }
 {{< /code >}}
 
@@ -2311,7 +2331,7 @@ window.y = 'hello';
 const x = 5;
 
 if(window.y === 'hello'){
-  console.log(window.y); // => 'hello
+console.log(window.y); // => 'hello
 }
 {{< /code >}}
 
@@ -2322,11 +2342,11 @@ window.y = 'hello';
 const x = 5;
 
 if(window.y === 'hello'){
-  console.log(window.y); // => 'hello
+console.log(window.y); // => 'hello
 }
 
 function printHey() {
-  console.log('hey');
+console.log('hey');
 }
 
 printHey(); // => 'hello
@@ -2338,9 +2358,9 @@ These are all simple examples, but in a real body of code you will end up with m
 const x = 5;
 
 function scopeTest() {
-  if(x === 5) {
-    console.log(x); // => ?
-  }
+if(x === 5) {
+console.log(x); // => ?
+}
 }
 
 scopeTest();
@@ -2348,10 +2368,10 @@ scopeTest();
 
 {{< code lang="js" linenos="false" hl_lines="2" caption="_**main.js**_ module. Parent scope: ?, local scope: ?" >}}
 function scopeTest() {
-  const x = 5;
-  if(x === 5) {
-    console.log(x); // => ?
-  }
+const x = 5;
+if(x === 5) {
+console.log(x); // => ?
+}
 }
 
 scopeTest();
@@ -2359,7 +2379,7 @@ scopeTest();
 
 {{< code lang="js" linenos="false" hl_lines="5" caption="_**main.js**_ module. Parent scope: ?, local scope: ?" >}}
 function printHey() {
-  console.log('hey');
+console.log('hey');
 }
 
 printHey(); // => 'hello
@@ -2376,8 +2396,8 @@ Here, that means we can access the `name` variable, declared in the parent scope
 const name = 'Peter';
 
 {
-  // block scope (inner/child scope)
-  console.log(name); // => Peter
+// block scope (inner/child scope)
+console.log(name); // => Peter
 }
 {{< /code >}}
 
@@ -2385,8 +2405,8 @@ However, if we reverse that, we cannot access the variable created in the child 
 
 {{< code lang="js" linenos="false" hl_lines="7" caption="Data from a child scope cannot be accessed from the parent scope" >}}
 {
-  // block scope (inner/child scope)
-  const name = 'Peter';
+// block scope (inner/child scope)
+const name = 'Peter';
 }
 
 // module scope (outer/parent scope)
@@ -2400,9 +2420,9 @@ In this case, **the inner/child scope has precedence over the outer scope**. How
 const name = 'Peter';
 
 {
-  const name = 'Sarah';
-  // block scope (inner/child scope)
-  console.log(name); // => Sarah
+const name = 'Sarah';
+// block scope (inner/child scope)
+console.log(name); // => Sarah
 }
 
 // module scope (outer/parent scope)
@@ -2447,7 +2467,7 @@ When used in a function executed from a module, `this` is `undefined`.
 
 {{< code lang="js" linenos="false" caption="_**main.js**_" >}}
 function testThis() {
-  console.log(this)
+console.log(this)
 }
 
 testThis(); // undefined
@@ -2457,7 +2477,7 @@ However, when we run the same function in global scope (for example, by pasting 
 
 {{< code lang="js" linenos="false" caption="Global scope (for example, the browser console)" >}}
 function testThis() {
-  console.log(this)
+console.log(this)
 }
 
 testThis(); // Window
@@ -2467,16 +2487,14 @@ Next, when we create a function as a property of an object, `this` binds to the 
 
 {{< code lang="js" linenos="false" caption="When created as an object property, the value of this in a function is the object itself" >}}
 const obj = {
-  z: 5,
-  testThis: function () {
-    console.log(this);
-  }
+z: 5,
+testThis: function () {
+console.log(this);
+}
 };
 
 obj.testThis(); // {z: 5, testThis: ƒ}
 {{< /code >}}
-
-
 
 ### `this` and Classes
 
@@ -2484,18 +2502,18 @@ When used inside a class method, `this` refers to the class instance. We used `t
 
 {{< code lang="js" linenos="false" >}}
 class Cat {
-  constructor(name, age) {
-    this.name = name;
-    this.age = age;
-  }
+constructor(name, age) {
+this.name = name;
+this.age = age;
+}
 
-  printName() {
-    console.log(this.name);
-  }
+printName() {
+console.log(this.name);
+}
 
-  testThis() {
-    console.log(this);
-  }
+testThis() {
+console.log(this);
+}
 }
 
 const tommy = new Cat('Tommy', 6);
@@ -2517,15 +2535,15 @@ Here, we have created an `obj` object with a variable `obj.z` and two functions,
 
 {{< code lang="js" linenos="false" caption="An object created to test the difference between arrow function and normal function" >}}
 const obj = {
-  z: 5,
+z: 5,
 
-  normalFunction: function () {
-    console.log(this);
-  },
+normalFunction: function () {
+console.log(this);
+},
 
-  arrowFunction: () => {
-    console.log(this);
-  },
+arrowFunction: () => {
+console.log(this);
+},
 };
 {{< /code >}}
 
@@ -2563,8 +2581,8 @@ If you open up the [MDN Arrow functions page](https://developer.mozilla.org/en-U
 
 In general, the difference between arrow functions and normal functions doesn't matter _unless you use `this` in the function_. Usually, you should avoid using `this` in functions, with two common exceptions: class methods, and callback functions. For these cases, remember these rules:
 
-* Always use normal functions for class methods
-* Always use arrow functions for [callback functions](#callback-functions)
+- Always use normal functions for class methods
+- Always use arrow functions for [callback functions](#callback-functions)
 
 We will cut short our discussion of context and scope here to prevent this chapter from becoming an entire book. As with scope, you'll develop a better understanding of how `this` works as you continue to work with JavaScript. [The MDN `this` reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) is only one of [many great guides on this subject](https://stackoverflow.com/questions/3127429/how-does-the-this-keyword-work).
 
@@ -2596,12 +2614,12 @@ We can do something similar to combine two objects. A common use case is to over
 
 {{< code lang="js" linenos="false" caption="When combining an object with spread, the right side takes precedence" >}}
 const defaults = {
-  color: 'red',
-  size: 'large',
+color: 'red',
+size: 'large',
 };
 
 const custom = {
-  color: 'blue',
+color: 'blue',
 };
 
 const final = { ...defaults, ...custom };
@@ -2722,7 +2740,7 @@ const x = typedArr[3]; // x = 1
 let sum = 0;
 
 typedArr.forEach((value) => {
-  sum += value;
+sum += value;
 });
 
 // sum = 10

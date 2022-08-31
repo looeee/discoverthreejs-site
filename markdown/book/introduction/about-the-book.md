@@ -6,42 +6,43 @@ weight: 2
 chapter: "0.1"
 available: true
 showIDE: true
-IDEFiles: [
-  "assets/models/Horse.glb",
-  "assets/models/Parrot.glb",
-  "assets/textures/sprites/spark1.png",
-  "styles/main.css",
-  "vendor/three/build/three.module.js",
-  "vendor/three/examples/jsm/controls/OrbitControls.js",
-  "vendor/three/examples/jsm/loaders/GLTFLoader.js",
-  "worlds/introduction/about-the-book/index.html",
-  "worlds/introduction/about-the-book/src/main.final.js",
-  "worlds/introduction/about-the-book/src/main.start.js",
-  "worlds/introduction/about-the-book/src/World/components/camera.js",
-  "worlds/introduction/about-the-book/src/World/components/lights.js",
-  "worlds/introduction/about-the-book/src/World/components/scene.final.js",
-  "worlds/introduction/about-the-book/src/World/components/scene.start.js",
-  "worlds/introduction/about-the-book/src/World/components/SparkleHorse/sparkleHorse.final.js",
-  "worlds/introduction/about-the-book/src/World/components/SparkleHorse/sparkleHorse.start.js",
-  "worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/convertMeshToPoints.final.js",
-  "worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/convertMeshToPoints.start.js",
-  "worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/createSizesAttribute.final.js",
-  "worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/createSizesAttribute.start.js",
-  "worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/createSparkleMaterial.final.js",
-  "worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/createSparkleMaterial.start.js",
-  "worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/setupAnimation.final.js",
-  "worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/setupAnimation.start.js",
-  "worlds/introduction/about-the-book/src/World/systems/controls.js",
-  "worlds/introduction/about-the-book/src/World/systems/renderer.js",
-  "worlds/introduction/about-the-book/src/World/systems/Resizer.js",
-  "worlds/introduction/about-the-book/src/World/systems/Loop.js",
-  "worlds/introduction/about-the-book/src/World/World.final.js",
-  "worlds/introduction/about-the-book/src/World/World.start.js",
-]
+IDEFiles:
+  [
+    "assets/models/Horse.glb",
+    "assets/models/Parrot.glb",
+    "assets/textures/sprites/spark1.png",
+    "styles/main.css",
+    "vendor/three/build/three.module.js",
+    "vendor/three/examples/jsm/controls/OrbitControls.js",
+    "vendor/three/examples/jsm/loaders/GLTFLoader.js",
+    "worlds/introduction/about-the-book/index.html",
+    "worlds/introduction/about-the-book/src/main.final.js",
+    "worlds/introduction/about-the-book/src/main.start.js",
+    "worlds/introduction/about-the-book/src/World/components/camera.js",
+    "worlds/introduction/about-the-book/src/World/components/lights.js",
+    "worlds/introduction/about-the-book/src/World/components/scene.final.js",
+    "worlds/introduction/about-the-book/src/World/components/scene.start.js",
+    "worlds/introduction/about-the-book/src/World/components/SparkleHorse/sparkleHorse.final.js",
+    "worlds/introduction/about-the-book/src/World/components/SparkleHorse/sparkleHorse.start.js",
+    "worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/convertMeshToPoints.final.js",
+    "worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/convertMeshToPoints.start.js",
+    "worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/createSizesAttribute.final.js",
+    "worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/createSizesAttribute.start.js",
+    "worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/createSparkleMaterial.final.js",
+    "worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/createSparkleMaterial.start.js",
+    "worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/setupAnimation.final.js",
+    "worlds/introduction/about-the-book/src/World/components/SparkleHorse/utilities/setupAnimation.start.js",
+    "worlds/introduction/about-the-book/src/World/systems/controls.js",
+    "worlds/introduction/about-the-book/src/World/systems/renderer.js",
+    "worlds/introduction/about-the-book/src/World/systems/Resizer.js",
+    "worlds/introduction/about-the-book/src/World/systems/Loop.js",
+    "worlds/introduction/about-the-book/src/World/World.final.js",
+    "worlds/introduction/about-the-book/src/World/World.start.js",
+  ]
 IDEComparisonMode: true
-IDEStripDirectory: 'worlds/introduction/about-the-book/'
-IDEClosedFolders: ['systems', 'components', 'styles', 'vendor', 'textures']
-IDEActiveDocument: 'src/World/components/SparkleHorse/sparkleHorse.js'
+IDEStripDirectory: "worlds/introduction/about-the-book/"
+IDEClosedFolders: ["systems", "components", "styles", "vendor", "textures"]
+IDEActiveDocument: "src/World/components/SparkleHorse/sparkleHorse.js"
 IDEEntry: "index.html"
 prevURL: "/book/introduction/"
 prevTitle: "Welcome to Discover three.js!"
@@ -63,7 +64,7 @@ It's not possible to build real-world applications like this without making opin
 We'll start small and before you know it we will have worked our way up to a complete application.
 {{% /note %}}
 
-In this Introduction, we cover everything you need to know _before_ you start. {{< link path="/book/first-steps/_index.md" title="The main chapters" >}} cover everything you need to get a basic 3D scene running in a web browser, including how to create objects, lights, cameras, camera controls, and how to organize and move objects around in your scenes. We'll finish by taking a look at how to load complex animated models created in an external program.
+In this Introduction, we cover everything you need to know _before_ you start. [The main chapters]({{< relref "/book/first-steps/" >}} "The main chapters") cover everything you need to get a basic 3D scene running in a web browser, including how to create objects, lights, cameras, camera controls, and how to organize and move objects around in your scenes. We'll finish by taking a look at how to load complex animated models created in an external program.
 
 ## Prior Knowledge
 
@@ -71,7 +72,7 @@ Creating 3D applications that run in a browser falls at the intersection of web 
 
 ### JavaScript and Web Development
 
-The main language we use throughout this book is JavaScript. You need to know the basics of this language to work with three.js, but you don't need to be an expert, and the same applies to HTML, CSS, and other aspects of web development. However, turning this book into a tutorial on web development or JavaScript would distract from our goal of learning three.js. As a result, most of the technical JavaScript details have been relegated to the {{< link path="book/appendix/" title="Appendices" >}}. Whenever we encounter a new JavaScript feature, we'll provide a link to the relevant section in the appendix, or a reliable external site like [MDN](https://developer.mozilla.org/en-US/).
+The main language we use throughout this book is JavaScript. You need to know the basics of this language to work with three.js, but you don't need to be an expert, and the same applies to HTML, CSS, and other aspects of web development. However, turning this book into a tutorial on web development or JavaScript would distract from our goal of learning three.js. As a result, most of the technical JavaScript details have been relegated to the [Appendices]({{< relref "book/appendix" >}} "Appendices"). Whenever we encounter a new JavaScript feature, we'll provide a link to the relevant section in the appendix, or a reliable external site like [MDN](https://developer.mozilla.org/en-US/).
 
 ### Math Knowledge
 
@@ -91,10 +92,8 @@ See the big toggle switch at the top left of the editor? Go ahead and give it a 
 
 Working on your own computer is referred to as _working locally_ in web dev land. If you prefer to do this rather than using the editor, you can download the files as a zip file using the {{< icon "solid/download" >}} button. This zip file will contain the files currently displayed. In other words, if the comparison toggle is to the right, you'll get the completed code, and if it's to the left, you'll get the starting code, in both cases along with any changes you've made.
 
-If you are working locally, once we come to loading textures and 3D models in {{< link path="/book/first-steps/transformations/" title="" >}} and {{< link path="/book/first-steps/load-models/" title="" >}} you'll need to set up a local development server. The reason for this is that web browsers have security restrictions to prevent malicious websites from loading files directly from your computer's file system. Check out the [How to Run Things Locally](https://threejs.org/docs/#manual/introduction/How-to-run-things-locally) in the three.js docs for more information on this topic.
+If you are working locally, once we come to loading textures and 3D models in the chapter on [Transformations]({{< relref "/book/first-steps/transformations" >}} "Transformations") and the chapter on [Loading Models]({{< relref "/book/first-steps/load-models" >}} "Loading Models") you'll need to set up a local development server. The reason for this is that web browsers have security restrictions to prevent malicious websites from loading files directly from your computer's file system. Check out the [How to Run Things Locally](https://threejs.org/docs/#manual/introduction/How-to-run-things-locally) in the three.js docs for more information on this topic.
 
 ## Official Documentation and Source Code
 
 You should use this book alongside the [official three.js documentation](https://threejs.org/docs/) and the [official examples](https://threejs.org/examples/), and you will be referred to each of these frequently. Once you're more familiar with the library, you'll also find the [three.js source code](https://github.com/mrdoob/three.js/tree/dev/src) and the [source code for the plugins](https://github.com/mrdoob/three.js/tree/dev/examples/jsm) useful in furthering your understanding.
-
-

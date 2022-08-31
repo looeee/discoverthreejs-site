@@ -36,7 +36,7 @@ membershipLevel: free
 
 In every chapter so far, we've created examples using nothing but our trusty cube. Don't you think it's about time we moved on to some other shapes? Or even (gasp!) more than one object at the same time? Switching to a new geometry is easy since we can use any of the twenty or so geometries that come with the three.js core, as we'll see in the next chapter. However, once we start to add lots of objects to our scenes, we also need to think about how to organize and keep track of them, both within the 3D space of the scene and in our code.
 
-In this chapter, we'll introduce a new geometry called `SphereBufferGeometry`, and we'll use this to showcase some features we can use to keep our scenes and code organized: the `Group` class, which is used to organize objects within the {{< link path="/book/first-steps/transformations/#the-scene-graph" title="scene graph" >}}, and the `.clone` method, which you can use to create identical copies of an existing object in a single line of code.
+In this chapter, we'll introduce a new geometry called `SphereBufferGeometry`, and we'll use this to showcase some features we can use to keep our scenes and code organized: the `Group` class, which is used to organize objects within the [scene graph]({{< relref "/book/first-steps/transformations#the-scene-graph" >}} "scene graph"), and the `.clone` method, which you can use to create identical copies of an existing object in a single line of code.
 
 ## Introducing `SphereBufferGeometry`
 
@@ -62,7 +62,7 @@ const geometry = new SphereBufferGeometry(
 
 {{< /code >}}
 
-The radius defines how big the sphere will be. More interesting are the next two parameters, which specify how much detail the geometry has around its width (equator) and height, respectively. The {{< link path="/book/first-steps/first-scene/#the-geometry" title="`BoxBufferGeometry` has similar parameters" >}}, however, they are less important as they don't change the shape of the box. The reason for this that all geometries are made out of triangles - you can see these outlined on the sphere in the scene above. To create a curved surface like a sphere we need to use lots of very tiny triangles.
+The radius defines how big the sphere will be. More interesting are the next two parameters, which specify how much detail the geometry has around its width (equator) and height, respectively. The [`BoxBufferGeometry` has similar parameters]({{< relref "/book/first-steps/first-scene#the-geometry" >}} "`BoxBufferGeometry` has similar parameters"), however, they are less important as they don't change the shape of the box. The reason for this that all geometries are made out of triangles - you can see these outlined on the sphere in the scene above. To create a curved surface like a sphere we need to use lots of very tiny triangles.
 
 Try experimenting with different values for `widthSegments` and `heightSegments` to see how these settings affect the quality of the geometry. It's important to use the smallest value that looks good for both settings. The number of triangles the sphere is built from increases very quickly when you use larger values for these parameters. What you're looking for is a tradeoff between quality and performance. If the sphere is far away from the camera or very small, you might be able to get away with a low-quality geometry made out of very few triangles, while if the sphere is the main focal point of your scene (such as a globe or planet), you will probably want to use a higher quality geometry.
 
@@ -115,13 +115,13 @@ TODO-DIAGRAM: improve diagram of group in scene graph to show twenty spheres
 
 ## The `Group` Object {#hello-group}
 
-[Groups](https://threejs.org/docs/#api/objects/Group) occupy {{< link path="/book/first-steps/transformations/#the-object3d-base-class-and-the-scene-graph" title="a position in the scene graph" >}} and can have children, but are themselves invisible. If the `Scene` represents the entire universe, then you can think of a `Group` as a single _compound_ object within that universe.
+[Groups](https://threejs.org/docs/#api/objects/Group) occupy [a position in the scene graph]({{< relref "/book/first-steps/transformations#the-object3d-base-class-and-the-scene-graph" >}} "a position in the scene graph") and can have children, but are themselves invisible. If the `Scene` represents the entire universe, then you can think of a `Group` as a single _compound_ object within that universe.
 
 {{< figure src="first-steps/scene_tree.svg" caption="A `Group` in the Scene Graph" >}}
 
 When we move a group around, all of its children move too. Likewise, if we rotate or scale a group, all of its children will be rotated or scaled too. However, the children can also be translated, rotated, or scaled independently. This is exactly how objects behave in the real world. For example, a car is made up of separate pieces like the body, windows, wheels, engine, and so on, and when you move the car they all move with it. But the wheels can rotate independently, and you can open the doors and roll down the windows, spin the steering wheel, and so on.
 
-Of course, all of that applies to _every_ scene object. Every scene object has `.add` and `.remove` methods inherited from `Object3D`, just like the `Group` and the `Scene` itself, and {{< link path="/book/first-steps/transformations/#working-with-the-scene-graph" title="every object can hold a position in the scene graph and have children" >}}. The difference is that groups are _purely organizational_. Other scene objects, like meshes, lights, cameras, and so on, have some other purpose in addition to occupying a place in the scene graph. However, groups exist purely to help you manipulate other scene objects.
+Of course, all of that applies to _every_ scene object. Every scene object has `.add` and `.remove` methods inherited from `Object3D`, just like the `Group` and the `Scene` itself, and [every object can hold a position in the scene graph and have children]({{< relref "/book/first-steps/transformations#working-with-the-scene-graph" >}} "every object can hold a position in the scene graph and have children"). The difference is that groups are _purely organizational_. Other scene objects, like meshes, lights, cameras, and so on, have some other purpose in addition to occupying a place in the scene graph. However, groups exist purely to help you manipulate other scene objects.
 
 ### Working with Groups
 
@@ -245,7 +245,7 @@ clonedMesh.material = new MeshStandardMaterial({ color: "indigo" });
 
 ### Custom Properties like `.tick` are Not Cloned
 
-One important final note. Only the default properties of an object will be cloned. If you create custom properties like {{< link path="/book/first-steps/animation-loop/#the-tick-method" title="the `.tick` method" >}} we're using to create animations, these will not be cloned. You'll have to set up any custom properties again on the cloned mesh.
+One important final note. Only the default properties of an object will be cloned. If you create custom properties like [the `.tick` method]({{< relref "/book/first-steps/animation-loop#the-tick-method" >}} "the `.tick` method") we're using to create animations, these will not be cloned. You'll have to set up any custom properties again on the cloned mesh.
 
 ## Create the _**meshGroup.js**_ Module
 
@@ -307,7 +307,7 @@ const geometry = new SphereBufferGeometry(0.25, 16, 16);
 
 Setting both `widthSegments` and `heightSegments` to sixteen gives us a decent tradeoff between quality and performance, as long as we don't zoom in too close. With these settings, each sphere will be made out of 480 tiny triangles.
 
-Next, create a `MeshStandardMaterial`. Nothing new here, except this time we'll {{< link path="/book/first-steps/physically-based-rendering/#change-the-materials-color" title="set the color" >}} to indigo. Once again, this material will be shared by all of the spheres.
+Next, create a `MeshStandardMaterial`. Nothing new here, except this time we'll [set the color]({{< relref "/book/first-steps/physically-based-rendering#change-the-materials-color" >}} "set the color") to indigo. Once again, this material will be shared by all of the spheres.
 
 {{< code lang="js" linenos="true" linenostart="16" caption="_**meshGroup.js**_: create a MeshStandardMaterial" >}}
 const material = new MeshStandardMaterial({
@@ -370,7 +370,7 @@ const clonedSphere = protoSphere.clone();
 
 {{< /code >}}
 
-We'll use a {{< link path="/book/appendix/javascript-reference/#for-loop" title="**for loop**" >}} to create twenty new spheres, adding each to the group as we create them. Normally, to loop twenty times, we would do this:
+We'll use a [**for loop**]({{< relref "/book/appendix/javascript-reference#for-loop" >}} "**for loop**") to create twenty new spheres, adding each to the group as we create them. Normally, to loop twenty times, we would do this:
 
 {{< code lang="js" linenos="false" caption="A basic for loop that runs twenty times" >}}
 for (let i = 0; i < 20; i++) {
@@ -420,11 +420,11 @@ $$
 \end{aligned}
 $$
 
-If we input values of $i$ between zero and one, we'll get points spread around the circumference of the circle. We can easily rewrite these function in JavaScript {{< link path="/book/appendix/javascript-reference/#the-math-object" title="using the built-in `Math` class" >}}:
+If we input values of $i$ between zero and one, we'll get points spread around the circumference of the circle. We can easily rewrite these function in JavaScript [using the built-in `Math` class]({{< relref "/book/appendix/javascript-reference#the-math-object" >}} "using the built-in `Math` class"):
 
 {{< code lang="js" linenos="false" caption="Equations for points on a circle" >}}
-const x = Math.cos(2 * Math.PI * i);
-const y = Math.sin(2 * Math.PI * i);
+const x = Math.cos(2 _ Math.PI _ i);
+const y = Math.sin(2 _ Math.PI _ i);
 {{< /code >}}
 
 {{% note %}}
@@ -438,8 +438,8 @@ for (let i = 0; i < 1; i += 0.05) {
 const sphere = protoSphere.clone();
 
 // position the spheres on around a circle
-sphere.position.x = Math.cos(2 * Math.PI * i);
-sphere.position.y = Math.sin(2 * Math.PI * i);
+sphere.position.x = Math.cos(2 _ Math.PI _ i);
+sphere.position.y = Math.sin(2 _ Math.PI _ i);
 
 this.group.add(sphere);
 }
@@ -453,7 +453,7 @@ The circle we created has radius one, which is quite small. We'll double the sca
 
 {{< code file="worlds/first-steps/organizing-with-group/src/World/components/meshGroup.final.js" from="39" to="40" lang="js" linenos="true" caption="_**meshGroup.js**_: scale the group" >}}{{< /code >}}
 
-The [`.multiplyScalar`](https://threejs.org/docs/#api/en/math/Vector3.multiplyScalar) method {{< link path="/book/first-steps/transformations/#the-multiplyscalar-method" title="multiplies the $x$, $y$, and $z$ components of a vector by a number" >}}. When we double the scale of the group, every object inside the group doubles in size too.
+The [`.multiplyScalar`](https://threejs.org/docs/#api/en/math/Vector3.multiplyScalar) method [multiplies the $x$, $y$, and $z$ components of a vector by a number]({{< relref "/book/first-steps/transformations#the-multiplyscalar-method" >}} "multiplies the $x$, $y$, and $z$ components of a vector by a number"). When we double the scale of the group, every object inside the group doubles in size too.
 
 ### Scale the Spheres
 
@@ -465,7 +465,7 @@ The variable `i` lies in the range $0 \le i \le 1$, so here, we are scaling the 
 
 ### Spin the Wheel
 
-Finally, update the `group.tick` method to set the spheres in motion. We'll use the same approach we used to {{< link path="/book/first-steps/animation-loop/#rotate-the-cube" title="create the cube animation" >}}, except this time we are rotating on a single axis so it's a simple spinning motion, like a wheel rotating around its center.
+Finally, update the `group.tick` method to set the spheres in motion. We'll use the same approach we used to [create the cube animation]({{< relref "/book/first-steps/animation-loop#rotate-the-cube" >}} "create the cube animation"), except this time we are rotating on a single axis so it's a simple spinning motion, like a wheel rotating around its center.
 
 {{< code file="worlds/first-steps/organizing-with-group/src/World/components/meshGroup.final.js" from="42" to="47" lang="js" linenos="true" caption="_**meshGroup.js**_: animate the group">}}{{< /code >}}
 
@@ -507,9 +507,9 @@ What happens if you change 0.05 to 0.001? How small can that value be before you
 Or, how about changing the $z$ positions in the loop as well as $x$ and $y$?
 
 {{< code lang="js" linenos="true" linenostart="31" caption="_**meshGroup.js**_: change sphere's z position" >}}
-sphere.position.x = Math.cos(2 * Math.PI * i);
-sphere.position.y = Math.sin(2 * Math.PI * i);
-sphere.position.z = -i * 5;
+sphere.position.x = Math.cos(2 _ Math.PI _ i);
+sphere.position.y = Math.sin(2 _ Math.PI _ i);
+sphere.position.z = -i \* 5;
 {{< /code >}}
 
 {{< inlineScene entry="first-steps/snake.js" class="round" >}}

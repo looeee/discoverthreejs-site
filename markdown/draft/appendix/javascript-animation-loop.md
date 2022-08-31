@@ -1,19 +1,20 @@
 ---
-title: 'How to Create an Animation Loop With JavaScript'
+title: "How to Create an Animation Loop With JavaScript"
 description: "This chapter is a brief overview of the various ways it's possible to create an animation loop using JavaScript"
 date: 2018-04-02
 weight: 9907
-chapter: 'A.7'
+chapter: "A.7"
 available: false
 draft: true
 showIDE: false
-IDEFiles: [
-  'worlds/appendix/javascript-animation-loop/src/main.js',
-  'styles/main.css',
-  'worlds/appendix/javascript-animation-loop/index.html',
-]
-IDEStripDirectory: 'worlds/appendix/javascript-animation-loop/'
-IDEActiveDocument: 'src/main.js'
+IDEFiles:
+  [
+    "worlds/appendix/javascript-animation-loop/src/main.js",
+    "styles/main.css",
+    "worlds/appendix/javascript-animation-loop/index.html",
+  ]
+IDEStripDirectory: "worlds/appendix/javascript-animation-loop/"
+IDEActiveDocument: "src/main.js"
 IDESwitchImportsAllow: false
 ---
 
@@ -23,14 +24,14 @@ _Note: you can paste any of the loop variations from this section directly into 
 
 We'll spend a few moments exploring the various ways to set up an animation loop in JavaScript.
 
-We'll build our loop using a {{< link path="/book/appendix/javascript-reference/#recursion" title="recursive function" >}}, which is a function that calls itself repeatedly. Here is the most basic version of a recursive animation loop:
+We'll build our loop using a [recursive function]({{< relref "/book/appendix/javascript-reference#recursion" >}} "recursive function"), which is a function that calls itself repeatedly. Here is the most basic version of a recursive animation loop:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Basic recursive loop function" >}}
 function looper() {
-  console.log('Rendering a frame...');
+console.log('Rendering a frame...');
 
-  // looper calls itself
-  looper();
+// looper calls itself
+looper();
 }
 
 // start the loop
@@ -39,7 +40,7 @@ looper();
 
 This loop will draw frames as fast as your computer can manage, which is likely to be far faster than your monitor can handle. That's a lot of wasted processing power and will slow down everything else on the computer.
 
-Most monitors run at **sixty hertz**, which means that the image on the screen is updated sixty times per second. We call this the *refresh rate* of the monitor. This number is fixed. In other words, a 60Hz monitor will update the image sixty times a second no matter how many (or how few) frames we send. If we send more than sixty frames in a single second to a 60Hz monitor, we are wasting computing resources.
+Most monitors run at **sixty hertz**, which means that the image on the screen is updated sixty times per second. We call this the _refresh rate_ of the monitor. This number is fixed. In other words, a 60Hz monitor will update the image sixty times a second no matter how many (or how few) frames we send. If we send more than sixty frames in a single second to a 60Hz monitor, we are wasting computing resources.
 
 We call the rate at which our app is generating frames the **FPS** (**frames per second**). This number is variable and may change from second to second depending on the complexity of your scene and how busy your computer is, but for an animation to look smooth, we want this number be as close to sixty FPS as possible.
 
@@ -47,15 +48,15 @@ This means we need some way to schedule the rendering of frames. To render at si
 
 In other words, our animation loop should look like this:
 
-* **render the scene**
-* **wait for 16.666 milliseconds**
-* **rotate the cube a tiny amount**
-* **render the scene**
-* **wait for 16.666 milliseconds**
-* **rotate the cube a tiny amount**
-* **render the scene**
-* **wait for 16.666 milliseconds**
-* **rotate the cube a tiny amount**
+- **render the scene**
+- **wait for 16.666 milliseconds**
+- **rotate the cube a tiny amount**
+- **render the scene**
+- **wait for 16.666 milliseconds**
+- **rotate the cube a tiny amount**
+- **render the scene**
+- **wait for 16.666 milliseconds**
+- **rotate the cube a tiny amount**
 
 ... and so on.
 
@@ -67,13 +68,13 @@ We can recursively call `.setTimeout` with a delay of 16.666 milliseconds:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="A recursive loop that uses setTimeout to pause between loops" >}}
 function loopAt60FPS() {
-  console.log('Rendering a frame...');
+console.log('Rendering a frame...');
 
-  // wait 16.666 milliseconds
-  setTimeout(() => {
-    // loopAt60FPS calls itself
-    loopAt60FPS();
-  }, 16.666);
+// wait 16.666 milliseconds
+setTimeout(() => {
+// loopAt60FPS calls itself
+loopAt60FPS();
+}, 16.666);
 }
 
 // start the loop
@@ -85,7 +86,7 @@ Or, we could use [`setInterval`](https://developer.mozilla.org/en-US/docs/Web/AP
 {{< code lang="js" linenos="false" hl_lines="" caption="A recursive loop that uses setInterval to pause between loops" >}}
 // render every 16.666 milliseconds
 setInterval(() => {
-  console.log('Rendering a frame...');
+console.log('Rendering a frame...');
 }, 16.666);
 {{< /code >}}
 
@@ -107,7 +108,7 @@ Often, the user will not notice that an app is running at thirty frames per seco
 
 Until a few years ago, we simply had to grit our teeth and accept all these problems. Fortunately, that's no longer the case.
 
-Modern browsers have a method designed especially for running animations smoothly, called {{< link path="/book/appendix/dom-api-reference/#drawing-animation-frames" title="`.requestAnimationFrame`" >}}.
+Modern browsers have a method designed especially for running animations smoothly, called [`.requestAnimationFrame`]({{< relref "/book/appendix/dom-api-reference#drawing-animation-frames" >}} "`.requestAnimationFrame`").
 
 If we use this method to set up our animation loop, we can rely on the browser to intelligently schedule frames in sync with the monitor's refresh rate.
 
@@ -116,14 +117,14 @@ loop](#schedule-with-settimeout-and-setinterval) above:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="A recursive loop that uses requestAnimationFrame to intelligently schedule the loops" >}}
 function onLoop() {
-  // render a frame
-  console.log('Rendering a frame...');
+// render a frame
+console.log('Rendering a frame...');
 
-  // schedule looper to be called
-  // the next time the browser repaints
-  requestAnimationFrame(() => {
-    onLoop()
-  });
+// schedule looper to be called
+// the next time the browser repaints
+requestAnimationFrame(() => {
+onLoop()
+});
 }
 
 // start the loop

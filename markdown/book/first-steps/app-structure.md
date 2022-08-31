@@ -27,11 +27,11 @@ prevTitle: "Getting Started: Here's Where the Real Fun Begins!"
 
 # The Structure of a three.js App
 
-Before we can build a three.js app, we need to create a web page. We briefly discussed how we're going to do that in the introduction ({{< link path="/book/introduction/get-threejs/" title="Ch 0.5" >}} and {{< link path="/book/introduction/threejs-with-frameworks/" title="Ch 0.6" >}}), but let's take a deeper look now. As we mentioned in the last chapter, our goal here is to create the most basic, simple, unexciting webpage possible, without making any assumptions about what a real-world web application that uses three.js might look like. By doing this, we ensure the code we write can be adapted to work anywhere without too much effort.
+Before we can build a three.js app, we need to create a web page. We briefly discussed how we're going to do that in the introduction ([Ch 0.5]({{< relref "/book/introduction/get-threejs" >}} "Ch 0.5") and [Ch 0.6]({{< relref "/book/introduction/threejs-with-frameworks" >}} "Ch 0.6")), but let's take a deeper look now. As we mentioned in the last chapter, our goal here is to create the most basic, simple, unexciting webpage possible, without making any assumptions about what a real-world web application that uses three.js might look like. By doing this, we ensure the code we write can be adapted to work anywhere without too much effort.
 
 We'll create this basic web page out of just two files: _**index.html**_, and _**styles/main.css**_. That's it. Open up the editor by pressing the {{< icon "solid/columns" >}} button now and take a look at both of these files now.
 
-> If anything from this chapter is unfamiliar to you, refer to {{< link path="/book/appendix/html-and-css-reference" title="" >}} where we take a deeper look at the construction of a simple web page.
+> If anything from this chapter is unfamiliar to you, refer to [the HTML and CSS Reference]({{< relref "/book/appendix/html-and-css-reference" >}} "the HTML and CSS Reference") where we take a deeper look at the construction of a simple web page.
 
 ## _**index.html**_
 
@@ -49,7 +49,7 @@ Within the `<head>` section of _**index.html**_, one of the `<link>` elements re
 
 {{< code file="styles/main.css" linenos="false" lang="css" caption="_**styles/main.css**_">}}{{< /code >}}
 
-We'll take a closer look at the styles for the `#scene-container` in a moment, while the rest of this file is explained in more detail {{< link path="/book/appendix/html-and-css-reference/#main-css" title="in the appendices" >}}.
+We'll take a closer look at the styles for the `#scene-container` in a moment, while the rest of this file is explained in more detail [in the appendices]({{< relref "/book/appendix/html-and-css-reference#main-css" >}} "in the appendices").
 
 ## _**src/main.js**_: the JavaScript Entry Point
 
@@ -62,7 +62,7 @@ Back in _**index.html**_, just below the styles `<link>` is a `<script>` tag ref
 {{< code file="worlds/first-steps/app-structure/src/main.js" lang="js" linenos=""
 caption="_**src/main.js**_: coming soon!" >}}{{< /code >}}
 
-_**main.js**_ is the entry point for our JavaScript application, and we'll fill it up in the next chapter. The `type="module"` attribute tells the browser we're writing JavaScript modules. If this is new to you, head over to {{< link path="/book/appendix/javascript-modules/" title="" >}}, which has everything you need to know about JavaScript modules to follow the code in this book.
+_**main.js**_ is the entry point for our JavaScript application, and we'll fill it up in the next chapter. The `type="module"` attribute tells the browser we're writing JavaScript modules. If this is new to you, head over to the [JavaScript Modules Reference]({{< relref "/book/appendix/javascript-modules" >}} "JavaScript Modules Reference"), which has everything you need to know about JavaScript modules to follow the code in this book.
 
 There's another advantage to the `module` attribute: the browser will automatically _defer_ running this file until the HTML has been parsed. This will prevent errors caused by trying to access an HTML element before the browser has read that far (browsers read HTML from top to bottom).
 
@@ -93,11 +93,11 @@ Turn your attention to the file tree in the editor. There are two folders we hav
 
 ### {{< icon "solid/folder-open" >}} The _**vendor/**_ Folder
 
-The _**vendor/**_ folder is where we put JavaScript files that _other people_ have written. For most of the examples in this book, that means files from the three.js library, downloaded from the {{< link path="/book/introduction/github-repo/" title="three.js GitHub repo" >}}. In this book, we'll use just three files from the library:
+The _**vendor/**_ folder is where we put JavaScript files that _other people_ have written. For most of the examples in this book, that means files from the three.js library, downloaded from the [three.js GitHub repo]({{< relref "/book/introduction/github-repo" >}} "three.js GitHub repo"). In this book, we'll use just three files from the library:
 
 - _**vendor/three/build/three.module.js**_: the main three.js file.
-- _**vendor/three/examples/jsm/controls/OrbitControls.js**_: a camera control plugin that we'll introduce in {{< link path="/book/first-steps/camera-controls/" title="Ch 1.9" >}}.
-- _**vendor/three/examples/jsm/loaders/GLTFLoader.js**_: a loader for 3D models that we'll introduce in {{< link path="/book/first-steps/load-models/" title="Ch 1.13" >}}.
+- _**vendor/three/examples/jsm/controls/OrbitControls.js**_: a camera control plugin that we'll introduce in [Ch 1.9]({{< relref "/book/first-steps/camera-controls" >}} "Ch 1.9").
+- _**vendor/three/examples/jsm/loaders/GLTFLoader.js**_: a loader for 3D models that we'll introduce in [Ch 1.13]({{< relref "/book/first-steps/load-models" >}} "Ch 1.13").
 
 The _**vendor/three**_ folder mirrors the structure of the GitHub repo, but for clarity, we'll include only the files needed in each chapter. To import these files within _**main.js**_, we'll use _NPM style imports_:
 
@@ -112,7 +112,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 {{< /code >}}
 
-If you prefer to {{< link path="/book/introduction/about-the-book/#working-on-your-own-machine" title="work locally" >}}, you can download the files from the editor as a zip archive using the {{< icon "solid/download" >}} button. Within the zip file, any three.js imports will be converted to CDN imports from skypack.dev:
+If you prefer to [work locally]({{< relref "/book/introduction/about-the-book#working-on-your-own-machine" >}} "work locally"), you can download the files from the editor as a zip archive using the {{< icon "solid/download" >}} button. Within the zip file, any three.js imports will be converted to CDN imports from skypack.dev:
 
 {{< code lang="js" linenos="false" caption="_**src/main.js**_: importing three.js files, CDN style" >}}
 
@@ -125,13 +125,13 @@ import { GLTFLoader } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/l
 
 {{< /code >}}
 
-Refer back to {{< link path="/book/introduction/get-threejs/" title="" >}} for more details.
+Refer back to [the intro]({{< relref "/book/introduction/get-threejs" >}} "the intro") for more details.
 
 ## {{< icon "solid/folder-open" >}} The _**assets**_ Folder
 
 {{< inlineScene entry="first-steps/flamingo-animated.js" class="medium right round" >}}
 
-Finally, there's the _**assets/**_ folder. **Anything used in our app that is not HTML, CSS, or JavaScript goes in here**: textures, 3D models, fonts, sounds, and so on. Currently, there's one test texture that we'll use in {{< link path="/book/first-steps/textures-intro/" title="" >}}, and one model of a flamingo that we'll use in {{< link path="/book/first-steps/load-models/" title="" >}}.
+Finally, there's the _**assets/**_ folder. **Anything used in our app that is not HTML, CSS, or JavaScript goes in here**: textures, 3D models, fonts, sounds, and so on. Currently, there's one test texture that we'll use in the [chapter on Texture]({{< relref "/book/first-steps/textures-intro" >}} "chapter on Texture"), and one model of a flamingo that we'll use in the chapter on Loading Models [chapter on Loading Models]({{< relref "/book/first-steps/load-models" >}} "chapter on Loading Models").
 
 {{% note %}}
 TODO-LOW: apply test texture to the flamingo in this scene

@@ -1,28 +1,27 @@
 ---
-title: 'Asynchronous JavaScript'
-description: 'Asynchronous coding means writing code in such a way that our app will keep working while a long task, like loading a model, is running. Here, we cover the different ways we can do this in JavaScript.'
+title: "Asynchronous JavaScript"
+description: "Asynchronous coding means writing code in such a way that our app will keep working while a long task, like loading a model, is running. Here, we cover the different ways we can do this in JavaScript."
 date: 2019-01-01
 weight: 9905
-chapter: 'A.5'
+chapter: "A.5"
 available: true
 showIDE: true
-IDEFiles: [
-  'worlds/appendix/asynchronous-javascript/src/1-asynchronous-callback.js',
-  'worlds/appendix/asynchronous-javascript/src/2-multiple-asynchronous-callbacks.js',
-  'worlds/appendix/asynchronous-javascript/src/3-promises.js',
-  'worlds/appendix/asynchronous-javascript/src/4-multiple-promises.js',
-  'worlds/appendix/asynchronous-javascript/src/5-multiple-promises-handle-error.js',
-  'worlds/appendix/asynchronous-javascript/src/6-async-functions.js',
-  'worlds/appendix/asynchronous-javascript/src/7-multiple-async-functions.js',
-  'worlds/appendix/asynchronous-javascript/index.html',
-]
-IDEStripDirectory: 'worlds/appendix/asynchronous-javascript/'
-IDEClosedFolders: ['styles']
-IDEActiveDocument: 'src/6-async-functions.js'
+IDEFiles:
+  [
+    "worlds/appendix/asynchronous-javascript/src/1-asynchronous-callback.js",
+    "worlds/appendix/asynchronous-javascript/src/2-multiple-asynchronous-callbacks.js",
+    "worlds/appendix/asynchronous-javascript/src/3-promises.js",
+    "worlds/appendix/asynchronous-javascript/src/4-multiple-promises.js",
+    "worlds/appendix/asynchronous-javascript/src/5-multiple-promises-handle-error.js",
+    "worlds/appendix/asynchronous-javascript/src/6-async-functions.js",
+    "worlds/appendix/asynchronous-javascript/src/7-multiple-async-functions.js",
+    "worlds/appendix/asynchronous-javascript/index.html",
+  ]
+IDEStripDirectory: "worlds/appendix/asynchronous-javascript/"
+IDEClosedFolders: ["styles"]
+IDEActiveDocument: "src/6-async-functions.js"
 IDESwitchImportsAllow: false
 ---
-
-
 
 # Asynchronous JavaScript
 
@@ -37,8 +36,6 @@ const y = 100; // executed second
 
 add(x, y); // executed third
 {{< /code >}}
-
-
 
 While working with three.js, we'll often load assets such as models, animations, textures, and other media. These files can be stored in many different file formats, and loading them over a slow and unreliable internet connection can take some time, or fail for any number of reasons from whale sharks snacking on undersea cables to a mistyped file name. If we take the obvious approach and run a long task like loading a model in the main thread, our entire page will freeze while we wait for the model to load.
 
@@ -81,38 +78,37 @@ In this chapter, we'll explore **callback functions**, **Promises**, and **async
 
 Loading files is not the only use case for asynchronous code. Whenever you _want_ or _need_ to wait a while before executing some code, you'll switch to an asynchronous code style. When we load a 3D model, we _need_ to wait a while before executing the code to add that model to the scene. Sometimes, you _want_ to wait a while, for example, before displaying a message to a user, in which case, you can use `setTimeout` to create an artificial asynchronous operation.
 
-
 We've set up a few examples in the IDE in each of these three styles. In all of them (except _**1-synchronous-callback.js**_) we have used `setTimeout` to simulate a model that takes several seconds to load.
 
 ### Generating Asynchronous Code with `setTimeout`
 
 To demonstrate asynchronous techniques, we need to perform an asynchronous operation. However, most asynchronous operations are kind of complicated, like loading a model, or submitting a form and waiting for a response from the server.
 
-Fortunately, there's a function that allows us to perform a very simple asynchronous operation, called [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout). This method takes two arguments, a {{< link path="book/appendix/javascript-reference/#callback-functions" title="callback function" >}}, and the amount of time we want to wait (in milliseconds) before executing the callback function.
+Fortunately, there's a function that allows us to perform a very simple asynchronous operation, called [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout). This method takes two arguments, a [callback function]({{< relref "/book/appendix/javascript-reference#callback-functions" >}}), and the amount of time we want to wait (in milliseconds) before executing the callback function.
 
 {{< code lang="js" linenos="false" caption="The setTimeout method allows us to wait for a set amount of time before executing a callback" >}}
 onTimeout = () => {
-  console.log('The time has passed');
+console.log('The time has passed');
 }
 
 // wait 3000 milliseconds (3 seconds), then execute the callback
 setTimeout(onTimeout, 3000);
 {{< /code >}}
 
-Note that we'll usually wrap the callback in an anonymous {{< link path="book/appendix/javascript-reference/#arrow-functions" title="arrow function" >}}:
+Note that we'll usually wrap the callback in an anonymous [arrow function]({{< relref "book/appendix/javascript-reference#arrow-functions" >}} "arrow function"):
 
 {{< code lang="js" linenos="false" caption="It's often required to wrap the setTimeout callback in an anonymous function" >}}
 onTimeout = () => {
-  console.log('The time has passed');
+console.log('The time has passed');
 }
 
 // wait 3000 milliseconds (3 seconds), then execute the callback
 setTimeout(() => {
-  onTimeout();
+onTimeout();
 }, 3000);
 {{< /code >}}
 
-We won't get into the reasons for this here. It's all about {{< link path="book/appendix/javascript-reference/#scope-and-closures" title="scope" >}} and [the "this" problem](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout#The_this_problem). In any case, you'll notice we do this a lot when using callback functions.
+We won't get into the reasons for this here. It's all about [scope]({{< relref "book/appendix/javascript-reference#scope-and-closures" >}} "scope") and [the "this" problem](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout#The_this_problem). In any case, you'll notice we do this a lot when using callback functions.
 
 One final thing about `setTimeout`: it's not accurate. We have passed in 3000 milliseconds to the method above, but we cannot guarantee that exactly 3000 milliseconds will have passed by the time the callback executes. There are two reasons for this.
 
@@ -146,15 +142,15 @@ The newer `Fetch` API uses Promises rather than callbacks and has a much-improve
 
 A [callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function) is a function that gets passed into another function as an argument. When the parent function is asynchronous, we refer to the callback as an **asynchronous callback function**.
 
-In {{< link path="book/appendix/javascript-reference/#old-school-and-modern-javascript" title="old-school JavaScript" >}}, before the release of version ES6 sometime around 2015, the _only_ way to write asynchronous code in JavaScript was to use asynchronous callback functions. These are the simplest way of writing asynchronous code, although they do have some drawbacks which mean that we'll prefer to use other techniques.
+In [old-school JavaScript]({{< relref "book/appendix/javascript-reference#old-school-and-modern-javascript" >}} "old-school JavaScript"), before the release of version ES6 sometime around 2015, the _only_ way to write asynchronous code in JavaScript was to use asynchronous callback functions. These are the simplest way of writing asynchronous code, although they do have some drawbacks which mean that we'll prefer to use other techniques.
 
-We introduced callback functions back in {{< link path="/book/appendix/javascript-reference/#callback-functions" title="" >}}, however, aside from the ones we passed into `setTimeout` above, all the callbacks we have written so far are synchronous.
+We introduced [callback functions]({{< relref "/book/appendix/javascript-reference#callback-functions" >}} "callback functions") earlier, however, aside from the ones we passed into `setTimeout` above, all the callbacks we have written so far are synchronous.
 
-There's nothing different about the callback we passed into `setTimeout`. The only difference between a synchronous callback and an asynchronous callback is the context in which we use it. For example, we introduced callbacks using the {{< link path="book/appendix/javascript-reference/#foreach" title="`array.forEach` method" >}}. We can pass the same callback into `.forEach` and `setTimeout`. In the first case, the callback is synchronous, and in the second, it is asynchronous.
+There's nothing different about the callback we passed into `setTimeout`. The only difference between a synchronous callback and an asynchronous callback is the context in which we use it. For example, we introduced callbacks using the [`array.forEach` method]({{< relref "book/appendix/javascript-reference#foreach" >}} "`array.forEach` method"). We can pass the same callback into `.forEach` and `setTimeout`. In the first case, the callback is synchronous, and in the second, it is asynchronous.
 
 {{< code lang="js" linenos="false" caption="The same callback can be both synchronous and asynchronous" >}}
 function callbackTest() {
-  console.log('Callback executed');
+console.log('Callback executed');
 }
 
 const array = [1, 2, 3, 4];
@@ -172,11 +168,11 @@ Rather than use `Array.forEach`, we can create a simple synchronous function tha
 
 {{< code lang="js" linenos="false" caption="A simple function that takes a callback and immediately executes it" >}}
 function synchronousCallbackOperation(callback) {
-  callback('Data passed to callback');
+callback('Data passed to callback');
 }
 
 const onComplete = (result) => {
-  console.log(result);
+console.log(result);
 };
 
 synchronousCallbackOperation(onComplete);
@@ -190,13 +186,13 @@ We'll take the `synchronousCallbackOperation` and combine it with `setTimeout` t
 
 {{< code lang="js" linenos="false" caption="A simple function that takes a callback, waits a while, then executes it" >}}
 function asynchronousCallbackOperation(callback) {
-  setTimeout(() => {
-    callback('Data passed to callback');
-  }, 3000);
+setTimeout(() => {
+callback('Data passed to callback');
+}, 3000);
 }
 
 const onComplete = (result) => {
-  console.log(result);
+console.log(result);
 };
 
 asynchronousCallbackOperation(onComplete);
@@ -219,12 +215,12 @@ At this point, using `setTimeout` to simulate loading a model falls short since 
 {{< code lang="js" linenos="false" caption="Asynchronous error handling with callbacks" >}}
 // This callback will be executed if loading succeeds
 const onLoad = result => {
-  addModelToScene(result);
+addModelToScene(result);
 };
 
 // This callback will be executed if loading fails
 const onError = error => {
-  console.error(error);
+console.error(error);
 };
 
 loadModelUsingCallback('path/to/model.file', onLoad, onError);
@@ -238,7 +234,7 @@ _Note: the three.js loaders also take an `onProgress` callback which we have ski
 
 When using callbacks, loading multiple models is easy. We simply need to run the `loadModelUsingCallback` function multiple times with different `url` arguments (and perhaps different callbacks).
 
-To add a bit of spice here, for this example, we're using {{< link path="book/appendix/javascript-reference/#the-math-object" title="`Math.random`" >}} to add a bit of chaos to our fake model loading function. Now, every model will load in somewhere between zero and five seconds.
+To add a bit of spice here, for this example, we're using [`Math.random`]({{< relref "book/appendix/javascript-reference#the-math-object" >}} "`Math.random`") to add a bit of chaos to our fake model loading function. Now, every model will load in somewhere between zero and five seconds.
 
 Which model will load first? A, B, C, or D?
 
@@ -262,16 +258,16 @@ Here's the first problem: **You cannot easily access the loaded model from _outs
 
 {{< code lang="js" linenos="false" caption="Accessing the model from outside the callback is hard" >}}
 const onLoad = model => {
-  // If we simply add the model to the scene
-  // it's not a big deal.
-  addModelToScene(model);
+// If we simply add the model to the scene
+// it's not a big deal.
+addModelToScene(model);
 
-  // ... but what if we want to do more than that?
-  setupControls(model);
-  setupPhysics(model);
-  adjustMaterials(model);
-  adjustGeometry(model);
-  // ... and so on.
+// ... but what if we want to do more than that?
+setupControls(model);
+setupPhysics(model);
+adjustMaterials(model);
+adjustGeometry(model);
+// ... and so on.
 };
 
 loadModelUsingCallback('path/to/model.file', onLoad);
@@ -287,11 +283,11 @@ Suppose models A and B need to interact with each other inside a `setupPhysics` 
 
 {{< code lang="js" linenos="false" caption="With callbacks, it's hard for multiple models to interact with each other" >}}
 const onLoadModelA = model => {
-  addModelToScene(model);
+addModelToScene(model);
 };
 
 const onLoadModelB = model => {
-  addModelToScene(model);
+addModelToScene(model);
 };
 
 loadModelUsingCallback('path/to/modelA.file', onLoadModelA);
@@ -411,8 +407,8 @@ Here's a complete example of a promise in action:
 
 {{< code lang="js" linenos="false" caption="Using a promise requires five callbacks" >}}
 const executorCallback = (resolve, reject) => {
-  resolve('Promise succeeded');
-  reject('Promise failed');
+resolve('Promise succeeded');
+reject('Promise failed');
 }
 
 const promise = new Promise(executorCallback);
@@ -420,12 +416,12 @@ const promise = new Promise(executorCallback);
 // if the asynchronous operation succeeds, .then will run,
 // and
 promise
-  .then((result) => {
-    console.log(result); // => 'Promise succeeded'
-  })
-  .catch((error) => {
-    console.error(error); // => 'Promise failed'
-  });
+.then((result) => {
+console.log(result); // => 'Promise succeeded'
+})
+.catch((error) => {
+console.error(error); // => 'Promise failed'
+});
 {{< /code >}}
 
 There's a lot to unpack here. There are three named callbacks: `executorCallback`, `resolve`, and `reject`, and then there's `.then` and `.catch`, each of which takes an anonymous callback of their own. That's five callbacks! Let's go over everything now, and hopefully, it will become more manageable.
@@ -440,8 +436,8 @@ The first callback we encounter when using promises is the **executor callback**
 
 {{< code lang="js" linenos="false" caption="The executor callback" >}}
 const executorCallback = (resolve, reject) => {
-  resolve('Promise succeeded');
-  reject('Promise failed');
+resolve('Promise succeeded');
+reject('Promise failed');
 };
 
 const promise = new Promise(executorCallback);
@@ -451,8 +447,8 @@ You'll never see `executorCallback` explicitly typed out (except in a book). Ins
 
 {{< code lang="js" linenos="false" caption="The executor callback is always written inline" >}}
 const promise = new Promise((resolve, reject) => {
-  resolve('Promise succeeded');
-  reject('Promise failed');
+resolve('Promise succeeded');
+reject('Promise failed');
 });
 {{< /code >}}
 
@@ -464,11 +460,11 @@ In other words, you will never do this:
 
 {{< code lang="js" linenos="false" caption="Not required: resolve and reject are defined within the JavaScript engine" >}}
 const resolve = (value) => {
-  ...
+...
 }
 
 const resolve = (err) => {
-  ...
+...
 }
 {{< /code >}}
 
@@ -490,9 +486,9 @@ In this example, that means `resolve('Promise succeeded')` will execute and `.th
 
 {{< code lang="js" linenos="false" caption="Any data returned by a successful operation is passed into .then for us to process" >}}
 promise
-  .then((result) => {
-    console.log(result); // => 'Promise succeeded'
-  });
+.then((result) => {
+console.log(result); // => 'Promise succeeded'
+});
 {{< /code >}}
 
 The `.then` callback is equivalent to the `onLoad` callback from our earlier [asynchronous callback example](#an-asynchronous-callback-operation).
@@ -503,14 +499,13 @@ If the asynchronous operation _fails_, the promise's state will move from _pendi
 
 {{< code lang="js" linenos="false" caption="Any data returned by a failed operation is passed into .catch for us to process" >}}
 promise
-  .then((result) => {
-    console.log(result); // => 'Promise succeeded'
-  })
-  .catch((error) => {
-    console.error(error); // => 'Promise failed'
-  });
+.then((result) => {
+console.log(result); // => 'Promise succeeded'
+})
+.catch((error) => {
+console.error(error); // => 'Promise failed'
+});
 {{< /code >}}
-
 
 The `.catch` callback is equivalent to our [`onError` callback](#an-asynchronous-callback-operation) from earlier.
 
@@ -518,8 +513,8 @@ We can test `.catch` by making the promise fail immediately. To do that, comment
 
 {{< code lang="js" linenos="false" caption="A promise that rejects immediately" >}}
 const promise = new Promise((resolve, reject) => {
-  // resolve('Promise succeeded');
-  reject('Promise failed'); // reject immediately
+// resolve('Promise succeeded');
+reject('Promise failed'); // reject immediately
 });
 {{< /code >}}
 
@@ -529,14 +524,14 @@ Rather than use `.catch`, we can pass both callbacks into `.then`:
 
 {{< code lang="js" linenos="false" caption=".then can take two callbacks" >}}
 promise.then(
-  // onSuccess callback
-  (result) => {
-    console.log(result);
-  },
-  // onError callback
-  (error) => {
-    console.error(error);
-  },
+// onSuccess callback
+(result) => {
+console.log(result);
+},
+// onError callback
+(error) => {
+console.error(error);
+},
 )
 {{< /code >}}
 
@@ -548,15 +543,15 @@ If `.then` handles success, and `.catch` handles failure, what about code that n
 
 {{< code lang="js" linenos="false" caption=".finally runs once the promise has settled" >}}
 promise
-  .then((result) => {
-    console.log(result); // => 'Promise succeeded'
-  })
-  .catch((error) => {
-    console.error(error); // => 'Promise failed'
-  })
-  .finally(() => {
-    console.log('Promise settled');
-  });
+.then((result) => {
+console.log(result); // => 'Promise succeeded'
+})
+.catch((error) => {
+console.error(error); // => 'Promise failed'
+})
+.finally(() => {
+console.log('Promise settled');
+});
 {{< /code >}}
 
 `.finally` will run when the promise reaches a settled state, meaning either resolved or rejected.
@@ -567,11 +562,11 @@ The promise example we have created is _nearly_ equivalent to the [synchronous c
 
 {{< code lang="js" linenos="false" caption="A synchronous callback operation" >}}
 function synchronousCallbackOperation(callback) {
-  callback('Synchronous callback function executed');
+callback('Synchronous callback function executed');
 }
 
 synchronousCallbackOperation(result => {
-  console.log(result);
+console.log(result);
 });
 {{< /code >}}
 
@@ -579,26 +574,26 @@ synchronousCallbackOperation(result => {
 
 {{< code lang="js" linenos="false" caption="A simple promise example" >}}
 const promise = new Promise((resolve, reject) => {
-  resolve('Promise succeeded'); // => resolve immediately
+resolve('Promise succeeded'); // => resolve immediately
 });
 
 promise
-  .then((result) => {
-    console.log(result); // => 'Promise succeeded'
-  });
+.then((result) => {
+console.log(result); // => 'Promise succeeded'
+});
 {{< /code >}}
 
 However, there are differences. Promises are always asynchronous, so the above code is closer (but still has important differences) to this:
 
 {{< code lang="js" linenos="false" caption="setTimeout with a delay of zero milliseconds" >}}
 function asynchronousCallbackOperation(callback) {
-  setTimeout(() => {
-    callback('Data passed to callback');
-  }, 0);
+setTimeout(() => {
+callback('Data passed to callback');
+}, 0);
 }
 
 asynchronousCallbackOperation((result) => {
-  console.log(result);
+console.log(result);
 });
 {{< /code >}}
 
@@ -618,24 +613,24 @@ As a practical example, let's take a look at how to load a JSON file using the F
 const filePromise = fetch('path/to/file.json');
 
 filePromise
-  .then(fileData => {
-    console.log(fileData);
-  })
-  .catch(error => {
-    console.error(error);
-  });
+.then(fileData => {
+console.log(fileData);
+})
+.catch(error => {
+console.error(error);
+});
 {{< /code >}}
 
 There's usually no need to save the promise to a variable, so we can write this even more succinctly:
 
 {{< code lang="js" linenos="false" >}}
 fetch('path/to/file.json')
-  .then(fileData => {
-    console.log(fileData);
-  })
-  .catch(error => {
-    console.error(error);
-  });
+.then(fileData => {
+console.log(fileData);
+})
+.catch(error => {
+console.error(error);
+});
 {{< /code >}}
 
 As you can see, using promises results in clear and simple code. We'll spare you the horror of the equivalent using `XMLHttpRequest`!
@@ -672,29 +667,28 @@ Next, let's try the obvious approach to loading model with `loadModelUsingPromis
 
 {{< code lang="js" linenos="false" caption="loading multiple models with loadModelUsingPromise, the obvious approach" >}}
 const onResolve = (result) => {
-  console.log(result);
+console.log(result);
 };
 
 const onReject = (error) => {
-  console.error(error);
+console.error(error);
 };
 
-
 loadModelUsingPromise('promise_A.file')
-  .then(onResolve)
-  .catch(onReject);
+.then(onResolve)
+.catch(onReject);
 
 loadModelUsingPromise('promise_B.file')
-  .then(onResolve)
-  .catch(onReject);
+.then(onResolve)
+.catch(onReject);
 
 loadModelUsingPromise('promise_C.file')
-  .then(onResolve)
-  .catch(onReject);
+.then(onResolve)
+.catch(onReject);
 
 loadModelUsingPromise('promise_D.file')
-  .then(onResolve)
-  .catch(onReject);
+.then(onResolve)
+.catch(onReject);
 {{< /code >}}
 
 One of the major problems with callbacks is that it's hard for the loaded models to interact with each other. Earlier, we claimed that promises would help with this. Here's the `setupPhysics` method we struggled with earlier:
@@ -715,13 +709,13 @@ Fortunately, promises give us more options when it comes to handling asynchronou
 
 {{< code lang="js" linenos="false" caption="Promise.all takes an array of promises and returns a promise" >}}
 Promise.all([
-  promiseA,
-  promiseB,
-  promiseC,
-  // ... and so on
-  promiseZ,
+promiseA,
+promiseB,
+promiseC,
+// ... and so on
+promiseZ,
 ]).then((allResults) => {
-  console.log(allResults);
+console.log(allResults);
 });
 {{< /code >}}
 
@@ -735,10 +729,10 @@ Finally, we have reached the point where all of the loaded models are in one pla
 
 {{< code lang="js" linenos="false" caption="Finally, we can easily make the loaded models interact" >}}
 Promise.all([
-  // ...
+// ...
 ]).then((results) => {
-  const [modelA, modelB, modelC, modelD] = results;
-  setupPhysics(modelA, modelB, modelC, modelD);
+const [modelA, modelB, modelC, modelD] = results;
+setupPhysics(modelA, modelB, modelC, modelD);
 });
 {{< /code >}}
 
@@ -755,9 +749,10 @@ Note that `Promise.all` will reject if _one or more_ of the promises rejects. In
 We could use [`Promise.allSettled`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled) to get data for successful models even when some fail to load. At the time of writing this chapter (July 2020), browser support for `.allSettled` is not great, so we will avoid using it in this book. Here, to keep things simple, we'll accept this limitation and continue to use `Promise.all`. After all, if any of your models fail to load it usually means there's a problem that needs to be fixed.
 
 {{% note %}}
+
 ### Promise Chaining
 
-No description of promises would be complete without mentioned chaining, which works the same way as it does when {{< link path="book/appendix/javascript-reference/#chaining-methods" title="chaining class methods" >}}.
+No description of promises would be complete without mentioned chaining, which works the same way as it does when [chaining class methods]({{< relref "book/appendix/javascript-reference#chaining-methods" >}} "chaining class methods").
 
 Most promise methods return a new promise, so we can create a chain of asynchronous operations.
 
@@ -799,7 +794,7 @@ To use `await`, we need to mark the containing function as `async`. `await` can 
 
 {{< code lang="js" linenos="false" caption="await must be used inside an async function" >}}
 async function main() {
- const result = await loadModelAsync('path/to/model.file');
+const result = await loadModelAsync('path/to/model.file');
 }
 
 main();
@@ -817,9 +812,9 @@ However, now we'll use it like this:
 
 {{< code lang="js" linenos="false" caption="6-async-functions.js: loading a model with async/await" >}}
 async function main() {
- const result = await loadModelUsingPromise('path/to/model.file');
+const result = await loadModelUsingPromise('path/to/model.file');
 
- console.log(result);
+console.log(result);
 }
 
 main();
@@ -837,9 +832,9 @@ As a real world example, see how easy it is to load a file using the Fetch API a
 
 {{< code lang="js" linenos="false" caption="Fetch with async/await" >}}
 async function main() {
-  const result = await fetch('path/to/file.json');
+const result = await fetch('path/to/file.json');
 
-  console.log(result)
+console.log(result)
 }
 
 main();
@@ -851,7 +846,7 @@ If you are familiar with Fetch, at this point you may be saying "_yes, but you a
 
 {{< code lang="js" linenos="false" caption="Loading and decoding a JSON file can be accomplished in a single line with async/await" >}}
 async function main() {
-  const decodedJSON = await (await fetch('path/to/file.json')).toJSON();
+const decodedJSON = await (await fetch('path/to/file.json')).toJSON();
 }
 
 main();
@@ -865,9 +860,9 @@ To test error handling, once again, [we'll make `loadModelUsingPromise` fail](#e
 
 {{< code lang="js" linenos="false" caption="6-async-functions.js: change the function so that it rejects immediately" >}}
 function loadModelUsingPromiseFAIL(url) {
-  return new Promise((resolve, reject) => {
-    reject('`Model ${url} failed to load!`')
-  });
+return new Promise((resolve, reject) => {
+reject('`Model ${url} failed to load!`')
+});
 }
 {{< /code >}}
 
@@ -875,9 +870,9 @@ Currently, our code does nothing to handle errors, so when we load the model as 
 
 {{< code lang="js" linenos="false" caption="6-async-functions.js: our code does not handle errors" >}}
 async function main() {
-  const model = await loadModelUsingPromiseFAIL('path/to/model.file');
+const model = await loadModelUsingPromiseFAIL('path/to/model.file');
 
-  scene.add(model);
+scene.add(model);
 }
 
 main();
@@ -895,13 +890,13 @@ There are a few methods we could use to handle errors with `async`/`await`. For 
 
 {{< code lang="js" linenos="false" caption="Handling errors using .catch, async/await version" >}}
 async function main() {
-  const model = await loadModelUsingPromise('path/to/model.file');
+const model = await loadModelUsingPromise('path/to/model.file');
 
-  scene.add(model);
+scene.add(model);
 }
 
 main().catch(err => {
-  console.error(error);
+console.error(error);
 });
 {{< /code >}}
 
@@ -915,20 +910,20 @@ This means that we can start an asynchronous operation early and store the promi
 
 {{< code lang="js" linenos="false" caption="We can start loading early, set up the rest of the app, and finally await for the model" >}}
 async function main() {
-  // start loading the model (notice there's no "await")
-  const pigPromise = modelPromise('model/pig.glb');
+// start loading the model (notice there's no "await")
+const pigPromise = modelPromise('model/pig.glb');
 
-  // set up the app while the model is loading
-  setupCamera();
-  setupRenderer();
-  setupControls();
-  // etc.
+// set up the app while the model is loading
+setupCamera();
+setupRenderer();
+setupControls();
+// etc.
 
-  // finally, wait for the model to finish loading
-  const pigModel = await pigPromise;
+// finally, wait for the model to finish loading
+const pigModel = await pigPromise;
 
-  // then add it to the scene
-  scene.add(pigModel);
+// then add it to the scene
+scene.add(pigModel);
 }
 {{< /code >}}
 
@@ -958,14 +953,14 @@ Let's try it out. Here's our first attempt, which looks similar to our [first at
 
 {{< code lang="js" linenos="false" caption="Loading multiple models with async/await, the WRONG way" >}}
 async function main() {
-  console.time('Total loading time: ');
+console.time('Total loading time: ');
 
-  const modelA = await loadModelUsingPromise('async_A.file');
-  const modelB = await loadModelUsingPromise('async_B.file');
-  const modelC = await loadModelUsingPromise('async_C.file');
-  const modelD = await loadModelUsingPromise('async_D.file');
+const modelA = await loadModelUsingPromise('async_A.file');
+const modelB = await loadModelUsingPromise('async_B.file');
+const modelC = await loadModelUsingPromise('async_C.file');
+const modelD = await loadModelUsingPromise('async_D.file');
 
-  console.timeEnd('Total loading time: ');
+console.timeEnd('Total loading time: ');
 }
 main();
 {{< /code >}}
@@ -1022,17 +1017,17 @@ That's all, three lines of code. Of course, you do need an `async` function to w
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 async function main() {
-  const loader = new GLTFLoader();
-  const modelData = await loader('models/pig.glb');
+const loader = new GLTFLoader();
+const modelData = await loader('models/pig.glb');
 
-  console.log(modelData);
+console.log(modelData);
 }
 
 main().catch((err) => {
-  console.log(err);
+console.log(err);
 });
 {{< /code >}}
 
-To see the `GLTFLoader` in action, check out {{< link path="book/first-steps/load-models/" title="" >}}.
+To see the `GLTFLoader` in action, check out the chapter on [loading models]({{< relref "book/first-steps/load-models" >}} "loading models").
 
 This concludes our whirlwind tour of modern JavaScript. Armed with this knowledge, you can now safely tackle the rest of this book and start to create beautiful creations using WebGL, three.js, and JavaScript.
