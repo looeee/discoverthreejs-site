@@ -66,7 +66,7 @@ You can find the module containing `OrbitControls` on the three.js repo, in the 
 
 ### Importing Plugins
 
-Since the plugins are part of the three.js repo and included in the NPM package, importing them works in much the same way as {{< link path="/book/first-steps/first-scene/#import-classes-from-threejs" title="importing classes from the three.js core" >}}, except that each plugin is in a separate module. Refer back to {{< link path="/book/introduction/get-threejs/" title="the intro" >}} for a reminder of how to include the three.js files in your app, or head over to {{< link path="/book/appendix/javascript-modules/" title="the appendix" >}} for a deeper exploration of how JavaScript modules work.
+Since the plugins are part of the three.js repo and included in the NPM package, importing them works in much the same way as [importing classes from the three.js core]({{< relref "/book/first-steps/first-scene#import-classes-from-threejs" >}} "importing classes from the three.js core"), except that each plugin is in a separate module. Refer back to [the intro]({{< relref "/book/introduction/get-threejs" >}} "the intro") for a reminder of how to include the three.js files in your app, or head over to [the appendix]({{< relref "/book/appendix/javascript-modules" >}} "the appendix") for a deeper exploration of how JavaScript modules work.
 
 In the editor, we've placed the _**OrbitControls.js**_ file in the equivalent directory to the repo, under _**vendor/**_. Go ahead and locate the file now. Since the editor uses NPM style imports, we can import `OrbitControls` like this, from anywhere in our code like this:
 
@@ -84,7 +84,7 @@ import { OrbitControls } from 'https://cdn.skypack.dev/three@0.132.2/examples/js
 
 ### The _**controls.js**_ Module
 
-As usual, we'll create a new module in our app to handle setting up the controls. Since the controls operate on the camera, they will go in the {{< link path="/book/first-steps/world-app/#systems-and-components" title="systems category" >}}. Open or create the module _**systems/controls.js**_ to handle setting up the camera controls. This new module has the same structure as most of our other modules. First, import the `OrbitControls` class, then make a `createControls` function, and finally, export the function:
+As usual, we'll create a new module in our app to handle setting up the controls. Since the controls operate on the camera, they will go in the [systems category]({{< relref "/book/first-steps/world-app#systems-and-components" >}} "systems category"). Open or create the module _**systems/controls.js**_ to handle setting up the camera controls. This new module has the same structure as most of our other modules. First, import the `OrbitControls` class, then make a `createControls` function, and finally, export the function:
 
 {{< code lang="js" linenos="true" caption="_**systems/controls.js**_: initial setup" >}}
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
