@@ -72,7 +72,7 @@ Creating 3D applications that run in a browser falls at the intersection of web 
 
 ### JavaScript and Web Development
 
-The main language we use throughout this book is JavaScript. You need to know the basics of this language to work with three.js, but you don't need to be an expert, and the same applies to HTML, CSS, and other aspects of web development. However, turning this book into a tutorial on web development or JavaScript would distract from our goal of learning three.js. As a result, most of the technical JavaScript details have been relegated to the {{< link path="book/appendix/" title="Appendices" >}}. Whenever we encounter a new JavaScript feature, we'll provide a link to the relevant section in the appendix, or a reliable external site like [MDN](https://developer.mozilla.org/en-US/).
+The main language we use throughout this book is JavaScript. You need to know the basics of this language to work with three.js, but you don't need to be an expert, and the same applies to HTML, CSS, and other aspects of web development. However, turning this book into a tutorial on web development or JavaScript would distract from our goal of learning three.js. As a result, most of the technical JavaScript details have been relegated to the [Appendices]({{< relref "book/appendix" >}} "Appendices"). Whenever we encounter a new JavaScript feature, we'll provide a link to the relevant section in the appendix, or a reliable external site like [MDN](https://developer.mozilla.org/en-US/).
 
 ### Math Knowledge
 

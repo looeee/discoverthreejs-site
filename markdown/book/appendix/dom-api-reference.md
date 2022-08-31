@@ -19,7 +19,7 @@ IDESwitchImportsAllow: false
 
 # The Document Object Model and DOM API
 
-Over the last couple of chapters, we've covered {{< link path="/book/appendix/html-and-css-reference/" title="some very basic HTML and CSS" >}}, and a whole lot of {{< link path="/book/appendix/javascript-reference/" title="slightly less basic JavaScript" >}}.
+Over the last couple of chapters, we've covered [some very basic HTML and CSS]({{< relref "/book/appendix/html-and-css-reference" >}} "some very basic HTML and CSS"), and a whole lot of [slightly less basic JavaScript]({{< relref "/book/appendix/javascript-reference" >}} "slightly less basic JavaScript").
 
 In this chapter, we'll look at how HTML, CSS, and JavaScript interact to create a web page. While doing so, we'll show you how to manipulate your HTML document from within JavaScript.
 
@@ -60,7 +60,7 @@ There are a range of other console methods that we can use, such as `console.war
 
 ## The Document Object Model (DOM)
 
-An HTML document is a tree structure, where {{< link path="/book/appendix/html-and-css-reference/#element" title="elements" >}} like `<head>`, `<body>`, `<div>`, `<p>`, and so on, are leaves of the tree:
+An HTML document is a tree structure, where [elements]({{< relref "/book/appendix/html-and-css-reference#element" >}} "elements") like `<head>`, `<body>`, `<div>`, `<p>`, and so on, are leaves of the tree:
 
 {{< figure src="/appendix/html-tree.svg" alt="The HTML Tree Structure" lightbox="true" class="" >}}
 
@@ -121,7 +121,7 @@ We can also access the `<h1>` element's style, although it takes a little more w
 
 ### The Browser's Global Object: Window {#global-object}
 
-In the previous chapter, we explored how the {{< link path="/book/appendix/javascript-reference/#global-scope" title="global scope" >}} is represented in the browser using the [`window`](https://developer.mozilla.org/en-US/docs/Web/API/Window) object.
+In the previous chapter, we explored how the [global scope]({{< relref "/book/appendix/javascript-reference#global-scope" >}} "global scope") is represented in the browser using the [`window`](https://developer.mozilla.org/en-US/docs/Web/API/Window) object.
 
 As we saw then, we can access `window` and any properties attached to it from anywhere in our code. The DOM API is attached to `window` which means we can access that from anywhere too.
 
@@ -352,7 +352,7 @@ When we're talking about events, we sometimes refer to HTML elements as [**event
 
 To listen for events, we'll use something appropriately called an event listener. We can attach event listeners to nearly any HTML element, from the `window` itself, to the `document`, to sub-elements like headings, paragraphs, and buttons. If we attach an event listener (for example, a listener for mouse `click` events) to `window` or `document`, events will be captured on the whole page. However, if we attach the listener to a single element such as a button, the `click` events will only be captured when the button is clicked.
 
-To attach an event listener to an element, we use the [`element.addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) method. This takes three arguments: the event type to listen for, a {{< link path="book/appendix/javascript-reference/#callback-functions" title="callback function" >}} specifying what to do when the event occurs, and optional options. We'll leave out the options here for the sake of brevity.
+To attach an event listener to an element, we use the [`element.addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) method. This takes three arguments: the event type to listen for, a [callback function]({{< relref "book/appendix/javascript-reference#callback-functions" >}} "callback function") specifying what to do when the event occurs, and optional options. We'll leave out the options here for the sake of brevity.
 
 {{< code lang="js" linenos="false" caption="Listen for click events on the whole window" >}}
 window.addEventListener('click', (event) => {

@@ -95,7 +95,7 @@ console.log('The time has passed');
 setTimeout(onTimeout, 3000);
 {{< /code >}}
 
-Note that we'll usually wrap the callback in an anonymous {{< link path="book/appendix/javascript-reference/#arrow-functions" title="arrow function" >}}:
+Note that we'll usually wrap the callback in an anonymous [arrow function]({{< relref "book/appendix/javascript-reference#arrow-functions" >}} "arrow function"):
 
 {{< code lang="js" linenos="false" caption="It's often required to wrap the setTimeout callback in an anonymous function" >}}
 onTimeout = () => {
@@ -108,7 +108,7 @@ onTimeout();
 }, 3000);
 {{< /code >}}
 
-We won't get into the reasons for this here. It's all about {{< link path="book/appendix/javascript-reference/#scope-and-closures" title="scope" >}} and [the "this" problem](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout#The_this_problem). In any case, you'll notice we do this a lot when using callback functions.
+We won't get into the reasons for this here. It's all about [scope]({{< relref "book/appendix/javascript-reference#scope-and-closures" >}} "scope") and [the "this" problem](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout#The_this_problem). In any case, you'll notice we do this a lot when using callback functions.
 
 One final thing about `setTimeout`: it's not accurate. We have passed in 3000 milliseconds to the method above, but we cannot guarantee that exactly 3000 milliseconds will have passed by the time the callback executes. There are two reasons for this.
 
@@ -142,11 +142,11 @@ The newer `Fetch` API uses Promises rather than callbacks and has a much-improve
 
 A [callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function) is a function that gets passed into another function as an argument. When the parent function is asynchronous, we refer to the callback as an **asynchronous callback function**.
 
-In {{< link path="book/appendix/javascript-reference/#old-school-and-modern-javascript" title="old-school JavaScript" >}}, before the release of version ES6 sometime around 2015, the _only_ way to write asynchronous code in JavaScript was to use asynchronous callback functions. These are the simplest way of writing asynchronous code, although they do have some drawbacks which mean that we'll prefer to use other techniques.
+In [old-school JavaScript]({{< relref "book/appendix/javascript-reference#old-school-and-modern-javascript" >}} "old-school JavaScript"), before the release of version ES6 sometime around 2015, the _only_ way to write asynchronous code in JavaScript was to use asynchronous callback functions. These are the simplest way of writing asynchronous code, although they do have some drawbacks which mean that we'll prefer to use other techniques.
 
 We introduced [callback functions]({{< relref "/book/appendix/javascript-reference#callback-functions" >}} "callback functions") earlier, however, aside from the ones we passed into `setTimeout` above, all the callbacks we have written so far are synchronous.
 
-There's nothing different about the callback we passed into `setTimeout`. The only difference between a synchronous callback and an asynchronous callback is the context in which we use it. For example, we introduced callbacks using the {{< link path="book/appendix/javascript-reference/#foreach" title="`array.forEach` method" >}}. We can pass the same callback into `.forEach` and `setTimeout`. In the first case, the callback is synchronous, and in the second, it is asynchronous.
+There's nothing different about the callback we passed into `setTimeout`. The only difference between a synchronous callback and an asynchronous callback is the context in which we use it. For example, we introduced callbacks using the [`array.forEach` method]({{< relref "book/appendix/javascript-reference#foreach" >}} "`array.forEach` method"). We can pass the same callback into `.forEach` and `setTimeout`. In the first case, the callback is synchronous, and in the second, it is asynchronous.
 
 {{< code lang="js" linenos="false" caption="The same callback can be both synchronous and asynchronous" >}}
 function callbackTest() {
@@ -234,7 +234,7 @@ _Note: the three.js loaders also take an `onProgress` callback which we have ski
 
 When using callbacks, loading multiple models is easy. We simply need to run the `loadModelUsingCallback` function multiple times with different `url` arguments (and perhaps different callbacks).
 
-To add a bit of spice here, for this example, we're using {{< link path="book/appendix/javascript-reference/#the-math-object" title="`Math.random`" >}} to add a bit of chaos to our fake model loading function. Now, every model will load in somewhere between zero and five seconds.
+To add a bit of spice here, for this example, we're using [`Math.random`]({{< relref "book/appendix/javascript-reference#the-math-object" >}} "`Math.random`") to add a bit of chaos to our fake model loading function. Now, every model will load in somewhere between zero and five seconds.
 
 Which model will load first? A, B, C, or D?
 
@@ -752,7 +752,7 @@ We could use [`Promise.allSettled`](https://developer.mozilla.org/en-US/docs/Web
 
 ### Promise Chaining
 
-No description of promises would be complete without mentioned chaining, which works the same way as it does when {{< link path="book/appendix/javascript-reference/#chaining-methods" title="chaining class methods" >}}.
+No description of promises would be complete without mentioned chaining, which works the same way as it does when [chaining class methods]({{< relref "book/appendix/javascript-reference#chaining-methods" >}} "chaining class methods").
 
 Most promise methods return a new promise, so we can create a chain of asynchronous operations.
 

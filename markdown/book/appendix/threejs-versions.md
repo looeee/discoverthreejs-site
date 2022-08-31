@@ -37,7 +37,7 @@ Note that, for technical reasons, it's not always possible to keep the old synta
 
 ## Always Use Examples and Plugins that Match Your three.js Version
 
-While the syntax is relatively stable, behind the scenes the code may have changed a lot between releases. Make sure that any plugins you use from the {{< link path="/book/introduction/github-repo/#the-examples-folder" title="examples folder" >}} match the version of three.js you are using, otherwise, you might run into some nasty and hard to pin down bugs.
+While the syntax is relatively stable, behind the scenes the code may have changed a lot between releases. Make sure that any plugins you use from the [examples folder]({{< relref "/book/introduction/github-repo#the-examples-folder" >}} "examples folder") match the version of three.js you are using, otherwise, you might run into some nasty and hard to pin down bugs.
 
 If in doubt, download the entire [latest release of three.js as a zip file](https://github.com/mrdoob/three.js/archive/master.zip), or get the three.js package from NPM.
 
