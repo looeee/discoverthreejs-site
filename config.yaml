@@ -4,9 +4,9 @@ languages:
 en:
   languageName: English
   weight: 1
-  # zh:
-  #   languageName: 中文
-  #   weight: 2
+  zh:
+    languageName: 中文
+    weight: 2
 
 publishDir: public
 contentDir: markdown
