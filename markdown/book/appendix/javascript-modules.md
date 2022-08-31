@@ -26,13 +26,13 @@ document dynamic import and import from node_modules
 
 {{< figure src="app-logos/javascript.png" alt="JavaScript logo" lightbox="false" class="tiny left noborder" >}}
 
-Since the release of JavaScript version ES6 in 2015 and the switch to a yearly release schedule, the JavaScript language has been reborn as a powerful, full-featured language that is both fun and easy to use. The need for backward compatibility means that there are still a few clunky areas, but overall the language is in a good place now. We have been referring to these new features {{< link path="book/appendix/javascript-reference/#old-school-and-modern-javascript" title="modern JavaScript" >}}, and we'll continue to do that here.
+Since the release of JavaScript version ES6 in 2015 and the switch to a yearly release schedule, the JavaScript language has been reborn as a powerful, full-featured language that is both fun and easy to use. The need for backward compatibility means that there are still a few clunky areas, but overall the language is in a good place now. We have been referring to these new features [modern JavaScript]({{< relref "book/appendix/javascript-reference#old-school-and-modern-javascript" >}} "modern JavaScript"), and we'll continue to do that here.
 
 **Perhaps _the_ most important new feature added to JavaScript recently is the ability to split our code up into many small modules.** Using old-school JavaScript, we either had to write everything in one huge file, sometimes thousands of lines long, use a non-standard solution such as [browserify](http://browserify.org/) or [require.js](https://requirejs.org/), or include lots of separate `<script>` elements in our HTML files.
 
 The new "official JavaScript modules" are called [ES6 Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), and using them, we can break our app down into discrete components, and put each of these components into a separate file. Doing so leads to a huge improvement in code style and re-usability.
 
-As with our {{< link path="/book/appendix/javascript-reference/" title="previous chapter on JavaScript" >}}, we're won't attempt a complete description of ES6 modules here. We'll only cover the bits you need to know to get through this book.
+As with our [previous chapter on JavaScript]({{< relref "/book/appendix/javascript-reference" >}} "previous chapter on JavaScript"), we're won't attempt a complete description of ES6 modules here. We'll only cover the bits you need to know to get through this book.
 
 **When writing modular JavaScript, each file is a module**. So, we may refer to a module by its file name, for example, _**main.js**_, or simply as the _main_ module.
 
@@ -78,7 +78,7 @@ We don't have to wait until the end of the file to perform an export. Instead, w
 export const x = 'hello!';
 {{< /code >}}
 
-We can place `import` and `export` statements anywhere {{< link path="book/appendix/javascript-reference/#scope-and-closures" title="in module scope" >}}.
+We can place `import` and `export` statements anywhere [in module scope]({{< relref "book/appendix/javascript-reference#scope-and-closures" >}} "in module scope").
 
 {{< code lang="js" linenos="false" caption="Import and export statements can be placed anywhere in module scope" >}}
 export const x = 'hello!';
@@ -371,7 +371,7 @@ This means, when we pass the _**main.js**_ module over to the browser, it can be
 
 There's no way to tell from a glance at the file name which interpretation is correct so we need to tell the browser.
 
-To reference an old-school JavaScript file from HTML we use {{< link path="book/appendix/html-and-css-reference/#the-src-attribute" title="the `<script>` element" >}}. For example, here we include an old-school, non-modular JavaScript file called _**app.js**_ in _**index.html**_:
+To reference an old-school JavaScript file from HTML we use [the `<script>` element]({{< relref "book/appendix/html-and-css-reference#the-src-attribute" >}} "the `<script>` element"). For example, here we include an old-school, non-modular JavaScript file called _**app.js**_ in _**index.html**_:
 
 {{< code lang="html" linenos="false" caption="_**index.html**_: using a script tag to include an old-school JavaScript file" >}}
 
