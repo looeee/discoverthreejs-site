@@ -26,7 +26,7 @@ In this chapter, we'll create the Hello World of three.js apps: a simple white c
 
 {{< code file="worlds/first-steps/first-scene/src/main.final.js" linenos="" caption="_**main.js**_: final result" >}}{{< /code >}}
 
-Click the <input type="checkbox" class="simple-toggle" title="Find the real toggle!"> toggle on the top left of the editor to {{< link path="/book/introduction/about-the-book/#before-and-after-code-comparison" title="see this code in action" >}}, or, if you prefer to {{< link path="/book/introduction/about-the-book/#working-on-your-own-machine" title="work locally" >}}, you can click the {{< icon "solid/download" >}} button to download a zip archive containing all the files from the editor. If any of the JavaScript here is unfamiliar to you, refer to {{< link path="/book/appendix/javascript-reference" title="" >}} and {{< link path="/book/appendix/dom-api-reference" title="" >}} in the appendices.
+Click the <input type="checkbox" class="simple-toggle" title="Find the real toggle!"> toggle on the top left of the editor to {{< link path="/book/introduction/about-the-book/#before-and-after-code-comparison" title="see this code in action" >}}, or, if you prefer to {{< link path="/book/introduction/about-the-book/#working-on-your-own-machine" title="work locally" >}}, you can click the {{< icon "solid/download" >}} button to download a zip archive containing all the files from the editor. If any of the JavaScript here is unfamiliar to you, refer to {{< link path="/book/appendix/javascript-reference" title="the JavaScript reference" >}} and {{< link path="/book/appendix/dom-api-reference" title="the DOM API refence" >}} in the appendices.
 
 ## The Components of a Real-Time 3D App
 
@@ -54,7 +54,7 @@ const scene = new Scene();
 TODO-LOW: replace all coordinate diagrams with a 3D coordinate systems
 {{% /note %}}
 
-The `scene` defines a coordinate system called **World Space**, which is our main frame of reference when working with visible objects in three.js. World space is a [3D Cartesian coordinate system](https://mathinsight.org/cartesian_coordinates). We'll explore what that means and how to use world space in more detail in {{< link path="/book/first-steps/transformations/#coordinate-systems" title="" >}}.
+The `scene` defines a coordinate system called **World Space**, which is our main frame of reference when working with visible objects in three.js. World space is a [3D Cartesian coordinate system](https://mathinsight.org/cartesian_coordinates). We'll explore what that means and how to use world space in more detail in {{< link path="/book/first-steps/transformations/#coordinate-systems" title="the section on Coordinate Systems" >}}.
 
 The very center of the scene is the point $(0,0,0)$, also called the **origin** of the coordinate system. Whenever we create a new object and add it to our scene, it will be placed at the origin, and whenever we move it around, we do so within this coordinate system.
 
@@ -215,7 +215,7 @@ import {
 
 {{< /code >}}
 
-Refer back to {{< link path="/book/introduction/get-threejs/#imports-in-the-inline-code-editor" title="" >}} if you need a reminder on how importing three.js classes works, or jump over to {{< link path="/book/appendix/javascript-modules/" title="" >}} if you want a refresher on JavaScript modules.
+Refer back to {{< link path="/book/introduction/get-threejs/#imports-in-the-inline-code-editor" title="the intro" >}} if you need a reminder on how importing three.js classes works, or jump over to {{< link path="/book/appendix/javascript-modules/" title="the appendices" >}} if you want a refresher on JavaScript modules.
 
 ### Access the HTML `scene-container` Element in JavaScript
 
@@ -312,7 +312,7 @@ camera.position.y = 0;
 camera.position.z = 10;
 {{< /code >}}
 
-Both ways of setting the position give the same result. The position is stored in a [`Vector3`](https://threejs.org/docs/#api/en/math/Vector3), a three.js class representing a 3D vector which we'll explore in more detail in {{< link path="/book/first-steps/transformations/" title="" >}}.
+Both ways of setting the position give the same result. The position is stored in a [`Vector3`](https://threejs.org/docs/#api/en/math/Vector3), a three.js class representing a 3D vector which we'll explore in more detail in {{< link path="/book/first-steps/transformations/" title="the chapter on transformations" >}}.
 
 ## 4. Create a Visible Object {#create-visible}
 
@@ -352,7 +352,7 @@ There are quite a few materials in three.js. Here, we'll create a [`MeshBasicMat
 
 If we used nearly any other material type than `MeshBasicMaterial` right now, we wouldn't be able to see anything since the scene is in total darkness. **As in the real world, we usually need light to see things in our scene**. `MeshBasicMaterial` is an exception to that rule.
 
-This is a common point of confusion for newcomers to three.js, so if you can't see anything, make sure you have added some lights to your scene, or temporarily switch all materials to a `MeshBasicMaterial`. We'll add some lights to our scene in {{< link path="/book/first-steps/physically-based-rendering/" title="" >}}.
+This is a common point of confusion for newcomers to three.js, so if you can't see anything, make sure you have added some lights to your scene, or temporarily switch all materials to a `MeshBasicMaterial`. We'll add some lights to our scene in the {{< link path="/book/first-steps/physically-based-rendering/" title="Physically Based Rendering" >}} chapter.
 {{% /aside %}}
 
 ### Create the Mesh {#create-mesh}

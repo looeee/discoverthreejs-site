@@ -6,39 +6,38 @@ weight: 114
 chapter: "1.14"
 available: true
 showIDE: true
-IDEFiles: [
-  "assets/models/Flamingo.glb",
-  "assets/models/Parrot.glb",
-  "assets/models/Stork.glb",
-  "worlds/first-steps/animation-system/src/World/components/birds/birds.start.js",
-  "worlds/first-steps/animation-system/src/World/components/birds/birds.final.js",
-  "worlds/first-steps/animation-system/src/World/components/birds/setupModel.start.js",
-  "worlds/first-steps/animation-system/src/World/components/birds/setupModel.final.js",
-  "worlds/first-steps/animation-system/src/World/components/camera.js",
-  "worlds/first-steps/animation-system/src/World/components/lights.js",
-  "worlds/first-steps/animation-system/src/World/components/scene.js",
-  "worlds/first-steps/animation-system/src/World/systems/controls.js",
-  "worlds/first-steps/animation-system/src/World/systems/renderer.js",
-  "worlds/first-steps/animation-system/src/World/systems/Resizer.js",
-  "worlds/first-steps/animation-system/src/World/systems/Loop.js",
-  "worlds/first-steps/animation-system/src/World/World.start.js",
-  "worlds/first-steps/animation-system/src/World/World.final.js",
-  "worlds/first-steps/animation-system/src/main.js",
-  "styles/main.css",
-  "vendor/three/build/three.module.js",
-  "vendor/three/examples/jsm/controls/OrbitControls.js",
-  "vendor/three/examples/jsm/loaders/GLTFLoader.js",
-  "worlds/first-steps/animation-system/index.html",
-]
+IDEFiles:
+  [
+    "assets/models/Flamingo.glb",
+    "assets/models/Parrot.glb",
+    "assets/models/Stork.glb",
+    "worlds/first-steps/animation-system/src/World/components/birds/birds.start.js",
+    "worlds/first-steps/animation-system/src/World/components/birds/birds.final.js",
+    "worlds/first-steps/animation-system/src/World/components/birds/setupModel.start.js",
+    "worlds/first-steps/animation-system/src/World/components/birds/setupModel.final.js",
+    "worlds/first-steps/animation-system/src/World/components/camera.js",
+    "worlds/first-steps/animation-system/src/World/components/lights.js",
+    "worlds/first-steps/animation-system/src/World/components/scene.js",
+    "worlds/first-steps/animation-system/src/World/systems/controls.js",
+    "worlds/first-steps/animation-system/src/World/systems/renderer.js",
+    "worlds/first-steps/animation-system/src/World/systems/Resizer.js",
+    "worlds/first-steps/animation-system/src/World/systems/Loop.js",
+    "worlds/first-steps/animation-system/src/World/World.start.js",
+    "worlds/first-steps/animation-system/src/World/World.final.js",
+    "worlds/first-steps/animation-system/src/main.js",
+    "styles/main.css",
+    "vendor/three/build/three.module.js",
+    "vendor/three/examples/jsm/controls/OrbitControls.js",
+    "vendor/three/examples/jsm/loaders/GLTFLoader.js",
+    "worlds/first-steps/animation-system/index.html",
+  ]
 IDEComparisonMode: true
-IDEClosedFolders: ['assets', 'systems', 'styles', 'vendor']
-IDEStripDirectory: 'worlds/first-steps/animation-system/'
-IDEActiveDocument: 'src/World/components/birds/setupModel.js'
+IDEClosedFolders: ["assets", "systems", "styles", "vendor"]
+IDEStripDirectory: "worlds/first-steps/animation-system/"
+IDEActiveDocument: "src/World/components/birds/setupModel.js"
 nextURL: "/book/appendix/"
 nextTitle: "Production Ready three.js"
 ---
-
-
 
 # The three.js Animation System
 
@@ -78,19 +77,19 @@ There are three elements involved in creating animations: keyframes, `KeyframeTr
 
 The lowest conceptual level in the animation system is a [keyframe](https://en.wikipedia.org/wiki/Key_frame). Each keyframe consists of three pieces of information: a **_time_**, a _**property**_, and a **_value_**, for example:
 
-* **At 0 seconds `.position` is $(0,0,0)$.**
-* **At 3 seconds `.scale` is $(1,1,1)$.**
-* **At 12 seconds `.material.color` is red.**
+- **At 0 seconds `.position` is $(0,0,0)$.**
+- **At 3 seconds `.scale` is $(1,1,1)$.**
+- **At 12 seconds `.material.color` is red.**
 
 These three keyframes each describe the value of some property at a specific time. **Keyframes don't specify any particular object**, though. A position keyframe can be used to animate any object with a `.position` property, a scale keyframe can animate any object with a `.scale` property, and so on. However, keyframes _do_ specify a data type. The `.position` and `.scale` keyframes above specify vector data, while `.material.color` keyframe specifies color data. Currently, the animation system supports five data types.
 
-Data type | Description | Examples
----------|----------|---------
- **Number** | Animate any property that is a single number | [MeshStandardMaterial.opacity](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial.opacity)<br> [PerspectiveCamera.zoom](https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.zoom)
- **Vector** | Animate any property that is a {{< link path="/book/first-steps/transformations/#positions-are-stored-in-the-vector3-class" title="vector" >}} | {{< link path="/book/first-steps/transformations/#our-first-transformation-translation" title="Object3D.position" >}}<br> {{< link path="/book/first-steps/transformations/#our-second-transformation-scaling" title="Object3D.scale" >}}<br> {{< link path="/book/first-steps/camera-controls/#manually-set-the-target" title="OrbitControls.target" >}}
- **Quaternion** | Animate rotations stored as {{< link path="/book/first-steps/transformations/#the-other-rotation-class-quaternions" title="quaternions" >}} | [Object3D.quaternion](https://threejs.org/docs/#api/en/core/Object3D.quaternion)
- **Boolean** | Animate any Boolean property. This is less commonly used because there are no values between true and false so the animation will jump | [MeshStandardMaterial.wireframe](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial.wireframe)<br> [DirectionalLight.castShadow](https://threejs.org/docs/#api/en/lights/DirectionalLight.castShadow)
- **String** | Animate any property that is a string | Not commonly used
+| Data type      | Description                                                                                                                                    | Examples                                                                                                                                                                                                                                                                                                                                                  |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Number**     | Animate any property that is a single number                                                                                                   | [MeshStandardMaterial.opacity](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial.opacity)<br> [PerspectiveCamera.zoom](https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.zoom)                                                                                                                                                     |
+| **Vector**     | Animate any property that is a {{< link path="/book/first-steps/transformations/#positions-are-stored-in-the-vector3-class" title="vector" >}} | {{< link path="/book/first-steps/transformations/#our-first-transformation-translation" title="Object3D.position" >}}<br> {{< link path="/book/first-steps/transformations/#our-second-transformation-scaling" title="Object3D.scale" >}}<br> {{< link path="/book/first-steps/camera-controls/#manually-set-the-target" title="OrbitControls.target" >}} |
+| **Quaternion** | Animate rotations stored as {{< link path="/book/first-steps/transformations/#the-other-rotation-class-quaternions" title="quaternions" >}}    | [Object3D.quaternion](https://threejs.org/docs/#api/en/core/Object3D.quaternion)                                                                                                                                                                                                                                                                          |
+| **Boolean**    | Animate any Boolean property. This is less commonly used because there are no values between true and false so the animation will jump         | [MeshStandardMaterial.wireframe](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial.wireframe)<br> [DirectionalLight.castShadow](https://threejs.org/docs/#api/en/lights/DirectionalLight.castShadow)                                                                                                                                        |
+| **String**     | Animate any property that is a string                                                                                                          | Not commonly used                                                                                                                                                                                                                                                                                                                                         |
 
 Notably missing from this list are {{< link path="/book/first-steps/transformations/#representing-rotations-the-euler-class" title="Euler angles" >}}, which, if you recall from our chapter on transformations, are similar to vectors and are used to store rotations in [`Object3D.rotation`](https://threejs.org/docs/#api/en/core/Object3D.rotation). To animate rotations, you must use [`Object3D.quaternion`](https://threejs.org/docs/#api/en/core/Object3D.quaternion). As we mentioned back in the chapter on transformations, quaternions are a bit harder to work with than Euler angles, so, to avoid becoming bamboozled, we'll ignore rotations and focus on position and scale for now.
 
@@ -102,9 +101,11 @@ To create an animation, we need at least two keyframes. The simplest possible ex
 An opacity of zero means fully invisible, and opacity of one means fully visible. When we animate an object using these two keyframes, it will fade into view over three seconds. It doesn't matter what the actual opacity of the object is, the keyframes will override that. In other words, if we manually set:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Values set on an object are overridden by the animation system" >}}
-``` js
+
+```js
 mesh.material.opacity = 0.5;
 ```
+
 {{< /code >}}
 
 ... and then animate the object's opacity, this value of 0.5 will be ignored, and the value in the keyframes will be used. Let's take another example. Here are three vector keyframes representing positions:
@@ -123,11 +124,11 @@ As with keyframes, keyframe tracks do not specify any particular object. A `.mat
 
 `KeyframeTrack` is the base class, and there's one sub-class for each data type:
 
-* [`NumberKeyframeTrack`](https://threejs.org/docs/#api/en/animation/tracks/NumberKeyframeTrack)
-* [`VectorKeyframeTrack`](https://threejs.org/docs/#api/en/animation/tracks/VectorKeyframeTrack)
-* [`QuaternionKeyframeTrack`](https://threejs.org/docs/#api/en/animation/tracks/QuaternionKeyframeTrack)
-* [`BooleanKeyframeTrack`](https://threejs.org/docs/#api/en/animation/tracks/BooleanKeyframeTrack)
-* [`StringKeyframeTrack`](https://threejs.org/docs/#api/en/animation/tracks/StringKeyframeTrack)
+- [`NumberKeyframeTrack`](https://threejs.org/docs/#api/en/animation/tracks/NumberKeyframeTrack)
+- [`VectorKeyframeTrack`](https://threejs.org/docs/#api/en/animation/tracks/VectorKeyframeTrack)
+- [`QuaternionKeyframeTrack`](https://threejs.org/docs/#api/en/animation/tracks/QuaternionKeyframeTrack)
+- [`BooleanKeyframeTrack`](https://threejs.org/docs/#api/en/animation/tracks/BooleanKeyframeTrack)
+- [`StringKeyframeTrack`](https://threejs.org/docs/#api/en/animation/tracks/StringKeyframeTrack)
 
 We never use `KeyframeTrack` directly, instead, we will choose whichever subclass matches the data type being animated. Let's look at a couple of examples. First, we'll use a `NumberKeyframeTrack` to store these five `.opacity` keyframes:
 
@@ -140,14 +141,16 @@ We never use `KeyframeTrack` directly, instead, we will choose whichever subclas
 These keyframes will make an object blink in and out for four seconds. To create a keyframe track, we will create one array containing the times, and one array containing the values, and then pass those into the `NumberKeyframeTrack` constructor along with the property we want to animate.
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Creating a number keyframe track representing opacity, with five keyframes" >}}
-``` js
-import { NumberKeyframeTrack } from 'three';
+
+```js
+import { NumberKeyframeTrack } from "three";
 
 const times = [0, 1, 2, 3, 4];
 const values = [0, 1, 0, 1, 0];
 
-const opacityKF = new NumberKeyframeTrack('.material.opacity', times, values);
+const opacityKF = new NumberKeyframeTrack(".material.opacity", times, values);
 ```
+
 {{< /code >}}
 
 Note how each entry in the `times` array maps to one entry in the `values` array. Next, let's try some position keyframes and a `VectorKeyframeTrack`:
@@ -159,27 +162,37 @@ Note how each entry in the `times` array maps to one entry in the `values` array
 These three keyframes will make an object start at the center of the scene, move right, up, and forwards over three seconds, then reverse direction and move back to the center. Next, we'll create a vector track with these keyframes.
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Creating a vector keyframe track representing positions, with three keyframes" >}}
-``` js
-import { VectorKeyframeTrack } from 'three';
+
+```js
+import { VectorKeyframeTrack } from "three";
 
 const times = [0, 3, 6];
-const values = [0, 0, 0, 2, 2, 2, 0, 0, 0 ];
+const values = [0, 0, 0, 2, 2, 2, 0, 0, 0];
 
-const positionKF = new VectorKeyframeTrack('.position', times, values);
+const positionKF = new VectorKeyframeTrack(".position", times, values);
 ```
+
 {{< /code >}}
 
 This time, note how each entry in the times array matches with _three_ entries from the values array, representing a position in 3D space. This means the `values` array is three times larger than the `times` array.
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Each time maps to an $(x, y, z)$ position" >}}
-``` js
+
+```js
 const times = [0, 3, 6];
 const values = [
-  0, 0, 0, // (x, y, z) at t = 0
-  2, 2, 2, // (x, y, z) at t = 3
-  0, 0, 0  // (x, y, z) at t = 6
+  0,
+  0,
+  0, // (x, y, z) at t = 0
+  2,
+  2,
+  2, // (x, y, z) at t = 3
+  0,
+  0,
+  0, // (x, y, z) at t = 6
 ];
 ```
+
 {{< /code >}}
 
 ### 3. `AnimationClip` {#animationclip}
@@ -193,13 +206,14 @@ These fifty-three tracks come together to create the animation, which we call an
 Animation clips store three pieces of information: the name of the clip, the length of the clip, and finally, an array of tracks that make up the clip. If we set the length to -1, the array of tracks will be used to calculate the length (which is what you want in most cases). Let's create a clip containing the single position track from earlier:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Create an `AnimationClip` using a single track of position keyframes" >}}
-``` js
-import { AnimationClip, VectorKeyframeTrack } from 'three';
+
+```js
+import { AnimationClip, VectorKeyframeTrack } from "three";
 
 const times = [0, 3, 6];
 const values = [0, 0, 0, 2, 2, 2, 0, 0, 0];
 
-const positionKF = new VectorKeyframeTrack('.position', times, values);
+const positionKF = new VectorKeyframeTrack(".position", times, values);
 
 // just one track for now
 const tracks = [positionKF];
@@ -208,8 +222,9 @@ const tracks = [positionKF];
 // the length from the array of tracks
 const length = -1;
 
-const clip = new AnimationClip('slowmove', length, tracks);
+const clip = new AnimationClip("slowmove", length, tracks);
 ```
+
 {{< /code >}}
 
 Since we've set the length to -1, the tracks will be used to calculate the length, in this case, six seconds. We've given the clip a descriptive name, `slowmove`, to make using it later easier.
@@ -219,30 +234,28 @@ The `AnimationClip` is _still_ not attached to any particular object. We'll have
 Now, let's try making a clip that contains the opacity keyframes from earlier, as well as the position keyframes. This time, to save some space, we'll write the times and values arrays inline rather than saving them to variables first, and we have also added a couple of extra opacity keyframes to make both tracks six seconds long.
 
 {{< code lang="js" linenos="false" hl_lines="" caption="A clip that animates both position and opacity" >}}
-``` js
-import {
-  AnimationClip,
-  NumberKeyframeTrack,
-  VectorKeyframeTrack,
-} from 'three';
+
+```js
+import { AnimationClip, NumberKeyframeTrack, VectorKeyframeTrack } from "three";
 
 const positionKF = new VectorKeyframeTrack(
-  '.position',
+  ".position",
   [0, 3, 6],
-  [0, 0, 0, 2, 2, 2, 0, 0, 0],
+  [0, 0, 0, 2, 2, 2, 0, 0, 0]
 );
 
 const opacityKF = new NumberKeyframeTrack(
-  '.material.opacity',
+  ".material.opacity",
   [0, 1, 2, 3, 4, 5, 6],
-  [0, 1, 0, 1, 0, 1, 0],
+  [0, 1, 0, 1, 0, 1, 0]
 );
 
-const moveBlinkClip = new AnimationClip('move-n-blink', -1, [
+const moveBlinkClip = new AnimationClip("move-n-blink", -1, [
   positionKF,
   opacityKF,
 ]);
 ```
+
 {{< /code >}}
 
 This animation clip will work with any object that has a `.position` property and also a material with an `.opacity` property. In other words, it should work with a mesh. It will make a mesh move while blinking in and out. Once again, we have given the clip a memorable name, `move-n-blink`. Later, we might have lots of separate clips, and we can blend and mix them together. Giving each a unique name will make this easier for us. This time, note that the position track has three keyframes, while the opacity track has seven keyframes. Also, the length of each track is the same. This is not required, but the animation will look better if the lengths of the tracks match.
@@ -274,13 +287,11 @@ The final piece of the puzzle, the [`AnimationAction`](https://threejs.org/docs/
 Let's see this in action. Here, we take the `moveBlinkClip` we created a few moments ago, then connect a mesh to a mixer, and finally. we use `.clipAction` along with the clip to create an action.
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Create an `AnimationAction` using `.clipAction`" >}}
-``` js
-import {
-  AnimationClip,
-  AnimationMixer,
-} from 'three';
 
-const moveBlinkClip = new AnimationClip('move-n-blink', -1, [
+```js
+import { AnimationClip, AnimationMixer } from "three";
+
+const moveBlinkClip = new AnimationClip("move-n-blink", -1, [
   positionKF,
   opacityKF,
 ]);
@@ -288,6 +299,7 @@ const moveBlinkClip = new AnimationClip('move-n-blink', -1, [
 const mixer = new AnimationMixer(mesh);
 const action = mixer.clipAction(moveBlinkClip);
 ```
+
 {{< /code >}}
 
 Let's look at another example. Suppose we have a model of a human and a clip of the character walking. Once again, we connect the model to a mixer and then create an action using `.clipAction`. We then immediately set the action's state to playing:
@@ -327,19 +339,22 @@ Another thing you need to consider is what happens when the character stops walk
 There is just one thing left to do before any animations can play. We need to update the animated object in the animation loop. The mixer has an update method, which takes a time `delta` parameter. Whatever amount of time we pass in to `mixer.update`, all actions connected to the mixer will move forward by that amount.
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Move all animations connected to the mesh forward by one second" >}}
-``` js
+
+```js
 const mixer = new AnimationMixer(mesh);
 
 const updateAmount = 1; // in seconds
 
-mixer.update(updateAmount)
+mixer.update(updateAmount);
 ```
+
 {{< /code >}}
 
-However, normally we don't want to jump forward an entire second. Each frame, we want to move the animation forward by a tiny amount, so that when we render sixty frames a second, we see a smooth animation. We'll use the technique that we derived a few chapters ago, when we first created the animation loop and used it to drive a simple rotating cube, so refer back to {{< link path="/book/first-steps/animation-loop/#timing-in-the-animation-system" title="" >}} for a refresher. In short, we measure how long each frame takes to render, store that in a variable called `delta`, and then pass that into the mixer's update method.
+However, normally we don't want to jump forward an entire second. Each frame, we want to move the animation forward by a tiny amount, so that when we render sixty frames a second, we see a smooth animation. We'll use the technique that we derived a few chapters ago, when we first created the animation loop and used it to drive a simple rotating cube, so refer back to the chapter on setting up an [Animation Loop]({{< relref "/book/first-steps/animation-loop#timing-in-the-animation-system" >}} "Animation Loop") for a refresher. In short, we measure how long each frame takes to render, store that in a variable called `delta`, and then pass that into the mixer's update method.
 
 {{< code lang="js" linenos="false" hl_lines="" caption="We need to update the mixer by `delta` every frame" >}}
-``` js
+
+```js
 const mixer = new AnimationMixer(mesh);
 const clock = new Clock();
 
@@ -347,6 +362,7 @@ const clock = new Clock();
 const delta = clock.getDelta();
 mixer.update(delta);
 ```
+
 {{< /code >}}
 
 As usual, we'll do this by giving each animated object a {{< link path="/book/first-steps/animation-loop/#the-tick-method" title="`.tick` method" >}}. Here, `.tick` will call the mixer's update method.
@@ -390,14 +406,14 @@ Open the browser console and take a look now. {{< link path="/book/first-steps/l
 
 {{< code lang="js" hl_lines="2" linenos="false" caption="Locate the animation clip in the loaded data" >}}
 {
-  animations: [AnimationClip]
-  asset: {…}
-  cameras: []
-  parser: GLTFParser {…}
-  scene: Scene {…}
-  scenes: […]
-  userData: {}
-  __proto__: Object
+animations: [AnimationClip]
+asset: {…}
+cameras: []
+parser: GLTFParser {…}
+scene: Scene {…}
+scenes: […]
+userData: {}
+**proto**: Object
 }
 {{< /code >}}
 
@@ -406,7 +422,8 @@ Here, each file contains just a single clip, but a glTF file can contain any num
 Next, update `setupModels` to extract the clip:
 
 {{< code lang="js" linenos="" hl_lines="3" caption="_**setupModel.js**_: extract the clip from the loaded data" >}}
-``` js
+
+```js
 function setupModel(data) {
   const model = data.scene.children[0];
   const clip = data.animations[0];
@@ -414,6 +431,7 @@ function setupModel(data) {
   return model;
 }
 ```
+
 {{< /code >}}
 
 ### Create the Mixer and Action
@@ -421,8 +439,9 @@ function setupModel(data) {
 Now, we'll create the mixer and the action. First, import the `AnimationMixer`. We'll use [`AnimationMixer.clipAction` to create the action](#animationaction), so there's no need to import `AnimationAction`. Then, create the mixer, passing the bird model into the constructor.
 
 {{< code lang="js" linenos="" hl_lines="1,7" caption="_**setupModel.js**_: import and create the mixer" >}}
-``` js
-import { AnimationMixer } from 'three';
+
+```js
+import { AnimationMixer } from "three";
 
 function setupModel(data) {
   const model = data.scene.children[0];
@@ -433,20 +452,21 @@ function setupModel(data) {
   return model;
 }
 ```
+
 {{< /code >}}
 
 Next, use `.clipAction` to create the action, passing in the clip, then immediately set the action to playing:
 
 {{< code lang="js" linenos="" linenostart="3" hl_lines="8,9" caption="_**setupModel.js**_: create the AnimationAction using `.clipAction`" >}}
 function setupModel(data) {
-  const model = data.scene.children[0];
-  const clip = data.animations[0];
+const model = data.scene.children[0];
+const clip = data.animations[0];
 
-  const mixer = new AnimationMixer(model);
-  const action = mixer.clipAction(clip);
-  action.play();
+const mixer = new AnimationMixer(model);
+const action = mixer.clipAction(clip);
+action.play();
 
-  return model;
+return model;
 }
 {{< /code >}}
 
@@ -483,6 +503,7 @@ P.S. we're not quite done yet, you still have to complete all the challenges!
 ## Challenges
 
 {{% aside success %}}
+
 ### Easy
 
 The `AnimationAction` has lots more animation controls `.play` and `.stop`. Try out some of these now.
@@ -497,9 +518,9 @@ _Note: all the methods listed here can be chained, so you can write them like th
 
 {{< code lang="js" linenos="false" caption="`AnimationAction` methods can be chained" >}}
 action
-  .startAt(2)
-  .setEffectiveTimeScale(0.5)
-  .play();
+.startAt(2)
+.setEffectiveTimeScale(0.5)
+.play();
 {{< /code >}}
 
 _There are many other controls besides the one we listed here. Experiment!_
@@ -507,6 +528,7 @@ _There are many other controls besides the one we listed here. Experiment!_
 {{% /aside %}}
 
 {{% aside %}}
+
 ### Medium
 
 1. Add a [range slider input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range) to the page. Use the value of the slider to set [`.setEffectiveWeight`](https://threejs.org/docs/#api/en/animation/AnimationAction.setEffectiveWeight) and control how strongly the flying animation affects the birds. Zero is no effect and one is full effect.
@@ -522,6 +544,7 @@ _Note: the position track will overwrite the `bird.position`, so the birds will 
 {{% /aside %}}
 
 {{% aside warning %}}
+
 ### Hard
 
 1. Combine the position, scale, _and_ the loaded flying animation in a single clip. There are a couple of ways to do this. For example, you could look inside the loaded clip's `.tracks` array, and extract any tracks you find there to create a new clip. Or, you could try adding your tracks to the existing clip's `.tracks`. Note that if you use the latter method, you'll have to call [`clip.resetDuration`](https://threejs.org/docs/#api/en/animation/AnimationClip.resetDuration) after adding the new tracks.
@@ -531,7 +554,8 @@ _Note: the position track will overwrite the `bird.position`, so the birds will 
 {{% /aside %}}
 
 {{% aside %}}
+
 ### Bonus
 
 1. If you have been following along so far using the inline code editor, take the code from this chapter and make it run on locally on your computer. You'll need to set up {{< link path="/book/introduction/prerequisites/#a-web-server" title="a development server" >}}.
-{{% /aside %}}
+   {{% /aside %}}

@@ -6,33 +6,32 @@ weight: 110
 chapter: "1.10"
 available: true
 showIDE: true
-IDEFiles: [
-  "assets/textures/uv-test-bw.png",
-  "assets/textures/uv-test-col.png",
-  "worlds/first-steps/ambient-lighting/src/World/components/camera.js",
-  "worlds/first-steps/ambient-lighting/src/World/components/cube.js",
-  "worlds/first-steps/ambient-lighting/src/World/components/lights.start.js",
-  "worlds/first-steps/ambient-lighting/src/World/components/lights.final.js",
-  "worlds/first-steps/ambient-lighting/src/World/components/scene.js",
-  "worlds/first-steps/ambient-lighting/src/World/systems/controls.js",
-  "worlds/first-steps/ambient-lighting/src/World/systems/renderer.js",
-  "worlds/first-steps/ambient-lighting/src/World/systems/Resizer.js",
-  "worlds/first-steps/ambient-lighting/src/World/systems/Loop.js",
-  "worlds/first-steps/ambient-lighting/src/World/World.start.js",
-  "worlds/first-steps/ambient-lighting/src/World/World.final.js",
-  "worlds/first-steps/ambient-lighting/src/main.js",
-  "styles/main.css",
-  "vendor/three/build/three.module.js",
-  "vendor/three/examples/jsm/controls/OrbitControls.js",
-  "worlds/first-steps/ambient-lighting/index.html",
-]
+IDEFiles:
+  [
+    "assets/textures/uv-test-bw.png",
+    "assets/textures/uv-test-col.png",
+    "worlds/first-steps/ambient-lighting/src/World/components/camera.js",
+    "worlds/first-steps/ambient-lighting/src/World/components/cube.js",
+    "worlds/first-steps/ambient-lighting/src/World/components/lights.start.js",
+    "worlds/first-steps/ambient-lighting/src/World/components/lights.final.js",
+    "worlds/first-steps/ambient-lighting/src/World/components/scene.js",
+    "worlds/first-steps/ambient-lighting/src/World/systems/controls.js",
+    "worlds/first-steps/ambient-lighting/src/World/systems/renderer.js",
+    "worlds/first-steps/ambient-lighting/src/World/systems/Resizer.js",
+    "worlds/first-steps/ambient-lighting/src/World/systems/Loop.js",
+    "worlds/first-steps/ambient-lighting/src/World/World.start.js",
+    "worlds/first-steps/ambient-lighting/src/World/World.final.js",
+    "worlds/first-steps/ambient-lighting/src/main.js",
+    "styles/main.css",
+    "vendor/three/build/three.module.js",
+    "vendor/three/examples/jsm/controls/OrbitControls.js",
+    "worlds/first-steps/ambient-lighting/index.html",
+  ]
 IDEComparisonMode: true
-IDEClosedFolders: ['assets', 'systems', 'styles', 'vendor']
-IDEStripDirectory: 'worlds/first-steps/ambient-lighting/'
-IDEActiveDocument: 'src/World/components/lights.js'
+IDEClosedFolders: ["assets", "systems", "styles", "vendor"]
+IDEStripDirectory: "worlds/first-steps/ambient-lighting/"
+IDEActiveDocument: "src/World/components/lights.js"
 ---
-
-
 
 # Ambient Lighting: Illumination from Every Direction
 
@@ -54,9 +53,9 @@ In the real world, an infinite number of light rays reflect and bounce an infini
 
 ### Simulating Lighting in Real-Time
 
-Unfortunately for us, computers have trouble simulating the infinite. A technique called [ray tracing](https://en.wikipedia.org/wiki/Ray_tracing_(graphics)) can be used to simulate a few thousand lights rays each bouncing a few times around the scene. However, it takes too much processing power to render frames in real-time using this technique, so ray-tracing and related techniques like [path tracing](https://en.wikipedia.org/wiki/Path_tracing) are better suited for creating pre-rendered images or animations.
+Unfortunately for us, computers have trouble simulating the infinite. A technique called [ray tracing](<https://en.wikipedia.org/wiki/Ray_tracing_(graphics)>) can be used to simulate a few thousand lights rays each bouncing a few times around the scene. However, it takes too much processing power to render frames in real-time using this technique, so ray-tracing and related techniques like [path tracing](https://en.wikipedia.org/wiki/Path_tracing) are better suited for creating pre-rendered images or animations.
 
-Instead, as we discussed in {{< link path="/book/first-steps/physically-based-rendering/" title="" >}}, real-time graphics engines split lighting into two parts:
+Instead, as we discussed in the [Physically Based Rendering]({{< relref "/book/first-steps/physically-based-rendering" >}} "Physically Based Rendering") chapter, real-time graphics engines split lighting into two parts:
 
 1. **Direct lighting**: light rays that come directly from a light source and hit an object.
 2. **Indirect lighting**: light rays that have bounced off the walls and other objects in the room before hitting an object, changing color and losing intensity with each bounce.
@@ -116,10 +115,10 @@ TODO-LOW: add light probes overview
 
 **Ambient lighting** is a method of faking indirect lighting which is both fast and easy to set up while still giving reasonable results. There are two ambient light classes available in the three.js core:
 
-* **The [`AmbientLight`](https://threejs.org/docs/#api/en/lights/AmbientLight) adds a constant amount of light to every object from all directions.**
-* **The [`HemisphereLight`](https://threejs.org/docs/#api/en/lights/HemisphereLight) fades between a sky color and a ground color and can be used to simulate many common lighting scenarios.**
+- **The [`AmbientLight`](https://threejs.org/docs/#api/en/lights/AmbientLight) adds a constant amount of light to every object from all directions.**
+- **The [`HemisphereLight`](https://threejs.org/docs/#api/en/lights/HemisphereLight) fades between a sky color and a ground color and can be used to simulate many common lighting scenarios.**
 
-We mentioned these briefly back in {{< link path="/book/first-steps/physically-based-rendering/#the-three-js-light-classes" title="" >}}. Using either of these lights follows the same process as using the `DirectionalLight`. Simply create an instance of the light, then add it to your scene. The following scene demonstrates using a `HemisphereLight` in combination with a `DirectionalLight` to give the effect of a bright outdoor scene.
+We mentioned these briefly back in the [Physically Based Rendering]({{< relref "/book/first-steps/physically-based-rendering#the-three-js-light-classes" >}} "Physically Based Rendering") chapter. Using either of these lights follows the same process as using the `DirectionalLight`. Simply create an instance of the light, then add it to your scene. The following scene demonstrates using a `HemisphereLight` in combination with a `DirectionalLight` to give the effect of a bright outdoor scene.
 
 {{< iframe src="https://threejs.org/examples/webgl_lights_hemisphere.html" height="500" title="The HemisphereLight in action" caption="A simple scene lit by a directional light and a hemisphere light" >}}
 
@@ -145,12 +144,12 @@ As with the `DirectionalLight`, pass the [`.color`](https://threejs.org/docs/#ap
 
 {{< code lang="js" linenos="" linenostart="7" hl_lines="8 13" caption="_**lights.js**_: create an AmbientLight" >}}
 function createLights() {
-  const ambientLight = new AmbientLight('white', 2);
+const ambientLight = new AmbientLight('white', 2);
 
-  const mainLight = new DirectionalLight('white', 5);
-  mainLight.position.set(10, 10, 10);
+const mainLight = new DirectionalLight('white', 5);
+mainLight.position.set(10, 10, 10);
 
-  return { ambientLight, mainLight };
+return { ambientLight, mainLight };
 }
 {{< /code >}}
 
@@ -177,7 +176,7 @@ That doesn't mean the `AmbientLight` is useless. The `HemisphereLight` doesn't s
 
 ### The `AmbientLight` Doesn't Show Depth {#no-depth}
 
-As we mentioned in {{< link path="/book/first-steps/physically-based-rendering/#lighting-and-depth" title="" >}}, our eyes use differences in shading across the surface of an object to determine depth. However, the light from an ambient light shines equally in all directions, so the shading is uniform and gives us no information about depth. Consequently, any object illuminated using only an `AmbientLight` will not appear to be 3D.
+As we mentioned in the [Physically Based Rendering]({{< relref "/book/first-steps/physically-based-rendering#lighting-and-depth" >}} "Physically Based Rendering") chapter, our eyes use differences in shading across the surface of an object to determine depth. However, the light from an ambient light shines equally in all directions, so the shading is uniform and gives us no information about depth. Consequently, any object illuminated using only an `AmbientLight` will not appear to be 3D.
 
 This is similar to how the `MeshBasicMaterial` works, to the point of being indistinguishable. One of these cubes has a `MeshBasicMaterial` and one has a `MeshStandardMaterial` illuminated only by an `AmbientLight`. See if you can tell them apart:
 
@@ -210,6 +209,7 @@ Throughout the book, we'll explore many lighting solutions. Many of these give b
 ## Challenges
 
 {{% aside success %}}
+
 ### Easy
 
 1. Temporarily disable the `mainLight` in the editor and then test each of the two ambient light classes alone. There are several ways to disable a light. Set `.intensity` to zero, don't add the light to the scene, or set `mainLight.visible` to `false`.
@@ -219,6 +219,7 @@ Throughout the book, we'll explore many lighting solutions. Many of these give b
 {{% /aside %}}
 
 {{% aside %}}
+
 ### Medium
 
 1. In the editor, we've given the `HemisphereLight` and the `DirectionalLight` both an intensity of five. We did this to highlight the effect of the ambient light, however, usually, we would make the direct light stronger than the ambient light. Can you improve the quality of the lighting by adjusting the intensity and color of the two lights?
@@ -232,6 +233,7 @@ _Remember: light from the `DirectionalLight` shines {{< link path="/book/first-s
 {{% /aside %}}
 
 {{% aside warning %}}
+
 ### Hard
 
 1. Another solution to our problem from the start of the chapter is to add a light as a child of the camera. That way, when the camera moves, the light moves too. You can think of this as being like a camera with a torch strapped to the side. Using this approach, we can light the scene using a single `DirectionalLight` or `SpotLight`. Try this out. First, remove the `ambientLight`, then add the camera to the scene, and finally, add the `mainLight` to the camera.

@@ -6,30 +6,29 @@ weight: 104
 chapter: "1.4"
 available: true
 showIDE: true
-IDEFiles: [
-  "worlds/first-steps/physically-based-rendering/src/World/components/camera.js",
-  "worlds/first-steps/physically-based-rendering/src/World/components/cube.start.js",
-  "worlds/first-steps/physically-based-rendering/src/World/components/cube.final.js",
-  "worlds/first-steps/physically-based-rendering/src/World/components/lights.start.js",
-  "worlds/first-steps/physically-based-rendering/src/World/components/lights.final.js",
-  "worlds/first-steps/physically-based-rendering/src/World/components/scene.js",
-  "worlds/first-steps/physically-based-rendering/src/World/systems/renderer.start.js",
-  "worlds/first-steps/physically-based-rendering/src/World/systems/renderer.final.js",
-  "worlds/first-steps/physically-based-rendering/src/World/systems/Resizer.js",
-  "worlds/first-steps/physically-based-rendering/src/World/World.start.js",
-  "worlds/first-steps/physically-based-rendering/src/World/World.final.js",
-  "worlds/first-steps/physically-based-rendering/src/main.js",
-  "styles/main.css",
-  "vendor/three/build/three.module.js",
-  "worlds/first-steps/physically-based-rendering/index.html",
-]
+IDEFiles:
+  [
+    "worlds/first-steps/physically-based-rendering/src/World/components/camera.js",
+    "worlds/first-steps/physically-based-rendering/src/World/components/cube.start.js",
+    "worlds/first-steps/physically-based-rendering/src/World/components/cube.final.js",
+    "worlds/first-steps/physically-based-rendering/src/World/components/lights.start.js",
+    "worlds/first-steps/physically-based-rendering/src/World/components/lights.final.js",
+    "worlds/first-steps/physically-based-rendering/src/World/components/scene.js",
+    "worlds/first-steps/physically-based-rendering/src/World/systems/renderer.start.js",
+    "worlds/first-steps/physically-based-rendering/src/World/systems/renderer.final.js",
+    "worlds/first-steps/physically-based-rendering/src/World/systems/Resizer.js",
+    "worlds/first-steps/physically-based-rendering/src/World/World.start.js",
+    "worlds/first-steps/physically-based-rendering/src/World/World.final.js",
+    "worlds/first-steps/physically-based-rendering/src/main.js",
+    "styles/main.css",
+    "vendor/three/build/three.module.js",
+    "worlds/first-steps/physically-based-rendering/index.html",
+  ]
 IDEComparisonMode: true
-IDEClosedFolders: ['systems', 'styles', 'vendor']
-IDEStripDirectory: 'worlds/first-steps/physically-based-rendering/'
-IDEActiveDocument: 'src/World/components/cube.js'
+IDEClosedFolders: ["systems", "styles", "vendor"]
+IDEStripDirectory: "worlds/first-steps/physically-based-rendering/"
+IDEActiveDocument: "src/World/components/cube.js"
 ---
-
-
 
 # Physically Based Rendering and Lighting
 
@@ -79,9 +78,9 @@ For physically correct lighting to be accurate, you need to build physically siz
 
 ### Units of size in three.js are meters
 
-* The $2\times 2 \times 2$ cube we created earlier is two meters long on each side.
-* `camera.far = 100` means we can see for a distance of one hundred meters.
-* `camera.near = 0.1` means objects closer to the camera than ten centimeters will not be visible.
+- The $2\times 2 \times 2$ cube we created earlier is two meters long on each side.
+- `camera.far = 100` means we can see for a distance of one hundred meters.
+- `camera.near = 0.1` means objects closer to the camera than ten centimeters will not be visible.
 
 **Using meters is a convention rather than a rule. If you don't follow it, everything except for physically accurate lighting will still work.** Indeed, there are situations where it makes sense to use a different scale. For example, if you're building a huge-scale space simulation you might decide to use $ 1 \text{ unit} = 1000 \text{ kilometers}$. However, **if you want physically accurate lighting then you must build your scenes to real-world scale using this formula:**
 
@@ -105,7 +104,7 @@ Matching these, the light classes in three.js are split into two types:
 TODO-DIAGRAM: add figure of direct and Indirect lighting
 {{% /note %}}
 
-We can simulate direct lighting easily. Direct light rays come out of a light source and continue in a straight line until they hit an object, or not. However, indirect lighting is much harder to simulate since doing so requires calculating an infinite number of light rays bouncing forever from all the surfaces in the scene. There is no computer powerful enough to do that, and even if we limit ourselves to merely calculating a few thousand light rays, each making just a couple of bounces (**[raytracing](https://en.wikipedia.org/wiki/Ray_tracing_(graphics))**), it still generally takes too long to calculate in real-time. As a result, if we want realistic lighting in our scene, we need some way of faking indirect lighting. There are several techniques for doing this in three.js, of which ambient lights are one. Other techniques are image-based lighting (IBL), and light probes, as we'll see later in the book.
+We can simulate direct lighting easily. Direct light rays come out of a light source and continue in a straight line until they hit an object, or not. However, indirect lighting is much harder to simulate since doing so requires calculating an infinite number of light rays bouncing forever from all the surfaces in the scene. There is no computer powerful enough to do that, and even if we limit ourselves to merely calculating a few thousand light rays, each making just a couple of bounces (**[raytracing](<https://en.wikipedia.org/wiki/Ray_tracing_(graphics)>)**), it still generally takes too long to calculate in real-time. As a result, if we want realistic lighting in our scene, we need some way of faking indirect lighting. There are several techniques for doing this in three.js, of which ambient lights are one. Other techniques are image-based lighting (IBL), and light probes, as we'll see later in the book.
 
 {{% note %}}
 TODO-LINK: add links to lighting chapters
@@ -115,13 +114,13 @@ TODO-LINK: add links to lighting chapters
 
 In this chapter, we'll add the `DirectionalLight`, which simulates light from the sun or another very bright far away source. We'll come back to {{< link path="/book/first-steps/ambient-lighting/" title="ambient lighting" >}} later in this section. There are a total of four direct light types available in the three.js core, each of which simulates a common real-world source of light:
 
-* **`DirectionalLight` => Sunlight**
+- **`DirectionalLight` => Sunlight**
 
-* **`PointLight` => Light Bulbs**
+- **`PointLight` => Light Bulbs**
 
-* **`RectAreaLight` => Strip lighting or bright windows**
+- **`RectAreaLight` => Strip lighting or bright windows**
 
-* **`SpotLight` => Spotlights**
+- **`SpotLight` => Spotlights**
 
 ### Shadows are Disabled By Default
 
@@ -154,9 +153,9 @@ That's enough talk, let's add a `DirectionalLight` to our scene. Open or create 
 import { DirectionalLight } from 'three';
 
 function createLights() {
-  const light = null; // TODO
+const light = null; // TODO
 
-  return light;
+return light;
 }
 
 export { createLights };
@@ -168,10 +167,10 @@ The [`DirectionalLight`](https://threejs.org/docs/#api/en/lights/DirectionalLigh
 
 {{< code lang="js" linenos="true" linenostart="4" hl_lines="5 6" caption="_**lights.js**_: create a `DirectionalLight`" >}}
 function createLights() {
-  // Create a directional light
-  const light = new DirectionalLight('white', 8);
+// Create a directional light
+const light = new DirectionalLight('white', 8);
 
-  return light;
+return light;
 }
 {{< /code >}}
 
@@ -208,7 +207,7 @@ As the name implies, [`MeshBasicMaterial`](https://threejs.org/docs/#api/en/mate
 
 {{< iframe src="https://threejs.org/docs/scenes/material-browser.html#MeshBasicMaterial" height="500" title="The MeshBasicMaterial in action" caption="The `MeshBasicMaterial` in action" >}}
 
-In the controls above, the `Material` menu has parameters that all three.js materials share, while the `MeshBasicMaterial` menu has parameters that come from this material type. It's possible to improve the appearance of this material by adjusting the parameters, in particular by using textures, which we'll explore in {{< link path="/book/first-steps/textures-intro/" title="" >}}. You can test the effect of the color map using the `map` parameter. Or, try setting the environment texture using the `envMap` parameter. Environment maps are an important form of **image-based lighting**. However, no matter how much we tweak these settings, we'll never reach the quality of a physically based material.
+In the controls above, the `Material` menu has parameters that all three.js materials share, while the `MeshBasicMaterial` menu has parameters that come from this material type. It's possible to improve the appearance of this material by adjusting the parameters, in particular by using textures, as we'll see later. You can test the effect of the color map using the `map` parameter. Or, try setting the environment texture using the `envMap` parameter. Environment maps are an important form of **image-based lighting**. However, no matter how much we tweak these settings, we'll never reach the quality of a physically based material.
 
 {{% note %}}
 TODO-LINK: add link to envMap
@@ -246,15 +245,15 @@ Then, update the `createCube` function and switch the old, boring, basic materia
 
 {{< code lang="js" linenos="true" linenostart="3" hl_lines="6-8" caption="_**cube.js**_: switch to a MeshStandardMaterial" >}}
 function createCube() {
-  const geometry = new BoxBufferGeometry(2, 2, 2);
+const geometry = new BoxBufferGeometry(2, 2, 2);
 
-  // Switch the old "basic" material to
-  // a physically correct "standard" material
-  const material = new MeshStandardMaterial();
+// Switch the old "basic" material to
+// a physically correct "standard" material
+const material = new MeshStandardMaterial();
 
-  const cube = new Mesh(geometry, material);
+const cube = new Mesh(geometry, material);
 
-  return cube;
+return cube;
 }
 {{< /code >}}
 
@@ -269,7 +268,7 @@ We'll make one more change in this module, and set the material's color to purpl
 
 {{< code lang="js" linenos="false" caption="Materials take a specification object" >}}
 const spec = {
-  color: 'purple',
+color: 'purple',
 }
 
 const material = new MeshStandardMaterial(spec);
@@ -278,19 +277,21 @@ const material = new MeshStandardMaterial(spec);
 To keep our code short and readable, we'll declare the specification object inline:
 
 {{< code lang="js" linenos="true" linenostart="3" hl_lines="8" caption="_**cube.js**_: declare the spec object inline" >}}
-``` js
+
+```js
 function createCube() {
   const geometry = new BoxBufferGeometry(2, 2, 2);
 
   // Switch the old "basic" material to
   // a physically correct "standard" material
-  const material = new MeshStandardMaterial({ color: 'purple' });
+  const material = new MeshStandardMaterial({ color: "purple" });
 
   const cube = new Mesh(geometry, material);
 
   return cube;
 }
 ```
+
 {{< /code >}}
 
 When we {{< link path="book/first-steps/first-scene/#set-color" title="set the scene's background color" >}}, we used a CSS color name, and we've done the same here.
@@ -310,6 +311,7 @@ Put any values you like in there for now. Now that we're no longer viewing the c
 ## Challenges
 
 {{% aside success %}}
+
 ### Easy
 
 1. Try changing the color of the material. All the normal colors like **red**, **green**, or **blue** will work, along with many more exotic colors such as **peachpuff**, **orchid**, or **papayawhip**. [Here's a complete list of the CSS color names](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value).
@@ -317,12 +319,13 @@ Put any values you like in there for now. Now that we're no longer viewing the c
 2. Try changing the color of the light. Again, you can use any of the CSS color names. Watch how setting various light and material colors give the cube its final color.
 
 3. Try moving the light around (using `light.position`) and observe the result.
-{{% /aside %}}
+   {{% /aside %}}
 
 {{% aside %}}
+
 ### Medium
 
-1. Test out the other direct light types: [`PointLight`](https://threejs.org/docs/#api/en/lights/PointLight),  [`SpotLight`](https://threejs.org/docs/#api/en/lights/SpotLight), and [`RectAreaLight`](https://threejs.org/docs/#api/en/lights/RectAreaLight).
+1. Test out the other direct light types: [`PointLight`](https://threejs.org/docs/#api/en/lights/PointLight), [`SpotLight`](https://threejs.org/docs/#api/en/lights/SpotLight), and [`RectAreaLight`](https://threejs.org/docs/#api/en/lights/RectAreaLight).
 
 2. `MeshBasicMaterial` and `MeshStandardMaterial` are not the only materials available. There are a total of eighteen materials in the three.js core, and any material with the word "mesh" in its name will work with our cube mesh. Test some of these out (hint: [search the docs for "material"](https://threejs.org)).
 
@@ -330,7 +333,8 @@ _You need to import the other light and material classes before you can use them
 {{% /aside %}}
 
 {{% aside warning %}}
+
 ### Hard
 
 1. Recreate the scene from [Lighting and Depth](#lighting-and-depth), minus the animation (hint: use two meshes and two materials).
-{{% /aside %}}
+   {{% /aside %}}

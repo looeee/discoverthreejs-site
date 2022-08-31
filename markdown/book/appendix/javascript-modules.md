@@ -148,7 +148,7 @@ console.log(x); // -> hello!
 
 You can also import from other websites like a CDN by specifying the full web address of the module.
 
-We use this style in {{< link path="book/introduction/get-threejs/#approach-2-link-to-the-files-from-a-cdn" title="" >}} where we show you how to import three.js from a CDN (content delivery network).
+We used this style in [the intro]({{< relref "book/introduction/get-threejs#approach-2-link-to-the-files-from-a-cdn" >}} "") when we showed you how to import three.js from a CDN (content delivery network).
 
 {{< code lang="js" linenos="false" caption="Importing modules from another website" >}}
 

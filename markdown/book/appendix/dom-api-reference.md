@@ -1,18 +1,19 @@
 ---
-title: 'The Document Object Model and DOM API'
+title: "The Document Object Model and DOM API"
 description: "JavaScript is connected to a web page using using the Document Object Model (DOM) and we can access it using the DOM API. Here, we provide a reference for the parts of the DOM we use in this book."
 date: 2018-04-02
 weight: 9903
-chapter: 'A.3'
+chapter: "A.3"
 available: true
 showIDE: true
-IDEFiles: [
-  'worlds/appendix/dom-api-reference/src/main.js',
-  'worlds/appendix/dom-api-reference/index.html',
-]
-IDEClosedFolders: ['styles']
-IDEStripDirectory: 'worlds/appendix/dom-api-reference/'
-IDEActiveDocument: 'src/main.js'
+IDEFiles:
+  [
+    "worlds/appendix/dom-api-reference/src/main.js",
+    "worlds/appendix/dom-api-reference/index.html",
+  ]
+IDEClosedFolders: ["styles"]
+IDEStripDirectory: "worlds/appendix/dom-api-reference/"
+IDEActiveDocument: "src/main.js"
 IDESwitchImportsAllow: false
 ---
 
@@ -47,7 +48,7 @@ Here's how to check the value of a variable called `x` using the browser console
 {{< code lang="js" linenos="false" caption="Using the console to view the value of a variable" >}}
 let x = 'something';
 
-// You have done some work and  now you expect that x = 'something else'.
+// You have done some work and now you expect that x = 'something else'.
 // But how do you test this? Simple! Use:
 
 console.log(x);
@@ -72,6 +73,7 @@ Using the DOM, we can access and manipulate the elements in an HTML page using J
 A web page that looks like this:
 
 {{< code lang="html" linenos="false" caption="A minimalistic HTML document" >}}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -88,15 +90,16 @@ A web page that looks like this:
 
 {{< code lang="js" linenos="false" caption="The DOM: A representation of an HTML document in JavaScript" >}}
 window = {
-  document: {
-    head: {
-      ...
-    },
+document: {
+head: {
+...
+},
 
     body: {
       ...
     },
-  },
+
+},
 };
 {{< /code >}}
 
@@ -148,7 +151,7 @@ This applies to any custom data to you add to `window` as well.
 
 {{< code lang="js" linenos="false" >}}
 window.yourData = {
-  squirrels: 'nice'
+squirrels: 'nice'
 };
 
 // Now these statements are equivalent
@@ -175,6 +178,7 @@ The `.head` and `.body` can be accessed in a couple of keystrokes from anywhere 
 We can find all the child elements of a given element in the [`element.children`](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/children) property. Given this page:
 
 {{< code lang="html" linenos="false" caption="Our simple HTML document again" >}}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -205,6 +209,7 @@ In this book, we'll restrain ourselves to using just two of these selector funct
 If we have an HTML page like this:
 
 {{< code lang="html" linenos="false" caption="Adding some more elements to our HTML document" >}}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -218,6 +223,7 @@ If we have an HTML page like this:
 
     <p class="alert">Oh No!</p>
     <p class="alert">Watch Out!</p>
+
   </body>
 </html>
 {{< /code >}}
@@ -315,7 +321,7 @@ There are many ways to create new HTML elements, but we'll stick to [`document.c
 const headingElem = document.createElement('h2');
 
 headingElem.textContent =
-  'Section Two: Waggle Dancing for Children and Teenagers';
+'Section Two: Waggle Dancing for Children and Teenagers';
 {{< /code >}}
 
 ### Adding Elements to Our Page
@@ -350,7 +356,7 @@ To attach an event listener to an element, we use the [`element.addEventListener
 
 {{< code lang="js" linenos="false" caption="Listen for click events on the whole window" >}}
 window.addEventListener('click', (event) => {
-  console.log('You clicked the mouse!');
+console.log('You clicked the mouse!');
 } );
 {{< /code >}}
 
@@ -366,7 +372,7 @@ We can listen for clicks on the button like this:
 const button = document.querySelector('#risky-click-button');
 
 button.addEventListener('click', (event) => {
-  console.log('Buzz buzz!! Buzz buzz!!');
+console.log('Buzz buzz!! Buzz buzz!!');
 });
 {{< /code >}}
 
@@ -376,7 +382,7 @@ The callback function receives a single argument, `event`, containing details ab
 
 {{< code lang="js" linenos="false" caption="The callback receives an object containing details about the event" >}}
 window.addEventListener('click', (event) => {
-  console.log(event);
+console.log(event);
 });
 {{< /code >}}
 
@@ -388,7 +394,7 @@ When we create a button that will always remain active, it's fine for an event l
 
 {{< code lang="js" linenos="false" caption="An event listener with a named callback" >}}
 const releaseBees = event => {
-  console.log('Buzz buzz!! Buzz buzz!!');
+console.log('Buzz buzz!! Buzz buzz!!');
 };
 
 button.addEventListener('click', releaseBees);
@@ -419,9 +425,9 @@ To disable the default behavior, we'll call [`event.preventDefault`](https://dev
 const fakeButton = document.querySelector('#risky-click-button');
 
 fakeButton.addEventListener('click', (event) => {
-  event.preventDefault();
+event.preventDefault();
 
-  console.log('Buzz buzz!! Buzz buzz!!');
+console.log('Buzz buzz!! Buzz buzz!!');
 });
 {{< /code >}}
 
@@ -431,8 +437,8 @@ Another important event is the [`resize`](https://developer.mozilla.org/en-US/do
 
 {{< code lang="js" linenos="false" caption="Listening for the resize event" >}}
 window.addEventListener('resize', () => {
-  console.log('The new width is:', window.innerWidth);
-  console.log('The new height is:', window.innerHeight);
+console.log('The new width is:', window.innerWidth);
+console.log('The new height is:', window.innerHeight);
 });
 {{< /code >}}
 
@@ -459,6 +465,6 @@ const pixelRatio = window.devicePixelRatio;
 
 Usually, our three.js scene will contain movement. This means drawing frames - lots of frames! Ideally, we want to draw 60 frames per second. Modern browsers have a function designed to help us with this called [`window.requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame). Since `requestAnimationFrame` is part of the DOM API, it's not available in other environments such as Node.js.
 
-We'll cover how this works in a lot more detail in {{< link path="/book/first-steps/animation-loop/#the-solution-requestanimationframe" title="" >}} when we set up our animation loop.
+We'll cover how this works in a lot more detail in [Ch 1.7]({{< relref "/book/first-steps/animation-loop#the-solution-requestanimationframe" >}}) when we set up our animation loop.
 
 That's it for our exploration of the DOM and DOM API. We've touched only a fraction of the functionality added to JavaScript by the web browser here, but we've covered everything you need to follow the examples in this book. In this chapter and the last, we've covered a lot of syntax. In the next chapters, we'll take a deeper look at the reality of using JavaScript to build applications. First up is a deep dive into JavaScript modules.

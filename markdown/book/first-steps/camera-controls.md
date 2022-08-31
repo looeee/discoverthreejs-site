@@ -66,7 +66,7 @@ You can find the module containing `OrbitControls` on the three.js repo, in the 
 
 ### Importing Plugins
 
-Since the plugins are part of the three.js repo and included in the NPM package, importing them works in much the same way as {{< link path="/book/first-steps/first-scene/#import-classes-from-threejs" title="importing classes from the three.js core" >}}, except that each plugin is in a separate module. Refer back to {{< link path="/book/introduction/get-threejs/" title="" >}} for a reminder of how to include the three.js files in your app, or head over to {{< link path="/book/appendix/javascript-modules/" title="" >}} for a deeper exploration of how JavaScript modules work.
+Since the plugins are part of the three.js repo and included in the NPM package, importing them works in much the same way as {{< link path="/book/first-steps/first-scene/#import-classes-from-threejs" title="importing classes from the three.js core" >}}, except that each plugin is in a separate module. Refer back to {{< link path="/book/introduction/get-threejs/" title="the intro" >}} for a reminder of how to include the three.js files in your app, or head over to {{< link path="/book/appendix/javascript-modules/" title="the appendix" >}} for a deeper exploration of how JavaScript modules work.
 
 In the editor, we've placed the _**OrbitControls.js**_ file in the equivalent directory to the repo, under _**vendor/**_. Go ahead and locate the file now. Since the editor uses NPM style imports, we can import `OrbitControls` like this, from anywhere in our code like this:
 

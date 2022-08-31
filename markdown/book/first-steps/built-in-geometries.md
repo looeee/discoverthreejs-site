@@ -284,9 +284,9 @@ Next, the `Train` class. Here, we'll do something new and {{< link path="/book/a
 import { Group } from 'three';
 
 class Train extends Group {
-  constructor() {
-    super();
-  }
+constructor() {
+super();
+}
 }
 
 export { Train }
@@ -308,14 +308,14 @@ We can also add objects to the train from within the class itself, using `this.a
 
 {{< code lang="js" linenos="false" caption="By extending `Group`, we can add a mesh to the train in the constructor" >}}
 class Train extends Group {
-  constructor() {
-    super();
+constructor() {
+super();
 
     const mesh = new Mesh(...);
 
     this.add(mesh);
 
-  }
+}
 }
 {{< /code >}}
 
@@ -400,7 +400,7 @@ We'll use just two types of geometry for every part of the train: a box geometry
 First up, the box-shaped cabin. A single `BoxBufferGeometry` will suffice here. Create one with the following parameters:
 
 | Length | Width  | Height |
-| ------ | ------ | ------ | 
+| ------ | ------ | ------ |
 | $2$    | $2.25$ | $1.5$  |
 
 {{< code lang="js" linenos="" linenostart="3" hl_lines="4" caption="_**geometries.js**_: create the cabin geometry" >}}
@@ -727,7 +727,7 @@ Next, we need to figure out how fast to spin the wheels. We'll spin at a rate of
 
 {{< code file="worlds/first-steps/built-in-geometries/src/World/components/Train/Train.final.js" from="1" to="7" hl_lines="1 5" lang="js" linenos="true" caption="_**Train.js**_: calculate the wheel speed in degrees per second" >}}{{< /code >}}
 
-Finally, update the tick method to rotate each of the four wheels. We must scale the per-second speed by delta here, as usual. Refer back to {{< link path="/book/first-steps/animation-loop/#timing-in-the-animation-system" title="" >}} for an explanation of why we do this.
+Finally, update the tick method to rotate each of the four wheels. We must scale the per-second speed by delta here, as usual. Refer back to the [Animation Loop]({{< relref "/book/first-steps/animation-loop#timing-in-the-animation-system" >}} "Animation Loop") chapter for an explanation of why we do this.
 
 {{< code file="worlds/first-steps/built-in-geometries/src/World/components/Train/Train.final.js" from="24" to="29" hl_lines="25-28" lang="js" linenos="true" caption="_**Train.js**_: spin the wheels, scaling the per-second speed by delta" >}}{{< /code >}}
 

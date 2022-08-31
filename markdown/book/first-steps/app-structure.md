@@ -62,7 +62,7 @@ Back in _**index.html**_, just below the styles `<link>` is a `<script>` tag ref
 {{< code file="worlds/first-steps/app-structure/src/main.js" lang="js" linenos=""
 caption="_**src/main.js**_: coming soon!" >}}{{< /code >}}
 
-_**main.js**_ is the entry point for our JavaScript application, and we'll fill it up in the next chapter. The `type="module"` attribute tells the browser we're writing JavaScript modules. If this is new to you, head over to {{< link path="/book/appendix/javascript-modules/" title="" >}}, which has everything you need to know about JavaScript modules to follow the code in this book.
+_**main.js**_ is the entry point for our JavaScript application, and we'll fill it up in the next chapter. The `type="module"` attribute tells the browser we're writing JavaScript modules. If this is new to you, head over to the [JavaScript Modules Reference]({{< relref "/book/appendix/javascript-modules" >}} "JavaScript Modules Reference"), which has everything you need to know about JavaScript modules to follow the code in this book.
 
 There's another advantage to the `module` attribute: the browser will automatically _defer_ running this file until the HTML has been parsed. This will prevent errors caused by trying to access an HTML element before the browser has read that far (browsers read HTML from top to bottom).
 
@@ -125,13 +125,13 @@ import { GLTFLoader } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/l
 
 {{< /code >}}
 
-Refer back to {{< link path="/book/introduction/get-threejs/" title="" >}} for more details.
+Refer back to [the intro]({{< relref "/book/introduction/get-threejs" >}} "the intro") for more details.
 
 ## {{< icon "solid/folder-open" >}} The _**assets**_ Folder
 
 {{< inlineScene entry="first-steps/flamingo-animated.js" class="medium right round" >}}
 
-Finally, there's the _**assets/**_ folder. **Anything used in our app that is not HTML, CSS, or JavaScript goes in here**: textures, 3D models, fonts, sounds, and so on. Currently, there's one test texture that we'll use in {{< link path="/book/first-steps/textures-intro/" title="" >}}, and one model of a flamingo that we'll use in {{< link path="/book/first-steps/load-models/" title="" >}}.
+Finally, there's the _**assets/**_ folder. **Anything used in our app that is not HTML, CSS, or JavaScript goes in here**: textures, 3D models, fonts, sounds, and so on. Currently, there's one test texture that we'll use in the [chapter on Texture]({{< relref "/book/first-steps/textures-intro" >}} "chapter on Texture"), and one model of a flamingo that we'll use in the chapter on Loading Models [chapter on Loading Models]({{< relref "/book/first-steps/load-models" >}} "chapter on Loading Models").
 
 {{% note %}}
 TODO-LOW: apply test texture to the flamingo in this scene

@@ -53,7 +53,7 @@ Check out _**index.html**_ now, and you'll see that we have referenced _**main.j
 
 {{< /code >}}
 
-Take special notice of `type="module"`, which we're using to tell the browser the linked file is a JavaScript module. If anything in _**index.html**_ is unfamiliar to you, check out {{< link path="/book/appendix/html-and-css-reference/" title="" >}}. If using JavaScript modules is new to you, or you need a refresher, check out {{< link path="/book/appendix/javascript-modules/" title="" >}}.
+Take special notice of `type="module"`, which we're using to tell the browser the linked file is a JavaScript module. If anything in _**index.html**_ is unfamiliar to you, check out the [HTML and CSS Reference]({{< relref "/book/appendix/html-and-css-reference" >}} "HTML and CSS Reference"). If using JavaScript modules is new to you, or you need a refresher, check out [JavaScript Modules Reference]({{< relref "/book/appendix/javascript-modules" >}} "JavaScript Modules Reference"), both in the appendices.
 
 ## Importing three.js Modules
 

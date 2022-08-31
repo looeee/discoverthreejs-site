@@ -144,7 +144,7 @@ A [callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback
 
 In {{< link path="book/appendix/javascript-reference/#old-school-and-modern-javascript" title="old-school JavaScript" >}}, before the release of version ES6 sometime around 2015, the _only_ way to write asynchronous code in JavaScript was to use asynchronous callback functions. These are the simplest way of writing asynchronous code, although they do have some drawbacks which mean that we'll prefer to use other techniques.
 
-We introduced callback functions back in {{< link path="/book/appendix/javascript-reference/#callback-functions" title="" >}}, however, aside from the ones we passed into `setTimeout` above, all the callbacks we have written so far are synchronous.
+We introduced [callback functions]({{< relref "/book/appendix/javascript-reference#callback-functions" >}} "callback functions") earlier, however, aside from the ones we passed into `setTimeout` above, all the callbacks we have written so far are synchronous.
 
 There's nothing different about the callback we passed into `setTimeout`. The only difference between a synchronous callback and an asynchronous callback is the context in which we use it. For example, we introduced callbacks using the {{< link path="book/appendix/javascript-reference/#foreach" title="`array.forEach` method" >}}. We can pass the same callback into `.forEach` and `setTimeout`. In the first case, the callback is synchronous, and in the second, it is asynchronous.
 
@@ -1028,6 +1028,6 @@ console.log(err);
 });
 {{< /code >}}
 
-To see the `GLTFLoader` in action, check out {{< link path="book/first-steps/load-models/" title="" >}}.
+To see the `GLTFLoader` in action, check out the chapter on [loading models]({{< relref "book/first-steps/load-models" >}} "loading models").
 
 This concludes our whirlwind tour of modern JavaScript. Armed with this knowledge, you can now safely tackle the rest of this book and start to create beautiful creations using WebGL, three.js, and JavaScript.

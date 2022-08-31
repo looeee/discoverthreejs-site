@@ -3,13 +3,11 @@ title: "Dealing with Different three.js Versions"
 description: "The development pace of three.js is FAST, and it uses a slightly unusual versioning system. Here are some tips for dealing with the different versions and making sure that you don't get stuck using an outdated version, or mismatched plugins."
 date: 2018-04-02
 weight: 9906
-chapter: 'B.1'
+chapter: "B.1"
 available: true
 nextURL: "/tips-and-tricks/"
 nextTitle: "Tips and Tricks"
 ---
-
-
 
 # Dealing with Different three.js Versions
 
@@ -19,7 +17,7 @@ The development pace of three.js is _fast_, and it uses a slightly unusual versi
 
 three.js breaks that trend and uses a **revision system** instead. There's a new revision out once a month or so, with incremental names like **r45**, **r67**, **r98**, etc. You can see a list of [releases here](https://github.com/mrdoob/three.js/releases).
 
-In {{< link path="/book/introduction/get-threejs/#package-manager" title="" >}} we describe how to install three.js from NPM, a package repository for all things JavaScript. NPM required packages to use semver, so if you check out [the three.js NPM package](https://www.npmjs.com/package/three) you'll see **r88** has been converted to **V0.88.0**, **r108** has been converted to **V0.108.0** and so on.
+Shortly, we'll show you how to install three.js with the NPM package manager [NPM package manager]({{< relref "/book/introduction/get-threejs#package-manager" >}} "NPM package manager") we describe how to install three.js from NPM, a package repository for all things JavaScript. NPM required packages to use semver, so if you check out [the three.js NPM package](https://www.npmjs.com/package/three) you'll see **r88** has been converted to **V0.88.0**, **r108** has been converted to **V0.108.0** and so on.
 
 ## API Changes
 
