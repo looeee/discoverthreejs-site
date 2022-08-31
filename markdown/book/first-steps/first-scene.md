@@ -54,7 +54,7 @@ const scene = new Scene();
 TODO-LOW: replace all coordinate diagrams with a 3D coordinate systems
 {{% /note %}}
 
-The `scene` defines a coordinate system called **World Space**, which is our main frame of reference when working with visible objects in three.js. World space is a [3D Cartesian coordinate system](https://mathinsight.org/cartesian_coordinates). We'll explore what that means and how to use world space in more detail in {{< link path="/book/first-steps/transformations/#coordinate-systems" title="the section on Coordinate Systems" >}}.
+The `scene` defines a coordinate system called **World Space**, which is our main frame of reference when working with visible objects in three.js. World space is a [3D Cartesian coordinate system](https://mathinsight.org/cartesian_coordinates). We'll explore what that means and how to use world space in more detail in [the section on Coordinate Systems]({{< relref "/book/first-steps/transformations#coordinate-systems" >}} "the section on Coordinate Systems").
 
 The very center of the scene is the point $(0,0,0)$, also called the **origin** of the coordinate system. Whenever we create a new object and add it to our scene, it will be placed at the origin, and whenever we move it around, we do so within this coordinate system.
 
@@ -312,7 +312,7 @@ camera.position.y = 0;
 camera.position.z = 10;
 {{< /code >}}
 
-Both ways of setting the position give the same result. The position is stored in a [`Vector3`](https://threejs.org/docs/#api/en/math/Vector3), a three.js class representing a 3D vector which we'll explore in more detail in {{< link path="/book/first-steps/transformations/" title="the chapter on transformations" >}}.
+Both ways of setting the position give the same result. The position is stored in a [`Vector3`](https://threejs.org/docs/#api/en/math/Vector3), a three.js class representing a 3D vector which we'll explore in more detail in [the chapter on transformations]({{< relref "/book/first-steps/transformations" >}} "the chapter on transformations").
 
 ## 4. Create a Visible Object {#create-visible}
 
@@ -352,7 +352,7 @@ There are quite a few materials in three.js. Here, we'll create a [`MeshBasicMat
 
 If we used nearly any other material type than `MeshBasicMaterial` right now, we wouldn't be able to see anything since the scene is in total darkness. **As in the real world, we usually need light to see things in our scene**. `MeshBasicMaterial` is an exception to that rule.
 
-This is a common point of confusion for newcomers to three.js, so if you can't see anything, make sure you have added some lights to your scene, or temporarily switch all materials to a `MeshBasicMaterial`. We'll add some lights to our scene in the {{< link path="/book/first-steps/physically-based-rendering/" title="Physically Based Rendering" >}} chapter.
+This is a common point of confusion for newcomers to three.js, so if you can't see anything, make sure you have added some lights to your scene, or temporarily switch all materials to a `MeshBasicMaterial`. We'll add some lights to our scene in the [Physically Based Rendering]({{< relref "/book/first-steps/physically-based-rendering" >}} "Physically Based Rendering") chapter.
 {{% /aside %}}
 
 ### Create the Mesh {#create-mesh}
@@ -391,7 +391,7 @@ We are nearly there! Next, we need to tell renderer what size our scene is using
 
 {{< code file="worlds/first-steps/first-scene/src/main.final.js" from="47" to="48" lang="js" linenos="true" caption="_**main.js**_: set the renderer's size" >}}{{< /code >}}
 
-If you recall, we used CSS to make the container take up the full size of the browser window (as described in {{< link path="/book/first-steps/app-structure/#adding-a-three-js-scene-to-the-page" title="the last chapter" >}}), so the scene will also take up the full window.
+If you recall, we used CSS to make the container take up the full size of the browser window (as described in [the last chapter]({{< relref "/book/first-steps/app-structure#adding-a-three-js-scene-to-the-page" >}} "the last chapter")), so the scene will also take up the full window.
 
 {{% aside notice %}}
 We've set the renderer's size to the container's width and height _as it is now_. If we resize the browser window, the window's width and height will change, but the size of our canvas will not change. We'll fix this in {{< link path="/book/first-steps/responsive-design" title="" >}}.
@@ -403,11 +403,11 @@ We also need to tell the renderer what the pixel ratio of the device's screen is
 
 {{< code file="worlds/first-steps/first-scene/src/main.final.js" from="50" to="51" lang="js" linenos="true" caption="_**main.js**_: set the pixel ratio" >}}{{< /code >}}
 
-We won't get into the technicalities here, but you mustn't forget to set this, otherwise your scene may look great on the laptop where you're testing it, but blurry on mobile devices with retina displays. As always, {{< link path="/book/appendix/dom-api-reference/#the-virtual-viewport" title="the appendices have more details" >}}.
+We won't get into the technicalities here, but you mustn't forget to set this, otherwise your scene may look great on the laptop where you're testing it, but blurry on mobile devices with retina displays. As always, [the appendices have more details]({{< relref "/book/appendix/dom-api-reference#the-virtual-viewport" >}} "the appendices have more details").
 
 ### Add the `<canvas>` Element to Our Page {#add-canvas}
 
-The renderer will draw our scene from the viewpoint of the camera into a `<canvas>` element. This element has been automatically created for us and is stored in `renderer.domElement`, but before we can see it, we need to add it to the page. We'll do this using a {{< link path="/book/appendix/dom-api-reference/#adding-the-new-elements-to-our-page" title="built-in JavaScript method called `.append`" >}}:
+The renderer will draw our scene from the viewpoint of the camera into a `<canvas>` element. This element has been automatically created for us and is stored in `renderer.domElement`, but before we can see it, we need to add it to the page. We'll do this using a [built-in JavaScript method called `.append`]({{< relref "/book/appendix/dom-api-reference#adding-the-new-elements-to-our-page" >}} "built-in JavaScript method called `.append`"):
 
 {{< code file="worlds/first-steps/first-scene/src/main.final.js" from="53" to="54" lang="js" linenos="true" caption="_**main.js**_: add the canvas to the page" >}}{{< /code >}}
 
