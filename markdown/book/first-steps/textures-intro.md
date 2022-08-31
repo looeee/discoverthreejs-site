@@ -6,38 +6,40 @@ weight: 108
 chapter: "1.8"
 available: true
 showIDE: true
-IDEFiles: [
-  "assets/textures/uv-test-col.png",
-  "assets/textures/uv-test-bw.png",
-  "worlds/first-steps/textures-intro/src/World/components/camera.js",
-  "worlds/first-steps/textures-intro/src/World/components/cube.start.js",
-  "worlds/first-steps/textures-intro/src/World/components/cube.final.js",
-  "worlds/first-steps/textures-intro/src/World/components/lights.js",
-  "worlds/first-steps/textures-intro/src/World/components/scene.js",
-  "worlds/first-steps/textures-intro/src/World/systems/renderer.js",
-  "worlds/first-steps/textures-intro/src/World/systems/Resizer.js",
-  "worlds/first-steps/textures-intro/src/World/systems/Loop.js",
-  "worlds/first-steps/textures-intro/src/World/World.js",
-  "worlds/first-steps/textures-intro/src/main.js",
-  "styles/main.css",
-  "vendor/three/build/three.module.js",
-  "worlds/first-steps/textures-intro/index.html",
-]
+IDEFiles:
+  [
+    "assets/textures/uv-test-col.png",
+    "assets/textures/uv-test-bw.png",
+    "worlds/first-steps/textures-intro/src/World/components/camera.js",
+    "worlds/first-steps/textures-intro/src/World/components/cube.start.js",
+    "worlds/first-steps/textures-intro/src/World/components/cube.final.js",
+    "worlds/first-steps/textures-intro/src/World/components/lights.js",
+    "worlds/first-steps/textures-intro/src/World/components/scene.js",
+    "worlds/first-steps/textures-intro/src/World/systems/renderer.js",
+    "worlds/first-steps/textures-intro/src/World/systems/Resizer.js",
+    "worlds/first-steps/textures-intro/src/World/systems/Loop.js",
+    "worlds/first-steps/textures-intro/src/World/World.js",
+    "worlds/first-steps/textures-intro/src/main.js",
+    "styles/main.css",
+    "vendor/three/build/three.module.js",
+    "worlds/first-steps/textures-intro/index.html",
+  ]
 IDEComparisonMode: true
-IDEClosedFolders: ['systems', 'styles', 'vendor']
-IDEStripDirectory: 'worlds/first-steps/textures-intro/'
-IDEActiveDocument: 'src/World/components/cube.js'
+IDEClosedFolders: ["systems", "styles", "vendor"]
+IDEStripDirectory: "worlds/first-steps/textures-intro/"
+IDEActiveDocument: "src/World/components/cube.js"
 ---
 
 # A Brief Introduction to Texture Mapping
 
-
-When we create a mesh, such as our humble cube, {{< link path="/book/first-steps/first-scene/#our-first-visible-object-mesh" title="we pass in two components" >}}: a geometry and a material.
+When we create a mesh, such as our humble cube, [we pass in two components]({{< relref "/book/first-steps/first-scene#our-first-visible-object-mesh" >}} "we pass in two components"): a geometry and a material.
 
 {{< code lang="js" linenos="false" hl_lines="" caption="A mesh requires two sub-components: a geometry and a material" >}}
-``` js
+
+```js
 const mesh = new Mesh(geometry, material);
 ```
+
 {{< /code >}}
 
 {{< inlineScene entry="first-steps/static-cube-no-texture.js" class="small left" >}}
@@ -48,7 +50,7 @@ The geometry defines the mesh's shape, and the material defines various surface 
 
 Compare this to a concrete box in the real world - or a wooden box, or a metal box, or a box made from nearly any substance except smooth plastic, and we can immediately see that our 3D box is not at all realistic. Objects in the real world are usually scratched, broken, and dirty. However, the material applied to our box doesn't look like this. Rather, it consists of a single color applied smoothly over the entire surface of the mesh. Unless we want all of our creations to look like brand-new plastic, this won't do.
 
-Materials have many parameters besides {{< link path="/book/first-steps/physically-based-rendering/#change-the-materials-color" title="color" >}}, and we can use these to adjust various attributes of an object's surface, like the roughness, metalness, opacity, and so on. However, just like {{< link path="/book/first-steps/physically-based-rendering/#change-the-materials-color" title="the color parameter" >}}, these parameters are applied uniformly over the entire surface of the mesh. If we increase the material's `.roughness` property, for example, the entire surface of the object will become rougher. If we set the `.color` to red, the entire object will become red.
+Materials have many parameters besides [color]({{< relref "/book/first-steps/physically-based-rendering#change-the-materials-color" >}} "color"), and we can use these to adjust various attributes of an object's surface, like the roughness, metalness, opacity, and so on. However, just like [the color parameter]({{< relref "/book/first-steps/physically-based-rendering#change-the-materials-color" >}} "the color parameter"), these parameters are applied uniformly over the entire surface of the mesh. If we increase the material's `.roughness` property, for example, the entire surface of the object will become rougher. If we set the `.color` to red, the entire object will become red.
 
 {{< iframe src="https://threejs.org/examples/webgl_materials_normalmap.html" height="500" title="The material of a human face" class="small left" >}}
 
@@ -56,9 +58,9 @@ By contrast, the surface properties of most real-world objects change from one p
 
 Note, also, that this face is made from a single geometry. We usually want to avoid splitting a geometry up more than necessary since every mesh can have only one geometry, so each separate geometry corresponds to a new mesh in our scene. Having fewer objects in a scene usually results in better performance, and it's also easier for both the developer and the 3D artist to work with. In other words, we don't want to be forced to create different geometries for the ears, and eyes. In any case, this wouldn't be practical. Looking closely at the lips, we can see there is no sharp divide between the red of the lips and the skin tone of the chin. This means we need some way of modifying material properties so that they can change smoothly across the surface of an object. We need to be able to say things like this:
 
-* the part of the geometry making up the lips is red
-* the part of the geometry making up the chin is a skin tone overlaid by a slight beard
-* the part of the geometry making up the eyebrows is hair colored
+- the part of the geometry making up the lips is red
+- the part of the geometry making up the chin is a skin tone overlaid by a slight beard
+- the part of the geometry making up the eyebrows is hair colored
 
 ... and so on. And this doesn't only apply to color. The skin is shinier than the hair and lips, for example. So, we also need to be able to specify how other properties like roughness change from one point to the next across the geometry.
 
@@ -72,7 +74,7 @@ While it's easy to take a 2D texture and stretch it over a regular shape like a 
 
 {{< figure src="first-steps/uv-test-bw.jpg" caption="A test texture with the UV coordinates<br>explicitly written onto the texture." lightbox="true" class="small left" >}}
 
-While projection mapping and other techniques are still widely used for things like creating shadows (or simulating projectors), that's not going to work for attaching the face's color texture to the face geometry. Instead, we use a technique called [**UV mapping**](https://en.wikipedia.org/wiki/UV_mapping) which allows us to create a connection between points on the geometry and points on the face. Using UV mapping, we divide the texture up into a 2D grid with the point $(0, 0)$ at the bottom left and the point $(1,1)$ at the top right. Then, the point $(0.5,0.5)$ will be at the exact center of the image. Likewise, every point in a geometry has a position in the 3D {{< link path="/book/first-steps/transformations/#local-space" title="local space of the mesh" >}}. UV mapping, then, is the process of assigning 2D points in the texture to 3D points in the geometry. For example, suppose the lips in the face model are at the point $(0,0,0)$. We can see that the lips in the texture are close to the center, somewhere around $(0.5,0.5)$. So, we'll create a mapping:
+While projection mapping and other techniques are still widely used for things like creating shadows (or simulating projectors), that's not going to work for attaching the face's color texture to the face geometry. Instead, we use a technique called [**UV mapping**](https://en.wikipedia.org/wiki/UV_mapping) which allows us to create a connection between points on the geometry and points on the face. Using UV mapping, we divide the texture up into a 2D grid with the point $(0, 0)$ at the bottom left and the point $(1,1)$ at the top right. Then, the point $(0.5,0.5)$ will be at the exact center of the image. Likewise, every point in a geometry has a position in the 3D [local space of the mesh]({{< relref "/book/first-steps/transformations#local-space" >}} "local space of the mesh"). UV mapping, then, is the process of assigning 2D points in the texture to 3D points in the geometry. For example, suppose the lips in the face model are at the point $(0,0,0)$. We can see that the lips in the texture are close to the center, somewhere around $(0.5,0.5)$. So, we'll create a mapping:
 
 $$ ( 0.5, 0.5 ) \longrightarrow ( 0,0,0 ) $$
 
@@ -88,7 +90,7 @@ Once we have a geometry with a UV mapping, we can take any texture and apply it 
 
 {{% note %}}
 TODO-LOW: add example images of textures in use here: see this link
- https://conceptartempire.com/texture-maps/
+https://conceptartempire.com/texture-maps/
 {{% /note %}}
 
 In this chapter, we'll focus on using a texture to represent color. We'll take the _**uv-test-bw.png**_ texture, which you can find in _**/assets/textures/**_ folder in the editor, and stretch it over our cube. When we do this, by default, three.js will stretch one copy of the texture across each of the cube's faces, for six copies in total.
@@ -145,8 +147,8 @@ Before we proceed with loading a texture and applying it to our cube, let's go o
 
 You'll see the terms **texture** and **image** a lot in computer graphics literature. These are even often stored in the same format, such as PNG or JPG. What's the difference?
 
-* **An image is a 2D picture designed to be viewed by a human.**
-* **A texture is specially prepared data used for various purposes in 3D graphics**.
+- **An image is a 2D picture designed to be viewed by a human.**
+- **A texture is specially prepared data used for various purposes in 3D graphics**.
 
 The individual pixels that make up an image represent color. Another way of looking at this is that an image is a 2D array of colors. In the early days of computer graphics, that was the case for textures too, but over time more and more uses were found for textures and now it's more correct to say that a texture is a 2D array of data. This data can represent anything. Nowadays it's even possible to store geometry or animations in a texture.
 
@@ -174,7 +176,7 @@ Here's the formula used in UV mapping:
 
 $$ ( u, v ) \longrightarrow ( x, y, z ) $$
 
-$( u, v )$ represents a point on the texture, and $( x, y, z )$ represents a point on the geometry, {{< link path="/book/first-steps/transformations/#coordinate-systems-world-space-and-local-space" title="defined in local space" >}}. Technically, a point on a geometry is called a **vertex**.
+$( u, v )$ represents a point on the texture, and $( x, y, z )$ represents a point on the geometry, [defined in local space]({{< relref "/book/first-steps/transformations#coordinate-systems-world-space-and-local-space" >}} "defined in local space"). Technically, a point on a geometry is called a **vertex**.
 
 {{< figure src="first-steps/geometry_uv_map.svg" caption="UV mapping a texture onto the `BoxBufferGeometry`" lightbox="true" >}}
 
@@ -216,20 +218,20 @@ To prevent the `createCube` function from growing too large, let's move material
 
 {{< code lang="js" linenos="true" linenostart="7" hl_lines="7-12 17" caption="_**cube.js**_: Move material setup into a new function" >}}
 function createMaterial() {
-  // create a "standard" material
-  const material = new MeshStandardMaterial({ color: 'purple' });
+// create a "standard" material
+const material = new MeshStandardMaterial({ color: 'purple' });
 
-  return material;
+return material;
 }
 
 function createCube() {
-  const geometry = new BoxBufferGeometry(2, 2, 2);
+const geometry = new BoxBufferGeometry(2, 2, 2);
 
-  const material = createMaterial();
+const material = createMaterial();
 
-  const cube = new Mesh(geometry, material);
+const cube = new Mesh(geometry, material);
 
-  ...
+...
 }
 {{< /code >}}
 
@@ -239,13 +241,13 @@ Next, create a new `TextureLoader` instance at the top of the new `createMateria
 
 {{< code lang="js" linenos="true" linenostart="7" hl_lines="8 9" caption="_**cube.js**_: Create a texture loader instance" >}}
 function createMaterial() {
-  // create a texture loader.
-  const textureLoader = new TextureLoader();
+// create a texture loader.
+const textureLoader = new TextureLoader();
 
-  // create a "standard" material using
-  const material = new MeshStandardMaterial({ color: 'purple' });
+// create a "standard" material using
+const material = new MeshStandardMaterial({ color: 'purple' });
 
-  return material;
+return material;
 }
 {{< /code >}}
 
@@ -255,18 +257,18 @@ The [`TextureLoader.load`](https://threejs.org/docs/#api/en/loaders/TextureLoade
 
 {{< code lang="js" linenos="true" linenostart="7" hl_lines="11-14" caption="_**cube.js**_: load a texture" >}}
 function createMaterial() {
-  // create a texture loader.
-  const textureLoader = new TextureLoader();
+// create a texture loader.
+const textureLoader = new TextureLoader();
 
-  // load a texture
-  const texture = textureLoader.load(
-    '/assets/textures/uv-test-bw.png',
-  );
+// load a texture
+const texture = textureLoader.load(
+'/assets/textures/uv-test-bw.png',
+);
 
-  // create a "standard" material using
-  const material = new MeshStandardMaterial({ color: 'purple' });
+// create a "standard" material using
+const material = new MeshStandardMaterial({ color: 'purple' });
 
-  return material;
+return material;
 }
 {{< /code >}}
 
@@ -286,7 +288,7 @@ Like the color parameter, we can either pass the texture into the material's con
 
 {{< code lang="js" linenos="false" caption="Assign the texture to the material in the constructor" >}}
 const material = new MeshStandardMaterial({
-  map: texture,
+map: texture,
 });
 {{< /code >}}
 
@@ -314,6 +316,7 @@ In the above scene, you can rotate the cube using the mouse or touch. Actually, 
 ## Challenges
 
 {{% aside success %}}
+
 ### Easy
 
 1. Change the material's color. Try purple, red, green, blue, or any other colors you like. Take note of how each color is combined with the black and white texture.
@@ -327,6 +330,7 @@ In the above scene, you can rotate the cube using the mouse or touch. Actually, 
 {{% /aside %}}
 
 {{% aside %}}
+
 ### Medium
 
 1. Try assigning the texture we loaded to other map slots on the material. They may not all work, but you'll get some interesting results.
@@ -342,6 +346,7 @@ _Note B: The two textures provided in the editor can be assigned to any map slot
 {{% /aside %}}
 
 {{% aside warning %}}
+
 ### Hard
 
 1. Each texture slot in a material is associated with one or more properties (like `.color` and `.map`). The map either [modulates a property](#types-of-texture) like (again, like `.color` and `.map`), or is itself modulated by some other property (like `.bumpMap` and `.bumpScale`). As you test out the textures in various slots, try adjusting the modulating properties as well. Some of them are colors (like `.color` and `emissive`), others are vectors (like `.normalScale`), but most are simple numbers (like `.bumpScale` and `.displacementScale`). In each case, the documentation notes this clearly.
