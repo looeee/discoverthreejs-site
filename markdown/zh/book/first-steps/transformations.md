@@ -362,15 +362,15 @@ TODO-DIAGRAM: add diagram of translation
 
 所有三个轴上都是零写作$(0,0,0)$，[正如我们之前提到的]({{< relref "/book/first-steps/first-scene#the-scene" >}} "正如我们之前提到的")，这个点被称为**原点**。**每个对象都从其父对象坐标系内的原点开始。**
 
-一个点沿$X$轴 _右侧_ 移动一个单位，沿$Y$轴 _上方_ 移动两个单位，沿$Z$轴 _外向_ 移动三个单位被写作$(1,2,3)$。 一个点沿$X$轴 _左侧_ 移动二个单位，沿$Y$轴 _下方_ 移动四个单位，沿$Z$轴 _内向_ 移动八个单位被写作$(-2,-4,-8)$。
+一个点沿$X$轴往 _右侧_ 移动一个单位，沿$Y$轴往 _上方_ 移动两个单位，沿$Z$轴往 _外侧_ 移动三个单位被写作$(1,2,3)$。 一个点沿$X$轴往 _左侧_ 移动二个单位，沿$Y$轴往 _下方_ 移动四个单位，沿$Z$轴往 _内侧_ 移动八个单位被写作$(-2,-4,-8)$。
 
-> We call an ordered list of numbers like this a **vector**, and since there are three numbers, it's a **3D vector**.
+> 我们称这样的有序列表数字为**向量**，因为有三个数字，所以它是一个**3D向量**。
 
-### Translating an Object
+### 平移一个对象
 
-We can translate along the $X$, $Y$, and $Z$ axes one by one, or we can translate along all three axes at once using `position.set`. The final result in both cases will be the same.
+我们可以沿着$X$、$Y$和$Z$轴一个接一个的平移对象，或者我们可以使用`position.set`一次沿所有三个轴平移对象。两种情况下的最终结果将是相同的。
 
-{{< code lang="js" linenos="false" caption="Two ways of translating an object" >}}
+{{< code lang="js" linenos="false" caption="平移对象的两种方法" >}}
 // translate one axis at a time
 mesh.position.x = 1;
 mesh.position.y = 2;
@@ -380,51 +380,51 @@ mesh.position.z = 3;
 mesh.position.set(1,2,3);
 {{< /code >}}
 
-When we perform the translation $(1,2,3)$, we are performing the mathematical operation:
+当我们进行平移$(1,2,3)$时，我们正在执行的是数学运算：
 
 $$(0,0,0) \longrightarrow (1,2,3)$$
 
-This means: move from the point $(0,0,0)$ to the point $(1,2,3)$.
+意思是：从点$(0,0,0)$移动到点$(1,2,3)$。
 
 {{% note %}}
 TODO-DIAGRAM: add diagram of vector moving 0,0,0 -> 1,2,3
 {{% /note %}}
 
-### The Unit of Translation is Meters
+### 平移的单位是米
 
-When we perform the translation `mesh.position.x = 2`, we move the object **two three.js units to the right** along the $X$-axis, and [as we mentioned previously]({{< relref "/book/first-steps/physically-based-rendering#create-physically-sized-scenes" >}} "as we mentioned previously"), we'll always take one three.js unit to be equal to one meter.
+当我们执行平移`mesh.position.x = 2`时，我们将对象沿着$X$轴**向右移动两个three.js单位**，[正如我们之前提到的]({{< relref "/book/first-steps/physically-based-rendering#create-physically-sized-scenes" >}} "正如我们之前提到的")，我们总是认为一个three.js单位等于一米。
 
-### Directions in World Space
+### 在世界空间中的方向
 
-{{< figure src="first-steps/coordinate_system.svg" caption="Directions within World Space" class="medium left" lightbox="true" >}}
+{{< figure src="first-steps/coordinate_system.svg" caption="世界空间内的方向" class="medium left" lightbox="true" >}}
 
-Above we mentioned moving an object left or right on the $X$-axis, up or down on the $Y$-axis, and in or out on the $Z$-axis. These directions are relative to your screen and assume that you have not rotated the camera. In that case, the following directions hold:
+上面我们提到了在$X$轴是向左或向右移动，在$Y$轴是向上或向下移动，在$Z$轴是向内或向外移动。这些方向是相对于您的屏幕的，并假设您没有旋转相机。在这种情况下，以下方向成立：
 
 {{< clear >}}
 
-* The positive $X$-axis points to the _right_ of your screen.
-* The positive $Y$-axis points _up_, towards the top of your screen.
-* The positive $Z$-axis points _out_ of the screen towards you.
+* $X$轴正向指向屏幕 _右侧_。
+* $Y$轴正向指向屏幕 _上方_，即屏幕顶部。
+* $Z$轴正向指向屏幕 _外面_，即指向屏幕前的你。
 
-Then, when you move an object:
+这样，当你移动对象时：
 
-* A positive translation on the $X$-axis moves the object to the _right_ on your screen.
-* A positive translation on the $Y$-axis moves the object _up_ towards the top of your screen.
-* A positive translation on the $Z$-axis moves the object _out_ towards you.
+* 沿$X$轴正向移动一个对象将会使对象移动到屏幕 _右侧_。
+* 沿$Y$轴正向移动一个对象将会使对象移动到屏幕 _顶部_。
+* 沿$Z$轴正向移动一个对象将会使对象往屏幕 _外侧_ 移动，即朝向你移动。
 
-When we put a minus sign into the translation, we reverse those directions:
+当我们在平移中加入减号时，我们就会反转这些方向：
 
-* A negative translation on the $X$-axis moves the object to the _left_ on your screen.
-* A negative translation on the $Y$-axis moves the object _down_ towards the bottom of your screen.
-* A negative translation on the $Z$-axis moves the object _in_, away from you.
+* 沿$X$轴负向移动一个对象将会使对象移动到屏幕 _左侧_。
+* 沿$Y$轴负向移动一个对象将会使对象移动到屏幕 _底部_。
+* 沿$Z$轴负向移动一个对象将会使对象往屏幕 _内侧_ 移动，即背向你移动。
 
-But of course, you can rotate the camera in any direction, in which case these directions will no longer hold. After all, what you see on your screen is the viewpoint of the camera. However, it's useful to be able to describe directions in world space using "normal" language, so we'll treat this camera position as the default view and continue to describe directions using this terminology, no matter where the camera happens to be.
+当然，您可以向任何方向旋转相机，在这种情况下，这些方向将不再成立。毕竟，您在屏幕上看到的是相机的视点。但是，能够使用“常规”语言描述世界空间中的方向是很有用的，所以我们将把这个相机位置作为默认视图，并继续使用这个术语来描述方向，不管相机碰巧在哪里。
 
-## Positions are stored in the `Vector3` Class
+## 位置被存储在`Vector3`类中
 
-Three.js has a special class for representing 3D vectors called [`Vector3`](https://threejs.org/docs/#api/math/Vector3). This class has `.x`, `.y` and `.z` properties and methods like `.set` to help us manipulate them. Whenever we create any scene object, such as a `Mesh`, a `Vector3` is created automatically and stored in `.position`:
+Three.js有一个用于表示3D向量的特殊类，称为[`Vector3`](https://threejs.org/docs/#api/math/Vector3)。 这个类有`.x`、`.y`和`.z`属性和方法`.set`来帮助我们操作它们。每当我们创建任何场景对象时，例如`Mesh`，`Vector3`都会被自动创建并存储在`.position`中：
 
-{{< code lang="js" linenos="false" caption="An object's translation is stored in a `Vector3`" >}}
+{{< code lang="js" linenos="false" caption="对象的平移被存储在`Vector3`中" >}}
 // when we create a mesh ...
 const mesh = new Mesh();
 
@@ -432,17 +432,17 @@ const mesh = new Mesh();
 mesh.position = new Vector3();
 {{< /code >}}
 
-We can also create `Vector3` instances ourselves:
+我们也可以自己创建`Vector3`实例：
 
-{{< code lang="js" linenos="false" caption="Creating a `Vector3` instance" >}}
+{{< code lang="js" linenos="false" caption="创建一个`Vector3`实例" >}}
 import { Vector3 } from 'three';
 
 const vector = new Vector3(1, 2, 3);
 {{< /code >}}
 
-We can access and update the `.x`, `.y` and `.z` properties directly, or we can use `.set` to change all three at once:
+我们可以直接访问和更新`.x`、`.y`和`.z`属性，或者我们可以使用`.set`一次更改所有这三个属性：
 
-{{< code lang="js" linenos="false" caption="The `Vector3` class: changing property values" >}}
+{{< code lang="js" linenos="false" caption="`Vector3`类: 更改属性值" >}}
 vector.x; // 1
 vector.y; // 2
 vector.z; // 3
@@ -458,9 +458,9 @@ vector.y; // 7
 vector.z; // 7
 {{< /code >}}
 
-As with nearly all three.js classes, we can omit the parameters to use default values. If we omit all three parameters the `Vector3` created will represent the origin, with all zero values:
+与几乎所有three.js类一样，我们可以省略参数以使用默认值。如果我们省略所有三个参数，则创建的`Vector3`将表示原点，即所有值为零：
 
-{{< code lang="js" linenos="false" caption="The `Vector3` class: default parameters" >}}
+{{< code lang="js" linenos="false" caption="`Vector3`类: 默认参数" >}}
 const origin = new Vector3();
 
 origin.x; // 0
@@ -473,17 +473,17 @@ mesh.position.y; // 0
 mesh.position.z; // 0
 {{< /code >}}
 
-three.js also has classes representing [2D vectors](https://threejs.org/docs/#api/en/math/Vector2) and [4D vectors](https://threejs.org/docs/#api/en/math/Vector4), however, 3D vectors are by far the most common type of vector we'll encounter.
+three.js也有表示[2D向量](https://threejs.org/docs/#api/en/math/Vector2)和[4D向量](https://threejs.org/docs/#api/en/math/Vector4)的类，但是，3D向量是迄今为止我们将遇到的最常见的向量类型。
 
-### Vectors are General Purpose Mathematical Objects
+### 向量是通用数学对象
 
-Vectors can represent all kinds of things, not just translations. Any data that can be represented as an ordered list of two, three, or four numbers are usually stored in one of the vector classes. These data types fall into three categories:
+向量可以代表各种事物，而不仅仅是平移。任何可以表示为两个、三个或四个数字的有序列表的数据通常都会存储在一个向量类中。这些数据类型分为三类：
 
-1. A point in space.
-2. **A length and direction within a coordinate system**.
-3. A list of numbers with no deeper mathematical meaning.
+1. 空间中的一个点。
+2. **坐标系内的长度和方向。**.
+3. 没有更深的数学含义的数字列表。
 
-Category two is the mathematical definition of a vector, and translation falls into this category.  Categories one and three are not technically vectors. However, it's useful to reuse the code within the vector classes so we'll turn a blind eye to this.
+第二类是向量的数学定义，平移属于这一类。第一类和第三类在技术上不是向量。但是，在向量类中重用代码很有用，所以我们对此视而不见。
 
 ## Our Second Transformation: Scaling
 
