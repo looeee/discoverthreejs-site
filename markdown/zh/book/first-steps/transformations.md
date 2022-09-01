@@ -1,140 +1,137 @@
 ---
-title: "Transformations and Coordinate Systems"
-description: "Here, we explore how to move objects around in 3D space using translation, rotation, and scale, and the coordinate systems which makes up the space itself. We also introduce the scene graph, a structure used to group objects within a three.js scene."
+title: "变换和坐标系"
+description: "在这里，我们将探索如何使用平移、旋转和缩放以及构成空间本身的坐标系在 3D 空间中移动对象。 我们还介绍了场景图，这是一种用于在three.js场景中对对象进行分组的结构。"
 date: 2018-04-02
 weight: 105
 chapter: "1.5"
 available: true
 showIDE: true
-IDEFiles:
-  [
-    "worlds/first-steps/transformations/src/World/components/camera.js",
-    "worlds/first-steps/transformations/src/World/components/cube.js",
-    "worlds/first-steps/transformations/src/World/components/lights.js",
-    "worlds/first-steps/transformations/src/World/components/scene.js",
-    "worlds/first-steps/transformations/src/World/systems/renderer.js",
-    "worlds/first-steps/transformations/src/World/systems/Resizer.js",
-    "worlds/first-steps/transformations/src/World/World.js",
-    "worlds/first-steps/transformations/src/main.js",
-    "styles/main.css",
-    "vendor/three/build/three.module.js",
-    "worlds/first-steps/transformations/index.html",
-  ]
-IDEClosedFolders: ["systems", "styles", "vendor"]
-IDEStripDirectory: "worlds/first-steps/transformations/"
-IDEActiveDocument: "src/World/components/cube.js"
+IDEFiles:   [
+  "worlds/first-steps/transformations/src/World/components/camera.js",
+  "worlds/first-steps/transformations/src/World/components/cube.js",
+  "worlds/first-steps/transformations/src/World/components/lights.js",
+  "worlds/first-steps/transformations/src/World/components/scene.js",
+  "worlds/first-steps/transformations/src/World/systems/renderer.js",
+  "worlds/first-steps/transformations/src/World/systems/Resizer.js",
+  "worlds/first-steps/transformations/src/World/World.js",
+  "worlds/first-steps/transformations/src/main.js",
+  "styles/main.css",
+  "vendor/three/build/three.module.js",
+  "worlds/first-steps/transformations/index.html",
+]
+IDEClosedFolders: ['systems', 'styles', 'vendor']
+IDEStripDirectory: 'worlds/first-steps/transformations/'
+IDEActiveDocument: 'src/World/components/cube.js'
 membershipLevel: free
 ---
 
-# Transformations, Coordinate Systems, and the Scene Graph
 
-This chapter is an introduction to moving objects around in 3D space.
 
-Many things come together to make a beautiful 3D scene, such as lighting, materials, models, textures, camera settings, post-processing, particle effects, interactivity, and so on, but no matter what kind of scene we create, nothing is more important than the arrangement and movement of the pieces from which it is composed.
+# 变换、坐标系和场景图
 
-To create architectural renderings, we must become architects and interior decorators. We must consider the proportions of buildings and the rooms inside them, and skillfully place the furniture and light fittings. In a nature scene, whether a close up of a single flower or a wide, sweeping mountain vista, we need to arrange the trees and rocks, or the leaves and petals, in a natural and convincing manner. Perhaps a hoard of [invading robots](https://threejs.org/examples/#webgl_animation_skinning_morph) will sweep across the landscape, eyes gleaming, arms and feet swinging as they march in unison, rockets blasting into the sky and creating huge explosions wherever they land - in which case we must become both robot designers and ballistics experts.
+本章介绍了在3D空间中移动对象。
 
-Even [purely abstract scenes](https://threejs.org/examples/#webgl_interactive_buffergeometry) require an understanding of how to move objects around in 3D space.
+很多东西共同组成了一个漂亮的3D场景，比如灯光、材质、模型、纹理、相机设置、后期处理、粒子效果、交互性等等，但无论我们创建什么样的场景，没有什么比组成它的各个部分的排列和移动更重要的了。
 
-{{< iframe src="https://threejs.org/examples/webgl_buffergeometry_drawrange.html" height="500" title="An abstract scene from the three.js examples" caption="An abstract scene from the three.js examples<br>created by [Fernando Serrano](https://twitter.com/fernandojsg)" >}}
+要创建建筑效果图，我们必须成为建筑师和室内装饰师。一定要考虑建筑物的比例和里面的房间，巧妙地摆放家具和灯具。在自然场景中，无论是一朵花的特写，还是一望无际的山景，我们都需要将树木和岩石，或者叶子和花瓣，以一种自然而令人信服的方式排列。也许一大群[入侵的机器人](https://threejs.org/examples/#webgl_animation_skinning_morph)会横扫大地，眼睛闪闪发光，手臂和脚在齐齐行进时摆动，火箭冲向天空并在所到之处产生巨大的爆炸——在这种情况下，我们必须成为机器人设计师和弹道学专家。
 
-Finally, we must also become directors and position the camera to artistically frame each shot. When creating a 3D scene, the only limit is your imagination - and the depth of your technical knowledge.
+即使是[纯粹的抽象场景](https://threejs.org/examples/#webgl_interactive_buffergeometry)也需要了解如何在3D空间中移动对象。
 
-Moving objects around in 3D space is a fundamental skill on your path of learning three.js. We'll break this skill down into two parts: first, we'll explore the coordinate system used to describe 3D space, and then we'll explore mathematical operations called transformations that are used to move objects around within a coordinate system.
+{{< iframe src="https://threejs.org/examples/webgl_buffergeometry_drawrange.html" height="500" title="three.js创建的的抽象场景示例" caption="[Fernando Serrano](https://twitter.com/fernandojsg)创建的three.js示例中的抽象场景" >}}
 
-Along the way, we'll encounter several mathematical objects, such as **the scene graph**, a structure used to describe the hierarchy of objects that make up our scenes, **vectors**, which are used to describe positions in 3D space (and many other things), and no less than two ways of describing rotations: **Euler angles** and **quaternions**. We'll finish up the chapter by introducing you to **transformation matrices**, which are used to store an object's complete transformation state.
+最后，我们还必须成为导演并定位相机以艺术地构思每个镜头。创建3D场景时，唯一的限制是您的想象力 - 以及您的技术知识深度。
+
+在3D空间中移动对象是学习three.js的基本技能。我们将把这项技能分为两部分：首先，我们将探索用于描述3D空间的坐标系，然后我们将探索称为变换的数学运算，用于在坐标系内移动对象。
+
+一路上，我们会遇到几个数学对象，例如**场景图**，一种用于描述构成我们场景的对象层次结构的结构，**向量**，用于描述3D空间中的位置（以及许多其他事物） ，还有不少于两种描述旋转的方式：欧拉角**Euler angles**和四元数**quaternions**。我们将通过向您介绍转换矩阵**transformation matrices**来结束本章，它用于存储对象的完整转换状态。
 
 {{% aside success %}}
 
-### Hello, Linear Algebra (Nice to Meet You!)
+### 你好，线性代数（很高兴认识你！）
 
-Transformations, coordinate systems, and most of the other mathematical terms we'll encounter in this chapter come from **linear algebra**. You only need a high school level to get through this book, but if your algebra skills are a little rusty, or even if you've never heard of a coordinate system before, don't worry. You can get by with very little mathematical knowledge when using three.js, and there is a range of mathematical helpers built-in to the three.js core, so we rarely need to do any calculation ourselves.
+我们即将在本章中遇到的变换、坐标系和大多数其他数学术语都来自**线性代数**。你只需要高中水平就可以读完这本书，但如果你的代数技能有点生疏，或者即使你以前从未听说过坐标系，也不用担心。使用three.js时，您只需很少的数学知识就可以过关，并且three.js核心内置了一系列数学帮助方法，因此我们很少需要自己进行任何计算。
 
-If at some point you want to study this subject more deeply, [Khan Academy](https://www.khanacademy.org/) is one of the best resources on the web for learning mathematics, and their courses, especially the [linear algebra course](https://www.khanacademy.org/math/linear-algebra), have everything you need to get through this book. If you're already familiar with this subject and want a deeper technical overview of the coordinate systems used in WebGL, check out this [excellent article on learnopengl.com](https://learnopengl.com/Getting-started/Coordinate-Systems).
+如果在某个时候你想更深入地研究这个主题，[可汗学院](https://www.khanacademy.org/)是网络上学习数学及其课程的最佳资源之一，尤其是[线性代数课程](https://www.khanacademy.org/math/linear-algebra)，拥有通读这本书所需的一切。如果您已经熟悉此主题并希望更深入地了解WebGL中使用的坐标系的技术概述，请查看[在learnopengl.com上的优秀文章](https://learnopengl.com/Getting-started/Coordinate-Systems)。
 
-On the other hand, if all this talk of mathematics sounds daunting, or if you find this chapter more challenging than the last few, take it slow. You don't need to absorb everything here in one go, especially if it's new to you or you haven't touched linear algebra in years. Pick up what you can now, then treat this chapter as a reference and come back to it as your three.js skills mature. Once you have more experience creating 3D scenes the concepts described here will become easier to grasp.
+另一方面，如果所有这些关于数学的讨论听起来令人生畏，或者如果您发现本章比前几章更具挑战性，请慢慢来。你不需要一口气吸收这里的所有东西，尤其是如果你是新手，或者你已经多年没有接触过线性代数了。拿起你现在能做的，然后把这一章当作参考，等你的three.js技能成熟后再回来看。一旦您拥有更多创建3D场景的经验，此处描述的概念将变得更容易掌握。
 
 {{% /aside %}}
 
-## Translation, Rotation, and Scaling: the Three Fundamental Transformations
+## 平移、旋转和缩放：三个基本转换
 
-**Whenever we move objects around in 3D space, we do so using mathematical operations called _transformations_**. We've already seen two kinds of transformation: **translation**, stored in an object's [`.position`](https://threejs.org/docs/#api/en/core/Object3D.position) property, and **rotation**, stored in the [`.rotation`](https://threejs.org/docs/#api/en/core/Object3D.rotation) property. Along with **scaling**, stored in the [`.scale`](https://threejs.org/docs/#api/en/core/Object3D.scale) property, these make up the three fundamental transformations that we'll use to move objects around in our scenes. We'll sometimes refer to transform, rotate, and scale using their initials, **TRS**.
+**每当我们在3D空间中移动对象时，我们都会使用称为 _转换_ 的数学运算来进行**。我们已经看到了两种转换：平移**translation**，存储在对象的[`.position`](https://threejs.org/docs/#api/en/core/Object3D.position)属性中，以及旋转**rotation**，存储在[`.rotation`](https://threejs.org/docs/#api/en/core/Object3D.rotation)属性中。与存储在[`.scale`](https://threejs.org/docs/#api/en/core/Object3D.scale)属性中的缩放一起，这些构成了我们将用于在场景中移动对象的三个基本变换。我们有时会使用它们的首字母**TRS**来指代平移、旋转和缩放。
 
-Every object we can add to the scene using `scene.add` has these properties, including meshes, lights, and cameras, while materials and geometries do not. We previously used `.position` to [set the position of our camera]({{< relref "/book/first-steps/first-scene#position-camera" >}} "set the position of our camera"):
+可以使用`scene.add`添加到场景中的每个对象都具有这些属性，包括网格、灯光和相机，而材质和几何图形则没有。我们之前使用`.position`用来[设置相机的位置]({{< relref "/book/first-steps/first-scene#position-camera" >}} "设置相机的位置")：
 
-{{< code lang="js" linenos="false" caption="Our First Scene: _**main.js**_" >}}
+{{< code lang="js" linenos="false" caption="我们的第一个场景: _**main.js**_" >}}
 camera.position.set(0, 0, 10);
 {{< /code >}}
 
-... and also to [set the position of the directional light]({{< relref "/book/first-steps/physically-based-rendering#position-the-light" >}} "set the position of the directional light"):
-[set the position of the directional light]({{< relref "/book/first-steps/physically-based-rendering#position-the-light" >}} "set the position of the directional light")
-{{< code lang="js" linenos="false" caption="Physically Based Rendering: _**lights.js**_" >}}
+… 以及[设置定向光的位置]({{< relref "/book/first-steps/physically-based-rendering#position-the-light" >}} "设置定向光的位置")：
+
+{{< code lang="js" linenos="false" caption="基于物理的渲染: _**lights.js**_" >}}
 light.position.set(10, 10, 10);
 {{< /code >}}
 
-In the last chapter [we used `.rotation` to get a better view of our cube]({{< relref "/book/first-steps/physically-based-rendering#rotate-the-cube" >}} "we used `.rotation` to get a better view of our cube"):
+在上一章中，[我们使用`.rotation`更好地了解我们的立方体]({{< relref "/book/first-steps/physically-based-rendering#rotate-the-cube" >}} "我们使用`.rotation`更好地了解我们的立方体")：
 
-{{< code lang="js" linenos="false" caption="Physically Based Rendering: _**cube.js**_" >}}
+{{< code lang="js" linenos="false" caption="基于物理的渲染: _**cube.js**_" >}}
 cube.rotation.set(-0.5, -0.1, 0.8);
 {{< /code >}}
 
-The only fundamental transformation we haven't encountered so far is `.scale`.
+到目前为止，我们唯一没有遇到的基本转换是`.scale`。
 
-There's no code to write in this chapter. Instead, the editor has a mesh set up with some transformations applied, which you can use as a scratchpad for testing out ideas while you read.
+本章没有可写的代码。相反，编辑器设置了一个网格，应用了一些转换，您可以将其用作草稿本，以便在阅读时测试想法。
 
-### Butterflies and Caterpillars
+### 蝴蝶和毛毛虫
 
-Using the word **transformation** in this way might seem strange to you. In common speech, it's more likely to evoke the idea of a caterpillar turning into a butterfly than moving the caterpillar two units to the left across a leaf. But mathematically speaking, only the second one of these is a transformation. Translation, rotation, and scaling are the most important transformations you'll encounter, and we'll explore each of these in detail in a few moments.
+以这种方式使用**转换**这个词对您来说可能看起来很奇怪。一般而言，它更有可能唤起毛毛虫变成蝴蝶的想法，而不是让毛毛虫在一片叶子上向左移动两个单位。但从数学上讲，只有第二个是转换。平移、旋转和缩放是您将遇到的最重要的转换，稍后我们将详细探讨这些转换。
 
-## The `Object3D` Base Class
+## `Object3D`基类
 
-Rather than redefining the `.position`, `.rotation`, and `.scale` properties many times for each type of object, these properties are defined once on the [`Object3D`](https://threejs.org/docs/#api/en/core/Object3D) base class, then all the other classes that can be added to the scene [derive from this base class]({{< relref "/book/appendix/javascript-reference#class-inheritance-and-the-extends-keyword" >}} "derive from this base class"). That includes things like meshes, cameras, lights, points, lines, helpers, and even the scene itself. We'll informally refer to classes derived from `Object3D` as _scene objects_.
+不是为每种类型的对象多次重新定义`.position`、`.rotation`和`.scale`属性，而是在[`Object3D`](https://threejs.org/docs/#api/en/core/Object3D)基类上定义一次这些属性，这样可以添加到场景中的所有其他类都[从该基类派生]({{< relref "/book/appendix/javascript-reference#class-inheritance-and-the-extends-keyword" >}} "从该基类派生")。这些包括网格、相机、灯光、点、线、助手，甚至场景本身。我们将非正式地将派生自`Object3D`的类称为 _场景对象_。
 
-`Object3D` has many properties and methods besides these three, inherited by every scene object. This means positioning and setting up a camera or a mesh works in much the same way as setting up a light or the scene. Additional properties are then added to scene objects as needed, so lights get color and intensity settings, the scene gets a background color, meshes get a material and geometry, and so on.
+Object3D除了这三个之外，还有许多属性和方法，由每个场景对象继承。这意味着定位和设置相机或网格的工作方式与设置灯光或场景的方式大致相同。然后根据需要将其他属性添加到场景对象，以便灯光获得颜色和强度设置，场景获得背景颜色，网格获得材质和几何体，等等。
 
-## The Scene Graph
+## 场景图
 
-Recall how we [add the mesh to scene]({{< relref "/book/first-steps/first-scene#add-the-mesh-to-the-scene" >}} "add the mesh to scene"):
+回想一下我们如何[将网格添加到场景中]({{< relref "/book/first-steps/first-scene#add-the-mesh-to-the-scene" >}} "将网格添加到场景中")：
 
-{{< code lang="js" linenos="false" hl_lines="" caption="The `scene.add` method" >}}
-
-```js
+{{< code lang="js" linenos="false" hl_lines="" caption="`scene.add`方法" >}}
+``` js
 scene.add(mesh);
 ```
-
 {{< /code >}}
 
-The `.add` method is also defined on `Object3D` and inherited by the scene class, just like `.position`, `.rotation`, and `.scale`. All other derived classes inherit this method too, giving us `light.add`, `mesh.add`, `camera.add` and so on. This means we can add objects to each other to create a tree structure with the scene at the top. This tree structure is known as the **scene graph**.
+`.add`方法也是在`Object3D`中定义并在场景类上被继承，就像`.position`,`.rotation`和`.scale`。所有其他派生类也继承了这个方法，继承给了我们`light.add`、`mesh.add`、`camera.add`等等。这意味着我们可以将对象彼此互相添加，以创建一个顶部有场景的树结构。这种树状结构称为**场景图**。
 
-{{< figure src="first-steps/scene_graph.svg" caption="The scene graph" class="" lightbox="true" >}}
+{{< figure src="first-steps/scene_graph.svg" caption="场景图" class="" lightbox="true" >}}
 
-When we add an object to another object, we call one object the **parent** and the other the **child**.
+当我们将一个对象添加到另一个对象时，我们称一个对象为**父对象**，另一个对象为**子对象**。
 
-{{< code lang="js" linenos="false" caption="Objects within the scene graph have a parent-child relationship" >}}
+{{< code lang="js" linenos="false" caption="场景图中的对象具有父子关系" >}}
 parent.add(child);
 {{< /code >}}
 
-The scene is the top-level parent. The scene in the figure above has three children: one light and two meshes. One of the meshes also has two children. However, every object (except the top-level scene) has exactly one parent.
+场景是顶级父级。上图中的场景有三个孩子：一个灯光和两个网格。其中一个网格也有两个孩子。但是，每个对象（顶级场景除外）都只有一个父对象。
 
-> Each object in the scene graph (except the top-level scene) has exactly one parent, and can have any number of children.
+> 场景图中的每个对象（顶级场景除外）只有一个父对象，并且可以有任意数量的子对象。
 
-When we render the scene:
+当我们渲染场景时：
 
-{{< code lang="js" linenos="false" hl_lines="" caption="Render a frame" >}}
-
-```js
+{{< code lang="js" linenos="false" hl_lines="" caption="渲染一帧" >}}
+``` js
 renderer.render(scene, camera);
 ```
-
 {{< /code >}}
 
-... the renderer walks through the scene graph, starting with the scene, and uses the position, rotation, and scale of each object relative to its parent to figure out where to draw it.
+...渲染器遍历场景图，从场景开始，并使用每个对象相对于其父对象的位置、旋转和缩放来确定在哪里绘制它。
 
-### Accessing a Scene Object's Children
+### 访问场景对象的子对象
 
-You can access all children of a scene object using the [`.children`](https://threejs.org/docs/#api/en/core/Object3D.children) array:
+您可以使用[`.children`](https://threejs.org/docs/#api/en/core/Object3D.children)数组访问场景对象的所有子对象：
 
-{{< code lang="js" linenos="false" caption="Accessing child of a group" >}}
+{{< code lang="js" linenos="false" caption="访问组的子对象" >}}
 scene.add(mesh);
 
 // the children array contains the mesh we added
@@ -151,41 +148,41 @@ scene.children[0]; // -> mesh
 scene.children[1]; // -> light
 {{< /code >}}
 
-There are more sophisticated ways to access a particular child, for example, the [`Object3d.getObjectByName`](https://threejs.org/docs/#api/en/core/Object3D.getObjectByName) method. However, directly accessing the `.children` array is useful when you don't know the object's name, or it doesn't have a name.
+有更复杂的方法可以访问特定的孩子，例如[`Object3d.getObjectByName`](https://threejs.org/docs/#api/en/core/Object3D.getObjectByName)方法。但是，当您不知道对象的名称或它没有名称时，直接访问`.children`数组很有用。
 
-## Coordinate Systems: World Space and Local Space
+## 坐标系：世界空间和局部空间
 
-3D space is described using a 3D [Cartesian coordinate system](https://en.wikipedia.org/wiki/Cartesian_coordinate_system).
+3D空间使用3D[笛卡尔坐标系](https://en.wikipedia.org/wiki/Cartesian_coordinate_system)来描述。
 
 {{% note %}}
 TODO-LOW: make the coordinate system diagram 3D
 {{% /note %}}
 
-{{< figure src="first-steps/coordinate_system_simple.svg" caption="A 3D Cartesian coordinate system" class="medium left" lightbox="true" >}}
+{{< figure src="first-steps/coordinate_system_simple.svg" caption="3D笛卡尔坐标系" class="medium left" lightbox="true" >}}
 
-3D Cartesian coordinate systems are represented using $X$, $Y$, and $Z$ axes crossing at the point $(0,0,0)$ (known as **the origin**). 2D coordinate systems are similar but have only $X$, and $Y$ axes.
+3D笛卡尔坐标系由$X$，$Y$和$Z$轴组成，三轴交叉于点$(0,0,0)$（称为原点）。二维坐标系相似，但只有$X$和$Y$轴。
 
 {{% note %}}
 TODO-DIAGRAM: add figure of 2D coords
 {{% /note %}}
 
-Every 3D graphics system uses a coordinate system like this, from game engines like Unity and Unreal, to the software Pixar uses to create their films, to professional animation and modeling software such as 3DS Max, Maya, and Blender. Even CSS, the language used to position objects on a web page, uses a Cartesian coordinate system. However, there may be minor technical differences between these systems, such as the axes being labeled differently or pointing in different directions.
+每个3D图形系统都使用这样的坐标系，从Unity和Unreal等游戏引擎，到Pixar用于创建电影的软件，再到3DS Max、Maya和Blender等专业动画和建模软件。甚至用于在网页上定位对象的语言CSS也使用笛卡尔坐标系。但是，这些系统之间可能存在细微的技术差异，例如轴的标记不同或指向不同的方向。
 
-We'll encounter several 2D and 3D coordinate systems while using three.js. Here, we'll introduce the two most important of these: **world space** and **local space**.
+在使用three.js时，我们会遇到几个类型的2D和3D坐标系。在这里，我们将介绍其中最重要的两个：**世界空间**和**局部空间**。
 
-### World Space
+### 世界空间
 
-{{< figure src="first-steps/coordinate_system.svg" caption="Our scene defines world space" class="medium left" lightbox="true" >}}
+{{< figure src="first-steps/coordinate_system.svg" caption="我们的场景定义了世界空间" class="medium left" lightbox="true" >}}
 
-Our `scene` defines the world space coordinate system, and the center of the system is the point where the `X`, `Y` and, `Z` axes meet.
+我们`scene`定义了世界空间坐标系，系统的中心是`X`、`Y`和`Z`轴的交点。
 
-Remember a couple of chapters ago, [when we first introduced the `Scene` class]({{< relref "/book/first-steps/first-scene#the-scene" >}} "when we first introduced the `Scene` class"), we called it a "tiny universe"? This tiny universe _is_ world space.
+还记得几章前，[当我们第一次介绍这个`Scene`类时]({{< relref "/book/first-steps/first-scene#the-scene" >}} "当我们第一次介绍这个`Scene`类时")，我们称它为“小宇宙”吗？ 这个微小的宇宙就是世界空间。
 
-{{< figure src="first-steps/world_space_scene_graph.svg" caption="Objects added to the scene live within world space" class="medium right" lightbox="true" >}}
+{{< figure src="first-steps/world_space_scene_graph.svg" caption="添加到场景中的对象存在于世界空间中" class="medium right" lightbox="true" >}}
 
-When we arrange objects within a scene - whether we are positioning furniture in a room, trees in a forest, or rampaging robots on a battlefield - what we see drawn on our screens is the position of each object in world space.
+当我们在场景中布置对象时——无论我们是在房间中放置家具、在森林中放置树木还是在战场上狂暴的机器人——我们在屏幕上看到的就是每个对象在世界空间中的位置。
 
-**When we add an object directly to the scene and then translate, rotate, or scale it, the object will move relative to world space - that is, relative to the center of the scene**.
+**当我们直接将一个对象添加到场景中，然后平移、旋转或缩放它时，该对象将相对于世界空间移动——即相对于场景的中心。**.
 
 {{< code lang="js" linenos="false" >}}
 // add a cube to our scene
@@ -195,57 +192,57 @@ scene.add(cube);
 cube.position.x = 5;
 {{< /code >}}
 
-These two statements are equivalent, so long as the object is a direct child of the scene:
+这两个语句是等价的，只要对象是场景的直接子对象：
 
-1. Transform an object relative to world space.
-2. Move an object around in the scene.
+1. 相对于世界空间变换对象。
+2. 在场景中移动一个对象。
 
-Whenever we try to visualize something tricky in 3D, it can be useful to drop down a dimension and consider a 2D analogy instead. So, let's consider a chessboard. When we arrange the pieces to start a new game, we place them in certain positions on the board. That means the chessboard is the scene, and the pieces are objects we place in the scene.
+每当我们尝试在3D中可视化一些棘手的东西时，降低一个维度并考虑2D类比可能会很有用。所以，让我们考虑一个棋盘。当我们安排棋子开始新游戏时，我们将它们放置在棋盘上的特定位置。这意味着棋盘是场景，棋子是我们放置在场景中的对象。
 
-{{< figure src="first-steps/chessboard.svg" caption="The board is world space in a game of chess" class="medium left" lightbox="true" >}}
+{{< figure src="first-steps/chessboard.svg" caption="棋盘是国际象棋游戏中的世界空间" class="medium left" lightbox="true" >}}
 
 {{% note %}}
 TODO-DIAGRAM: the points on the axes should match rows/columns on the board
 {{% /note %}}
 
-Next, when we explain to someone why we have arranged the pieces like this, white on one side, black on the other, pawns on the second row, and so on, we do so relative to the board itself. The board defines a coordinate system, with rows on the Y-axis and columns on the X-axis. This is the world space of a chessboard, and we explain the position of each piece relative to this coordinate system.
+接下来，当我们向某人解释为什么我们这样排列棋子时，一边是白色的，一边是黑色的，走卒排在第二排，等等，我们这样做是相对于棋盘本身而言的。棋盘定义了一个坐标系，Y轴为行，X轴为列。这是棋盘的世界空间，我们解释每个棋子相对于这个坐标系的位置。
 
-Now the game starts, and we begin to move pieces. When we do, we follow the rules of chess. When we move an object around in a three.js scene, we follow the rules of Cartesian coordinate systems. Here the analogy breaks down a little because each piece on the chessboard has its own way of moving, whereas in a Cartesian coordinate system, translation, rotation, and scale behave the same for any kind of object.
+现在游戏开始了，我们开始移动棋子。当我们这样做时，我们遵循国际象棋规则。当我们在three.js场景中移动对象时，我们遵循笛卡尔坐标系的规则。这里的类比有点偏差，因为棋盘上的每一块棋子都有自己的移动方式，而在笛卡尔坐标系中，平移、旋转和缩放对于任何类型的对象都是相同的。
 
-### Local Space
+### 局部空间
 
 {{% note %}}
 TODO-DIAGRAM: diagram of local space within world space
 {{% /note %}}
 
-{{< figure src="first-steps/knight.svg" caption="The local space of a chess piece" class="medium right" lightbox="true" >}}
+{{< figure src="first-steps/knight.svg" caption="棋子的局部空间" class="medium right" lightbox="true" >}}
 
-Now, consider one of the chess pieces. If asked to describe the shape of a chess piece, you won't describe how it looks relative to the chessboard since it may be placed anywhere on the board, and indeed, retains its shape even when not on the board at all. Instead, you'll create a new coordinate system in your mind and describe how the piece looks there.
+现在，考虑其中一个棋子。如果被要求描述棋子的形状，你不会描述它相对于棋盘的外观，因为它可以放在棋盘上的任何地方，实际上，即使根本不在棋盘上，它也能保持其形状。相反，您将在脑海中创建一个新的坐标系并描述棋子在那里的外观。
 
-Just like pieces on a chessboard, **every object we can add to the scene also has a local coordinate system**, and the shape (geometry) of the object is described within this local coordinate system. When we create a mesh or a light, we also create a new local coordinate system, with the mesh or light at its center. This local coordinate system has $X$, $Y$ and, $Z$ axes, just like world space. The local coordinate system of an object is called **local space** (or sometimes **object space**).
+就像棋盘上的棋子一样，**我们可以添加到场景中的每个对象也都有一个局部坐标系**，并且在这个局部坐标系中描述了对象的形状（几何形状）。当我们创建网格或灯光时，我们还创建了一个新的局部坐标系，网格或灯光位于其中心。这个局部坐标系有$X$、$Y$和$Z$轴，就像世界空间一样。对象的局部坐标系称为**局部空间**（或有时称为**对象空间**）。
 
 {{% note %}}
 TODO-LOW: check that local space and object space are the same
 TODO-DIAGRAM: add diagram of mesh at the center of local coordinate system
 {{% /note %}}
 
-When we create a $2 \times 2 \times 2$ `BoxBufferGeometry`, and then create a mesh using the geometry, the size of the geometry is two units along each side _in the mesh's local space_:
+当我们创建一个$2 \times 2 \times 2$`BoxBufferGeometry`，然后使用几何体创建网格，几何体的大小在 _网格局部空间中_ 是每边两个单位：
 
-{{< code lang="js" linenos="false" caption="Geometry is described in the mesh's local space" >}}
+{{< code lang="js" linenos="false" caption="几何体在网格的局部空间中的描述" >}}
 const geometry = new BoxBufferGeometry(2, 2, 2);
 
 const mesh = new Mesh(geometry, material);
 {{< /code >}}
 
-As we'll see below, we can stretch or shrink the mesh using `.scale`, and the size of the mesh as drawn on our screen will change. However, the size of the geometry does not change when we scale the mesh. When the renderer comes to render the mesh, it will see that it has been scaled, and then draws the mesh at a different size.
+正如我们将在下面看到的，我们可以使用`.scale`拉伸或收缩网格，然后在我们的屏幕上绘制的网格大小会发生变化。但是，当我们缩放网格时，几何体的大小不会改变。当渲染器来渲染网格时，它会看到它已经被缩放，然后以不同的大小绘制网格。
 
 {{% note %}}
 TODO-DIAGRAM: add diagram of mesh being scaled
 {{% /note %}}
 
-### Every Object has a Coordinate System
+### 每个对象都有一个坐标系
 
-To recap: the top-level scene defines world space, and every other object defines its own local space.
+回顾一下：顶级场景定义了世界空间，而其他每个对象都定义了自己的局部空间。
 
 {{< code lang="js" linenos="false"  >}}
 // creating the scene creates the world space coordinate system
@@ -258,33 +255,33 @@ const meshA = new Mesh();
 const meshB = new Mesh();
 {{< /code >}}
 
-With the above three lines of code, we have created three coordinate systems. There's no difference, mathematically, between these three coordinate systems. Any mathematical operation we can do in world space will work the same way in any object's local space.
+通过以上三行代码，我们创建了三个坐标系。这三个坐标系在数学上没有区别。我们可以在世界空间中进行的任何数学运算都将在任何对象的局部空间中以相同的方式进行。
 
-It's easy to think of coordinate systems as big complicated things, however, when working in 3D you'll find out that there are a lot of coordinate systems around. Every object has at least one, and some have several. There's another whole set of coordinate systems involved in rendering the scene, that is, converting the objects from 3D world space into something that looks good on the flat 2D surface of your screen. Every texture even has a 2D coordinate system. In the end, they are not so complicated, and they are very cheap to create.
+很容易将坐标系视为大而复杂的事物，但是，在3D空间中工作时，您会发现周围有很多坐标系。每个对象至少有一个，有些有几个。渲染场景涉及另一整套坐标系，即将对象从3D世界空间转换为在屏幕的平面2D表面上看起来不错的东西。每个纹理甚至都有一个2D坐标系。最后，它们并没有那么复杂，而且创建起来非常容易。
 
-## Working with the Scene Graph
+## 使用场景图
 
-Using each object's `.add` and `.remove` methods, we can create and manipulate the scene graph.
+使用每个对象的`.add`方法`.remove`方法，我们可以创建和操作场景图。
 
-{{< figure src="first-steps/local_space_scene_graph.svg" caption="The scene graph is a series of embedded<br> coordinate systems, with world space at the top" class="medium right" lightbox="true" >}}
+{{< figure src="first-steps/local_space_scene_graph.svg" caption="场景图是一系列嵌入式<br> 坐标系，顶部有世界空间" class="medium right" lightbox="true" >}}
 
 {{% note %}}
 TODO-DIAGRAM: could make this into a very cool diagram that shows the scene graph in 3D with one huge coordinate system and lots of small coordinate systems
 {{% /note %}}
 
-When we add an object to our scene using `scene.add`, we embed this object within the scene's coordinate system, world space. When we move the object around, it will move relative to world space (or equivalently, relative to the scene).
+当我们使用`scene.add`向场景添加对象时，我们将这个对象嵌入到场景的坐标系世界空间中。当我们移动对象时，它将相对于世界空间（或等效地，相对于场景）移动。
 
-When we add an object to another object deeper within the scene graph, we embed the child object within the parent's local space. When we move the child object around, it will move relative to the parent object's coordinate system. The coordinate systems get nested inside each other like Russian dolls.
+当我们将一个对象添加到场景图中更深的另一个对象时，我们就将子对象嵌入到了父对象的本地空间中。当我们移动子对象时，它会相对于父对象的坐标系移动。坐标系像俄罗斯娃娃一样相互嵌套。
 
-Let's look at some code. First, we'll add an object $A$ as a child of the scene:
+让我们看一些代码。首先，我们将添加一个对象$A$作为场景的子对象：
 
-{{< code lang="js" linenos="false" caption="Add $A$ to the scene" >}}
+{{< code lang="js" linenos="false" caption="添加对象$A$到场景中" >}}
 scene.add(meshA);
 {{< /code >}}
 
-Now, the `scene` is the parent of $A$, or equivalently, $A$ is a child of the `scene`. Next, we'll translate $A$:
+现在，`scene`是$A$的父对象，或等效地，$A$是`scene`的子对象。接下来我们平移$A$对象：
 
-{{< code lang="js" linenos="false" caption="Move $A$ within world space" >}}
+{{< code lang="js" linenos="false" caption="在世界空间内移动$A$" >}}
 meshA.position.x = 5;
 {{< /code >}}
 
@@ -292,9 +289,9 @@ meshA.position.x = 5;
 TODO-DIAGRAM: diagram of $A$ moving relative to the scene
 {{% /note %}}
 
-Now, $A$ has been translated five units along the positive $X$-axis within world space. **Whenever we transform an object, we do so relative to its parent's coordinate system**. Next, let's look at what happens when we add a second object, $B$, as a child of $A$:
+现在，$A$对象已沿世界空间内的$X$轴正向平移了五个单位。**每当我们变换一个对象时，我们都是相对于它的父坐标系进行的**。接下来，让我们看看当我们添加第二个对象$B$时会发生什么，作为$A$的一个子对象：
 
-{{< code lang="js" linenos="false" caption="Add $B$ to $A$" >}}
+{{< code lang="js" linenos="false" caption="添加$B$对象到$A$对象中" >}}
 meshA.add(meshB);
 {{< /code >}}
 
@@ -302,19 +299,19 @@ meshA.add(meshB);
 TODO-DIAGRAM: diagram of this simple scene graph: scene -> A -> B
 {{% /note %}}
 
-$A$ is still a child of the scene, so we have the relationship $Scene \longrightarrow A \longrightarrow B$. So, $A$ is a child of the scene and $B$ is a child of $A$. Or, equivalently, $A$ now lives in world space and $B$ now lives in $A$'s local space. When we move $A$, it will move around in world space, and when we move $B$, it will move around in $A$'s local space.
+$A$还是场景的子对象，所以我们有关系$Scene \longrightarrow A \longrightarrow B$。 所以，$A$是场景的子对象，然后$B$是$A$的子对象。 或者，等效地，$A$对象现在生活在世界空间，$B$现在住在$A$的局部空间。当我们移动$A$对象时，它将在世界空间中移动，当我们移动$B$时, 它会在$A$的局部空间中移动。
 
-Next, we'll translate $B$:
+接下来我们平移$B$：
 
-{{< code lang="js" linenos="false" caption="Move $B$ within the local space of $A$" >}}
+{{< code lang="js" linenos="false" caption="在$A$对象的局部空间移动$B$对象" >}}
 meshB.position.x = 3;
 {{< /code >}}
 
-Where do you think $B$ will end up?
+你认为$B$对象最终会停在哪呢？
 
-### What We See is World Space
+### 我们看到的是世界空间
 
-When we call `.render`, the renderer calculates the world space position of each object. To do this, it starts at the bottom of the scene graph and works its way up, combining the transformations of each parent and child, to calculate the final position of each object relative to world space. **What we finally see on our screen is world space**. Here, we'll do this calculation by hand for $A$ and $B$. Remember, each object starts at $(0,0,0)$ relative to its parent.
+当我们调用`.render`时，渲染器计算每个对象的世界空间位置。为此，它从场景图的底部开始并向上移动，结合每个父子节点的变换，计算每个对象相对于世界空间的最终位置。**我们最终在屏幕上看到的是世界空间**。在这里，我们将手动计算$A$和$B$。 请记住，每个对象最开始的位置都是相对于它的父对象的中心$(0,0,0)$。
 
 {{< code lang="js" linenos="false" >}}
 // A starts at (0,0,0) in world space
@@ -328,43 +325,44 @@ meshA.position.x = 5;
 meshB.position.x = 3;
 {{< /code >}}
 
-Calculating $A$'s position is easy since it's a direct child of the scene. We moved $A$ five units to the right along the $X$-axis, so its final position is $x=5, y=0, z = 0$, or $(5, 0, 0)$.
 
-When we move $A$, its local coordinate system moves with it, and we must take that into account when calculating the world space position of $B$. Since, $B$ is a child of $A$, this means it now starts at $(5, 0, 0)$ relative to world space. Next, we moved $B$ three units along the $X$-axis relative to $A$, so the final position of $B$ on the $X$-axis is $5 + 3 = 8$. This gives us the final position of $B$ in world space: $(8, 0, 0)$.
+计算$A$的位置很简单，因为它是场景的直接子元素。我们沿着$X$轴的右侧平移了$A$五个单位，所以它的最终位置是$x=5, y=0, z = 0$， 或者$(5, 0, 0)$。
 
-### Moving an Object Between Coordinate Systems
+当我们平移$A$时，它的局部坐标系也随之移动，我们在计算$B$的世界空间位置时必须考虑到这一点。因为，$B$是$A$的子对象，这意味着它现在相对于世界空间在$(5, 0, 0)$的位置。接下来，我们相对于$A$沿着$X$轴平移了$B$三个单位, 所以最终$B$在$X$轴的位置是$5 + 3 = 8$。 最终$B$在世界空间的位置是：$(8, 0, 0)$。
 
-What happens if we move an object from one coordinate system to another? In other words, what happens if we take mesh $B$, and, without changing its `.position`, remove it from $A$ and add it directly to the scene? We can do this in a single line:
+### 在坐标系之间移动对象
 
-{{< code lang="js" linenos="false" caption="Add mesh $B$ to the scene, and remove any previous parent" >}}
+如果我们将一个对象从一个坐标系移动到另一个坐标系会发生什么？换句话说，如果我们拿到对象$B$，然后在不改变它的`.position`的情况下，把它从$A$对象中移除并直接添加到场景中，会发生什么？我们可以仅使用一行代码做到这一点：
+
+{{< code lang="js" linenos="false" caption="添加网格$B$到场景中，并删除任何以前它的父对象" >}}
 scene.add(meshB);
 {{< /code >}}
 
-An object can only have one parent, so any previous parent of $B$ (in this case, mesh $A$) is removed.
+一个对象只能有一个父对象，因此任何先前$B$的父对象（在这种情况下，网格$A$）都会被移除。
 
-The following statement still holds: **$B$ has been translated three units along the positive $X$-axis _within its parent's coordinate system_.** However, $B$'s parent is now the scene rather than $A$, so now we must recalculate the position of $B$ in world space rather than $A$'s local space, which will give us $(3, 0, 0)$.
+以下陈述仍然成立：**$B$ _在其父坐标系内_ 已沿$X$轴正方向平移三个单位。** 然而，$B$的父对象现在是场景而不是$A$对象，所以现在我们必须重新计算$B$在世界空间而不是$A$的局部空间，它现在的位置应该是$(3, 0, 0)$。
 
-That's it for coordinate systems. In the rest of the chapter, we'll take a deeper look at each of the three fundamental transformations: translation, rotation, and scale.
+这就是坐标系。在本章的其余部分，我们将深入了解三个基本变换中的每一个：平移、旋转和缩放。
 
-## Our First Transformation: Translation
+## 我们的第一个转换：平移
 
 {{% note %}}
 TODO-DIAGRAM: add diagram of translation
 {{% /note %}}
 
-The simplest of the three fundamental transformations is **translation**. We've already used it for several of the examples in this chapter, and also to set the position of the camera and light in our scene. We perform translations by changing an object's [`.position`](https://threejs.org/docs/#api/en/core/Object3D.position) property. Translating an object moves it to a new position within the coordinate system of its direct parent.
+三种基本转换中最简单的一种是**平移**。我们已经在本章的几个示例中使用了它，并且还设置了场景中相机和灯光的位置。我们通过更改对象的[`.position`](https://threejs.org/docs/#api/en/core/Object3D.position)属性来执行平移。平移对象会将其移动到其直接父对象坐标系中的新位置。
 
-To fully describe an object's position, we need to store three pieces of information:
+为了完整地描述一个物体的位置，我们需要存储三个信息：
 
-1. The object's position on the $X$-axis, which we call $x$.
-2. The object's position on the $Y$-axis, which we call $y$.
-3. The object's position on the $Z$-axis, which we call $z$.
+1. 物体在$X$轴上的位置，我们称之为$x$。
+2. 物体在$Y$轴上的位置，我们称之为$y$。
+3. 物体在$Z$轴上的位置，我们称之为$z$。
 
-We can write these three positions as an ordered list of numbers: $(x, y, z)$.
+我们可以将这三个位置写成一个有序的数字列表：$(x, y, z)$。
 
-Zero on all three axes is written $(0,0,0)$, and [as we mentioned previously]({{< relref "/book/first-steps/first-scene#the-scene" >}} "as we mentioned previously"), this point is known as **the origin**. **Every object starts at the origin within the coordinate system of its parent.**
+所有三个轴上都是零写作$(0,0,0)$，[正如我们之前提到的]({{< relref "/book/first-steps/first-scene#the-scene" >}} "正如我们之前提到的")，这个点被称为**原点**。**每个对象都从其父对象坐标系内的原点开始。**
 
-A position one unit to the _right_ along the $X$-axis, two units _up_ along the $Y$-axis, and three units _out_ along the $Z$-axis is written $(1,2,3)$. A position two units _left_ along the $X$-axis, four units _down_ along the $Y$-axis, and eight units _in_ along the $Z$-axis is written $(-2,-4,-8)$.
+一个点沿$X$轴 _右侧_ 移动一个单位，沿$Y$轴 _上方_ 移动两个单位，沿$Z$轴 _外向_ 移动三个单位被写作$(1,2,3)$。 一个点沿$X$轴 _左侧_ 移动二个单位，沿$Y$轴 _下方_ 移动四个单位，沿$Z$轴 _内向_ 移动八个单位被写作$(-2,-4,-8)$。
 
 > We call an ordered list of numbers like this a **vector**, and since there are three numbers, it's a **3D vector**.
 
@@ -404,21 +402,21 @@ Above we mentioned moving an object left or right on the $X$-axis, up or down on
 
 {{< clear >}}
 
-- The positive $X$-axis points to the _right_ of your screen.
-- The positive $Y$-axis points _up_, towards the top of your screen.
-- The positive $Z$-axis points _out_ of the screen towards you.
+* The positive $X$-axis points to the _right_ of your screen.
+* The positive $Y$-axis points _up_, towards the top of your screen.
+* The positive $Z$-axis points _out_ of the screen towards you.
 
 Then, when you move an object:
 
-- A positive translation on the $X$-axis moves the object to the _right_ on your screen.
-- A positive translation on the $Y$-axis moves the object _up_ towards the top of your screen.
-- A positive translation on the $Z$-axis moves the object _out_ towards you.
+* A positive translation on the $X$-axis moves the object to the _right_ on your screen.
+* A positive translation on the $Y$-axis moves the object _up_ towards the top of your screen.
+* A positive translation on the $Z$-axis moves the object _out_ towards you.
 
 When we put a minus sign into the translation, we reverse those directions:
 
-- A negative translation on the $X$-axis moves the object to the _left_ on your screen.
-- A negative translation on the $Y$-axis moves the object _down_ towards the bottom of your screen.
-- A negative translation on the $Z$-axis moves the object _in_, away from you.
+* A negative translation on the $X$-axis moves the object to the _left_ on your screen.
+* A negative translation on the $Y$-axis moves the object _down_ towards the bottom of your screen.
+* A negative translation on the $Z$-axis moves the object _in_, away from you.
 
 But of course, you can rotate the camera in any direction, in which case these directions will no longer hold. After all, what you see on your screen is the viewpoint of the camera. However, it's useful to be able to describe directions in world space using "normal" language, so we'll treat this camera position as the default view and continue to describe directions using this terminology, no matter where the camera happens to be.
 
@@ -485,7 +483,7 @@ Vectors can represent all kinds of things, not just translations. Any data that 
 2. **A length and direction within a coordinate system**.
 3. A list of numbers with no deeper mathematical meaning.
 
-Category two is the mathematical definition of a vector, and translation falls into this category. Categories one and three are not technically vectors. However, it's useful to reuse the code within the vector classes so we'll turn a blind eye to this.
+Category two is the mathematical definition of a vector, and translation falls into this category.  Categories one and three are not technically vectors. However, it's useful to reuse the code within the vector classes so we'll turn a blind eye to this.
 
 ## Our Second Transformation: Scaling
 
@@ -710,7 +708,7 @@ TODO-DIAGRAM: add degrees and radian diagram
 
 You may be familiar with expressing rotations using **degrees**. There are $360^{\circ}$ in a circle, $90^{\circ}$ in a right-angle, and so on. The [perspective camera's field of view]({{< relref "/book/first-steps/first-scene#field-of-view-fov" >}} "perspective camera's field of view"), which we encountered earlier, is specified in degrees.
 
-However, **all other angles in three.js are specified using [_radians_](https://en.wikipedia.org/wiki/Radian) rather than _degrees_**. Instead of $360^{\circ}$ in a circle, there are $2\pi$ radians. Instead of $90^{\circ}$ in a right-angle, there are $\frac{\pi}{2}$ radians. If you're comfortable using radians, great! As for the rest of us, we can use the [`.degToRad`](https://threejs.org/docs/#api/en/math/MathUtils.degToRad) utility to convert from degrees to radians.
+However, **all other angles in three.js are specified using [_radians_](https://en.wikipedia.org/wiki/Radian) rather than _degrees_**. Instead of $360^{\circ}$ in a circle, there are $2\pi$ radians. Instead of  $90^{\circ}$ in a right-angle, there are $\frac{\pi}{2}$ radians. If you're comfortable using radians, great! As for the rest of us, we can use the [`.degToRad`](https://threejs.org/docs/#api/en/math/MathUtils.degToRad) utility to convert from degrees to radians.
 
 {{< code lang="js" linenos="false" caption="Converting degrees to radians" >}}
 import { MathUtils } from 'three';
@@ -778,7 +776,7 @@ $$
 
 It has four rows and four columns, so it's a $4 \times 4$ matrix, and it's storing an object's complete transform which is why we refer to it as a **transformation matrix**. Once again, there is a three.js class to handle this type of mathematical object, called [`Matrix4`](https://threejs.org/docs/#api/en/math/Matrix4). There's also a class for $3\times3$ matrices called `Matrix3`. When the matrix has all ones on the [main diagonal](https://en.wikipedia.org/wiki/Main_diagonal) and zeros everywhere else like the one above, we call it the [**identity matrix**, $I$](https://en.wikipedia.org/wiki/Identity_matrix).
 
-Matrices are much more efficient for your CPU and GPU to work with than the individual transforms, and represents a compromise that gives us the best of both worlds. We humans can use the simpler `.position`, `.rotation`, and `.scale`, properties, then, whenever we call `.render`, the renderer will update each object's matrices and use them for internal calculations.
+Matrices are much more efficient for your CPU and GPU to work with than the individual transforms, and represents a compromise that gives us the best of both worlds. We humans can use the simpler `.position`, `.rotation`, and `.scale`, properties, then, whenever we call `.render`,  the renderer will update each object's matrices and use them for internal calculations.
 
 We'll spend a bit of time here going into how transformation matrices work, but if you're allergic to math, it's absolutely fine to skip this section (for now). You don't need a deep understanding of how matrices work to use three.js. You can stick with using `.position`, `.rotation`, and `.scale` and let three.js handle the matrices. On the other hand, if you're a mathematical wizard, working directly with the transformation matrix opens up a whole new range of opportunities.
 
@@ -787,27 +785,23 @@ We'll spend a bit of time here going into how transformation matrices work, but 
 Every object has, in fact, not one, but two transformation matrices. The first of these is the **local matrix**, which holds the combined `.position`, `.rotation`, and `.scale` of an object. The local matrix is stored in the [`Object3D.matrix`](https://threejs.org/docs/#api/en/core/Object3D.matrix) property. Every object that inherits from `Object3D` has this property.
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="When we create a mesh, a local transformation matrix is created automatically" >}}
-
-```js
+``` js
 // when we create a mesh
 const mesh = new Mesh();
 
 // ... internally, three.js creates a Matrix4 for us:
 mesh.matrix = new Matrix4();
 ```
-
 {{< /code >}}
 
 At this point, the matrix will look like the identity matrix above, with ones on the main diagonal and zeros everywhere else. If we change the position of the object, and then force the matrix to update:
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="Changes to the transform of an object are reflected in the local matrix" >}}
-
-```js
+``` js
 mesh.position.x = 5;
 
 mesh.updateMatrix();
 ```
-
 {{< /code >}}
 
 ... now, the local matrix of the mesh will look like this:
@@ -828,15 +822,13 @@ Normally, we don't need to call `.updateMatrix` manually, since the renderer wil
 If we change the position on all three axes and update the matrix again:
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="Changing the object's translation and then updating the matrix" >}}
-
-```js
+``` js
 mesh.position.x = 2;
 mesh.position.y = 4;
 mesh.position.z = 6;
 
 mesh.updateMatrix();
 ```
-
 {{< /code >}}
 
 ... now we can see that translations are stored in the first three rows of the last column of the matrix.
@@ -855,15 +847,13 @@ $$
 Next, let's do the same for scale:
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="Changing the object's scale and then updating the matrix" >}}
-
-```js
+``` js
 mesh.scale.x = 5;
 mesh.scale.y = 7;
 mesh.scale.z = 9;
 
 mesh.updateMatrix();
 ```
-
 {{< /code >}}
 
 ... and we'll see that the scale values are stored on the main diagonal.
@@ -882,8 +872,7 @@ $$
 Great! That means we can write a formula for storing translation and scale in a transformation matrix. If we write the translation values as $T_{x}, T_{y}, T_{z}$, and the scale values as $S_{x}, S_{y}, S_{z}$:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="" >}}
-
-```js
+``` js
 mesh.position.x = Tx;
 mesh.position.y = Ty;
 mesh.position.z = Tz;
@@ -892,7 +881,6 @@ mesh.scale.x = Sx;
 mesh.scale.y = Sy;
 mesh.scale.z = Sz;
 ```
-
 {{< /code >}}
 
 ... now the transformation matrix looks like this:
@@ -911,25 +899,21 @@ $$
 Finally, let's see how rotation is stored. First, let's reset the position and scale:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Reset the position and scale" >}}
-
-```js
+``` js
 mesh.position.set(0, 0, 0);
 mesh.scale.set(1, 1, 1);
 mesh.updateMatrix();
 ```
-
 {{< /code >}}
 
 Now the matrix will look like the identity matrix again, with ones on the main diagonal and zeros everywhere else. Next, let's try a thirty degree rotation around the $X$-axis:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Thirty degree rotation around the $X$-axis" >}}
-
-```js
+``` js
 mesh.rotation.x = MathUtils.degToRad(30);
 
 mesh.updateMatrix();
 ```
-
 {{< /code >}}
 
 ... then the matrix will look like this:
@@ -1010,11 +994,10 @@ $$
 
 ### The World Matrix
 
-As we've mentioned a few times, what's important to us is the final position of an object in world space, since that's what we see once the object is rendered. To help with calculating this, every object has a second transformation matrix, the **world matrix**, stored in [`Object3D.matrixWorld`](https://threejs.org/docs/#api/en/core/.matrixWorld). There's no difference, mathematically, between these two matrices. They're both $4 \times 4$ transformation matrices, and when we create a mesh or any other scene object, both the local and world matrices are created automatically.
+As we've mentioned a few times, what's important to us is the final position of an object in world space, since that's what we see once the object is rendered. To help with calculating this, every object has a second transformation matrix, the **world matrix**, stored in  [`Object3D.matrixWorld`](https://threejs.org/docs/#api/en/core/.matrixWorld). There's no difference, mathematically, between these two matrices. They're both $4 \times 4$ transformation matrices, and when we create a mesh or any other scene object, both the local and world matrices are created automatically.
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="When we create a mesh, both local and world matrices are created automatically" >}}
-
-```js
+``` js
 // when we create a mesh
 const mesh = new Mesh();
 
@@ -1022,7 +1005,6 @@ const mesh = new Mesh();
 mesh.matrix = new Matrix4();
 mesh.matrixWorld = new Matrix4();
 ```
-
 {{< /code >}}
 
 **The world matrix stores the position of the object in world space**. If the object is a direct child of the scene, these two matrices will be identical, but if the object resides somewhere further down the scene graph, the local and world matrices will most likely be different.
@@ -1030,8 +1012,7 @@ mesh.matrixWorld = new Matrix4();
 To help us understand this, let's look at our [objects $A$ and $B$ from earlier](#working-with-the-scene-graph) once again:
 
 {{< code lang="js" linenos="false" hl_lines="" caption="" >}}
-
-```js
+``` js
 const scene = new Scene();
 const meshA = new Mesh();
 const meshB = new Mesh();
@@ -1054,7 +1035,6 @@ meshA.updateMatrixWorld();
 meshB.updateMatrix();
 meshB.updateMatrixWorld();
 ```
-
 {{< /code >}}
 
 {{% note %}}
@@ -1127,8 +1107,7 @@ Working with the matrix directly, rather than setting `.position`, `.rotation`, 
 When used together, all of the properties we've encountered in this chapter - `.position`, `.rotation`, `.scale`, `.quaternion`, `.matrix`, and `.matrixWorld` - have tremendous expressive power, and enable you to create scenes like an artist with a paintbrush.
 
 {{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="Every scene object has many properties for transformation" >}}
-
-```js
+``` js
 // when we create a mesh,
 // or any other object derived from Object3D
 // such as lights, camera, or even the scene itself
@@ -1144,7 +1123,6 @@ mesh.quaternion = new Quaternion();
 mesh.matrix = new Matrix4();
 mesh.matrixWorld = new Matrix4();
 ```
-
 {{< /code >}}
 
 Learning how to use the `.position`, `.rotation`, and `.scale` is a fundamental skill that you need to work with three.js. However, learning to use the `.quaternion` and transformation matrices is an advanced skill that you don't need to master immediately.
