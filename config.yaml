@@ -1,10 +1,14 @@
 baseURL: "https://discoverthreejs.com/"
 
+defaultContentLanguage: en
+
 languages:
-en:
-  languageName: English
-  weight: 1
+  en:
+    contentDir: markdown/en
+    languageName: English
+    weight: 1
   zh:
+    contentDir: markdown/zh
     languageName: 中文
     weight: 2
 
