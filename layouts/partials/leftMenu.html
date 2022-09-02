@@ -37,6 +37,12 @@
   <nav class="table-of-contents">
     <h2><a href="/book/">Table of Contents</a></h2>
     <div id="main-toc">
+      <div style="color: silver; text-align: right; margin-right: 2rem;">
+        Also available in:
+          {{ range .Translations }}
+          <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+          {{ end}}
+        </div>
       {{- partial "toc.html" . -}}
     </div>
   </nav>

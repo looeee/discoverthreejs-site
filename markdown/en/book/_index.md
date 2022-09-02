@@ -1,16 +1,12 @@
 ---
-title: 'Table of Contents'
-description: 'Welcome to the missing manual for three.js! Discover three.js is a completely free tutorial series designed to get you up to speed fast, so dive straight in and take your websites to the third dimension!'
+title: "Table of Contents"
+description: "Welcome to the missing manual for three.js! Discover three.js is a completely free tutorial series designed to get you up to speed fast, so dive straight in and take your websites to the third dimension!"
 date: 2018-04-02
 excludeFromTOC: true
 available: true
 mainContentsPage: true
-layout: 'mainContentsPage'
+layout: "mainContentsPage"
 ---
-
-{{% note %}}
-THIS PAGE IS COMPLETE!
-{{% /note %}}
 
 # Table of Contents
 

@@ -32,6 +32,12 @@
       <main>
         {{ .Content  }}
         <nav class="table-of-contents-large">
+          <div style="text-align: right; margin-right: 2rem;">
+            Also available in:
+              {{ range .Translations }}
+              <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+              {{ end}}
+            </div>
           {{- partial "toc.html" . -}}
         </nav>
       </main>
