@@ -485,17 +485,17 @@ three.js也有表示[2D向量](https://threejs.org/docs/#api/en/math/Vector2)和
 
 第二类是向量的数学定义，平移属于这一类。第一类和第三类在技术上不是向量。但是，在向量类中重用代码很有用，所以我们对此视而不见。
 
-## Our Second Transformation: Scaling
+## 我们的第二类转换：缩放
 
 {{% note %}}
 TODO-DIAGRAM: add diagram of scaling
 {{% /note %}}
 
-Scaling an object makes it larger or smaller, so long as we scale by the same amount on all three axes. If we scale the axes by different amounts, the object will become squashed or stretched. As a result, scaling is the only one of the three fundamental transformations that can change the shape of an object.
+只要我们在所有三个轴上缩放相同的数量，缩放对象就会使其变大或变小。如果我们按不同的量缩放轴，对象将被压扁或拉伸。因此，缩放是可以改变对象形状的三个基本变换中唯一的一个。
 
-Like `.position`, `.scale` is stored in a `Vector3`, and the initial scale of an object is $(1,1,1)$:
+像`.position`一样，`.scale`也是存储在`Vector3`中的, 对象的初始缩放比例是$(1,1,1)$：
 
-{{< code lang="js" linenos="false" caption="An object's scale is stored in a `Vector3`" >}}
+{{< code lang="js" linenos="false" caption="对象的缩放存储在`Vector3`中" >}}
 // when we create a mesh...
 const mesh = new Mesh();
 
@@ -503,27 +503,27 @@ const mesh = new Mesh();
 mesh.scale = new Vector3(1, 1, 1);
 {{< /code >}}
 
-### Scale Values are Relative to the Initial Size of the Object
+### 缩放的值是相对于对象的初始大小
 
-Since `.scale` and `.position` are both stored in a `Vector3`, scaling an object works much the same way as translating it. However, while translation uses three.js units, scale does not use any units. Instead, scale values are proportional to the initial size of the object: 1 means 100% of initial size, 2 means 200% of initial size, 0.5 means 50% of initial size, and so on.
+由于`.scale`和`.position`都存储在于`Vector3`中，因此缩放对象的工作方式与平移对象的方式大致相同。但是，虽然平移使用了three.js单位，但缩放不使用任何单位。相反，比例值与对象的初始大小成比例：1表示初始大小的100%，2表示初始大小的200%，0.5表示初始大小的50%，依此类推。
 
-### Uniform Scaling: Use the Same Value for all Three Axes
+### 统一缩放：对所有三个轴使用相同的值
 
-When we scale all three axes by the same amount, the object will expand or shrink, but maintain its proportions. This is called **uniform scaling**. A scale of $(1,1,1)$, meaning 100% scale on the $X$-axis, $Y$-axis, and $Z$-axis, is the default value:
+当我们以相同的量缩放所有三个轴时，对象将扩大或缩小，但保持其比例。这称为**统一缩放**。一个$(1,1,1)$的缩放, 表示100%的比例缩放$X$轴、$Y$轴和$Z$轴，它是一个默认值：
 
-{{< code lang="js" linenos="false" caption="Reset the object to its initial scale" >}}
+{{< code lang="js" linenos="false" caption="将对象重置为其初始比例" >}}
 mesh.scale.set(1, 1, 1);
 {{< /code >}}
 
-A scale of $(2,2,2)$ means 200% scale on the $X$-axis, $Y$-axis, and $Z$-axis. The object will grow to twice its initial size:
+一个$(2,2,2)$的缩放表示200%的比例放大$X$轴、$Y$轴和$Z$轴。该对象将增长到其初始大小的两倍：
 
-{{< code lang="js" linenos="false" caption="Double the object's size" >}}
+{{< code lang="js" linenos="false" caption="将对象的大小放大1倍" >}}
 mesh.scale.set(2, 2, 2);
 {{< /code >}}
 
-A scale of $(0.5,0.5,0.5)$ means 50% scale on the $X$-axis, $Y$-axis, and $Z$-axis. The object will shrink to half its initial size:
+一个$(0.5,0.5,0.5)$的缩放表示50%的比例缩小$X$轴、$Y$轴和$Z$轴。对象将缩小到其初始大小的一半：
 
-{{< code lang="js" linenos="false" caption="Shrink the object to half size" >}}
+{{< code lang="js" linenos="false" caption="将对象缩小到一半大小" >}}
 mesh.scale.set(0.5, 0.5, 0.5);
 {{< /code >}}
 
@@ -531,11 +531,11 @@ mesh.scale.set(0.5, 0.5, 0.5);
 TODO-DIAGRAM: add diagrams of uniform scale
 {{% /note %}}
 
-### Non-Uniform Scaling: Different Scale Values on Each Axis
+### 非均匀缩放：每个轴上的缩放值不同
 
-If we scale individual axes the object will lose its proportions and become squashed or stretched. This is called **non-uniform scaling**. If we scale just the $X$-axis, the object will become wider or narrower:
+如果我们缩放单个轴，对象将失去其比例并被压扁或拉伸。这称为**非均匀缩放**。如果我们只缩放$X$轴，物体会变宽或变窄：
 
-{{< code lang="js" linenos="false" caption="Non-uniform scale on the $X$-axis" >}}
+{{< code lang="js" linenos="false" caption="非均匀缩放$X$轴" >}}
 // double the initial width
 mesh.scale.x = 2;
 
@@ -543,9 +543,9 @@ mesh.scale.x = 2;
 mesh.scale.x = 0.5;
 {{< /code >}}
 
-Scaling on the $Y$-axis will make the object taller or shorter:
+缩放$Y$轴将使对象更高或更短：
 
-{{< code lang="js" linenos="false" caption="Non-uniform scale on the $Y$-axis" >}}
+{{< code lang="js" linenos="false" caption="非均匀缩放$Y$轴" >}}
 // squash the mesh to one quarter height
 mesh.scale.y = 0.25;
 
@@ -553,9 +553,9 @@ mesh.scale.y = 0.25;
 mesh.scale.y = 1000;
 {{< /code >}}
 
-Finally, if we scale on the $Z$-axis, the depth of the object will be affected:
+最后，如果我们缩放$Z$轴，对象的深度会受到影响：
 
-{{< code lang="js" linenos="false" caption="Non-uniform scale on the $Z$-axis" >}}
+{{< code lang="js" linenos="false" caption="非均匀缩放$Z$轴" >}}
 // stretch the object to eight times its initial depth
 mesh.scale.z = 8;
 
@@ -563,9 +563,9 @@ mesh.scale.z = 8;
 mesh.scale.z = 0.1;
 {{< /code >}}
 
-Once again, we can use `.set` to scale on all three axes at once:
+同样的，我们可以使用`.set`一次在所有三个轴上进行缩放：
 
-{{< code lang="js" linenos="false" caption="Non-uniform scale on multiple axes" >}}
+{{< code lang="js" linenos="false" caption="多轴同时非均匀缩放" >}}
 mesh.scale.set(2, 0.5, 6);
 {{< /code >}}
 
@@ -573,11 +573,11 @@ mesh.scale.set(2, 0.5, 6);
 TODO-DIAGRAM: add diagrams of non-uniform scale
 {{% /note %}}
 
-### Negative Scale Values Mirror an Object
+### 负比例值镜像对象
 
-Scale values less than zero will mirror the object in addition to making it smaller or larger. A scale value of $-1$ _on any single axis_ will mirror the object without affecting the size:
+小于零的缩放值除了使对象变小或变大之外，还会镜像对象。缩放值$-1$ _在任何单轴上_ 都会镜像对象而不影响大小：
 
-{{< code lang="js" linenos="false" caption="Mirror an object" >}}
+{{< code lang="js" linenos="false" caption="镜像对象" >}}
 // mirror the mesh across the X-axis
 mesh.scale.x = -1;
 
@@ -588,16 +588,16 @@ mesh.scale.y = -1;
 mesh.scale.z = -1;
 {{< /code >}}
 
-Values less than zero and greater than $-1$ will mirror _and_ squash the object:
+小于0且大于$-1$的值将镜像并挤压对象：
 
-{{< code lang="js" linenos="false" caption="Mirror and shrink object" >}}
+{{< code lang="js" linenos="false" caption="镜像和缩小对象" >}}
 // mirror and squash mesh to half width
 mesh.scale.x = -0.5;
 {{< /code >}}
 
-Values less than $-1$ will mirror _and_ stretch the object:
+值小于$-1$将镜像和拉伸对象：
 
-{{< code lang="js" linenos="false" caption="Mirror and stretch object" >}}
+{{< code lang="js" linenos="false" caption="镜像和拉伸对象" >}}
 // mirror and stretch mesh to double height
 mesh.scale.y = -2;
 {{< /code >}}
@@ -606,55 +606,55 @@ mesh.scale.y = -2;
 TODO-DIAGRAM: add diagrams of mirror scale
 {{% /note %}}
 
-#### Uniform Scale and Mirror
+#### 统一缩放和镜像
 
-To mirror an object while maintaining its proportions, use the same value for all three axes but make one of them negative. For example, to double an object's size and mirror on the $Y$-axis, use a scale value of $(2, -2, 2)$:
+要在保持其缩放比例的同时镜像对象，请对所有三个轴使用相同的值，但将其中一个设为负值。例如，将对象的大小放大一倍并在$Y$轴镜像，使用缩放值$(2, -2, 2)$：
 
-{{< code lang="js" linenos="false" caption="Uniform scale and mirror" >}}
+{{< code lang="js" linenos="false" caption="统一缩放和镜像" >}}
 mesh.scale.set(2, -2, 2);
 {{< /code >}}
 
-Or, to shrink the object to one-tenth size and mirror on the $X$-axis, use a scale value of $(-0.1,0.1,0.1)$:
+或者，将对象缩小到十分之一大小并在$X$轴镜像，使用缩放比例值$(-0.1,0.1,0.1)$：
 
-{{< code lang="js" linenos="false" caption="Uniform scale and mirror" >}}
+{{< code lang="js" linenos="false" caption="统一缩放和镜像" >}}
 mesh.scale.set(-0.1, 0.1, 0.1);
 {{< /code >}}
 
-### Cameras and Lights Cannot be Scaled
+### 相机和灯光无法缩放
 
-Not all objects can be scaled. For example, cameras and lights (except for `RectAreaLight`) don't have a size, so scaling them doesn't make sense. Changing `camera.scale` or `light.scale` will have no effect.
+并非所有对象都可以缩放。例如，相机和灯光（除了`RectAreaLight`）没有大小，因此缩放它们没有意义。更改`camera.scale`或`light.scale`将没有效果。
 
-## Our Final Transformation: Rotation
+## 我们的最后一个转换：旋转
 
 {{% note %}}
 TODO-DIAGRAM: add diagram of rotation
 {{% /note %}}
 
-Rotation requires a little more care than translation or scaling. There are several reasons for this, but the main one is **the order of rotation matters**. If we translate or scale an object on the $X$-axis, $Y$-axis, and $Z$-axis, it doesn't matter which axis goes first. These three translations give the same result:
+与平移或缩放相比，旋转需要更加小心。这有几个原因，但主要是**旋转顺序很重要**。如果我们在$X$轴、$Y$轴和$Z$轴平移或缩放，哪个轴先设置并不重要。以下三个平移方法最终得到的结果是一样的：
 
-1. Translate along $X$-axis, then along the $Y$-axis, then along the $Z$-axis.
-2. Translate along $Y$-axis, then along the $X$-axis, then along the $Z$-axis.
-3. Translate along $Z$-axis, then along the $X$-axis, then along the $Y$-axis.
+1. 平移$X$轴，然后$Y$轴，最后是$Z$轴。
+2. 平移$Y$轴，然后$X$轴，最后是$Z$轴。
+3. 平移$Z$轴，然后$X$轴，最后是$Y$轴。
 
-These three scale operations give the same result:
+下面的三种缩放操作最终结果也是一样的：
 
-1. Scale along $X$-axis, then along the $Y$-axis, then along the $Z$-axis.
-2. Scale along $Y$-axis, then along the $X$-axis, then along the $Z$-axis.
-3. Scale along $Z$-axis, then along the $X$-axis, then along the $Y$-axis.
+1. 缩放$X$轴，然后$Y$轴，最后是$Z$轴。
+2. 缩放$Y$轴，然后$X$轴，最后是$Z$轴。
+3. 缩放$Z$轴，然后$X$轴，最后是$Y$轴。
 
-However, these three rotations _may_ not give the same result:
+但是，这三个旋转 _可能_ 不会给出相同的结果：
 
-1. Rotate around $X$-axis, then around the $Y$-axis, then around the $Z$-axis.
-2. Rotate around $Y$-axis, then around the $X$-axis, then around the $Z$-axis.
-3. Rotate around $Z$-axis, then around the $X$-axis, then around the $Y$-axis.
+1. 旋转$X$轴，然后$Y$轴，最后是$Z$轴。
+2. 旋转$Y$轴，然后$X$轴，最后是$Z$轴。
+3. 旋转$Z$轴，然后$X$轴，最后是$Y$轴。
 
-As a result, the humble `Vector3` class that we used for both `.position` and `.scale` is not sufficient for storing rotation data. Instead, three.js has not one, but _two_ mathematical classes for storing rotation data. We'll look at the simpler of these here: [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). Fortunately, it's similar to the `Vector3` class.
+结果，我们用于`.position`和`.scale`的不起眼的`Vector3`类不足以存储旋转数据。相反，three.js不是使用一个，而是用 _两个_ 数学类用于存储旋转数据。我们将在这里查看到更详细的内容：[欧拉角](https://en.wikipedia.org/wiki/Euler_angles)。幸运的是，它与`Vector3`类相似。
 
-### Representing Rotations: the `Euler` class
+### 表示旋转的类：`Euler`类
 
-Euler angles are represented in three.js using the [`Euler`](https://threejs.org/docs/#api/en/math/Euler) class. As with `.position` and `.scale`, an `Euler` instance is automatically created and given default values when we create a new scene object.
+欧拉角在three.js中使用类[`Euler`](https://threejs.org/docs/#api/en/math/Euler)表示 。与`.position`和`.scale`一样，当我们创建一个新的场景对象时，会自动创建一个`Euler`实例并为其赋予默认值。
 
-{{< code lang="js" linenos="false" caption="An object's rotation is stored as an `Euler` angle" >}}
+{{< code lang="js" linenos="false" caption="对象的旋转存储为`Euler`角" >}}
 // when we create a mesh...
 const mesh = new Mesh();
 
@@ -662,9 +662,9 @@ const mesh = new Mesh();
 mesh.rotation = new Euler();
 {{< /code >}}
 
-As with `Vector3`, there are `.x`, `.y` and `.z` properties and a `.set` method:
+与`Vector3`一样，有`.x`、`.y`和`.z`属性，以及`.set`方法：
 
-{{< code lang="js" linenos="false" caption="The `Euler` class is similar to `Vector3`" >}}
+{{< code lang="js" linenos="false" caption="该`Euler`类似于`Vector3`类" >}}
 mesh.rotation.x = 2;
 mesh.rotation.y = 2;
 mesh.rotation.z = 2;
@@ -672,17 +672,17 @@ mesh.rotation.z = 2;
 mesh.rotation.set(2, 2, 2);
 {{< /code >}}
 
-Once again, we can create `Euler` instances ourselves:
+同样的，我们可以自己创建`Euler`实例：
 
-{{< code lang="js" linenos="false" caption="Creating an `Euler` instance" >}}
+{{< code lang="js" linenos="false" caption="创建一个`Euler`实例" >}}
 import { Euler } from 'three';
 
 const euler = new Euler(1, 2, 3);
 {{< /code >}}
 
-Also like `Vector3`, we can omit the parameters to use default values, and again, the default is zero on all axes:
+与`Vector3`一样，我们可以省略参数以使用默认值，同样，所有轴的默认值为零：
 
-{{< code lang="js" linenos="false" caption="The `Euler` class: default parameters" >}}
+{{< code lang="js" linenos="false" caption="`Euler`类: 默认值" >}}
 const euler = new Euler();
 
 euler.x; // 0
@@ -694,39 +694,39 @@ euler.z; // 0
 TODO-DIAGRAM: diagram of rotations
 {{% /note %}}
 
-#### Euler Rotation Order
+#### 欧拉旋转顺序
 
-By default, three.js will perform rotations around the $X$-axis, then around the $Y$-axis, and finally around the $Z$-axis, in an object's local space. We can change this using the [`Euler.order` property](https://threejs.org/docs/#api/en/math/Euler.order). The default order is called 'XYZ', but 'YZX', 'ZXY', 'XZY', 'YXZ' and 'ZYX' are also possible.
+默认情况下，three.js将在对象的局部空间中围绕$X$轴，然后围绕$Y$轴，最后围绕$Z$轴旋转。我们可以使用[`Euler.order`属性](https://threejs.org/docs/#api/en/math/Euler.order)来改变它。默认顺序称为“XYZ”，但也可以使用“YZX”、“ZXY”、“XZY”、“YXZ”和“ZYX”。
 
-We won't get into rotation order further here. Usually, the only time you need to change the order is when dealing with rotation data from another app. Even then, this is usually taken care of by the three.js loaders. For now, if you like, you can simply think of `Euler` as a `Vector3`. Until you start to create animations or perform complex mathematical operations involving rotations, it's unlikely you'll run into any problems by doing so.
+我们不会在这里进一步讨论旋转顺序。通常，您需要更改顺序的唯一时候是在处理来自另一个应用程序的旋转数据时。即便如此，这通常也是由three.js加载器处理。现在，如果您愿意，可以简单地将`Euler`视为`Vector3`. 在您开始创建动画或执行涉及旋转的复杂数学运算之前，您不太可能遇到任何问题。
 
-### The Unit of Rotation is Radians
+### 旋转单位是弧度
 
 {{% note %}}
 TODO-DIAGRAM: add degrees and radian diagram
 {{% /note %}}
 
-You may be familiar with expressing rotations using **degrees**. There are $360^{\circ}$ in a circle, $90^{\circ}$ in a right-angle, and so on. The [perspective camera's field of view]({{< relref "/book/first-steps/first-scene#field-of-view-fov" >}} "perspective camera's field of view"), which we encountered earlier, is specified in degrees.
+您可能熟悉使用**度数**来表示旋转。$360^{\circ}$代表一圈，$90^{\circ}$代表一个直角，等等。我们之前遇到的[透视相机的视野]({{< relref "/book/first-steps/first-scene#field-of-view-fov" >}} "透视相机的视野")是用度数指定的。
 
-However, **all other angles in three.js are specified using [_radians_](https://en.wikipedia.org/wiki/Radian) rather than _degrees_**. Instead of $360^{\circ}$ in a circle, there are $2\pi$ radians. Instead of  $90^{\circ}$ in a right-angle, there are $\frac{\pi}{2}$ radians. If you're comfortable using radians, great! As for the rest of us, we can use the [`.degToRad`](https://threejs.org/docs/#api/en/math/MathUtils.degToRad) utility to convert from degrees to radians.
+但是，**three.js中的所有其他角度都是使用[_弧度_](https://en.wikipedia.org/wiki/Radian)而不是 _度数_ 指定的**。$360^{\circ}$是一个圆圈，与之对应的是$2\pi$弧度。$90^{\circ}$是一个直角，与之对应的是$\frac{\pi}{2}$弧度。如果您喜欢使用弧度，那就太好了！至于我们其他人，我们可以使用[`.degToRad`](https://threejs.org/docs/#api/en/math/MathUtils.degToRad)实用程序将度数转换为弧度。
 
-{{< code lang="js" linenos="false" caption="Converting degrees to radians" >}}
+{{< code lang="js" linenos="false" caption="将度数转换为弧度" >}}
 import { MathUtils } from 'three';
 
 const rads = MathUtils.degToRad(90); // 1.57079... = π/2
 {{< /code >}}
 
-Here, we can see that $90^{\circ}$ is equal to $1.57079...$, or $\frac{\pi}{2}$ radians.
+在这里，我们可以看到$90^{\circ}$等于$1.57079...$…， 或者$\frac{\pi}{2}$弧度。
 
-### The _Other_ Rotation Class: Quaternions
+### _另一个_ 旋转类：四元数Quaternions
 
 {{% note %}}
 TODO-LINK: Add link to quaternions chapter
 {{% /note %}}
 
-We mentioned above that three.js has two classes for representing rotations. The second, which we'll mention only in passing here, is the [`Quaternion` class](https://threejs.org/docs/#api/en/math/Quaternion). Along with the `Euler`, a `Quaternion` is created for us and stored in the `.quaternion` property whenever we create a new scene object such as a mesh:
+我们在上面提到，three.js有两个表示旋转的类。第二个，我们在这里只是顺便提一下，是[`Quaternion`类](https://threejs.org/docs/#api/en/math/Quaternion)。与`Euler`一起，每当我们创建新的场景对象（例如网格）时，都会为我们创建一个`Quaternion`并存储在属性`.quaternion`中：
 
-{{< code lang="js" linenos="false" caption="An object's rotation is stored as an `Euler` angle" >}}
+{{< code lang="js" linenos="false" caption="对象的旋转存储为`Euler`角中" >}}
 // when we create a mesh
 const mesh = new Mesh();
 
@@ -737,31 +737,31 @@ mesh.rotation = new Euler();
 mesh.quaternion = new Quaternion();
 {{< /code >}}
 
-We can use **quaternions** and **Euler angles** interchangeably. When we change `mesh.rotation`, the `mesh.quaternion` property is automatically updated, and vice-versa. This means we can use Euler angles when it suits us, and switch to quaternions when it suits us.
+我们可以互换使用**四元数**和**欧拉角**。当我们更改`mesh.rotation`时，`mesh.quaternion`属性会自动更新，反之亦然。这意味着我们可以在欧拉角适用时使用欧拉角，并在四元数适用时切换到四元数。
 
-Euler angles have a couple of shortcomings that become apparent when creating animations or doing math involving rotations. In particular, we cannot add two Euler angles together (more famously, they also suffer from something called [gimbal lock](https://en.wikipedia.org/wiki/Gimbal_lock)). Quaternions don't have these shortcomings. On the other hand, they are harder to use than Euler angles, so for now we'll stick with the simpler `Euler` class.
+欧拉角有几个缺点，在创建动画或进行涉及旋转的数学时会变得很明显。特别是，我们不能将两个欧拉角相加（更著名的是，它们还存在一种叫做[万向锁](https://en.wikipedia.org/wiki/Gimbal_lock)的问题）。四元数没有这些缺点。另一方面，它们比欧拉角更难使用，所以现在我们将坚持使用更简单的`Euler`类。
 
-For now, make a note of these two ways to rotate an object:
+现在，请记下这两种旋转对象的方法：
 
-1. **Using Euler angles, represented using the `Euler` class and stored in the `.rotation` property.**
-2. **Using quaternions, represented using the `Quaternion` class and stored in the `.quaternion` property.**
+1. **使用欧拉角，使用`Euler`类表示并存储在`.rotation`属性中。**
+2. **使用四元数，使用`Quaternion`类表示并存储在`.quaternion`属性中。**
 
-### Important Things to Know About Rotating Objects
+### 关于旋转对象的重要事项
 
-Despite the issues we highlighted in this section, rotating object is generally intuitive. Here are a couple of important things to take note of:
+尽管我们在本节中强调了一些问题，但旋转对象通常很直观。以下是一些需要注意的重要事项：
 
 {{% note %}}
 TODO-LOW: if non-targeted DirectionalLight is ever added revisit
 {{% /note %}}
 
-1. Not all objects can be rotated. For example, [the `DirectionalLight` we introduced in the last chapter]({{< relref "/book/first-steps/physically-based-rendering#introducing-the-directionallight" >}} "the `DirectionalLight` we introduced in the last chapter") cannot be rotated. The light shines _from_ a position, _towards_ a target, and the angle of the light is calculated from the target's position, not the `.rotation` property.
-2. Angles in three.js are specified using radians, not degrees. The only exception is the [`PerspectiveCamera.fov`](https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.fov) property which uses degrees to match real-world photography conventions.
+1. 并非所有对象都可以旋转。比如[我们上一章介绍的`DirectionalLight`]({{< relref "/book/first-steps/physically-based-rendering#introducing-the-directionallight" >}} "我们上一章介绍的`DirectionalLight`")就不能旋转。灯光从某个位置照射到目标，灯光的角度是根据目标的位置而不是`.rotation`属性计算得出的。
+2. three.js中的角度是使用弧度而不是度数指定的。唯一的例外是[`PerspectiveCamera.fov`](https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.fov)属性使用度数来匹配真实世界摄影惯例的。
 
-## Transformation Matrices
+## 转换矩阵
 
-We've covered a lot of ground in this chapter. We've introduced Cartesian coordinate systems, world space and local space, the scene graph, translations, rotations, and scaling and the associated `.position`, `.rotation`, and `.scale` properties, and three mathematical classes used for storing transformations: `Vector3`, `Euler`, and `Quaternion`. Surely we couldn't cram anything else in?
+在本章中，我们已经介绍了很多内容。我们介绍了笛卡尔坐标系、世界空间和局部空间、场景图、平移、旋转和缩放以及相关的`.position`、`.rotation`、和`.scale`属性，以及用于存储变换的三个数学类：`Vector3`、`Euler`和`Quaternion`。我们肯定不能在本章中塞进别的东西了对吧？
 
-Well, just one more thing. We can't end a chapter on transformations without discussing [**transformation matrices**](https://en.wikipedia.org/wiki/Transformation_matrix). While vectors and Euler angles are (relatively) easy for us humans to work with, they are not efficient for computers to process. As we chase the elusive goal of sixty frames per second, we must walk a fine line between ease of use and efficiency. To this end, the translation, rotation, and scale of an object are combined into a single mathematical object called a matrix. Here's what the matrix for an object that has not been transformed looks like.
+好吧，还有一件事。如果不讨论[**变换矩阵**](https://en.wikipedia.org/wiki/Transformation_matrix)，我们就无法结束关于变换的一章。虽然向量和欧拉角对我们人类来说（相对）容易使用，但它们对于计算机处理的效率并不高。当我们追求每秒60帧这一难以捉摸的目标时，我们必须在易用性和效率之间找到一条平衡线。为此，将对象的平移、旋转和缩放组合成一个称为矩阵的数学对象。这是尚未转换的对象的矩阵的样子。
 
 <section>
 $$
@@ -774,17 +774,17 @@ $$
 $$
 </section>
 
-It has four rows and four columns, so it's a $4 \times 4$ matrix, and it's storing an object's complete transform which is why we refer to it as a **transformation matrix**. Once again, there is a three.js class to handle this type of mathematical object, called [`Matrix4`](https://threejs.org/docs/#api/en/math/Matrix4). There's also a class for $3\times3$ matrices called `Matrix3`. When the matrix has all ones on the [main diagonal](https://en.wikipedia.org/wiki/Main_diagonal) and zeros everywhere else like the one above, we call it the [**identity matrix**, $I$](https://en.wikipedia.org/wiki/Identity_matrix).
+它有四行四列，所以它是一个$4 \times 4$矩阵，它存储了一个对象的完整变换，这就是我们将其称为**变换矩阵**的原因。同样的，也有一个three.js类来处理这种类型的数学对象，称为[`Matrix4`](https://threejs.org/docs/#api/en/math/Matrix4)。 还有一个类表示$3\times3$的矩阵称为`Matrix3`。当矩阵在[主对角线](https://en.wikipedia.org/wiki/Main_diagonal)上全为1而其他地方都为0时，就像上图这样，我们称其为[**单位矩阵**，$I$](https://en.wikipedia.org/wiki/Identity_matrix)。
 
-Matrices are much more efficient for your CPU and GPU to work with than the individual transforms, and represents a compromise that gives us the best of both worlds. We humans can use the simpler `.position`, `.rotation`, and `.scale`, properties, then, whenever we call `.render`,  the renderer will update each object's matrices and use them for internal calculations.
+与单独的变换相比，矩阵对CPU和GPU的处理效率要高得多，它代表了一种折衷方案，可以为我们提供两全其美的效果。我们人类可以使用更简单`.position`，`.rotation`和`.scale`属性，然后，每当我们调用`.render`时，渲染器都会更新每个对象的矩阵并将它们用于内部计算。
 
-We'll spend a bit of time here going into how transformation matrices work, but if you're allergic to math, it's absolutely fine to skip this section (for now). You don't need a deep understanding of how matrices work to use three.js. You can stick with using `.position`, `.rotation`, and `.scale` and let three.js handle the matrices. On the other hand, if you're a mathematical wizard, working directly with the transformation matrix opens up a whole new range of opportunities.
+我们将在这里花一些时间来了解转换矩阵的工作原理，但是如果您对数学过敏，则可以跳过本节（暂时）。您无需深入了解矩阵的工作原理即可使用three.js。你可以坚持使用`.position`，`.rotation`和`.scale`属性，然后让three.js处理矩阵。另一方面，如果你是一个数学天才，直接使用变换矩阵会带来一系列全新的机会。
 
-### The Local Matrix
+### 局部矩阵
 
-Every object has, in fact, not one, but two transformation matrices. The first of these is the **local matrix**, which holds the combined `.position`, `.rotation`, and `.scale` of an object. The local matrix is stored in the [`Object3D.matrix`](https://threejs.org/docs/#api/en/core/Object3D.matrix) property. Every object that inherits from `Object3D` has this property.
+事实上，每个对象都不止一个，而是有两个变换矩阵。其中第一个是**局部矩阵**，它包含一个对象的`.position`、`.rotation`和`.scale`组合。局部矩阵存储在 [`Object3D.matrix`](https://threejs.org/docs/#api/en/core/Object3D.matrix)属性中。继承自`Object3D`的每个对象都具有此属性。
 
-{{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="When we create a mesh, a local transformation matrix is created automatically" >}}
+{{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="当我们创建一个网格时，会自动创建一个局部变换矩阵" >}}
 ``` js
 // when we create a mesh
 const mesh = new Mesh();
@@ -794,9 +794,9 @@ mesh.matrix = new Matrix4();
 ```
 {{< /code >}}
 
-At this point, the matrix will look like the identity matrix above, with ones on the main diagonal and zeros everywhere else. If we change the position of the object, and then force the matrix to update:
+在这一时刻，矩阵看起来就像上面的单位矩阵，主对角线上全是1，其他地方都是零。如果我们改变对象的位置，然后强制矩阵更新：
 
-{{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="Changes to the transform of an object are reflected in the local matrix" >}}
+{{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="对象变换的变化反映在局部矩阵中" >}}
 ``` js
 mesh.position.x = 5;
 
@@ -804,7 +804,7 @@ mesh.updateMatrix();
 ```
 {{< /code >}}
 
-... now, the local matrix of the mesh will look like this:
+…现在，网格的局部矩阵将如下所示：
 
 <section>
 $$
@@ -817,11 +817,11 @@ $$
 $$
 </section>
 
-Normally, we don't need to call `.updateMatrix` manually, since the renderer will update the matrix of every object before it's rendered. Here, though, we want to see the change in the matrix immediately so we must force an update.
+通常，我们不需要手动调用`.updateMatrix`，因为渲染器会在渲染之前更新每个对象的矩阵。但是，在这里，我们希望立即看到矩阵的变化，因此我们必须强制更新。
 
-If we change the position on all three axes and update the matrix again:
+如果我们改变所有三个轴上的位置并再次更新矩阵：
 
-{{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="Changing the object's translation and then updating the matrix" >}}
+{{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="更改对象的平移位置，然后更新矩阵" >}}
 ``` js
 mesh.position.x = 2;
 mesh.position.y = 4;
@@ -831,7 +831,7 @@ mesh.updateMatrix();
 ```
 {{< /code >}}
 
-... now we can see that translations are stored in the first three rows of the last column of the matrix.
+…现在我们可以看到平移存储在矩阵前三行的最后一列中。
 
 <section>
 $$
@@ -844,9 +844,9 @@ $$
 $$
 </section>
 
-Next, let's do the same for scale:
+接下来，让我们对对象缩放做同样的事情：
 
-{{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="Changing the object's scale and then updating the matrix" >}}
+{{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="更改对象的缩放比例，然后更新矩阵" >}}
 ``` js
 mesh.scale.x = 5;
 mesh.scale.y = 7;
@@ -856,7 +856,7 @@ mesh.updateMatrix();
 ```
 {{< /code >}}
 
-... and we'll see that the scale values are stored on the main diagonal.
+…我们会看到缩放比例值存储在主对角线上。
 
 <section>
 $$
@@ -869,7 +869,7 @@ $$
 $$
 </section>
 
-Great! That means we can write a formula for storing translation and scale in a transformation matrix. If we write the translation values as $T_{x}, T_{y}, T_{z}$, and the scale values as $S_{x}, S_{y}, S_{z}$:
+非常好！这意味着我们可以编写一个公式来将平移和缩放存储在转换矩阵中。如果我们将平移值写为$T_{x}, T_{y}, T_{z}$, 缩放值写为$S_{x}, S_{y}, S_{z}$：
 
 {{< code lang="js" linenos="false" hl_lines="" caption="" >}}
 ``` js
@@ -883,7 +883,7 @@ mesh.scale.z = Sz;
 ```
 {{< /code >}}
 
-... now the transformation matrix looks like this:
+…现在变换矩阵如下所示：
 
 <section>
 $$
@@ -896,9 +896,10 @@ $$
 $$
 </section>
 
+最后，让我们看看旋转是如何存储的。首先，让我们重置位置和缩放：
 Finally, let's see how rotation is stored. First, let's reset the position and scale:
 
-{{< code lang="js" linenos="false" hl_lines="" caption="Reset the position and scale" >}}
+{{< code lang="js" linenos="false" hl_lines="" caption="重置位置和缩放" >}}
 ``` js
 mesh.position.set(0, 0, 0);
 mesh.scale.set(1, 1, 1);
@@ -906,9 +907,9 @@ mesh.updateMatrix();
 ```
 {{< /code >}}
 
-Now the matrix will look like the identity matrix again, with ones on the main diagonal and zeros everywhere else. Next, let's try a thirty degree rotation around the $X$-axis:
+现在矩阵将再次看起来像单位矩阵，主对角线上全是1，其他地方都是零。接下来，让我们尝试围绕$X$轴做30度旋转：
 
-{{< code lang="js" linenos="false" hl_lines="" caption="Thirty degree rotation around the $X$-axis" >}}
+{{< code lang="js" linenos="false" hl_lines="" caption="围绕$X$轴30度旋转" >}}
 ``` js
 mesh.rotation.x = MathUtils.degToRad(30);
 
@@ -916,7 +917,7 @@ mesh.updateMatrix();
 ```
 {{< /code >}}
 
-... then the matrix will look like this:
+…然后矩阵将如下所示：
 
 <section>
 $$
@@ -929,7 +930,7 @@ $$
 $$
 </section>
 
-Hmmm... weird. However, this makes more sense when we see the following equations:
+嗯……很奇怪。但是，当我们看到以下等式时，这更具意义：
 
 <section>
 $$
@@ -940,7 +941,7 @@ $$
 $$
 </section>
 
-So, this matrix is actually:
+所以，这个矩阵实际上是：
 
 <section>
 $$
@@ -953,7 +954,7 @@ $$
 $$
 </section>
 
-Unfortunately, this is not nearly as intuitive as the transform and scale examples above. However, once again we use it to write a formula. If we write the rotation around the $X$-axis as $R_{x}$, here's the formula for rotation around the $X$-axis:
+不幸的是，这并不像上面的变换和缩放示例那么直观。但是，我们再次使用它来编写公式。如果我们写出围绕$X$轴为$R_{x}$，下面的公式是围绕$X$轴的旋转：
 
 <section>
 $$
@@ -966,7 +967,7 @@ $$
 $$
 </section>
 
-Similarly, here's the formula for rotation around the $Y$-axis, $R_{y}$:
+同样，这是围绕$Y$轴旋转的公式，$R_{y}$：
 
 <section>
 $$
@@ -979,7 +980,7 @@ $$
 $$
 </section>
 
-And finally, rotation around the $Z$-axis, $R_{z}$:
+最后，这是围绕$Z$轴旋转的公式，$R_{z}$：
 
 <section>
 $$
@@ -992,11 +993,11 @@ $$
 $$
 </section>
 
-### The World Matrix
+### 世界矩阵
 
-As we've mentioned a few times, what's important to us is the final position of an object in world space, since that's what we see once the object is rendered. To help with calculating this, every object has a second transformation matrix, the **world matrix**, stored in  [`Object3D.matrixWorld`](https://threejs.org/docs/#api/en/core/.matrixWorld). There's no difference, mathematically, between these two matrices. They're both $4 \times 4$ transformation matrices, and when we create a mesh or any other scene object, both the local and world matrices are created automatically.
+正如我们多次提到的，对我们来说重要的是对象在世界空间中的最终位置，因为这是我们在渲染对象后所看到的。为了帮助计算这一点，每个对象都有第二个变换矩阵，即**世界矩阵**，存储在[`Object3D.matrixWorld`](https://threejs.org/docs/#api/en/core/.matrixWorld)中。 这两个矩阵在数学上没有区别。他们都是$4 \times 4$变换矩阵，当我们创建网格或任何其他场景对象时，局部矩阵和世界矩阵都会自动创建。
 
-{{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="When we create a mesh, both local and world matrices are created automatically" >}}
+{{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="当我们创建网格时，会自动创建局部矩阵和世界矩阵" >}}
 ``` js
 // when we create a mesh
 const mesh = new Mesh();
@@ -1007,9 +1008,9 @@ mesh.matrixWorld = new Matrix4();
 ```
 {{< /code >}}
 
-**The world matrix stores the position of the object in world space**. If the object is a direct child of the scene, these two matrices will be identical, but if the object resides somewhere further down the scene graph, the local and world matrices will most likely be different.
+**世界矩阵存储对象在世界空间中的位置**。如果对象是场景的直接子对象，这两个矩阵将是相同的，但如果对象位于场景图更深的某个位置，则局部矩阵和世界矩阵很可能是不同的。
 
-To help us understand this, let's look at our [objects $A$ and $B$ from earlier](#working-with-the-scene-graph) once again:
+为了帮助我们理解这一点，让我们再次回顾一下我们[之前提到的对象$A$和$B$](#working-with-the-scene-graph)：
 
 {{< code lang="js" linenos="false" hl_lines="" caption="" >}}
 ``` js
@@ -1042,9 +1043,9 @@ TODO-LOW: make sure that .render updates both matrices
 TODO-DIAGRAM: add diagram of A and B in the scene graph
 {{% /note %}}
 
-Once again, we must force the matrices to update. Alternatively, you could call `.render` and the matrices of all objects in the scene will be automatically updated.
+同样的，我们必须强制更新矩阵。或者，您可以调用`.render`，这样场景中所有对象的矩阵将自动更新。
 
-If you recall from earlier, we calculated the final positions of $A$ and $B$ in world space and found that $A$ is at $(5, 0, 0)$, while $B$ ends up at $(8, 0, 0)$. Let's examine how this works for each object's local and world matrices. First up is $A$'s local matrix.
+如果您还记得之前，我们计算了对象$A$和$B$在世界空间中的最终位置，发现$A$位于$(5, 0, 0)$， 而$B$最终在位置$(8, 0, 0)$。让我们看看每个对象的本地和世界矩阵是如何工作的。首先是$A$的局部矩阵。
 
 <section>
 $$
@@ -1057,7 +1058,7 @@ A_{local} = \begin{pmatrix}
 $$
 </section>
 
-As we saw above, the position of an object on the $X$-axis is stored in the last column of the top row of its local matrix. Now, let's look at $A$'s world matrix:
+正如我们在上面看到的，物体在$X$轴的位置存储在其局部矩阵顶行的最后一列。现在，让我们看看$A$的世界矩阵：
 
 <section>
 $$
@@ -1070,7 +1071,7 @@ A_{world} = \begin{pmatrix}
 $$
 </section>
 
-Since $A$ is a direct child of the scene, the local and world matrices are identical. Now, let's take a look at $B$. First, the local matrix:
+因为$A$是场景的直接子对象，局部矩阵和世界矩阵是相同的。现在，让我们来看看$B$。 一、局部矩阵：
 
 <section>
 $$
@@ -1083,7 +1084,7 @@ B_{local} = \begin{pmatrix}
 $$
 </section>
 
-And finally, here is $B$'s world matrix:
+最后，这里是$B$的世界矩阵：
 
 <section>
 $$
@@ -1096,17 +1097,17 @@ B_{world} = \begin{pmatrix}
 $$
 </section>
 
-This time, the local and world matrices are different since $B$ is not a direct child of the scene.
+这一次，局部矩阵和世界矩阵是不同的，因为$B$不是场景的直接子对象。
 
-### Working with Matrices Directly
+### 直接使用矩阵
 
-Hopefully, this brief introduction has taken away some of the mystery of how matrices work. They are not as complicated as they look, rather, they are just a compact way of storing lots of numbers. However, keeping all those numbers in mind takes some practice, and doing calculations involving matrices by hand is tedious. Fortunately, three.js comes with many functions that allow us to work with matrices with ease. There are obvious functions like add, multiply, subtract, as well as functions to set and get the translation, rotation, or scale components of a matrix, and many others.
+希望这个简短的介绍能够解开矩阵工作原理的一些奥秘。它们并不像看起来那么复杂，相反，它们只是一种存储大量数字的紧凑方式。然而，记住所有这些数字需要一些练习，并且手动进行涉及矩阵的计算是乏味的。幸运的是，three.js带有许多函数，使我们能够轻松地处理矩阵。有最基本的函数，如加法、乘法、减法，以及设置和获取矩阵的平移、旋转或缩放分量的函数等等。
 
-Working with the matrix directly, rather than setting `.position`, `.rotation`, and `.scale` separately is almost never _required_, but it does allow for powerful manipulations of an object's transform. Think of it like a superpower that you'll unlock once you level up your three.js skills enough.
+直接使用矩阵大部分不是必要的（但你使用了它，几乎不需要单独设置`.position`、`.rotation`和`.scale`属性），但它确实允许对对象的变换进行强大的操作。把它想象成一个超能力，一旦你的three.js技能水平足够高，你就会解锁它。
 
-When used together, all of the properties we've encountered in this chapter - `.position`, `.rotation`, `.scale`, `.quaternion`, `.matrix`, and `.matrixWorld` - have tremendous expressive power, and enable you to create scenes like an artist with a paintbrush.
+当一起使用我们在本章中遇到的所有属性时，- `.position`、`.rotation`、`.scale`、`.quaternion`、`.matrix`和`.matrixWorld` - 具有巨大的表现力，使您能够像艺术家一样用画笔创建场景。
 
-{{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="Every scene object has many properties for transformation" >}}
+{{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="每个场景对象都有许多用于转换的属性" >}}
 ``` js
 // when we create a mesh,
 // or any other object derived from Object3D
@@ -1125,35 +1126,35 @@ mesh.matrixWorld = new Matrix4();
 ```
 {{< /code >}}
 
-Learning how to use the `.position`, `.rotation`, and `.scale` is a fundamental skill that you need to work with three.js. However, learning to use the `.quaternion` and transformation matrices is an advanced skill that you don't need to master immediately.
+学习如何使用`.position`、`.rotation`和`.scale`是使用three.js所需的基本技能。但是，学习使用`.quaternion`和变换矩阵是一项高级技能，您不需要立即掌握。
 
-## Challenges
+## 挑战
 
 {{% aside success %}}
 
-### Easy
+### 简单
 
-1. Open up the _**cube.js**_ module and experiment with `cube.position`, `cube.rotation`, and `cube.scale`.
+1. 打开 _**cube.js**_ 模块并尝试使用`cube.position`、`cube.rotation`和`cube.scale`。
 
-2. Open up the _**lights.js**_ module and experiment with `light.position`. Note how `light.rotation` and `light.scale` have no effect.
+2. 打开 _**lights.js**_ 模块并尝试使用`light.position`。注意设置`light.rotation`和`light.scale`没有效果。
 
-3. Experiment with `camera.position` and `camera.rotation` in the _**camera.js**_ module. Note how `camera.scale` has no effect.
+3. 在 _**camera.js**_ 模块中对`camera.position`和`camera.rotation`进行实验。注意设置`camera.scale`没有效果。
 
 {{% /aside %}}
 
 {{% aside %}}
 
-### Medium
+### 中等
 
-1. Create a second mesh called `meshB`. Make it a different color or a different shape so you can recognize it. [Add this new mesh as a child of the first mesh](#nesting-coordinate-systems). Start with one axis - perhaps the $X$-axis - and adjust the position of each mesh. Try and guess where both meshes will end up when you do so. Notice how translations are _additive_. If you translate both meshes five units, the child will move a total of ten units.
+1. 创建第二个网格，称为`meshB`。让它变成不同的颜色或不同的形状，这样你就可以识别它。[将此新网格添加为第一个网格的子对象](#nesting-coordinate-systems)。从一个轴开始——也许是$X$轴 - 并调整每个网格的位置。尝试猜测当你这样做时两个网格最终位置将在哪里。注意平移是如何 _叠加_ 的。如果您将两个网格平移5个单位，则子对象将总共移动10个单位。
 
-2. Now try setting the rotation of both meshes. Again, start by constraining yourself to a single axis. Once again, note that rotations are additive. If you rotate the parent $45^{\circ}$, and the child $45^{\circ}$, the final rotation of the child will be ninety degrees. Remember to use `MathUtils.degToRad` to convert degrees to radians.
+2. 现在尝试设置两个网格的旋转。同样，首先将自己限制在一个轴上。再次注意，旋转是相加的。如果您旋转父对象$45^{\circ}$, 子对象$45^{\circ}$，则子对象的最终旋转将是九十度。请记住使用`MathUtils.degToRad`将度数转换为弧度。
 
-3. Finally, try setting the scale of both meshes. This time, note that scales are _multiplicative_. If you scale the parent mesh by two and the child by four, the child will grow to eight times its initial size.
+3. 最后，尝试设置两个网格的缩放比例。这一次，请注意缩放比例是 _相乘_ 的。如果将父网格缩放2倍，将子网格缩放4倍，则子网格将增长到其初始大小的八倍。
 
-_Note: you can add the second mesh to the first mesh in **cube.js**:_
+_注意：您可以将第二个网格添加到**cube.js**中的第一个网格：_
 
-{{< code lang="js" linenos="false" caption="_**cube.js**_: creating a second mesh" >}}
+{{< code lang="js" linenos="false" caption="_**cube.js**_: 创建第二个网格" >}}
 const cube = new Mesh(geometry, material);
 const cubeB = new Mesh(geometry, material);
 
@@ -1168,8 +1169,8 @@ TODO-LOW: code block above has messed up indentation
 
 {{% aside warning %}}
 
-### Hard
+### 困难
 
-1. If you're familiar with radians, try doing the above exercises without the `.degToRad` method. [You can access $\pi$ in JavaScript using `Math.PI`]({{< relref "/book/appendix/javascript-reference#the-math-object" >}} "You can access $\pi$ in JavaScript using `Math.PI`").
+1. 如果您熟悉弧度，请尝试不使用`.degToRad`方法进行上述练习。[您可以使用`Math.PI`访问JavaScript中$\pi$]({{< relref "/book/appendix/javascript-reference#the-math-object" >}} "您可以使用`Math.PI`访问JavaScript中$\pi$")。
 
 {{% /aside %}}
