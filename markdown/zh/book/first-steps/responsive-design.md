@@ -1,6 +1,6 @@
 ---
-title: "Making Our Scenes Responsive (and also Dealing with Jaggies)"
-description: "In this chapter, we bring responsive design to our three.js app, ensuring our scene will smoothly resize to fit any browser window. We also turn on antialiasing, improving the quality of our final render a lot."
+title: "使我们的场景具有响应性（以及处理Jaggies）"
+description: "在本章中，我们将响应式设计引入到我们的 three.js 应用程序中，确保我们的场景能够平滑地调整大小以适应任何浏览器窗口。 我们还打开了抗锯齿，大大提高了最终渲染的质量。"
 date: 2018-04-02
 weight: 106
 chapter: "1.6"
@@ -29,11 +29,11 @@ IDEStripDirectory: "worlds/first-steps/responsive-design/"
 IDEActiveDocument: "src/World/systems/Resizer.js"
 ---
 
-# Making Our Scenes Responsive (and also Dealing with Jaggies)
+# 使我们的场景具有响应性（以及处理Jaggies）
 
-Welcome back! The last chapter was a long one, stuffed full of mathematical and computer graphics theory. Here, we'll slow things down a little and look at the current state of our app.
+欢迎回来！上一章很长，充满了数学和计算机图形学理论。在这里，我们将放慢速度，看看我们应用程序的当前状态。
 
-Since we created [ the World app]({{< relref "/book/first-steps/world-app" >}} " the World app") a couple of chapters ago, our code is well structured and ready to be expanded as we add features over the coming chapters. Next, we switched to [physically correct lighting and rendering]({{< relref "/book/first-steps/physically-based-rendering" >}} "physically correct lighting and rendering") and explained how we'll (nearly always) build our scenes using meters for measurement. Our brains are tuned to appreciate physically correct lighting and colors, so when we set up our scenes this way a lot of the hard work of making them look great is done for us. This applies even to scenes with a cartoony or abstract look.
+由于我们在几章前创建了[World应用程序]({{< relref "/book/first-steps/world-app" >}} "World应用程序")，因此我们的代码结构良好，可以在接下来的章节中添加功能时进行扩展。接下来，我们切换到[物理上正确的照明和渲染]({{< relref "/book/first-steps/physically-based-rendering" >}} "物理上正确的照明和渲染")，并解释了我们将如何（几乎总是）使用单位米来构建我们的场景。我们的大脑习惯于欣赏物理上正确的照明和颜色，所以当我们以这种方式设置场景时，我们已经完成了很多让它们看起来很棒的艰苦工作。这甚至适用于具有卡通或抽象外观的场景。
 
 In the last chapter, we explored the coordinate systems and mathematical operations called transformations that are used to move objects around in 3D space. Over the next couple of chapters, we'll use everything we have learned so far and start to create scenes that are more interesting than a single cube.
 
