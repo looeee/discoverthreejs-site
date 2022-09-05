@@ -1,6 +1,6 @@
 ---
-title: "使我们的场景具有响应性（以及处理Jaggies）"
-description: "在本章中，我们将响应式设计引入到我们的 three.js 应用程序中，确保我们的场景能够平滑地调整大小以适应任何浏览器窗口。 我们还打开了抗锯齿，大大提高了最终渲染的质量。"
+title: "使我们的场景具有响应性（以及处理锯齿）"
+description: "在本章中，我们将响应式设计引入到我们的three.js应用程序中，确保我们的场景能够平滑地调整大小以适应任何浏览器窗口。 我们还打开了抗锯齿，大大提高了最终渲染的质量。"
 date: 2018-04-02
 weight: 106
 chapter: "1.6"
@@ -35,81 +35,81 @@ IDEActiveDocument: "src/World/systems/Resizer.js"
 
 由于我们在几章前创建了[World应用程序]({{< relref "/book/first-steps/world-app" >}} "World应用程序")，因此我们的代码结构良好，可以在接下来的章节中添加功能时进行扩展。接下来，我们切换到[物理上正确的照明和渲染]({{< relref "/book/first-steps/physically-based-rendering" >}} "物理上正确的照明和渲染")，并解释了我们将如何（几乎总是）使用单位米来构建我们的场景。我们的大脑习惯于欣赏物理上正确的照明和颜色，所以当我们以这种方式设置场景时，我们已经完成了很多让它们看起来很棒的艰苦工作。这甚至适用于具有卡通或抽象外观的场景。
 
-In the last chapter, we explored the coordinate systems and mathematical operations called transformations that are used to move objects around in 3D space. Over the next couple of chapters, we'll use everything we have learned so far and start to create scenes that are more interesting than a single cube.
+在上一章中，我们探讨了用于在3D空间中移动对象的坐标系和称为变换的数学运算。在接下来的几章中，我们将使用到目前为止所学的一切，并开始创建比单个立方体更有趣的场景。
 
-But first, take a closer look at the cube:
+但首先，仔细看看立方体：
 
-{{< figure src="first-steps/cube-medium.png" alt="Our humble cube" class="left small noborder" lightbox="false" >}}
+{{< figure src="first-steps/cube-medium.png" alt="我们不起眼的立方体" class="left small noborder" lightbox="false" >}}
 
 Closer...
 
-{{< figure src="first-steps/cube-medium.png" alt="Our humble cube is getting closer" class="large noborder" lightbox="false" >}}
+{{< figure src="first-steps/cube-medium.png" alt="我们不起眼的立方体更近了" class="large noborder" lightbox="false" >}}
 
-Even closer...
+更近了……
 
 {{% note %}}
 TODO-DIAGRAM: take all screenshots at same zoom level for identical aliasing
 {{% /note %}}
 
-{{< figure src="first-steps/cube-closeup-text.png" alt="Not until you see the white of it's eyes!" class="noborder" lightbox="false" >}}
+{{< figure src="first-steps/cube-closeup-text.png" alt="直到你能看到它的眼白！（译者：指离得非常近的意思，都能看到眼白了）" class="noborder" lightbox="false" >}}
 
-Look closely at the cube's edges. Can you see that they are not straight, but rather look jagged and unclean? Technically, this is called **aliasing**, but informally we refer to these as jaggies. Ugh...
+仔细观察立方体的边缘。你能看出它们不是笔直的，而是看起来参差不齐和不干净的吗？从技术上讲，这称为**aliasing**，但非正式地我们将它们称为锯齿。额…
 
-There's another problem. Try resizing the preview window in the editor and you'll see that the scene does not adapt to fit the new size (the preview might refresh too fast to see this easily, in which case, try popping it out into a new window using the {{< icon "solid/external-link-alt" >}} button). **In the language of web design, our scene is not _responsive_**. In this chapter, we'll fix both of these issues.
+还有一个问题。尝试在编辑器中调整预览窗口的大小，您会发现场景无法适应新的大小（预览可能刷新得太快而无法轻易看到，在这种情况下，请尝试使用{{< icon "solid/external-link-alt" >}}按钮）。**在网页设计语言中，我们的场景不是 _响​​应式_ 的**。在本章中，我们将解决这两个问题。
 
-## Anti-Aliasing {#antialiasing}
+## 抗锯齿 {#antialiasing}
 
-{{< figure src="first-steps/antialias.svg" alt="Anti-alias on and off" class="" lightbox="false" >}}
+{{< figure src="first-steps/antialias.svg" alt="抗锯齿打开和关闭状态" class="" lightbox="false" >}}
 
-It turns out that drawing straight lines using square pixels is hard unless the straight lines are exactly horizontal or vertical. We'll use a technique called **anti-aliasing** (**AA**) to counter this.
+事实证明，除非直线完全水平或垂直，否则使用方形像素绘制直线是很困难的。我们将使用一种称为**抗锯齿**(**AA**) 的技术来解决这个问题。
 
-### Enable Anti-Aliasing
+### 启用抗锯齿
 
-We can turn on anti-aliasing by passing a single new parameter into the `WebGLRenderer` constructor. As with [the `MeshStandardMaterial`]({{< relref "/book/first-steps/physically-based-rendering#change-the-material-s-color" >}} "the `MeshStandardMaterial`"), the `WebGLRenderer` constructor takes a specification object with named parameters. Here, we will set the `antialias` parameter to `true`:
+我们可以通过将一个新参数传递给`WebGLRenderer`构造函数来打开抗锯齿。与[`MeshStandardMaterial`]({{< relref "/book/first-steps/physically-based-rendering#change-the-material-s-color" >}} "`MeshStandardMaterial`")一样，`WebGLRenderer`构造函数采用带有命名参数的规范对象。在这里，我们将`antialias`参数设置为`true`：
 
-{{< code file="worlds/first-steps/responsive-design/src/World/systems/renderer.final.js" from="3" to="9" lang="js" linenos="true" hl_lines="4" caption="_**renderer.js**_: Enable antialiasing" >}}{{< /code >}}
+{{< code file="worlds/first-steps/responsive-design/src/World/systems/renderer.final.js" from="3" to="9" lang="js" linenos="true" hl_lines="4" caption="_**renderer.js**_: 启用抗锯齿" >}}{{< /code >}}
 
-Note that **you can't change this setting once you have created the renderer**. To change it, you need to create an entirely new renderer. That's rarely a problem though since you'll want this on for most scenes.
+请注意，**一旦创建了渲染器，就无法更改此设置**。要更改它，您需要创建一个全新的渲染器。不过，这几乎不是问题，因为您会希望在大多数场景中都使用它。
 
 {{% note %}}
 TODO-DIAGRAM: add comparison of cube with and without AA
 {{% /note %}}
 
-### Multisample Anti-Aliasing (MSAA)
+### 多重采样抗锯齿 (MSAA)
 
-**Anti-aliasing is performed using the built-in WebGL method, which is [multisample anti-aliasing](https://en.wikipedia.org/wiki/Multisample_anti-aliasing) (MSAA)**. Depending on your browser and graphics card, there's a chance this will be unavailable or disabled, although on modern hardware that's unlikely. If your app does end up running on a device without MSAA, this setting will be ignored, but your scene will be otherwise unaffected.
+**抗锯齿是使用内置的WebGL方法执行的，即[多重采样抗锯齿](https://en.wikipedia.org/wiki/Multisample_anti-aliasing) (MSAA)**。根据您的浏览器和显卡，这可能会不可用或被禁用，尽管在现代硬件上这不太可能。如果您的应用最终在没有MSAA的设备上运行，此设置将被忽略，但您的场景不会受到影响。
 
-MSAA is not a perfect solution, and there will be scenes that still display aliasing, even with AA enabled. In particular, scenes with many long, thin straight lines (such as wire fences, or telephone lines) are notoriously hard to remove aliasing from. If possible, avoid creating such scenes. On the other hand, some scenes look fine without AA, in which case you might choose to leave it switched off. On the powerful GPU in a laptop, you are unlikely to notice any difference in performance. However, mobile devices are a different story and you might be able to gain a few precious frames per second by disabling AA.
+MSAA不是一个完美的解决方案，即使启用了AA，也会有场景仍然显示锯齿。特别是具有许多细长直线（如铁丝网或电话线）的场景很难消除锯齿。如果可能，请避免创建此类场景。另一方面，有些场景在没有AA的情况下看起来也还不错，在这种情况下，您可能会选择将其关闭。在笔记本电脑强大的GPU上，您不太可能注意到性能上的任何差异。但是，移动设备是另一回事，您可以通过禁用AA获得​​一些宝贵的帧/每秒。
 
-Other anti-aliasing techniques such as SMAA and FXAA are available as post-processing passes, as we'll see later in the book. However, these passes are performed on the CPU, while MSAA is done on the GPU (for most devices), so you may see a drop in performance if you use another technique, again, especially on mobile devices.
+其他抗锯齿技术（如SMAA和FXAA）可用作后处理通道，我们将在本书后面看到。但是，这些通道是在CPU上执行的，而MSAA是在GPU上完成的（对于大多数设备），因此如果再次使用其他技术，您可能会看到性能下降，尤其是在移动设备上。
 
 {{% note %}}
 TODO-LINK: add link to FXAA/SMAA
 {{% /note %}}
 
-## Seamlessly Handling Browser Window Size Changes {#seamless-resize}
+## 无缝处理浏览器窗口大小变化 {#seamless-resize}
 
-Currently, our app cannot handle a user doing something as simple as rotating their phone or resizing their browser. **We need to handle resizing gracefully, in an automatic manner that's invisible to our users**, and which involves a minimum of effort on our part. Unlike anti-aliasing, there's no magic setting to fix this. However, we already have a `Resizer` class, so here, we'll extend this to reset the size whenever the window changes size. After all, that's why we called this class a [Re-sizer]({{< relref "/book/first-steps/world-app#systems-the-resizer-module-1" >}} "Re-sizer") in the first place.
+目前，我们的应用程序无法处理像旋转手机或调整浏览器大小这样简单的用户操作。**我们需要以一种对我们的用户不可见的自动方式来优雅地处理调整窗口大小**，并且这仅需要我们付出最少的努力。与抗锯齿不同，没有神奇的设置可以解决这个问题。但是，我们已经有一个`Resizer`类，所以在这里，我们将扩展它以在窗口改变大小时重置大小。毕竟，这就是为什么我们先前将这个类称为[Re-sizer]({{< relref "/book/first-steps/world-app#systems-the-resizer-module-1" >}} "Re-sizer")。
 
-### Listen for `resize` Events on the Browser Window
+### 监听浏览器窗口上的`resize`事件
 
-First, we need some way of listening to the browser and then taking action when the window's size changes. In web-dev terminology, we want to **listen for resize events**. A built-in browser method called `element.addEventListener` makes our work easy here. We can use this method to listen for all kinds of events, such as `click`, `scroll`, `keypress`, and many more, on any HTML element. Whenever an event occurs, we say **the event has fired**. When a user clicks their mouse, the `click` event will fire, when they spin their scroll wheel, the `scroll` event will fire, when they resize the browser window, the `resize` event will fire, and so on.
+首先，我们需要某种方式来监听浏览器，然后在窗口大小发生变化时采取行动。在web-dev术语中，我们想**监听resize events**。一个名为`element.addEventListener`的内置浏览器方法使我们在这里的工作变得容易。我们可以使用这个方法来侦听任何HTML元素上的各种事件，例如`click`、`scroll`、`keypress`等等。每当事件发生时，我们就说**该事件已触发**。当用户单击鼠标时，`click`事件将触发，当他们旋转滚轮时，`scroll`事件将触发，当他们调整浏览器窗口大小时，`resize`事件将触发，等等。
 
-Later, we'll use event listeners to add interactivity to our scenes. Here, we want to listen for the [`resize`](https://developer.mozilla.org/en-US/docs/Web/API/Window/resize_event) event, which fires whenever the browser's window size changes. Rotating a mobile device from landscape to portrait, dragging a window between monitors on a multi-monitor setup, and resizing the browser by dragging the edges of the window with a mouse all cause the `resize` event to fire, which means the code we add here will handle all of these scenarios.
+稍后，我们将使用事件侦听器为场景添加交互性。在这里，我们要监听[`resize`](https://developer.mozilla.org/en-US/docs/Web/API/Window/resize_event)事件，该事件会在浏览器窗口大小改变时触发。将移动设备从横向旋转到纵向，在多显示器设置的显示器之间拖动窗口，以及通过用鼠标拖动窗口边缘来调整浏览器大小都会`resize`触发事件，这意味着我们在此处添加的代码将处理所有这些情况。
 
 {{% note %}}
 TODO-LINK: add link to interactivity chapter
 {{% /note %}}
 
-_If you are unfamiliar with event listeners, check out the [DOM API reference]({{< relref "/book/appendix/dom-api-reference#listening-for-events" >}} "DOM API reference") in the appendices for more info._
+_如果您不熟悉事件侦听器，请查看附录中的[DOM API参考]({{< relref "/book/appendix/dom-api-reference#listening-for-events" >}} "DOM API参考")以获取更多信息。_
 
-We can listen for most events, like `click`, or `scroll`, on any HTML element. However, the `resize` event listener must be attached to [the global `window` object]({{< relref "book/appendix/dom-api-reference#global-object" >}} "the global `window` object"). There is another way of listening for resize events which works with any element: the [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver/ResizeObserver). However, it's quite new and at the time of writing this chapter isn't yet widely supported. Besides, it's a little more work to set up, so we'll stick with the tried and trusted `resize` event for now.
+我们可以在任何HTML元素上侦听大多数事件，例如`click`或`scroll`。但是，`resize`事件侦听器必须附加到[全局`window`对象]({{< relref "book/appendix/dom-api-reference#global-object" >}} "全局`window`对象")。还有另一种监听调整大小事件的方法，它适用于任何元素：[`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver/ResizeObserver)。 然而，它是相当新的，在撰写本章时还没有得到广泛的支持。此外，设置的工作量更大，所以我们现在将坚持使用久经考验且值得信赖的`resize`事件。
 
-### Test `addEventListener` in the Browser Console
+### 在浏览器控制台中测试`addEventListener`
 
-Before we set up automatic resizing in our app, we'll use the browser console to test `addEventListener` and the `resize` event. Open your browser console by pressing the F12 key, paste in the following code, then press _Enter_:
+在我们设置自动调整大小之前，我们将使用浏览器控制台来测试`addEventListener`和`resize`事件。按F12键打开浏览器控制台，粘贴以下代码，然后按 _Enter_：
 
-{{< code lang="js" linenos="false" caption="Paste this code into your browser console then resize the page" >}}
+{{< code lang="js" linenos="false" caption="将此代码粘贴到浏览器控制台中，然后调整页面大小" >}}
 function onResize() {
 console.log('You resized the browser window!');
 }
@@ -117,21 +117,21 @@ console.log('You resized the browser window!');
 window.addEventListener('resize', onResize);
 {{< /code >}}
 
-{{< figure src="first-steps/console-resize.png" alt="Logging resize event to console" lightbox="true" class="medium right" >}}
+{{< figure src="first-steps/console-resize.png" alt="打印调整大小的事件日志到控制台" lightbox="true" class="medium right" >}}
 
-This will call the `onResize` function every time the window resizes. Once you've entered the code, try resizing your browser while keeping an eye on the console. You should see something like the following image.
+每次调整窗口大小时都会调用`onResize`函数。输入代码后，请尝试调整浏览器的大小，同时注意控制台。您应该会看到类似下图的内容。
 
-When we resize the window, the `onResize` callback might get called many times. You might think you have performed a single resize, but find the `resize` event has fired ten times or more. As a result, doing too much work in `onResize` can cause stuttering. It's important to keep this function simple.
+当我们调整窗口大小时，`onResize`回调可能会被多次调用。您可能认为您执行了一次调整大小，但发现该`resize`事件已触发十次或更多次。结果，在`onResize`中做太多的工作会导致“口吃”。保持这个函数简单很重要。
 
-> Don't do heavy calculations in the resize function.
+> 不要在 resize 函数中进行大量计算。
 
-If you find this function growing in size, you might consider using a throttling function such as [lodash's `_.throttle`](https://lodash.com/docs#throttle) to prevent it from being called too often.
+如果您发现此函数的大小越来越大，您可能会考虑使用诸如[lodash库的`_.throttle`](https://lodash.com/docs#throttle)类的节流函数来防止它被过于频繁地调用。
 
-### Extend the Resizer Class
+### 扩展Resizer类
 
-Now that we've confirmed everything works as expected, we'll go ahead and extend the `Resizer` class to automatically handle resizing. That means we need to call the sizing code in two situations: first, on load, to set the initial size, and then again whenever the size changes. So, let's move that code into a separate function, and then call it once when our scene loads:
+现在我们已经确认一切都按预期工作，我们将继续扩展`Resizer`类以自动处理大小调整。这意味着我们需要在两种情况下调用大小调整代码：首先，在加载时设置初始大小，然后在大小发生变化时再次调用。因此，让我们将该代码移动到一个单独的函数中，然后在我们的场景加载时调用它一次：
 
-{{< code lang="js" linenos="" linenostart="1" hl_lines="1-7 12" caption="_**Resizer.js**_: move the sizing code into a setSize function and call it on load" >}}
+{{< code lang="js" linenos="" linenostart="1" hl_lines="1-7 12" caption="_**Resizer.js**_: 将大小调整代码移动到setSize函数中并在加载时调用它" >}}
 
 ```js
 const setSize = (container, camera, renderer) => {
@@ -154,9 +154,9 @@ export { Resizer };
 
 {{< /code >}}
 
-Great. Now, let's add an event listener and call `setSize` again whenever the event fires.
+非常好。现在，让我们添加一个事件侦听器并在事件触发时再次调用`setSize`。
 
-{{< code lang="js" linenos="" linenostart="9" hl_lines="14-17" caption="_**Resizer.js**_: set up the event listener" >}}
+{{< code lang="js" linenos="" linenostart="9" hl_lines="14-17" caption="_**Resizer.js**_: 设置事件监听器" >}}
 
 ```js
 class Resizer {
@@ -174,76 +174,76 @@ class Resizer {
 
 {{< /code >}}
 
-{{< figure src="first-steps/cube-stretched.png" caption="Cube abuse!" lightbox="true" class="medium left" >}}
+{{< figure src="first-steps/cube-stretched.png" caption="立方体滥用！" lightbox="true" class="medium left" >}}
 
-Now, `setSize` is called whenever the `resize` event fires. However, we're not quite done yet. If you try resizing the window now, you'll see that the scene does expand or contract to fit the new window size. However, weird things are happening to the cube. It seems to be getting squashed and stretched instead of resizing with the window. What's going on?
+现在，`setSize`只要`resize`事件触发就会调用。但是，我们还没有完成。如果您现在尝试调整窗口大小，您会看到场景会扩展或收缩以适应新的窗口大小。然而，奇怪的事情正在发生在立方体上。它似乎被压扁和拉伸，而不是随窗口调整大小。这是怎么回事？
 
-{{< figure src="first-steps/cube-flattened.png" caption="Oh, the humanity!" lightbox="true" class="medium right" >}}
+{{< figure src="first-steps/cube-flattened.png" caption="哦，人类啊！" lightbox="true" class="medium right" >}}
 
 {{< clear >}}
 
-The camera, renderer, and `<canvas>` element are all being resized correctly. However, we're only calling `.render` a single time, which draws a single frame into the canvas. When the canvas is resized, this frame is stretched to fit the new size.
+相机、渲染器和`<canvas>`元素都已正确调整大小。但是，我们只调用了`.render`一次，它在画布中绘制了一个帧。当画布被调整大小时，这个框架被拉伸以适应新的大小。
 
-### Create an `onResize` Hook
+### 创建一个`onResize`钩子
 
-This means we need to generate a new frame every time the resize event fires. To do this, we need to call `World.render` right after `setSize`, inside the event listener in the `Resizer` class. However, we'd rather not pass the entire World class into Resizer. Instead, we'll create a `Resizer.onResize` hook. This enables us to perform some custom behavior whenever a resize happens.
+这意味着我们需要在每次调整大小事件触发时生成一个新帧。为此，在`Resizer`类的事件侦听器中，我们需要在`setSize`后面紧接着调用`World.render`方法。但是，我们不愿将整个World类传递给Resizer。相反，我们将创建一个`Resizer.onResize`钩子。这使我们能够在发生调整大小时执行一些自定义行为。
 
-{{< code from="9" to="23" file="worlds/first-steps/responsive-design/src/World/systems/Resizer.final.js" lang="js" linenos="true" hl_lines="18 22" caption="_**Resizer.js**_: an empty onResize method for custom resizing behavior" header="" footer="" >}}{{< /code >}}
+{{< code from="9" to="23" file="worlds/first-steps/responsive-design/src/World/systems/Resizer.final.js" lang="js" linenos="true" hl_lines="18 22" caption="_**Resizer.js**_: 用于自定义调整大小行为的空onResize方法" header="" footer="" >}}{{< /code >}}
 
-`.onResize` is an [empty method]({{< relref "book/appendix/javascript-reference#empty-functions" >}} "empty method") that we can customize from outside the `Resizer` class.
+`.onResize`是一个[空方法]({{< relref "book/appendix/javascript-reference#empty-functions" >}} "空方法")， 我们可以从`Resizer`类的外部自定义。
 
-### Customize `Resizer.onResize` in World
+### 在World中自定义`Resizer.onResize`
 
-Over in World, replace the empty `.onResize` with a new one that calls `World.render`.
+在World中，将空的`.onResize`替换为一个新的调用`World.render`。
 
-{{< code from="14" to="29" file="worlds/first-steps/responsive-design/src/World/World.final.js" lang="js" linenos="true" hl_lines="26-28" caption="_**World.js**_: customise Resizer.onResize" header="    ...." footer="" >}}{{< /code >}}
+{{< code from="14" to="29" file="worlds/first-steps/responsive-design/src/World/World.final.js" lang="js" linenos="true" hl_lines="26-28" caption="_**World.js**_: 自定义Resizer.onResize" header="    ...." footer="" >}}{{< /code >}}
 
-With that, automatic resizing is complete.
+这样，自动调整大小就完成了。
 
-Now that automatic resizing and antialiasing are working, our app looks much more professional. In the next chapter, we'll set up an animation loop, which will spit out a steady stream of frames at a rate of sixty per second. Once we do that, we'll no longer need to worry about re-rendering the frame after resizing.
+现在自动调整大小和抗锯齿功能就实现了，我们的应用程序看起来更加专业。在下一章中，我们将设置一个动画循环，它会以每秒60帧的速度稳定地输出帧流。一旦我们这样做了，我们将不再需要担心在调整大小后重新渲染帧。
 
-## Challenges
+## 挑战
 
 {{% aside success %}}
 
-### Easy
+### 简单
 
-1. Enable and disable AA and compare the difference.
+1. 启用和禁用AA并比较差异。
 
-2. Rotate the cube until the edges are vertical and horizontal. Now, can you see any difference with AA disabled?
+2. 旋转立方体，直到边缘垂直和水平。现在，你能看出禁用AA时有什么不同吗？
 
-3. Comment out the code for resizing in _**World.js**_ and compare the difference when you resize the window.
+3. 注释掉 _**World.js**_ 中调整大小的代码，并比较调整窗口大小时的差异。
 
-4. Comment out the custom `onResize` hook in _**World.js**_ and see what happens when you resize the window.
+4. 注释掉 _**World.js**_ 中的自定义`onResize`钩子，看看当你调整窗口大小时会发生什么。
 
 {{% /aside %}}
 
 {{% aside %}}
 
-### Medium
+### 中等
 
-1. Disable antialiasing. Now, zoom in on the cube to get a better view of the aliasing artifact. Don't use your browser's zoom function. Instead, try these methods:
+1. 禁用抗锯齿。现在，放大立方体以更好地查看锯齿伪影。不要使用浏览器的缩放功能。相反，请尝试以下方法：
 
-   - Enlarge the cube using `cube.scale`.
-   - Bring the cube closer to you using `cube.position.z`.
-   - Bring the camera closer to the cube using `camera.position.z` <br><br>
+   - 使用`cube.scale`放大立方体。
+   - 使用`cube.position.z`使立方体更靠近您。
+   - 使用`camera.position.z`使相机更靠近立方体。<br><br>
 
-2. Still with AA disabled, use `camera.position.x` (horizontal movement) and `camera.position.y` (vertical movement) to zoom in on the right-hand corner of the cube.
+2. 仍然禁用AA，使用`camera.position.x`(水平移动)和`camera.position.y`(垂直移动)放大立方体的右上角。
 
-3. Repeat 2., but this time, use `cube.position.x` and `cube.position.y`.
+3. 重复2.，但这一次，使用`cube.position.x`和`cube.position.y`。
 
-_Note how aliasing artifacts (jaggies) change as you move the cube around or zoom in and out._
+_请注意，当您四处移动立方体或放大和缩小时，锯齿伪影（锯齿）如何变化。_
 
 {{% /aside %}}
 
 {{% aside warning %}}
 
-### Hard
+### 困难
 
-1. Instead of using the container to size the scene, try entering some numbers manually. For example, create a scene that is 64 pixels wide and high, or 256 pixels wide and high. You might want to change the scene's background color here to see this more easily.
+1. 不要使用容器来调整场景大小，而是尝试手动输入一些数字。例如，创建一个宽高64像素或宽高256像素的场景。您可能希望在此处更改场景的背景颜色以更轻松地查看。
 
-2. Play with the `devicePixelRatio`. Try setting a higher value for DPR, like 4 or 8 (don't go too high though!). What happens if you set a value below 1, like 0.5? What happens if you set a high value for DPR and disable AA? How do the edges of the cube look?
+2. 玩玩`devicePixelRatio`。尝试为DPR设置更高的值，例如4或8（不过不要太高！）。如果您将值设置为低于1，例如0.5，会发生什么情况？如果您为DPR设置高值并禁用AA，会发生什么情况？立方体的边缘看起来如何？
 
-_`devicePixelRatio` values other than 1 render the scene at a higher or low resolution and then scale it to fit in the canvas. A DPR of 2 will render the scene at double resolution and scale down, while a DPR of 0.5 will render at half resolution and scale up. As you can imagine, high DPR values are very expensive to render!_
+_`devicePixelRatio`除了1以外的值以更高或更低的分辨率渲染场景，然后将其缩放以适合画布。DPR为2将以双倍分辨率渲染场景并按比例缩小，而DPR为0.5将以一半分辨率渲染并按比例放大。可以想象，高DPR值的渲染成本非常高！_
 
 {{% /aside %}}
