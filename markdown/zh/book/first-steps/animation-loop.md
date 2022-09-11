@@ -1,6 +1,6 @@
 ---
-title: "The Animation Loop"
-description: "In this chapter, we build an Animation Loop which will generate a stream of frames allowing us to add animation and other effects to our scenes."
+title: "动画循环"
+description: "在本章中，我们构建了一个动画循环，它将生成一个帧流，使我们能够将动画和其他效果添加到我们的场景中。"
 date: 2018-04-02
 weight: 107
 chapter: "1.7"
@@ -31,59 +31,59 @@ IDEStripDirectory: "worlds/first-steps/animation-loop/"
 IDEActiveDocument: "src/World/systems/Loop.js"
 ---
 
-# The Animation Loop
+# 动画循环
 
-{{< inlineScene entry="first-steps/static-cube.js" class="small right" caption="The output from a single call of<br>renderer.render" >}}
+{{< inlineScene entry="first-steps/static-cube.js" class="small right" caption="单次调用<br>renderer.render的输出" >}}
 
-Over the last couple of chapters, we've made amazing progress with our app. We have lights, colors, physically correct rendering, anti-aliasing, automatic-resizing, we know how to move objects around in 3D space, and our code is clean, modular, and well-structured. But our scene is missing one vital ingredient: **movement!**
+在过去的几章中，我们的应用程序取得了惊人的进步。我们有灯光、颜色、物理上正确的渲染、抗锯齿、自动调整大小，我们知道如何在3D空间中移动对象，而且我们的代码干净、模块化且结构良好。但是我们的场景缺少一个重要的元素：**运动！**
 
-We're using the `renderer.render` method to draw the scene. This method takes a scene and a camera as input and outputs a single still image to the HTML `<canvas>` element. The output is the non-moving purple box you can see above.
+我们正在使用该`renderer.render`方法来绘制场景。此方法将场景和相机作为输入，并将单个静止图像输出到HTML`<canvas>`元素。输出是您可以在上面看到的不动的紫色盒子。
 
-{{< code file="worlds/first-steps/animation-loop/src/World/World.final.js" from="32" to="36" lang="js" hl_lines="34" linenos="true" caption="_**World.js**_: drawing a single frame with `renderer.render`" >}}{{< /code >}}
+{{< code file="worlds/first-steps/animation-loop/src/World/World.final.js" from="32" to="36" lang="js" hl_lines="34" linenos="true" caption="_**World.js**_: 使用`renderer.render`方法画出一帧" >}}{{< /code >}}
 
 {{< inlineScene entry="first-steps/animation-loop.js" class="small right" >}}
 
-In this chapter, we'll add a simple rotation animation to the cube. Here's how we'll do it:
+在本章中，我们将为立方体添加一个简单的旋转动画。我们将这样做：
 
-- **call `renderer.render(...)`**
-- **wait until it's time to draw the next frame**
-- **rotate the cube a tiny amount**
-- **call `renderer.render(...)`**
-- **wait until it's time to draw the next frame**
-- **rotate the cube a tiny amount**
-- **call `renderer.render(...)`**
-- **wait until it's time to draw the next frame**
-- **rotate the cube a tiny amount**
+- **调用`renderer.render(...)`**
+- **等待。。。直到是时候画下一帧**
+- **稍微旋转立方体一点**
+- **调用`renderer.render(...)`**
+- **等待。。。直到是时候画下一帧**
+- **稍微旋转立方体一点**
+- **调用`renderer.render(...)`**
+- **等待。。。直到是时候画下一帧**
+- **稍微旋转立方体一点**
 - ...
 
-... and so on in an endless loop called an **animation loop**. Setting up this loop is simple since three.js does all the hard work for us via the `renderer.setAnimationLoop` method.
+......等等在一个称为**动画循环**的无限循环中。设置这个循环很简单，因为three.js通过`renderer.setAnimationLoop`方法为我们完成了所有困难的工作。
 
-We'll also introduce the three.js `Clock` in this chapter, a simple stopwatch class that we can use to keep animations in sync. We'll be dealing with time values less than one second throughout this chapter, so we'll use milliseconds (ms), which are thousandths of a second.
+我们还将在本章中介绍three.js的`Clock`，一个简单的秒表类，我们可以使用它来保持动画同步。我们将在本章中处理小于一秒的时间值，因此我们将使用毫秒 (ms)，即千分之一秒。
 
-Once we've set up the loop, our goal is to generate a steady stream of frames at a rate of sixty frames per second (60FPS), which means we need to call `.render` approximately once every sixteen milliseconds. In other words, we need to ensure that all of the processing we do in a frame takes less than 16ms (this is sometimes referred to as a **frame budget**). That means we need to update animations, perform any other tasks that need to be calculated across frames (such as physics), _and_ render the frame, in less than sixteen milliseconds on the lowest spec hardware that we intend to support. Over the rest of this chapter, as we set up the loop and create a simple rotating animation for the cube, we'll discuss how best to achieve this.
+一旦我们设置了循环，我们的目标就是以每秒60帧(60FPS)的速率生成稳定的帧流，这意味着我们需要大约每16毫秒调用一次`.render`。换句话说，我们需要确保我们在一帧中所做的所有处理的花费都少于16毫秒（这有时被称为**frame budget - 帧预算**）。这意味着我们需要更新动画，执行任何其他需要跨帧计算的任务（例如物理），并在我们打算支持的最低规格硬件上在不到16毫秒的时间内渲染帧。在本章的其余部分，当我们设置循环并为立方体创建一个简单的旋转动画时，我们将讨论如何最好地实现这一点。
 
-## Similarities with the Game Loop
+## 与游戏循环的相似之处
 
-Most game engines use the concept of a **game loop** that runs once per frame and is used to update and render the game. A basic game loop might consist of these four tasks:
+大多数游戏引擎使用每帧运行一次的**游戏循环**的概念，用于更新和渲染游戏。一个基本的游戏循环可能包含以下四个任务：
 
-1. **Get user input**
-2. **Calculate physics**
-3. **Update animations**
-4. **Render a frame**
+1. **获取用户输入**
+2. **计算物理**
+3. **更新动画**
+4. **渲染一帧**
 
-Even though three.js is not a game engine and we are calling our loop an **animation loop**, our goals are pretty similar. This means, instead of starting from scratch, we can borrow some tried and trusted ideas from game engine design. The loop we create in this chapter is very simple, but if you later find yourself needing a more complex one, perhaps to update animations and physics at a different rate than you render the scene, you can refer to a [book on game development](https://gameprogrammingpatterns.com/game-loop.html) for more info.
+尽管three.js不是游戏引擎并且我们将循环称为**动画循环**，但我们的目标非常相似。这意味着，我们可以从游戏引擎设计中借鉴一些久经考验且值得信赖的想法，而不是从头开始。我们在本章中创建的循环非常简单，但是如果您以后发现自己需要一个更复杂的循环，可能以与渲染场景不同的速率更新动画和物理，您可以参考[一本关于游戏开发的书](https://gameprogrammingpatterns.com/game-loop.html)了解更多信息信息。
 
-Later, we'll make our scene interactive. Fortunately for us, handling user input in the browser is easy thanks to [`addEventListener`]({{< relref "book/appendix/dom-api-reference#listening-for-events" >}} "`addEventListener`"), so we don't need to handle this task in the loop. Also, we won't be doing any physics calculations for now (although several great physics libraries work with three.js), so we can skip the physics step. Rendering is already covered by `renderer.render`. That leaves us with two tasks in this chapter: set up the loop itself, and then create a system for updating animations.
+稍后，我们将使我们的场景具有交互性。幸运的是，由于有了[`addEventListener`]({{< relref "book/appendix/dom-api-reference#listening-for-events" >}} "`addEventListener`")，在浏览器中处理用户输入很容易，所以我们不需要在循环中处理这个任务。此外，我们暂时不会进行任何物理计算（尽管有几个很棒的物理库能和three.js一起使用），所以我们可以跳过物理步骤。渲染已经被`renderer.render`处理。这给我们留下了本章中的两个任务：设置循环本身，然后创建一个更新动画的系统。
 
-We'll set up the loop first to generate a stream of frames, and then we'll set up the animation system.
+我们将首先设置循环以生成帧流，然后设置动画系统。
 
-## Creating an Animation Loop with three.js
+## 用three.js创建一个动画循环
 
-### The _**Loop.js**_ Module
+### _**Loop.js**_ 模块
 
-Open (or create) the _**systems/Loop.js**_ module and create a new `Loop` class inside. This class will handle all the looping logic and the animation system. You'll notice that we have imported `Clock`, which we'll use below to keep animations in sync. Next, since we'll use `renderer.render(scene, camera)` to generate frames, it's a fair bet we'll need the `camera`, `scene`, and `renderer` within the `Loop` class, so pass them to the constructor and save them as instance variables. Finally, create `.start` and `.stop` methods that we can later use to start/stop the loop.
+打开（或创建）_**systems/Loop.js**_ 模块并在其中创建一个新`Loop`类。这个类将处理所有的循环逻辑和动画系统。您会注意到我们已经导入`Clock`了 ，我们将在下面使用它来保持动画同步。接下来，由于我们将使用`renderer.render(scene, camera)`生成帧，因此可以肯定的是，我们需要在`Loop`类中使用`camera`、`scene`和`renderer`，因此需要将它们传递给构造函数并将它们保存为实例变量。最后，创建我们以后可以用来启动/停止循环的方法：`.start`和`.stop`。
 
-{{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="_**Loop.js**_: initial setup" >}}
+{{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="_**Loop.js**_: 初始化设置" >}}
 
 ```js
 import { Clock } from "three";
@@ -105,13 +105,13 @@ export { Loop };
 
 {{< /code >}}
 
-Over in World, add this new class to the list of imports:
+在World中，将这个新类添加到导入列表中：
 
-{{< code file="worlds/first-steps/animation-loop/src/World/World.final.js" from="1" to="8" lang="js" linenos="true" hl_lines="8" caption="_**World.js**_: import the `Loop` class" >}}{{< /code >}}
+{{< code file="worlds/first-steps/animation-loop/src/World/World.final.js" from="1" to="8" lang="js" linenos="true" hl_lines="8" caption="_**World.js**_: 导入`Loop`类" >}}{{< /code >}}
 
-Create the loop as a [module scoped variable]({{< relref "book/first-steps/world-app#set-up-the-camera-renderer-and-scene" >}} "module scoped variable") like the `camera`, `renderer`, and `scene`, since we don't want it to be accessible from outside the `World` class:
+将循环创建为[模块作用域变量]({{< relref "book/first-steps/world-app#set-up-the-camera-renderer-and-scene" >}} "模块作用域变量")，如`camera`、`renderer`和`scene`一样，因为我们不希望从`World`类外部访问它：
 
-{{< code lang="js" linenos="" linenostart="10" hl_lines="13 20" caption="_**World.js**_: create a `loop` instance" >}}
+{{< code lang="js" linenos="" linenostart="10" hl_lines="13 20" caption="_**World.js**_: 创建一个`loop`实例" >}}
 
 ```js
 let camera;
@@ -133,25 +133,25 @@ class World {
 
 {{< /code >}}
 
-Finally, add `.start` and `.stop` methods to `World`, which simply call their counterparts in `Loop`. This is how we'll provide access to the loop from within _**main.js**_:
+最后，添加`.start`和`.stop`方法到`World`中，它们只是调用它们在`Loop`中的对应项。这就是我们如何从 _**main.js**_ 中提供对循环的访问：
 
-{{< code file="worlds/first-steps/animation-loop/src/World/World.final.js" from="33" to="44" lang="js" linenos="true" hl_lines="38-44" caption="_**World.js**_: create the `.start` and `.stop` methods" >}}{{< /code >}}
+{{< code file="worlds/first-steps/animation-loop/src/World/World.final.js" from="33" to="44" lang="js" linenos="true" hl_lines="38-44" caption="_**World.js**_: 创建`.start`和`.stop`方法" >}}{{< /code >}}
 
-Then, over in _**main.js**_, switch out `world.render`:
+然后，在 _**main.js**_ 中，切换成`world.render`：
 
-{{< code file="worlds/first-steps/animation-loop/src/main.start.js" from="3" to="12" lang="js" linenos="true" hl_lines="10 11" caption="_**main.js**_: render a single still frame" >}}{{< /code >}}
+{{< code file="worlds/first-steps/animation-loop/src/main.start.js" from="3" to="12" lang="js" linenos="true" hl_lines="10 11" caption="_**main.js**_: 渲染单个静止帧" >}}{{< /code >}}
 
-... for `world.start`:
+... 对于`world.start`:
 
-{{< code file="worlds/first-steps/animation-loop/src/main.final.js" from="3" to="12" lang="js" linenos="true" hl_lines="10 11" caption="_**main.js**_: start the animation loop" >}}{{< /code >}}
+{{< code file="worlds/first-steps/animation-loop/src/main.final.js" from="3" to="12" lang="js" linenos="true" hl_lines="10 11" caption="_**main.js**_: 启动动画循环" >}}{{< /code >}}
 
-The scene will go black when you do this, but don't worry. It'll spring back to life again in a few moments once we have finished creating the loop.
+当你这样做时，场景会变黑，但不要担心。一旦我们完成创建循环，它会在片刻后再次恢复活力。
 
-### Creating the Loop with `.setAnimationLoop`
+### 使用`.setAnimationLoop`创建循环
 
-Now, everything is set up and we can create the loop. As we mentioned above, we don't need to worry about the technicalities of creating an animation loop since three.js provides a method that does everything for us: [`WebGLRenderer.setAnimationLoop`](https://threejs.org/docs/#api/en/renderers/WebGLRenderer.setAnimationLoop).
+现在，一切都设置好了，我们可以创建循环了。正如我们上面提到的，我们不需要担心创建动画循环的技术细节，因为three.js提供了一个为我们做所有事情的方法：[`WebGLRenderer.setAnimationLoop`](https://threejs.org/docs/#api/en/renderers/WebGLRenderer.setAnimationLoop)。
 
-{{< code lang="js" linenos="false" caption="Creating a loop using `.setAnimationLoop`" >}}
+{{< code lang="js" linenos="false" caption="使用`.setAnimationLoop`创建循环" >}}
 import { WebGLRenderer } from 'three';
 
 const renderer = new WebGLRenderer();
@@ -162,14 +162,14 @@ renderer.render(scene, camera);
 });
 {{< /code >}}
 
-This will call `renderer.render` over and over to generate a stream of frames. We can cancel a running loop by passing `null` as the callback:
+这将一遍又一遍地调用`renderer.render`以生成帧流。我们可以通过传递`null`作为回调来取消正在运行的循环：
 
-{{< code lang="js" linenos="false" caption="Stop a running loop" >}}
+{{< code lang="js" linenos="false" caption="停止正在运行的循环" >}}
 // stop the loop
 renderer.setAnimationLoop(null);
 {{< /code >}}
 
-Internally, the loop is created using [`.requestAnimationFrame`]({{< relref "/book/appendix/dom-api-reference#drawing-animation-frames" >}} "`.requestAnimationFrame`"). This built-in browser method intelligently schedules frames in sync with the refresh rate of your monitor and will smoothly reduce the frame rate if your hardware can't keep up. Since `.setAnimationLoop` was added fairly recently, older three.js examples and tutorials often use `.requestAnimationFrame` directly to set up the loop, and it's fairly simple to do it that way. However, with `.setAnimationLoop` there's a little extra magic to ensure the loop will work in virtual reality and augmented reality environments.
+在内部，循环是使用[`.requestAnimationFrame`]({{< relref "/book/appendix/dom-api-reference#drawing-animation-frames" >}} "`.requestAnimationFrame`")。这种内置的浏览器方法可以智能地安排帧与显示器的刷新率同步，如果您的硬件跟不上，它会平滑地降低帧率。由于`.setAnimationLoop`是最近添加的，较旧的three.js示例和教程通常直接使用`.requestAnimationFrame`设置循环，这样做相当简单。然而，`.setAnimationLoop`还有一点额外的魔力可以确保循环在虚拟现实和增强现实环境中工作。
 
 {{% note %}}
 TODO-LOW: possible move discussion of Hz and framerates here, or otherwise link to later in the chapter
@@ -178,65 +178,65 @@ TODO-LINK: link to "creating an animation loop with JavaScript" if/when the chap
 
 {{% aside success %}}
 
-### Virtual Reality, Augmented Reality, and the Animation Loop
+### 虚拟现实、增强现实和动画循环
 
-**Web Virtual Reality** (**WebVR**) and **Web Augmented Reality** (**WebAR**) are combined into a unified API called the [**WebXR Device API**](https://developer.mozilla.org/en-US/docs/Web/API/WebXR_Device_API). Support for these APIs was added to three.js around the start of 2018. If you're fortunate enough to own a virtual reality device, check out the [three.js VR examples here](https://threejs.org/examples/?q=webxr).
+**Web虚拟现实**(**WebVR**)和**Web增强现实**(**WebAR**)组合成一个统一的API，称为[**WebXR Device API**](https://developer.mozilla.org/en-US/docs/Web/API/WebXR_Device_API)。2018 年初左右，three.js添加了对这些API的支持。如果您有幸拥有虚拟现实设备，请查看[three.js VR示例](https://threejs.org/examples/?q=webxr)。
 
-At the time of writing this, in 2020, the WebXR API is relatively new and subject to change as development proceeds. By using `.setAnimationLoop`, we don't need to worry about any of these changes beyond keeping three.js up to date. Also, if you create a scene now and later decide to add VR capability, it will be easy to do so.
+在撰写本文时，2020年的WebXR API相对较新，并且会随着开发的进行而发生变化。通过使用`.setAnimationLoop`，我们无需担心任何这些更改，只需让three.js保持最新。此外，如果您现在创建一个场景，然后决定添加VR功能，那么这样做很容易。
 
 {{% /aside %}}
 
-### The `Loop.start` and `Loop.stop` Methods
+### `Loop.start`和`Loop.stop`方法
 
-Now, we can create the loop. We'll do it in `Loop.start` using `.setAnimationLoop`:
+现在，我们可以创建循环了。我们将在`Loop.start`中使用`.setAnimationLoop`：
 
-{{< code file="worlds/first-steps/animation-loop/src/World/systems/Loop.final.js" from="13" to="22" lang="js" linenos="true" hl_lines="" skip_lines="15,16,17" caption="_**Loop.js**_: create the `.start` method" >}}{{< /code >}}
+{{< code file="worlds/first-steps/animation-loop/src/World/systems/Loop.final.js" from="13" to="22" lang="js" linenos="true" hl_lines="" skip_lines="15,16,17" caption="_**Loop.js**_: 创建`.start`方法" >}}{{< /code >}}
 
-Next, create the counterpart `.stop` method, passing in `null` as the callback to stop the loop:
+接下来，创建对应的`.stop`方法，传入`null`作为回调以停止循环：
 
-{{< code file="worlds/first-steps/animation-loop/src/World/systems/Loop.final.js" from="23" to="25" lang="js" linenos="true" hl_lines="" skip_lines="15,16,17" caption="_**Loop.js**_: create the `.stop` method" >}}{{< /code >}}
+{{< code file="worlds/first-steps/animation-loop/src/World/systems/Loop.final.js" from="23" to="25" lang="js" linenos="true" hl_lines="" skip_lines="15,16,17" caption="_**Loop.js**_: 创建`.stop`方法" >}}{{< /code >}}
 
-As soon as you make these changes, your app will start to pump out frames at a rate of around sixty per second (or possibly higher, depending on the refresh rate of your monitor). However, you won't _see_ any difference. Nothing is moving yet, so we are simply drawing the same frame over and over. Our loop now looks like this:
+进行这些更改后，您的应用程序将开始以大约每秒60帧的速度输出帧（或者可能更高，具体取决于显示器的刷新率）。但是，您不会 _看到_ 任何区别。什么都没有动，因为我们只是一遍又一遍地画同一个帧。我们的循环现在看起来像这样：
 
-- **call `renderer.render(...)`**
-- **wait until it's time to draw the next frame**
-- **call `renderer.render(...)`**
-- **wait until it's time to draw the next frame**
-- **call `renderer.render(...)`**
-- **wait until it's time to draw the next frame**
+- **调用`renderer.render(...)`**
+- **等待。。。直到是时候画下一帧**
+- **调用`renderer.render(...)`**
+- **等待。。。直到是时候画下一帧**
+- **调用`renderer.render(...)`**
+- **等待。。。直到是时候画下一帧**
 - ...
 
-If you compare that to the loop we described at the start of the chapter, you'll see we are missing a vital step:
+如果你将它与我们在本章开头描述的循环进行比较，你会发现我们遗漏了一个重要步骤：
 
-- **call `renderer.render(...)`**
-- **wait until it's time to draw the next frame**
-- **rotate the cube a tiny amount**
-- **call `renderer.render(...)`**
-- **wait until it's time to draw the next frame**
-- **rotate the cube a tiny amount**
-- **call `renderer.render(...)`**
-- **wait until it's time to draw the next frame**
-- **rotate the cube a tiny amount**
+- **调用`renderer.render(...)`**
+- **等待。。。直到是时候画下一帧**
+- **旋转立方体一点点**
+- **调用`renderer.render(...)`**
+- **等待。。。直到是时候画下一帧**
+- **旋转立方体一点点**
+- **调用`renderer.render(...)`**
+- **等待。。。直到是时候画下一帧**
+- **旋转立方体一点点**
 - ...
 
-We need some way to adjust the cube's rotation right before we render each frame, and we need to do so in a way that works for any kind of animated object, not just a rotating cube. More generally, our loop should look like this:
+在渲染每一帧之前，我们需要一些方法来调整立方体的旋转，并且我们需要以适用于任何类型的动画对象的方式进行调整，而不仅仅是旋转的立方体。更一般地说，我们的循环应该是这样的：
 
-- **call `renderer.render(...)`**
-- **wait until it's time to draw the next frame**
-- **move animations forward one frame**
-- **call `renderer.render(...)`**
-- **wait until it's time to draw the next frame**
-- **move animations forward one frame**
-- **call `renderer.render(...)`**
-- **wait until it's time to draw the next frame**
-- **move animations forward one frame**
+- **调用`renderer.render(...)`**
+- **等待。。。直到是时候画下一帧**
+- **将动画向前移动一帧**
+- **调用`renderer.render(...)`**
+- **等待。。。直到是时候画下一帧**
+- **将动画向前移动一帧**
+- **调用`renderer.render(...)`**
+- **等待。。。直到是时候画下一帧**
+- **将动画向前移动一帧**
 - ...
 
-### Remove the `onResize` Hook
+### 移除`onResize`钩子
 
-First, let's tidy up. Now that the loop is running, whenever we resize the window a new frame will be produced on the next iteration of the loop. This is fast enough that you won't notice any delay so we don't need to manually redraw the scene on resizing anymore. Remove the `resizer.onResize` hook from World:
+首先，让我们整理一下。现在循环正在运行，每当我们调整窗口大小时，都会在循环的下一次迭代中生成一个新帧。这足够快，您不会注意到任何延迟，因此我们不再需要在调整大小时手动重绘场景。从World中移除`resizer.onResize`钩子：
 
-{{< code lang="js" linenos="" linenostart="17" hl_lines="31-33" caption="_**World.js**_: remove the highlighted lines" >}}
+{{< code lang="js" linenos="" linenostart="17" hl_lines="31-33" caption="_**World.js**_: 删除高亮所在行" >}}
 
 ```js
 constructor(container) {
@@ -261,25 +261,25 @@ constructor(container) {
 
 {{< /code >}}
 
-Now, try resizing the scene and notice that it works smoothly. This shows us that the loop is running correctly.
+现在，尝试调整场景的大小并注意它运行顺畅。这表明我们的循环运行正常。
 
-## The Animation System
+## 动画系统
 
-Consider a simple game where you explore a map and pick apples. Here are some animated objects you might add to this game:
+考虑一个简单的游戏，您可以在其中探索地图并挑选苹果。以下是您可以添加到此游戏中的一些动画对象：
 
-- The heroine, who has various animations like walk/run/jump/climb/pick.
-- Trees with apples. The apples grow over time, and the leaves blow in the wind.
-- Some scary bees that will try to chase you from the garden.
-- An interesting environment with objects like water, wind, leaves, and rocks.
-- Power-ups in the form of rotating cubes that hover above the ground.
+- 女主角，拥有各种动画，如步行/跑步/跳跃/攀爬/挑选。
+- 苹果树。苹果随着时间长大，树叶随风飘扬。
+- 一些可怕的蜜蜂会试图把你从花园里赶出去。
+- 一个有趣的环境，其中包含水、风、树叶和岩石等物体。
+- 以悬停在地面上的旋转立方体的形式加能量。
 
-... and so on. Each time the loop runs, we want to update all of these animations by moving them forward one frame. Just before we render each frame, we'll make the heroine step forward a tiny bit, we'll make each bee move towards her, we'll make the leaves move, the apples grow, and the powerups rotate, each by a tiny, tiny amount that is almost too small for the eye to see but over time creates a smooth animation.
+… 等等。每次循环运行时，我们都希望通过将它们向前移动一帧来更新所有这些动画。就在我们渲染每一帧之前，我们会让女主角向前迈出一点点，我们会让每只蜜蜂向她移动，我们会让叶子移动，苹果长大，能量立方体旋转，每一个都有一点点, 几乎是肉眼无法看到的微小量，但随着时间的推移会产生流畅的动画效果。
 
-### The `Loop.tick` Method
+### `Loop.tick`方法
 
-To handle all of this, we need a function that _updates_ all the animations, and this function should run once at the start of each frame. However, the word _update_ is already used a lot throughout three.js, so we'll choose the word _tick_ instead. Before we draw each frame, we'll make each animation _tick_ forward one frame. Add the `Loop.tick` method at the end of the `Loop` class, and then call it within the animation loop:
+为了处理所有这些，我们需要一个 _更新_ 所有动画的函数，并且这个函数应该在每一帧开始时运行一次。然而，_update_ 这个词已经在整个three.js中被大量使用，所以我们将选择 _tick_ 这个词。在我们绘制每一帧之前，我们会让每个动画 _tick_ 向前移动一帧。在`Loop`类的末尾添加`Loop.tick`方法，然后在动画循环中调用它：
 
-{{< code lang="js" linenos="" linenostart="13" hl_lines="16 27-29" caption="_**Loop.js**_: create the `.tick` method" >}}
+{{< code lang="js" linenos="" linenostart="13" hl_lines="16 27-29" caption="_**Loop.js**_: 创建`.tick`方法" >}}
 
 ```js
 start() {
@@ -303,11 +303,11 @@ tick() {
 
 {{< /code >}}
 
-### Centralized or Decentralized?
+### 中心化还是去中心化？
 
-When it comes to implementing this new `.tick` method, we have to make some design choices. One obvious solution is to create a complicated, centralized update function that controls all of the animated objects in our scene. It might look something like this:
+在实现这种新`.tick`方法时，我们必须做出一些设计选择。一个明显的解决方案是创建一个复杂的集中更新函数来控制我们场景中的所有动画对象。它可能看起来像这样：
 
-{{< code lang="js" linenostart="27" linenos="false" hl_lines="" caption="A centralized animation system" >}}
+{{< code lang="js" linenostart="27" linenos="false" hl_lines="" caption="中心化的动画系统" >}}
 
 ```js
 tick() {
@@ -331,11 +331,11 @@ tick() {
 
 {{< /code >}}
 
-Well, you get the picture. This might be ok if we have just a couple of animated objects in our scene, but it's not going to scale well. With fifty or a hundred animated objects, it's going to be downright ugly. It also breaks all kinds of software design principles, since now the `Loop` class has to have a deep understanding of how each animated object works.
+好吧，你应该明白了。如果我们的场景中只有几个动画对象，这可能没问题，但它不会很好地扩展。如果有五十或一百个动画对象，它会非常丑陋。它还打破了各种软件设计原则，因为现在`Loop`类必须深入了解每个动画对象的工作原理。
 
-Here's a better idea: we'll define the logic for updating each object _on the object itself_. Each object will expose that logic using a generic `.tick` method of its own. Now, the `Loop.tick` method will be simple. On each frame, we'll loop over a list of animated objects and tell each of them to `.tick` forward by one frame. It will look something like this:
+这里有一个更好的主意：我们将在 _对象本身上_ 定义更新每个对象的逻辑。每个对象都将使用自己的通用`.tick`方法暴露该逻辑。现在，`Loop.tick`方法会很简单。每一帧，我们将遍历一个动画对象列表，并告诉它们每个`.tick`向前一帧。它看起来像这样：
 
-{{< code lang="js" linenostart="23" linenos="false" hl_lines="" caption="A decentralized animation system" >}}
+{{< code lang="js" linenostart="23" linenos="false" hl_lines="" caption="去中心化的动画系统" >}}
 
 ```js
 // somewhere in the Loop class:
@@ -351,9 +351,9 @@ tick() {
 
 {{< /code >}}
 
-This is much better. Now, all the `Loop` class knows is that '_animated objects have a `.tick` method_'. These methods can be as complex or simple as needed for each object. For example, here's what a simple rotating powerup might look like:
+这要好得多。现在，`Loop`类都知道的是“_动画对象有一个`.tick`方法_”。这些方法可以根据每个对象的需要复杂或简单。例如，这是一个简单的旋转电源可能的样子：
 
-{{< code lang="js" linenos="false" linenostart="1" hl_lines="" caption="Creating a rotating powerup with a `.tick` method" >}}
+{{< code lang="js" linenos="false" linenostart="1" hl_lines="" caption="使用`.tick`方法创建一个旋转电源" >}}
 
 ```js
 function createPowerup() {
@@ -373,19 +373,19 @@ function createPowerup() {
 
 {{< /code >}}
 
-If you compare this to _**components/cube.js**_, you'll see this is quite similar. We just need to add a `cube.tick` method.
+如果将其与 _**components/cube.js**_ 进行比较，您会发现这非常相似。我们只需要添加一个`cube.tick`方法。
 
-This approach fits better with the modular philosophy we're using to design our application. Instead of having one part of the app grow more and more complicated, we'll break the complexity into small pieces, with each piece of logic defined at the place where it's used. This way, we can design each object as a self-contained entity. **Every object, from the humble spinning cube to the apple picking heroine, will encapsulate its behavior**. This is a powerful concept which we'll build on throughout the book.
+这种方法更适合我们用于设计应用程序的模块化理念。我们不会让应用程序的某个部分变得越来越复杂，而是将复杂性分解成小块，每个逻辑块都在使用它的地方定义。这样，我们可以将每个对象设计为一个独立的实体。**每一个物体，从不起眼的旋转立方体到摘苹果的女主角，都会封装它的行为**。这是一个强大的概念，我们将在整本书中建立它。
 
 ### `Loop.updatables`
 
-For this to work, we need a list of animated objects within the loop class. We'll use a simple array for this purpose, and we'll call this list `updatables`. Go ahead and create it now.
+为此，我们需要循环类中的动画对象列表。为此，我们将使用一个简单的数组，我们将此列表称之为`updatables`。继续并立即创建它。
 
-{{< code file="worlds/first-steps/animation-loop/src/World/systems/Loop.final.js" from="6" to="11" lang="js" linenos="true" hl_lines="10" caption="_**Loop.js**_: create a list to hold animated objects" >}}{{< /code >}}
+{{< code file="worlds/first-steps/animation-loop/src/World/systems/Loop.final.js" from="6" to="11" lang="js" linenos="true" hl_lines="10" caption="_**Loop.js**_: 创建一个列表来保存动画对象" >}}{{< /code >}}
 
-Next, within `Loop.tick`, loop over this list and call `.tick` on any object within it.
+接下来， 在`Loop.tick`内部，遍历这个列表并调用在此列表中任何对象的`.tick`方法。
 
-{{< code lang="js" linenos="" linenostart="27" hl_lines="" caption="_**Loop.js**_: loop over animated objects and call their `.tick` method" >}}
+{{< code lang="js" linenos="" linenostart="27" hl_lines="" caption="_**Loop.js**_: 循环动画对象并调用它们的`.tick`方法" >}}
 
 ```js
 tick() {
@@ -397,17 +397,17 @@ tick() {
 
 {{< /code >}}
 
-Take careful note of the fact that `Loop.tick` will run every frame, which means it will run sixty times per second. It's important to keep the amount of work done here to a minimum, which means that each animated object's `.tick` method must be as simple as possible.
+请注意`Loop.tick`将在每一帧中都运行，这是事实，这意味着它将每秒运行60次。将此处完成的工作量保持在最低限度很重要，这意味着每个动画对象的`.tick`方法必须尽可能简单。
 
-### The `cube.tick` Method
+### `cube.tick`方法
 
-Before we can add `cube` to the `updatables` list, it needs a `.tick` method, so go ahead and create one. This `.tick` method is where we'll define the logic for rotating the cube.
+在我们添加`cube`到`updatables`列表之前，它需要一个`.tick`方法，所以继续创建一个。我们将在此`.tick`方法中定义旋转立方体的逻辑。
 
-Each type of animated object will have a different `.tick` method. In our [apple picking game](#the-animation-system), the heroine's tick method will check whether she is walking, running, jumping, or standing still, and then play a frame from one of those animations, while the apple tree's tick method will check the ripeness of the apples and rustle the leaves, and each of the evil bee's tick methods will check the position of the heroine then move the bee towards her a tiny bit. If she is close enough, the bee will attempt to sting her.
+每种类型的动画对象都有不同的`.tick`方法。在我们的[苹果采摘游戏](#the-animation-system)中，女主角的tick方法会检查她是在走、跑、跳还是站着不动，然后从其中一个动画中播放一帧，而苹果树的tick方法会检查苹果的成熟度和树叶沙沙作响，每只邪恶蜜蜂的tick方法都会检查女主人公的位置，然后将蜜蜂移向她一点点。如果她离得足够近，蜜蜂会试图蜇她。
 
-Here, we'll simply update the cube's rotation on the $X$, $Y$, _and_ $Z$ axes by a tiny amount each frame. This will give it a random-looking tumble.
+在这里，我们将简单地在$X$、$Y$和$Z$轴每帧少量的更新立方体。这将使它看起来随机翻滚。
 
-{{< code lang="js" linenos="" linenostart="8" hl_lines="16-21" caption="_**cube.js**_: create the `.tick` method" >}}
+{{< code lang="js" linenos="" linenostart="8" hl_lines="16-21" caption="_**cube.js**_: 创建`.tick`方法" >}}
 
 ```js
 function createCube() {
@@ -431,39 +431,39 @@ function createCube() {
 
 {{< /code >}}
 
-**Note**: adding a property to an existing class at run-time like this is known as [_monkey-patching_](https://en.wikipedia.org/wiki/Monkey_patch) (here, we're adding `.tick` to an instance of `Mesh`). It's common practice, and in our simple app won't cause any problems. However, we shouldn't get into the habit of doing this carelessly since in certain situations it can cause performance issues. We'll only allow ourselves to do this here as the alternatives are more complex.
+**注意**：像这样在运行时向现有类添加属性称为[_猴子补丁_](https://en.wikipedia.org/wiki/Monkey_patch)（这里，我们添加`.tick`到`Mesh`实例）。这是常见的做法，在我们简单的应用程序中不会引起任何问题。但是，我们不应该养成这样粗心大意的习惯，因为在某些情况下它会导致性能问题。我们只允许自己在这里这样做，因为替代方案更复杂。
 
-0.01 is a value that gives a fairly slow rotation speed, and we discovered it by trial and error. [Rotations in three.js are measured in radians]({{< relref "/book/first-steps/transformations#the-unit-of-rotation-is-radians" >}} "Rotations in three.js are measured in radians") so internally this value is being interpreted as _0.01 radians_, which is roughly half a degree. So, we're rotating the cube by about half a degree on each axis every frame. At sixty frames per second, this means our cube will rotate $60 \times 0.5 = 30 ^{\circ}$ each second, or one full rotation around each of the $X$, $Y$ and $Z$ axes approximately every twelve seconds.
+0.01是一个相当慢的旋转速度的值，我们通过反复试验发现了它。 [three.js中的旋转以弧度为单位]({{< relref "/book/first-steps/transformations#the-unit-of-rotation-is-radians" >}} "three.js中的旋转以弧度为单位")，因此在内部这个值被解释为 _0.01弧度_，大约是半度。因此，我们每帧将立方体在每个轴上旋转大约半度。每秒六十帧，这意味着我们的立方体将旋转$60 \times 0.5 = 30 ^{\circ}$每秒，或围绕$X$, $Y$和$Z$轴大约每十二秒一整圈。
 
-#### Add the `cube` to `Loop.updatables`
+#### 添加`cube`到`Loop.updatables`
 
-Next, over in World, add the cube to the the `Loop.updatables` list.
+接下来，在World中，将立方体添加到`Loop.updatables`列表中。
 
-{{< code file="worlds/first-steps/animation-loop/src/World/World.final.js" from="16" to="31" lang="js" linenos="true" hl_lines="26" caption="_**World.js**_: add the cube to `Loop.updatables`" >}}{{< /code >}}
+{{< code file="worlds/first-steps/animation-loop/src/World/World.final.js" from="16" to="31" lang="js" linenos="true" hl_lines="26" caption="_**World.js**_: 添加立方体到`Loop.updatables`中" >}}{{< /code >}}
 
-Right away, the cube should start rotating.
+立方体应该立即开始旋转。
 
-## Timing in the Animation System
+## 动画系统中的计时
 
-Look at this sentence again: _**at sixty frames per second**, this means our cube will rotate $60 \times 0.5 = 30 ^{\circ}$ each second, or one full rotation around each of the $X$, $Y$ and $Z$ axes approximately every twelve seconds_. But, what if our app is _not_ running at sixty frames per second? If it runs slower than 60FPS, the animation will run slower, and if it runs faster, the animation will run faster. In other words, the speed of our animation depends on the device it's being viewed on. Not good. To understand how to fix this, we need to take a deeper look at what we mean by the word _frame_.
+再看这句话：_**每秒六十帧**，这意味着我们的立方体将旋转$60 \times 0.5 = 30 ^{\circ}$每秒，或围绕$X$, $Y$和$Z$轴大约每十二秒一整圈_。但是，如果我们的应用程序 _没有_ 以每秒60帧的速度运行怎么办？如果它以低于60FPS的速度运行，动画将运行缓慢，而如果它运行得更快，动画将运行得更快。换句话说，我们动画的速度取决于观看它的设备。这并不好。要了解如何解决此问题，我们需要更深入地了解我们所说的 _帧_ 这个词的含义。
 
-### Fixed and Dynamic Frames
+### 固定帧和动态帧
 
-There's an important distinction between the kind of frames we are talking about in this chapter and the kind of frames that make up television shows or movies. **Frame rates in film are _fixed_**. Movies are usually shot at 24 frames per second (FPS), while the standard for television shows is 30FPS, although some newer shows may be filmed at 60FPS. Whatever frame rate is chosen, that rate won't change for the entire duration of the movie or show.
+我们在本章中讨论的帧类型与构成电视节目或电影的帧类型之间有一个重要的区别。**电影中的帧速率是 _固定_ 的**。电影通常以每秒24帧 (FPS) 的速度拍摄，而电视节目的标准是30FPS，尽管一些较新的节目可能以60FPS的速度拍摄。无论选择何种帧速率，该速率在电影或节目的整个持续时间内都不会改变。
 
-However, **our animation loop doesn't generate frames at a fixed rate**. The loop will attempt to render frames at the hardware-defined refresh rate of your screen (behind the scenes the browser is using `.requestAnimationFrame` to do this). At the time of writing, most screens have a 60Hz refresh rate, but this value can be as high as 240Hz on new screens, while in VR it will be at least 90Hz. This means, on a 60Hz screen, the **target frame rate** is 60FPS, on a 90Hz screen, the target frame rate is 90FPS, and so on.
+但是，**我们的动画循环不会以固定速率生成帧**。该循环将尝试以硬件定义的屏幕刷新率渲染帧（在场景后面，浏览器使用`.requestAnimationFrame`执行此操作）。在撰写本文时，大多数屏幕都有60Hz的刷新率，但在新屏幕上这个值可以高达240Hz，而在VR中至少会达到90Hz。这意味着，在60Hz屏幕上，**目标帧率**为60FPS，在90Hz 屏幕上，目标帧率为90FPS，以此类推。
 
-However, we might not succeed in generating frames that quickly. If the device your app is running on is not be powerful enough to reach the target frame rate, the animation loop will run slower. Even on fast hardware, your app will have to share computing resources with other applications, and there may not always be enough to go around. In each of these cases, the animation loop will generate frames at a lower rate, and this rate may fluctuate from one moment to the next depending on many factors. This is called a **_variable frame rate_**.
+但是，我们可能无法成功的快速生成帧。如果运行您的应用程序的设备功能不足以达到目标帧速率，则动画循环将运行得更慢。即使在快速硬件上，您的应用程序也必须与其他应用程序共享计算资源，而且可能并不总是足够的。在每一种情况下，动画循环都会以较低的速率生成帧，并且这个速率可能会因为许多因素从一个时刻到下一个时刻波动。这称为**_可变帧速率_**。
 
-That means, as we have currently set up the animation of our cube, it will rotate slower on an old, slow device, while on fancy new 240Hz gaming monitor it will go into hyper-speed. $240 = 4\times60$, meaning the cube will rotate at four times the desired speed!
+这意味着，由于我们目前已经设置了立方体的动画，它会在旧的慢速设备上旋转得更慢，而在花哨的新240Hz游戏显示器上它将进入超高速状态。$240 = 4\times60$，这意味着立方体将以所需速度的四倍旋转！
 
-To prevent this, **we need to decouple animation speed from frame rate**. Here's how we'll do it: **when we tell an object to `.tick` forward a frame, we'll scale the size of the movement by how long the previous frame took**. This way, as the frame rate varies, we'll constantly adjust the size of each `.tick` so that the animation remains smooth. Our adjustments will always be one frame behind, but the frames are generated so quickly this won't be visible to the user. This way, animations will run at the same speed on all devices.
+为了防止这种情况，**我们需要将动画速度与帧速率解耦**。我们将这样做：**当我们告诉一个对象`.tick`前进一帧时，我们将根据前一帧花费的时间来缩放移动的大小**。这样，随着帧速率的变化，我们将不断调整每个`.tick`的大小，以使动画保持流畅。我们的调整总是会落后一帧，但是这些帧生成得如此之快，以至于用户看不到。这样，动画将在所有设备上以相同的速度运行。
 
-### Measuring Time Across Frames
+### 测量跨帧时间
 
-This is where the `Clock` class comes in. We'll use [`Clock.getDelta`](https://threejs.org/docs/#api/en/core/Clock.getDelta) to measure how long the previous frame took.
+这就是`Clock`类的用武之地。我们将用[`Clock.getDelta`](https://threejs.org/docs/#api/en/core/Clock.getDelta)来衡量前一帧花了多长时间。
 
-{{< code lang="js" linenos="false" caption="The `Clock.getDelta` method" >}}
+{{< code lang="js" linenos="false" caption="`Clock.getDelta`方法" >}}
 import { Clock } from 'three';
 
 const clock = new Clock();
@@ -471,55 +471,55 @@ const clock = new Clock();
 const delta = clock.getDelta();
 {{< /code >}}
 
-**`.getDelta` tells us how much time has passed since the last time we called `.getDelta`**. If we call it once, and only once, at the start of each frame, it will tell us how long the previous frame took. **Note: if you call it `.getDelta` more than once per frame, subsequent calls will measure close to zero.** Only call `.getDelta` once at the very start of a frame!
+**`.getDelta`告诉我们自上次调用`.getDelta`以来已经过去了多少时间**。如果我们在每一帧开始时调用它一次，并且只调用一次，它将告诉我们前一帧花了多长时间。**注意：如果您每帧调用`.getDelta`不止一次，后续调用的测量值将接近于零**。只在一帧开始时调用`.getDelta`一次！
 
 {{% aside %}}
 
 #### $Δ$ (Delta) {#delta}
 
-Delta is a Greek letter, uppercase $Δ$, lowercase $δ$.
+Delta 是希腊字母，大写$Δ$, 小写$δ$。
 
-The $Δ$ symbol is often used to denote a change in some quantity. Here, `Clock.getDelta` tells us the rate of change of time.
+$Δ$符号通常用于表示某个数量的变化。在这里，`Clock.getDelta`告诉我们时间的变化率。
 {{% /aside %}}
 
-### Create a `clock`
+### 创建`clock`
 
-Over in Loop, create a module scoped `clock` instance at the top of the file.
+在循环中，在文件顶部创建一个模块作用域的`clock`实例。
 
-{{< code file="worlds/first-steps/animation-loop/src/World/systems/Loop.final.js" from="1" to="5" lang="js" linenos="true" hl_lines="3" caption="_**Loop.js**_: create the `clock`" footer="  ..." >}}{{< /code >}}
+{{< code file="worlds/first-steps/animation-loop/src/World/systems/Loop.final.js" from="1" to="5" lang="js" linenos="true" hl_lines="3" caption="_**Loop.js**_: 创建`clock`" footer="  ..." >}}{{< /code >}}
 
-### Call `.getDelta` at the Start of Each Frame
+### 在每帧开始时调用`.getDelta`
 
-Next, we'll call `.getDelta` at the start of `Loop.tick`, saving the result in a variable called `delta` which we'll then pass into the `.tick` method of each animated object.
+接下来，我们将在`Loop.tick`的开头调用`.getDelta`，将结果保存在一个名为`delta`的变量中，然后我们将其传递给每个动画对象的`.tick`方法。
 
-{{< code file="worlds/first-steps/animation-loop/src/World/systems/Loop.final.js" from="27" to="38" skip_lines="31 32 33 34" lang="js" linenos="true" hl_lines="29 32" caption="_**Loop.js**_: pass time deltas to animated objects" >}}{{< /code >}}
+{{< code file="worlds/first-steps/animation-loop/src/World/systems/Loop.final.js" from="27" to="38" skip_lines="31 32 33 34" lang="js" linenos="true" hl_lines="29 32" caption="_**Loop.js**_: 将时间增量传递给动画对象" >}}{{< /code >}}
 
 {{% aside success %}}
 
-### Frame Rates Are Never Perfectly Steady
+### 帧速率永远不会完全稳定
 
-In the inline code editor, we've added a log statement:
+在内联代码编辑器中，我们添加了一条日志语句：
 
-{{< code file="worlds/first-steps/animation-loop/src/World/systems/Loop.final.js" from="31" to="33" lang="js" linenos="true" caption="_**Loop.js**_: Log the elapsed time in milliseconds" >}}{{< /code >}}
+{{< code file="worlds/first-steps/animation-loop/src/World/systems/Loop.final.js" from="31" to="33" lang="js" linenos="true" caption="_**Loop.js**_: 以毫秒为单位记录经过的时间" >}}{{< /code >}}
 
-`delta` is in seconds, so we multiplied it by one thousand to convert to milliseconds. These lines are commented out to avoid filling the console with hundreds of logs statement, but if you remove the `//` characters, and open the console by pressing F12, you'll see a rapidly updating list of logs telling you how long each frame took to render. If you are viewing this page on a monitor with a refresh rate of 60Hz, it'll look something like this:
+`delta`以秒为单位，因此我们将其乘以一千以转换为毫秒。这些行被注释掉以避免用数百条日志语句填充控制台，但是如果您删除`//`字符并按F12打开控制台，您将看到一个快速更新的日志列表，告诉您每帧渲染花费了多长时间. 如果您在刷新率为 60Hz 的显示器上查看此页面，它将如下所示：
 
-{{< code lang="bash" linenos="false" caption="Frame times logged to the console" >}}
+{{< code lang="bash" linenos="false" caption="记录到控制台的帧时间" >}}
 The last frame rendered in $17.40000000083819$ milliseconds
 The last frame rendered in $15.710000006947666$ milliseconds
 The last frame rendered in $16.574999986914918$ milliseconds
 ...
 {{< /code >}}
 
-Even with a powerful GPU and a scene as simple as this single cube, we won't achieve exactly sixty frames per second. Some frames render a little fast, and others render a little slow. This is normal. Part of the reason for this is that, [for security reasons](https://developer.mozilla.org/en-US/docs/Web/API/Performance/now#Reduced_time_precision) browsers add around a millisecond of jitter to the result of `.getDelta`.
+即使有一个强大的GPU和一个像这个单一立方体这样简单的场景，我们也不会达到每秒60帧的精度。有些帧渲染得有点快，有些帧渲染得有点慢。这个是正常的。部分原因是，[出于安全原因](https://developer.mozilla.org/en-US/docs/Web/API/Performance/now#Reduced_time_precision)，浏览器会在`.getDelta`的结果中增加大约1毫秒的抖动。
 
 {{% /aside %}}
 
-### Scale the Cube's Rotation by `delta`
+### 通过`delta`来缩放立方体的旋转
 
-Scaling movements by `delta` is easy. We simply decide how much we want to move an object in one second, and then multiply that value by `delta` within the objects `.tick` method. In `cube.tick`, we found a value that resulted in the cube rotating approximately thirty degrees per second _at 60FPS_.
+通过`delta`按比例缩放运动很容易。我们只需决定在一秒钟内要移动一个对象多少，然后在`objects.tick`方法中将该值乘以`delta`。在`cube.tick`中，我们发现了一个值，该值导致立方体在60FPS时每秒旋转大约30度。
 
-{{< code lang="js" linenos="" linenostart="18" hl_lines="" caption="_**cube.js**_: the unscaled tick method" >}}
+{{< code lang="js" linenos="" linenostart="18" hl_lines="" caption="_**cube.js**_: 未缩放的tick方法" >}}
 
 ```js
 cube.tick = () => {
@@ -532,17 +532,17 @@ cube.tick = () => {
 
 {{< /code >}}
 
-Now, we'll fix that so the cube rotates thirty degrees per second at _any_ FPS. First, we need to convert thirty degrees to radians, and for that, we'll use [`MathUtils.degToRad`]({{< relref "/book/first-steps/transformations#the-unit-of-rotation-is-radians" >}} "`MathUtils.degToRad`") method (refer back to the transformations chapter if you need a reminder of how that works):
+现在，我们将解决这个问题，使立方体在 _任何_ FPS都以每秒30度旋转。首先，我们需要将30度转换为弧度，为此，我们将使用[`MathUtils.degToRad`]({{< relref "/book/first-steps/transformations#the-unit-of-rotation-is-radians" >}} "`MathUtils.degToRad`")方法（如果您需要回忆它是如何工作的，请参阅转换章节）：
 
-{{< code lang="js" linenos="false" caption="Converting degrees to radians" >}}
+{{< code lang="js" linenos="false" caption="将度数转换为弧度" >}}
 import { MathUtils } from 'three';
 
 const radiansPerSecond = MathUtils.degToRad(30);
 {{< /code >}}
 
-Next, we'll scale `radiansPerSecond` by `delta` each frame.
+接下来，我们在每一帧将`radiansPerSecond`缩放`delta`。
 
-{{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="_**cube.js**_: the updated tick method, now scaling by `delta`" >}}
+{{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="_**cube.js**_: 修改后的tick方法, 现在按比例缩放`delta`" >}}
 
 ```js
 cube.tick = (delta) => {
@@ -555,39 +555,39 @@ cube.tick = (delta) => {
 
 {{< /code >}}
 
-Putting all that together, here's our final _**cube.js**_ module:
+把所有这些放在一起，这是我们最终的 _**cube.js**_ 模块：
 
 {{< code file="worlds/first-steps/animation-loop/src/World/components/cube.final.js" from="1" to="26" lang="js" linenos="true"
-hl_lines="3 15 18-23" caption="_**cube.js**_: final code" >}}{{< /code >}}
+hl_lines="3 15 18-23" caption="_**cube.js**_: 最终代码" >}}{{< /code >}}
 
 {{< inlineScene entry="first-steps/animation-loop-duplicate.js" class="small right">}}
 
-Now, once again the cube will be rotating thirty degrees per second around each axis, but with an important difference: the animation will now play at the same speed no matter where we run it, whether on a VR rig running at 90FPS, or a ten-year-old smartphone that can barely crank out 10FPS, or some future system from the year 3000 that runs at a billion FPS. **The frame rate may change, but the animation speed will not**.
+现在，立方体将再次围绕每个轴每秒旋转30度，但有一个重要的区别：无论我们在哪里运行动画，无论是在以90FPS运行的VR装备上，还是在十年前的智能手机几乎不能达到10FPS，或者是3000年以后以10亿FPS运行的未来系统。**帧率可能会改变，但动画速度不会**。
 
-With this change, **we have successfully decoupled animation speed from frame rate.**
+通过这一更改，**我们成功地将动画速度与帧速率解耦。**
 
-## To Loop or Not to Loop
+## 循环或不循环
 
-Now that we've started the loop, `.render` is being called over and over, creating a steady stream of frames, and before we render each frame, we're rotating the cube by a tiny amount. As long as the frames are being generated with sufficient speed (around 12FPS or above), and the difference between successive frames is small enough, we'll perceive this as an animation.
+现在我们已经开始了循环，`.render`被一遍又一遍地调用，创建了一个稳定的帧流，在我们渲染每一帧之前，我们将立方体旋转了一小部分。只要以足够的速度（大约 12FPS或更高）生成帧，并且连续帧之间的差异足够小，我们就会将其视为动画。
 
-The animation loop will be the driving force of many apps. This loop, when combined with the idea of encapsulating the animation logic in each object's `.tick` method, is a powerful tool that we'll continue to explore and build on throughout the book. Later, we'll use the loop to drive behavior that is much more complex and interesting than our simple rotating cube, either [created in our code](https://threejs.org/examples/webgl_buffergeometry_instancing.html) or [loaded from an external application](https://threejs.org/examples/webgl_loader_fbx.html).
+动画循环将成为许多应用程序的驱动力。这个循环与将动画逻辑封装在每个对象的`.tick`方法中的想法相结合，是一个强大的工具，我们将在本书中继续探索和构建。稍后，我们将使用循环来驱动比简单的旋转立方体更复杂和有趣的行为，无论是[在我们的代码中创建的](https://threejs.org/examples/webgl_buffergeometry_instancing.html)还是[从外部应用程序加载的](https://threejs.org/examples/webgl_loader_fbx.html)。
 
 <div class="fig-comparison">
-  {{< iframe src="https://threejs.org/examples/webgl_buffergeometry_instancing.html" height="500" title="An animation created in code" caption="An animation created in code" >}}
-  {{< iframe src="https://threejs.org/examples/webgl_loader_fbx.html" height="500" title="An animation created in an external application" caption="An animation created in an external application" >}}
+  {{< iframe src="https://threejs.org/examples/webgl_buffergeometry_instancing.html" height="500" title="在我们的代码中创建的动画" caption="在我们的代码中创建的动画" >}}
+  {{< iframe src="https://threejs.org/examples/webgl_loader_fbx.html" height="500" title="在外部应用程序中创建的动画" caption="在外部应用程序中创建的动画" >}}
 </div>
 
-Animations like these are beautiful. However, they come at a cost, which will probably be obvious to you right now if you are viewing this on a low-powered device. As you chase the goal of sixty frames per second, you must work hard to keep the loop running fast. This is one place in your app where constant vigilance, profiling, and optimization is a necessity.
+像这样的动画很漂亮。但是，它们是有代价的，如果您在低功率设备上查看它，这对您现在来说可能很明显。当您追求每秒60帧的目标时，您必须努力保持循环快速运行。这是您的应用程序中需要持续警惕、分析和优化的地方。
 
-Not all scenes have animation though. Some scenes update only occasionally, for example, only during user interaction. A common example of this is a product display app. Such apps are used to display a 3D product such as a shoe or milk bottle that the user can rotate or zoom to get a better look. In this type of scene, whenever the user is _not_ interacting, the scene will remain unchanged between frames. Here's another example of a scene without an animation loop.
+但并非所有场景都有动画。某些场景仅偶尔更新，例如仅在用户交互期间。一个常见的例子是产品展示应用程序。此类应用程序用于显示3D产品，例如鞋子或奶瓶，用户可以旋转或缩放这些产品以获得更好的外观。在这种类型的场景中，只要用户 _不_ 进行交互，场景将在帧之间保持不变。这是另一个没有动画循环的场景示例。
 
-{{< iframe src="https://threejs.org/examples/webgl_decals.html" height="500" title="No animation loop doesn't mean no movement!" caption="No animation loop doesn't mean no movement!" >}}
+{{< iframe src="https://threejs.org/examples/webgl_decals.html" height="500" title="没有动画循环并不意味着没有运动！" caption="没有动画循环并不意味着没有运动！" >}}
 
-Running the loop for an app like this would be a waste. This will be especially noticeable on mobile devices, where the constant GPU and CPU churn of the loop will drain the battery. As a result, you should only use the loop when you need to.
+为这样的应用程序运行循环将是一种浪费。这在移动设备上尤其明显，因为持续的GPU和CPU的循环会耗尽电池电量。因此，您应该只在需要时使用循环。
 
-`World.render` and `World.start` give us two ways of producing frames. For apps with constant animation, we'll use `.start` to run a loop, and for apps that update occasionally, we'll call `.render` whenever a new frame is needed. We'll refer to the second technique as **_rendering on demand_**.
+`World.render`和`World.start`给我们两种生成帧的方法。对于具有恒定动画的应用程序，我们将使用`.start`循环运行，对于偶尔更新的应用程序，我们将在需要新帧时调用`.render`。我们将第二种技术称为**_按需渲染_**。
 
-{{< code lang="js" linenos="false" caption="_**main.js**_: two ways of producing frames" >}}
+{{< code lang="js" linenos="false" caption="_**main.js**_: 生成帧的两种方式" >}}
 const world = new World();
 
 // produce a single frame (render on demand)
@@ -597,44 +597,44 @@ world.render();
 world.start();
 {{< /code >}}
 
-Rendering on demand may reduce battery use, but on the other hand, using the loop is simpler. Instead of thinking about where and when you need to draw frames, you simply churn out a constant, steady supply, and for this reason, most of the examples in this book will use the loop. However, this is not an endorsement of the loop over rendering on demand. It's up to you to decide which method is appropriate for your app.
+按需渲染可能会减少电池使用，但另一方面，使用循环更简单。它无需考虑需要在何时何地绘制帧，您只需生成持续的稳定的帧即可，因此，本书中的大多数示例都将使用循环。但是，这并不是说按需渲染比循环更好。由您决定哪种方法适合您的应用程序。
 
-Next up, we'll see how to make our materials more interesting using textures.
+接下来，我们将看到如何使用纹理使我们的材质更有趣。
 
-## Challenges
+## 挑战
 
 {{% aside success %}}
 
-### Easy
+### 简单
 
-1. Play with the animation speed. Make the cube perform one rotation every hundred seconds, then one rotation every single second.
+1. 玩一玩动画速度。使立方体每百秒旋转一圈，然后每秒旋转一圈。
 
-2. You can animate anything, not just rotations. Try animating some other properties of the mesh.
+2. 您可以为任何东西设置动画，而不仅仅是旋转。尝试为网格的其他一些属性设置动画。
 
 {{% /aside %}}
 
 {{% aside %}}
 
-### Medium
+### 中等
 
-1. Add a `.tick` method to the camera, then make it zoom out slowly. Try zooming out at around one meter per second.
+1. 给相机添加一个`.tick`方法，然后让它慢慢缩小。尝试以每秒一米左右的速度缩小。
 
-2. Add a `.tick` method to the light, and animate any of the `light.position.x`, `.y`, or `.z` parameters.
+2. 向灯光添加一个`.tick`方法，并对`light.position.x`, `.y`或`.z`参数进行动画处理。
 
-3. Add a `click` event listener (or, if you want to get fancy, a button) that starts and stops the animation loop. Do this in _**main.js**_ using `World.start` and `World.stop`.
+3. 添加一个启动和停止动画循环的`click`事件监听器（或者，如果你想花哨的话，一个按钮）。在 _**main.js**_ 中使用`World.start`和`World.stop`执行此操作。
 
-Don't forget to add the camera and light to the `updatables` list! To zoom out, increase `camera.position.z`.
+不要忘记将相机和灯光添加到`updatables`列表中！要缩小，请增加`camera.position.z`。
 
 {{% /aside %}}
 
 {{% aside warning %}}
 
-### Hard
+### 困难
 
-Rotation is an easy property to animate since rotations go round in circles. When we reach $360^\circ$ on any axis, we come back to where we started. This means we can infinitely increase the rotation and the result is a nice looking animation. If we do the same with position, or scaling, the object being animated will quickly vanish from our screens. However, we can create cyclical animations of other properties using [the modulo operator `%`]({{< relref "/book/appendix/javascript-reference#the-modulo-operator" >}} "the modulo operator `%`").
+旋转是一个很容易制作动画的属性，因为旋转是循环的。当我们在任何轴上到达$360^\circ$，我们都会回到我们开始的地方。这意味着我们可以无限增加旋转，结果是一个漂亮的动画。如果我们对位置或缩放做同样的事情，被动画的对象将很快从我们的屏幕上消失。但是，我们可以使用[模运算符`%`]({{< relref "/book/appendix/javascript-reference#the-modulo-operator" >}} "模运算符`%`")创建其他属性的循环动画。
 
-1. Animate the `.position` of the cube, camera, or light, using the modulo operator. Make the camera zoom out by ten meters repeatedly. Make the cube animate from the left to the right of the screen over and over again.
+1. 使用模运算符为立方体、相机或灯光设置`.position`动画。让相机反复缩小十米。让立方体一遍又一遍地从屏幕的左到右进行动画。
 
-2. Make the camera zoom out by ten meters, then reverse direction to zoom in again. Animate the cube from left to right across the screen, then, when it reaches the right edge of the screen (roughly), have it reverse direction and move back to the starting point.
+2. 让相机缩小十米，然后反方向再次放大。在屏幕上从左到右为立方体设置动画，然后，当它到达屏幕的右边缘（大致）时，让它反向并移回起点。
 
 {{% /aside %}}
