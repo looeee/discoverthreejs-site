@@ -1,6 +1,6 @@
 ---
-title: "A Brief Introduction to Texture Mapping"
-description: "Textures are used to store surface details of the objects in our scenes, such as color, bumps, small shadows, and more. Here, we load a texture with the TextureLoader and apply it to our cube mesh."
+title: "纹理映射简介"
+description: "纹理用于存储场景中对象的表面细节，例如颜色、凹凸、小阴影等。 在这里，我们使用TextureLoader加载纹理并将其应用于我们的立方体网格。"
 date: 2018-04-02
 weight: 108
 chapter: "1.8"
@@ -30,11 +30,11 @@ IDEStripDirectory: "worlds/first-steps/textures-intro/"
 IDEActiveDocument: "src/World/components/cube.js"
 ---
 
-# A Brief Introduction to Texture Mapping
+# 纹理映射简介
 
-When we create a mesh, such as our humble cube, [we pass in two components]({{< relref "/book/first-steps/first-scene#our-first-visible-object-mesh" >}} "we pass in two components"): a geometry and a material.
+当我们创建一个网格时，比如我们不起眼的立方体，[我们传入两个组件]({{< relref "/book/first-steps/first-scene#our-first-visible-object-mesh" >}} "我们传入两个组件")：一个几何体和一个材质。
 
-{{< code lang="js" linenos="false" hl_lines="" caption="A mesh requires two sub-components: a geometry and a material" >}}
+{{< code lang="js" linenos="false" hl_lines="" caption="网格需要两个子组件：几何体和材料" >}}
 
 ```js
 const mesh = new Mesh(geometry, material);
@@ -44,35 +44,35 @@ const mesh = new Mesh(geometry, material);
 
 {{< inlineScene entry="first-steps/static-cube-no-texture.js" class="small left" >}}
 
-The geometry defines the mesh's shape, and the material defines various surface properties of the mesh, in particular, how it reacts to light. The geometry and the material, along with any light and shadows affecting the mesh, control the appearance of the mesh when we render the scene. Currently, our scene contains a single mesh with a shape defined by a `BoxBufferGeometry` and a surface defined by a `MeshStandardMaterial` with the color parameter set to purple. This is illuminated by a single `DirectionalLight`, and when we render the scene, the result is this simple purple box.
+几何体定义了网格的形状，材料定义了网格的各种表面属性，特别是它对光的反应方式。当我们渲染场景时，几何体和材质以及影响网格的任何光线和阴影都控制着网格的外观。目前，我们的场景包含一个网格，其形状由`BoxBufferGeometry`定义，表面由颜色参数设置为紫色的`MeshStandardMaterial`定义。这是由单个`DirectionalLight`照亮的，当我们渲染场景时，结果是这个简单的紫色框。
 
-{{< figure src="/first-steps/concrete-cube.jpg" alt="" lightbox="true" class="noborder small right" alt="Courtesy of @christianfregnan from unsplash" caption="A cube made from concrete." >}}
+{{< figure src="/first-steps/concrete-cube.jpg" alt="" lightbox="true" class="noborder small right" alt="Courtesy of @christianfregnan from unsplash" caption="由混凝土制成的立方体。" >}}
 
-Compare this to a concrete box in the real world - or a wooden box, or a metal box, or a box made from nearly any substance except smooth plastic, and we can immediately see that our 3D box is not at all realistic. Objects in the real world are usually scratched, broken, and dirty. However, the material applied to our box doesn't look like this. Rather, it consists of a single color applied smoothly over the entire surface of the mesh. Unless we want all of our creations to look like brand-new plastic, this won't do.
+将此与现实世界中的混凝土盒子进行比较 - 或木盒子、金属盒子或由几乎任何物质制成的盒子（除了光滑的塑料），我们可以立即看到我们的3D盒子根本不真实。现实世界中的物体通常有划痕、破损和脏污。但是，应用于我们盒子的材料看起来不是这样的。相反，它由在网格的整个表面上平滑应用的单一颜色组成。除非我们希望我们所有的创作看起来像全新的塑料，否则这是行不通的。
 
-Materials have many parameters besides [color]({{< relref "/book/first-steps/physically-based-rendering#change-the-materials-color" >}} "color"), and we can use these to adjust various attributes of an object's surface, like the roughness, metalness, opacity, and so on. However, just like [the color parameter]({{< relref "/book/first-steps/physically-based-rendering#change-the-materials-color" >}} "the color parameter"), these parameters are applied uniformly over the entire surface of the mesh. If we increase the material's `.roughness` property, for example, the entire surface of the object will become rougher. If we set the `.color` to red, the entire object will become red.
+除了[颜色]({{< relref "/book/first-steps/physically-based-rendering#change-the-materials-color" >}} "颜色")之外，材质还有很多参数，我们可以通过这些参数来调整物体表面的各种属性，比如粗糙度、金属度、不透明度等。然而，就像[颜色参数]({{< relref "/book/first-steps/physically-based-rendering#change-the-materials-color" >}} "颜色参数")一样，这些参数被均匀地应用在网格的整个表面上。例如，如果我们增加材质的`.roughness`属性，物体的整个表面会变得更粗糙。如果我们设置`.color`为红色，则整个对象将变为红色。
 
-{{< iframe src="https://threejs.org/examples/webgl_materials_normalmap.html" height="500" title="The material of a human face" class="small left" >}}
+{{< iframe src="https://threejs.org/examples/webgl_materials_normalmap.html" height="500" title="人脸的材质" class="small left" >}}
 
-By contrast, the surface properties of most real-world objects change from one point to the next. Consider a mesh representing a human face. Once again, it consists of a geometry and a material, just like our cube mesh. The large scale features, like the eyes, nose, ears, neck, and chin, are defined by the geometry. However, a lot more than a well-crafted geometry goes into creating a realistic face. Looking closely at the skin, we can see there are many small bumps, wrinkles, and pores, not to mention eyebrows, lips, and a slight beard. When creating a complex model like a face, an artist must decide what parts of the model to represent using geometry, and what parts to represent at the material level, bearing in mind that it's usually cheaper to represent things using the material than the geometry. This is an especially important consideration when the model has to run on a mobile device, where high performance is paramount. For example, while it would be possible to model every hair in the eyebrows in geometry, doing so would make this model unsuitable for real-time use on all but the most powerful of devices. Instead, we must represent small features like hair at the material level, and reserve the geometry for large scale features like the eyes, nose, and ears.
+相比之下，大多数现实世界对象的表面属性会从一个点变化到另一个点。考虑一个表示人脸的网格。同样的，它也是由几何体和材质组成，就像我们的立方体网格一样。大尺度特征，如眼睛、鼻子、耳朵、脖子和下巴，由几何体定义。然而，创建逼真的面部不仅仅是精心制作的几何图形。仔细观察皮肤，我们可以看到有很多小疙瘩、皱纹和毛孔，更不用说眉毛、嘴唇和轻微的胡须了。在创建一个复杂的模型（如面部）时，美术师必须决定模型的哪些部分使用几何体来表示，以及哪些部分在材质级别才能表示，请记住，使用材质来表示事物通常比几何图形更便宜。当模型必须在高性能至关重要的移动设备上运行时，这是一个特别重要的考虑因素。例如，虽然可以对眉毛中的每一根毛发进行几何建模，但这样做会使该模型不适合在除最强大的设备之外的所有设备上实时使用。相反，我们必须在材质级别表示像毛发这样的小特征，并为眼睛、鼻子和耳朵等大尺度特征保留几何形状。
 
-Note, also, that this face is made from a single geometry. We usually want to avoid splitting a geometry up more than necessary since every mesh can have only one geometry, so each separate geometry corresponds to a new mesh in our scene. Having fewer objects in a scene usually results in better performance, and it's also easier for both the developer and the 3D artist to work with. In other words, we don't want to be forced to create different geometries for the ears, and eyes. In any case, this wouldn't be practical. Looking closely at the lips, we can see there is no sharp divide between the red of the lips and the skin tone of the chin. This means we need some way of modifying material properties so that they can change smoothly across the surface of an object. We need to be able to say things like this:
+另请注意，此面部是由单个几何体构成。我们通常希望避免不必要地拆分几何体，因为每个网格只能有一个几何体，这样每个单独的几何体对应于我们场景中的一个新网格。场景中的对象更少通常会带来更好的性能，而且开发人员和3D艺术家也更容易使用。换句话说，我们不想被迫为耳朵和眼睛创建不同的几何形状。无论如何，这是不切实际的。仔细观察嘴唇，我们可以看到嘴唇的红色和下巴的肤色之间没有明显的区别。这意味着我们需要一些修改材料属性的方法，以便它们可以在对象的表面上平滑地变化。我们需要能够这样说：
 
-- the part of the geometry making up the lips is red
-- the part of the geometry making up the chin is a skin tone overlaid by a slight beard
-- the part of the geometry making up the eyebrows is hair colored
+- 构成嘴唇的几何体是红色的
+- 构成下巴的几何体体是由轻微胡须覆盖的肤色
+- 构成眉毛的几何体是头发颜色的
 
-... and so on. And this doesn't only apply to color. The skin is shinier than the hair and lips, for example. So, we also need to be able to specify how other properties like roughness change from one point to the next across the geometry.
+… 等等。这不仅适用于颜色。例如，皮肤比头发和嘴唇更亮。因此，我们还需要能够指定其他属性如粗糙度如何在几何体中从一个点渐变到下一个点。
 
 {{< clear >}}
 
-{{< figure src="first-steps/lee-perry-smith-color.jpg" caption="This color texture is mapped onto<br> the face geometry using UV mapping" alt="lee-perry-smith-color.jpg" lightbox="true" class="small right" >}}
+{{< figure src="first-steps/lee-perry-smith-color.jpg" caption="使用UV映射将此颜色纹理映射到面部几何体" alt="lee-perry-smith-color.jpg" lightbox="true" class="small right" >}}
 
-This is where [**texture mapping**](https://en.wikipedia.org/wiki/Texture_mapping) comes in. In the simplest possible terms, texture mapping means taking an image and stretching it over the surface of a 3D object. We refer to an image used in this manner as a **texture**, and we can use textures to represent material properties like color, roughness, and opacity. For example, to change the color of an area of the geometry, we change the color the area of the texture that lies on top, as you can see in this color texture which is attached to the face model.
+这就是[**纹理映射**](https://en.wikipedia.org/wiki/Texture_mapping)的用武之地。用最简单的术语来说，纹理映射意味着拿着图像并将其拉伸到3D对象的表面上。我们将以这种方式使用的图像称为**纹理**，我们可以使用纹理来表示颜色、粗糙度和不透明度等材料属性。例如，要更改几何区域的颜色，我们更改位于顶部的纹理区域的颜色，就像您在上图中看到的附加到面部模型的颜色纹理一样。
 
-While it's easy to take a 2D texture and stretch it over a regular shape like a cube, it's much harder to do that with an irregular geometry like a face, and over the years, many texture mapping techniques have been developed. Perhaps the simplest technique is [projection mapping](https://en.wikipedia.org/wiki/Projective_texture_mapping), which projects the texture onto an object (or scene) as if it has been shone through a film projector. Imagine holding your hand in front of a film projector and seeing the image projected onto your skin.
+虽然获取2D纹理并将其拉伸到像立方体这样的规则形状上很容易，但对于像脸这样的不规则几何形状则要做到这一点要困难得多，而且多年来，已经开发了许多纹理映射技术。也许最简单的技术是[投影映射](https://en.wikipedia.org/wiki/Projective_texture_mapping)，它将纹理投影到一个对象（或场景）上，就好像它已经通过电影放映机照射了一样。想象一下，将您的手放在电影放映机前，并看到投影到您皮肤上的图像。
 
-{{< figure src="first-steps/uv-test-bw.jpg" caption="A test texture with the UV coordinates<br>explicitly written onto the texture." lightbox="true" class="small left" >}}
+{{< figure src="first-steps/uv-test-bw.jpg" caption="具有明确写入纹理的UV坐标的测试纹理。" lightbox="true" class="small left" >}}
 
 While projection mapping and other techniques are still widely used for things like creating shadows (or simulating projectors), that's not going to work for attaching the face's color texture to the face geometry. Instead, we use a technique called [**UV mapping**](https://en.wikipedia.org/wiki/UV_mapping) which allows us to create a connection between points on the geometry and points on the face. Using UV mapping, we divide the texture up into a 2D grid with the point $(0, 0)$ at the bottom left and the point $(1,1)$ at the top right. Then, the point $(0.5,0.5)$ will be at the exact center of the image. Likewise, every point in a geometry has a position in the 3D [local space of the mesh]({{< relref "/book/first-steps/transformations#local-space" >}} "local space of the mesh"). UV mapping, then, is the process of assigning 2D points in the texture to 3D points in the geometry. For example, suppose the lips in the face model are at the point $(0,0,0)$. We can see that the lips in the texture are close to the center, somewhere around $(0.5,0.5)$. So, we'll create a mapping:
 
