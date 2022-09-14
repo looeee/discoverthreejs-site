@@ -1,6 +1,6 @@
 ---
-title: "Extend three.js With a Camera Controls Plugin"
-description: "Here, we extend the three.js core with a camera controls plugin called OrbitControls. This plugin allows us to rotate/pan/zoom to the camera to view our scene from any angle."
+title: "使用相机控制插件扩展three.js"
+description: "在这里，我们使用名为OrbitControls的相机控制插件扩展了three.js核心。这个插件允许我们旋转/平移/缩放到相机以从任何角度查看我们的场景。"
 date: 2018-04-02
 weight: 109
 chapter: "1.9"
@@ -33,34 +33,35 @@ IDEStripDirectory: "worlds/first-steps/camera-controls/"
 IDEActiveDocument: "src/World/systems/controls.js"
 ---
 
-# Extend three.js With a Camera Controls Plugin
+# 使用相机控制插件扩展three.js
 
-The three.js core is a powerful, lightweight, and focused **rendering framework**, with intentionally limited capabilities. It has everything you need to create and render physically correct scenes, however, it does not have everything you need to create, say, a game, or a product configurator. Even when building relatively simple apps, you will often find yourself needing functionality that's not in the core. When this happens, before you write any code yourself, check to see whether there's a plugin available. The three.js repo contains hundreds of extensions, in the [_**examples/jsm**_](https://github.com/mrdoob/three.js/tree/master/examples/jsm) folder. These are also included in [the NPM package](https://www.npmjs.com/package/three), for those of you using a package manager.
+three.js核心是一个功能强大、轻量级且专注的**渲染框架**，具有故意限制的功能。它拥有创建和渲染物理上正确的场景所需的一切，但是，它不具备创建游戏或产品配置器所需的一切。即使在构建相对简单的应用程序时，您也会经常发现自己需要的功能不在核心库中。发生这种情况时，在您自己编写任何代码之前，请检查是否有可用的插件。three.js仓库包含数百个扩展，位于[_**examples/jsm**_](https://github.com/mrdoob/three.js/tree/master/examples/jsm)文件夹中。对于那些使用包管理器的人，这些也包含在[NPM 包](https://www.npmjs.com/package/three)中。
 
-There are also a huge number of plugins to be found scattered around the web. However, these are sometimes poorly maintained and may not work with the latest three.js version, so in this book, we'll restrict ourselves to using the official plugins from the repo. There, we'll find all kinds of plugins, and most of them are showcased in one of [the examples](https://threejs.org/examples/). These add all kinds of functionality, such as mirrored surfaces:
+还有大量的插件散布在网络上。但是，这些有时维护不善，可能无法与最新的three.js版本一起使用，因此在本书中，我们将限制自己使用来自仓库的官方插件。在那里，我们会找到各种插件，其中大部分都在其中某一个[示例中](https://threejs.org/examples/)展示。这些插件添加了各种功能，例如镜面：
 
-{{< iframe src="https://threejs.org/examples/webgl_mirror.html" title="three.js node materials mirror example" height="500" >}}
+{{< iframe src="https://threejs.org/examples/webgl_mirror.html" title="three.js节点材质镜像示例" height="500" >}}
 
-Or, how about a loader for the Lego LDraw format:
+或者，Lego LDraw格式的加载器怎么样：
 
-{{< iframe src="https://threejs.org/examples/webgl_loader_ldraw.html" height="500" title="three.js LDraw format example" >}}
+{{< iframe src="https://threejs.org/examples/webgl_loader_ldraw.html" height="500" title="three.js LDraw格式示例" >}}
 
-Here are a few more:
+这里还有一些：
 
-- [One of the many post-processing effects](https://threejs.org/examples/?q=postprocessing#webgl_postprocessing_glitch)
-- [A loader for the Autodesk FBX format](https://threejs.org/examples/?q=loader#webgl_loader_fbx)
-- [An exporter for glTF format](https://threejs.org/examples/?q=exporter#misc_exporter_gltf)
-- [Physically accurate ocean and sky](https://threejs.org/examples/?q=ocean#webgl_shaders_ocean)
+- [众多后处理效果之一](https://threejs.org/examples/?q=postprocessing#webgl_postprocessing_glitch)
+- [Autodesk FBX格式的加载器](https://threejs.org/examples/?q=loader#webgl_loader_fbx)
+- [glTF格式的导出器](https://threejs.org/examples/?q=exporter#misc_exporter_gltf)
+- [物理上准确的海洋和天空](https://threejs.org/examples/?q=ocean#webgl_shaders_ocean)
 
-Each extension is stored in a separate module in _**examples/jsm**_, and to use them, we simply import them into our app, much like any other three.js class.
+每个扩展都存储在 _**examples/jsm**_ 中的一个单独模块中，要使用它们，我们只需将它们导入我们的应用程序，就像任何其他three.js类一样。
 
-## Our First Plugin: `OrbitControls`
+## 我们的第一个插件：`OrbitControls`
 
+最受欢迎的扩展之一是[`OrbitControls`](https://threejs.org/docs/#examples/en/controls/OrbitControls)相机控制插件，它允许您使用触摸、鼠标或键盘来环绕、平移和缩放相机。通过这些控件，我们可以从各个角度查看场景，放大以检查微小细节，或缩小以鸟瞰概览。轨道控制允许我们以三种方式控制相机：
 One of the most popular extensions is [`OrbitControls`](https://threejs.org/docs/#examples/en/controls/OrbitControls), a camera controls plugin which allows you to orbit, pan, and zoom the camera using touch, mouse, or keyboard. With these controls, we can view a scene from all angles, zoom in to check tiny details, or zoom out to get a birds-eye overview. Orbit controls allow us to control the camera in three ways:
 
-1. **Orbit around a fixed point, using the left mouse button or a single finger swipe.**
-2. **Pan the camera using the right mouse button, the arrow keys, or a two-finger swipe.**
-3. **Zoom the camera using the scroll wheel or a pinch gesture.**
+1. **使用鼠标左键或单指轻扫，围绕固定点旋转。**
+2. **使用鼠标右键、箭头键或两指滑动来平移相机。**
+3. **使用滚轮或捏合手势缩放相机。**
 
 You can find the module containing `OrbitControls` on the three.js repo, in the _**examples/jsm/controls/**_ folder, in a file called _**[OrbitControls.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js)**_. There's also an [official example showcasing `OrbitControls`](https://threejs.org/examples/?q=controls#misc_controls_orbit). For a quick reference of all the control's settings and features, head over to the [`OrbitControls` doc page](https://threejs.org/docs/#examples/en/controls/OrbitControls).
 
