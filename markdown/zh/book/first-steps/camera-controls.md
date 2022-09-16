@@ -57,37 +57,36 @@ three.js核心是一个功能强大、轻量级且专注的**渲染框架**，�
 ## 我们的第一个插件：`OrbitControls`
 
 最受欢迎的扩展之一是[`OrbitControls`](https://threejs.org/docs/#examples/en/controls/OrbitControls)相机控制插件，它允许您使用触摸、鼠标或键盘来环绕、平移和缩放相机。通过这些控件，我们可以从各个角度查看场景，放大以检查微小细节，或缩小以鸟瞰概览。轨道控制允许我们以三种方式控制相机：
-One of the most popular extensions is [`OrbitControls`](https://threejs.org/docs/#examples/en/controls/OrbitControls), a camera controls plugin which allows you to orbit, pan, and zoom the camera using touch, mouse, or keyboard. With these controls, we can view a scene from all angles, zoom in to check tiny details, or zoom out to get a birds-eye overview. Orbit controls allow us to control the camera in three ways:
 
 1. **使用鼠标左键或单指轻扫，围绕固定点旋转。**
 2. **使用鼠标右键、箭头键或两指滑动来平移相机。**
 3. **使用滚轮或捏合手势缩放相机。**
 
-You can find the module containing `OrbitControls` on the three.js repo, in the _**examples/jsm/controls/**_ folder, in a file called _**[OrbitControls.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js)**_. There's also an [official example showcasing `OrbitControls`](https://threejs.org/examples/?q=controls#misc_controls_orbit). For a quick reference of all the control's settings and features, head over to the [`OrbitControls` doc page](https://threejs.org/docs/#examples/en/controls/OrbitControls).
+您可以在three.js仓库中的 _**examples/jsm/controls/**_ 文件夹中的名为 _**[OrbitControls.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js)**_ 的文件中找到包含`OrbitControls`的模块。还有一个[官方示例展示`OrbitControls`](https://threejs.org/examples/?q=controls#misc_controls_orbit)。 要快速参考所有控件的设置和功能，请转到[`OrbitControls`文档页面](https://threejs.org/docs/#examples/en/controls/OrbitControls)。
 
-### Importing Plugins
+### 导入插件
 
-Since the plugins are part of the three.js repo and included in the NPM package, importing them works in much the same way as [importing classes from the three.js core]({{< relref "/book/first-steps/first-scene#import-classes-from-threejs" >}} "importing classes from the three.js core"), except that each plugin is in a separate module. Refer back to [the intro]({{< relref "/book/introduction/get-threejs" >}} "the intro") for a reminder of how to include the three.js files in your app, or head over to [the appendix]({{< relref "/book/appendix/javascript-modules" >}} "the appendix") for a deeper exploration of how JavaScript modules work.
+由于插件是three.js仓库的一部分并包含在NPM包中，因此导入它们的工作方式与从[three.js核心导入类]({{< relref "/book/first-steps/first-scene#import-classes-from-threejs" >}} "three.js核心导入类")的方式大致相同，只是每个插件都在一个单独的模块中。请参阅[0.5：如何在您的项目中包含three.js]({{< relref "/book/introduction/get-threejs" >}} "0.5：如何在您的项目中包含three.js")以提醒您如何在您的应用程序中包含three.js文件，或转到[A.4：JavaScript模块]({{< relref "/book/appendix/javascript-modules" >}} "A.4：JavaScript模块")以更深入地探索JavaScript模块的工作原理。
 
-In the editor, we've placed the _**OrbitControls.js**_ file in the equivalent directory to the repo, under _**vendor/**_. Go ahead and locate the file now. Since the editor uses NPM style imports, we can import `OrbitControls` like this, from anywhere in our code like this:
+在编辑器中，我们将 _**OrbitControls.js**_ 文件放在repo的等效目录中，在 _**vendor/**_ 下。继续并立即找到该文件。由于编辑器使用NPM模式导入，我们可以像这样从代码中的任何位置导入`OrbitControls`，如下所示：
 
-{{< code lang="js" linenos="false" caption="Importing the `OrbitControls` extension using NPM style imports" >}}
+{{< code lang="js" linenos="false" caption="使用NPM模式导入来导入`OrbitControls`扩展" >}}
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 {{< /code >}}
 
-Once again, if you’re working locally and not using a bundler, you’ll have to change the import path. For example, you can import from skypack.dev instead.
+同样的，如果您在本地开发而不使用捆绑程序，则必须更改导入路径。例如，您可以改为从skypack.dev导入。
 
-{{< code lang="js" linenos="false" caption="Importing the `OrbitControls` extension using relative imports" >}}
+{{< code lang="js" linenos="false" caption="使用相对导入导入`OrbitControls`扩展" >}}
 import { OrbitControls } from 'https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js?module';
 {{< /code >}}
 
-> Important note: Make sure you import plugins from _**examples/jsm/**_ and not legacy plugins from _**examples/js/**_!
+> 重要提示：确保从 _**examples/jsm/**_ 导入插件，而不是从 _**examples/js/**_ 导入旧插件！
 
-### The _**controls.js**_ Module
+### _**controls.js**_ 模块
 
-As usual, we'll create a new module in our app to handle setting up the controls. Since the controls operate on the camera, they will go in the [systems category]({{< relref "/book/first-steps/world-app#systems-and-components" >}} "systems category"). Open or create the module _**systems/controls.js**_ to handle setting up the camera controls. This new module has the same structure as most of our other modules. First, import the `OrbitControls` class, then make a `createControls` function, and finally, export the function:
+像往常一样，我们将在我们的应用程序中创建一个新模块来处理设置控件。由于控件在相机上运行，​​因此它们将进入[系统分类]({{< relref "/book/first-steps/world-app#systems-and-components" >}} "系统分类")。打开或创建模块 _**systems/controls.js**_ 来处理设置相机控件。这个新模块与我们大多数其他模块具有相同的结构。首先导入`OrbitControls`类，然后添加`createControls`函数，最后导出函数：
 
-{{< code lang="js" linenos="true" caption="_**systems/controls.js**_: initial setup" >}}
+{{< code lang="js" linenos="true" caption="_**systems/controls.js**_: 初始化设置" >}}
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 function createControls() {}
@@ -95,13 +94,13 @@ function createControls() {}
 export { createControls };
 {{< /code >}}
 
-Back over in World, add the new function to the list of imports:
+回到World中，将新函数添加到导入列表中：
 
-{{< code from="1" to="9" file="worlds/first-steps/camera-controls/src/World/World.final.js" lang="js" linenos="true" hl_lines="6" caption="_**World.js**_: import the controls module" >}}{{< /code >}}
+{{< code from="1" to="9" file="worlds/first-steps/camera-controls/src/World/World.final.js" lang="js" linenos="true" hl_lines="6" caption="_**World.js**_: 导入controls模块" >}}{{< /code >}}
 
-Next, call the function and store the result in a variable called `controls`. While you're here, comment out the line adding `cube` to the `updatables` array. This will stop the cube from rotating and make the effect of the controls easier to see:
+接下来，调用函数并将结果存储在名为`controls`的变量中。当你在这里时，注释掉添加`cube`到`updatables`数组中的行。这将阻止立方体旋转并使控件的效果更容易看到：
 
-{{< code lang="js" linenos="true" linenostart="17" hl_lines="22 27 28" caption="_**World.js**_: stop the cube's animation" >}}
+{{< code lang="js" linenos="true" linenostart="17" hl_lines="22 27 28" caption="_**World.js**_: 停止立方体的动画" >}}
 
 ```js
   constructor() {
@@ -125,15 +124,15 @@ Next, call the function and store the result in a variable called `controls`. Wh
 
 {{< /code >}}
 
-### Initialize the Controls
+### 初始化控件
 
-If you check out the [`OrbitControls` docs page](https://threejs.org/docs/#examples/en/controls/OrbitControls), you'll see that the constructor takes two parameters: a `Camera`, and a [`HTMLDOMElement`](https://developer.mozilla.org/en-US/docs/Web/API/Element). We'll use our camera for the first parameter and the canvas, stored in `renderer.domElement`, for the second.
+如果您查看[`OrbitControls`文档页面](https://threejs.org/docs/#examples/en/controls/OrbitControls)，您会看到构造函数有两个参数：`Camera`和[`HTMLDOMElement`](https://developer.mozilla.org/en-US/docs/Web/API/Element)。我们将使用相机作为第一个参数，使用存储在`renderer.domElement`中的画布作为第二个参数。
 
-Internally, `OrbitControls` uses `addEventListener` to listen for user input. The controls will listen for events such as `click`, `wheel`, `touchmove`, and `keydown`, amongst others, and use these to move the camera. We previously used this method to [listen for the `resize` event]({{< relref "/book/first-steps/responsive-design#listen-for-resize-events-on-the-browser-window" >}} "listen for the `resize` event") when we set up automatic resizing. There, we listened for the `resize` event on the entire `window`. Here, the controls will listen for user input on whatever element we pass in as the second parameter. The rest of the page will be unaffected. In other words, when we pass in the canvas, the controls will work when the mouse/touch is over the canvas, but the rest of the page will continue to work as normal.
+在内部，`OrbitControls`使用`addEventListener`监听用户输入。控件将侦听诸如`click`、`wheel`、`touchmove`和`keydown`等事件，并使用这些事件来移动相机。我们之前在设置自动调整大小时使用此方法来[监听`resize`事件]({{< relref "/book/first-steps/responsive-design#listen-for-resize-events-on-the-browser-window" >}} "监听`resize`事件")。在那里，我们在整个`window`上监听`resize`事件。而在这里，控件将监听我们作为第二个参数传入的元素上的用户输入。页面的其余部分将不受影响。换句话说，在我们传入画布后，当鼠标/触摸在画布上时控件将起作用，但页面的其余部分将继续正常工作而不受影响。
 
-Pass the camera and canvas into the `createControls` function, then create the controls:
+将相机和画布传递给`createControls`函数，然后创建控件controls：
 
-{{< code lang="js" linenos="true" linenostart="3" caption="_**controls.js**_: create the controls" >}}
+{{< code lang="js" linenos="true" linenostart="3" caption="_**controls.js**_: 创建控件controls" >}}
 function createControls(camera, canvas) {
 const controls = new OrbitControls(camera, canvas);
 
@@ -141,9 +140,9 @@ return controls;
 }
 {{< /code >}}
 
-Back over in the world module, pass in the `camera` and `renderer.domElement`:
+回到world模块，传入`camera`和`renderer.domElement`：
 
-{{< code lang="js" linenos="" linenostart="18" hl_lines="24" caption="_**World.js**_: initialize the controls" >}}
+{{< code lang="js" linenos="" linenostart="18" hl_lines="24" caption="_**World.js**_: 初始化控件controls" >}}
 
 ```js
 constructor(container) {
@@ -160,27 +159,27 @@ constructor(container) {
 
 {{< /code >}}
 
-With that, the controls should start to work. Take them for a spin!
+有了这个，控件controls应该开始工作。带他们去兜风吧！
 
-You'll immediately notice [the cube is not illuminated from the back](#a-glaring-problem). We'll explain why and how to fix this in the next chapter.
+您会立即注意到[立方体没有从背面照亮](#a-glaring-problem)。我们将在下一章解释为什么以及如何解决这个问题。
 
 {{% note %}}
 TODO-LOW: add a "using the controls section" that explains how the controls work
 {{% /note %}}
 
-## Working with the Controls
+## 使用控件Controls
 
-### Manually Set the Target
+### 手动设置目标
 
-By default, the controls orbit around the center of the scene, point $(0,0,0)$. This is stored in the `controls.target` property, which is a `Vector3`. We can move this target to a new position:
+默认情况下，控件围绕场景中心旋转，即点$(0,0,0)$。 这存储在`controls.target`属性中，即`Vector3`。我们可以将这个目标移动到一个新的位置：
 
-{{< code lang="js" linenos="false" caption="Set the control's target" >}}
+{{< code lang="js" linenos="false" caption="设置控件的目标" >}}
 controls.target.set(1,2,3);
 {{< /code >}}
 
-We can also point the controls at an object by copying the object's position.
+我们还可以通过复制对象的位置来将控件指向对象。
 
-{{< code lang="js" linenos="false" caption="_**World.js**_: target an object" >}}
+{{< code lang="js" linenos="false" caption="_**World.js**_: 指向对象的位置" >}}
 controls.target.copy(cube.position);
 {{< /code >}}
 
@@ -188,32 +187,31 @@ controls.target.copy(cube.position);
 TODO-LOW: what is mobile control for pan?
 {{% /note %}}
 
-Whenever you pan the controls (using the right mouse button), the target will pan too. If you need a fixed target, you can disable panning using `controls.enablePan = false`.
+每当您平移控件（使用鼠标右键）时，目标也会平移。如果需要固定目标，可以使用`controls.enablePan = false`禁用平移。
 
-### Enable Damping for Added Realism
+### 启用阻尼以增加真实感
 
-As soon as the user stops interacting with the scene, the camera will come to an abrupt stop. Objects in the real world have inertia and never stop abruptly like this, so we can make the controls feel more realistic by enabling [damping](https://threejs.org/docs/index.html#examples/en/controls/OrbitControls.enableDamping).
+一旦用户停止与场景交互，相机就会突然停止。现实世界中的物体是有惯性的，永远不会像这样突然停止，所以我们可以通过启用[阻尼](https://threejs.org/docs/index.html#examples/en/controls/OrbitControls.enableDamping)来使控制感觉更真实。
 
-{{< code lang="js" linenos="false" caption="_**controls.js**_: enable damping" >}}
+{{< code lang="js" linenos="false" caption="_**controls.js**_: 启用阻尼" >}}
 controls.enableDamping = true;
 {{< /code >}}
 
-With damping enabled, the controls will slow to a stop over several frames which gives them a feeling of
-weight. You can adjust [the `.dampingFactor`](https://threejs.org/docs/#examples/en/controls/OrbitControls.dampingFactor) to control how fast the camera comes to a stop. However, for damping to work, we must call `controls.update` every frame in the animation loop. If we're [rendering frames on demand](#rendering-on-demand-with-orbitcontrols) instead of using the loop, we cannot use damping.
+启用阻尼后，控件将在几帧后减速停止，这给它们一种重量感。您可以调整[`.dampingFactor`](https://threejs.org/docs/#examples/en/controls/OrbitControls.dampingFactor)以控制相机停止的速度。但是，为了使阻尼起作用，我们必须在动画循环中的每一帧都调用`controls.update`。如果我们是[按需渲染帧](#rendering-on-demand-with-orbitcontrols)而不是使用循环，我们就不能使用阻尼。
 
-### Update the Controls in the Animation Loop
+### 更新动画循环中的控件
 
-Whenever we need to update an object in the loop, we'll use the technique we devised when creating [the cube's animation]({{< relref "/book/first-steps/animation-loop#create-the-animation" >}} "the cube's animation"). In other words, we'll give the controls a `.tick` method and then add them to the `loop.updatables` array. First, the `.tick` method:
+每当我们需要在循环中更新一个对象时，我们将使用我们在创建[立方体动画]({{< relref "/book/first-steps/animation-loop#create-the-animation" >}} "立方体动画")时设计的技术。换句话说，我们将给控件一个`.tick`方法，然后将它们添加到`loop.updatables`数组中。首先是`.tick`方法：
 
-{{< code file="worlds/first-steps/camera-controls/src/World/systems/controls.final.js" from="3" to="15" lang="js" linenos="true" hl_lines="12" caption="_**controls.js**_: add controls.tick" >}}{{< /code >}}
+{{< code file="worlds/first-steps/camera-controls/src/World/systems/controls.final.js" from="3" to="15" lang="js" linenos="true" hl_lines="12" caption="_**controls.js**_: 添加controls.tick" >}}{{< /code >}}
 
-Here, `.tick` simply calls `controls.update`. Next, add the controls to the `updatables` array:
+在这里，`.tick`只需调用`controls.update`。接下来，将控件添加到`updatables`数组中：
 
-{{< code file="worlds/first-steps/camera-controls/src/World/World.final.js" from="18" to="37" lang="js" linenos="true" hl_lines="29" caption="_**World.js**_: add the controls to the updatables array" >}}{{< /code >}}
+{{< code file="worlds/first-steps/camera-controls/src/World/World.final.js" from="18" to="37" lang="js" linenos="true" hl_lines="29" caption="_**World.js**_: 将控件添加到updatables数组" >}}{{< /code >}}
 
-Now, `controls.tick` will be called once per frame in [the update loop]({{< relref "/book/first-steps/animation-loop#the-update-loop" >}} "the update loop"), and damping will work. Test it out. Can you see the difference?
+现在，`controls.tick`将在[更新循环]({{< relref "/book/first-steps/animation-loop#the-update-loop" >}} "更新循环")中每帧调用一次，并且阻尼将起作用。测试一下。你能看到区别么？
 
-### Working With the Camera While Using `OrbitControls`
+### 在使用`OrbitControls`时让相机工作
 
 With the controls in place, we have relinquished control of the camera to them. However, sometimes you need to take back control to manually position the camera. There are two ways to go about this:
 
