@@ -1,6 +1,6 @@
 ---
-title: "Load 3D Models in glTF Format"
-description: "Here, we show you how to load complex animated models and add them to your scene. These models were originally created in Blender and exported in glTF format."
+title: "以glTF格式加载3D模型"
+description: "在这里，我们向您展示如何加载复杂的动画模型并将它们添加到您的场景中。 这些模型最初是在 Blender 中创建的，并以 glTF 格式导出。"
 date: 2018-04-02
 weight: 113
 chapter: "1.13"
@@ -38,76 +38,76 @@ IDEStripDirectory: "worlds/first-steps/load-models/"
 IDEActiveDocument: "src/World/components/birds/birds.js"
 ---
 
-# Load 3D Models in glTF Format
+# 以glTF格式加载3D模型
 
 {{< inlineScene entry="first-steps/birds-animated.js" class="round" >}}
 
-In the last chapter, we created a simple toy train model using some of the built-in three.js geometries, and it quickly became clear that it would be hard to build anything complex or organic using just these. To create beautiful 3D models, a sophisticated [modeling program](https://en.wikipedia.org/wiki/3D_modeling) is required. You can use three.js to build any kind of 3D application, however, building a modeling app from scratch would be a huge amount of work. A much simpler solution is to use an existing program and export your work for use in three.js... or, cheat, and download any of the millions of amazing models and other scene assets that are available for free in many places around the web.
+在上一章中，我们使用一些内置的three.js几何图形创建了一个简单的玩具火车模型，很快就清楚地发现，仅使用这些几何图形很难构建任何复杂或现实的东西。要创建漂亮的3D模型，需要复杂的[建模程序](https://en.wikipedia.org/wiki/3D_modeling)。您可以使用three.js构建任何类型的3D应用程序，但是，从头开始构建建模应用程序将是一项巨大的工作。一个更简单的解决方案是使用现有程序并导出您的作品以在three.js中使用……或者，偷懒然后下载数以百万计的惊人模型和其他场景资产中的任何一个，这些模型和其他场景资产可在网络上的许多地方免费获得。
 
-In this chapter, we'll show you how to load some models that were created in [Blender](https://www.blender.org/), an open-source 3D graphics application that can be used for modeling, scene building, material creation, animation authoring, and more. Once you have created a model in Blender, you can export your work using a 3D format such as glTF, then use the [`GLTFLoader` plugin](https://threejs.org/docs/#examples/en/loaders/GLTFLoader) to bring the model into three.js.
+在本章中，我们将向您展示如何加载在[Blender](https://www.blender.org/)中创建的一些模型，这是一个开源3D图形应用程序，可用于建模、场景构建、材质创建、动画创作等。在Blender中创建模型后，您可以使用glTF等3D格式导出您的作品，然后使用[`GLTFLoader`插件](https://threejs.org/docs/#examples/en/loaders/GLTFLoader)将模型导入到three.js中。
 
-## The Best Way to Send 3D Assets Over the Web: glTF
+## 通过Web发送3D资源的最佳方式：glTF
 
-There have been many attempts at creating a standard 3D **asset exchange format** over the last thirty years or so. [FBX](https://threejs.org/examples/webgl_loader_fbx.html), [OBJ (Wavefront)](https://threejs.org/examples/#webgl_loader_obj_mtl) and [DAE (Collada)](https://threejs.org/examples/?q=collada#webgl_loader_collada_skinning) formats were the most popular of these until recently, although they all have problems that prevented their widespread adoption. For example, OBJ doesn't support animation, FBX is a closed format that belongs to Autodesk, and the Collada spec is overly complex, resulting in large files that are difficult to load.
+在过去三十年左右的时间里， 人们在创建标准3D**资源交换格式**方面进行了许多尝试。直到最近，[FBX](https://threejs.org/examples/webgl_loader_fbx.html)、[OBJ (Wavefront)](https://threejs.org/examples/#webgl_loader_obj_mtl)和[DAE (Collada)](https://threejs.org/examples/?q=collada#webgl_loader_collada_skinning)格式仍然是其中最受欢迎的格式，尽管它们都存在阻碍其广泛采用的问题。比如OBJ不支持动画，FBX是属于Autodesk的封闭格式，Collada规范过于复杂，导致大文件难以加载。
 
 {{% note %}}
 TODO-LINK: add link to asset section
 {{% /note %}}
 
-However, recently, a newcomer called **glTF** has become the de facto standard format for exchanging 3D assets on the web. [glTF](https://www.khronos.org/gltf/) (**GL Transmission Format**), sometimes referred to as the _JPEG of 3D_, was created by the [Kronos Group](https://www.khronos.org/), the same people who are in charge of WebGL, OpenGL, and a whole host of other graphics APIs. Originally released in 2017, glTF is now the best format for exchanging 3D assets on the web, and in many other fields. **In this book, we'll always use glTF, and if possible, you should do the same**. It's designed for sharing models on the web, so the file size is as small as possible and your models will load quickly.
+然而，最近，一个名为**glTF**的新成员已成为在网络上交换3D资源的事实上的标准格式。[glTF](https://www.khronos.org/gltf/)（**GL传输格式**），有时被称为 _3D中的JPEG_，由[Kronos Group](https://www.khronos.org/)创建，他们负责WebGL、OpenGL和一大堆其他图形API。glTF最初于2017年发布，现在是在网络和许多其他领域交换3D资源的最佳格式。**在本书中，我们将始终使用glTF，如果可能，您也应该这样做**。它专为在网络上共享模型而设计，因此文件大小尽可能小，并且您的模型将快速加载。
 
-However, since glTF is relatively new, your favorite application might not have an exporter yet. In that case, you can convert your models to glTF before using them, or use another loader such as the `FBXLoader` or `OBJLoader`. All three.js loaders work the same way, so if you do need to use another loader, everything from this chapter will still apply, with only minor differences.
+但是，由于glTF相对较新，您最喜欢的应用程序可能还没有导出器。在这种情况下，您可以在使用模型之前将它们转换为glTF，或者使用其他加载器，例如`FBXLoaderor`或者`OBJLoader`。所有three.js加载器的工作方式相同，因此如果您确实需要使用另一个加载器，本章中的所有内容仍然适用，只有细微差别。
 
-> Whenever we mention glTF, we mean _glTF Version 2_. The original _glTF Version 1_ never found widespread use and is no longer supported by three.js
+> 每当我们提到glTF时，我们指的是 _glTF Version 2_。最初的 _glTF Version 1_ 从未被广泛使用，并且不再被three.js支持
 
-glTF files can contain models, animations, geometries, materials, lights, cameras, or even entire scenes. This means you can create an entire scene in an external program then load it into three.js.
+glTF文件可以包含模型、动画、几何图形、材质、灯光、相机，甚至整个场景。这意味着您可以在外部程序中创建整个场景，然后将其加载到three.js中。
 
-{{< iframe src="https://threejs.org/examples/webgl_animation_keyframes.html" height="500" title="This entire scene fits in a single `.glb` file." class="" caption="This entire scene fits in a single _**.glb**_ file." >}}
+{{< iframe src="https://threejs.org/examples/webgl_animation_keyframes.html" height="500" title="整个场景在单个`.glb`文件中。" class="" caption="整个场景在单个 _**.glb**_ 文件中。" >}}
 
-### Types of glTF Files
+### glTF文件的类型
 
-glTF files come in standard and binary form. These have different extensions:
+glTF文件以标准和二进制形式出现。这些有不同的扩展名：
 
-- **Standard _.gltf_ files are uncompressed and may come with an extra _.bin_ data file.**
-- **Binary _.glb_ files include all data in one single file.**
+- **标准 _.gltf_ 文件未压缩，可能附带一个额外的 _.bin_ 数据文件。**
+- **二进制 _.glb_ 文件将所有数据包含在一个文件中。**
 
-Both standard and binary glTF files may contain textures embedded in the file or may reference external textures. Since binary _**.glb**_ files are considerably smaller, it's best to use this type. On the other hand, uncompressed _**.gltf**_ are easily readable in a text editor, so they may be useful for debugging purposes.
+标准和二进制glTF文件都可能包含嵌入在文件中的纹理或可能引用外部纹理。由于二进制 _**.glb**_ 文件要小得多，因此最好使用这种类型。另一方面，未压缩的 _**.gltf**_ 在文本编辑器中很容易阅读，因此它们可能对调试有用。
 
-### Free glTF Files on the three.js Repo
+### three.js存储库上的免费glTF文件
 
-There are lots of [free glTF models available on the three.js repo](https://github.com/mrdoob/three.js/tree/master/examples/models/gltf), and amongst these are three simple and beautiful models of a [parrot](https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Parrot.glb), a [flamingo](https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Flamingo.glb), and a [stork](https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Stork.glb), created by the talented people at [mirada.com](http://mirada.com/). These three models are [**low poly**](https://en.wikipedia.org/wiki/Low_poly), meaning they'll run on even the most low-power of mobile devices, and they are even animated.
+[three.js存储库中有许多免费的glTF模型](https://github.com/mrdoob/three.js/tree/master/examples/models/gltf)，其中包括[parrot](https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Parrot.glb)、[flamingo](https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Flamingo.glb)和[stork](https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Stork.glb)的三个简单而漂亮的模型，由[mirada.com](http://mirada.com/)的天才创建 。这三个模型是[**低多边形**](https://en.wikipedia.org/wiki/Low_poly)的，这意味着它们甚至可以在最低功耗的移动设备上运行，它们甚至是动画的。
 
-You can find these three files in the editor, in the _**assets/models/**_ folder. In this chapter, we'll load **_Parrot.glb_**, **_Flamingo.glb_**, and **_Stork.glb_** and then add the bird-shaped meshes each file contains to our scene. In the next chapter, we'll show you how to play the flying animation that is included with each bird.
+您可以在编辑器的 _**assets/models/**_ 文件夹中找到这三个文件。在本章中，我们将加载**_Parrot.glb_**、**_Flamingo.glb_**和**_Stork.glb_**，然后将每个文件包含的鸟形网格添加到我们的场景中。在下一章中，我们将向您展示如何播放包含在每只鸟中的飞行动画。
 
-If you're working locally rather than using the inline code editor, [you'll need to set up a webserver]({{< relref "/book/introduction/prerequisites#a-web-server" >}} "you'll need to set up a webserver"). Otherwise, due to browser security restrictions, you won't be able to load these files from your hard drive.
+如果您在本地工作而不是使用内联代码编辑器，[则需要设置一个webserver]({{< relref "/book/introduction/prerequisites#a-web-server" >}} "则需要设置一个webserver")。否则，由于浏览器安全限制，您将无法从硬盘加载这些文件。
 
 {{% aside  %}}
 
-## Asynchronous JavaScript
+## 异步JavaScript
 
-Whenever we load a model over the internet, we need to do so in a manner that ensures our app continues to run smoothly while the model is loading, and which can also gracefully handle failure if there is a network error. There are several ways to solve this problem using JavaScript, and there's an entire chapter of the appendices dedicated to this subject.
+每当我们通过Internet加载模型时，我们需要以确保我们的应用程序在模型加载时继续平稳运行的方式这样做，并且在出现网络错误时也可以优雅地处理故障。有几种方法可以使用JavaScript解决这个问题，并且有一整章的附录专门讨论这个主题。
 
-In this chapter, we'll use **async functions** to load the models, and we're going to assume that you have at least some familiarity with these. If these are new to you, or you need a refresher, head over to the [Asynchronous JavaScript]({{< relref "/book/appendix/asynchronous-javascript" >}} "Asynchronous JavaScript").
+在本章中，我们将使用**异步函数**来加载模型，并且我们将假设您至少熟悉这些函数。如果这些对您来说是新的，或者您需要复习，请转到[异步JavaScript]({{< relref "/book/appendix/asynchronous-javascript" >}} "异步JavaScript")。
 
 {{% /aside %}}
 
-## The `GLTFLoader` Plugin {#gltf-loader}
+## `GLTFLoader`插件 {#gltf-loader}
 
-To load glTF files, first, you need to add [the `GLTFLoader` plugin](https://threejs.org/docs/#examples/en/loaders/GLTFLoader) to your app. This works the same way as adding the [`OrbitControls` plugin]({{< relref "/book/first-steps/camera-controls#importing-plugins" >}} "`OrbitControls` plugin"). You can find the loader in [_**examples/jsm/loaders/GLTFLoader.js**_](https://github.com/mrdoob/three.js/blob/dev/examples/jsm/loaders/GLTFLoader.js) on the repo, and we have also included this file in the editor. Go ahead and locate the file now.
+要加载glTF文件，首先，您需要将[`GLTFLoader`插件](https://threejs.org/docs/#examples/en/loaders/GLTFLoader)添加到您的应用程序中。这与添加[`OrbitControls`插件]({{< relref "/book/first-steps/camera-controls#importing-plugins" >}} "`OrbitControls`插件")的方式相同。您可以在repo的[_**examples/jsm/loaders/GLTFLoader.js**_](https://github.com/mrdoob/three.js/blob/dev/examples/jsm/loaders/GLTFLoader.js)中找到加载程序，我们也在编辑器中包含了这个文件。现在就立即去找到该文件吧。
 
-Importing and creating an instance of the loader works like this:
+导入和创建加载器实例的工作方式如下：
 
-{{< code lang="js" linenos="false" caption="Import and create an instance of the `GLTFLoader`" >}}
+{{< code lang="js" linenos="false" caption="导入并创建一个`GLTFLoader`实例" >}}
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 const loader = new GLTFLoader();
 {{< /code >}}
 
-You can use one instance of the loader to load any number of glTF files.
+您可以使用加载程序的一个实例来加载任意数量的glTF文件。
 
-### The `.load` and `.loadAsync` Methods
+### `.load`和`.loadAsync`方法
 
-All three.js loaders have two methods for loading files: the old callback-based [`.load`](https://threejs.org/docs/#examples/en/loaders/GLTFLoader.load) method, and the newer Promise based `.loadAsync` method. Again, refer to chapter [A.5]({{< relref "/book/appendix/asynchronous-javascript" >}} "A.5") where we cover the difference between these two approaches in detail. Promises allow us to use async functions, which in turn results in much cleaner code, so throughout this book, we will always use `.loadAsync`.
+所有three.js加载器都有两种加载文件的方法：旧的基于回调的[`.load`](https://threejs.org/docs/#examples/en/loaders/GLTFLoader.load)方法和新的基于Promise的`.loadAsync`方法。再次参考第[A.5]({{< relref "/book/appendix/asynchronous-javascript" >}} "A.5")章，我们详细介绍了这两种方法之间的区别。Promise允许我们使用异步函数，这反过来会产生更简洁的代码，因此在本书中，我们将始终使用`.loadAsync`.
 
 {{< code lang="js" linenos="false" caption="`GLTFLoader.loadAsync`" >}}
 const loader = new GLTFLoader();
@@ -115,11 +115,11 @@ const loader = new GLTFLoader();
 const loadedData = await loader.loadAsync('path/to/yourModel.glb');
 {{< /code >}}
 
-## Set Up _**Main.js**_ and _**World.js**_ to Handle Async/Await
+## 设置 _**Main.js**_ 和 _**World.js**_ 来处理Async/Await
 
-The `await` keyword means "wait here until the model has loaded". If you have previously dealt with loading models using callbacks or Promises, then `await` will seem almost magical in its simplicity. However, we need to make a few adjustments to our code before we can use it since we can only use `await` inside a function that has been marked as `async`:
+关键字`await`意思是“在这里等到模型加载完毕”。如果您之前使用回调或Promises处理过加载模型，那么`await`它的简单性看起来几乎是神奇的。但是，我们需要对代码进行一些调整才能使用它，因为我们只能在已标记为`async`的函数内部使用`await`：
 
-{{< code lang="js" linenos="false" caption="You can only use `await` inside an `async` function" >}}
+{{< code lang="js" linenos="false" caption="您只能在`async`函数内部使用`await`" >}}
 async function loadingSuccess() {
 // inside an async function: OK!
 await loader.loadAsync('yourModel.glb');
@@ -131,9 +131,9 @@ await loader.loadAsync('yourModel.glb');
 }
 {{< /code >}}
 
-Another issue is that we cannot mark a constructor as async. A common solution to this is to create a separate `.init` method.
+另一个问题是我们不能将构造函数标记为异步。一个常见的解决方案是创建一个单独的`.init`方法。
 
-{{< code lang="js" linenos="false" caption="The constructor of a class cannot be `async`" >}}
+{{< code lang="js" linenos="false" caption="类的构造函数不能`async`" >}}
 class Foobazzer {
 constructor() {
 // constructor cannot be async: ERROR!
@@ -147,9 +147,9 @@ await loader.loadAsync('yourModel.glb')
 }
 {{< /code >}}
 
-This way, the constructor can handle the synchronous setup of the class, as usual, and then the init method will take over for asynchronous setup. We will use this approach, so we need to create a new `World.init` method.
+这样，构造函数可以像往常一样处理类的同步设置，然后init方法将接管异步设置。我们将使用这种方法，因此我们需要创建一个新`World.init`方法。
 
-{{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="We will create a new `World.init` method to handle asynchronous setup" >}}
+{{< code lang="js" linenos="" linenostart="1" hl_lines="" caption="我们将创建一个新`World.init`方法来处理异步设置" >}}
 
 ```js
 class World {
@@ -167,37 +167,37 @@ class World {
 
 {{< /code >}}
 
-Go ahead and add an empty `.init` method to World now, and make sure you mark it `async`. Splitting the setup into synchronous and asynchronous stages like this gives us full control over the setup of our app. In the synchronous stage, we will create everything that doesn't rely on loaded assets, and in the asynchronous stage, we'll create everything that does.
+现在继续向World添加一个空`.init`方法，并确保标记它`async`。像这样将设置拆分为同步和异步阶段使我们可以完全控制应用程序的设置。在同步阶段，我们将创建不依赖加载资源的所有内容，在异步阶段，我们将创建所有依赖加载资源的内容。
 
-### Mark the `main` Function as Async
+### 将`main`函数标记为异步
 
-Over in _**main.js**_, first, we must also mark the main function as async. This is required so that we can call the async `World.init` method.
+在 _**main.js**_ 中，首先，我们还必须将main函数标记为异步。这是必需的，以便我们可以调用异步`World.init`方法。
 
-{{< code file="worlds/first-steps/load-models/src/main.final.js" from="3" to="3" lang="js" linenos="true" hl_lines="3" caption="_**main.js**_: mark main as `async`" >}}{{< /code >}}
+{{< code file="worlds/first-steps/load-models/src/main.final.js" from="3" to="3" lang="js" linenos="true" hl_lines="3" caption="_**main.js**_: 将main标记为`async`" >}}{{< /code >}}
 
-Now we can call both stages of setting up the World app. First, the synchronous constructor, as usual, then the new `.init` method to handle asynchronous tasks.
+现在我们可以调用设置World应用程序的两个阶段。首先是同步构造函数，像往常一样，然后是处理异步任务的新`.init`方法。
 
-{{< code file="worlds/first-steps/load-models/src/main.final.js" from="3" to="15" lang="js" linenos="true" hl_lines="8 11" caption="_**main.js**_: call both synchronous and asynchronous stages of World setup" >}}{{< /code >}}
+{{< code file="worlds/first-steps/load-models/src/main.final.js" from="3" to="15" lang="js" linenos="true" hl_lines="8 11" caption="_**main.js**_: 调用World setup的同步和异步阶段" >}}{{< /code >}}
 
-### Catch Errors
+### 捕捉错误
 
-No method of loading files is complete unless we can also handle any errors that occur. Errors can be as simple as a typo in the file name, or something more complex like a network error. Fortunately, with async functions, error handling is also simple. At the bottom of _**main.js**_, replace this line:
+除非我们还可以处理发生的任何错误，否则加载文件的方法是不完整的。错误可以像文件名中的拼写错误一样简单，也可以像网络错误那样更复杂。幸运的是，使用异步函数，错误处理也很简单。在 _**main.js**_ 的底部，替换这一行：
 
-{{< code lang="js" linenos="" linenostart="17" caption="_**main.js**_: calling the main() function" >}}
+{{< code lang="js" linenos="" linenostart="17" caption="_**main.js**_: 调用main()函数" >}}
 main();
 {{< /code >}}
 
-... with:
+... 用这一行:
 
-{{< code file="worlds/first-steps/load-models/src/main.final.js" from="17" to="19" lang="js" linenos="true" caption="_**main.js**_: add a catch method to handle errors" >}}{{< /code >}}
+{{< code file="worlds/first-steps/load-models/src/main.final.js" from="17" to="19" lang="js" linenos="true" caption="_**main.js**_: 添加一个catch方法来处理错误" >}}{{< /code >}}
 
-Now any errors will be logged to the console. In a real app, you might want to do more sophisticated error handling, such as displaying a message to the user to let them know that something went wrong. However, while we are in development mode, the most important thing is that all errors are logged to the console where we can see them.
+现在任何错误都将记录到控制台。在一个真实的应用程序中，您可能想要进行更复杂的错误处理，例如向用户显示一条消息，让他们知道出了点问题。但是，当我们处于开发模式时，最重要的是所有错误都会记录到我们可以看到的控制台。
 
-## Create the _**birds.js**_ Module
+## 创建 _**birds.js**_ 模块
 
-Now everything is set up and we can go ahead and load our first model. Open (or create) the _**components/birds/birds.js**_ module. Start by importing the `GLTFLoader`, then create an async `loadBirds` function. Inside the function, create an instance of the loader, and finally, export the function at the bottom of the file:
+现在一切都设置好了，我们可以继续加载我们的第一个模型。打开（或创建） _**components/birds/birds.js**_ 模块。首先导入`GLTFLoader`，然后创建一个异步`loadBirds`函数。在函数内部，创建loader的实例，最后在文件底部导出函数：
 
-{{< code lang="js" linenos="" caption="_**birds/birds.js**_: initial structure" >}}
+{{< code lang="js" linenos="" caption="_**birds/birds.js**_: 初始结构" >}}
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 async function loadBirds() {
@@ -207,17 +207,17 @@ const loader = new GLTFLoader();
 export { loadBirds };
 {{< /code >}}
 
-The structure of this new module should be familiar to you since it's the same as nearly [every other component we have created so far]({{< relref "/book/first-steps/world-app#systems-and-components" >}} "every other component we have created so far"). The only difference is the `async` keyword.
+这个新模块的结构你应该很熟悉，因为它几乎与[我们迄今为止创建的所有其他组件]({{< relref "/book/first-steps/world-app#systems-and-components" >}} "我们迄今为止创建的所有其他组件")相同。唯一的区别是`async`关键字。
 
-Over in World, update the list of imports:
+在World中，更新导入列表：
 
-{{< code from="1" to="4" file="worlds/first-steps/load-models/src/World/World.final.js" lang="js" linenos="true" hl_lines="1" caption="_**World.js**_: import components" >}}{{< /code >}}
+{{< code from="1" to="4" file="worlds/first-steps/load-models/src/World/World.final.js" lang="js" linenos="true" hl_lines="1" caption="_**World.js**_: 导入组件" >}}{{< /code >}}
 
-### Load the Parrot
+### 加载鹦鹉
 
-Now, we're ready to load the _**Parrot.glb**_ file using `.loadAsync`. Once you have done so, log the loaded data to the console:
+现在，我们已经准备好使用`.loadAsync`加载 _**Parrot.glb**_ 文件了。完成后，将加载的数据记录到控制台：
 
-{{< code lang="js" linenos="" linenostart="3" caption="_**birds.js**_: load the Parrot" >}}
+{{< code lang="js" linenos="" linenostart="3" caption="_**birds.js**_: 加载鹦鹉" >}}
 async function loadBirds() {
 const loader = new GLTFLoader();
 
@@ -227,19 +227,19 @@ console.log('Squaaawk!', parrotData);
 }
 {{< /code >}}
 
-Next, call the `loadBirds` in `World.init`:
+接下来，在`World.init`中调用`loadBirds`：
 
-{{< code lang="js" linenos="" linenostart="36" caption="_**World.js**_: load the birds!" >}}
+{{< code lang="js" linenos="" linenostart="36" caption="_**World.js**_: 加载鸟类！" >}}
 async init() {
 await loadBirds();
 }
 {{< /code >}}
 
-## Data Returned by the `GLTFLoader` {#returned-gltf-data}
+## `GLTFLoader`返回的数据 {#returned-gltf-data}
 
-We need to take a deeper look at the data we have just loaded before we can add the model to our scene, so for now we've simply logged the data to the console. Open up the browser console (press F12). You should see the word _Squaaawk!_ followed by an Object containing the loaded data. This Object contains meshes, animations, cameras, and other data from the file:
+在将模型添加到场景之前，我们需要更深入地查看刚刚加载的数据，所以现在我们只是将数据记录到控制台。打开浏览器控制台（按 F12）。你应该看到 _Squaaawk!_ 这个词，并且后面跟着一个包含加载数据的对象。此对象包含文件中的网格、动画、相机和其他数据：
 
-{{< code lang="js" linenos="false" caption="Data return by the `GLTFLoader`" >}}
+{{< code lang="js" linenos="false" caption="`GLTFLoader`返回的数据" >}}
 {
 animations: [AnimationClip]
 asset: {generator: "Khronos Blender glTF 2.0 I/O", version: "2.0"}
@@ -256,35 +256,35 @@ userData: {}
 TODO-LOW: convert list to table without header
 {{% /note %}}
 
-- **`gltfData.animations`** is an array of animation clips. Here, there's a flying animation. We'll make use of this [in the next chapter]({{< relref "/book/first-steps/animation-system" >}} "in the next chapter").
-- **`gltfData.assets`** contains metadata showing this glTF file was created using the [Blender](https://www.blender.org/) exporter.
-- **`gltfData.cameras`** is an array of cameras. This file doesn't contain any cameras, so the array is empty.
-- **`gltfData.parser`** contains technical details about the `GLTFLoader`.
-- **`gltfData.scene`** is a [`Group`]({{< relref "/book/first-steps/organizing-with-group#hello-group" >}} "`Group`") containing any meshes from the file. **This is where we'll find the parrot model.**
-- **`gltfData.scenes`**: The glTF format supports storing multiple scenes in a single file. In practice, this feature is rarely used.
-- **`gltfData.userData`** may contain additional non-standard data.
+- **`gltfData.animations`** 是一个动画剪辑数组。在这里，有一个飞行动画。我们将在[下一章中]({{< relref "/book/first-steps/animation-system" >}} "下一章中")使用它。
+- **`gltfData.assets`** 包含显示此glTF文件的元数据 --- 使用[Blender](https://www.blender.org/)导出器创建。
+- **`gltfData.cameras`** 是一组相机。该文件不包含任何摄像机，因此数组为空。
+- **`gltfData.parser`** 包含关于`GLTFLoader`的技术细节。
+- **`gltfData.scene`** 是一个包含文件中的任何网格的[`Group`]({{< relref "/book/first-steps/organizing-with-group#hello-group" >}} "`Group`")。**这是我们将找到鹦鹉模型的地方。**
+- **`gltfData.scenes`**: glTF格式支持将多个场景存储在一个文件中。在实践中，很少使用此功能。
+- **`gltfData.userData`** 可能包含额外的非标准数据。
 
-_`__proto__` is a standard property that every JavaScript object has, you can ignore that._
+_ `__proto__`是每个JavaScript对象都有的标准属性，你可以忽略它。_
 
-Usually, all you need is **`.animations`**, **`.cameras`**, and **`.scene`** (not `.scenes`!) and you can safely ignore everything else.
+通常，您只需要**`.animations`**、**`.cameras`**和**`.scene`**（而不是`.scenes`！），您可以放心地忽略其他所有内容。
 
 {{% note %}}
 TODO-LINK: link to animation chapter
 {{% /note %}}
 
-## Process the Loaded Data
+## 处理加载的数据
 
-Extracting data from a glTF file usually follows a predictable pattern, especially if the file contains a single animated model, as these three files do. This means we can create a `setupModel` function and then run it on each of the three files. We'll do this in a separate module. Open or create the _**birds/setupModel.js**_ module, and create the function, following the now-familiar pattern:
+从glTF文件中提取数据通常遵循可预测的模式，尤其是当文件包含单个动画模型时，就像这三个文件一样。这意味着我们可以创建一个`setupModel`函数，然后在三个文件中的每一个上运行它。我们将在一个单独的模块中执行此操作。打开或创建 _**birds/setupModel.js**_ 模块，并按照现在熟悉的模式创建函数：
 
-{{< code lang="js" linenos="" caption="_**birds/setupModel.js**_: initial structure" >}}
+{{< code lang="js" linenos="" caption="_**birds/setupModel.js**_: 初始结构" >}}
 function setupModel(data) {}
 
 export { setupModel };
 {{< /code >}}
 
-The idea of this function is that we can pass in the loaded data and get back the bird model, ready to be added to the scene. Next, import this new module into _**birds.js**_, then pass in the loaded data. Finally, return the results for use within World.
+这个函数的想法是我们可以传入加载的数据并取回鸟类模型，准备添加到场景中。接下来，将这个新模块导入到 _**birds.js**_ 中，然后传入加载的数据。最后，返回结果以在World中使用。
 
-{{< code lang="js" linenos="" hl_lines="3 12 14" caption="_**birds.js**_: process loaded data" >}}
+{{< code lang="js" linenos="" hl_lines="3 12 14" caption="_**birds.js**_: 处理加载的数据" >}}
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 import { setupModel } from './setupModel.js';
@@ -302,25 +302,25 @@ return { parrot }
 }
 {{< /code >}}
 
-### Extract the Mesh from the Loaded Data
+### 从加载的数据中提取网格
 
-At this point, we have the unprocessed loaded data within the `setupModel` function. The next step is to extract the model, and then do any processing to prepare it for use. The amount of work we need to do here depends on the model, and what we want to do with it. Here, all we need to do is extract the mesh, but in the next chapter, we'll have a bit more work to do as we connect the animation clip to the mesh.
+至此，我们在`setupModel`函数中有未处理的加载数据。下一步是提取模型，然后进行任何处理以准备使用。我们在这里需要做的工作量取决于模型，以及我们想用它做什么。在这里，我们需要做的就是提取网格，但在下一章中，我们将有更多工作要做，因为我们将动画剪辑连接到网格。
 
-Look at the loaded data in the console again, and expand the `gltfData.scene`. This a [`Group`]({{< relref "/book/first-steps/organizing-with-group#hello-group" >}} "`Group`"), and any meshes that are in the file will be [children of the group]({{< relref "/book/first-steps/transformations#the-scene-graph" >}} "children of the group"). These can be accessed using the [`group.children`]({{< relref "/book/first-steps/transformations#accessing-a-scene-objects-children" >}} "`group.children`") array. If you look inside there, you'll see that `glTF.scene.children` has only one object inside it, so that must be our parrot model.
+再次查看控制台中加载的数据，然后展开`gltfData.scene`。这是一个[`Group`]({{< relref "/book/first-steps/organizing-with-group#hello-group" >}} "`Group`")，并且文件中的任何网格都将是[该组的子级]({{< relref "/book/first-steps/transformations#the-scene-graph" >}} "该组的子级")。这些可以使用[`group.children`]({{< relref "/book/first-steps/transformations#accessing-a-scene-objects-children" >}} "`group.children`")数组访问。如果你往里面看，你会发现`glTF.scene.children`里面只有一个物体，所以那一定是我们的鹦鹉模型。
 
-Using this knowledge, we can finish the `setupModel` function:
+利用这些知识，我们可以完成`setupModel`函数：
 
-{{< code file="worlds/first-steps/load-models/src/World/components/birds/setupModel.final.js" from="1" to="5" lang="js" linenos="true" hl_lines="2 4" caption="_**setupModel.js**_: extract the model from the loaded data" >}}{{< /code >}}
+{{< code file="worlds/first-steps/load-models/src/World/components/birds/setupModel.final.js" from="1" to="5" lang="js" linenos="true" hl_lines="2 4" caption="_**setupModel.js**_: 从加载的数据中提取模型" >}}{{< /code >}}
 
-_Note A: if you click the toggle to complete the scene in the editor, then view the `gltfData.scene.children` array in the console, it will be empty. This is because, by the time you look at it, the mesh has already been removed and added to the scene._
+_注意 A：如果您在编辑器中单击切换完成场景，然后在控制台中查看`gltfData.scene.children`数组，它将为空。这是因为，当您查看它时，网格已经被移除并添加到场景中。_
 
-_Note B: you could also just add the `gltf.scene` to your scene since it's a group. That would add an additional node to your scene graph but everything will still work. However, it's best practice to keep your scene graph as simple as possible, since every node means additional calculations are required to render the scene._
+_注意 B：您也可以将`gltf.scene`添加到您的场景中，因为它是一个组。这将为您的场景图添加一个额外的节点，但一切仍然有效。但是，最好让场景图尽可能简单，因为每个节点都意味着渲染场景需要额外的计算。_
 
-### Add the Mesh to the Scene
+### 将网格添加到场景中
 
-Over in World, `loadBirds` now returns the parrot mesh and you can add it to the scene:
+在World中，`loadBirds`现在返回鹦鹉网格，您可以将其添加到场景中：
 
-{{< code lang="js" linenos="" hl_lines="35 37" linenostart="34" caption="_**World.js**_: add the mesh to the scene" >}}
+{{< code lang="js" linenos="" hl_lines="35 37" linenostart="34" caption="_**World.js**_: 将网格添加到场景中" >}}
 async init() {
 const { parrot } = await loadBirds();
 
@@ -329,13 +329,13 @@ const { parrot } = await loadBirds();
 }
 {{< /code >}}
 
-## Load the Other Two Birds
+## 加载其他两只鸟
 
-You can use a single instance of the `GLTFLoader` to load any number of files. When performing multiple asynchronous operations with async functions, you should (in most cases) use `Promise.all`. We go into the reason for this in more detail [in the appendix]({{< relref "/book/appendix/asynchronous-javascript#loading-multiple-files-with-async-functions-first-attempt" >}} "in the appendix"), but here's the short version.
+您可以使用`GLTFLoader`的单个实例来加载任意数量的文件。当使用异步函数执行多个异步操作时，您应该（在大多数情况下）使用`Promise.all`。我们[在附录中]({{< relref "/book/appendix/asynchronous-javascript#loading-multiple-files-with-async-functions-first-attempt" >}} "在附录中")更详细地讨论了这个原因，但这里是简短的版本。
 
-First, here's the obvious way of loading the other two files:
+首先，这是加载其他两个文件的显而易见的方式：
 
-{{< code lang="js" linenos="false" caption="Load multiple glTF files, the WRONG way" >}}
+{{< code lang="js" linenos="false" caption="加载多个glTF文件，错误的方式" >}}
 // Don't do this!
 const parrotData = await loader.loadAsync('/assets/models/Parrot.glb');
 const flamingoData = await loader.loadAsync('/assets/models/Flamingo.glb');
@@ -346,11 +346,11 @@ const flamingo = setupModel(flamingoData);
 const stork = setupModel(storkData);
 {{< /code >}}
 
-There's a problem with this approach. [As we stated above](#set-up-main-js-and-world-js-to-handle-async-await), `await` means _wait here until the file has loaded_. This means the app will wait until the parrot has fully loaded, _then_ start to load the flamingo, wait until _that_ has fully loaded, and _finally_ start to load the stork. Using this approach, loading will take nearly three times longer than it should.
+这种方法有问题。[正如我们上面所说的](#set-up-main-js-and-world-js-to-handle-async-await)，`await`意味着 _在这里等待，直到文件加载完毕_。这意味着应用程序将等到鹦鹉完全加载，_然后_ 开始加载火烈鸟，等到 _它_ 完全加载，_最后_ 开始加载鹳。使用这种方法，加载时间将比应有的时间长近三倍。
 
-Instead, we want all three files to load at the same time, and the simplest way of doing this is to use `Promise.all`.
+相反，我们希望同时加载所有三个文件，最简单的方法是使用`Promise.all`。
 
-{{< code lang="js" linenos="" linenostart="8" hl_lines="" caption="_**birds.js**_: load the other two file using `Promise.all`" >}}
+{{< code lang="js" linenos="" linenostart="8" hl_lines="" caption="_**birds.js**_: 使用`Promise.all`加载其他两个文件" >}}
 
 ```js
 const [parrotData, flamingoData, storkData] = await Promise.all([
@@ -362,9 +362,9 @@ const [parrotData, flamingoData, storkData] = await Promise.all([
 
 {{< /code >}}
 
-Then we can process each file's loaded data using the `setupModel` function. Once we do that, here's our (nearly complete) `loadModels` function:
+然后我们可以使用`setupModel`函数处理每个文件的加载数据。一旦我们这样做了，这就是我们的（几乎完整的）`loadModels`函数：
 
-{{< code lang="js" linenos="" hl_lines="8-12 17-18 22 23" linenostart="5" caption="_**birds.js**_: load and then process multiple glTF files" >}}
+{{< code lang="js" linenos="" hl_lines="8-12 17-18 22 23" linenostart="5" caption="_**birds.js**_: 加载并处理多个glTF文件" >}}
 async function loadBirds() {
 const loader = new GLTFLoader();
 
@@ -388,9 +388,9 @@ stork,
 }
 {{< /code >}}
 
-Over in World, you now have all three models. Add them to your scene:
+在World中，您现在拥有所有三个模型。将它们添加到您的场景中：
 
-{{< code lang="js" linenos="" linenostart="36" caption="_**World.js**_: add the second two birds to the scene" >}}
+{{< code lang="js" linenos="" linenostart="36" caption="_**World.js**_: 将另外二只鸟添加到场景中" >}}
 async init() {
 const { parrot, flamingo, stork } = await loadBirds();
 
@@ -398,67 +398,67 @@ scene.add(parrot, flamingo, stork);
 }
 {{< /code >}}
 
-Great! Well...
+非常不错！额...
 
 {{< inlineScene entry="first-steps/birds-jumbled.js" >}}
 
-Just like visiting the zoo!
+就像参观动物园一样！
 
-### Move the Birds into Position
+### 将小鸟移动到位
 
-It is possible for models loaded from a glTF file to have a position already specified, but that's not the case here, so all three models start at the point $(0,0,0)$, all jumbled together on top of each other. We'll adjust the position of each bird to make it look like they are flying in formation:
+从glTF文件加载的模型可能已经指定了位置，但这里不是这种情况，所以所有三个模型都从点$(0,0,0)$开始, 都在彼此之上混杂在一起。我们将调整每只鸟的位置，使其看起来像是在编队飞行：
 
-{{< code from="16" to="23" file="worlds/first-steps/load-models/src/World/components/birds/birds.final.js" lang="js" linenos="true" hl_lines="17 20 23" caption="_**birds.js**_: move the birds into position" >}}{{< /code >}}
+{{< code from="16" to="23" file="worlds/first-steps/load-models/src/World/components/birds/birds.final.js" lang="js" linenos="true" hl_lines="17 20 23" caption="_**birds.js**_: 将小鸟移动到位" >}}{{< /code >}}
 
-### Final _**birds.js**_ Module
+### 最终的 _**birds.js**_ 模块
 
-The _**birds.js**_ module is now complete. Here's the final code:
+_**birds.js**_ 模块现已完成。这是最终的代码：
 
-{{< code file="worlds/first-steps/load-models/src/World/components/birds/birds.final.js" from="1" to="32" lang="js" linenos="true" caption="_**birds.js**_: final code" >}}{{< /code >}}
+{{< code file="worlds/first-steps/load-models/src/World/components/birds/birds.final.js" from="1" to="32" lang="js" linenos="true" caption="_**birds.js**_: 最终代码" >}}{{< /code >}}
 
-### Center the Camera on the Parrot
+### 将相机对准鹦鹉
 
-The very last thing we'll do is [adjust the `OrbitControls` target]({{< relref "/book/first-steps/camera-controls#manually-set-the-target" >}} "adjust the `OrbitControls` target"). Currently, this is in its default position, the center of the scene. Now that we have moved the birds into formation, this ends up being somewhere around the tail of the parrot. It would look better if the camera focused on the center of the bird rather than its tail. We can easily set this up by copying the `parrot.position` into `controls.target`. However, to do so, we need to access `controls` within `.init`, so first, let's convert it to a module-scoped variable.
+我们要做的最后一件事是[调整`OrbitControls`目标]({{< relref "/book/first-steps/camera-controls#manually-set-the-target" >}} "调整`OrbitControls`目标")。目前，它位于其默认位置，即场景的中心。现在我们已经将鸟儿排成队形，这最终会出现在鹦鹉尾巴周围的某个地方。如果相机聚焦在鸟的中心而不是它的尾巴上会更好看。我们可以轻松设置它通过复制`parrot.position`给`controls.target`。但是，要做到这一点，我们需要访问`.init`里的`controls`，所以首先，让我们将其转换为模块作用域的变量。
 
-{{< code from="11" to="15" file="worlds/first-steps/load-models/src/World/World.final.js" lang="js" linenos="true" hl_lines="12" caption="_**World.js**_: make `controls` a module scoped variable" >}}{{< /code >}}
+{{< code from="11" to="15" file="worlds/first-steps/load-models/src/World/World.final.js" lang="js" linenos="true" hl_lines="12" caption="_**World.js**_: 定义`controls`一个模块作用域变量" >}}{{< /code >}}
 
-{{< code from="18" to="32" file="worlds/first-steps/load-models/src/World/World.final.js" lang="js" linenos="true" hl_lines="24" caption="_**World.js**_: make `controls` a module scoped variable" >}}{{< /code >}}
+{{< code from="18" to="32" file="worlds/first-steps/load-models/src/World/World.final.js" lang="js" linenos="true" hl_lines="24" caption="_**World.js**_: 定义`controls`一个模块作用域变量" >}}{{< /code >}}
 
-Now, the controls are accessible from `.init` and we can move the target to the center of the parrot.
+现在，可以在`.init`里面访问controls，我们可以将目标移动到鹦鹉的中心。
 
-{{< code from="34" to="41" file="worlds/first-steps/load-models/src/World/World.final.js" lang="js" linenos="true" hl_lines="38" caption="_**World.js**_: target the parrot with the camera" >}}{{< /code >}}
+{{< code from="34" to="41" file="worlds/first-steps/load-models/src/World/World.final.js" lang="js" linenos="true" hl_lines="38" caption="_**World.js**_: 使用相机瞄准鹦鹉" >}}{{< /code >}}
 
 {{< inlineScene entry="first-steps/birds-still.js" class="" >}}
 
-Next up, we'll introduce the three.js animation system and show you how to play the animation clips that were loaded alongside the bird models.
+接下来，我们将介绍three.js动画系统，并向您展示如何播放与鸟类模型一起加载的动画片段。
 
-## Challenges
+## 挑战
 
 {{% aside success %}}
 
-### Easy
+### 简单
 
-1. Look at that parrot hogging the limelight! Switch around the bird's positions to give the stork and the flamingo each a turn in leading the flock.
+1. 看看那只抢风头的鹦鹉！切换鸟的位置，让鹳和火烈鸟各自轮流带领鸟群。
 
-2. Alternatively, leave the birds in place and try making the `controls.target` focus on one of the other two birds instead of the parrot.
+2. 或者，将鸟类留在原地，并尝试将`controls.target`注意力集中在另外两只鸟中的一只而不是鹦鹉身上。
 
 {{% /aside %}}
 
 {{% aside %}}
 
-### Medium
+### 中等
 
-1. Add a `<button>` element with the text _Switch Focus_. Whenever you click this button, the camera should focus on the next bird. You can implement this however you like, but, if you want to do it in keeping with our work so far, you should set up the buttons inside _**main.js**_ and then [expand the World class interface]({{< relref "/book/first-steps/world-app#the-world-interface" >}} "expand the World class interface") with a method to move focus onto the next bird. You can call this method `World.focusNext` or something similar.
+1. 添加一个带有 _Switch Focus_ 文本的`<button>`的元素。每当您单击此按钮时，相机应聚焦在下一只鸟身上。你可以随心所欲地实现它，但是，如果你想按照我们目前的工作来做，你应该在 _**main.js**_ 中设置按钮，然后用一个方法[扩展World类接口]({{< relref "/book/first-steps/world-app#the-world-interface" >}} "扩展World类接口")，将焦点移到下一个鸟。您可以命名此方法为`World.focusNext`或类似的方法。
 
 {{% /aside %}}
 
 {{% aside warning %}}
 
-### Hard
+### 困难
 
-1. Once you have implemented the button above, you'll have three camera views, one for each bird. Add a fourth view which is a zoomed-out overview of the scene that allows you to see all three birds. For this fourth view, you may need to adjust the `camera.position` as well as the `controls.target`.
+1. 实现上面的按钮后，您将拥有三个摄像机视图，每只鸟一个。添加第四个视图，它是场景的缩小概览，可让您看到所有三只鸟。对于这第四个视图，您可能需要调整`camera.position`以及`controls.target`。
 
-2. Now, make the camera smoothly animate from one viewpoint to the next. You will have to animate the camera.position and the controls.target at the same time. The best place to do this is within the `controls.tick` method.
+2. 现在，让相机从一个视点平滑地动画化到下一个视点。您必须同时为camera.position和controls.target设置动画。最好的地方是在`controls.tick`方法内。
 
 {{% note %}}
 TODO-LOW: test the above challenges
