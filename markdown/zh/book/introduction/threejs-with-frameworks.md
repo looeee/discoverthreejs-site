@@ -5,7 +5,7 @@ date: 2019-01-01
 weight: 8
 chapter: "0.7"
 available: true
-nextURL: "/book/first-steps/"
+nextURL: "/zh/book/first-steps/"
 nextTitle: "入门：真正的乐趣从这里开始！"
 ---
 

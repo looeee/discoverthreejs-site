@@ -6,9 +6,9 @@ sectionHead: true
 weight: 100
 chapter: "1"
 available: true
-nextURL: "/book/first-steps/app-structure/"
+nextURL: "/zh/book/first-steps/app-structure/"
 nextTitle: "Three.js应用的结构"
-prevURL: "/book/introduction/threejs-with-frameworks/"
+prevURL: "/zh/book/introduction/threejs-with-frameworks/"
 prevTitle: "将three.js与React、Vue.js、Angular、Svelte、TypeScript等一起使用"
 hideWordCount: true
 ---

@@ -6,7 +6,7 @@ sectionHead: true
 available: true
 weight: 1
 chapter: "0"
-nextURL: "/book/introduction/about-the-book/"
+nextURL: "/zh/book/introduction/about-the-book/"
 nextTitle: "如何使用这本书"
 hideWordCount: true
 ---

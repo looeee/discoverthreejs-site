@@ -5,7 +5,7 @@ date: 2019-01-01
 weight: 9901
 chapter: "A.1"
 available: true
-prevURL: "/book/appendix/"
+prevURL: "/zh/book/appendix/"
 prevTitle: "Appendices"
 showIDE: true
 IDEFiles:

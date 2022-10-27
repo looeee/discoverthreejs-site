@@ -35,33 +35,33 @@ IDEComparisonMode: true
 IDEClosedFolders: ["assets", "systems", "styles", "vendor"]
 IDEStripDirectory: "worlds/first-steps/animation-system/"
 IDEActiveDocument: "src/World/components/birds/setupModel.js"
-nextURL: "/book/appendix/"
+nextURL: "/zh/book/appendix/"
 nextTitle: "Production Ready three.js"
 ---
 
-# three.js动画系统
+# three.js 动画系统
 
-在上一章中，我们介绍了glTF模型格式，并向您展示了如何加载鹦鹉、火烈鸟和鹳这三个简单而漂亮的模型。
+在上一章中，我们介绍了 glTF 模型格式，并向您展示了如何加载鹦鹉、火烈鸟和鹳这三个简单而漂亮的模型。
 
 {{< inlineScene entry="first-steps/birds-animated-small.js" id="scene-A" class="round right medium" >}}
 
-这些模型是从[二进制glTF文件]({{< relref "/book/first-steps/load-models#types-of-gltf-files" >}} "二进制glTF文件") [**_parrot.glb_**](https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Parrot.glb), [**_flamingo.glb_**](https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Flamingo.glb), 和[**_stork.glb_**](https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Stork.glb)加载的。除了鸟类模型，这些文件中的每一个还包含鸟类飞行的动画剪辑。
+这些模型是从[二进制 glTF 文件]({{< relref "/book/first-steps/load-models#types-of-gltf-files" >}} "二进制 glTF 文件") [**_parrot.glb_**](https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Parrot.glb), [**_flamingo.glb_**](https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Flamingo.glb), 和[**_stork.glb_**](https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Stork.glb)加载的。除了鸟类模型，这些文件中的每一个还包含鸟类飞行的动画剪辑。
 
-在介绍部分的最后一章中，我们将介绍three.js动画系统，并向您展示如何将这些动画剪辑附加到鸟类模型上，以便它们能够飞行。
+在介绍部分的最后一章中，我们将介绍 three.js 动画系统，并向您展示如何将这些动画剪辑附加到鸟类模型上，以便它们能够飞行。
 
 {{% note %}}
 TODO-LINK: link to skinned mesh and morph targets sections
 {{% /note %}}
 
-**three.js动画系统是一个完整的动画调音台。** 使用这个系统，您几乎可以为对象的任何方面设置动画，例如位置、缩放、旋转、材质的颜色或不透明度、[蒙皮网格](https://threejs.org/examples/#webgl_animation_skinning_blending)的骨骼、 [变形目标](https://threejs.org/examples/#webgl_buffergeometry_morphtargets)以及许多其他内容。您还可以合成和混合动画，例如，如果您将“行走”动画和“跑步”动画附加到人类角色上，您可以通过合成这些动画使角色从步行加速到奔跑。
+**three.js 动画系统是一个完整的动画调音台。** 使用这个系统，您几乎可以为对象的任何方面设置动画，例如位置、缩放、旋转、材质的颜色或不透明度、[蒙皮网格](https://threejs.org/examples/#webgl_animation_skinning_blending)的骨骼、 [变形目标](https://threejs.org/examples/#webgl_buffergeometry_morphtargets)以及许多其他内容。您还可以合成和混合动画，例如，如果您将“行走”动画和“跑步”动画附加到人类角色上，您可以通过合成这些动画使角色从步行加速到奔跑。
 
-**动画系统使用关键帧来定义动画**。为了创建动画，我们在特定时间点设置关键帧，然后动画系统使用称为**补间**的过程为我们填补空白。例如，要为弹跳的球设置动画，您可以指定弹跳的顶部和底部的点，球将在其间的所有点上平滑地设置动画。您需要的关键帧数量取决于动画的复杂性。一个非常简单的动画每秒可能只需要一个关键帧，或者更少，而复杂的动画则需要更多，每秒最多需要60个关键帧（在标准60Hz显示器上超过这个值将被忽略）。
+**动画系统使用关键帧来定义动画**。为了创建动画，我们在特定时间点设置关键帧，然后动画系统使用称为**补间**的过程为我们填补空白。例如，要为弹跳的球设置动画，您可以指定弹跳的顶部和底部的点，球将在其间的所有点上平滑地设置动画。您需要的关键帧数量取决于动画的复杂性。一个非常简单的动画每秒可能只需要一个关键帧，或者更少，而复杂的动画则需要更多，每秒最多需要 60 个关键帧（在标准 60Hz 显示器上超过这个值将被忽略）。
 
 {{% note %}}
 TODO-DIAGRAM: add diagram of keyframe animations and possibly explain about curved vs linear interpolation
 {{% /note %}}
 
-动画系统由许多组件组成，这些组件协同工作以创建动画、将它们附加到场景中的对象并控制它们。我们将它们分为两类，**动画创建**和**动画播放和控制**。我们将在这里简要介绍这两个类别，然后我们将使用我们的新知识来设置我们从三个glTF文件中加载的飞行动画。
+动画系统由许多组件组成，这些组件协同工作以创建动画、将它们附加到场景中的对象并控制它们。我们将它们分为两类，**动画创建**和**动画播放和控制**。我们将在这里简要介绍这两个类别，然后我们将使用我们的新知识来设置我们从三个 glTF 文件中加载的飞行动画。
 
 ## 动画系统：创建动画
 
@@ -69,7 +69,7 @@ TODO-DIAGRAM: add diagram of keyframe animations and possibly explain about curv
 TODO-DIAGRAM: add diagram of animation system
 {{% /note %}}
 
-我们将首先研究如何创建一些简单的动画来改变对象的可见性、比例或位置。不过需要注意的是，大部分人不会使用three.js动画系统来手工制作动画。它最适合与在Blender等外部软件中创建的动画一起使用。相反，为了在代码中创建动画，大多数人更喜欢使用[Tween.js](https://threejs.org/examples/#webgl_loader_collada_kinematics)来制作简单的动画，而使用[GSAP](https://greensock.com/gsap/)来制作更复杂的动画（尽管任何JavaScript动画库都可以使用 three.js）。甚至[官方的例子](https://threejs.org/examples/#webgl_loader_collada_kinematics)在three.js网站上使用Tween.js！尽管如此，了解动画剪辑的创建和结构对我们来说很重要，所以让我们开始吧，很快我们就会让那些懒惰的小鸟飞上天空！
+我们将首先研究如何创建一些简单的动画来改变对象的可见性、比例或位置。不过需要注意的是，大部分人不会使用 three.js 动画系统来手工制作动画。它最适合与在 Blender 等外部软件中创建的动画一起使用。相反，为了在代码中创建动画，大多数人更喜欢使用[Tween.js](https://threejs.org/examples/#webgl_loader_collada_kinematics)来制作简单的动画，而使用[GSAP](https://greensock.com/gsap/)来制作更复杂的动画（尽管任何 JavaScript 动画库都可以使用 three.js）。甚至[官方的例子](https://threejs.org/examples/#webgl_loader_collada_kinematics)在 three.js 网站上使用 Tween.js！尽管如此，了解动画剪辑的创建和结构对我们来说很重要，所以让我们开始吧，很快我们就会让那些懒惰的小鸟飞上天空！
 
 创建动画涉及三个元素：关键帧、`KeyframeTrack`和`AnimationClip`。
 
@@ -77,28 +77,28 @@ TODO-DIAGRAM: add diagram of animation system
 
 动画系统中最底层的概念级别是[关键帧](https://en.wikipedia.org/wiki/Key_frame)。每个关键帧由三部分信息组成：时间**_time_**、属性**_property_**和值 **_value_**，例如：
 
-- **在0秒 `.position`是$(0,0,0)$。**
-- **在3秒 `.scale`是$(1,1,1)$。**
-- **在12秒 `.material.color`是红色。**
+- **在 0 秒 `.position`是$(0,0,0)$。**
+- **在 3 秒 `.scale`是$(1,1,1)$。**
+- **在 12 秒 `.material.color`是红色。**
 
 这三个关键帧分别描述了某个属性在特定时间的值。但是，**关键帧没有指定任何特定的对象**。位置关键帧可用于为任何具有`.position`属性的对象设置动画，缩放关键帧可以为任何具有`.scale`属性的对象设置动画，等等。但是，关键帧确实指定了数据类型。上面的`.position`和`.scale`关键帧指定矢量数据，而`.material.color`关键帧指定颜色数据。目前，动画系统支持五种数据类型。
 
-| 数据类型      | 描述                                                                                                                                      | 例子                                                                                                                                                                                                                                                                                                                                                                                   |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Number**     | 为单个数字的任何属性设置动画                                                                                                     | [MeshStandardMaterial.opacity](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial.opacity)<br> [PerspectiveCamera.zoom](https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.zoom)                                                                                                                                                                                      |
-| **Vector**     | 动画任何作为[矢量]({{< relref "/book/first-steps/transformations#positions-are-stored-in-the-vector3-class" >}} "矢量")的属性   | [Object3D.position]({{< relref "/book/first-steps/transformations#our-first-transformation-translation" >}} "Object3D.position")<br> [Object3D.scale]({{< relref "/book/first-steps/transformations#our-second-transformation-scaling" >}} "Object3D.scale")<br> [OrbitControls.target]({{< relref "/book/first-steps/camera-controls#manually-set-the-target" >}} "OrbitControls.target") |
-| **Quaternion** | 动画旋转存储为[四元数]({{< relref "/book/first-steps/transformations#the-other-rotation-class-quaternions" >}} "四元数") | [Object3D.quaternion](https://threejs.org/docs/#api/en/core/Object3D.quaternion)                                                                                                                                                                                                                                                                                                           |
-| **Boolean**    | 动画任何布尔属性。这不太常用，因为true和false之间没有值，所以动画会跳转           | [MeshStandardMaterial.wireframe](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial.wireframe)<br> [DirectionalLight.castShadow](https://threejs.org/docs/#api/en/lights/DirectionalLight.castShadow)                                                                                                                                                                         |
-| **String**     | 动画任何作为字符串的属性                                                                                                            | 不常用                                                                                                                                                                                                                                                                                                                                                                          |
+| 数据类型       | 描述                                                                                                                          | 例子                                                                                                                                                                                                                                                                                                                                                                                       |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Number**     | 为单个数字的任何属性设置动画                                                                                                  | [MeshStandardMaterial.opacity](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial.opacity)<br> [PerspectiveCamera.zoom](https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.zoom)                                                                                                                                                                                      |
+| **Vector**     | 动画任何作为[矢量]({{< relref "/book/first-steps/transformations#positions-are-stored-in-the-vector3-class" >}} "矢量")的属性 | [Object3D.position]({{< relref "/book/first-steps/transformations#our-first-transformation-translation" >}} "Object3D.position")<br> [Object3D.scale]({{< relref "/book/first-steps/transformations#our-second-transformation-scaling" >}} "Object3D.scale")<br> [OrbitControls.target]({{< relref "/book/first-steps/camera-controls#manually-set-the-target" >}} "OrbitControls.target") |
+| **Quaternion** | 动画旋转存储为[四元数]({{< relref "/book/first-steps/transformations#the-other-rotation-class-quaternions" >}} "四元数")      | [Object3D.quaternion](https://threejs.org/docs/#api/en/core/Object3D.quaternion)                                                                                                                                                                                                                                                                                                           |
+| **Boolean**    | 动画任何布尔属性。这不太常用，因为 true 和 false 之间没有值，所以动画会跳转                                                   | [MeshStandardMaterial.wireframe](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial.wireframe)<br> [DirectionalLight.castShadow](https://threejs.org/docs/#api/en/lights/DirectionalLight.castShadow)                                                                                                                                                                         |
+| **String**     | 动画任何作为字符串的属性                                                                                                      | 不常用                                                                                                                                                                                                                                                                                                                                                                                     |
 
 此列表中明显缺少的是[欧拉角]({{< relref "/book/first-steps/transformations#representing-rotations-the-euler-class" >}} "欧拉角")，如果您从我们关于变换的章节中回想一下，它类似于向量并用于将旋转存储在[`Object3D.rotation`](https://threejs.org/docs/#api/en/core/Object3D.rotation)。 要为旋转设置动画，您必须使用[`Object3D.quaternion`](https://threejs.org/docs/#api/en/core/Object3D.quaternion)。正如我们在关于变换的章节中提到的，四元数比欧拉角更难处理，因此，为了避免被迷惑，我们现在将忽略旋转并专注于位置和比例。
 
 要创建动画，我们至少需要两个关键帧。最简单的示例是两个数字关键帧，例如，动画材质的不透明度（它的透明/透视程度）：
 
-1. **在0秒 `.material.opacity`是0。**
-2. **在3秒 `.material.opacity`是1。**
+1. **在 0 秒 `.material.opacity`是 0。**
+2. **在 3 秒 `.material.opacity`是 1。**
 
-不透明度为零表示完全不可见，不透明度为1表示完全可见。当我们使用这两个关键帧为对象设置动画时，它将在三秒内淡入视野。不管对象的实际不透明度是多少，关键帧都会覆盖它。也就是说，如果我们手动设置：
+不透明度为零表示完全不可见，不透明度为 1 表示完全可见。当我们使用这两个关键帧为对象设置动画时，它将在三秒内淡入视野。不管对象的实际不透明度是多少，关键帧都会覆盖它。也就是说，如果我们手动设置：
 
 {{< code lang="js" linenos="false" hl_lines="" caption="对象上设置的值被动画系统覆盖" >}}
 
@@ -108,19 +108,19 @@ mesh.material.opacity = 0.5;
 
 {{< /code >}}
 
-…然后对物体的不透明度进行动画处理，这个0.5的值将被忽略，而使用关键帧中的值。让我们再举一个例子。以下是表示位置的三个矢量关键帧：
+…然后对物体的不透明度进行动画处理，这个 0.5 的值将被忽略，而使用关键帧中的值。让我们再举一个例子。以下是表示位置的三个矢量关键帧：
 
-1. **在0秒 `.position`等于$(0,0,0)$。**
-2. **在3秒 `.position`等于$(5,5,0)$。**
-3. **在6秒 `.position`等于$(0,0,0)$。**
+1. **在 0 秒 `.position`等于$(0,0,0)$。**
+2. **在 3 秒 `.position`等于$(5,5,0)$。**
+3. **在 6 秒 `.position`等于$(0,0,0)$。**
 
 当我们使用这些关键帧为网格设置动画时，它将从场景的中心开始，然后它将在三秒钟内[移动到右上角]({{< relref "/book/first-steps/transformations#directions-in-world-space" >}} "移动到右上角")，然后再反转方向并移回中心，再次需要三秒钟。整个动画将花费六秒钟（您可以选择是循环播放还是结束）。
 
 ### 2. `KeyframeTrack` {#keyframetrack}
 
-没有代表单个关键帧的类。相反，关键帧是存储在两个数组中的原始数据，_时间_ 和 _值_，在[`KeyframeTrack`](https://threejs.org/docs/#api/en/animation/KeyframeTrack)中。从这里开始，我们将一个`KeyframeTrack`简称为 _track_。track还存储被动画的属性，例如`.position`、或`.scale`。
+没有代表单个关键帧的类。相反，关键帧是存储在两个数组中的原始数据，_时间_ 和 _值_，在[`KeyframeTrack`](https://threejs.org/docs/#api/en/animation/KeyframeTrack)中。从这里开始，我们将一个`KeyframeTrack`简称为 _track_。track 还存储被动画的属性，例如`.position`、或`.scale`。
 
-与关键帧一样，关键帧轨迹不指定任何特定对象。一个`.material.opacity`的track可以为任何支持不透明度的材质设置动画，一个`.quaternion`的track可以为任何支持四元数属性的对象设置动画，等等。
+与关键帧一样，关键帧轨迹不指定任何特定对象。一个`.material.opacity`的 track 可以为任何支持不透明度的材质设置动画，一个`.quaternion`的 track 可以为任何支持四元数属性的对象设置动画，等等。
 
 `KeyframeTrack`是基类，每种数据类型都有一个子类：
 
@@ -132,11 +132,11 @@ mesh.material.opacity = 0.5;
 
 我们从不直接使用`KeyframeTrack`，相反，我们将选择与动画数据类型匹配的任何子类。让我们看几个例子。首先，我们将使用`NumberKeyframeTrack`来存储这五个`.opacity`关键帧：
 
-1. **在0秒 `.material.opacity`等于0。**
-2. **在1秒 `.material.opacity`等于1。**
-3. **在2秒 `.material.opacity`等于0。**
-4. **在3秒 `.material.opacity`等于1。**
-5. **在4秒 `.material.opacity`等于0。**
+1. **在 0 秒 `.material.opacity`等于 0。**
+2. **在 1 秒 `.material.opacity`等于 1。**
+3. **在 2 秒 `.material.opacity`等于 0。**
+4. **在 3 秒 `.material.opacity`等于 1。**
+5. **在 4 秒 `.material.opacity`等于 0。**
 
 这些关键帧将使对象闪烁四秒钟。要创建关键帧轨迹，我们将创建一个包含时间的数组和一个包含值的数组，然后将它们与我们想要动画的属性一起传递给`NumberKeyframeTrack`构造函数。
 
@@ -155,9 +155,9 @@ const opacityKF = new NumberKeyframeTrack(".material.opacity", times, values);
 
 请注意`times`数组中的每个条目如何映射到`values`数组中的一个条目。接下来，让我们尝试一些位置关键帧和一个`VectorKeyframeTrack`：
 
-1. **在0秒 `.position`等于$(0,0,0)$。**
-2. **在3秒 `.position`等于$(2,2,2)$。**
-3. **在6秒 `.position`等于$(0,0,0)$。**
+1. **在 0 秒 `.position`等于$(0,0,0)$。**
+2. **在 3 秒 `.position`等于$(2,2,2)$。**
+3. **在 6 秒 `.position`等于$(0,0,0)$。**
 
 这三个关键帧将使对象从场景的中心开始，在三秒内向右、向上和向前移动，然后反向移动回到中心。接下来，我们将使用这些关键帧创建一个矢量轨迹。
 
@@ -174,7 +174,7 @@ const positionKF = new VectorKeyframeTrack(".position", times, values);
 
 {{< /code >}}
 
-这一次，请注意times数组中的每个条目如何与values数组中的 _三个_ 条目匹配，表示3D空间中的位置。这意味着`values`数组比`times`数组大三倍。
+这一次，请注意 times 数组中的每个条目如何与 values 数组中的 _三个_ 条目匹配，表示 3D 空间中的位置。这意味着`values`数组比`times`数组大三倍。
 
 {{< code lang="js" linenos="false" hl_lines="" caption="每次映射到一个$(x, y, z)$位置" >}}
 
@@ -199,9 +199,9 @@ const values = [
 
 {{< iframe src="https://threejs.org/examples/webgl_loader_fbx.html" height="500" caption="来自 Mixamo.com 的舞蹈角色" title="来自 Mixamo.com 的舞蹈角色" class="medium right" >}}
 
-像这个场景中的角色一样跳舞的动画由许多单独的动作组成：双脚转动、膝盖弯曲、手臂疯狂摆动、头部随着节拍点头（未提供配乐）。每个单独的动作都存储在单独的关键帧轨迹中，例如，有一个轨迹控制舞者左脚的旋转，另一个控制右脚的旋转，第三个控制他的脖子旋转，依此类推。事实上，这个舞蹈动画是由53个关键帧轨迹组成的，其中52个是`.quaternion`控制各个关节的轨迹，如舞者的膝盖、肘部和脚踝。然后有一条`.position`轨迹可以在地板上来回移动人物。
+像这个场景中的角色一样跳舞的动画由许多单独的动作组成：双脚转动、膝盖弯曲、手臂疯狂摆动、头部随着节拍点头（未提供配乐）。每个单独的动作都存储在单独的关键帧轨迹中，例如，有一个轨迹控制舞者左脚的旋转，另一个控制右脚的旋转，第三个控制他的脖子旋转，依此类推。事实上，这个舞蹈动画是由 53 个关键帧轨迹组成的，其中 52 个是`.quaternion`控制各个关节的轨迹，如舞者的膝盖、肘部和脚踝。然后有一条`.position`轨迹可以在地板上来回移动人物。
 
-这53条轨迹共同创建了动画，我们称之为**动画剪辑**。因此，动画剪辑是附加到单个对象的任意数量的关键帧的集合，表示剪辑的类是[`AnimationClip`](https://threejs.org/docs/#api/en/animation/AnimationClip)。从这里开始，我们将动画剪辑简称为 _剪辑_。动画片段可以循环播放，因此，虽然这个舞者的动画时长为18秒，但当它到达结尾时，它会循环播放，并且舞者会永远跳下去。
+这 53 条轨迹共同创建了动画，我们称之为**动画剪辑**。因此，动画剪辑是附加到单个对象的任意数量的关键帧的集合，表示剪辑的类是[`AnimationClip`](https://threejs.org/docs/#api/en/animation/AnimationClip)。从这里开始，我们将动画剪辑简称为 _剪辑_。动画片段可以循环播放，因此，虽然这个舞者的动画时长为 18 秒，但当它到达结尾时，它会循环播放，并且舞者会永远跳下去。
 
 动画剪辑存储三部分信息：剪辑的名称、剪辑的长度，最后是组成剪辑的轨迹数组。如果我们将长度设置为-1，轨迹数组将用于计算长度（在大多数情况下这是您想要的）。让我们创建一个包含之前的单个位置轨迹的剪辑：
 
@@ -227,11 +227,11 @@ const clip = new AnimationClip("slowmove", length, tracks);
 
 {{< /code >}}
 
-由于我们将长度设置为-1，轨迹将用于计算长度，在本例中为6秒。我们给剪辑起了一个描述性的名称，`slowmove`，以便以后更容易使用。
+由于我们将长度设置为-1，轨迹将用于计算长度，在本例中为 6 秒。我们给剪辑起了一个描述性的名称，`slowmove`，以便以后更容易使用。
 
-`AnimationClip`仍然没有附加到任何特定对象。我们将不得不等待下面的`AnimationAction`。我们可以将我们创建的这个简单剪辑与任何具有`.position`属性的对象一起使用。但是，随着剪辑变得更加复杂并包含更多轨迹，它们开始与特定对象更紧密地联系在一起。例如，您不能将跳舞剪辑与我们加载的一只鸟一起使用，因为它们的内部结构与人形不同。但是，您可以将剪辑与**具有相同内部结构**的任何其他人形图形一起使用。由于此模型是从mixamo.com下载的，因此舞蹈剪辑应该适用于来自mixamo.com的其他角色，但它不太可能适用于您下载的任何人形模型。
+`AnimationClip`仍然没有附加到任何特定对象。我们将不得不等待下面的`AnimationAction`。我们可以将我们创建的这个简单剪辑与任何具有`.position`属性的对象一起使用。但是，随着剪辑变得更加复杂并包含更多轨迹，它们开始与特定对象更紧密地联系在一起。例如，您不能将跳舞剪辑与我们加载的一只鸟一起使用，因为它们的内部结构与人形不同。但是，您可以将剪辑与**具有相同内部结构**的任何其他人形图形一起使用。由于此模型是从 mixamo.com 下载的，因此舞蹈剪辑应该适用于来自 mixamo.com 的其他角色，但它不太可能适用于您下载的任何人形模型。
 
-现在，让我们尝试制作一个包含之前的不透明度关键帧以及位置关键帧的剪辑。这一次，为了节省一些空间，我们将内联写入时间和值数组，而不是先将它们保存到变量中，并且我们还添加了几个额外的不透明度关键帧，以使两条轨迹都长6秒。
+现在，让我们尝试制作一个包含之前的不透明度关键帧以及位置关键帧的剪辑。这一次，为了节省一些空间，我们将内联写入时间和值数组，而不是先将它们保存到变量中，并且我们还添加了几个额外的不透明度关键帧，以使两条轨迹都长 6 秒。
 
 {{< code lang="js" linenos="false" hl_lines="" caption="动画位置和不透明度的剪辑" >}}
 
@@ -328,9 +328,9 @@ const runnAction = mixer.clipAction(runClip);
 const jumpAction = mixer.clipAction(jumpClip);
 {{< /code >}}
 
-下一步是选择要播放这些动作中的哪一个。你如何处理这些将取决于你正在构建什么样的场景。例如，如果它是一个游戏，您会将这些动作连接到用户控件，这样当按下相应的按钮时，角色就会行走、奔跑或跳跃。另一方面，如果它是一个不可玩的角色，你可以将它们连接到一个AI系统并让它控制角色的动作。
+下一步是选择要播放这些动作中的哪一个。你如何处理这些将取决于你正在构建什么样的场景。例如，如果它是一个游戏，您会将这些动作连接到用户控件，这样当按下相应的按钮时，角色就会行走、奔跑或跳跃。另一方面，如果它是一个不可玩的角色，你可以将它们连接到一个 AI 系统并让它控制角色的动作。
 
-您需要考虑的另一件事是当角色停止行走并开始奔跑时会发生什么。如果您立即从一个动画移动到另一个动画，它看起来不会很好。幸运的是，`AnimationAction`包含控件允许您混合两个剪辑、逐渐将剪辑减慢到停止、循环播放剪辑、反向播放或以不同的速度播放等等。在本章的开头，我们声称three.js动画系统是一个完整的动画混合台。更准确地说，我们应该说`AnimationAction`是一个完整的动画混音台，因为这是大多数控件所在的地方。
+您需要考虑的另一件事是当角色停止行走并开始奔跑时会发生什么。如果您立即从一个动画移动到另一个动画，它看起来不会很好。幸运的是，`AnimationAction`包含控件允许您混合两个剪辑、逐渐将剪辑减慢到停止、循环播放剪辑、反向播放或以不同的速度播放等等。在本章的开头，我们声称 three.js 动画系统是一个完整的动画混合台。更准确地说，我们应该说`AnimationAction`是一个完整的动画混音台，因为这是大多数控件所在的地方。
 
 {{< iframe src="https://threejs.org/examples/webgl_animation_skinning_blending.html" height="500" title="动画合成示例" >}}
 
@@ -350,7 +350,7 @@ mixer.update(updateAmount);
 
 {{< /code >}}
 
-但是，通常我们不想向前跳一整秒。每一帧，我们都想将动画向前移动一个微小的量，这样当我们每秒渲染60帧时，我们会看到一个平滑的动画。我们将使用几章前衍生的技术，当我们第一次创建动画循环并使用它来驱动一个简单的旋转立方体时，请参考[动画循环]({{< relref "/book/first-steps/animation-loop#timing-in-the-animation-system" >}} "动画循环")进行复习。简而言之，我们测量每帧渲染所需的时间，将其存储在名为`delta`的变量中，然后将其传递给混合器的更新方法。
+但是，通常我们不想向前跳一整秒。每一帧，我们都想将动画向前移动一个微小的量，这样当我们每秒渲染 60 帧时，我们会看到一个平滑的动画。我们将使用几章前衍生的技术，当我们第一次创建动画循环并使用它来驱动一个简单的旋转立方体时，请参考[动画循环]({{< relref "/book/first-steps/animation-loop#timing-in-the-animation-system" >}} "动画循环")进行复习。简而言之，我们测量每帧渲染所需的时间，将其存储在名为`delta`的变量中，然后将其传递给混合器的更新方法。
 
 {{< code lang="js" linenos="false" hl_lines="" caption="我们需要每帧更新`delta`单位的混合器" >}}
 
@@ -387,12 +387,12 @@ TODO-LINK: link to morph targets
 
 让我们将迄今为止所学的一切付诸行动。以下是播放每只鸟附带的动画剪辑所需要做的事情：
 
-1. [从每个glTF文件加载的数据]({{< relref "/book/first-steps/load-models#returned-gltf-data" >}} "从每个glTF文件加载的数据")中找到飞行剪辑。
+1. [从每个 glTF 文件加载的数据]({{< relref "/book/first-steps/load-models#returned-gltf-data" >}} "从每个 glTF 文件加载的数据")中找到飞行剪辑。
 2. 创建一个`AnimationMixer`来控制每个鸟模型。
 3. 创建一个`AnimationAction`将剪辑连接到混合器。
 4. [为每只鸟添加一个`.tick`方法]({{< relref "/book/first-steps/animation-loop#the-tick-method" >}} "为每只鸟添加一个`.tick`方法")，并在每一帧更新鸟的混合器。
 
-几乎所有事情都可以在 _**birds/setupModel.js**_ 中用几行代码完成。在World中，我们需要将鸟类添加到[`updatables`数组中]({{< relref "/book/first-steps/animation-loop#the-updatables-array" >}} "`updatables`数组中")，以便动画将在循环中更新。
+几乎所有事情都可以在 _**birds/setupModel.js**_ 中用几行代码完成。在 World 中，我们需要将鸟类添加到[`updatables`数组中]({{< relref "/book/first-steps/animation-loop#the-updatables-array" >}} "`updatables`数组中")，以便动画将在循环中更新。
 
 ### 在哪里可以找到加载的动画剪辑
 
@@ -417,7 +417,7 @@ userData: {}
 }
 {{< /code >}}
 
-在这里，每个文件只包含一个剪辑，但一个glTF文件可以包含任意数量的动画剪辑。例如，包含人类模型的文件可能还包含角色行走、奔跑、跳跃、坐下等的剪辑。
+在这里，每个文件只包含一个剪辑，但一个 glTF 文件可以包含任意数量的动画剪辑。例如，包含人类模型的文件可能还包含角色行走、奔跑、跳跃、坐下等的剪辑。
 
 接下来，更新`setupModels`以提取剪辑：
 
@@ -478,11 +478,11 @@ return model;
 
 {{< code file="worlds/first-steps/animation-system/src/World/components/birds/setupModel.final.js" from="3" to="14" lang="js" linenos="true" hl_lines="11" caption="_**setupModel.js**_: 创建`.tick`方法">}}{{< /code >}}
 
-在这个方法中，我们将每一帧调用[`mixer.update`](https://threejs.org/docs/#api/en/animation/AnimationMixer.update)，传入`delta`，这是[前一帧渲染的时间量]({{< relref "/book/first-steps/animation-loop#timing-in-the-update-loop" >}} "前一帧渲染的时间量")。即使帧速率波动，混合器也使用`delta`保持动画同步。再次，请参阅[第1.7章]({{< relref "/book/first-steps/animation-loop" >}} "第1.7章")以获得更详细的讨论。
+在这个方法中，我们将每一帧调用[`mixer.update`](https://threejs.org/docs/#api/en/animation/AnimationMixer.update)，传入`delta`，这是[前一帧渲染的时间量]({{< relref "/book/first-steps/animation-loop#timing-in-the-update-loop" >}} "前一帧渲染的时间量")。即使帧速率波动，混合器也使用`delta`保持动画同步。再次，请参阅[第 1.7 章]({{< relref "/book/first-steps/animation-loop" >}} "第 1.7 章")以获得更详细的讨论。
 
 ### 将鸟添加到`updatables`
 
-最后，在World中，将所有三只鸟添加到`updatables`数组中：
+最后，在 World 中，将所有三只鸟添加到`updatables`数组中：
 
 {{< code file="worlds/first-steps/animation-system/src/World/World.final.js" from="34" to="42" lang="js" linenos="true" hl_lines="40" caption="_**World.js**_: 将鸟类添加到可更新数组">}}{{< /code >}}
 
@@ -494,9 +494,9 @@ return model;
 
 随着我们的鸟儿在展翅飞翔，你已经到达了这本书的结尾。恭喜！
 
-我们在短时间内介绍了很多内容，包括相机、几何体、网格、纹理、基于物理的材质、直接和环境照明、使用WebGL渲染我们的场景、转换、坐标系，以及场景图、向量、加载外部模型、glTF资源格式，甚至是three.js动画系统，这是一个复杂的野兽。在了解所有这些的同时，我们还找到了创建一个简单但结构良好的应用程序的时间，您可以在该应用程序的基础上构建任何规模的three.js应用程序。
+我们在短时间内介绍了很多内容，包括相机、几何体、网格、纹理、基于物理的材质、直接和环境照明、使用 WebGL 渲染我们的场景、转换、坐标系，以及场景图、向量、加载外部模型、glTF 资源格式，甚至是 three.js 动画系统，这是一个复杂的野兽。在了解所有这些的同时，我们还找到了创建一个简单但结构良好的应用程序的时间，您可以在该应用程序的基础上构建任何规模的 three.js 应用程序。
 
-然而，现在不要停下来！我们已经奠定了基础，但要成为three.js专家，我们还有很长的路要走。是时候让你自己把事情提升到一个新的水平了。祝你好运！
+然而，现在不要停下来！我们已经奠定了基础，但要成为 three.js 专家，我们还有很长的路要走。是时候让你自己把事情提升到一个新的水平了。祝你好运！
 
 P.S. 我们还没有完成，你还需要完成所有的挑战！
 
@@ -531,7 +531,7 @@ _除了我们在此处列出的控件之外，还有许多其他控件。实验�
 
 ### 中等
 
-1. 添加一个[范围滑块输入元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range)到页面。使用滑块的值来设置[`.setEffectiveWeight`](https://threejs.org/docs/#api/en/animation/AnimationAction.setEffectiveWeight)并控制飞行动画对鸟类的影响程度。零是没有效果，1是完全效果。
+1. 添加一个[范围滑块输入元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range)到页面。使用滑块的值来设置[`.setEffectiveWeight`](https://threejs.org/docs/#api/en/animation/AnimationAction.setEffectiveWeight)并控制飞行动画对鸟类的影响程度。零是没有效果，1 是完全效果。
 
 2. 使用[位置轨迹](#keyframetrack)和我们之前描述的[剪辑](#animationclip)创建一个您自己的动画剪辑。将剪辑附加到鸟而不是飞行动画上。
 

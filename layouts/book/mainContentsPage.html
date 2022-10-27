@@ -1,6 +1,7 @@
 {{/*
   Standard chapter page.
   TODO:  move this page into layouts/jumbo since it uses that format
+  TODO: the language switcher isn't showing up here for some reason
 */}}
 
 
@@ -24,7 +25,7 @@
   </head>
 
   <body>
-    {{- partialCached "jumbo/nav.html" . -}}
+    {{- partial "jumbo/nav.html" . -}}
     <div class="wrapper">
       {{- partialCached "jumbo/header.html" . -}}
       <main>

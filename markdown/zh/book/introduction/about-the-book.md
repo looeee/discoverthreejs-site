@@ -44,7 +44,7 @@ IDEStripDirectory: "worlds/introduction/about-the-book/"
 IDEClosedFolders: ["systems", "components", "styles", "vendor", "textures"]
 IDEActiveDocument: "src/World/components/SparkleHorse/sparkleHorse.js"
 IDEEntry: "index.html"
-prevURL: "/book/introduction/"
+prevURL: "/zh/book/introduction/"
 prevTitle: "欢迎来打Discover three.js!"
 ---
 

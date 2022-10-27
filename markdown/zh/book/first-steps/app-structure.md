@@ -21,7 +21,7 @@ IDEClosedFolders: ["assets", "vendor"]
 IDEStripDirectory: "worlds/first-steps/app-structure/"
 IDEActiveDocument: "index.html"
 IDESwitchImportsAllow: false
-prevURL: "/book/first-steps/"
+prevURL: "/zh/book/first-steps/"
 prevTitle: "入门：真正的乐趣从这里开始！"
 ---
 

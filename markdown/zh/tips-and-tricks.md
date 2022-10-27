@@ -8,11 +8,10 @@ available: true
 excludeFromTOC: false
 hideWordCount: true
 type: "book"
-nextURL: "/book/"
+nextURL: "/zh/book/"
 nextTitle: "Table of Contents"
-prevURL: "/book/appendix/threejs-versions/"
+prevURL: "/zh/book/appendix/threejs-versions/"
 prevTitle: "Dealing with Different three.js Versions"
-# IsTranslated: true
 ---
 
 # Three.js 技巧和窍门大清单！

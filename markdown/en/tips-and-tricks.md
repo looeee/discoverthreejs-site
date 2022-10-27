@@ -12,7 +12,6 @@ nextURL: "/book/"
 nextTitle: "Table of Contents"
 prevURL: "/book/appendix/threejs-versions/"
 prevTitle: "Dealing with Different three.js Versions"
-IsTranslated: true
 ---
 
 # The Big List of three.js Tips and Tricks!

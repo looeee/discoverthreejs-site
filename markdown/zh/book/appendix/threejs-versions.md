@@ -5,7 +5,7 @@ date: 2018-04-02
 weight: 9906
 chapter: "B.1"
 available: true
-nextURL: "/tips-and-tricks/"
+nextURL: "/zh/tips-and-tricks/"
 nextTitle: "Tips and Tricks"
 ---
 
