@@ -1,13 +1,11 @@
 {{/*
   Standard chapter page.
-  TODO:
-  - document front matter variables
-  - move this page into layouts/jumbo since it used that format
+  TODO:  move this page into layouts/jumbo since it uses that format
 */}}
 
 
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html dir="ltr" lang="{{ .Lang }}">
   <head>
     <title>{{ .Title }} | Discover three.js</title>
     {{- partialCached "head/meta.html" . .Params.noFollow .Params.Title .Params.Description -}}

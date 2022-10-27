@@ -1,12 +1,13 @@
 {{/*
   Section heading page.
   This page is nearly the same as a standard book page but it includes a short table of contents
-  describing upcoming chapters in the section.<a href="" target="_blank" rel="noopener noreferrer"></a>
-  TODO: document front matter variables
+  describing upcoming chapters in the section.
+
+  TODO: /book/zh is broken
 */}}
 
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html dir="ltr" lang="{{ .Lang }}">
   <head>
     <title>{{ .Title }} | Discover three.js</title>
     {{- partialCached "head/meta.html" . .Params.noFollow .Params.Title .Params.Description -}}

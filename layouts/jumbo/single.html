@@ -12,7 +12,7 @@
 */}}
 
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html dir="ltr" lang="{{ .Lang }}">
   <head>
     <title>{{ .Title }} | Discover three.js</title>
     {{- partialCached "head/meta.html" . .Params.noFollow .Params.Title .Params.Description -}}
