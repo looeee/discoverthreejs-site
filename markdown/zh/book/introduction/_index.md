@@ -1,5 +1,5 @@
 ---
-title: "欢迎来到Discover three.js!"
+title: "欢迎来到《探索three.js》!"
 description: "欢迎来到Three.js实战手册！这本书包含了创建任何出色的3D web应用所需要的一切，比如产品展示、官网页面、数据可视化、音视频，游戏等等。"
 date: 2018-04-02
 sectionHead: true
@@ -11,11 +11,11 @@ nextTitle: "如何使用这本书"
 hideWordCount: true
 ---
 
-# 欢迎来到 Discover three.js! {#welcome}
+# 欢迎来到《探索three.js》! {#welcome}
 
 {{< inlineScene entry="first-steps/birds-animated.js" class="round" >}}
 
-您好，欢迎来到 **Discover three.js**!
+您好，欢迎来到 **《探索three.js》**!
 
 在本书中，我们将使用 three.js JavaScript 图形库，向您展示如何利用 3D 的力量来创建真正的脱颖而出的网站。无论你想创建产品展示、官网页面、数据可视化、音视频、广告、游戏、CAD、CAM 或者 BIM 软件，亦或是任何其他的应用程序，使用 three.js 创建的网页都比其他网页更胜一筹。没有其他 JavaScript 图形库可以像 three.js 那样结合强大、广泛的功能，活跃的社区、性能和易用性，而且它在一个仅有 600kb 大小的的 JavaScript 包中完成了这一切。
 
