@@ -3,14 +3,11 @@
   TODO: these should all be hosted locally to prevent upstream changes
   causing breakage
 */}}
-
 {{- $src := .Get "src" -}}
 {{- $height := .Get "height" | default "500" -}}
 {{- $title := .Get "title" | default "three.js scene" -}}
 {{- $caption := .Get "caption" | default "" -}}
-
 {{- $class := .Get "class" | default "" -}}
-
 <figure class="{{ $class }}">
   <noscript class="loading-lazy">
     <iframe title="{{ $title }}" width="100%" height="{{ $height }}" src="{{ $src }}" importance="low" loading="lazy" sandbox="allow-scripts"></iframe>

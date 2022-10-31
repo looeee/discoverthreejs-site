@@ -13,7 +13,6 @@
   This seems to work ok, I haven't noticed any jank. However, it can be overridden per image
   by setting width or height when calling the shortcode
 */}}
-
 {{- $src := .Get "src" -}}
 {{- $caption := .Get "caption" | default "" -}}
 {{- $alt := .Get "alt" | default $caption -}}
@@ -21,7 +20,6 @@
 {{- $class := .Get "class" | default "" -}}
 {{- $height := .Get "height" | default "1" -}}
 {{- $width := .Get "width" | default "1" -}}
-
 <figure {{ if ne $class "" }}class="{{ $class }}"{{ end }}>
   <noscript class="loading-lazy">
     <img

@@ -5,12 +5,9 @@ especially on mobile.
 class = notice/success/warning
 will give blue/green/red box
 */}}
-
 {{ $_hugo_config := `{ "version": 1 }` }}
 {{- $class := .Get 0 | default "notice" -}}
-
 {{- $markdown := .Inner | markdownify -}}
-
 <aside class="{{ $class }}">
   {{ if not ( findRE "<[h|p][^>]*>" $markdown ) }}
     <p>{{ $markdown }}</p>

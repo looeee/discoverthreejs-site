@@ -11,5 +11,4 @@
 
   TODO: if no .Title set title="{{ .Text }}""
 */}}
-
-<a href="{{ .Destination | safeURL }}" {{ with .Title}} title="{{ . }}"{{ end }}{{ if strings.HasPrefix .Destination "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .Text | safeHTML }}</a>
+<a href="{{- .Destination | safeURL -}}" {{- with .Title -}} title="{{- . -}}"{{- end -}}{{- if strings.HasPrefix .Destination "http" -}} target="_blank" rel="noopener noreferrer"{{- end -}}>{{- .Text | safeHTML -}}</a>
