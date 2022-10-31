@@ -1,5 +1,7 @@
 # Welcome to Discover three.js!
 
+**Languages: English (this file), [中文](README.zh.md).**
+
 This is the public repo for the book [Discover three.js](https://discoverthreejs.com/).
 
 Pull requests are welcome, especially for:
