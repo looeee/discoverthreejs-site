@@ -6,3 +6,6 @@ weight: 100
 available: true
 excludeFromTOC: true
 ---
+
+{{% note %}}
+{{% /note %}}

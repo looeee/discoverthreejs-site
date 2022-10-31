@@ -558,4 +558,5 @@ _Note: the position track will overwrite the `bird.position`, so the birds will 
 ### Bonus
 
 1. If you have been following along so far using the inline code editor, take the code from this chapter and make it run on locally on your computer. You'll need to set up [a development server]({{< relref "/book/introduction/prerequisites#a-web-server" >}} "a development server").
-   {{% /aside %}}
+
+{{% /aside %}}

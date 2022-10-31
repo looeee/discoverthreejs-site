@@ -8,23 +8,18 @@
 
   {{< inlineScene entry="first-steps/birds-animated.js" class="round" captions="Animated 3D birds a-flyin" >}}
 */}}
-
 {{ $_hugo_config := `{ "version": 1 }` }}
 {{ $entry := (.Get "entry") }}
 {{ $id := delimit (shuffle (seq 1 9)) "" }}
 {{ $class := .Get "class" | default "" }}
 {{- $caption := .Get "caption" | default "" -}}
-
 {{ $baseDir := "/examples/worlds/inline-scenes/" }}
-
 {{ $path := printf "%s%s" $baseDir $entry }}
-
 <figure id="scene-{{ $id }}" class="inline-scene loading-dots {{ $class }}">
   {{- if $caption -}}
   <figcaption>{{ $caption | markdownify }}</figcaption>
   {{- end -}}
 </figure>
-
 <script type="module">
   import init from {{ $path }};
   init("#scene-{{ $id }}");
