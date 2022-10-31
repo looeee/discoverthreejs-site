@@ -1,6 +1,6 @@
 ---
-title: "JavaScript Reference"
-description: "To create three.js applications, you need to know some JavaScript. This chapter is a reference for all the parts of the language we use throughout this book."
+title: "JavaScript 参考"
+description: "要创建 three.js 应用程序，您需要了解一些JavaScript。 本章是我们在本书中使用的所有语言部分的参考。"
 date: 2019-01-01
 weight: 9902
 chapter: "A.2"

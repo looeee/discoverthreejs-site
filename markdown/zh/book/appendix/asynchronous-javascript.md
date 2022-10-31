@@ -1,6 +1,6 @@
 ---
-title: "Asynchronous JavaScript"
-description: "Asynchronous coding means writing code in such a way that our app will keep working while a long task, like loading a model, is running. Here, we cover the different ways we can do this in JavaScript."
+title: "异步 JavaScript"
+description: "异步编码意味着以这样一种方式编写代码，即我们的应用程序将在长时间的任务（例如加载模型）运行时继续工作。 在这里，我们介绍了在 JavaScript 中执行此操作的不同方法。"
 date: 2019-01-01
 weight: 9905
 chapter: "A.5"
