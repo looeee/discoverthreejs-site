@@ -1,8 +1,8 @@
-# 欢迎来到《Discover three.js》！
+# 欢迎来到《探索 three.js》！
 
 **语言: [English](README.md), 中文 (这个文件).**
 
-这是[《Discover three.js》](https://discoverthreejs.com/)一书的公共仓库。
+这是[《探索 three.js》](https://discoverthreejs.com/)一书的公共仓库。
 
 欢迎提PR，特别是对于：
 
