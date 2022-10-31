@@ -18,16 +18,8 @@
     {{- partialCached "head/meta.html" . .Params.noFollow .Params.Title .Params.Description -}}
     {{- partialCached "head/schema.html" . -}}
     {{- partialCached "head/links.html" . .Permalink -}}
-
-    {{ $options := (dict "targetPath" "styles/jumbo.css" "outputStyle" "compressed" ) }}
-    {{ $style := resources.Get "scss/apps/jumbo/main.scss" | toCSS $options | postCSS }}
-    <link rel="stylesheet" href="{{ $style.RelPermalink }}?v={{ now.Unix }}">
-
-    <noscript>
-      {{ $optionsNS := (dict "targetPath" "styles/noscript.css" "outputStyle" "compressed" ) }}
-      {{ $style := resources.Get "scss/noscript.scss" | toCSS $optionsNS | postCSS | minify }}
-      <link rel="stylesheet" href="{{ $style.RelPermalink }}?v={{ now.Unix }}">
-    </noscript>
+    {{- partialCached "head/jumbo-styles.html" . -}}
+    {{- partialCached "head/noscript-styles.html" . -}}
   </head>
   <body>
     {{- partialCached "jumbo/nav.html" . -}}

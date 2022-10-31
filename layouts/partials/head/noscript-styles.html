@@ -1,0 +1,5 @@
+<noscript>
+  {{ $optionsNS := (dict "targetPath" "styles/noscript.css" "outputStyle" "compressed" ) }}
+  {{ $style := resources.Get "scss/noscript.scss" | toCSS $optionsNS | postCSS | minify }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}?v={{ now.Unix }}">
+</noscript>

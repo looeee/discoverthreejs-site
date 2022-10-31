@@ -10,22 +10,8 @@
     {{- partialCached "head/meta.html" . .Params.noFollow .Params.Title .Params.Description -}}
     {{- partialCached "head/schema.html" . -}}
     {{- partialCached "head/links.html" . .Permalink -}}
-    <style>
-      .loading-page {
-        display: none;
-      }
-    </style>
-
-    {{ $options := (dict "targetPath" "styles/chapter.css" "outputStyle" "compressed" ) }}
-    {{ $style := resources.Get "scss/apps/chapters/main.scss" | toCSS $options | postCSS }}
-    <link rel="stylesheet" href="{{ $style.RelPermalink }}?v={{ now.Unix }}">
-
-    <noscript>
-      {{ $optionsNS := (dict "targetPath" "styles/noscript.css" "outputStyle" "compressed" ) }}
-      {{ $style := resources.Get "scss/noscript.scss" | toCSS $optionsNS | postCSS | minify }}
-      <link rel="stylesheet" href="{{ $style.RelPermalink }}?v={{ now.Unix }}">
-    </noscript>
-
+    {{- partialCached "head/chapter-styles.html" . -}}
+    {{- partialCached "head/noscript-styles.html" . -}}
     {{- partialCached "head/preload.html" . -}}
     {{- partial "chapterScript.html" . -}}
   </head>

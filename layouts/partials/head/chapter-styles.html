@@ -1,0 +1,9 @@
+<style>
+  .loading-page {
+    display: none;
+  }
+</style>
+
+{{ $options := (dict "targetPath" "styles/chapter.css" "outputStyle" "compressed" ) }}
+{{ $style := resources.Get "scss/apps/chapters/main.scss" | toCSS $options | postCSS }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}?v={{ now.Unix }}">

@@ -243,5 +243,5 @@ _Note: when you add the light to the camera instead of the scene, you are [attac
 {{% /aside %}}
 
 {{% note %}}
-TODO-LOW: document adding light.target to the scene here
+TODO: the above line "\_Note: when you add..." is creating invalid html with no closing p tag
 {{% /note %}}

@@ -1,0 +1,3 @@
+{{ $options := (dict "targetPath" "styles/jumbo.css" "outputStyle" "compressed" ) }}
+{{ $style := resources.Get "scss/apps/jumbo/main.scss" | toCSS $options | postCSS }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}?v={{ now.Unix }}">
