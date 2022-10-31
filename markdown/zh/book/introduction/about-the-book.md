@@ -45,7 +45,7 @@ IDEClosedFolders: ["systems", "components", "styles", "vendor", "textures"]
 IDEActiveDocument: "src/World/components/SparkleHorse/sparkleHorse.js"
 IDEEntry: "index.html"
 prevURL: "/zh/book/introduction/"
-prevTitle: "欢迎来打Discover three.js!"
+prevTitle: "欢迎来到《探索three.js》!"
 ---
 
 {{% note %}}
