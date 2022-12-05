@@ -1,11 +1,11 @@
 
 <ul class="links" style="justify-content: left">
   <li><a href='{{- if ne .Lang "en" -}}/{{- .Lang -}}/book/{{- else -}}/book/{{- end -}}'>Table Of Contents</a></li>
-  <li style="margin: auto">
+  <!-- <li style="margin: auto">
     <a href="#mailing-list-signup"
       >Stay up to date - sign up to the mailing list!</a
     >
-  </li>
+  </li> -->
   <li>
     {{- partial "language-switcher.html" . -}}
   </li>
