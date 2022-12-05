@@ -1,6 +1,6 @@
 ---
-title: "JavaScript Modules"
-description: "Discover three.js is written in the latest version of JavaScript, ES6. Here, we introduce an important new ES6 feature: JavaScript modules. These allow us to split our code into multiple small pieces."
+title: "JavaScript 模块"
+description: "《探索 three.js》是用最新版本的 JavaScript ES6 编写的。 在这里，我们介绍一个重要的 ES6 新特性：JavaScript 模块。 这些允许我们将代码分成多个小块。"
 date: 2019-01-01
 weight: 9904
 chapter: "A.4"

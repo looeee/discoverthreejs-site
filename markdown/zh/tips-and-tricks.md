@@ -1,7 +1,7 @@
 ---
-title: "The Big List of three.js Tips and Tricks!"
+title: "Three.js 技巧和窍门大清单！"
 date: 2018-01-01
-description: "Lots of tips, tricks, and suggestions for best practices while building a high performance three.js application."
+description: "在构建高性能的three.js 应用程序时，有很多关于最佳实践的提示、技巧和建议。"
 weight: 9999
 chapter: "B.2"
 available: true

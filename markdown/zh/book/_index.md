@@ -1,6 +1,6 @@
 ---
-title: "Table of Contents"
-description: "Welcome to the missing manual for three.js! Discover three.js is a completely free tutorial series designed to get you up to speed fast, so dive straight in and take your websites to the third dimension!"
+title: "目录"
+description: "欢迎来到Three.js实战手册！《探索 three.js》是一个完全免费的教程系列，旨在让您快速上手，所以赶紧学习起来吧并将您的网站带到第三维度！"
 date: 2018-04-02
 excludeFromTOC: true
 available: true

@@ -1,6 +1,6 @@
 ---
-title: "HTML and CSS Used in This Book"
-description: "Here, we look more deeply at the HTML and CSS we used to create a simple web page for showcasing our three.js scenes. Even if you are new to web development, you should be able to get up to speed quickly."
+title: "本书中使用的 HTML 和 CSS"
+description: "在这里，我们更深入地了解用于创建简单网页以展示我们的 three.js 场景的 HTML 和 CSS。 即使您是 Web 开发的新手，您也应该能够快速上手。"
 date: 2019-01-01
 weight: 9901
 chapter: "A.1"

@@ -1,6 +1,6 @@
 ---
-title: "Dealing with Different three.js Versions"
-description: "The development pace of three.js is FAST, and it uses a slightly unusual versioning system. Here are some tips for dealing with the different versions and making sure that you don't get stuck using an outdated version, or mismatched plugins."
+title: "处理不同的 three.js 版本"
+description: "three.js 的开发速度很快，而且它使用了一个稍微不寻常的版本控制系统。 以下是处理不同版本的一些技巧，并确保您不会因使用过时的版本或不匹配的插件而陷入困境。"
 date: 2018-04-02
 weight: 9906
 chapter: "B.1"

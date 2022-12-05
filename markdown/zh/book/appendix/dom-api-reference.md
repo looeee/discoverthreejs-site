@@ -1,6 +1,6 @@
 ---
-title: "The Document Object Model and DOM API"
-description: "JavaScript is connected to a web page using using the Document Object Model (DOM) and we can access it using the DOM API. Here, we provide a reference for the parts of the DOM we use in this book."
+title: "文档对象模型（DOM）和 DOM API"
+description: "JavaScript 使用文档对象模型 (DOM) 连接到网页，我们可以使用 DOM API 访问它。 在这里，我们为本书中使用的 DOM 部分提供参考。"
 date: 2018-04-02
 weight: 9903
 chapter: "A.3"
