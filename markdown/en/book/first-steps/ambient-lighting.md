@@ -80,7 +80,7 @@ One solution to the problem of our poorly illuminated cube is to add more direct
 1. We have to keep track of the lights to make sure all directions are illuminated.
 2. Lights are expensive, and we want to add as few lights as possible to our scenes.
 
-Adding more and more direct lights to your scene will quickly kill you framerate, so direct lights alone are rarely the best choice.
+Adding more and more direct lights to your scene will quickly kill your framerate, so direct lights alone are rarely the best choice.
 
 ### No Lights at All!
 
