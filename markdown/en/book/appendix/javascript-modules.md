@@ -415,7 +415,7 @@ We'll finish up this chapter with a brief look at [**dynamic imports**](https://
 
 **Static imports use the `import` statement, while dynamic imports use the `import()` function.**
 
-With dynamic imports you can optionally load a module during the execution of your code. This might be useful, for example, if you want to create an app that can load any of the [thirty or so 3D asset formats that three.js supports](https://github.com/mrdoob/three.js/tree/master/examples/jsm/loaders) (there are more than thirty loaders there, but some are for textures and other things). Altogether, these loaders comprise around one megabyte of JavaScript, which is a lot to force upon a poor user if they only need a fraction of it. Instead, you can wait until the user sends you a model file, examine the file and say, "_ayup, that there's an FBX file, better be fetchin' tha `FBXLoader`_":
+With dynamic imports you can optionally load a module during the execution of your code. This might be useful, for example, if you want to create an app that can load any of the [thirty or so 3D asset formats that three.js supports](https://github.com/mrdoob/three.js/tree/master/examples/jsm/loaders) (there are more than thirty loaders there, but some are for textures and other things). Altogether, these loaders comprise around one megabyte of JavaScript, which is a lot to force upon a poor user if they only need a fraction of it. Instead, you can wait until the user sends you a model file, examine the file and say, "_ayup, that there's an FBX file, better be fetchin' that `FBXLoader`_":
 
 {{< code lang="js" linenos="false" hl_lines="" caption="Dynamically importing the FBXLoader at run time" >}}
 
